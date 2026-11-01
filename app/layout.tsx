@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
-const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" });
-const serif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-serif" });
+const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist" });
 export const metadata: Metadata = {
-  title: "Flexlore — Video SOPs that show which team is actually ready",
-  description: "Turn the way your best people work into short video SOPs, quizzes and a clear view of who is ready.",
+  title: "Flexlore. Teach it once.",
+  description: "Film the job once. Flexlore turns it into video steps, checks understanding and shows who is ready, every shift.",
   icons: { icon: "/brand/mark.png" },
 };
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={`${inter.variable} ${serif.variable}`}><body className="font-sans antialiased">{children}</body></html>);
+  return (<html lang="en" className={geist.variable}><body className="font-sans antialiased">{children}</body></html>);
 }
