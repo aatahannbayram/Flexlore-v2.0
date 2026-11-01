@@ -3,8 +3,8 @@ import { Inter, Geist_Mono } from "next/font/google";
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 import "./globals.css";
 const inter = Inter({ subsets: ["latin", "latin-ext"], axes: ["opsz"], variable: "--font-inter", display: "swap" });
-const title = "Flexlore | AI-Powered Video Onboarding & Standard Work";
-const description = "Turn videos into standard work. Flexlore splits recordings into steps, drafts AI quizzes and shows which frontline team is ready, by shift and location.";
+const title = "Flexlore | Every job, step by step, from the operator's point of view";
+const description = "Flexlore simulates how a job is done, step by step, from the operator's point of view. Faster onboarding, master-to-apprentice knowledge transfer, permanent orientation after installation, and lower cost of poor quality.";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.flexlore.com"),
   title, description,

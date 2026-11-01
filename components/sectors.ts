@@ -63,7 +63,7 @@ export const sectors: Sector[] = [
     ],
     how: [
       { k: "Video SOP", h: "Filmed in a real room.", p: "Your head housekeeper records one perfect turn. It becomes short steps with photo references." },
-      { k: "AI quiz", h: "In their own language.", p: "Steps are translated and subtitled. The quiz follows, so you know the standard was understood." },
+      { k: "AI quiz", h: "Checked, step by step.", p: "A short quiz follows the steps, so you know the standard was understood, not just watched." },
       { k: "Readiness", h: "Ready before the guest arrives.", p: "See who has learned room turn, check-in and breakfast, by property and shift." },
     ],
     quiz: { q: "You find a guest's item while stripping the room. What do you do?", a: ["Leave it on the bed", "Log it and hand it to lost and found", "Bin it"], ok: 1 },
@@ -107,7 +107,7 @@ export const sectors: Sector[] = [
       { k: "Readiness", h: "Staff the shift with confidence.", p: "See who is ready for which zone and task before peak days." },
     ],
     quiz: { q: "Your pre-use check finds a fault. What do you do?", a: ["Use it carefully", "Tag it out and report it", "Swap with a colleague"], ok: 1 },
-    flow: [ { when: "Day 0", what: "Shift lead films receiving, picking and checks" }, { when: "Day 1", what: "Steps and quiz approved, translated if needed" }, { when: "Induction", what: "New staff learn on their phone before the floor" }, { when: "Every shift", what: "Lead sees who is ready, by zone" } ],
+    flow: [ { when: "Day 0", what: "Shift lead films receiving, picking and checks" }, { when: "Day 1", what: "Steps and quiz approved" }, { when: "Induction", what: "New staff learn on their phone before the floor" }, { when: "Every shift", what: "Lead sees who is ready, by zone" } ],
     ready: "Ready for: receiving, zone C picking.",
   },
   {

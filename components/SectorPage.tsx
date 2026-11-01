@@ -50,7 +50,7 @@ export default function SectorPage({ i }: { i: number }) {
 
         <section className="border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto max-w-7xl">
-            <Rev><p className="eyebrow">SOPs you would film</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]"><K text="Real tasks. Real steps." /></h2></Rev>
+            <Rev><p className="eyebrow">From the operator's eyes</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]"><K text="Real tasks. Step by step." /></h2><p className="mt-6 max-w-xl text-lg leading-snug text-white/70">Each task is filmed from where the person doing it stands, then split into steps they can replay on their phone: for onboarding, for passing the master's know-how on, and for retraining the exact step behind a quality issue.</p></Rev>
             <div className="mt-16 grid gap-10 md:grid-cols-[1fr_1.2fr]">
               <ul className="border-t border-white/15">
                 {s.sops.map((o, k) => (

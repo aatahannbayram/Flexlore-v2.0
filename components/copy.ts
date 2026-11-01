@@ -1,7 +1,7 @@
 export type Lang = "en" | "tr";
 export type C = {
   skip: string; nav: string[]; menu: string; close: string; heroK: string; h1seo: string; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
-  hero: string; heroSub: string;
+  hero: string; heroSub: string; heroLine: string;
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
   steps: { h: string; p: string }[];
@@ -12,8 +12,8 @@ export type C = {
 };
 export const copy: Record<Lang, C> = {
   en: {
-    skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "Sectors"], menu: "Menu", close: "Close",
-    heroK: "Video onboarding & standard work", h1seo: "Flexlore turns video into standard work for frontline teams.",
+    skip: "Skip to content", nav: ["How it works", "Cases", "Readiness", "Sectors"], menu: "Menu", close: "Close",
+    heroK: "Operator's-eye job simulation", h1seo: "Flexlore simulates how a job is done, step by step, from the operator's point of view.", heroLine: "Fewer quality defects. New hires up to speed faster. The master's know-how passed on, not lost. Flexlore shows every job step by step, through the eyes of the operator doing it.",
     alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
@@ -23,10 +23,10 @@ export const copy: Record<Lang, C> = {
       { q: "Do I need technical knowledge?", a: "No. If you can film with a phone, you can create a standard work." },
       { q: "How do I see if training worked?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by team, shift and location." },
     ], cta: "Book a demo", langLabel: "Language",
-    hero: "Teach it once.",
-    heroSub: "Your best people, on film. Your whole floor, trained.",
-    stK: "The problem", whereK: "Where it works", st: ["Nobody reads", "the binder."], stSub: "The real procedure lives in someone's hands. Flexlore puts it on every phone.",
-    pK: "How it works", pH: ["Film it.", "Approve it.", "Assign it."],
+    hero: "Step by step.",
+    heroSub: "See the job exactly as the operator does it. Then do it right.",
+    stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "When the job is learned by guessing, it shows up as scrap, rework and returns. Flexlore records the job from the operator's side, step by step, so the next person sees exactly what to do: faster onboarding, fewer quality defects, and knowledge that stays when people move on.",
+    pK: "Follow one job", pH: ["Film it.", "Approve it.", "Assign it."],
     pP: "Record the task on a phone. Flexlore splits it into steps, writes the instructions and drafts a quiz. You check it and send it out.",
     steps: [
       { h: "Record.", p: "Your most experienced person films the job on a phone, as it is really done. No studio. No script." },
@@ -45,11 +45,11 @@ export const copy: Record<Lang, C> = {
       { h: "Kitchens", v: "kitchen" }, { h: "Production", v: "line" }, { h: "Hotels", v: "hotel" }, { h: "Warehouses", v: "warehouse" },
     ],
     endH: "See it on your floor.", endP: "Twenty minutes. One of your real procedures.", endCta: "Book a demo",
-    foot: "Flexlore. Video SOPs for frontline teams.", credits: "Footage: Mixkit. Demo build.",
+    foot: "Flexlore. Every job, step by step, from the operator's point of view.", credits: "Footage: Mixkit. Demo build.",
   },
   tr: {
-    skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "Sektörler"], menu: "Menü", close: "Kapat",
-    heroK: "Video ile işe alıştırma ve standart iş", h1seo: "Flexlore, videoyu saha ekipleri için standart işe dönüştürür.",
+    skip: "İçeriğe geç", nav: ["Nasıl çalışır", "Örnekler", "Hazırlık", "Sektörler"], menu: "Menü", close: "Kapat",
+    heroK: "Operatörün gözünden iş simülasyonu", h1seo: "Flexlore bir işin nasıl yapıldığını, operatörün gözünden adım adım simüle eder.", heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
     alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [
@@ -59,10 +59,10 @@ export const copy: Record<Lang, C> = {
       { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız standart iş oluşturabilirsiniz." },
       { q: "Eğitimin işe yaradığını nasıl görürüm?", a: "Flexlore kimin izlediğini, işi kimin tamamladığını ve quizi kimin geçtiğini ekip, vardiya ve şube bazında gösterir." },
     ], cta: "Demo isteyin", langLabel: "Dil",
-    hero: "Bir kez öğret.",
-    heroSub: "En iyi çalışanlarınız kamerada. Tüm ekibiniz eğitimde.",
-    stK: "Sorun", whereK: "Nerede çalışır", st: ["Klasörü", "kimse okumaz."], stSub: "Gerçek prosedür birinin ellerinde yaşar. Flexlore onu her telefona taşır.",
-    pK: "Nasıl çalışır", pH: ["Çek.", "Onayla.", "Ata."],
+    hero: "Adım adım.",
+    heroSub: "İşi, operatörün gördüğü gibi görün. Sonra doğru yapın.",
+    stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
+    pK: "Bir işi takip edin", pH: ["Çek.", "Onayla.", "Ata."],
     pP: "Görevi telefonla kaydedin. Flexlore adımlara böler, talimatları yazar ve bir quiz hazırlar. Siz kontrol edip gönderirsiniz.",
     steps: [
       { h: "Kayıt.", p: "En deneyimli kişiniz işi telefonla, gerçekte yapıldığı gibi çeker. Stüdyo yok. Senaryo yok." },

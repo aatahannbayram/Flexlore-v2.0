@@ -8,6 +8,8 @@ import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
 import { WebSection, Platforms } from "./WebApp";
+import Cases from "./Cases";
+import Copq from "./Copq";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
@@ -67,7 +69,7 @@ function Loader() {
       <motion.img src="/brand/app-icon.png" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
       <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
       <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
-      <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-white/40">Video SOP · AI quiz · Readiness</p>
+      <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-white/40">Step by step · from the operator's eyes</p>
     </motion.div>);
 }
 
@@ -88,15 +90,15 @@ function Hero({ t }: { t: C }) {
         {/* signature: video lives inside the letters, then the mask opens up */}
         <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
           <motion.h1 style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-white">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
+            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
             <span className="sr-only"> {t.h1seo}</span></motion.h1>
         </motion.div>
         <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <motion.p style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
+            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
         <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-8 md:px-10">
-          <p className="mono text-[11px] uppercase tracking-[.2em] text-white/70">● {t.heroK}</p>
+          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">● {t.heroK}</p><p className="mt-3 max-w-[34ch] text-[clamp(1.05rem,1.6vw,1.4rem)] font-medium leading-snug text-white [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p pointer-events-auto mt-5 inline-flex">{t.cta} →</a></div>
           <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll ↓</p>
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
@@ -158,7 +160,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
               </div>
             </div>
             <ol className="mono mt-8 grid max-w-md grid-cols-4 gap-2 text-[10px] uppercase tracking-[.16em] md:mt-14">
-              {t.steps.map((s, i) => (<li key={i} className={`border-t pt-2 transition-colors duration-500 ${a >= i ? "border-flame text-white" : "border-white/20 text-white/40"}`}>{s.h.replace(".", "")}</li>))}
+              {t.steps.map((s, i) => (<li key={i}><button type="button" onClick={() => { const el = ref.current; if (!el) return; const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight; window.scrollTo({ top: top + span * ((i + 0.35) / 4.2), behavior: "smooth" }); }} aria-current={a === i ? "step" : undefined} className={`w-full border-t pt-2 text-left uppercase transition-colors duration-500 hover:text-white ${a >= i ? "border-flame text-white" : "border-white/20 text-white/40"}`}>{s.h.replace(".", "")}</button></li>))}
             </ol>
           </div>
           <div className="col-span-12 row-start-1 flex justify-center pt-20 md:col-span-5 md:col-start-8 md:row-auto md:pt-0">
@@ -170,34 +172,6 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
               <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-flame md:block" />
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Languages({ t }: { t: C }) {
-  const { ref, p } = useSec();
-  const x = useTransform(p, [0, 1], ["10%", "-55%"]);
-  const ho = useTransform(p, [0.05, 0.25], [0, 1]);
-  const hs = useTransform(p, [0.05, 0.35], [1.15, 1]);
-  return (
-    <section ref={ref} className="relative h-[250vh]" id="languages" aria-label={t.lK}>
-      <div className="sticky top-0 h-svh overflow-hidden">
-        <Video name="steam" className="opacity-45" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-        <div className="relative flex h-full flex-col justify-center">
-          <motion.div style={{ opacity: ho, scale: hs }} className="mx-auto max-w-6xl px-6 text-center">
-            <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">04 — {t.lK}</p>
-            <h2 className="display mt-4 text-[clamp(3rem,8vw,8rem)]"><K text={t.lH} /></h2>
-          </motion.div>
-          <motion.div style={{ x }} className="mt-14 flex gap-14 whitespace-nowrap text-[clamp(2rem,4.5vw,4rem)] font-medium tracking-tight text-white/25" aria-hidden="true">
-            {t.langs.concat(t.langs).map((l, i) => <span key={i}>{l}</span>)}
-          </motion.div>
-          <motion.div style={{ opacity: ho }} className="mx-auto mt-14 max-w-xl px-6 text-center">
-            <p className="inline bg-black/70 px-2 py-1 text-lg">{t.sub}</p>
-            <p className="mt-8 text-white/70">{t.lP}</p>
-          </motion.div>
         </div>
       </div>
     </section>
@@ -258,6 +232,26 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
   );
 }
 
+function Proof({ lang }: { lang: Lang }) {
+  const tr = lang === "tr";
+  const items = [
+    { k: "App Store", h: tr ? "iPhone uygulaması yayında" : "Live on the App Store", u: "https://apps.apple.com/app/flexlore/id6751126206" },
+    { k: "Product Hunt", h: tr ? "Product Hunt lansmanı" : "Launched on Product Hunt", u: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app" },
+  ];
+  return (
+    <section id="proof" aria-label={tr ? "Kanıt" : "Proof"} className="px-6 pt-32 md:px-10 md:pt-40">
+      <div className="mx-auto max-w-[1400px]">
+        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Kendiniz görün" : "See for yourself"}</p>
+        <ul className="mt-8 grid border-t border-white/10 md:grid-cols-2">
+          {items.map((x, i) => (<li key={x.k} className={`border-b border-white/10 ${i ? "md:border-l md:pl-10" : ""}`}>
+            <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-8">
+              <span><span className="mono block text-[11px] uppercase tracking-[.2em] text-white/45">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
+              <span aria-hidden="true" className="text-2xl text-white/50 transition group-hover:translate-x-1 group-hover:text-flame">↗</span></a></li>))}
+        </ul>
+      </div>
+    </section>);
+}
+
 function Faq({ t }: { t: C }) {
   return (
     <section id="faq" className="px-6 py-32 md:py-40">
@@ -297,7 +291,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   const { scrollYProgress } = useScroll();
   useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
-  const links = [...t.nav.map((n, i) => ({ n, h: ["#method", "#languages", "#readiness", "#sectors"][i] })), { n: "Blog", h: "/blog/" }];
+  const links = [...t.nav.map((n, i) => ({ n, h: ["#method", "#cases", "#readiness", "#sectors"][i] })), { n: "Blog", h: "/blog/" }];
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
@@ -319,8 +313,8 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
           </ul>
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">{Lang2}</div>
-            <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p hidden sm:inline-flex">{t.cta}</Magnetic>
-            <button onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-3 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
+            <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p inline-flex">{t.cta}</Magnetic>
+            <button onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-2 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
           </div>
           <motion.span aria-hidden="true" style={{ scaleX: scrollYProgress }} className={`absolute bottom-0 left-0 h-px w-full origin-left bg-flame/80 transition-opacity ${scrolled ? "opacity-100" : "opacity-0"}`} />
         </motion.nav>
@@ -350,9 +344,9 @@ export default function Site() {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
-      <Loader /><Nav t={t} lang={lang} setLang={setLang} />
+      <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} langs={t.langs} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Copq lang={lang} /><Ready t={t} /><Proof lang={lang} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       <footer className="px-6 pb-8 pt-0 text-[13px] text-white/55 md:px-10">
         <div className="mx-auto max-w-[1400px]">
@@ -363,10 +357,10 @@ export default function Site() {
             <div className="md:col-span-3 md:col-start-6"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{t.nav[3]}</p>
               <ul className="space-y-2.5">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
             <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "Uygulama" : "App"}</p>
-              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li><li><Link className="link-u hover:text-white" href="/blog/">Blog</Link></li></ul></div>
+              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li><li><Link className="link-u hover:text-white" href="/blog/">Blog</Link></li></ul></div>
             <div className="md:col-span-3"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "İletişim" : "Contact"}</p>
               <a className="link-u hover:text-white" href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d">hello@flexlore.com</a>
-              <p className="mt-6 text-white/40">{t.langs.join(" · ")}</p></div>
+              </div>
           </div>
           <p aria-hidden="true" className="display mt-20 select-none bg-gradient-to-b from-white to-white/25 bg-clip-text text-center text-[23vw] leading-[.8] text-transparent">Flexlore</p>
           <div className="mono mt-8 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[.2em] text-white/35 md:flex-row"><span>© 2026 Flexlore</span><span>{t.credits}</span><a href="#main" className="link-u hover:text-white">{lang === "tr" ? "Başa dön ↑" : "Back to top ↑"}</a></div>

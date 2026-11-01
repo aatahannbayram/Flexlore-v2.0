@@ -127,17 +127,16 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
     </div></section>);
 }
 
-export function Platforms({ lang, langs }: { lang: "en" | "tr"; langs: string[] }) {
+export function Platforms({ lang }: { lang: "en" | "tr" }) {
   const tr = lang === "tr";
   const items: [string, string, string][] = [
     ["iOS", tr ? "iPhone uygulaması" : "iPhone app", "M12 3c.9 0 2-.6 2.5-1.5M8.5 7c-2.5 0-4 2-4 5 0 3.5 2.3 8 4.2 8 1 0 1.5-.6 2.8-.6s1.7.6 2.8.6c1.6 0 3.4-3.3 3.9-5.1-1.6-.7-2.4-2-2.4-3.6 0-1.4.8-2.6 2-3.3-.8-1.1-2-1.7-3.3-1.7-1.3 0-2 .7-3 .7s-1.7-.7-3-.7Z"],
     ["Android", tr ? "Google Play" : "Google Play", "M6 9h12v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zM7 9a5 5 0 0 1 10 0M9 6 7.5 4M15 6l1.5-2M3.5 10v5M20.5 10v5"],
     ["Web", tr ? "Tarayıcıda yönetim" : "Manage in the browser", "M3 5h18v12H3zM8 21h8M12 17v4"],
-    [`${langs.length} ${tr ? "dil" : "languages"}`, langs.slice(0, 4).join(" · ") + " …", "M4 5h9M8.5 3v2M6 5c.5 3 2.5 5.5 5 7M11 5c-.6 3.6-3 6.5-6.5 8M13 21l4-10 4 10M14.5 17.5h5"],
   ];
   return (<section aria-label={tr ? "Platformlar" : "Platforms"} className="relative px-5 pb-28 md:px-10 md:pb-36">
     <div className="mx-auto max-w-[1400px]">
-      <ul className="grid grid-cols-2 border-y border-white/10 md:grid-cols-4">
+      <ul className="grid grid-cols-2 border-y border-white/10 md:grid-cols-3">
         {items.map(([h, s, d], i) => <motion.li key={h} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ delay: i * .08, duration: .7, ease }}
           className={`group flex items-center gap-4 py-7 md:py-9 ${i % 2 ? "pl-5" : ""} ${i ? "md:border-l md:border-white/10 md:pl-8" : ""} ${i > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}>
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/[.06] text-white/80 ring-1 ring-white/10 transition duration-500 group-hover:bg-flame group-hover:text-black group-hover:ring-flame">
