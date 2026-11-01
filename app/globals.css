@@ -2,15 +2,14 @@
 @theme {
   --color-flame: #ff6a1a;
   --color-ash: #86868b;
-  --font-sans: var(--font-geist), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-inter), "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 html { background: #000; color: #f5f5f7; }
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 ::selection { background: #f5f5f7; color: #000; }
-.display { font-family: var(--font-serif), "Times New Roman", serif; font-weight: 400; letter-spacing: -0.025em; line-height: 0.92; text-wrap: balance; }
-.display em, .it { font-style: italic; }
-.num { font-family: var(--font-serif), serif; font-weight:400; line-height:.8; letter-spacing:-.04em; font-variant-numeric: lining-nums; }
+.display { font-family: var(--font-inter), "Inter", sans-serif; font-optical-sizing: auto; font-weight: 700; letter-spacing: -0.055em; line-height: 0.9; text-wrap: balance; }
+.num { font-family: var(--font-inter), sans-serif; font-weight:600; line-height:.8; letter-spacing:-.07em; font-variant-numeric: tabular-nums; }
 .eyebrow { font-family: var(--font-geist-mono), monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #ff6a1a; }
 @media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; animation: none !important; } }
 

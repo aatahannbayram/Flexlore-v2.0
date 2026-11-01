@@ -6,6 +6,7 @@ import { motion, useScroll, useTransform, useReducedMotion, MotionValue } from "
 import { copy, Lang, C } from "./copy";
 import Link from "next/link";
 import { sectors } from "./sectors";
+import { K } from "./Kinetic";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
   const reduce = useReducedMotion();
@@ -84,13 +85,13 @@ function Hero({ t }: { t: C }) {
         <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
         {/* signature: video lives inside the letters, then the mask opens up */}
         <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
-          <motion.h1 style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.4rem,17vw,19rem)] leading-[.82] text-white">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className={`inline-block ${i === words.length - 1 ? "it" : ""}`}>{w}&nbsp;</motion.span></span>))}
+          <motion.h1 style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-white">
+            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
             <span className="sr-only"> {t.h1seo}</span></motion.h1>
         </motion.div>
         <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <motion.p style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.4rem,17vw,19rem)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className={`inline-block ${i === words.length - 1 ? "it" : ""}`}>{w}&nbsp;</motion.span></span>))}</motion.p>
+          <motion.p style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
+            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 2.1 + i * 0.12, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
         <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-8 md:px-10">
           <p className="mono text-[11px] uppercase tracking-[.2em] text-white/70">● {t.heroK}</p>
@@ -98,7 +99,7 @@ function Hero({ t }: { t: C }) {
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
           <p className="mono mb-6 text-[11px] uppercase tracking-[.2em] text-flame">01 — {t.heroK}</p>
-          <p className="display max-w-[16ch] text-[clamp(2.6rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.heroSub}</p>
+          <p className="display max-w-[16ch] text-[clamp(2.6rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]"><K text={t.heroSub} accent={-1} /></p>
         </motion.div>
       </div>
     </section>
@@ -143,12 +144,12 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
             <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">02 — {t.pK}</p>
-            <div className="mt-6 flex items-start gap-6 md:mt-10">
+            <div className="mt-6 flex items-start gap-5 md:mt-10 md:gap-10">
               <span className="num text-[clamp(5rem,13vw,13rem)] text-white/90 tabular-nums">0{a + 1}</span>
               <div className="relative mt-3 h-[9.5rem] flex-1 md:h-[14rem]">
                 {t.steps.map((s, i) => (
                   <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i}>
-                    <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]">{s.h}</h2>
+                    <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]"><K text={s.h} /></h2>
                     <p className="mt-3 max-w-sm text-[15px] leading-snug text-white/70 md:text-lg">{s.p}</p>
                   </motion.div>))}
               </div>
@@ -162,7 +163,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
               {shots.map((s, i) => (
                 <motion.div key={s} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className={i ? "absolute inset-0" : ""}><Phone src={s} alt={t.alts[i]} /></motion.div>))}
               <motion.div initial={false} animate={{ opacity: a === 2 ? 1 : 0, x: a === 2 ? 0 : 30 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} aria-hidden={a !== 2}
-                className="absolute -left-10 bottom-10 w-[240px] rounded-2xl border border-white/10 bg-[#141416]/95 p-4 shadow-[0_30px_80px_rgba(0,0,0,.6)] backdrop-blur md:-left-48 md:w-[280px]">
+                className="absolute -left-6 -bottom-16 w-[210px] scale-90 origin-bottom-left md:scale-100 md:-left-10 md:bottom-10 md:w-[240px] rounded-2xl border border-white/10 bg-[#141416]/95 p-4 shadow-[0_30px_80px_rgba(0,0,0,.6)] backdrop-blur md:-left-48 md:w-[280px]">
                 <p className="mono text-[9px] uppercase tracking-[.2em] text-flame">{lang === "tr" ? "Örnek quiz" : "Sample quiz"}</p>
                 <p className="mt-2 text-[13px] leading-snug text-white">{qz.q}</p>
                 <ul className="mt-3 space-y-1.5 text-[12px]">{qz.a.map((x, i) => <li key={x} className={`rounded-lg border px-2.5 py-1.5 ${i === qz.ok ? "border-flame/60 text-white" : "border-white/10 text-white/55"}`}>{x}</li>)}</ul>
@@ -189,7 +190,7 @@ function Languages({ t }: { t: C }) {
         <div className="relative flex h-full flex-col justify-center">
           <motion.div style={{ opacity: ho, scale: hs }} className="mx-auto max-w-6xl px-6 text-center">
             <p className="eyebrow">{t.lK}</p>
-            <h2 className="display mt-4 text-[clamp(3rem,8vw,8rem)]">{t.lH}</h2>
+            <h2 className="display mt-4 text-[clamp(3rem,8vw,8rem)]"><K text={t.lH} /></h2>
           </motion.div>
           <motion.div style={{ x }} className="mt-14 flex gap-14 whitespace-nowrap text-[clamp(2rem,4.5vw,4rem)] font-medium tracking-tight text-white/25" aria-hidden="true">
             {t.langs.concat(t.langs).map((l, i) => <span key={i}>{l}</span>)}
@@ -231,8 +232,8 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
     <section ref={ref} id="sectors" className="relative h-[420vh]">
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1400px] items-end justify-between px-6 md:px-10">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,7rem)]">{t.where}</h2></div>
-          <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/50 md:block">{lang === "tr" ? "Altı sektör · açmak için tıklayın" : "Six sectors · click to open"}</p>
+          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,7rem)]"><K text={t.where} /></h2></div>
+          <p className="mono hidden self-end pb-3 text-[11px] uppercase tracking-[.2em] text-white/50 md:block">{lang === "tr" ? "Altı sektör · açmak için tıklayın" : "Six sectors · click to open"}</p>
         </div>
         <motion.ul style={{ x }} className="mt-10 flex w-max gap-5 pl-6 md:gap-8 md:pl-10">
           {sectors.map((s) => (
@@ -262,7 +263,7 @@ function Faq({ t }: { t: C }) {
   return (
     <section id="faq" className="px-6 py-32 md:py-40">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.4fr]">
-        <div><p className="eyebrow">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]">{t.faqH}</h2></div>
+        <div><p className="eyebrow">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
         <div>{t.faq.map((q) => (
           <details key={q.q} className="group border-t border-white/10 py-6 last:border-b">
             <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight"><h3>{q.q}</h3><span aria-hidden="true" className="text-white/40 transition group-open:rotate-45">+</span></summary>
@@ -281,7 +282,7 @@ function End({ t }: { t: C }) {
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 md:px-10">
         <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — Flexlore</p>
-        <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]">{t.endH}</h2>
+        <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-snug text-white/75">{t.endP}</p>
           <Magnetic href="mailto:hello@flexlore.com" className="h-40 w-40 items-center justify-center rounded-full bg-flame text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>

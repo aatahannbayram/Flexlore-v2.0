@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-const serif = Instrument_Serif({ subsets: ["latin", "latin-ext"], weight: "400", style: ["normal", "italic"], variable: "--font-serif" });
+import { Inter, Geist_Mono } from "next/font/google";
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 import "./globals.css";
-const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist" });
+const inter = Inter({ subsets: ["latin", "latin-ext"], axes: ["opsz"], variable: "--font-inter", display: "swap" });
 const title = "Flexlore | AI-Powered Video Onboarding & Standard Work";
 const description = "Turn videos into standard work. Flexlore splits recordings into steps, drafts AI quizzes and shows which frontline team is ready, by shift and location.";
 export const metadata: Metadata = {
@@ -25,5 +24,5 @@ const ld = [
     description, url: "https://www.flexlore.com", publisher: { "@type": "Organization", name: "Flexlore" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={`${geist.variable} ${geistMono.variable} ${serif.variable}`}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}<div aria-hidden="true" className="grain" /></body></html>);
+  return (<html lang="en" className={`${inter.variable} ${geistMono.variable}`}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}<div aria-hidden="true" className="grain" /></body></html>);
 }

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { K } from "./Kinetic";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { sectors } from "./sectors";
@@ -43,13 +44,13 @@ export default function SectorPage({ i }: { i: number }) {
         </section>
 
         <section className="mx-auto grid max-w-7xl gap-12 px-6 py-32 md:grid-cols-[1fr_1.3fr] md:px-10 md:py-44">
-          <Rev><p className="eyebrow">The problem</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]">{s.problem.h}</h2></Rev>
+          <Rev><p className="eyebrow">The problem</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]"><K text={s.problem.h} /></h2></Rev>
           <div className="space-y-6 self-end text-xl leading-snug text-white/75">{s.problem.p.map((x, k) => <Rev key={k} d={k * 0.1}><p>{x}</p></Rev>)}</div>
         </section>
 
         <section className="border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto max-w-7xl">
-            <Rev><p className="eyebrow">SOPs you would film</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]">Real tasks. Real steps.</h2></Rev>
+            <Rev><p className="eyebrow">SOPs you would film</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]"><K text="Real tasks. Real steps." /></h2></Rev>
             <div className="mt-16 grid gap-10 md:grid-cols-[1fr_1.2fr]">
               <ul className="border-t border-white/15">
                 {s.sops.map((o, k) => (
@@ -82,7 +83,7 @@ export default function SectorPage({ i }: { i: number }) {
               {s.how.map((h, k) => (
                 <Rev key={h.k} d={k * 0.12} className="bg-black p-0 md:pr-10">
                   <div className="py-10 md:py-4"><p className="mono text-[12px] uppercase tracking-[.18em] text-white/45">0{k + 1} — {h.k}</p>
-                    <h3 className="display mt-5 text-[clamp(2rem,3.2vw,3rem)]">{h.h}</h3>
+                    <h3 className="display mt-5 text-[clamp(2rem,3.2vw,3rem)]"><K text={h.h} /></h3>
                     <p className="mt-5 max-w-sm text-lg leading-snug text-white/70">{h.p}</p></div>
                 </Rev>))}
             </div>
@@ -91,7 +92,7 @@ export default function SectorPage({ i }: { i: number }) {
 
         <section className="relative overflow-hidden border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2">
-            <Rev><p className="eyebrow">Sample quiz</p><h2 className="display mt-4 text-[clamp(2.4rem,4.5vw,4.4rem)]">{s.quiz.q}</h2><p className="mt-6 text-white/55">Drafted from the video. Edited and approved by your team.</p></Rev>
+            <Rev><p className="eyebrow">Sample quiz</p><h2 className="display mt-4 text-[clamp(2.4rem,4.5vw,4.4rem)]"><K text={s.quiz.q} /></h2><p className="mt-6 text-white/55">Drafted from the video. Edited and approved by your team.</p></Rev>
             <div className="space-y-3 self-end">
               {s.quiz.a.map((a, k) => {
                 const st = pick === null ? "" : k === s.quiz.ok ? "border-flame bg-flame text-black" : pick === k ? "border-white/30 text-white/40 line-through" : "opacity-40";
@@ -104,7 +105,7 @@ export default function SectorPage({ i }: { i: number }) {
 
         <section className="border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto max-w-7xl">
-            <Rev><p className="eyebrow">A sample rollout</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]">From one phone to every shift.</h2></Rev>
+            <Rev><p className="eyebrow">A sample rollout</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]"><K text="From one phone to every shift." /></h2></Rev>
             <ol className="mt-16 grid gap-8 border-t border-white/15 md:grid-cols-4">
               {s.flow.map((f, k) => (
                 <Rev key={k} d={k * 0.1} className="bg-black">
