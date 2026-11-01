@@ -78,7 +78,7 @@ export default function SectorPage({ i }: { i: number }) {
         <section className="border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto max-w-7xl">
             <Rev><p className="eyebrow">How Flexlore solves it</p></Rev>
-            <div className="mt-10 grid gap-px bg-white/10 md:grid-cols-3">
+            <div className="mt-10 grid gap-8 border-t border-white/15 md:grid-cols-3">
               {s.how.map((h, k) => (
                 <Rev key={h.k} d={k * 0.12} className="bg-black p-0 md:pr-10">
                   <div className="py-10 md:py-4"><p className="mono text-[12px] uppercase tracking-[.18em] text-white/45">0{k + 1} — {h.k}</p>
@@ -105,7 +105,7 @@ export default function SectorPage({ i }: { i: number }) {
         <section className="border-t border-white/10 px-6 py-32 md:px-10">
           <div className="mx-auto max-w-7xl">
             <Rev><p className="eyebrow">A sample rollout</p><h2 className="display mt-4 text-[clamp(2.6rem,5.5vw,5.2rem)]">From one phone to every shift.</h2></Rev>
-            <ol className="mt-16 grid gap-px bg-white/10 md:grid-cols-4">
+            <ol className="mt-16 grid gap-8 border-t border-white/15 md:grid-cols-4">
               {s.flow.map((f, k) => (
                 <Rev key={k} d={k * 0.1} className="bg-black">
                   <li className="list-none border-t-2 border-flame/0 py-8 md:pr-8"><span className="mono text-[12px] uppercase tracking-[.18em] text-flame">{f.when}</span><p className="mt-4 text-xl leading-snug">{f.what}</p></li>
