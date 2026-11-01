@@ -7,7 +7,7 @@ import { copy, Lang, C } from "./copy";
 import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
-import { WebSection } from "./WebApp";
+import { WebSection, Platforms } from "./WebApp";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
@@ -108,6 +108,8 @@ function Hero({ t }: { t: C }) {
   );
 }
 
+function Fade() { return <div aria-hidden="true" className="pointer-events-none relative z-10 -mt-px h-24 bg-gradient-to-b from-black to-transparent md:h-32" style={{ marginBottom: "-8rem" }} />; }
+
 function Line({ p, r, children }: { p: MotionValue<number>; r: [number, number]; children: React.ReactNode }) {
   const o = useTransform(p, [r[0], r[1]], [0.12, 1]);
   return <motion.span style={{ opacity: o }} className="block">{children}</motion.span>;
@@ -121,7 +123,7 @@ function Statement({ t }: { t: C }) {
     <section ref={ref} className="relative h-[220vh]" id="problem">
       <div className="sticky top-0 flex h-svh items-center overflow-hidden">
         <motion.div style={{ opacity: vo }} className="absolute inset-0"><Video name="kitchen" /></motion.div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" /><div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl px-6">
           <p className="eyebrow mb-6">{t.stK}</p><h2 className="display text-[clamp(3.2rem,9vw,9rem)]"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
           <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-xl leading-snug text-white/75">{t.stSub}</motion.p>
@@ -141,7 +143,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
     <section ref={ref} className="relative h-[460vh]" id="method" aria-label={t.pK}>
       <div className="sticky top-0 h-svh overflow-hidden">
         <div className="absolute inset-0 opacity-25"><Video name="line" /></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
             <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">02 — {t.pK}</p>
@@ -186,7 +188,7 @@ function Languages({ t }: { t: C }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
         <div className="relative flex h-full flex-col justify-center">
           <motion.div style={{ opacity: ho, scale: hs }} className="mx-auto max-w-6xl px-6 text-center">
-            <p className="eyebrow">{t.lK}</p>
+            <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">04 — {t.lK}</p>
             <h2 className="display mt-4 text-[clamp(3rem,8vw,8rem)]"><K text={t.lH} /></h2>
           </motion.div>
           <motion.div style={{ x }} className="mt-14 flex gap-14 whitespace-nowrap text-[clamp(2rem,4.5vw,4rem)] font-medium tracking-tight text-white/25" aria-hidden="true">
@@ -209,12 +211,12 @@ function Ready({ t }: { t: C }) {
   return (
     <section ref={ref} className="relative h-[260vh]" id="readiness" aria-label={t.rK}>
       <div className="sticky top-0 h-svh overflow-hidden">
-        <div className="absolute inset-0" style={{ filter: "brightness(1.25) contrast(1.1)" }}><Video name="kitchen" /></div>
+        <div className="absolute inset-0" style={{ filter: "brightness(1.45) contrast(1.1)" }}><Video name="kitchen" /></div>
         <div className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
           <motion.h2 style={{ scale: s }} className="display px-4 text-center text-[clamp(3.6rem,13vw,14rem)] text-white">{t.rH}</motion.h2>
         </div>
         <motion.div style={{ opacity: po }} className="absolute inset-x-0 bottom-[12vh] mx-auto max-w-lg px-6 text-center">
-          <p className="eyebrow">{t.rK}</p>
+          <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.rK}</p>
           <p className="mt-3 text-xl leading-snug text-white/80">{t.rP}</p>
         </motion.div>
       </div>
@@ -229,7 +231,7 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
     <section ref={ref} id="sectors" className="relative h-[420vh]">
       <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
         <div className="mx-auto flex w-full max-w-[1400px] items-end justify-between px-6 md:px-10">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,7rem)]"><K text={t.where} /></h2></div>
+          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — {t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,7rem)]"><K text={t.where} /></h2></div>
           <p className="mono hidden self-end pb-3 text-[11px] uppercase tracking-[.2em] text-white/50 md:block">{lang === "tr" ? "Altı sektör · açmak için tıklayın" : "Six sectors · click to open"}</p>
         </div>
         <motion.ul style={{ x }} className="mt-10 flex w-max gap-5 pl-6 md:gap-8 md:pl-10">
@@ -260,10 +262,10 @@ function Faq({ t }: { t: C }) {
   return (
     <section id="faq" className="px-6 py-32 md:py-40">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.4fr]">
-        <div><p className="eyebrow">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
+        <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
         <div>{t.faq.map((q) => (
-          <details key={q.q} className="group border-t border-white/10 py-6 last:border-b">
-            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight"><h3>{q.q}</h3><span aria-hidden="true" className="text-white/40 transition group-open:rotate-45">+</span></summary>
+          <details key={q.q} className="group border-t border-white/10 py-6 transition-colors duration-500 last:border-b hover:border-white/30">
+            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
             <p className="mt-4 max-w-xl leading-relaxed text-white/65">{q.a}</p>
           </details>))}
         </div>
@@ -278,11 +280,11 @@ function End({ t }: { t: C }) {
       <Video name="hotel" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 md:px-10">
-        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — Flexlore</p>
+        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">07 — Flexlore</p>
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-snug text-white/75">{t.endP}</p>
-          <Magnetic href="mailto:hello@flexlore.com" className="h-40 w-40 items-center justify-center rounded-full bg-flame text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
+          <Magnetic href="mailto:hello@flexlore.com" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
         </div>
       </div>
     </section>
@@ -354,21 +356,24 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Loader /><Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} langs={t.langs} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       <footer className="px-6 pb-8 pt-0 text-[13px] text-white/55 md:px-10">
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-10 border-t border-white/10 pt-10 md:grid-cols-12">
-            <p className="text-white/75 md:col-span-4">{t.foot}</p>
+          <div className="grid gap-10 border-t border-white/10 pt-12 md:grid-cols-12">
+            <div className="md:col-span-4"><p className="flex items-center gap-2 text-[17px] font-semibold tracking-[-.03em] text-white"><img src="/brand/mark.png" alt="" className="h-5 w-5" />Flexlore</p>
+              <p className="mt-3 max-w-xs text-white/60">{t.foot}</p>
+              <a href="#demo" className="btn-p mt-6 active:scale-95">{t.cta} →</a></div>
             <div className="md:col-span-3 md:col-start-6"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{t.nav[3]}</p>
-              <ul className="space-y-2">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
-            <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">App</p>
-              <ul className="space-y-2"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li></ul></div>
-            <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">Contact</p>
-              <a className="link-u hover:text-white" href="mailto:hello@flexlore.com">hello@flexlore.com</a></div>
+              <ul className="space-y-2.5">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
+            <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "Uygulama" : "App"}</p>
+              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li></ul></div>
+            <div className="md:col-span-3"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "İletişim" : "Contact"}</p>
+              <a className="link-u hover:text-white" href="mailto:hello@flexlore.com">hello@flexlore.com</a>
+              <p className="mt-6 text-white/40">{t.langs.join(" · ")}</p></div>
           </div>
-          <p aria-hidden="true" className="display mt-16 select-none text-center text-[23vw] leading-[.75] text-white/[0.92]">Flexlore</p>
-          <div className="mono mt-8 flex flex-col justify-between gap-2 text-[10px] uppercase tracking-[.2em] text-white/35 md:flex-row"><span>© 2026 Flexlore</span><span>{t.credits}</span></div>
+          <p aria-hidden="true" className="display mt-20 select-none bg-gradient-to-b from-white to-white/25 bg-clip-text text-center text-[23vw] leading-[.8] text-transparent">Flexlore</p>
+          <div className="mono mt-8 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[.2em] text-white/35 md:flex-row"><span>© 2026 Flexlore</span><span>{t.credits}</span><a href="#main" className="link-u hover:text-white">{lang === "tr" ? "Başa dön ↑" : "Back to top ↑"}</a></div>
         </div>
       </footer>
     </>
