@@ -1,6 +1,6 @@
 export type Lang = "en" | "tr";
 export type C = {
-  skip: string; cta: string; langLabel: string;
+  skip: string; nav: string[]; menu: string; close: string; heroK: string; h1seo: string; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
   hero: string; heroSub: string;
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
@@ -12,7 +12,17 @@ export type C = {
 };
 export const copy: Record<Lang, C> = {
   en: {
-    skip: "Skip to content", cta: "Book a demo", langLabel: "Language",
+    skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "FAQ"], menu: "Menu", close: "Close",
+    heroK: "Video onboarding & standard work", h1seo: "Flexlore turns video into standard work for frontline teams.",
+    alts: ["Flexlore app showing a standard work split into video steps", "Flexlore app playing a step with written instructions", "Flexlore app with an AI-generated quiz question"],
+    faqK: "Questions", faqH: "Asked, answered.",
+    faq: [
+      { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
+      { q: "How do the quizzes work?", a: "Each standard work can carry a short quiz drafted from its steps. Employees answer after watching, so you see who understood the process, not just who pressed play." },
+      { q: "Which teams get the most from it?", a: "Teams where the job is learned by doing: kitchens and coffee shops, production lines, hotels, clinics, franchises and training programmes." },
+      { q: "Do I need technical knowledge?", a: "No. If you can film with a phone, you can create a standard work." },
+      { q: "How do I see if training worked?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by team, shift and location." },
+    ], cta: "Book a demo", langLabel: "Language",
     hero: "Teach it once.",
     heroSub: "Your best people, on film. Your whole floor, trained.",
     stK: "The problem", whereK: "Where it works", st: ["Nobody reads", "the binder."], stSub: "The real procedure lives in someone's hands. Flexlore puts it on every phone.",
@@ -37,7 +47,17 @@ export const copy: Record<Lang, C> = {
     foot: "Flexlore. Video SOPs for frontline teams.", credits: "Footage: Mixkit. Demo build.",
   },
   tr: {
-    skip: "İçeriğe geç", cta: "Demo isteyin", langLabel: "Dil",
+    skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "SSS"], menu: "Menü", close: "Kapat",
+    heroK: "Video ile işe alıştırma ve standart iş", h1seo: "Flexlore, videoyu saha ekipleri için standart işe dönüştürür.",
+    alts: ["Videolu adımlara bölünmüş bir standart işi gösteren Flexlore uygulaması", "Yazılı talimatla bir adımı oynatan Flexlore uygulaması", "Yapay zekâ ile hazırlanmış quiz sorusu gösteren Flexlore uygulaması"],
+    faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
+    faq: [
+      { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
+      { q: "Quizler nasıl çalışır?", a: "Her standart işe adımlarından hazırlanan kısa bir quiz eklenebilir. Çalışanlar izledikten sonra yanıtlar; böylece kimin oynat tuşuna bastığını değil, kimin süreci anladığını görürsünüz." },
+      { q: "En çok hangi ekipler faydalanır?", a: "İşin yaparak öğrenildiği ekipler: mutfaklar ve kafeler, üretim hatları, oteller, klinikler, franchise'lar ve eğitim programları." },
+      { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız standart iş oluşturabilirsiniz." },
+      { q: "Eğitimin işe yaradığını nasıl görürüm?", a: "Flexlore kimin izlediğini, işi kimin tamamladığını ve quizi kimin geçtiğini ekip, vardiya ve şube bazında gösterir." },
+    ], cta: "Demo isteyin", langLabel: "Dil",
     hero: "Bir kez öğret.",
     heroSub: "En iyi çalışanlarınız kamerada. Tüm ekibiniz eğitimde.",
     stK: "Sorun", whereK: "Nerede çalışır", st: ["Klasörü", "kimse okumaz."], stSub: "Gerçek prosedür birinin ellerinde yaşar. Flexlore onu her telefona taşır.",

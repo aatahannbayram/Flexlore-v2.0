@@ -1,12 +1,27 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist" });
+const title = "Flexlore | AI-Powered Video Onboarding & Standard Work";
+const description = "Turn videos into standard work. Flexlore splits recordings into steps, drafts AI quizzes and shows which frontline team is ready, by shift and location.";
 export const metadata: Metadata = {
-  title: "Flexlore. Teach it once.",
-  description: "Film the job once. Flexlore turns it into video steps, checks understanding and shows who is ready, every shift.",
+  metadataBase: new URL("https://www.flexlore.com"),
+  title, description,
+  keywords: ["video onboarding", "standard work", "video SOP", "frontline training", "AI quiz", "work instructions", "employee onboarding", "training effectiveness"],
+  alternates: { canonical: "/" },
+  // DEMO: noindex. For launch set index: true, follow: true and remove public/robots.txt Disallow.
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 1080, height: 1080, alt: "Flexlore video onboarding and standard work" }] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   icons: { icon: "/brand/mark.png" },
 };
+export const viewport: Viewport = { themeColor: "#000000" };
+const ld = [
+  { "@context": "https://schema.org", "@type": "Organization", name: "Flexlore", url: "https://www.flexlore.com", logo: "https://www.flexlore.com/brand/logo.png",
+    sameAs: ["https://apps.apple.com/tr/app/flexlore/id6751126206", "https://play.google.com/store/apps/details?id=com.flexlore.app"] },
+  { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Flexlore", applicationCategory: "BusinessApplication", operatingSystem: "iOS, Android, Web",
+    description, url: "https://www.flexlore.com", publisher: { "@type": "Organization", name: "Flexlore" } },
+];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={geist.variable}><body className="font-sans antialiased">{children}</body></html>);
+  return (<html lang="en" className={geist.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}</body></html>);
 }
