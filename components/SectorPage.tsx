@@ -27,7 +27,7 @@ export default function SectorPage({ i }: { i: number }) {
         <nav aria-label="Sectors" className="mono hidden gap-5 text-[11px] uppercase tracking-[.18em] md:flex">
           {sectors.map((x) => <Link key={x.slug} href={`/sektor/${x.slug}/`} aria-current={x.slug === s.slug ? "page" : undefined} className={x.slug === s.slug ? "text-white" : "text-white/45 hover:text-white"}>{x.idx} {x.en.split(" ")[0]}</Link>)}
         </nav>
-        <Link href="/#demo" className="text-[13px] link-u">Book a demo</Link>
+        <span className="flex gap-6 text-[13px]"><Link href="/blog/" className="link-u">Blog</Link><Link href="/#demo" className="link-u">Book a demo</Link></span>
       </header>
       <main id="main">
         <section ref={hero} className="relative h-svh overflow-hidden">
@@ -125,7 +125,7 @@ export default function SectorPage({ i }: { i: number }) {
       </main>
       <footer className="flex flex-col justify-between gap-4 border-t border-white/10 px-6 py-10 text-[13px] text-ash md:flex-row md:px-10">
         <span>© 2026 Flexlore</span>
-        <span className="flex gap-6"><Link href="/" className="link-u">Home</Link><a href="mailto:hello@flexlore.com" className="link-u">hello@flexlore.com</a></span>
+        <span className="flex gap-6"><Link href="/" className="link-u">Home</Link><Link href="/blog/" className="link-u">Blog</Link><a href="mailto:hello@flexlore.com" className="link-u">hello@flexlore.com</a></span>
       </footer>
     </>
   );

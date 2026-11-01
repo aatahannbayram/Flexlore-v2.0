@@ -297,7 +297,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   const { scrollYProgress } = useScroll();
   useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
-  const links = t.nav.map((n, i) => ({ n, h: ["#method", "#languages", "#readiness", "#sectors"][i] }));
+  const links = [...t.nav.map((n, i) => ({ n, h: ["#method", "#languages", "#readiness", "#sectors"][i] })), { n: "Blog", h: "/blog/" }];
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
@@ -367,7 +367,7 @@ export default function Site() {
             <div className="md:col-span-3 md:col-start-6"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{t.nav[3]}</p>
               <ul className="space-y-2.5">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
             <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "Uygulama" : "App"}</p>
-              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li></ul></div>
+              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li><li><Link className="link-u hover:text-white" href="/blog/">Blog</Link></li></ul></div>
             <div className="md:col-span-3"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "İletişim" : "Contact"}</p>
               <a className="link-u hover:text-white" href="mailto:hello@flexlore.com">hello@flexlore.com</a>
               <p className="mt-6 text-white/40">{t.langs.join(" · ")}</p></div>
