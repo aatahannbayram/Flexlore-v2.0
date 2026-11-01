@@ -7,6 +7,7 @@ import { copy, Lang, C } from "./copy";
 import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
+import { WebSection } from "./WebApp";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
@@ -353,7 +354,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Loader /><Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       <footer className="px-6 pb-8 pt-0 text-[13px] text-white/55 md:px-10">
         <div className="mx-auto max-w-[1400px]">
