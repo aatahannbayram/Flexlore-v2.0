@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: /
-# DEMO. For launch: Allow: / and add Sitemap: https://www.flexlore.com/sitemap.xml

@@ -10,6 +10,10 @@ import { K } from "./Kinetic";
 import { WebSection, Platforms } from "./WebApp";
 import Cases from "./Cases";
 import Copq from "./Copq";
+import Imagine from "./Imagine";
+import { AISection, Integrations, PricingTeaser, Footer } from "./Sections";
+import { StoreButtons } from "./Icons";
+import { SITE } from "./config";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
@@ -89,16 +93,16 @@ function Hero({ t }: { t: C }) {
         <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
         {/* signature: video lives inside the letters, then the mask opens up */}
         <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
-          <motion.h1 style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-white">
+          <motion.p aria-hidden="true" style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-white">
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
-            <span className="sr-only"> {t.h1seo}</span></motion.h1>
+            </motion.p>
         </motion.div>
         <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <motion.p style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
         <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-8 md:px-10">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">● {t.heroK}</p><p className="mt-3 max-w-[34ch] text-[clamp(1.05rem,1.6vw,1.4rem)] font-medium leading-snug text-white [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p pointer-events-auto mt-5 inline-flex">{t.cta} →</a></div>
+          <div><img src="/brand/wordmark-light.png" alt="" aria-hidden="true" width={344} height={75} className="mb-6 h-12 w-auto md:h-[72px]" /><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">● {t.heroK}</p><h1 className="mt-3 max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} →</a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
           <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll ↓</p>
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
@@ -128,7 +132,7 @@ function Statement({ t }: { t: C }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" /><div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl px-6">
           <p className="eyebrow mb-6">{t.stK}</p><h2 className="display text-[clamp(3.2rem,9vw,9rem)]"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
-          <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-xl leading-snug text-white/75">{t.stSub}</motion.p>
+          <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-xl leading-[1.3] text-white/75">{t.stSub}</motion.p>
         </div>
       </div>
     </section>
@@ -155,7 +159,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
                 {t.steps.map((s, i) => (
                   <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i}>
                     <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]"><K text={s.h} /></h2>
-                    <p className="mt-3 max-w-sm text-[15px] leading-snug text-white/70 md:text-lg">{s.p}</p>
+                    <p className="mt-3 max-w-sm text-[15px] leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
                   </motion.div>))}
               </div>
             </div>
@@ -191,7 +195,7 @@ function Ready({ t }: { t: C }) {
         </div>
         <motion.div style={{ opacity: po }} className="absolute inset-x-0 bottom-[12vh] mx-auto max-w-lg px-6 text-center">
           <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.rK}</p>
-          <p className="mt-3 text-xl leading-snug text-white/80">{t.rP}</p>
+          <p className="mt-3 text-xl leading-[1.3] text-white/80">{t.rP}</p>
         </motion.div>
       </div>
     </section>
@@ -220,7 +224,7 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
                   <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
                     <p className="mono text-[10px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
                     <p className="display mt-2 text-[clamp(2.4rem,3.6vw,3.6rem)]">{lang === "tr" ? s.tr : s.en}</p>
-                    <p className="mt-2 max-w-sm text-[14px] leading-snug text-white/70">{s.h}</p>
+                    <p className="mt-2 max-w-sm text-[14px] leading-[1.3] text-white/70">{s.h}</p>
                   </div>
                 </div>
               </Link>
@@ -260,7 +264,7 @@ function Faq({ t }: { t: C }) {
         <div>{t.faq.map((q) => (
           <details key={q.q} className="group border-t border-white/10 py-6 transition-colors duration-500 last:border-b hover:border-white/30">
             <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
-            <p className="mt-4 max-w-xl leading-relaxed text-white/65">{q.a}</p>
+            <p className="mt-4 max-w-xl leading-[1.4] text-white/65">{q.a}</p>
           </details>))}
         </div>
       </div>
@@ -277,7 +281,7 @@ function End({ t }: { t: C }) {
         <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">07 — Flexlore</p>
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-md text-xl leading-snug text-white/75">{t.endP}</p>
+          <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
           <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
         </div>
       </div>
@@ -291,7 +295,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   const { scrollYProgress } = useScroll();
   useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
-  const links = [...t.nav.map((n, i) => ({ n, h: ["#method", "#cases", "#readiness", "#sectors"][i] })), { n: "Blog", h: "/blog/" }];
+  const links = [...t.nav.map((n, i) => ({ n, h: ["#method", "#imagine", "#cases", "#ai"][i] })), { n: t.navP, h: "/pricing/" }, { n: "Blog", h: "/blog/" }];
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
@@ -304,9 +308,9 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
       <motion.header initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3">
         <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
-          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-12 w-[min(100%,820px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.66)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-14 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
+          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.66)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
           <a href="#main" className="flex items-center gap-2" aria-label="Flexlore">
-            <img src="/brand/wordmark-light.png" alt="Flexlore" className="h-[18px] w-auto" />
+            <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-7" : "h-9"}`} />
           </a>
           <ul className="hidden items-center gap-7 text-[13px] text-white/70 md:flex">
             {links.map((l) => <li key={l.h}><a href={l.h} className="link-u hover:text-white">{l.n}</a></li>)}
@@ -322,7 +326,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
       {open && (
         <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           className="fixed inset-0 z-50 flex flex-col bg-black/90 px-6 pb-10 pt-5 backdrop-blur-2xl">
-          <div className="flex items-center justify-between"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-[18px] w-auto" />
+          <div className="flex items-center justify-between"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-9 w-auto" />
             <button onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-[13px]" autoFocus>{t.close}</button></div>
           <ul className="mt-16 space-y-3">
             {links.map((l, i) => (
@@ -346,26 +350,9 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Copq lang={lang} /><Ready t={t} /><Proof lang={lang} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Ready t={t} /><Imagine /><Cases lang={lang} /><AISection /><WebSection lang={lang} /><Platforms lang={lang} /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
       </main>
-      <footer className="px-6 pb-8 pt-0 text-[13px] text-white/55 md:px-10">
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-10 border-t border-white/10 pt-12 md:grid-cols-12">
-            <div className="md:col-span-4"><p className="flex items-center gap-2 text-[17px] font-semibold tracking-[-.03em] text-white"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-12 w-auto" /></p>
-              <p className="mt-3 max-w-xs text-white/60">{t.foot}</p>
-              <a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p mt-6 active:scale-95">{t.cta} →</a></div>
-            <div className="md:col-span-3 md:col-start-6"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{t.nav[3]}</p>
-              <ul className="space-y-2.5">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
-            <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "Uygulama" : "App"}</p>
-              <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li><li><Link className="link-u hover:text-white" href="/blog/">Blog</Link></li></ul></div>
-            <div className="md:col-span-3"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "İletişim" : "Contact"}</p>
-              <a className="link-u hover:text-white" href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d">hello@flexlore.com</a>
-              </div>
-          </div>
-          <p aria-hidden="true" className="display mt-20 select-none bg-gradient-to-b from-white to-white/25 bg-clip-text text-center text-[23vw] leading-[.8] text-transparent">Flexlore</p>
-          <div className="mono mt-8 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[10px] uppercase tracking-[.2em] text-white/35 md:flex-row"><span>© 2026 Flexlore</span><span>{t.credits}</span><a href="#main" className="link-u hover:text-white">{lang === "tr" ? "Başa dön ↑" : "Back to top ↑"}</a></div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

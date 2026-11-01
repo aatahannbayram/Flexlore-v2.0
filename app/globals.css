@@ -18,6 +18,8 @@ html.lenis { height: auto; }
 .btn-p { display:inline-flex; align-items:center; border-radius:9999px; background:#f5f5f7; color:#000; font-size:13px; font-weight:500; padding:.42rem .95rem; letter-spacing:-.01em; transition: transform .3s cubic-bezier(.22,1,.36,1), background .3s; }
 .btn-p:hover { background:#fff; transform: scale(1.04); }
 .btn-p:active { transform: scale(.96); }
+.btn-g { display:inline-flex; align-items:center; border-radius:9999px; border:1px solid rgba(255,255,255,.25); color:#fff; font-size:13px; font-weight:500; padding:.42rem .95rem; transition: border-color .3s, background .3s; }
+.btn-g:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.05); }
 :focus-visible { outline: 2px solid #ff6a1a; outline-offset: 3px; border-radius: 6px; }
 section h2.display { text-wrap: balance; }
 @media (max-width:640px){ .display{ letter-spacing:-.045em } }

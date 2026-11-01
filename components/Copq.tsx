@@ -17,7 +17,7 @@ export default function Copq({ lang }: { lang: "en" | "tr" }) {
         <div className="md:col-span-5">
           <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Kalitesizlik maliyeti" : "Cost of poor quality"}</p>
           <h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5.2rem)]">{tr ? "Hatalı adımın size maliyeti." : "What a wrong step costs you."}</h2>
-          <p className="mt-6 max-w-md text-lg leading-snug text-white/70">{tr ? "Kendi rakamlarınızı girin. Hesap tamamen sizin girdilerinize dayanır; Flexlore'un bir vaadi değildir." : "Enter your own numbers. The result is based only on your inputs. It is not a Flexlore promise or benchmark."}</p>
+          <p className="mt-4 max-w-md text-lg leading-[1.3] text-white/70">{tr ? "Kendi rakamlarınızı girin. Hesap tamamen sizin girdilerinize dayanır; Flexlore'un bir vaadi değildir." : "Enter your own numbers. The result is based only on your inputs. It is not a Flexlore promise or benchmark."}</p>
         </div>
         <div className="md:col-span-6 md:col-start-7">
           <F l={tr ? "Eğitim kaynaklı hata / ay" : "Training-related defects per month"} v={d} set={setD} min={0} max={500} step={1} unit="" />
@@ -27,7 +27,7 @@ export default function Copq({ lang }: { lang: "en" | "tr" }) {
             <div className="py-6"><p className="mono text-[10px] uppercase tracking-[.2em] text-white/45">{tr ? "Bugünkü maliyet / yıl" : "Current cost / year"}</p><p className="mt-2 text-[clamp(1.8rem,3vw,2.6rem)] font-semibold tracking-tight tabular-nums">€{fmt(month * 12)}</p></div>
             <div className="border-l border-white/15 py-6 pl-6"><p className="mono text-[10px] uppercase tracking-[.2em] text-white/45">{tr ? "Önlenebilir / yıl" : "Preventable / year"}</p><p className="mt-2 text-[clamp(1.8rem,3vw,2.6rem)] font-semibold tracking-tight tabular-nums text-flame">€{fmt(saved * 12)}</p></div>
           </div>
-          <p className="mono mt-4 text-[10px] uppercase leading-relaxed tracking-[.16em] text-white/40">{tr ? "Tahmin · varsayılan değerler yalnızca örnektir · müşteri verisi değildir" : "Estimate · default values are examples only · not customer data"}</p>
+          <p className="mono mt-4 text-[10px] uppercase leading-[1.4] tracking-[.16em] text-white/40">{tr ? "Tahmin · varsayılan değerler yalnızca örnektir · müşteri verisi değildir" : "Estimate · default values are examples only · not customer data"}</p>
         </div>
       </div>
     </section>);
