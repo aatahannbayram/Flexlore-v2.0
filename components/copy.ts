@@ -14,7 +14,7 @@ export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "Sectors"], menu: "Menu", close: "Close",
     heroK: "Video onboarding & standard work", h1seo: "Flexlore turns video into standard work for frontline teams.",
-    alts: ["Flexlore app showing a standard work split into video steps", "Flexlore app playing a step with written instructions", "Flexlore app with an AI-generated quiz question"],
+    alts: ["Flexlore app editing a recorded video into steps", "Flexlore app showing a standard work split into video steps", "Flexlore app playing a step with written instructions", "Flexlore orientation analyzer showing view and quiz progress per person"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
       { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
@@ -29,9 +29,10 @@ export const copy: Record<Lang, C> = {
     pK: "How it works", pH: ["Film it.", "Approve it.", "Assign it."],
     pP: "Record the task on a phone. Flexlore splits it into steps, writes the instructions and drafts a quiz. You check it and send it out.",
     steps: [
-      { h: "Film it.", p: "Your most experienced person records the job as it is done. No studio. No script." },
-      { h: "Approve it.", p: "Steps, written instructions and a short quiz are drafted from the video. You stay the editor." },
-      { h: "Assign it.", p: "Send it to a team, a shift or a site. Understanding is checked, not just viewing." },
+      { h: "Record.", p: "Your most experienced person films the job on a phone, as it is really done. No studio. No script." },
+      { h: "SOP.", p: "Flexlore splits the video into steps and drafts the written instructions. You stay the editor." },
+      { h: "Quiz.", p: "A short quiz is drafted from the steps, so you see who understood, not just who pressed play." },
+      { h: "Readiness.", p: "See who has watched and passed, by person, shift and location, before they start the job." },
     ],
     lK: "Languages", lH: "Every language. Same standard.",
     lP: "Recordings are transcribed, translated step by step and subtitled. Your glossary keeps your own terms intact.",
@@ -49,7 +50,7 @@ export const copy: Record<Lang, C> = {
   tr: {
     skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "Sektörler"], menu: "Menü", close: "Kapat",
     heroK: "Video ile işe alıştırma ve standart iş", h1seo: "Flexlore, videoyu saha ekipleri için standart işe dönüştürür.",
-    alts: ["Videolu adımlara bölünmüş bir standart işi gösteren Flexlore uygulaması", "Yazılı talimatla bir adımı oynatan Flexlore uygulaması", "Yapay zekâ ile hazırlanmış quiz sorusu gösteren Flexlore uygulaması"],
+    alts: ["Kaydedilen videoyu adımlara ayıran Flexlore uygulaması", "Videolu adımlara bölünmüş bir standart işi gösteren Flexlore uygulaması", "Yazılı talimatla bir adımı oynatan Flexlore uygulaması", "Kişi bazında izleme ve quiz ilerlemesini gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [
       { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
@@ -64,9 +65,10 @@ export const copy: Record<Lang, C> = {
     pK: "Nasıl çalışır", pH: ["Çek.", "Onayla.", "Ata."],
     pP: "Görevi telefonla kaydedin. Flexlore adımlara böler, talimatları yazar ve bir quiz hazırlar. Siz kontrol edip gönderirsiniz.",
     steps: [
-      { h: "Çek.", p: "En deneyimli kişiniz işi yapıldığı gibi kaydeder. Stüdyo yok. Senaryo yok." },
-      { h: "Onayla.", p: "Adımlar, yazılı talimatlar ve kısa bir quiz videodan hazırlanır. Son söz sizde." },
-      { h: "Ata.", p: "Bir ekibe, vardiyaya ya da şubeye gönderin. İzlenmesi değil, anlaşılması ölçülür." },
+      { h: "Kayıt.", p: "En deneyimli kişiniz işi telefonla, gerçekte yapıldığı gibi çeker. Stüdyo yok. Senaryo yok." },
+      { h: "SOP.", p: "Flexlore videoyu adımlara böler ve yazılı talimatları hazırlar. Son söz sizde." },
+      { h: "Quiz.", p: "Adımlardan kısa bir quiz hazırlanır; kimin izlediğini değil, kimin anladığını görürsünüz." },
+      { h: "Hazırlık.", p: "Kimin izleyip geçtiğini kişi, vardiya ve şube bazında, işe başlamadan görün." },
     ],
     lK: "Diller", lH: "Her dilde. Aynı standart.",
     lP: "Kayıtlar yazıya dökülür, adım adım çevrilir ve altyazılanır. Sözlüğünüz kendi terimlerinizi korur.",
