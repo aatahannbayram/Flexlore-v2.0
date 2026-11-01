@@ -7,6 +7,7 @@ import { copy, Lang, C } from "./copy";
 import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
+import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
   const reduce = useReducedMotion();
@@ -133,7 +134,6 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
   const { ref, p } = useSec();
   const [a, setA] = useState(0);
   useEffect(() => p.on("change", (v) => setA(Math.min(3, Math.max(0, Math.floor(v * 4.2 - 0.1))))), [p]);
-  const shots = ["/brand/app3.png", "/brand/app2.png", "/brand/app4.png", "/brand/app1.png"];
   const qz = sectors[0].quiz;
   const bar = useTransform(p, [0, 1], [0, 1]);
   return (
@@ -159,15 +159,11 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
             </ol>
           </div>
           <div className="col-span-12 row-start-1 flex justify-center pt-20 md:col-span-5 md:col-start-8 md:row-auto md:pt-0">
-            <div className="relative w-[min(42vw,180px)] md:w-[300px]">
-              {shots.map((s, i) => (
-                <motion.div key={s} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className={i ? "absolute inset-0" : ""}><Phone src={s} alt={t.alts[i]} /></motion.div>))}
-              <motion.div initial={false} animate={{ opacity: a === 2 ? 1 : 0, x: a === 2 ? 0 : 30 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} aria-hidden={a !== 2}
-                className="absolute -left-6 -bottom-16 w-[210px] scale-90 origin-bottom-left md:scale-100 md:-left-10 md:bottom-10 md:w-[240px] rounded-2xl border border-white/10 bg-[#141416]/95 p-4 shadow-[0_30px_80px_rgba(0,0,0,.6)] backdrop-blur md:-left-48 md:w-[280px]">
-                <p className="mono text-[9px] uppercase tracking-[.2em] text-flame">{lang === "tr" ? "Örnek quiz" : "Sample quiz"}</p>
-                <p className="mt-2 text-[13px] leading-snug text-white">{qz.q}</p>
-                <ul className="mt-3 space-y-1.5 text-[12px]">{qz.a.map((x, i) => <li key={x} className={`rounded-lg border px-2.5 py-1.5 ${i === qz.ok ? "border-flame/60 text-white" : "border-white/10 text-white/55"}`}>{x}</li>)}</ul>
-              </motion.div>
+            <div className="relative w-[min(52vw,230px)] md:w-[330px]">
+              {[0, 1, 2, 3].map((i) => (
+                <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className={i ? "absolute inset-0" : "relative"} aria-hidden={a !== i}>
+                  <Device label={t.alts[i]}>{i === 0 ? <RecordScreen active={a === 0} /> : i === 1 ? <SopScreen active={a === 1} /> : i === 2 ? <QuizScreen active={a === 2} q={qz.q} a={qz.a} ok={qz.ok} /> : <ReadyScreen active={a === 3} />}</Device>
+                </motion.div>))}
               <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-flame md:block" />
             </div>
           </div>

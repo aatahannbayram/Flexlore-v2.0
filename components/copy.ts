@@ -14,7 +14,7 @@ export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "Sectors"], menu: "Menu", close: "Close",
     heroK: "Video onboarding & standard work", h1seo: "Flexlore turns video into standard work for frontline teams.",
-    alts: ["Flexlore app editing a recorded video into steps", "Flexlore app showing a standard work split into video steps", "Flexlore app playing a step with written instructions", "Flexlore orientation analyzer showing view and quiz progress per person"],
+    alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
       { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
@@ -50,7 +50,7 @@ export const copy: Record<Lang, C> = {
   tr: {
     skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "Sektörler"], menu: "Menü", close: "Kapat",
     heroK: "Video ile işe alıştırma ve standart iş", h1seo: "Flexlore, videoyu saha ekipleri için standart işe dönüştürür.",
-    alts: ["Kaydedilen videoyu adımlara ayıran Flexlore uygulaması", "Videolu adımlara bölünmüş bir standart işi gösteren Flexlore uygulaması", "Yazılı talimatla bir adımı oynatan Flexlore uygulaması", "Kişi bazında izleme ve quiz ilerlemesini gösteren Flexlore ekranı"],
+    alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [
       { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
