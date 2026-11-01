@@ -2,7 +2,7 @@ export type Lang = "en" | "tr";
 export type C = {
   skip: string; cta: string; langLabel: string;
   hero: string; heroSub: string;
-  st: string[]; stSub: string;
+  st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
   steps: { h: string; p: string }[];
   lK: string; lH: string; lP: string; langs: string[]; sub: string;
@@ -14,8 +14,8 @@ export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", cta: "Book a demo", langLabel: "Language",
     hero: "Teach it once.",
-    heroSub: "Flexlore turns how your best people work into video your whole floor can learn from.",
-    st: ["Nobody reads", "the binder."], stSub: "The real procedure lives in someone's hands. Flexlore puts it on every phone.",
+    heroSub: "Your best people, on film. Your whole floor, trained.",
+    stK: "The problem", whereK: "Where it works", st: ["Nobody reads", "the binder."], stSub: "The real procedure lives in someone's hands. Flexlore puts it on every phone.",
     pK: "How it works", pH: ["Film it.", "Approve it.", "Assign it."],
     pP: "Record the task on a phone. Flexlore splits it into steps, writes the instructions and drafts a quiz. You check it and send it out.",
     steps: [
@@ -39,8 +39,8 @@ export const copy: Record<Lang, C> = {
   tr: {
     skip: "İçeriğe geç", cta: "Demo isteyin", langLabel: "Dil",
     hero: "Bir kez öğret.",
-    heroSub: "Flexlore, en iyi çalışanlarınızın işi yapış biçimini tüm ekibin izleyip öğrenebileceği videolara dönüştürür.",
-    st: ["Klasörü", "kimse okumaz."], stSub: "Gerçek prosedür birinin ellerinde yaşar. Flexlore onu her telefona taşır.",
+    heroSub: "En iyi çalışanlarınız kamerada. Tüm ekibiniz eğitimde.",
+    stK: "Sorun", whereK: "Nerede çalışır", st: ["Klasörü", "kimse okumaz."], stSub: "Gerçek prosedür birinin ellerinde yaşar. Flexlore onu her telefona taşır.",
     pK: "Nasıl çalışır", pH: ["Çek.", "Onayla.", "Ata."],
     pP: "Görevi telefonla kaydedin. Flexlore adımlara böler, talimatları yazar ve bir quiz hazırlar. Siz kontrol edip gönderirsiniz.",
     steps: [

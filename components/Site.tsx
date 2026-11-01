@@ -53,8 +53,8 @@ function Hero({ t }: { t: C }) {
         <motion.div style={{ opacity: dim }} className="absolute inset-0 bg-black" />
         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
         <motion.div style={{ scale, opacity: op, y }} className="relative flex h-full flex-col items-center justify-center px-6 text-center">
-          <h1 className="display text-[clamp(4rem,13vw,13rem)]">{t.hero}</h1>
-          <p className="mt-8 max-w-xl text-[clamp(1.05rem,1.6vw,1.35rem)] leading-snug text-white/80">{t.heroSub}</p>
+          <p className="eyebrow mb-6">Flexlore</p><h1 className="display text-[clamp(4rem,13vw,13rem)]">{t.hero}</h1>
+          <p className="mt-8 max-w-xl text-[clamp(1.15rem,1.8vw,1.6rem)] font-medium leading-snug tracking-tight text-white/85">{t.heroSub}</p>
         </motion.div>
       </div>
     </section>
@@ -76,7 +76,7 @@ function Statement({ t }: { t: C }) {
         <motion.div style={{ opacity: vo }} className="absolute inset-0"><Video name="kitchen" /></motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl px-6">
-          <h2 className="display text-[clamp(3.2rem,9vw,9rem)]"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
+          <p className="eyebrow mb-6">{t.stK}</p><h2 className="display text-[clamp(3.2rem,9vw,9rem)]"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
           <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-xl leading-snug text-white/75">{t.stSub}</motion.p>
         </div>
       </div>
@@ -153,7 +153,7 @@ function Ready({ t }: { t: C }) {
   return (
     <section ref={ref} className="relative h-[260vh]" aria-label={t.rK}>
       <div className="sticky top-0 h-svh overflow-hidden">
-        <Video name="warehouse" className="brightness-[1.9] saturate-[1.2]" />
+        <div className="absolute inset-0" style={{ filter: "brightness(1.25) contrast(1.1)" }}><Video name="kitchen" /></div>
         <div className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
           <motion.h2 style={{ scale: s }} className="display px-4 text-center text-[clamp(3.6rem,13vw,14rem)] text-white">{t.rH}</motion.h2>
         </div>
@@ -169,7 +169,7 @@ function Ready({ t }: { t: C }) {
 function Sectors({ t }: { t: C }) {
   return (
     <section className="px-6 py-32 md:py-44">
-      <h2 className="display mx-auto max-w-6xl text-[clamp(3rem,7vw,6.5rem)]">{t.where}</h2>
+      <div className="mx-auto max-w-6xl"><p className="eyebrow">{t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,6.5rem)]">{t.where}</h2></div>
       <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-[2px] md:grid-cols-4">
         {t.sectors.map((s) => (
           <div key={s.v} className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
@@ -187,9 +187,10 @@ function End({ t }: { t: C }) {
     <section id="demo" className="relative flex h-svh items-center justify-center overflow-hidden text-center">
       <Video name="hotel" className="opacity-50" />
       <div className="relative px-6">
+        <p className="eyebrow">Flexlore</p>
         <h2 className="display text-[clamp(3.4rem,9vw,9rem)]">{t.endH}</h2>
         <p className="mt-6 text-xl text-white/75">{t.endP}</p>
-        <a href="mailto:hello@flexlore.com" className="mt-10 inline-block rounded-full bg-white px-8 py-4 text-lg font-medium text-black transition hover:bg-white/85 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{t.endCta}</a>
+        <a href="mailto:hello@flexlore.com" className="mt-10 inline-block rounded-full bg-white px-7 py-3.5 text-[17px] font-medium tracking-tight text-black transition duration-300 hover:scale-[1.03] hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">{t.endCta}</a>
       </div>
     </section>
   );
@@ -200,11 +201,11 @@ export default function Site() {
   const t = copy[lang];
   const reduce = useReducedMotion();
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
-  useEffect(() => { if (reduce) return; const l = new Lenis({ lerp: 0.1 }); let r = 0; const f = (x: number) => { l.raf(x); r = requestAnimationFrame(f); }; r = requestAnimationFrame(f); return () => { cancelAnimationFrame(r); l.destroy(); }; }, [reduce]);
+  useEffect(() => { if (reduce) return; const l = new Lenis({ lerp: 0.075, wheelMultiplier: 0.9 }); let r = 0; const f = (x: number) => { l.raf(x); r = requestAnimationFrame(f); }; r = requestAnimationFrame(f); return () => { cancelAnimationFrame(r); l.destroy(); }; }, [reduce]);
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-black/60 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/[0.08] bg-[rgba(18,18,20,0.62)] backdrop-blur-2xl backdrop-saturate-150">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between px-6">
           <Image src="/brand/logo.png" alt="Flexlore" width={96} height={21} priority />
           <div className="flex items-center gap-5 text-[13px]">
@@ -213,15 +214,21 @@ export default function Site() {
                 <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} className={`uppercase ${lang === l ? "text-white" : "text-white/45 hover:text-white/80"}`}>{l}</button>
               ))}
             </div>
-            <a href="#demo" className="rounded-full bg-white px-3.5 py-1 font-medium text-black">{t.cta}</a>
+            <a href="#demo" className="rounded-full bg-white px-3.5 py-1 font-medium text-black transition hover:bg-white/85">{t.cta}</a>
           </div>
         </div>
       </header>
       <main id="main">
         <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} /><End t={t} />
       </main>
-      <footer className="border-t border-white/10 px-6 py-10 text-[13px] text-ash">
-        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-2 md:flex-row"><span>{t.foot}</span><span>{t.credits}</span></div>
+      <footer className="border-t border-white/[0.08] px-6 pb-10 pt-14 text-[12px] text-ash">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col items-start justify-between gap-6 border-b border-white/[0.08] pb-10 md:flex-row md:items-center">
+            <Image src="/brand/logo.png" alt="Flexlore" width={110} height={24} />
+            <p className="max-w-sm text-[14px] leading-snug text-white/60">{t.foot}</p>
+          </div>
+          <div className="flex flex-col justify-between gap-2 pt-6 md:flex-row"><span>© 2026 Flexlore</span><span>{t.credits}</span></div>
+        </div>
       </footer>
     </>
   );
