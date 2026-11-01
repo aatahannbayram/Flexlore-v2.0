@@ -7,11 +7,11 @@ export const cardTitle = (p: Post) => p.cardTitle || p.h1;
 function Bar() {
   return (
     <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-gradient-to-b from-black/90 to-transparent px-6 py-4 pb-10 md:px-10">
-      <Link href="/" className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.04em]"><img src="/brand/mark.png" alt="" className="h-5 w-5" />Flexlore</Link>
+      <Link href="/" className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.04em]"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-[18px] w-auto" /></Link>
       <nav aria-label="Primary" className="flex items-center gap-6 text-[13px]">
         <Link href="/#sectors" className="link-u hidden text-white/60 hover:text-white sm:inline">Sectors</Link>
         <Link href="/blog/" className="link-u text-white">Blog</Link>
-        <Link href="/#demo" className="btn-p">Book a demo</Link>
+        <a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p">Book a demo</a>
       </nav>
     </header>
   );

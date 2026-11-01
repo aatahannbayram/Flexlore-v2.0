@@ -64,8 +64,8 @@ function Loader() {
   return (
     <motion.div aria-hidden="true" initial={{ y: 0 }} animate={{ y: done ? "-100%" : 0 }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#0b0b0c]">
-      <motion.img src="/brand/mark.png" alt="" initial={{ scale: 0.6, opacity: 0, rotate: -90 }} animate={{ scale: 1, opacity: 1, rotate: 0 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
-      <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl">Flexlore</motion.p></div>
+      <motion.img src="/brand/app-icon.png" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
+      <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
       <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
       <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-white/40">Video SOP · AI quiz · Readiness</p>
     </motion.div>);
@@ -284,7 +284,7 @@ function End({ t }: { t: C }) {
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-snug text-white/75">{t.endP}</p>
-          <Magnetic href="mailto:hello@flexlore.com" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
+          <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
         </div>
       </div>
     </section>
@@ -312,18 +312,14 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
         <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
           className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-12 w-[min(100%,820px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.66)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-14 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
           <a href="#main" className="flex items-center gap-2" aria-label="Flexlore">
-            <motion.img src="/brand/mark.png" alt="" className="h-5 w-5" animate={{ rotate: scrolled ? 90 : 0 }} transition={{ type: "spring", stiffness: 200, damping: 18 }} />
-            <span className="wordmark flex overflow-hidden text-[17px] font-semibold tracking-[-0.04em]">
-              {"Flexlore".split("").map((c, i) => (
-                <motion.span key={i} initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.25 + i * 0.04, duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{c}</motion.span>))}
-            </span>
+            <img src="/brand/wordmark-light.png" alt="Flexlore" className="h-[18px] w-auto" />
           </a>
           <ul className="hidden items-center gap-7 text-[13px] text-white/70 md:flex">
             {links.map((l) => <li key={l.h}><a href={l.h} className="link-u hover:text-white">{l.n}</a></li>)}
           </ul>
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">{Lang2}</div>
-            <Magnetic href="#demo" className="btn-p hidden sm:inline-flex">{t.cta}</Magnetic>
+            <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p hidden sm:inline-flex">{t.cta}</Magnetic>
             <button onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-3 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
           </div>
           <motion.span aria-hidden="true" style={{ scaleX: scrollYProgress }} className={`absolute bottom-0 left-0 h-px w-full origin-left bg-flame/80 transition-opacity ${scrolled ? "opacity-100" : "opacity-0"}`} />
@@ -332,14 +328,14 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
       {open && (
         <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
           className="fixed inset-0 z-50 flex flex-col bg-black/90 px-6 pb-10 pt-5 backdrop-blur-2xl">
-          <div className="flex items-center justify-between"><span className="text-[17px] font-semibold tracking-[-0.04em]">Flexlore</span>
+          <div className="flex items-center justify-between"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-[18px] w-auto" />
             <button onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-[13px]" autoFocus>{t.close}</button></div>
           <ul className="mt-16 space-y-3">
             {links.map((l, i) => (
               <motion.li key={l.h} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: [0.22, 1, 0.36, 1], duration: 0.6 }}>
                 <a href={l.h} onClick={() => setOpen(false)} className="display block text-[3.4rem]">{l.n}</a></motion.li>))}
           </ul>
-          <div className="mt-auto flex items-center justify-between">{Lang2}<a href="#demo" onClick={() => setOpen(false)} className="btn-p">{t.cta}</a></div>
+          <div className="mt-auto flex items-center justify-between">{Lang2}<a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" onClick={() => setOpen(false)} className="btn-p">{t.cta}</a></div>
         </motion.div>)}
     </>
   );
@@ -361,15 +357,15 @@ export default function Site() {
       <footer className="px-6 pb-8 pt-0 text-[13px] text-white/55 md:px-10">
         <div className="mx-auto max-w-[1400px]">
           <div className="grid gap-10 border-t border-white/10 pt-12 md:grid-cols-12">
-            <div className="md:col-span-4"><p className="flex items-center gap-2 text-[17px] font-semibold tracking-[-.03em] text-white"><img src="/brand/mark.png" alt="" className="h-5 w-5" />Flexlore</p>
+            <div className="md:col-span-4"><p className="flex items-center gap-2 text-[17px] font-semibold tracking-[-.03em] text-white"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-12 w-auto" /></p>
               <p className="mt-3 max-w-xs text-white/60">{t.foot}</p>
-              <a href="#demo" className="btn-p mt-6 active:scale-95">{t.cta} →</a></div>
+              <a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p mt-6 active:scale-95">{t.cta} →</a></div>
             <div className="md:col-span-3 md:col-start-6"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{t.nav[3]}</p>
               <ul className="space-y-2.5">{sectors.map((s) => <li key={s.slug}><Link className="link-u hover:text-white" href={`/sektor/${s.slug}/`}>{lang === "tr" ? s.tr : s.en}</Link></li>)}</ul></div>
             <div className="md:col-span-2"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "Uygulama" : "App"}</p>
               <ul className="space-y-2.5"><li><a className="link-u hover:text-white" href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener">App Store</a></li><li><a className="link-u hover:text-white" href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener">Google Play</a></li><li><a className="link-u hover:text-white" href="#web">Web</a></li><li><Link className="link-u hover:text-white" href="/blog/">Blog</Link></li></ul></div>
             <div className="md:col-span-3"><p className="mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35">{lang === "tr" ? "İletişim" : "Contact"}</p>
-              <a className="link-u hover:text-white" href="mailto:hello@flexlore.com">hello@flexlore.com</a>
+              <a className="link-u hover:text-white" href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d">hello@flexlore.com</a>
               <p className="mt-6 text-white/40">{t.langs.join(" · ")}</p></div>
           </div>
           <p aria-hidden="true" className="display mt-20 select-none bg-gradient-to-b from-white to-white/25 bg-clip-text text-center text-[23vw] leading-[.8] text-transparent">Flexlore</p>

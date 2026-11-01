@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   // DEMO: noindex. For launch set index: true, follow: true and remove public/robots.txt Disallow.
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
-  openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 1080, height: 1080, alt: "Flexlore video onboarding and standard work" }] },
+  openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 526, height: 526, alt: "Flexlore video onboarding and standard work" }] },
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
-  icons: { icon: "/brand/mark.png" },
+  icons: { icon: "/brand/app-icon.png", apple: "/brand/app-icon.png" },
 };
 export const viewport: Viewport = { themeColor: "#000000" };
 const ld = [
