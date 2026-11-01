@@ -4,8 +4,10 @@ import Image from "next/image";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform, useReducedMotion, MotionValue } from "framer-motion";
 import { copy, Lang, C } from "./copy";
+import Link from "next/link";
+import { sectors } from "./sectors";
 
-function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
+export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLVideoElement>(null);
   const [on, setOn] = useState(eager);
@@ -51,10 +53,17 @@ function Hero({ t }: { t: C }) {
       <div className="sticky top-0 h-svh overflow-hidden">
         <motion.div style={{ scale: vs }} className="absolute inset-0"><Video name="plating" eager /></motion.div>
         <motion.div style={{ opacity: dim }} className="absolute inset-0 bg-black" />
-        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
-        <motion.div style={{ scale, opacity: op, y }} className="relative flex h-full flex-col items-center justify-center px-6 text-center">
-          <p className="eyebrow mb-6">{t.heroK}</p><h1 className="display text-[clamp(4rem,13vw,13rem)]">{t.hero}<span className="sr-only"> {t.h1seo}</span></h1>
-          <p className="mt-8 max-w-xl text-[clamp(1.15rem,1.8vw,1.6rem)] font-medium leading-snug tracking-tight text-white/85">{t.heroSub}</p>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_70%,rgba(0,0,0,.75),rgba(0,0,0,.15)_70%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        <motion.div style={{ scale, opacity: op, y }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-[12vh] md:px-10">
+          <p className="mono mb-5 text-[12px] uppercase tracking-[.18em] text-flame">● {t.heroK}</p>
+          <h1 className="display max-w-[12ch] text-[clamp(3.6rem,10.5vw,11rem)] [text-shadow:0_4px_40px_rgba(0,0,0,.6)]">
+            {t.hero.split(" ").map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.08em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.2 + i * 0.09, duration: 1, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
+            <span className="sr-only"> {t.h1seo}</span></h1>
+          <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <p className="max-w-xl text-[clamp(1.2rem,1.8vw,1.6rem)] font-medium leading-snug tracking-tight text-white">{t.heroSub}</p>
+            <a href="#sectors" className="mono hidden text-[12px] uppercase tracking-[.18em] text-white/70 hover:text-white md:block">Scroll ↓ Sectors</a>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -166,17 +175,36 @@ function Ready({ t }: { t: C }) {
   );
 }
 
-function Sectors({ t }: { t: C }) {
+function Sectors({ t, lang }: { t: C; lang: Lang }) {
+  const [hov, setHov] = useState(0);
+  const [pos, setPos] = useState({ x: 0, y: 0, on: false });
   return (
-    <section id="sectors" className="px-6 py-32 md:py-44">
-      <div className="mx-auto max-w-6xl"><p className="eyebrow">{t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,6.5rem)]">{t.where}</h2></div>
-      <div className="mx-auto mt-16 grid max-w-6xl grid-cols-2 gap-[2px] md:grid-cols-4">
-        {t.sectors.map((s) => (
-          <div key={s.v} className="relative aspect-[3/4] overflow-hidden bg-neutral-900">
-            <Video name={s.v} className="opacity-80" />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 pt-20"><h3 className="text-2xl font-semibold tracking-tight">{s.h}</h3></div>
+    <section id="sectors" className="relative px-6 py-32 md:px-10 md:py-44" onMouseMove={(e) => setPos({ x: e.clientX, y: e.clientY, on: true })} onMouseLeave={() => setPos((p) => ({ ...p, on: false }))}>
+      <div className="mx-auto max-w-7xl"><p className="eyebrow">{t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,6.5rem)]">{t.where}</h2></div>
+      <div className="mx-auto mt-16 grid max-w-7xl gap-10 md:grid-cols-[1.25fr_1fr]">
+        <ul className="border-t border-white/15">
+          {sectors.map((s, i) => (
+            <li key={s.slug} className="border-b border-white/15">
+              <Link href={`/sektor/${s.slug}/`} onMouseEnter={() => setHov(i)} onFocus={() => setHov(i)} className="group flex items-baseline gap-5 py-6 md:cursor-none md:py-7">
+                <span className="mono text-[12px] text-white/40">{s.idx}</span>
+                <span className={`display text-[clamp(2.2rem,5vw,4.6rem)] transition duration-500 group-hover:translate-x-3 ${hov === i ? "text-white" : "md:text-white/35"}`}>{lang === "tr" ? s.tr : s.en}</span>
+                <span className="ml-auto text-white/50 transition group-hover:text-flame" aria-hidden="true">→</span>
+              </Link>
+            </li>))}
+        </ul>
+        <div className="relative hidden aspect-[4/5] overflow-hidden bg-neutral-900 md:block md:sticky md:top-24 md:self-start">
+          {sectors.map((s, i) => (<div key={s.slug} className={`absolute inset-0 transition-opacity duration-700 ${hov === i ? "opacity-100" : "opacity-0"}`}><Video name={s.v} /></div>))}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6 pt-24">
+            <p className="mono text-[11px] uppercase tracking-[.18em] text-flame">{sectors[hov].kicker}</p>
+            <p className="mt-2 text-2xl font-semibold tracking-tight">{sectors[hov].h}</p>
           </div>
-        ))}
+        </div>
+      </div>
+      <div aria-hidden="true" style={{ transform: `translate(${pos.x - 44}px, ${pos.y - 44}px) scale(${pos.on ? 1 : 0})` }} className="pointer-events-none fixed left-0 top-0 z-30 hidden h-22 w-22 items-center justify-center rounded-full bg-flame text-[12px] font-semibold uppercase tracking-wider text-black transition-transform duration-200 ease-out md:flex">{lang === "tr" ? "Aç" : "Open"}</div>
+      <div className="mt-24 overflow-hidden border-y border-white/10 py-5" aria-hidden="true">
+        <div className="marquee mono flex w-max gap-12 whitespace-nowrap text-[13px] uppercase tracking-[.2em] text-white/45">
+          {[0, 1].flatMap((k) => sectors.flatMap((s) => s.sops.map((o) => <span key={k + s.slug + o.t}>{o.t} <span className="text-flame">/</span></span>)))}
+        </div>
       </div>
     </section>
   );
@@ -222,7 +250,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   const { scrollYProgress } = useScroll();
   useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
-  const links = t.nav.map((n, i) => ({ n, h: ["#method", "#languages", "#readiness", "#faq"][i] }));
+  const links = t.nav.map((n, i) => ({ n, h: ["#method", "#languages", "#readiness", "#sectors"][i] }));
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
@@ -281,7 +309,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Languages t={t} /><Ready t={t} /><Sectors t={t} lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       <footer className="border-t border-white/[0.08] px-6 pb-10 pt-14 text-[12px] text-ash">
         <div className="mx-auto max-w-6xl">

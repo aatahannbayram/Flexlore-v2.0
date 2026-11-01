@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 import "./globals.css";
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist" });
 const title = "Flexlore | AI-Powered Video Onboarding & Standard Work";
@@ -23,5 +24,5 @@ const ld = [
     description, url: "https://www.flexlore.com", publisher: { "@type": "Organization", name: "Flexlore" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={geist.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}</body></html>);
+  return (<html lang="en" className={`${geist.variable} ${geistMono.variable}`}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}</body></html>);
 }

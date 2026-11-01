@@ -12,7 +12,7 @@ export type C = {
 };
 export const copy: Record<Lang, C> = {
   en: {
-    skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "FAQ"], menu: "Menu", close: "Close",
+    skip: "Skip to content", nav: ["Method", "Languages", "Readiness", "Sectors"], menu: "Menu", close: "Close",
     heroK: "Video onboarding & standard work", h1seo: "Flexlore turns video into standard work for frontline teams.",
     alts: ["Flexlore app showing a standard work split into video steps", "Flexlore app playing a step with written instructions", "Flexlore app with an AI-generated quiz question"],
     faqK: "Questions", faqH: "Asked, answered.",
@@ -47,7 +47,7 @@ export const copy: Record<Lang, C> = {
     foot: "Flexlore. Video SOPs for frontline teams.", credits: "Footage: Mixkit. Demo build.",
   },
   tr: {
-    skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "SSS"], menu: "Menü", close: "Kapat",
+    skip: "İçeriğe geç", nav: ["Yöntem", "Diller", "Hazırlık", "Sektörler"], menu: "Menü", close: "Kapat",
     heroK: "Video ile işe alıştırma ve standart iş", h1seo: "Flexlore, videoyu saha ekipleri için standart işe dönüştürür.",
     alts: ["Videolu adımlara bölünmüş bir standart işi gösteren Flexlore uygulaması", "Yazılı talimatla bir adımı oynatan Flexlore uygulaması", "Yapay zekâ ile hazırlanmış quiz sorusu gösteren Flexlore uygulaması"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
