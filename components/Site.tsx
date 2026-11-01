@@ -163,10 +163,10 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
           </div>
           <div className="col-span-12 row-start-1 flex justify-center pt-20 md:col-span-5 md:col-start-8 md:row-auto md:pt-0">
             <div className="relative w-[min(52vw,230px)] md:w-[330px]">
-              {[0, 1, 2, 3].map((i) => (
-                <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className={i ? "absolute inset-0" : "relative"} aria-hidden={a !== i}>
-                  <Device label={t.alts[i]}>{i === 0 ? <RecordScreen active={a === 0} /> : i === 1 ? <SopScreen active={a === 1} /> : i === 2 ? <QuizScreen active={a === 2} q={qz.q} a={qz.a} ok={qz.ok} /> : <ReadyScreen active={a === 3} />}</Device>
-                </motion.div>))}
+              <Device label={t.alts[a]}>{[0, 1, 2, 3].map((i) => (
+                <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, x: a === i ? 0 : a > i ? -36 : 36, scale: a === i ? 1 : 0.98, filter: a === i ? "blur(0px)" : "blur(4px)" }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
+                  {i === 0 ? <RecordScreen active={a === 0} /> : i === 1 ? <SopScreen active={a === 1} /> : i === 2 ? <QuizScreen active={a === 2} q={qz.q} a={qz.a} ok={qz.ok} /> : <ReadyScreen active={a === 3} />}
+                </motion.div>))}</Device>
               <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-flame md:block" />
             </div>
           </div>

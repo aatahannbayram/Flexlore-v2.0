@@ -32,3 +32,5 @@ details summary::-webkit-details-marker { display:none; }
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 video.grade,img.grade{filter:saturate(.78) contrast(1.08) brightness(.92) sepia(.12)}
 .no-sb::-webkit-scrollbar{display:none}
+.shimmer{background:linear-gradient(100deg,#161618 30%,#232327 50%,#161618 70%);background-size:200% 100%;animation:shim 1.4s linear infinite}
+@keyframes shim{to{background-position:-200% 0}}
