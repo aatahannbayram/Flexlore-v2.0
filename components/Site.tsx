@@ -80,6 +80,7 @@ function Hero({ t }: { t: C }) {
     <section ref={ref} className="relative h-[260vh]" aria-label={t.hero}>
       <div className="sticky top-0 h-svh overflow-hidden">
         <div className="absolute inset-0" style={{ filter: "brightness(1.9) contrast(1.05)" }}><Video name="plating" eager /></div>
+        <motion.div style={{ opacity: mo }} className="absolute inset-0 bg-white/30" />
         <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
         {/* signature: video lives inside the letters, then the mask opens up */}
         <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
