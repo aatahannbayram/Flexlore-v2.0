@@ -44,13 +44,19 @@ const DRINKS: Drink[] = [
     ["Kahveyi tart ve düzle", "Weigh and level the coffee", "Reçeteye göre · Per recipe"],
     ["Demlemeyi başlat, saati yaz", "Start the brew, log the time", "Tazelik etiketi · Freshness label"],
     ["Süresi dolanı dök, yenisini kur", "Discard when expired, rebrew", "Bekleme sınırı · Hold limit"] ] },
+  { k: "poli", tr: "Açılış–kapanış poli", en: "Open–close clean", steps: [
+    ["Grupları kör filtreyle backflush et", "Backflush the groups with a blind basket", "Deterjan · Reçetedeki tur · Detergent cycle"],
+    ["Buhar çubuğunu sil, boşalt, beklet", "Wipe, purge and soak the steam wand", "Süt kalıntısı kalmasın · No milk residue"],
+    ["Mikser başlıklarını ve pitcher'ları yıka", "Wash frother heads and pitchers", "Süte göre ayrı · Separate per milk"],
+    ["Tezgâh, damlama tepsisi ve dolap polisi", "Counter, drip tray and fridge clean", "Dezenfektan · Sanitiser"],
+    ["Poli kontrol listesini imzala", "Sign off the clean checklist", "Fotoğraflı kayıt · Photo log"] ] },
 ];
 const OPEN: [string, string][] = [
   ["Makineyi aç, ısınmasını bekle", "Switch on, let the machine heat"],
   ["Grupları boş çalıştır", "Flush the group heads"],
   ["Öğütücüyü kalibre et: test shot'u", "Dial in the grinder: test shot"],
   ["Sütleri ve alternatifleri kontrol et, tarihleri oku", "Check milks and alternatives, read dates"],
-  ["Pitcher, bez ve tezgâhı hazırla", "Set pitchers, cloths and counter"],
+  ["Açılış polisi: tezgâh, pitcher, bezler", "Opening clean: counter, pitchers, cloths"],
   ["Alerjen kartını vitrinde kontrol et", "Check the allergen card at the counter"],
   ["Unlu mamül vitrinini ve etiketleri diz", "Set the bakery case and its labels"],
 ];
@@ -73,15 +79,41 @@ const CLIPS: Record<string, string[]> = {
   latte: ["shot", "milk", "pour", "tamp"],
   turk: ["cezve", "sugar", "cezve", "pour", "sugar"],
   filter: ["tamp", "sugar", "shot", "pour"],
+  poli: ["backflush", "wand", "froth", "counter", "checklist"],
 };
 const clip = (k: string, i: number) => (CLIPS[k] || CLIPS.fesp)[i] || "shot";
 
 /* ---------- phone screens (Flexlore app style) ---------- */
+function Fav() { return <img src="/brand/app-icon.png" alt="Flexlore" className="pointer-events-none absolute right-3.5 top-[51px] z-10 h-[22px] w-[22px] rounded-[6px] shadow-[0_2px_10px_rgba(0,0,0,.5)] ring-1 ring-white/10" />; }
 function Status() { return <div className="flex h-[44px] items-center justify-between px-6 pt-1 text-[13px] font-semibold text-white"><span>09:41</span><span className="flex gap-1 opacity-90"><i className="h-[9px] w-[14px] rounded-[2px] bg-white" /></span></div>; }
+const FILM = ["tamp","tamp","shot","shot","froth","pour","pour","milk"];
+function EdTools({ l, big }: { l: L; big?: boolean }) {
+  const ic = big ? "text-[15px]" : "text-[11px]";
+  return (<div className={big ? "p-6" : "px-3 pb-3"}>
+    <div className={`flex items-center justify-between text-white/80 ${big ? "border-b border-white/10 pb-5 text-[20px]" : "pb-2 text-[13px]"}`}><span>↶</span><span>↷</span><span className={`grid place-items-center rounded-full ring-2 ring-white/80 ${big ? "h-9 w-9 text-[13px]" : "h-5 w-5 text-[8px]"}`}>▶</span><span className="mono">‹1s</span><span className="mono">1s›</span></div>
+    <div className={`mono flex justify-between text-white/60 ${big ? "mt-5 text-[13px]" : "text-[8.5px]"}`}><span>{t2(l,"Adım başı","Start Step")}: 00:15</span><span>{t2(l,"Adım sonu","Stop Step")}: 01:25</span><span>{t2(l,"Süre","Duration")}: 01:10</span></div>
+    <div className={`relative mt-2 flex overflow-hidden rounded-lg ring-1 ring-white/25 ${big ? "h-14" : "h-8"}`}>{FILM.map((f,k)=><img key={k} src={`/video/steps/${f}.jpg`} alt="" className="h-full min-w-0 flex-1 object-cover opacity-80" />)}
+      <i className="absolute inset-y-0 left-[10%] w-[18%] border-x-2 border-[#ff6a1a] bg-[#ff6a1a]/15" /><i className="absolute inset-y-[-2px] left-[47%] w-[2px] bg-white" /></div>
+    <div className={`mt-3 grid grid-cols-[3fr_1fr] gap-2 ${ic} text-white/80`}><div className="grid grid-cols-3 rounded-xl bg-white/[.07] py-2 text-center"><span>◫<br/>{t2(l,"Çıkartma","Stickers")}</span><span>Ⓐ<br/>{t2(l,"Metin","Text")}</span><span>☰<br/>{t2(l,"Adımlar","Steps")}</span></div>
+      <div className="rounded-xl bg-white/[.07] py-2 text-center"><span className="text-[#ff6a1a]">◉</span><br/>{t2(l,"Adım başlat","Start Step")}</div></div>
+  </div>);
+}
+function EditorScreen({ l }: { l: L }) {
+  return (<div className="flex h-full flex-col bg-[#111] text-white"><Status /><Fav />
+    <div className="flex items-center gap-3 px-4 pb-2 pr-12 text-[11px] text-white/70"><span>{t2(l,"Bitti","Done")}</span><span className="flex-1 truncate text-center font-medium text-white">{t2(l,"Makineyi aç ve ısıt","Power on and warm up")}</span><span>☰</span></div>
+    <div className="relative mx-2 flex-1 overflow-hidden rounded-lg bg-black">
+      <video src="/video/steps/tamp.mp4" poster="/video/steps/tamp.jpg" autoPlay muted loop playsInline className="h-full w-full object-cover" />
+      <span className="absolute left-2 top-2 rounded-md bg-black/60 px-2 py-1 text-[10px]">Barista · Ayşe K.</span>
+      <div className="absolute bottom-3 right-2 grid gap-2 text-[10px] font-semibold"><span className="rounded-full bg-[#e5484d] px-3 py-1.5">{t2(l,"Adımı iptal et","Cancel Step")}</span><span className="rounded-full bg-[#ff6a1a] px-3 py-1.5">{t2(l,"Adımı tamamla","Complete Step")}</span></div>
+      <span className="mono absolute bottom-3 left-2 text-[9px] text-white/80">{t2(l,"Video","Video")}: <b className="text-[#ff6a1a]">04:15</b> / 10:00</span>
+    </div>
+    <div className="pt-2"><EdTools l={l} /></div>
+  </div>);
+}
 function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
   const s = d.steps[i];
   return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]">
-    <Status />
+    <Status /><Fav />
     <div className="flex h-[40px] items-center px-3 text-[14px]"><span style={{ color: O }}>‹ {t2(l, "Reçeteler", "Recipes")}</span><span className="absolute left-1/2 -translate-x-1/2 font-semibold text-white">{t2(l, d.tr, d.en)}</span></div>
     <div className="relative mx-3 h-[170px] overflow-hidden rounded-[14px] bg-black">
       <AnimatePresence mode="popLayout"><motion.video key={d.k + i} src={`/video/steps/${clip(d.k, i)}.mp4`} poster={`/video/steps/${clip(d.k, i)}.jpg`} autoPlay muted loop playsInline initial={{ opacity: 0 }} animate={{ opacity: .9 }} exit={{ opacity: 0 }} transition={{ duration: .45 }} className="absolute inset-0 h-full w-full object-cover" /></AnimatePresence>
@@ -97,8 +129,8 @@ function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
   </div>);
 }
 function OpenScreen({ n, l }: { n: number; l: L }) {
-  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status />
-    <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">{t2(l, "Kahve istasyonu", "Coffee station")}</p><p className="text-[20px] font-semibold tracking-tight text-white">{t2(l, "Vardiya açılışı", "Shift opening")}</p>
+  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status /><Fav />
+    <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">{t2(l, "Kahve istasyonu · Elif D.", "Coffee station · Elif D.")}</p><p className="text-[20px] font-semibold tracking-tight text-white">{t2(l, "Açılış ve poli", "Opening and clean")}</p>
       <div className="mt-3 h-[4px] overflow-hidden rounded-full bg-white/[.08]"><motion.div className="h-full" style={{ background: O }} animate={{ width: `${(n / OPEN.length) * 100}%` }} transition={{ duration: .6, ease }} /></div>
       <p className="mt-1.5 text-[11px] tabular-nums text-white/45">{n}/{OPEN.length} {t2(l, "tamamlandı", "done")}</p></div>
     <div className="mt-3 space-y-1.5 px-3">{OPEN.map((x, k) => <div key={k} className={`flex items-center gap-2.5 rounded-[12px] px-3 py-2.5 text-[12.5px] transition ${k < n ? "bg-[#1a1512] text-white/45 line-through decoration-white/20" : k === n ? "bg-[#241d18] text-white ring-1 ring-white/10" : "bg-[#1a1512]/60 text-white/60"}`}>
@@ -107,7 +139,7 @@ function OpenScreen({ n, l }: { n: number; l: L }) {
 }
 function QuizScreen({ pick, setPick, l }: { pick: number | null; setPick: (n: number) => void; l: L }) {
   const opts = [t2(l, "Aynı pitcher'la devam et", "Carry on with the same pitcher"), t2(l, "Ayrı pitcher kullan, çubuğu sil ve boşalt", "Use a separate pitcher, wipe and purge the wand"), t2(l, "Sadece pitcher'ı suyla çalkala", "Just rinse the pitcher with water")];
-  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status />
+  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status /><Fav />
     <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">Quiz · {t2(l, "Alerjen", "Allergen")}</p>
       <p className="mt-2 text-[16px] font-semibold leading-snug text-white">{t2(l, "Müşteri süt alerjisi olduğunu söylüyor ve yulaf sütlü latte istiyor. Az önce inek sütü buharladın. Ne yaparsın?", "A guest says they have a milk allergy and orders an oat latte. You just steamed dairy. What do you do?")}</p></div>
     <div className="mt-4 space-y-2 px-3">{opts.map((o, k) => { const sel = pick === k, ok = k === 1; return (
@@ -197,8 +229,7 @@ export default function MikelCoffee() {
         <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[11vh] md:px-10">
           <motion.img initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .3, duration: .9, ease }} src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="mb-7 mr-auto block h-16 w-auto self-start md:h-20" style={{ marginLeft: 0 }} />
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .4 }} className="mono text-[11px] uppercase tracking-[.22em] text-[#ff6a1a]">{t2(l, "Mikel Coffee için hazırlanmış demo · Kahve operasyonu", "Prepared for Mikel Coffee · Coffee operations")}</motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5, duration: 1, ease }} className="display mt-5 max-w-[13ch] text-[clamp(3rem,8.5vw,8.5rem)]">{t2(l, "Her franchise'ta, aynı Freddo.", "Every franchise, the same Freddo.")}</motion.h1>
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .7, duration: .9, ease }} className="mt-4 text-[clamp(1.2rem,2vw,1.6rem)] font-medium tracking-tight text-white/85">{t2(l, "Freddo ne? ", "What is a Freddo? ")}<span className="text-[#ff6a1a]">{t2(l, "Standart olsun.", "It should be a standard.")}</span></motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5, duration: 1, ease }} className="display mt-5 max-w-[14ch] text-[clamp(2.9rem,7.6vw,7.6rem)] !font-medium !leading-[.98] !tracking-[-.045em]">{t2(l, "Her franchise'ta,", "In every franchise,")}<br />{t2(l, "aynı ", "the same ")}<span className="text-[#ff6a1a]">{t2(l, "standart.", "standard.")}</span></motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .9 }} className="mt-6 max-w-[52ch] text-[18px] leading-[1.4] text-white/75">{t2(l, "Usta baristanızın elini bir kez telefonla çekin. Flexlore onu adım adım video reçeteye, açılış listesine ve kısa quize çevirsin. Yeni barista tezgâhta izler, uygular, sorumlu kimin hazır olduğunu görür.", "Film your lead barista's hands once on a phone. Flexlore turns it into step-by-step video recipes, an opening checklist and a short quiz. New baristas watch at the counter, do it, and the lead sees who is ready.")}</motion.p>
           <div className="mt-8 flex flex-wrap gap-3"><a href="#recete" className="btn-p">{t2(l, "Simülasyonu izle", "See the simulation")} <Arr dir="d" className="ml-1" /></a><a href={SITE.demo} className="btn-g">{t2(l, "Kendi reçetenizle deneyelim", "Try it with your recipe")}</a></div>
         </div>
@@ -228,11 +259,22 @@ export default function MikelCoffee() {
         <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8"><Device label={t2(l, "Flexlore uygulamasında içecek reçetesi", "Drink recipe in the Flexlore app")}><RecipeScreen d={drink} i={i} l={l} /></Device></div>
       </div></section>
 
+      {/* editor */}
+      <section id="editor" className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
+        <div className="md:col-span-6">
+          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#ff6a1a]">{t2(l,"Video editörü · Usta kaydeder","Video editor · The lead records")}</p>
+          <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l,"Tek çekim, ","One take, ")}<span className="text-[#ff6a1a]">{t2(l,"net adımlar.","clear steps.")}</span></h2>
+          <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.5] text-white/60">{t2(l,"Usta baristanız istasyonu bir kez çeker; Flexlore editöründe başlangıç ve bitişi işaretleyip uzun videoyu adım adım izlenen bir akışa böler. Metin ve çıkartma ekler, yayınlar.","Your lead films the station once; in the Flexlore editor they mark start and stop and cut the long video into a step-by-step flow, add text and stickers, and publish.")}</p>
+          <div className="mt-10 hidden max-w-[520px] rounded-2xl bg-white/[.04] ring-1 ring-white/10 backdrop-blur md:block"><EdTools l={l} big /></div>
+        </div>
+        <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8"><Device label={t2(l,"Flexlore video editörü","Flexlore video editor")}><EditorScreen l={l} /></Device></div>
+      </div></section>
+
       {/* shift opening */}
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
         <div className="order-2 mx-auto w-[min(78vw,330px)] md:order-1 md:col-span-5"><Device label={t2(l, "Kahve istasyonu açılış listesi", "Coffee station opening checklist")}><OpenScreen n={n} l={l} /></Device></div>
         <div className="order-1 md:order-2 md:col-span-6 md:col-start-7">
-          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#ff6a1a]">02 · {t2(l, "Vardiya açılışı", "Shift opening")}</p>
+          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#ff6a1a]">02 · {t2(l, "Açılış, kapanış ve poli", "Opening, closing and clean")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Kepenk açılmadan istasyon hazır.", "The station is ready before the shutters open.")}</h2>
           <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Açılışı yapan kim olursa olsun, aynı sıra. Her maddenin arkasında ustanın 20 saniyelik videosu var; takılan kişi dokunur, izler, devam eder.", "Whoever opens, the same order. Behind each item is a short clip from your lead; whoever gets stuck taps, watches, carries on.")}</p>
           <ul className="mt-8 grid gap-x-8 gap-y-3 text-[15px] text-white/75 sm:grid-cols-2">{OPEN.map((x) => <li key={x[0]} className="flex gap-2.5"><I.check size={18} className="mt-0.5 shrink-0 text-white/40" />{t2(l, x[0], x[1])}</li>)}</ul>
@@ -267,7 +309,7 @@ export default function MikelCoffee() {
         <div className="md:col-span-7"><Rev className="overflow-hidden rounded-[6px] bg-[#120e0c]/80 ring-[.5px] ring-[#e9dcc6]/[.12]">
           <div className="flex items-center justify-between border-b border-[#e9dcc6]/[.07] px-5 py-3 text-[12px] text-white/50"><span>{t2(l, "Hazırlık · Kahve istasyonu", "Readiness · Coffee station")}</span><span className="mono text-[10px] uppercase tracking-[.16em] text-white/35">{t2(l, "Örnek görünüm", "Sample view")}</span></div>
           <table className="w-full text-left text-[13px]"><thead className="text-[11px] uppercase tracking-[.12em] text-white/35"><tr><th className="px-5 py-3 font-medium">{t2(l, "Barista", "Barista")}</th>{DRINKS.map((x) => <th key={x.k} className="px-3 py-3 font-medium">{t2(l, x.tr, x.en)}</th>)}</tr></thead>
-            <tbody>{[["Barista A", [2, 2, 1, 2]], ["Barista B", [2, 1, 0, 2]], ["Barista C", [1, 0, 0, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-[#e9dcc6]/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-[12px] ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-[#ff6a1a]" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table>
+            <tbody>{[["Ayşe K.", [2, 2, 1, 2, 2, 2]], ["Mehmet Y.", [2, 1, 0, 2, 1, 2]], ["Elif D.", [1, 0, 0, 1, 2, 1]], ["Can A.", [2, 2, 2, 1, 0, 2]], ["Zeynep S.", [1, 1, 0, 0, 1, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-[#e9dcc6]/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-[12px] ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-[#ff6a1a]" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table>
         </Rev></div>
       </div></section>
 
