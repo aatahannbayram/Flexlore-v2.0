@@ -74,8 +74,8 @@ export default function Cases({ lang }: { lang: "en" | "tr" }) {
                 <h3 className="text-[19px] font-semibold leading-[1.15] tracking-tight">{c.h}</h3>
                 <p className="mt-2 text-[14px] leading-[1.35] text-white/60">{c.steps.map((x) => x[0]).join(" → ")}</p>
                 <p className="mt-3 text-[14px] font-semibold text-white">{c.out}</p>
-                {c.note && <p className="mt-2 text-[11px] leading-[1.35] text-white/40">{c.note}</p>}
-                {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? "Senaryoyu incele" : "See the use case"} <Arr className="ml-1" /></a>}
+                {c.note && <p className="mt-2 text-[12px] leading-[1.35] text-white/70">{c.note}</p>}
+                {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? (c.id === "case-installation" ? "Kurulum eğitimi senaryosu" : "Usta-çırak senaryosu") : (c.id === "case-installation" ? "Installation training use case" : "Master to apprentice use case")} <Arr className="ml-1" /></a>}
               </div>
             </motion.article>))}
         </div>

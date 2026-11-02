@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
+import { Schibsted_Grotesk } from "next/font/google";
 import "./globals.css";
-const inter = Inter({ subsets: ["latin", "latin-ext"], axes: ["opsz"], variable: "--font-inter", display: "swap" });
+const schibsted = Schibsted_Grotesk({ subsets: ["latin", "latin-ext"], variable: "--font-schibsted", display: "swap" });
 import seo from "@/lib/seo.json";
 import { SITE } from "@/components/config";
 import { robots } from "@/components/seo";
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   icons: { icon: "/brand/app-icon.png", apple: "/brand/app-icon.png" },
 };
-export const viewport: Viewport = { themeColor: "#000000" };
+export const viewport: Viewport = { themeColor: "#111111" };
 const ld = [
   { "@context": "https://schema.org", "@type": "Organization", "@id": SITE.url + "/#org", name: "Flexlore", legalName: "Flexlore Inc.", url: SITE.url, logo: SITE.url + "/brand/logo.png", email: "hello@flexlore.com",
     founder: { "@type": "Person", name: "Ata Han Bayram", jobTitle: "Co-founder and CEO" },
@@ -27,5 +26,5 @@ const ld = [
     description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={`${inter.variable} ${geistMono.variable}`}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}<div aria-hidden="true" className="grain" /></body></html>);
+  return (<html lang="en" className={schibsted.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}<div aria-hidden="true" className="grain" /></body></html>);
 }

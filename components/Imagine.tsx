@@ -312,7 +312,7 @@ export default function Imagine() {
                   <span><span className="block text-[17px] font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-[15px] leading-[1.4] text-white/65">{f[1]}</span></span>
                 </motion.li>))}
             </ol>
-            <p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">Example scenario · roles and dishes are illustrative</p>
+            <p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">Example scenario · roles and dishes are illustrative</p>
             <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-[13px] text-white/50">Bring one of your real jobs. We'll build it with you.</p></div>
           </div>
         </div>

@@ -31,7 +31,7 @@ export default function Pricing() {
         <p className="mt-4 max-w-xl text-lg leading-[1.4] text-white/65">Start with one job. Grow to every team, shift and site. Priced per location, with unlimited operators.</p>
 
         <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-white/10 md:grid-cols-3" aria-label="Plans">
-          {PLANS.map((p) => (<li key={p.id} className={`flex flex-col p-7 md:p-8 ${p.featured ? "bg-[#111113]" : "bg-black"}`}>
+          {PLANS.map((p) => (<li key={p.id} className={`flex flex-col p-7 md:p-8 ${p.featured ? "bg-[#191919]" : "bg-black"}`}>
             <div className="flex items-baseline justify-between"><h2 className="text-[20px] font-semibold tracking-tight">{p.name}</h2>{p.featured && <span className="mono text-[10px] uppercase tracking-[.18em] text-flame">For multi-site teams</span>}</div>
             <p className="mt-1.5 text-[14px] leading-[1.4] text-white/55">{p.for}</p>
             <div className="mt-8 border-t border-white/10 pt-6">

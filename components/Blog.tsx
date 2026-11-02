@@ -14,7 +14,7 @@ export function Bar() {
         <Link href="/#imagine" className="link-u hidden text-white/60 hover:text-white sm:inline">Your business</Link>
         <Link href="/pricing/" className="link-u text-white/70 hover:text-white">Pricing</Link>
         <Link href="/blog/" className="link-u text-white/70 hover:text-white">Blog</Link>
-        <a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p">Book a demo</a>
+        <a href="https://app-eu1.hubspot.com/meetings/alper-kalip?uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p">Book a demo</a>
       </nav>
     </header>
   );

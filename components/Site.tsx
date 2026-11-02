@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { Pause, Play } from "lucide-react";
 import Image from "next/image";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform, useReducedMotion, MotionValue } from "framer-motion";
@@ -17,8 +18,12 @@ import { StoreButtons, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
+// Sayfadaki tüm döngülü videoları tek düğmeyle durdurur (WCAG 2.2.2). Sağlayıcı yoksa (ör. demo sayfaları) videolar oynar.
+const VideoPause = createContext(false);
+
 export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
   const reduce = useReducedMotion();
+  const paused = useContext(VideoPause);
   const ref = useRef<HTMLVideoElement>(null);
   const [on, setOn] = useState(eager);
   useEffect(() => {
@@ -28,12 +33,12 @@ export function Video({ name, eager = false, className = "" }: { name: string; e
     io.observe(el); return () => io.disconnect();
   }, [eager, reduce]);
   useEffect(() => { const el = ref.current; if (!el || !on || reduce) return;
-    const io = new IntersectionObserver(([e]) => { e.isIntersecting ? el.play().catch(() => {}) : el.pause(); });
-    io.observe(el); return () => io.disconnect(); }, [on, reduce]);
+    const io = new IntersectionObserver(([e]) => { e.isIntersecting && !paused ? el.play().catch(() => {}) : el.pause(); });
+    io.observe(el); return () => io.disconnect(); }, [on, reduce, paused]);
   const cls = `grade absolute inset-0 h-full w-full object-cover ${className}`;
   if (reduce) return <img src={`/video/${name}.jpg`} alt="" className={cls} />;
   return (
-    <video ref={ref} className={cls} poster={`/video/${name}.jpg`} muted loop playsInline autoPlay={eager}
+    <video ref={ref} className={cls} poster={`/video/${name}.jpg`} muted loop playsInline autoPlay={eager && !paused}
       preload={eager ? "auto" : "none"} aria-hidden="true">
       {on && <source src={`/video/${name}.webm`} type="video/webm" />}
       {on && <source src={`/video/${name}.mp4`} type="video/mp4" />}
@@ -70,7 +75,7 @@ function Loader() {
   if (reduce) return null;
   return (
     <motion.div aria-hidden="true" initial={{ y: 0 }} animate={{ y: done ? "-100%" : 0 }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#0b0b0c]">
+      className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#111111]">
       <motion.img src="/brand/app-icon.png" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
       <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
       <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
@@ -153,28 +158,28 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
-            <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.pK}</p>
+            <p className="mono text-[12px] uppercase tracking-[.16em] text-white/60">{t.pK}</p>
             <div className="mt-6 flex items-start gap-5 md:mt-10 md:gap-10">
               <span className="num text-[clamp(5rem,13vw,13rem)] text-white/90 tabular-nums">0{a + 1}</span>
               <div className="relative mt-3 h-[9.5rem] flex-1 md:h-[14rem]">
                 {t.steps.map((s, i) => (
-                  <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i}>
+                  <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.35, delay: a === i ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
                     <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]"><K text={s.h} /></h2>
                     <p className="mt-3 max-w-sm text-[15px] leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
                   </motion.div>))}
               </div>
             </div>
-            <ol className="mono mt-8 grid max-w-md grid-cols-4 gap-2 text-[10px] uppercase tracking-[.16em] md:mt-14">
-              {t.steps.map((s, i) => (<li key={i}><button type="button" onClick={() => { const el = ref.current; if (!el) return; const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight; window.scrollTo({ top: top + span * ((i + 0.35) / 4.2), behavior: "smooth" }); }} aria-current={a === i ? "step" : undefined} className={`w-full border-t pt-2 text-left uppercase transition-colors duration-500 hover:text-white ${a >= i ? "border-flame text-white" : "border-white/20 text-white/40"}`}>{s.h.replace(".", "")}</button></li>))}
+            <ol className="mono mt-8 grid max-w-md grid-cols-4 gap-2 text-[12px] uppercase tracking-[.12em] md:mt-14">
+              {t.steps.map((s, i) => (<li key={i}><button type="button" onClick={() => { const el = ref.current; if (!el) return; const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight; window.scrollTo({ top: top + span * ((i + 0.35) / 4.2), behavior: "smooth" }); }} aria-current={a === i ? "step" : undefined} className={`w-full border-t pt-2 text-left uppercase transition-colors duration-500 hover:text-white ${a >= i ? "border-white text-white" : "border-white/20 text-white/70"}`}>{s.h.replace(".", "")}</button></li>))}
             </ol>
           </div>
           <div className="col-span-12 row-start-1 flex justify-center pt-20 md:col-span-5 md:col-start-8 md:row-auto md:pt-0">
             <div className="relative w-[min(52vw,230px)] md:w-[330px]">
               <Device label={t.alts[a]}>{[0, 1, 2, 3].map((i) => (
-                <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, x: a === i ? 0 : a > i ? -36 : 36, scale: a === i ? 1 : 0.98, filter: a === i ? "blur(0px)" : "blur(4px)" }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
+                <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, x: a === i ? 0 : a > i ? -36 : 36, scale: a === i ? 1 : 0.98, filter: a === i ? "blur(0px)" : "blur(4px)" }} transition={{ duration: 0.35, delay: a === i ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
                   {i === 0 ? <RecordScreen active={a === 0} /> : i === 1 ? <SopScreen active={a === 1} /> : i === 2 ? <QuizScreen active={a === 2} q={qz.q} a={qz.a} ok={qz.ok} /> : <ReadyScreen active={a === 3} />}
                 </motion.div>))}</Device>
-              <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-flame md:block" />
+              <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-white/50 md:block" />
             </div>
           </div>
         </div>
@@ -288,7 +293,7 @@ function End({ t }: { t: C }) {
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
-          <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <Arr className="ml-1" /></Magnetic>
+          <Magnetic href={SITE.demo} className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <Arr className="ml-1" /></Magnetic>
         </div>
       </div>
     </section>
@@ -298,6 +303,9 @@ function End({ t }: { t: C }) {
 function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const menuBtn = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
+  useEffect(() => { if (wasOpen.current && !open) menuBtn.current?.focus(); wasOpen.current = open; }, [open]);
   const { scrollYProgress } = useScroll();
   useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
   useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
@@ -305,7 +313,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
-        <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} className={`relative z-10 rounded-full px-2.5 py-1 uppercase transition-colors ${lang === l ? "text-black" : "text-white/55 hover:text-white"}`}>
+        <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} aria-label={l === "tr" ? "Türkçe" : "English"} lang={l} className={`relative z-10 rounded-full px-2.5 py-1 uppercase transition-colors ${lang === l ? "text-black" : "text-white/55 hover:text-white"}`}>
           {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-white" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}{l}
         </button>))}
     </div>);
@@ -316,15 +324,15 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
         <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
           className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.66)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
           <a href="#main" className="flex items-center gap-2" aria-label="Flexlore">
-            <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-7" : "h-9"}`} />
+            <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-6 sm:h-7" : "h-6 sm:h-9"}`} />
           </a>
           <ul className="hidden items-center gap-7 text-[13px] text-white/70 md:flex">
             {links.map((l) => <li key={l.h}><a href={l.h} className="link-u hover:text-white">{l.n}</a></li>)}
           </ul>
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">{Lang2}</div>
-            <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="btn-p inline-flex">{t.cta}</Magnetic>
-            <button onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-2 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
+            <Magnetic href={SITE.demo} className="btn-p inline-flex whitespace-nowrap">{t.cta}</Magnetic>
+            <button ref={menuBtn} onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-2 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
           </div>
           <motion.span aria-hidden="true" style={{ scaleX: scrollYProgress }} className={`absolute bottom-0 left-0 h-px w-full origin-left bg-flame/80 transition-opacity ${scrolled ? "opacity-100" : "opacity-0"}`} />
         </motion.nav>
@@ -339,14 +347,26 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
               <motion.li key={l.h} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: [0.22, 1, 0.36, 1], duration: 0.6 }}>
                 <a href={l.h} onClick={() => setOpen(false)} className="display block text-[3.4rem]">{l.n}</a></motion.li>))}
           </ul>
-          <div className="mt-auto flex items-center justify-between">{Lang2}<a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" onClick={() => setOpen(false)} className="btn-p">{t.cta}</a></div>
+          <div className="mt-auto flex items-center justify-between">{Lang2}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn-p">{t.cta}</a></div>
         </motion.div>)}
     </>
   );
 }
 
+// 16: döngülü videolar için görünür durdurma düğmesi. Masaüstünde alt ortada, mobilde başlığın altında sağda.
+function PauseVideos({ paused, setPaused, lang }: { paused: boolean; setPaused: (p: boolean) => void; lang: Lang }) {
+  const tr = lang === "tr";
+  const label = paused ? (tr ? "Videoları oynat" : "Play videos") : (tr ? "Videoları durdur" : "Pause videos");
+  return (
+    <button type="button" onClick={() => setPaused(!paused)} aria-label={label}
+      className="fixed right-3 top-[76px] z-40 inline-flex h-8 items-center gap-1.5 rounded-full bg-[rgba(20,20,22,.66)] px-2.5 text-[12px] text-white/85 ring-1 ring-white/15 backdrop-blur-xl transition hover:text-white hover:ring-white/40 md:bottom-6 md:left-1/2 md:right-auto md:top-auto md:-translate-x-1/2 md:px-3">
+      {paused ? <Play size={12} fill="currentColor" strokeWidth={0} /> : <Pause size={12} fill="currentColor" strokeWidth={0} />}<span className="hidden md:inline">{label}</span>
+    </button>);
+}
+
 export default function Site() {
   const [lang, setLang] = useState<Lang>("en");
+  const [paused, setPaused] = useState(false);
   const t = copy[lang];
   const reduce = useReducedMotion();
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
@@ -355,9 +375,12 @@ export default function Site() {
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
+      {!reduce && <PauseVideos paused={paused} setPaused={setPaused} lang={lang} />}
+      <VideoPause.Provider value={paused}>
       <main id="main">
         <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
       </main>
+      </VideoPause.Provider>
       <Footer />
     </>
   );

@@ -62,19 +62,19 @@ export function Device({ children, label }: { children: React.ReactNode; label: 
 /* ---------- primitives ---------- */
 function Nav({ left, title, right }: { left?: React.ReactNode; title: string; right?: React.ReactNode }) {
   return (<div className="relative flex h-[44px] items-center px-3 text-white">
-    <span className="flex min-w-[60px] items-center text-[15px] tracking-[-.01em]" style={{ color: O }}>{left}</span>
+    <span className="flex min-w-[60px] items-center text-[15px] tracking-[-.01em] text-white/90">{left}</span>
     <span className="absolute left-1/2 max-w-[54%] -translate-x-1/2 truncate text-[15px] font-semibold tracking-[-.02em]">{title}</span>
     <span className="ml-auto flex items-center gap-3 text-white/80">{right ?? <MoreHorizontal {...ic} size={18} />}</span></div>);
 }
 const Back = ({ t = "Back" }: { t?: string }) => <><ChevronLeft size={22} strokeWidth={1.75} absoluteStrokeWidth className="-ml-1.5" /><span className="-ml-0.5">{t}</span></>;
 function Bar({ v, h = 4 }: { v: number; h?: number }) {
   return (<span className="relative block flex-1 overflow-hidden rounded-full bg-white/[.08]" style={{ height: h }}>
-    <motion.span className="absolute inset-y-0 left-0 rounded-full shadow-[0_0_0_.5px_rgba(255,255,255,.15)_inset]" style={{ background: `linear-gradient(90deg,#c2410c,${O} 60%,#ff8a3d)` }} initial={false} animate={{ width: `${v * 100}%` }} transition={{ duration: .8, ease }} /></span>);
+    <motion.span className="absolute inset-y-0 left-0 rounded-full shadow-[0_0_0_.5px_rgba(255,255,255,.15)_inset]" style={{ background: `linear-gradient(90deg,#A8491B,${O} 60%,#F08551)` }} initial={false} animate={{ width: `${v * 100}%` }} transition={{ duration: .8, ease }} /></span>);
 }
 function Ring({ v, size = 34, sw = 3.5, children }: { v: number; size?: number; sw?: number; children?: React.ReactNode }) {
   const r = (size - sw) / 2, c = 2 * Math.PI * r;
   return (<span className="relative grid shrink-0 place-items-center" style={{ width: size, height: size }}>
-    <svg width={size} height={size} className="-rotate-90"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#ff8a3d" /><stop offset="1" stopColor="#d9480f" /></linearGradient></defs>
+    <svg width={size} height={size} className="-rotate-90"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#F08551" /><stop offset="1" stopColor="#D75E23" /></linearGradient></defs>
       <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,.08)" strokeWidth={sw} />
       <motion.circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="url(#rg)" strokeWidth={sw} strokeLinecap="round" strokeDasharray={c} initial={false} animate={{ strokeDashoffset: c * (1 - v) }} transition={{ duration: 1, ease }} /></svg>
     <span className="absolute text-[10px] font-semibold tabular-nums text-white">{children}</span></span>);
@@ -92,7 +92,7 @@ function Picker({ label, value }: { label: string; value: string }) {
 export function Toast({ show, text, sub }: { show: boolean; text: string; sub?: string }) {
   return (<AnimatePresence>{show && <motion.div initial={{ y: -40, opacity: 0, scale: .9 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: -30, opacity: 0, scale: .95 }} transition={{ type: "spring", stiffness: 380, damping: 30 }}
     className="absolute left-1/2 top-[48px] z-30 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#1f1f22]/95 py-1.5 pl-1.5 pr-3.5 shadow-[0_10px_30px_rgba(0,0,0,.6),inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
-    <span className="grid h-6 w-6 place-items-center rounded-full bg-[#30a46c]"><Check size={13} strokeWidth={2.5} className="text-white" /></span>
+    <span className="grid h-6 w-6 place-items-center rounded-full bg-[#68D2B9]"><Check size={13} strokeWidth={2.5} className="text-[#111111]" /></span>
     <span className="leading-tight"><span className="block text-[12px] font-semibold text-white">{text}</span>{sub && <span className="block text-[10px] text-white/50">{sub}</span>}</span></motion.div>}</AnimatePresence>);
 }
 const mm = (x: number) => `${String(Math.floor(x / 60)).padStart(2, "0")}:${String(x % 60).padStart(2, "0")}`;
@@ -106,7 +106,7 @@ export function RecordScreen({ active }: { active: boolean }) {
       <Clip name="kitchen" active={active} />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 to-transparent" />
       <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 py-1 pl-1 pr-2.5 text-[11px] font-medium text-white backdrop-blur"><span className="grid h-[18px] w-[18px] place-items-center rounded-full bg-white/15 text-[8px] font-bold">LC</span>Line cook 1</span>
-      <span className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-[#e5484d] px-2 py-1 text-[10px] font-semibold tabular-nums text-white shadow-[0_2px_10px_rgba(229,72,77,.4)]"><motion.i animate={active ? { opacity: [1, .25, 1] } : {}} transition={{ repeat: Infinity, duration: 1.2 }} className="h-1.5 w-1.5 rounded-full bg-white" />REC {mm(t)}</span>
+      <span className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-[#E54A4A] px-2 py-1 text-[10px] font-semibold tabular-nums text-white shadow-[0_2px_10px_rgba(229,74,74,.4)]"><motion.i animate={active ? { opacity: [1, .25, 1] } : {}} transition={{ repeat: Infinity, duration: 1.2 }} className="h-1.5 w-1.5 rounded-full bg-white" />REC {mm(t)}</span>
       <span className="absolute bottom-[44px] right-3 flex flex-col items-end gap-1.5">
         <span className="rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur">Cancel Step</span>
         <motion.span animate={active ? { scale: [1, 1.04, 1] } : {}} transition={{ repeat: Infinity, duration: 1.8 }} className="rounded-full px-3 py-1.5 text-[11px] font-semibold text-white shadow-[0_4px_14px_rgba(236,103,38,.45),inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: O }}>Complete Step</motion.span></span>
@@ -120,11 +120,11 @@ export function RecordScreen({ active }: { active: boolean }) {
     <div className="relative mx-4 mt-2.5 h-[42px] overflow-hidden rounded-[10px] ring-1 ring-white/10">
       <div className="flex h-full">{["kitchen", "line", "plating", "steam", "kitchen", "line"].map((v, i) => <span key={i} className="h-full flex-1 bg-cover bg-center" style={{ backgroundImage: `url(/video/${v}.jpg)`, boxShadow: "inset -1px 0 0 rgba(0,0,0,.5)" }} />)}</div>
       <span className="absolute inset-y-0 left-0 w-[14%] bg-black/60" />
-      <span className="absolute inset-y-0 left-[14%] right-[6%] rounded-[8px] border-2 border-[#f5c518]"><span className="absolute -left-[2px] inset-y-0 w-2 rounded-l-[6px] bg-[#f5c518]" /><span className="absolute -right-[2px] inset-y-0 w-2 rounded-r-[6px] bg-[#f5c518]" /></span>
+      <span className="absolute inset-y-0 left-[14%] right-[6%] rounded-[8px] border-2 border-[#EC6726]"><span className="absolute -left-[2px] inset-y-0 w-2 rounded-l-[6px] bg-[#EC6726]" /><span className="absolute -right-[2px] inset-y-0 w-2 rounded-r-[6px] bg-[#EC6726]" /></span>
       <motion.span className="absolute -top-[2px] -bottom-[2px] w-[3px] rounded-full bg-white shadow-[0_0_6px_rgba(0,0,0,.8)]" initial={false} animate={{ left: `${16 + (s / 60) * 76}%` }} transition={{ duration: 1, ease: "linear" }} /></div>
     <div className="mx-3 mb-[26px] mt-auto flex gap-2">
       <div className={`flex flex-[3] py-2 ${card}`} style={{ background: S1 }}>{[[Sticker, "Stickers"], [Type, "Text"], [Scissors, "Steps"]].map(([C, l]) => { const Icon = C as typeof Type; return <span key={l as string} className="flex flex-1 flex-col items-center gap-1 text-[10px] text-white/70"><Icon {...ic} size={18} />{l as string}</span>; })}</div>
-      <div className={`flex flex-1 flex-col items-center justify-center gap-1 py-2 ${card}`} style={{ background: S1 }}><span className="grid h-[20px] w-[20px] place-items-center rounded-full ring-[1.5px] ring-white/80"><motion.span animate={active ? { scale: [1, .7, 1] } : {}} transition={{ repeat: Infinity, duration: 1.2 }} className="h-[12px] w-[12px] rounded-full bg-[#e5484d]" /></span><span className="text-[10px] text-white/70">Start Step</span></div></div>
+      <div className={`flex flex-1 flex-col items-center justify-center gap-1 py-2 ${card}`} style={{ background: S1 }}><span className="grid h-[20px] w-[20px] place-items-center rounded-full ring-[1.5px] ring-white/80"><motion.span animate={active ? { scale: [1, .7, 1] } : {}} transition={{ repeat: Infinity, duration: 1.2 }} className="h-[12px] w-[12px] rounded-full bg-[#E54A4A]" /></span><span className="text-[10px] text-white/70">Start Step</span></div></div>
   </div>);
 }
 
@@ -176,12 +176,12 @@ export function ReadyScreen({ active }: { active: boolean }) {
     <div className="mx-3 mt-1"><Seg items={["Standard Work", "Person"]} i={1} /></div>
     <div className="mx-3 mt-2.5"><Picker label="Person" value="New starter" /></div>
     <div className={`mx-3 mt-2.5 px-3.5 py-3 ${card}`} style={{ background: `linear-gradient(180deg,${S2},${S1})` }}>
-      <div className="flex items-center gap-2"><span className="text-[13px] font-semibold tracking-[-.01em] text-white">Orientation Data</span><Info {...ic} size={13} className="text-white/35" /><span className="ml-auto rounded-full bg-[#f5a524]/15 px-2 py-0.5 text-[10px] font-medium text-[#f5a524] ring-1 ring-[#f5a524]/25">In progress</span></div>
+      <div className="flex items-center gap-2"><span className="text-[13px] font-semibold tracking-[-.01em] text-white">Orientation Data</span><Info {...ic} size={13} className="text-white/35" /><span className="ml-auto rounded-full bg-[#B4A7E5]/15 px-2 py-0.5 text-[10px] font-medium text-[#B4A7E5] ring-1 ring-[#B4A7E5]/25">In progress</span></div>
       <div className="mt-3 flex items-center gap-4">{([["Viewed", 4], ["Quiz", 2]] as const).map(([k, v]) => <div key={k} className="flex flex-1 items-center gap-2.5"><Ring v={active ? v / 5 : 0}>{v}/5</Ring><span className="leading-tight"><span className="block text-[11px] text-white/45">{k}</span><span className="block text-[13px] font-medium tabular-nums text-white">{v * 20}%</span></span></div>)}</div></div>
     <div className="mx-4 mb-1.5 mt-4 flex text-[11px] font-medium uppercase tracking-[.06em] text-white/40"><span className="flex-1">Standard Work</span><span className="w-9 text-center">View</span><span className="w-9 text-center">Quiz</span></div>
     <ul className={`mx-3 overflow-hidden ${card}`} style={{ background: S1 }}>{WORK.map(([t, v, e, q], i) => <motion.li key={t} initial={false} animate={{ opacity: active ? 1 : .3, x: active ? 0 : 8 }} transition={{ delay: .3 + i * .08, duration: .5, ease }} className="flex h-[50px] items-center gap-2.5 px-2.5" style={{ borderTop: i ? `1px solid ${HL}` : undefined }}>
       <span className="h-9 w-9 shrink-0 rounded-[8px] bg-cover bg-center ring-1 ring-white/10" style={{ backgroundImage: `url(/video/${v}.jpg)` }} />
       <span className="min-w-0 flex-1"><span className="block truncate text-[13px] font-medium tracking-[-.01em] text-white">{t}</span><span className="block text-[10px] tabular-nums text-white/40">Updated 14.03.2026</span></span>
       <span className="grid w-9 place-items-center">{e ? <Eye {...ic} size={15} className="text-white/85" /> : <EyeOff {...ic} size={15} className="text-white/25" />}</span>
-      <span className="grid w-9 place-items-center"><span className={`grid h-[18px] w-[18px] place-items-center rounded-full ${q ? "bg-[#30a46c]" : "ring-1 ring-white/15"}`}>{q ? <Check size={11} strokeWidth={3} className="text-white" /> : null}</span></span></motion.li>)}</ul></div>);
+      <span className="grid w-9 place-items-center"><span className={`grid h-[18px] w-[18px] place-items-center rounded-full ${q ? "bg-[#68D2B9]" : "ring-1 ring-white/15"}`}>{q ? <Check size={11} strokeWidth={3} className="text-[#111111]" /> : null}</span></span></motion.li>)}</ul></div>);
 }

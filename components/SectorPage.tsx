@@ -29,7 +29,7 @@ export default function SectorPage({ i }: { i: number }) {
         <nav aria-label="Sectors" className="mono hidden gap-5 text-[11px] uppercase tracking-[.18em] md:flex">
           {sectors.map((x) => <Link key={x.slug} href={`/sektor/${x.slug}/`} aria-current={x.slug === s.slug ? "page" : undefined} className={x.slug === s.slug ? "text-white" : "text-white/45 hover:text-white"}>{x.idx} {x.en.split(" ")[0]}</Link>)}
         </nav>
-        <span className="flex gap-6 text-[13px]"><Link href="/blog/" className="link-u">Blog</Link><a href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="link-u">Book a demo</a></span>
+        <span className="flex gap-6 text-[13px]"><Link href="/blog/" className="link-u">Blog</Link><a href="https://app-eu1.hubspot.com/meetings/alper-kalip?uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="link-u">Book a demo</a></span>
       </header>
       <main id="main">
         <section ref={hero} className="relative h-svh overflow-hidden">

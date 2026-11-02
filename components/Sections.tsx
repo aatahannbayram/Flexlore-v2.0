@@ -3,7 +3,7 @@ import { I, StoreButtons, Arr } from "./Icons";
 import { SITE, PLANS, PRICING } from "./config";
 
 const Tag = ({ live }: { live: boolean }) => (
-  <span className={`mono inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[.18em] ${live ? "text-white" : "text-white/45"}`}>
+  <span className={`mono inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
     <span className={`h-1.5 w-1.5 rounded-full ${live ? "bg-flame" : "border border-white/40"}`} />{live ? "Live" : "Coming soon"}</span>);
 
 const AI_NOW = [
@@ -46,7 +46,7 @@ export function AIDetail() {
   const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (<div>
     <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h2 className="text-[15px] font-semibold">{t}</h2><Tag live={live} /></div>
     {xs.map((x) => (<div key={x.h} className="border-b border-white/10 py-6"><h3 className={`text-[20px] font-semibold tracking-tight ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[15px] leading-[1.45] text-white/60">{x.p}</p></div>))}</div>);
-  return (<div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-10"><Col t="Today" live xs={AI_NOW} /><div><Col t="Coming soon" live={false} xs={AI_NEXT} /><p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">On our roadmap. No dates yet.</p></div></div>);
+  return (<div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-10"><Col t="Today" live xs={AI_NOW} /><div><Col t="Coming soon" live={false} xs={AI_NEXT} /><p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">On our roadmap. No dates yet.</p></div></div>);
 }
 
 // Directory by category. Only what Linear/Notion verify: apps + web are live; FLE-124 covers API, webhooks,
@@ -78,7 +78,7 @@ export function Integrations() {
             return <li key={x.h}>{x.href ? <a href={x.href} target="_blank" rel="noopener" className="block h-full">{body}</a> : body}</li>; })}
         </ul>
         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-5 md:flex-row md:items-baseline md:justify-between">
-          <p className="text-[14px] text-white/45"><span className="mono mr-3 text-[10px] uppercase tracking-[.18em] text-white/35">Coming soon</span>{soon.map((x) => x.h).join(" · ")}</p>
+          <p className="text-[14px] text-white/45"><span className="mono mr-3 text-[11px] uppercase tracking-[.16em] text-white/70">Coming soon</span>{soon.map((x) => x.h).join(" · ")}</p>
           <Link href="/integrations/" className="link-u text-[14px] text-white/70 hover:text-white">All integrations <Arr className="ml-1" /></Link>
         </div>
       </div>
@@ -118,7 +118,7 @@ export function PricingTeaser() {
 }
 
 export function Footer() {
-  const col = "mono mb-4 text-[10px] uppercase tracking-[.2em] text-white/35";
+  const col = "mono mb-4 text-[11px] uppercase tracking-[.16em] text-white/60";
   const a = "link-u text-white/65 hover:text-white";
   return (
     <footer className="px-6 pb-8 text-[13px] md:px-10" aria-labelledby="footer-h">

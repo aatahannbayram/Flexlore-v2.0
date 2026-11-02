@@ -1,31 +1,33 @@
 @import "tailwindcss";
 @theme {
   --color-flame: #EC6726;
+  --color-black: #111111; /* Flexlore Hyper bg-dark: tüm black yardımcıları bu zemini kullanır */
   --color-ash: #86868b;
-  --font-sans: var(--font-inter), "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-schibsted), "Schibsted Grotesk", system-ui, sans-serif;
 }
-html { background: #000; color: #f5f5f7; }
+html { background: #111111; color: #f5f5f7; }
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-::selection { background: #f5f5f7; color: #000; }
-.display { font-family: var(--font-inter), "Inter", sans-serif; font-optical-sizing: auto; font-weight: 700; letter-spacing: -0.055em; line-height: 0.9; text-wrap: balance; }
-.num { font-family: var(--font-inter), sans-serif; font-weight:600; line-height:.8; letter-spacing:-.07em; font-variant-numeric: tabular-nums; }
-.eyebrow { font-family: var(--font-geist-mono), monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #EC6726; }
+::selection { background: #f5f5f7; color: #111111; }
+.display { font-family: var(--font-schibsted), sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: 0.9; text-wrap: balance; }
+.num { font-family: var(--font-schibsted), sans-serif; font-weight:600; line-height:.8; letter-spacing:-.05em; font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--font-schibsted), sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #EC6726; }
 @media (prefers-reduced-motion: reduce) { * { transition-duration: 0s !important; animation: none !important; } }
 
 .link-u { background: linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat; transition: background-size .4s cubic-bezier(.22,1,.36,1), color .3s; padding-bottom: 2px; }
 .link-u:hover, .link-u:focus-visible { background-size: 100% 1px; }
-.btn-p { display:inline-flex; align-items:center; border-radius:9999px; background:#f5f5f7; color:#000; font-size:13px; font-weight:500; padding:.42rem .95rem; letter-spacing:-.01em; transition: transform .3s cubic-bezier(.22,1,.36,1), background .3s; }
+.btn-p { display:inline-flex; align-items:center; border-radius:9999px; background:#f5f5f7; color:#111111; font-size:13px; font-weight:600; padding:.42rem .95rem; white-space:nowrap; letter-spacing:-.01em; transition: transform .3s cubic-bezier(.22,1,.36,1), background .3s; }
 .btn-p:hover { background:#fff; transform: scale(1.04); }
 .btn-p:active { transform: scale(.96); }
 .btn-g { display:inline-flex; align-items:center; border-radius:9999px; border:1px solid rgba(255,255,255,.25); color:#fff; font-size:13px; font-weight:500; padding:.42rem .95rem; transition: border-color .3s, background .3s; }
 .btn-g:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.05); }
 :focus-visible { outline: 2px solid #EC6726; outline-offset: 3px; border-radius: 6px; }
 section h2.display { text-wrap: balance; }
-@media (max-width:640px){ .display{ letter-spacing:-.045em } }
+@media (max-width:640px){ .display{ letter-spacing:-.035em } }
 details summary::-webkit-details-marker { display:none; }
 
-.mono{font-family:var(--font-geist-mono),ui-monospace,monospace}
+/* Tek font kuralı: eski mono etiketler de Schibsted Grotesk, rakamlar sabit genişlikte */
+.mono{font-family:var(--font-schibsted),sans-serif;font-variant-numeric:tabular-nums}
 .marquee{animation:mq 60s linear infinite}
 @keyframes mq{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee{animation:none}}
