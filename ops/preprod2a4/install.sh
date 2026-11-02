@@ -3,7 +3,7 @@
 # Root olarak çalışır, tekrar tekrar çalıştırılabilir. Mevcut anahtarlara, nginx'e ve site içeriğine dokunmaz.
 #
 # Mac'ten (repo kökünde, root anahtarıyla):
-#   tar -C ops/preprod2a4 -cz . | ssh root@72.60.84.196 'd=$(mktemp -d) && tar -xz -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
+#   COPYFILE_DISABLE=1 tar -C ops/preprod2a4 -cz . | ssh root@72.60.84.196 'd=$(mktemp -d) && tar -xz --warning=no-unknown-keyword -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
 set -euo pipefail
 cd "$(dirname "$0")"
 

@@ -88,20 +88,23 @@ Bir adım hata verirse script durur, nedeni ekrana ve `/var/log/flexlore-deploy.
 
 ![Beş katman koruma](assets/ortak-deploy/katmanlar.png)
 
-> **Kurulum durumu (2 Kasım 2026):** Sunucuda şu an 2 Kasım 17:33'te kurulan ilk sürüm çalışıyor ve otomatik deploy onunla başarılı. Bu sürümün içeriği root erişimi olmadan incelenemedi. Yukarıdaki iki görseldeki davranış, [`ops/preprod2a4/`](../ops/preprod2a4/) altındaki gözden geçirilmiş sürüme aittir: arşiv yetkisiz kullanıcıyla açılır, boyut sınırı, demo sayfası kontrolü, macOS `._` temizliği, "kim yayınladı" logu ve sshd `ForceCommand` katmanı ekler. Docker'da Ubuntu 26.04 üzerinde test edildi, sunucuya henüz kurulmadı. Kurmak için aşağıdaki "Sunucu kurulumu" bölümü yeterli.
+> **Kurulum durumu (2 Kasım 2026):** Sunucuda [`ops/preprod2a4/`](../ops/preprod2a4/) sürümü çalışıyor. İlk sürüme (17:33) göre gerçek atomik değişim (`exch`), yetkisiz kullanıcıyla açma, aygıt ve FIFO temizliği, macOS `._` temizliği, demo sayfası kontrolü, sıra bekleyen kilit, "kim yayınladı" logu ve sshd `ForceCommand` katmanı ekler. İlk sürümün dosyaları sunucuda `/root/flexlore-deploy-yedek-20261102-1551` altında yedekli.
 
 ## Doğrulama kaydı (2 Kasım 2026)
 
-![Doğrulama: Actions run 41472203941, health check ve güvenlik testi](assets/ortak-deploy/dogrulama.png)
+![Doğrulama: Actions run, elle deploy ve gerçek sunucudaki denemeler](assets/ortak-deploy/dogrulama.png)
 
-| Kontrol | Sonuç | Kaynak |
+| Kontrol | Sonuç | Nerede |
 | --- | --- | --- |
 | `main`'e push ile otomatik deploy | Başarılı, 1 dk 28 sn | [Actions run 41472203941](https://github.com/aatahannbayram/Flexlore-v2.0/actions/runs/41472203941) |
-| `curl -sI` ile `/` ve `/demo/mikel-coffee/` | HTTP 200, `X-Robots-Tag: noindex, nofollow` | Aynı run'ın health check'i ve elle curl |
-| Deploy kullanıcısıyla komut ve shell denemesi | Shell yok, komut yok sayıldı | Aynı run'ın güvenlik testi (CI anahtarı) |
-| Port yönlendirme denemesi | Reddedildi | Aynı run'ın güvenlik testi |
-| Takım anahtarıyla elle deploy | Yapılmadı: anahtarı eklemek root ister | Bekliyor |
-| `ops/preprod2a4` scriptleri | Gerçek build, boş, bozuk, eksik sayfa, `../`, aygıt dosyası, symlink, eşzamanlı deploy, shell, PTY ve yönlendirme denemeleri geçti | Docker, Ubuntu 26.04 |
+| Takım anahtarıyla elle deploy (`ata@flexlore`) | Başarılı: 187 dosya, 33 MB, 29 MB yükleme dahil 87 sn | Gerçek sunucu |
+| `curl -sI` ile `/` ve `/demo/mikel-coffee/` | HTTP 200, `X-Robots-Tag: noindex, nofollow` | Health check ve elle curl |
+| Shell denemesi (`ssh -tt`, komut gönderme) | Shell yok: PTY reddedildi, komut yok sayıldı | Gerçek sunucu ve Actions (CI anahtarı) |
+| Port yönlendirme (`-R`, `-L`) | Reddedildi | Gerçek sunucu ve Actions |
+| Şifreyle giriş | Kapalı, yalnızca anahtar | Gerçek sunucu |
+| Bozuk arşiv, demo sayfası olmayan arşiv | Reddedildi, canlı site değişmedi | Gerçek sunucu |
+| Aynı anda iki deploy | Sırayla, ikisi de başarılı | Gerçek sunucu |
+| Boş arşiv, `../`, aygıt dosyası, symlink hilesi | Reddedildi | Docker, Ubuntu 26.04 |
 
 ## Takım anahtarı ekleme ve kaldırma
 
@@ -144,6 +147,7 @@ Kayıtlı anahtarların listesi: `ssh root@72.60.84.196 "awk '{print \$NF}' /hom
 | `Connection timed out` (port 22) | VPS bazen ilk denemede yanıt vermiyor | Tekrar dene. CI 5 kez kendisi dener. |
 | `Permission denied (publickey)` | Anahtar ekli değil ya da yanlış `-i` | `.pub`'ı Ata'ya gönder, `-i` yolunu kontrol et |
 | `PTY allocation request failed` | Hesaptan shell istendi | Normal. Bu hesap shell vermez. |
+| `Bilgi: bu hesap komut çalıştırmaz … Yok sayıldı` | ssh komutuna fazladan bir komut yazıldı | Zararsız. Komut yok sayılır, yalnızca stdin'deki tgz yayınlanır. |
 | Arşiv reddedildi, site değişmedi | Boş, bozuk ya da eksik arşiv (`< out.tgz` unutuldu, build yarım) | Build'i ve `tar` komutunu tekrarla |
 | Health check: build kimliği yok | Canlıda hâlâ eski sürüm var | Deploy adımının çıktısına ve sunucu loguna bak |
 | Health check: noindex yok | nginx ayarı değişmiş | Deploy'u durdur, nginx'i root ile kontrol et. Deploy noindex eklemez, kaldırmaz. |
@@ -181,7 +185,7 @@ Anahtar sızsa bile yapılabilecek tek şey `/var/www/preprod2a4`'ü yeniden yay
 [`ops/preprod2a4/`](../ops/preprod2a4/) kullanıcıyı, scripti, sudoers'ı, sshd kuralını ve logrotate'i kurar. Tekrar tekrar çalıştırılabilir. Mevcut anahtarlara, nginx'e ve site içeriğine dokunmaz. root için etkin sshd ayarı değişecekse kendini geri alır.
 
 ```bash
-tar -C ops/preprod2a4 -cz . | ssh root@72.60.84.196 'd=$(mktemp -d) && tar -xz -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
+COPYFILE_DISABLE=1 tar -C ops/preprod2a4 -cz . | ssh root@72.60.84.196 'd=$(mktemp -d) && tar -xz --warning=no-unknown-keyword -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
 ```
 
 | Dosya | Sunucudaki yeri |

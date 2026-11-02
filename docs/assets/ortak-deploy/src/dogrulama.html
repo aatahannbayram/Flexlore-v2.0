@@ -5,29 +5,26 @@
 <title>Doğrulama kaydı</title>
 <link rel="stylesheet" href="brand.css">
 <style>
-  /* Veriler GitHub Actions run 41472203941 özetinden ve curl çıktısından (2 Kasım 2026). */
-  body { width: 1600px; height: 580px; position: relative; overflow: hidden; padding: 48px 72px; }
+  /* Veriler 2 Kasım 2026 testlerinden: Actions run 41472203941 ve gerçek sunucuda ata@flexlore anahtarıyla yapılan denemeler. */
+  body { width: 1600px; height: 760px; position: relative; overflow: hidden; padding: 48px 72px; }
   .head { display: flex; justify-content: space-between; align-items: center; }
   .head h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
   .head h1 span { color: var(--muted); font-weight: 600; }
   .head img { height: 26px; }
-  .grid { margin-top: 40px; display: grid; grid-template-columns: 420px 1fr; gap: 24px; }
-  .run { padding: 28px; }
-  .run h2 { font-size: 26px; font-weight: 700; margin: 10px 0 18px; }
-  .kv { display: grid; grid-template-columns: 110px 1fr; row-gap: 12px; font-size: 18px; }
-  .kv dt { color: var(--muted); }
-  .kv dd { color: var(--ink); font-weight: 600; }
-  .big { margin-top: 26px; font-size: 56px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); line-height: 1; }
-  .big small { display: block; font-size: 16px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-top: 8px; }
-  .tables { display: flex; flex-direction: column; gap: 24px; }
-  .t { padding: 24px 28px; }
-  .t .label { margin-bottom: 12px; }
-  table { width: 100%; border-collapse: collapse; font-size: 18px; }
-  th { text-align: left; font-size: 14px; font-weight: 600; color: var(--muted); padding: 0 0 10px; }
-  td { padding: 12px 0; border-top: 1px solid var(--line); color: var(--ink); }
-  td.dim { color: var(--muted); }
-  .foot { margin-top: 24px; font-size: 17px; color: var(--muted); }
-  .foot b { color: var(--ink); font-weight: 600; }
+  .grid { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col { display: flex; flex-direction: column; gap: 24px; }
+  .c { padding: 24px 28px; }
+  .c .label { margin-bottom: 10px; }
+  .c h2 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+  .c .ok { font-size: 18px; }
+  .meta { font-size: 17px; color: var(--muted); line-height: 1.5; }
+  .meta b { color: var(--ink); font-weight: 600; }
+  .big { font-size: 46px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); line-height: 1; margin: 14px 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 17px; }
+  td { padding: 11px 0; border-top: 1px solid var(--line); color: var(--ink); vertical-align: top; }
+  td:last-child { text-align: right; color: var(--muted); padding-left: 16px; white-space: nowrap; }
+  tr:first-child td { border-top: 0; }
+  .logline { margin-top: 14px; font-size: 15px; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
 </style>
 </head>
 <body>
@@ -36,37 +33,42 @@
     <img src="wordmark-dark-main.svg" alt="Flexlore">
   </div>
   <div class="grid">
-    <div class="run card">
-      <div class="label">GitHub Actions</div>
-      <h2>Deploy preprod2a4 #2</h2>
-      <dl class="kv">
-        <dt>Tetik</dt><dd>push · main</dd>
-        <dt>Commit</dt><dd>dfa12c6</dd>
-        <dt>Run</dt><dd>41472203941</dd>
-        <dt>Sonuç</dt><dd><span class="ok">Başarılı</span>, tüm adımlar</dd>
-      </dl>
-      <div class="big">1 dk 28 sn<small>build, deploy, health check ve güvenlik testi dahil run süresi</small></div>
+    <div class="col">
+      <div class="c card">
+        <div class="label">Otomatik · GitHub Actions run 41472203941</div>
+        <h2>main push <span class="ok">Başarılı</span></h2>
+        <div class="big">1 dk 28 sn</div>
+        <p class="meta">build, deploy, health check ve güvenlik testi dahil</p>
+      </div>
+      <div class="c card">
+        <div class="label">Elle · ata@flexlore anahtarı</div>
+        <h2>ssh -T flexlore-deploy@… &lt; out.tgz <span class="ok">OK</span></h2>
+        <p class="meta"><b>187 dosya · 33 MB</b> · 87 sn, 29 MB yükleme dahil</p>
+        <div class="logline">OK by=ata@flexlore from=… files=187 size=33MB tgz=29MB</div>
+      </div>
+      <div class="c card">
+        <div class="label">Canlı site · curl -sI</div>
+        <table>
+          <tr><td>/</td><td>200 · noindex, nofollow</td></tr>
+          <tr><td>/demo/mikel-coffee/</td><td>200 · noindex, nofollow</td></tr>
+        </table>
+      </div>
     </div>
-    <div class="tables">
-      <div class="t card">
-        <div class="label">Health check · curl</div>
-        <table>
-          <tr><th>Sayfa</th><th>HTTP</th><th>X-Robots-Tag</th><th>Build</th></tr>
-          <tr><td>/</td><td><span class="ok">200</span></td><td>noindex, nofollow</td><td class="dim">ldA9bVQ8yyUZ_j94Marnb</td></tr>
-          <tr><td>/demo/mikel-coffee/</td><td><span class="ok">200</span></td><td>noindex, nofollow</td><td class="dim">ldA9bVQ8yyUZ_j94Marnb</td></tr>
-        </table>
-      </div>
-      <div class="t card">
-        <div class="label">Güvenlik testi · CI anahtarıyla</div>
-        <table>
-          <tr><th>Deneme</th><th>Sonuç</th></tr>
-          <tr><td>ssh … 'id; echo SHELL_$((6*7))' &lt; out.tgz</td><td>Shell yok, komut yok sayıldı</td></tr>
-          <tr><td>ssh -N -R … (port yönlendirme)</td><td>Reddedildi</td></tr>
-          <tr><td>Testlerden sonra /demo/mikel-coffee/</td><td>200 + noindex + aynı build</td></tr>
-        </table>
-      </div>
+    <div class="c card">
+      <div class="label">Deneme · gerçek sunucuda</div>
+      <h2>Shell yok, yalnızca yayın</h2>
+      <table>
+        <tr><td>ssh -tt (terminal isteme)</td><td>PTY reddedildi</td></tr>
+        <tr><td>'id; cat /etc/shadow' komutu</td><td>Yok sayıldı</td></tr>
+        <tr><td>ssh -N -R port yönlendirme</td><td>Reddedildi</td></tr>
+        <tr><td>ssh -N -L port yönlendirme</td><td>Reddedildi</td></tr>
+        <tr><td>Şifreyle giriş</td><td>Yalnızca anahtar</td></tr>
+        <tr><td>Bozuk arşiv</td><td>Reddedildi</td></tr>
+        <tr><td>Demo sayfası olmayan arşiv</td><td>Reddedildi</td></tr>
+        <tr><td>Aynı anda iki deploy</td><td>Sırayla, ikisi OK</td></tr>
+        <tr><td>Denemelerden sonra canlı site</td><td>Değişmedi</td></tr>
+      </table>
     </div>
   </div>
-  <p class="foot"><b>Bekliyor:</b> takım anahtarıyla elle deploy (anahtarı root ekler) ve ops/preprod2a4 kurulumu (root erişimi gerekiyor).</p>
 </body>
 </html>

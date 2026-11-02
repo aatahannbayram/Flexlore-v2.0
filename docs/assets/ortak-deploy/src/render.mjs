@@ -16,7 +16,7 @@ const STILLS = [
   ["mimari", 1600, 900],
   ["publish-akisi", 1600, 900],
   ["katmanlar", 1600, 860],
-  ["dogrulama", 1600, 580],
+  ["dogrulama", 1600, 760],
 ];
 
 const profile = mkdtempSync(join(tmpdir(), "flexlore-render-"));
