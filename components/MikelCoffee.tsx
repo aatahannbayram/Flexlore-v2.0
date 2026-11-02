@@ -75,7 +75,7 @@ function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
     <Status />
     <div className="flex h-[40px] items-center px-3 text-[14px]"><span style={{ color: O }}>‹ {t2(l, "Reçeteler", "Recipes")}</span><span className="absolute left-1/2 -translate-x-1/2 font-semibold text-white">{t2(l, d.tr, d.en)}</span></div>
     <div className="relative mx-3 h-[170px] overflow-hidden rounded-[14px] bg-black">
-      <Video name="steam" className="!opacity-80" />
+      <Video name="coffee" className="!opacity-80" />
       <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">{t2(l, "Adım", "Step")} {i + 1}/{d.steps.length}</span>
       <div className="absolute inset-x-2 bottom-2 flex gap-1">{d.steps.map((_, k) => <span key={k} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/20">{k <= i && <motion.span layout className="block h-full" style={{ background: O, width: k < i ? "100%" : "60%" }} />}</span>)}</div>
     </div>
@@ -129,7 +129,7 @@ export default function MikelCoffee() {
     <main id="main" className="bg-black text-white">
       {/* hero */}
       <section className="relative h-svh overflow-hidden">
-        <Video name="steam" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        <Video name="coffee" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/70 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[11vh] md:px-10">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .4 }} className="eyebrow">{t2(l, "Mikel Coffee için hazırlanmış demo · Kahve operasyonu", "Prepared for Mikel Coffee · Coffee operations")}</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5, duration: 1, ease }} className="display mt-5 max-w-[13ch] text-[clamp(3rem,8.5vw,8.5rem)]">{t2(l, "Her franchise'ta, aynı Freddo.", "Every franchise, the same Freddo.")}</motion.h1>
