@@ -26,7 +26,7 @@
 9. CTA: resmî TR App Store / Google Play rozetleri.
 
 ## 4. Görsel kurallar
-- Kurumsal turuncu **#ff6a1a** (etiketler, vurgular, aktif durumlar).
+- Kurumsal turuncu **#EC6726** (etiketler, vurgular, aktif durumlar).
 - Koyu, sinematik tema; **yeşil kullanılmaz**.
 - Telefon mockup'larında Flexlore fav (app-icon) şık biçimde chrome'da.
 - "AI gibi" görünmeyen, gerçekçi görseller; AI üretimi klipler dahili olarak işaretlenir.
