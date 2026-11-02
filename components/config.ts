@@ -4,8 +4,8 @@ export const SITE = {
   // DEMO: keep true. Flip to false at launch: robots, sitemap and every page's meta follow this flag.
   noindex: true,
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d",
-  appStore: "https://apps.apple.com/app/flexlore/id6751126206",
-  googlePlay: "https://play.google.com/store/apps/details?id=com.flexlore.app",
+  appStore: "https://apps.apple.com/tr/app/flexlore/id6751126206?l",
+  googlePlay: "https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en",
   productHunt: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app",
   social: {
     linkedin: "https://www.linkedin.com/company/flexlore-inc/",

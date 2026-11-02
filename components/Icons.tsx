@@ -30,7 +30,7 @@ export const I = {
 export function StoreButtons({ className = "", small = false }: { className?: string; small?: boolean }) {
   const c = `inline-flex items-center gap-2 rounded-full border border-white/25 ${small ? "px-3 py-1.5 text-[12px]" : "px-4 py-2 text-[13px]"} font-medium text-white transition hover:border-white/60 hover:bg-white/5`;
   return (<div className={`flex flex-wrap gap-2 ${className}`}>
-    <a className={c} href="https://apps.apple.com/app/flexlore/id6751126206" target="_blank" rel="noopener" aria-label="Download Flexlore on the App Store"><I.apple size={small ? 14 : 16} /><span><span className="sr-only">Download on the </span>App Store</span></a>
-    <a className={c} href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener" aria-label="Get Flexlore on Google Play"><I.play size={small ? 13 : 15} /><span><span className="sr-only">Get it on </span>Google Play</span></a>
+    <a className={c} href="https://apps.apple.com/tr/app/flexlore/id6751126206?l" target="_blank" rel="noopener" aria-label="Download Flexlore on the App Store"><I.apple size={small ? 14 : 16} /><span><span className="sr-only">Download on the </span>App Store</span></a>
+    <a className={c} href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" target="_blank" rel="noopener" aria-label="Get Flexlore on Google Play"><I.play size={small ? 13 : 15} /><span><span className="sr-only">Get it on </span>Google Play</span></a>
   </div>);
 }

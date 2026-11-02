@@ -245,7 +245,7 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
 function Proof({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
   const items = [
-    { k: "App Store", h: tr ? "iPhone uygulaması yayında" : "Live on the App Store", u: "https://apps.apple.com/app/flexlore/id6751126206" },
+    { k: "App Store", h: tr ? "iPhone uygulaması yayında" : "Live on the App Store", u: "https://apps.apple.com/tr/app/flexlore/id6751126206?l" },
     { k: "Product Hunt", h: tr ? "Product Hunt lansmanı" : "Launched on Product Hunt", u: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app" },
   ];
   return (
