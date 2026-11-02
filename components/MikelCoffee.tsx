@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { Undo2, Redo2, Play, ChevronLeft, ChevronRight, Sticker, Type, Scissors, ListOrdered, Check } from "lucide-react";
 import { Device } from "./AppScreens";
 import { Video } from "./Site";
 import { I, Arr } from "./Icons";
@@ -89,18 +90,21 @@ function Status() { return <div className="flex h-[44px] items-center justify-be
 const FILM = ["tamp","tamp","shot","shot","froth","pour","pour","milk"];
 function EdTools({ l, big }: { l: L; big?: boolean }) {
   const ic = big ? "text-[15px]" : "text-[11px]";
+  // SVG icons, as in AppScreens: glyphs like ↶ ↷ ▶ are missing from the site fonts and render broken (or as emoji) via fallback fonts.
+  const lu = { strokeWidth: 1.5, absoluteStrokeWidth: true, size: big ? 22 : 15 } as const;
+  const sm = { ...lu, size: big ? 18 : 12 };
   return (<div className={big ? "p-6" : "px-3 pb-3"}>
-    <div className={`flex items-center justify-between text-white/80 ${big ? "border-b border-white/10 pb-5 text-[20px]" : "pb-2 text-[13px]"}`}><span>↶</span><span>↷</span><span className={`grid place-items-center rounded-full ring-2 ring-white/80 ${big ? "h-9 w-9 text-[13px]" : "h-5 w-5 text-[8px]"}`}>▶</span><span className="mono">‹1s</span><span className="mono">1s›</span></div>
+    <div className={`flex items-center justify-between text-white/80 ${big ? "border-b border-white/10 pb-5 text-[20px]" : "pb-2 text-[13px]"}`}><Undo2 {...lu} /><Redo2 {...lu} /><span className={`grid place-items-center rounded-full ring-2 ring-white/80 ${big ? "h-9 w-9" : "h-5 w-5"}`}><Play size={big ? 14 : 9} fill="currentColor" strokeWidth={0} className="ml-px" /></span><span className="mono flex items-center"><ChevronLeft {...sm} />1s</span><span className="mono flex items-center">1s<ChevronRight {...sm} /></span></div>
     <div className={`mono flex justify-between text-white/60 ${big ? "mt-5 text-[13px]" : "text-[8.5px]"}`}><span>{t2(l,"Adım başı","Start Step")}: 00:15</span><span>{t2(l,"Adım sonu","Stop Step")}: 01:25</span><span>{t2(l,"Süre","Duration")}: 01:10</span></div>
     <div className={`relative mt-2 flex overflow-hidden rounded-lg ring-1 ring-white/25 ${big ? "h-14" : "h-8"}`}>{FILM.map((f,k)=><img key={k} src={`/video/steps/${f}.jpg`} alt="" className="h-full min-w-0 flex-1 object-cover opacity-80" />)}
       <i className="absolute inset-y-0 left-[10%] w-[18%] border-x-2 border-[#EC6726] bg-[#EC6726]/15" /><i className="absolute inset-y-[-2px] left-[47%] w-[2px] bg-white" /></div>
-    <div className={`mt-3 grid grid-cols-[3fr_1fr] gap-2 ${ic} text-white/80`}><div className="grid grid-cols-3 rounded-xl bg-white/[.07] py-2 text-center"><span>◫<br/>{t2(l,"Çıkartma","Stickers")}</span><span>Ⓐ<br/>{t2(l,"Metin","Text")}</span><span>☰<br/>{t2(l,"Adımlar","Steps")}</span></div>
-      <div className="rounded-xl bg-white/[.07] py-2 text-center"><span className="text-[#EC6726]">◉</span><br/>{t2(l,"Adım başlat","Start Step")}</div></div>
+    <div className={`mt-3 grid grid-cols-[3fr_1fr] gap-2 ${ic} text-white/80`}><div className="grid grid-cols-3 rounded-xl bg-white/[.07] py-2 text-center">{([[Sticker, t2(l,"Çıkartma","Stickers")], [Type, t2(l,"Metin","Text")], [Scissors, t2(l,"Adımlar","Steps")]] as const).map(([Icon, label]) => <span key={label} className="flex flex-col items-center gap-1"><Icon {...sm} />{label}</span>)}</div>
+      <div className="flex flex-col items-center gap-1 rounded-xl bg-white/[.07] py-2 text-center"><span className={`grid place-items-center rounded-full ring-[1.5px] ring-white/80 ${big ? "h-[18px] w-[18px]" : "h-3 w-3"}`}><i className={`rounded-full bg-[#EC6726] ${big ? "h-[10px] w-[10px]" : "h-[6px] w-[6px]"}`} /></span>{t2(l,"Adım başlat","Start Step")}</div></div>
   </div>);
 }
 function EditorScreen({ l }: { l: L }) {
   return (<div className="flex h-full flex-col bg-[#111] text-white"><Status /><Fav />
-    <div className="flex items-center gap-3 px-4 pb-2 pr-12 text-[11px] text-white/70"><span>{t2(l,"Bitti","Done")}</span><span className="flex-1 truncate text-center font-medium text-white">{t2(l,"Makineyi aç ve ısıt","Power on and warm up")}</span><span>☰</span></div>
+    <div className="flex items-center gap-3 px-4 pb-2 pr-12 text-[11px] text-white/70"><span>{t2(l,"Bitti","Done")}</span><span className="flex-1 truncate text-center font-medium text-white">{t2(l,"Makineyi aç ve ısıt","Power on and warm up")}</span><ListOrdered size={15} strokeWidth={1.5} absoluteStrokeWidth /></div>
     <div className="relative mx-2 flex-1 overflow-hidden rounded-lg bg-black">
       <video src="/video/steps/tamp.mp4" poster="/video/steps/tamp.jpg" autoPlay muted loop playsInline className="h-full w-full object-cover" />
       <span className="absolute left-2 top-2 rounded-md bg-black/60 px-2 py-1 text-[10px]">Barista · Ayşe K.</span>
@@ -125,7 +129,7 @@ function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
       <p className="mt-1.5 text-[11px] text-white/50">{s[2].split(" · ")[l === "tr" ? 0 : 1] ?? s[2]}</p>
     </motion.div></AnimatePresence>
     <div className="mx-3 mt-2 space-y-1">{d.steps.map((x, k) => <div key={k} className={`flex items-center gap-2 rounded-[10px] px-2.5 py-1.5 text-[11.5px] ${k === i ? "bg-white/[.06] text-white" : "text-white/40"}`}>
-      <span className={`grid h-4 w-4 shrink-0 place-items-center rounded-full text-[8px] font-semibold ${k < i ? "bg-[#EC6726] text-[#1b1410]" : k === i ? "text-black" : "ring-1 ring-white/20"}`} style={k === i ? { background: O } : {}}>{k < i ? "✓" : k + 1}</span><span className="truncate">{t2(l, x[0], x[1])}</span></div>)}</div>
+      <span className={`grid h-4 w-4 shrink-0 place-items-center rounded-full text-[8px] font-semibold ${k < i ? "bg-[#EC6726] text-[#1b1410]" : k === i ? "text-black" : "ring-1 ring-white/20"}`} style={k === i ? { background: O } : {}}>{k < i ? <Check size={9} strokeWidth={3} /> : k + 1}</span><span className="truncate">{t2(l, x[0], x[1])}</span></div>)}</div>
   </div>);
 }
 function OpenScreen({ n, l }: { n: number; l: L }) {
