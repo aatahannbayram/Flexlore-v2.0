@@ -1,0 +1,9 @@
+# /etc/logrotate.d/flexlore-deploy
+/var/log/flexlore-deploy.log {
+    monthly
+    rotate 12
+    compress
+    missingok
+    notifempty
+    create 0640 root adm
+}

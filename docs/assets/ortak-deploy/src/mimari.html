@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Ortak deploy mimarisi</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  body { width: 1600px; height: 900px; position: relative; overflow: hidden; }
+  .head { position: absolute; top: 48px; left: 72px; right: 72px; display: flex; justify-content: space-between; align-items: center; }
+  .head h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
+  .head h1 span { color: var(--muted); font-weight: 600; }
+  .head img { height: 26px; }
+  .box { position: absolute; padding: 24px 28px; }
+  .box .label { margin-bottom: 10px; }
+  .box h2 { font-size: 26px; font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+  .box p { font-size: 18px; line-height: 1.45; color: var(--muted); }
+  .box p b { color: var(--ink); font-weight: 600; }
+  .chips { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .chip { font-size: 15px; font-weight: 600; color: var(--ink); background: #222; border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; }
+  .cmd { margin-top: 14px; font-size: 16px; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .cmd i { font-style: normal; color: var(--dim); }
+  .list { list-style: none; margin-top: 4px; }
+  .list li { font-size: 18px; line-height: 1.35; color: var(--muted); padding: 9px 0; border-top: 1px solid var(--line); }
+  .list li:first-child { border-top: 0; }
+  .list li b { color: var(--ink); font-weight: 600; }
+  .steps { display: flex; flex-direction: column; gap: 8px; margin: 6px 0 18px; }
+  .step { display: flex; align-items: center; gap: 12px; font-size: 17px; color: var(--muted); }
+  .step span { flex: none; width: 26px; height: 26px; border-radius: 999px; border: 1px solid var(--chip); color: var(--ink); font-size: 13px; font-weight: 700; display: grid; place-items: center; }
+  .sep { border-top: 1px solid var(--line); margin: 16px 0; }
+  .site { font-size: 22px; font-weight: 700; color: var(--ink); margin-top: 6px; }
+  .band { position: absolute; left: 72px; right: 72px; top: 742px; height: 104px; display: flex; align-items: center; gap: 28px; padding: 0 28px; }
+  .band .label { flex: none; }
+  .band p { font-size: 18px; color: var(--muted); line-height: 1.4; }
+  .band p b { color: var(--ink); font-weight: 600; }
+  .band .ok { margin-left: auto; font-size: 18px; flex: none; }
+  svg.wires { position: absolute; inset: 0; pointer-events: none; }
+  .tag { position: absolute; font-size: 14px; font-weight: 600; color: var(--muted); background: var(--bg); padding: 2px 8px; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>Ortak deploy hattı <span>· preprod2a4</span></h1>
+    <img src="wordmark-dark-main.svg" alt="Flexlore">
+  </div>
+
+  <div id="ci" class="box card" style="left:72px; top:150px; width:400px; height:250px;">
+    <div class="label">Otomatik</div>
+    <h2>GitHub Actions</h2>
+    <p><b>push:</b> main · mikel-coffee<br><b>elle:</b> Actions › Run workflow</p>
+    <div class="chips"><span class="chip">npm ci</span><span class="chip">build</span><span class="chip">out.tgz</span></div>
+  </div>
+
+  <div id="dev" class="box card" style="left:72px; top:440px; width:400px; height:260px;">
+    <div class="label">Elle</div>
+    <h2>Takım arkadaşı</h2>
+    <p>Kendi SSH anahtarıyla, aynı arşivi aynı kapıdan gönderir.</p>
+    <div class="cmd"><i>$</i> ssh -T flexlore-deploy@… &lt; out.tgz</div>
+  </div>
+
+  <div id="gate" class="box card" style="left:600px; top:265px; width:400px; height:320px;">
+    <div class="label">Kapı · 72.60.84.196:22</div>
+    <h2>SSH · flexlore-deploy</h2>
+    <ul class="list">
+      <li><b>Yalnızca anahtar</b> · şifre kilitli</li>
+      <li><b>Forced command</b> · hangi komut yazılırsa yazılsın</li>
+      <li><b>Shell, PTY, yönlendirme yok</b></li>
+      <li><b>stdin:</b> out.tgz · rsync, scp yok</li>
+    </ul>
+  </div>
+
+  <div id="srv" class="box card" style="left:1128px; top:170px; width:400px; height:510px;">
+    <div class="label">VPS</div>
+    <h2>sudo flexlore-publish</h2>
+    <div class="steps">
+      <div class="step"><span>1</span>Boyut, gzip ve sayfa kontrolü</div>
+      <div class="step"><span>2</span>preprod2a4.new dizinine aç</div>
+      <div class="step"><span>3</span>Tek çağrıda atomik değişim</div>
+      <div class="step"><span>4</span>Eski sürümü sil, log yaz</div>
+    </div>
+    <p><b>/var/www/preprod2a4</b> · root:root</p>
+    <div class="sep"></div>
+    <p><b>nginx</b> · Let's Encrypt<br><b>X-Robots-Tag:</b> noindex, nofollow</p>
+    <div class="sep"></div>
+    <div class="label">Yayında</div>
+    <div class="site">preprod2a4.flexlore.com</div>
+  </div>
+
+  <div id="check" class="band card">
+    <div class="label">Doğrulama</div>
+    <p><b>Health check:</b> curl / ve /demo/mikel-coffee/ · HTTP 200 + noindex + yeni build kimliği<br><b>Log:</b> /var/log/flexlore-deploy.log (sunucuda, root okur)</p>
+    <span class="ok" id="okmark">OK</span>
+  </div>
+
+  <svg class="wires" id="wires" width="1600" height="900"></svg>
+
+<script>
+  // Kartlar arasındaki bağlantıları kutu konumlarından çizer. Turuncu: yayın yolu. Kesikli gri: doğrulama.
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.getElementById("wires");
+  const box = id => document.getElementById(id).getBoundingClientRect();
+  function path(d, color, width, dash) {
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", d); p.setAttribute("fill", "none");
+    p.setAttribute("stroke", color); p.setAttribute("stroke-width", width);
+    p.setAttribute("stroke-linecap", "round");
+    if (dash) p.setAttribute("stroke-dasharray", dash);
+    svg.appendChild(p); return p;
+  }
+  function curve(a, b) {
+    const x1 = a.right, y1 = a.top + a.height / 2, x2 = b.left, y2 = b.top + b.height / 2;
+    const mx = (x1 + x2) / 2;
+    return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2 - 2} ${y2}`;
+  }
+  function arrowHead(x, y) {
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", `M ${x - 12} ${y - 7} L ${x} ${y} L ${x - 12} ${y + 7}`);
+    p.setAttribute("fill", "none"); p.setAttribute("stroke", "var(--accent)");
+    p.setAttribute("stroke-width", 3); p.setAttribute("stroke-linecap", "round"); p.setAttribute("stroke-linejoin", "round");
+    svg.appendChild(p);
+  }
+  window.routes = {};
+  function draw() {
+    svg.innerHTML = "";
+    const ci = box("ci"), dev = box("dev"), gate = box("gate"), srv = box("srv"), chk = box("check");
+    routes.ci = path(curve(ci, gate), "var(--accent)", 3);
+    routes.dev = path(curve(dev, gate), "var(--accent)", 3);
+    routes.srv = path(curve(gate, srv), "var(--accent)", 3);
+    arrowHead(gate.left - 1, gate.top + gate.height / 2);
+    arrowHead(srv.left - 1, srv.top + srv.height / 2);
+    const sx = srv.left + srv.width / 2;
+    routes.check = path(`M ${sx} ${srv.bottom} L ${sx} ${chk.top}`, "#666666", 2, "6 8");
+  }
+  window.ready = document.fonts.ready.then(draw);
+
+  // Video için: frame(t) sahneyi t. saniyedeki haline getirir (render.mjs çağırır). Statik görselde çağrılmaz.
+  const clamp = x => Math.max(0, Math.min(1, x));
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const ease = x => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
+  let packet;
+  function at(route, p) {
+    const len = route.getTotalLength();
+    return route.getPointAtLength(len * ease(p));
+  }
+  function light(id, on) {
+    const el = document.getElementById(id);
+    el.style.opacity = on ? 1 : 0.32;
+    el.style.outline = on === "focus" ? "2px solid var(--accent)" : "none";
+    el.style.outlineOffset = "2px";
+  }
+  window.frame = function (t) {
+    if (!packet) {
+      packet = document.createElementNS(NS, "circle");
+      packet.setAttribute("r", 8); packet.setAttribute("fill", "var(--accent)");
+      svg.appendChild(packet);
+    }
+    const all = ["ci", "dev", "gate", "srv", "check"];
+    const end = t >= 14.2;
+    all.forEach(id => light(id, end));
+    const lis = [...document.querySelectorAll("#gate li")];
+    const steps = [...document.querySelectorAll("#srv .step span")];
+    const chips = [...document.querySelectorAll("#ci .chip")];
+    const site = document.querySelector("#srv .site");
+    const ok = document.getElementById("okmark");
+    lis.forEach(li => (li.style.opacity = end ? 1 : 0.25));
+    steps.forEach(s => { s.style.background = end ? "var(--accent)" : "transparent"; s.style.color = end ? "var(--bg)" : "var(--ink)"; s.style.borderColor = end ? "var(--accent)" : "var(--chip)"; });
+    chips.forEach(c => (c.style.borderColor = end ? "var(--line)" : "var(--line)"));
+    site.style.color = "var(--ink)";
+    ok.style.opacity = end ? 1 : 0;
+    routes.check.style.opacity = end ? 1 : 0;
+    packet.style.opacity = 0;
+    if (end) return;
+
+    // 1) Otomatik yol: push -> build -> kapı -> sunucu -> doğrulama
+    if (t < 10.2) {
+      light("ci", t < 3.6 ? "focus" : true);
+      chips.forEach((c, i) => { if (t > 0.9 + i * 0.5) c.style.borderColor = "var(--accent)"; });
+      if (t >= 2.4 && t < 3.6) { const p = at(routes.ci, seg(t, 2.4, 3.6)); packet.setAttribute("cx", p.x); packet.setAttribute("cy", p.y); packet.style.opacity = 1; }
+      if (t >= 3.6) { light("gate", t < 4.8 ? "focus" : true); lis.forEach((li, i) => (li.style.opacity = t > 3.7 + i * 0.28 ? 1 : 0.25)); }
+      if (t >= 4.8 && t < 5.8) { const p = at(routes.srv, seg(t, 4.8, 5.8)); packet.setAttribute("cx", p.x); packet.setAttribute("cy", p.y); packet.style.opacity = 1; }
+      if (t >= 5.8) {
+        light("srv", t < 8.2 ? "focus" : true);
+        steps.forEach((s, i) => { if (t > 6.0 + i * 0.45) { s.style.background = "var(--accent)"; s.style.color = "var(--bg)"; s.style.borderColor = "var(--accent)"; } });
+        if (t > 7.8) site.style.color = "var(--accent-text)";
+      }
+      if (t >= 8.2) { routes.check.style.opacity = 1; light("check", t < 9.4 ? "focus" : true); if (t > 9.0) ok.style.opacity = 1; }
+      return;
+    }
+    // 2) Elle yol: takım arkadaşı aynı kapıdan aynı arşivi gönderir
+    light("dev", t < 11.4 ? "focus" : true);
+    if (t >= 10.4 && t < 11.4) { const p = at(routes.dev, seg(t, 10.4, 11.4)); packet.setAttribute("cx", p.x); packet.setAttribute("cy", p.y); packet.style.opacity = 1; }
+    if (t >= 11.4) { light("gate", t < 12.2 ? "focus" : true); lis.forEach(li => (li.style.opacity = 1)); }
+    if (t >= 12.2 && t < 13.0) { const p = at(routes.srv, seg(t, 12.2, 13.0)); packet.setAttribute("cx", p.x); packet.setAttribute("cy", p.y); packet.style.opacity = 1; }
+    if (t >= 13.0) {
+      light("srv", "focus");
+      steps.forEach((s, i) => { if (t > 13.1 + i * 0.22) { s.style.background = "var(--accent)"; s.style.color = "var(--bg)"; s.style.borderColor = "var(--accent)"; } });
+    }
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+#!/bin/bash
+# flexlore-publish: stdin'den gelen statik site arşivini (tar.gz) preprod2a4'e atomik olarak yayınlar.
+#
+# Çağıran: flexlore-deploy kullanıcısının SSH forced command'i
+#   authorized_keys: restrict,command="sudo /usr/local/bin/flexlore-publish" ssh-ed25519 AAAA... isim@flexlore
+# Kaynak: ops/preprod2a4/flexlore-publish (Flexlore-v2.0). Sunucuya ops/preprod2a4/install.sh kurar.
+#
+# Akış: arşivi al -> boyut ve gzip kontrolü -> kilit -> .new dizinine yetkisiz kullanıcıyla aç
+#       -> symlink ve özel dosya temizliği, root:root -> zorunlu sayfa kontrolü -> atomik değişim -> eski sürümü sil.
+# Bir adım hata verirse canlı dizine dokunulmaz.
+set -Eeuo pipefail
+umask 022
+export LC_ALL=C PATH=/usr/sbin:/usr/bin:/sbin:/bin
+
+readonly LIVE=/var/www/preprod2a4
+readonly STAGE=/var/www/preprod2a4.new
+readonly LOG=/var/log/flexlore-deploy.log
+readonly LOCK=/run/flexlore-publish.lock
+readonly AUTH_KEYS=/home/flexlore-deploy/.ssh/authorized_keys
+readonly MAX_TGZ_MB=300                                     # gelen arşiv üst sınırı
+readonly MAX_RAW_MB=1024                                    # açılmış içerik üst sınırı
+readonly REQUIRED=(index.html demo/mikel-coffee/index.html) # bunlar yoksa yayın yapılmaz
+
+started=$(date +%s)
+who="bilinmiyor"
+from="yerel"
+tmp=""
+have_lock=0
+
+# Log ve ekran için: yazdırılamayan karakterleri at, uzunluğu sınırla.
+clean() { printf '%s' "$1" | tr -c '[:print:]' '?' | cut -c1-"${2:-120}"; }
+
+log() { printf '%s %s\n' "$(date -Iseconds)" "$*" >> "$LOG"; }
+
+fail() {
+  echo "HATA: $1" >&2
+  echo "Canlı site değişmedi." >&2
+  log "FAIL by=$who from=$from reason=\"$1\""
+  exit 1
+}
+
+# Geçici dosyaları sil. .new dizinine yalnızca kilidi tutan süreç dokunur.
+cleanup() {
+  [ -z "$tmp" ] || rm -rf -- "$tmp"
+  [ "$have_lock" != 1 ] || rm -rf -- "$STAGE"
+}
+
+# Yayını kimin yaptığı: sshd (ExposeAuthInfo) kullanılan anahtarı verir, authorized_keys'teki yorumu bulunur.
+deployer() {
+  local type="" key="" comment=""
+  if [ -n "${SSH_USER_AUTH:-}" ] && [ -r "$SSH_USER_AUTH" ]; then
+    read -r _ type key _ < <(grep -m1 '^publickey ' "$SSH_USER_AUTH") || true
+  fi
+  [ -n "$key" ] || { echo "bilinmiyor"; return; }
+  if [ -r "$AUTH_KEYS" ]; then
+    comment=$(awk -v k="$key" '{
+      for (i = 1; i <= NF; i++) if ($i == k) {
+        c = ""; for (j = i + 1; j <= NF; j++) c = c (c == "" ? "" : " ") $j
+        print c; exit
+      }
+    }' "$AUTH_KEYS")
+  fi
+  if [ -n "$comment" ]; then
+    echo "$comment"
+  else
+    printf '%s %s\n' "$type" "$key" | ssh-keygen -lf - 2>/dev/null | awk '{print $2}'
+  fi
+}
+
+# İki dizini tek sistem çağrısıyla (renameat2 RENAME_EXCHANGE) yer değiştirir: arada boş an olmaz.
+swap() {
+  if command -v exch >/dev/null 2>&1; then
+    exch "$1" "$2"
+  else
+    python3 - "$1" "$2" <<'PY'
+import ctypes, os, sys
+libc = ctypes.CDLL(None, use_errno=True)
+if libc.renameat2(-100, sys.argv[1].encode(), -100, sys.argv[2].encode(), 2) != 0:
+    sys.exit("renameat2: " + os.strerror(ctypes.get_errno()))
+PY
+  fi
+}
+
+[ "$(id -u)" -eq 0 ] || { echo "HATA: flexlore-publish sudo ile çalışmalı" >&2; exit 2; }
+cd /
+
+who=$(clean "$(deployer)" 60)
+from=$(clean "${SSH_CONNECTION%% *}" 45)
+from=${from:-yerel}
+trap 'log "FAIL by=$who from=$from reason=\"beklenmeyen hata, satır $LINENO\""' ERR
+trap cleanup EXIT
+
+if [ -n "${SSH_ORIGINAL_COMMAND:-}" ]; then
+  cmd=$(clean "$SSH_ORIGINAL_COMMAND" 80)
+  echo "Bilgi: bu hesap komut çalıştırmaz, yalnızca stdin'den gelen tgz'yi yayınlar. Yok sayıldı: $cmd" >&2
+  log "NOTE by=$who from=$from ignored_command=\"$cmd\""
+fi
+
+tmp=$(mktemp -d /var/tmp/flexlore-publish.XXXXXX)
+
+# 1) Arşivi al ve doğrula (bağlantı açık kalırsa 10 dakikada vazgeç)
+max_tgz=$((MAX_TGZ_MB * 1024 * 1024))
+timeout 600 head -c $((max_tgz + 1)) > "$tmp/site.tgz" || fail "arşiv 10 dakika içinde alınamadı"
+size=$(stat -c %s "$tmp/site.tgz")
+[ "$size" -gt 0 ] || fail "boş arşiv geldi (stdin'e out.tgz verildi mi?)"
+[ "$size" -le "$max_tgz" ] || fail "arşiv ${MAX_TGZ_MB} MB sınırını aşıyor"
+gzip -t "$tmp/site.tgz" 2>/dev/null || fail "arşiv bozuk ya da gzip değil"
+max_raw=$((MAX_RAW_MB * 1024 * 1024))
+raw=$(set +o pipefail; gzip -dc "$tmp/site.tgz" 2>/dev/null | head -c $((max_raw + 1)) | wc -c)
+[ "$raw" -le "$max_raw" ] || fail "açılmış içerik ${MAX_RAW_MB} MB sınırını aşıyor"
+
+# 2) Aynı anda tek yayın: ikinci gelen sırasını bekler
+exec 9> "$LOCK"
+flock -w 300 9 || fail "başka bir yayın sürüyor; 5 dakika beklendi, sonra tekrar deneyin"
+have_lock=1
+
+# 3) .new dizinine yetkisiz kullanıcıyla aç: aygıt dosyası, sahiplik ya da dışarı yazma hilesi işlemez
+rm -rf -- "$STAGE"
+install -d -m 0700 -o nobody -g nogroup "$STAGE"
+if ! setpriv --reuid=nobody --regid=nogroup --clear-groups --no-new-privs \
+    tar -xzf - -C "$STAGE" --no-same-owner --no-same-permissions --warning=no-unknown-keyword \
+    < "$tmp/site.tgz" 2> "$tmp/tar.err"; then
+  fail "arşiv açılamadı: $(clean "$(head -n 2 "$tmp/tar.err" | tr '\n' ' ')" 160)"
+fi
+
+# 4) Symlink, aygıt, FIFO ve macOS artıklarını sil; sahiplik root:root, izinler 755/644
+removed=$(find "$STAGE" -mindepth 1 \( \( ! -type f ! -type d \) -o \( -type f \( -name '._*' -o -name .DS_Store \) \) \) -print -delete | wc -l)
+chown -R root:root "$STAGE"
+chmod -R u=rwX,go=rX "$STAGE"
+
+# 5) Zorunlu sayfalar
+for f in "${REQUIRED[@]}"; do
+  [ -f "$STAGE/$f" ] || fail "$f yok; yayın yapılmadı"
+done
+files=$(find "$STAGE" -type f | wc -l)
+mb=$(du -sm "$STAGE" | cut -f1)
+
+# 6) Atomik değişim, ardından eski sürümü sil (ek yedek tutulmaz)
+[ ! -L "$LIVE" ] || fail "$LIVE bir symlink; beklenmeyen yapı"
+if [ -d "$LIVE" ]; then
+  swap "$STAGE" "$LIVE" || fail "atomik değişim başarısız"
+  rm -rf -- "$STAGE"
+else
+  mv -T "$STAGE" "$LIVE"
+fi
+
+took=$(( $(date +%s) - started ))
+log "OK by=$who from=$from files=$files size=${mb}MB tgz=$((size / 1024 / 1024))MB removed=$removed took=${took}s"
+echo "OK: preprod2a4 güncellendi · $files dosya · ${mb} MB · ${took} sn · https://preprod2a4.flexlore.com/"

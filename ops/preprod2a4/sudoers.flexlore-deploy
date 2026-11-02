@@ -1,0 +1,5 @@
+# /etc/sudoers.d/flexlore-deploy  (root:root 0440, visudo -c ile doğrulanır)
+# flexlore-deploy yalnızca yayın scriptini, argümansız ve şifresiz çalıştırabilir. Başka hiçbir sudo hakkı yok.
+# SSH_* değişkenleri log için taşınır: kim (anahtar yorumu), nereden (IP), hangi komut denendi.
+Defaults!/usr/local/bin/flexlore-publish env_keep += "SSH_CONNECTION SSH_ORIGINAL_COMMAND SSH_USER_AUTH"
+flexlore-deploy ALL=(root) NOPASSWD: /usr/local/bin/flexlore-publish ""

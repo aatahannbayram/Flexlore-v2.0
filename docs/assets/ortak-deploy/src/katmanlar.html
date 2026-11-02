@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Güvenlik katmanları</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  body { width: 1600px; height: 860px; position: relative; overflow: hidden; padding: 48px 72px; }
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
+  .head img { height: 26px; }
+  .claim { margin-top: 18px; font-size: 26px; font-weight: 700; color: var(--accent); }
+  .layers { margin-top: 34px; display: flex; flex-direction: column; gap: 14px; }
+  .layer { display: grid; grid-template-columns: 56px 300px 1fr 470px; align-items: center; gap: 24px; padding: 22px 28px; }
+  .layer .n { width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--chip); display: grid; place-items: center; font-size: 18px; font-weight: 700; }
+  .layer h2 { font-size: 24px; font-weight: 700; }
+  .layer p { font-size: 18px; line-height: 1.4; color: var(--ink); }
+  .layer .where { font-size: 15px; line-height: 1.4; color: var(--muted); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>Beş katman koruma</h1>
+    <img src="wordmark-dark-main.svg" alt="Flexlore">
+  </div>
+  <div class="claim">Bir anahtar sızsa bile yapılabilecek tek şey preprod2a4'ü yeniden yayınlamak.</div>
+  <div class="layers">
+    <div class="layer card"><div class="n">1</div><h2>Anahtar</h2><p>Şifre kilitli (passwd -l), sshd bu kullanıcıdan yalnızca anahtar kabul eder.</p><div class="where">/etc/ssh/sshd_config.d/<br>60-flexlore-deploy.conf</div></div>
+    <div class="layer card"><div class="n">2</div><h2>authorized_keys</h2><p>Her satır restrict + command: PTY, yönlendirme ve agent kapalı.</p><div class="where">/home/flexlore-deploy/.ssh/authorized_keys<br>root sahipli, kullanıcı değiştiremez</div></div>
+    <div class="layer card"><div class="n">3</div><h2>sshd ForceCommand</h2><p>Kısıtsız bir satır eklense bile shell açılmaz, yalnızca yayın çalışır.</p><div class="where">/etc/ssh/sshd_config.d/<br>60-flexlore-deploy.conf</div></div>
+    <div class="layer card"><div class="n">4</div><h2>sudoers</h2><p>Tek komut: /usr/local/bin/flexlore-publish, argümansız ve şifresiz.</p><div class="where">/etc/sudoers.d/flexlore-deploy</div></div>
+    <div class="layer card"><div class="n">5</div><h2>flexlore-publish</h2><p>Boyut ve gzip testi, yetkisiz açma, temizlik, zorunlu sayfalar, kilit, atomik değişim.</p><div class="where">/usr/local/bin/flexlore-publish<br>kaynak: ops/preprod2a4/</div></div>
+  </div>
+</body>
+</html>

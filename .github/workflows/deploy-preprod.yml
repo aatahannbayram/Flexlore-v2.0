@@ -1,8 +1,12 @@
 name: Deploy preprod2a4
+# main ya da mikel-coffee'ye her push statik export'u https://preprod2a4.flexlore.com/ adresine yayınlar.
+# Sunucu tarafı: ops/preprod2a4 (flexlore-deploy, forced command, flexlore-publish). Rehber: docs/ortak-deploy.md
 on:
   push:
     branches: [main, mikel-coffee]
   workflow_dispatch:
+permissions:
+  contents: read
 concurrency:
   group: deploy-preprod2a4
   cancel-in-progress: false
@@ -10,16 +14,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    environment:
+      name: preprod2a4
+      url: https://preprod2a4.flexlore.com/
+    env:
+      SITE: https://preprod2a4.flexlore.com
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
       - run: npm ci
       - run: npm run build
       - name: Package static export
-        run: test -f out/index.html && tar -C out -czf out.tgz .
+        run: |
+          for f in index.html demo/mikel-coffee/index.html; do
+            test -f "out/$f" || { echo "::error::out/$f yok, yayın durduruldu"; exit 1; }
+          done
+          tar -C out -czf out.tgz .
+          echo "BUILD_ID=$(cat .next/BUILD_ID)" >> "$GITHUB_ENV"
+          echo "out.tgz: $(du -h out.tgz | cut -f1), $(find out -type f | wc -l) dosya"
       - name: Deploy (forced-command SSH, atomic swap on server)
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
@@ -28,17 +43,92 @@ jobs:
           DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
           install -d -m 700 ~/.ssh
-          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          (umask 077; printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy)
           printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          for i in 1 2 3 4 5 6; do
-            ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes -o ConnectTimeout=25 -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" < out.tgz && exit 0
-            echo "retry $i"; sleep 15
+          # Port 22 bazen zaman aşımına düşüyor: yalnızca bağlantı hatasında (çıkış 255) tekrar dene.
+          # Sunucu arşivi reddederse (çıkış 1) tekrar denemenin anlamı yok; canlı site zaten değişmemiştir.
+          for i in 1 2 3 4 5; do
+            rc=0
+            ssh -T -i ~/.ssh/deploy -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes \
+                -o ConnectTimeout=25 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 \
+                "$DEPLOY_USER@$DEPLOY_HOST" < out.tgz || rc=$?
+            if [ "$rc" -eq 0 ]; then exit 0; fi
+            if [ "$rc" -ne 255 ]; then echo "::error::Sunucu yayını reddetti (çıkış $rc), canlı site değişmedi"; exit "$rc"; fi
+            echo "SSH bağlantısı kurulamadı (deneme $i/5)"
+            if [ "$i" -lt 5 ]; then sleep $((i * 15)); fi
           done
+          echo "::error::SSH 5 denemede bağlanamadı"
           exit 1
-      - name: Health check
+      - name: Health check (200 + noindex + yeni build)
         run: |
+          rows=""
           for p in / /demo/mikel-coffee/; do
-            h=$(curl -sSI "https://preprod2a4.flexlore.com$p")
-            echo "$h" | head -1 | grep -q " 200" || { echo "$p not 200"; exit 1; }
-            echo "$h" | grep -qi "x-robots-tag: noindex" || { echo "$p noindex missing"; exit 1; }
+            ok=0
+            for i in 1 2 3 4 5; do
+              code=$(curl -sS -o page.html -D headers.txt -w '%{http_code}' --max-time 20 "$SITE$p" || true)
+              if [ "$code" = 200 ] && grep -qi '^x-robots-tag:.*noindex' headers.txt && grep -q "$BUILD_ID" page.html; then
+                ok=1; break
+              fi
+              sleep 5
+            done
+            if [ "$ok" != 1 ]; then echo "::error::$p kontrolü geçmedi (HTTP $code)"; cat headers.txt; exit 1; fi
+            robots=$(grep -i '^x-robots-tag' headers.txt | cut -d: -f2- | tr -d '\r' | xargs)
+            echo "$p: HTTP 200, X-Robots-Tag: $robots, build $BUILD_ID"
+            rows+="| \`$p\` | 200 | $robots | \`$BUILD_ID\` |"$'\n'
           done
+          {
+            echo "### preprod2a4 yayında"
+            echo ""
+            echo "| Sayfa | HTTP | X-Robots-Tag | Build |"
+            echo "| --- | --- | --- | --- |"
+            printf '%s' "$rows"
+            echo ""
+            echo "Commit \`${GITHUB_SHA::7}\` · branch \`$GITHUB_REF_NAME\` · $SITE/"
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Güvenlik testi (shell ve yönlendirme kapalı mı)
+        # Elle çalıştırmada ya da commit mesajında [guvenlik-testi] varsa koşar. Boş arşiv göndermez:
+        # komut denemesi geçerli out.tgz ile yapılır, en kötü ihtimalle aynı build yeniden yayınlanır.
+        if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[guvenlik-testi]')
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          S=(ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=25)
+          T="$DEPLOY_USER@$DEPLOY_HOST"
+          # attempt <stdin dosyası> komut...: bağlantı hatasında (255) tekrar dener, girdi her denemede baştan açılır.
+          attempt() {
+            local in=$1; shift
+            for i in 1 2 3 4 5; do
+              rc=0; "$@" < "$in" > t.log 2>&1 || rc=$?
+              if [ "$rc" -ne 255 ] || grep -q "forwarding failed" t.log; then return 0; fi
+              if [ "$i" -lt 5 ]; then sleep $((i * 10)); fi
+            done
+            echo "::error::SSH bağlanamadı"; cat t.log; return 1
+          }
+          fail=0
+          # Shell açılırsa 'uid=' ve hesaplanan SHELL_42 çıktısı görünür; komut metni yalnızca SHELL_$((6*7)) içerir.
+          echo "1) Komut denemesi: ssh ... 'id; echo SHELL_\$((6*7))' < out.tgz"
+          attempt out.tgz "${S[@]}" -T "$T" 'id; echo SHELL_$((6*7))' || fail=1
+          cat t.log
+          if [ "$fail" = 0 ] && ! grep -Eq 'uid=[0-9]+|SHELL_42' t.log; then r1="shell yok, komut yok sayıldı"; else echo "::error::Komut denemesi geçmedi"; fail=1; fi
+          echo "2) Port yönlendirme denemesi: ssh -N -R (ExitOnForwardFailure)"
+          attempt /dev/null timeout 40 "${S[@]}" -N -o ExitOnForwardFailure=yes -R 127.0.0.1:0:127.0.0.1:22 "$T" || true
+          cat t.log
+          if grep -q "forwarding failed" t.log; then r2="yönlendirme reddedildi"; else echo "::error::Port yönlendirme reddedilmedi"; fail=1; fi
+          echo "3) Testlerden sonra site"
+          code=$(curl -sS -o page.html -D headers.txt -w '%{http_code}' --max-time 20 "$SITE/demo/mikel-coffee/" || true)
+          if [ "$code" = 200 ] && grep -qi '^x-robots-tag:.*noindex' headers.txt && grep -q "$BUILD_ID" page.html; then r3="200 + noindex + aynı build"; else echo "::error::Testlerden sonra site sağlıksız (HTTP $code)"; fail=1; fi
+          {
+            echo ""
+            echo "### Güvenlik testi (CI anahtarıyla)"
+            echo ""
+            echo "| Deneme | Sonuç |"
+            echo "| --- | --- |"
+            echo "| \`ssh ... 'id; echo SHELL_\$((6*7))' < out.tgz\` | ${r1:-BAŞARISIZ} |"
+            echo "| \`ssh -N -R ...\` (port yönlendirme) | ${r2:-BAŞARISIZ} |"
+            echo "| Testlerden sonra \`/demo/mikel-coffee/\` | ${r3:-BAŞARISIZ} |"
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$fail"
+      - name: Remove key
+        if: always()
+        run: rm -f ~/.ssh/deploy
