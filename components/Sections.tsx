@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { I, StoreButtons } from "./Icons";
+import { I, StoreButtons, Arr } from "./Icons";
 import { SITE, PLANS, PRICING } from "./config";
 
 const Tag = ({ live }: { live: boolean }) => (
@@ -36,7 +36,7 @@ export function AISection() {
           <Card title="Today" live items={AI_NOW.map((x) => x.h)} />
           <Card title="Coming soon" live={false} muted items={AI_NEXT.map((x) => x.h)} />
         </div>
-        <Link href="/ai/" className="link-u mt-6 inline-block text-[14px] text-white/70 hover:text-white">Full AI roadmap →</Link>
+        <Link href="/ai/" className="link-u mt-6 inline-block text-[14px] text-white/70 hover:text-white">Full AI roadmap <Arr className="ml-1" /></Link>
       </div>
     </section>
   );
@@ -79,7 +79,7 @@ export function Integrations() {
         </ul>
         <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-5 md:flex-row md:items-baseline md:justify-between">
           <p className="text-[14px] text-white/45"><span className="mono mr-3 text-[10px] uppercase tracking-[.18em] text-white/35">Coming soon</span>{soon.map((x) => x.h).join(" · ")}</p>
-          <Link href="/integrations/" className="link-u text-[14px] text-white/70 hover:text-white">All integrations →</Link>
+          <Link href="/integrations/" className="link-u text-[14px] text-white/70 hover:text-white">All integrations <Arr className="ml-1" /></Link>
         </div>
       </div>
     </section>
@@ -104,13 +104,13 @@ export function PricingTeaser() {
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7"><p className="eyebrow">Pricing</p><h2 id="pt-h" className="display mt-4 text-[clamp(2.4rem,5vw,4.8rem)]">Pricing that fits your floor.</h2></div>
           <div className="md:col-span-5"><p className="text-[17px] leading-[1.4] text-white/60">Priced per location, with unlimited operators.</p>
-            <div className="mt-4 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">See pricing →</Link><a href={SITE.demo} className="btn-g">Book a demo</a></div></div>
+            <div className="mt-4 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">See pricing <Arr className="ml-1" /></Link><a href={SITE.demo} className="btn-g">Book a demo</a></div></div>
         </div>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
           {PLANS.map((p) => (<li key={p.id} className={`rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-white/20" : "bg-white/[.03] ring-white/10"}`}><p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/55">{p.for}</p><p className="mt-8 border-t border-white/10 pt-4 text-[13px] text-white/75">{p.price ?? "Price on request"}<span className="text-white/40"> · {PRICING.operators}</span></p></li>))}
         </ul>
         <ul aria-label="See for yourself" className="mt-10 grid gap-x-8 border-t border-white/10 pt-5 sm:grid-cols-3">
-          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[10px] uppercase tracking-[.18em] text-white/40">{k}</span><span className="mt-1 block text-[15px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/40 transition group-hover:text-flame">↗</span></a></li>))}
+          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[10px] uppercase tracking-[.18em] text-white/40">{k}</span><span className="mt-1 block text-[15px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/40 transition group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
         </ul>
       </div>
     </section>

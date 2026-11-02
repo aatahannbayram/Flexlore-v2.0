@@ -1,5 +1,5 @@
 import { PLANS, COMPARE, PRICING, SITE } from "./config";
-import { I } from "./Icons";
+import { I, Arr } from "./Icons";
 import { Bar } from "./Blog";
 import { Footer } from "./Sections";
 import Copq from "./Copq";
@@ -39,7 +39,7 @@ export default function Pricing() {
               <p className="mt-1 text-[13px] text-white/45">{p.price ? PRICING.unit : "Per location"} · {PRICING.operators}</p>
             </div>
             <ul className="mt-6 space-y-2.5 text-[14px] text-white/80">{p.points.map((x) => <li key={x} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/60" />{x}</li>)}</ul>
-            <a href={p.checkout ?? SITE.demo} className={`${p.featured ? "btn-p" : "btn-g"} mt-auto self-start`} style={{ marginTop: "2rem" }}>{p.cta} →</a>
+            <a href={p.checkout ?? SITE.demo} className={`${p.featured ? "btn-p" : "btn-g"} mt-auto self-start`} style={{ marginTop: "2rem" }}>{p.cta} <Arr className="ml-1" /></a>
           </li>))}
         </ul>
         <p className="mono mt-3 text-[10px] uppercase tracking-[.16em] text-white/35">Plan names and contents are indicative. Final plans and prices are confirmed on the demo call.</p>
@@ -67,7 +67,7 @@ export default function Pricing() {
     <section className="px-6 pb-24 md:px-10"><div className="mx-auto max-w-[1400px] border-t border-white/15 pt-12">
       <p className="display max-w-[18ch] text-[clamp(2rem,4vw,3.6rem)]">Not sure which plan fits?</p>
       <p className="mt-3 text-[17px] text-white/60">Twenty minutes, one of your real jobs.</p>
-      <a href={SITE.demo} className="btn-p mt-6">Book a demo →</a></div></section>
+      <a href={SITE.demo} className="btn-p mt-6">Book a demo <Arr className="ml-1" /></a></div></section>
     <Footer />
   </>);
 }

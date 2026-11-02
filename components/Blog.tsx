@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Footer } from "./Sections";
+import { Arr } from "@/components/Icons";
 import posts from "@/lib/blog.json";
 export type Post = (typeof posts)[number];
 export { posts };
@@ -56,7 +57,7 @@ export function Article({ p }: { p: Post }) {
       <Bar />
       <main id="main" className="px-6 pt-36 md:px-10">
         <article className="mx-auto max-w-[760px]">
-          <Link href="/blog/" className="mono text-[11px] uppercase tracking-[.18em] text-white/45 hover:text-white">← Articles</Link>
+          <Link href="/blog/" className="mono text-[11px] uppercase tracking-[.18em] text-white/45 hover:text-white"><Arr dir="l" className="mr-1.5" />Articles</Link>
           {p.title && <h1 className="display mt-6 text-[clamp(2.4rem,6vw,4.6rem)] leading-[1]">{p.title}</h1>}
           <p className="mono mt-6 flex gap-4 text-[11px] uppercase tracking-[.18em] text-white/45"><span>{p.date}</span>{p.author && <span className="text-white/70">{p.author}</span>}</p>
         </article>

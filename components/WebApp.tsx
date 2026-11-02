@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { Device, SopScreen } from "./AppScreens";
+import { I } from "./Icons";
 import { Home, Library, Bell, BarChart3, ListChecks, Users, ChevronsUpDown, Search, Settings, ChevronRight, ChevronDown, Share2, Plus, ArrowUpDown, Play, Check, TriangleAlert } from "lucide-react";
 const O = "#f5580a";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -127,18 +128,18 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
 
 export function Platforms({ lang }: { lang: "en" | "tr" }) {
   const tr = lang === "tr";
-  const items: [string, string, string][] = [
-    ["iOS", tr ? "iPhone uygulaması" : "iPhone app", "M12 3c.9 0 2-.6 2.5-1.5M8.5 7c-2.5 0-4 2-4 5 0 3.5 2.3 8 4.2 8 1 0 1.5-.6 2.8-.6s1.7.6 2.8.6c1.6 0 3.4-3.3 3.9-5.1-1.6-.7-2.4-2-2.4-3.6 0-1.4.8-2.6 2-3.3-.8-1.1-2-1.7-3.3-1.7-1.3 0-2 .7-3 .7s-1.7-.7-3-.7Z"],
-    ["Android", tr ? "Google Play" : "Google Play", "M6 9h12v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zM7 9a5 5 0 0 1 10 0M9 6 7.5 4M15 6l1.5-2M3.5 10v5M20.5 10v5"],
-    ["Web", tr ? "Tarayıcıda yönetim" : "Manage in the browser", "M3 5h18v12H3zM8 21h8M12 17v4"],
+  const items: [string, string, (p: { size?: number }) => React.ReactElement][] = [
+    ["iOS", tr ? "iPhone uygulaması" : "iPhone app", I.ios],
+    ["Android", "Google Play", I.android],
+    ["Web", tr ? "Tarayıcıda yönetim" : "Manage in the browser", I.web],
   ];
   return (<section aria-label={tr ? "Platformlar" : "Platforms"} className="relative px-5 pb-16 md:px-10 md:pb-20">
     <div className="mx-auto max-w-[1400px]">
       <ul className="grid grid-cols-2 border-y border-white/10 md:grid-cols-3">
-        {items.map(([h, s, d], i) => <motion.li key={h} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ delay: i * .08, duration: .7, ease }}
+        {items.map(([h, s, Ic], i) => <motion.li key={h} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ delay: i * .08, duration: .7, ease }}
           className={`group flex items-center gap-4 py-5 md:py-6 ${i % 2 ? "pl-5" : ""} ${i ? "md:border-l md:border-white/10 md:pl-8" : ""} ${i > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}>
-          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/[.06] text-white/80 ring-1 ring-white/10 transition duration-500 group-hover:bg-flame group-hover:text-black group-hover:ring-flame">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg></span>
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/[.06] text-white/80 ring-1 ring-white/10 transition duration-500 group-hover:bg-white/[.1] group-hover:text-white group-hover:ring-white/30">
+            <Ic size={20} /></span>
           <span><span className="block text-[17px] font-semibold tracking-[-.02em]">{h}</span><span className="block text-[12.5px] text-white/50">{s}</span></span></motion.li>)}
       </ul>
     </div></section>);

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Video } from "./Site";
+import { I, Arr } from "@/components/Icons";
 import { SITE } from "./config";
 
 type O = { k: string; media: { v?: string; img?: string; alt: string }; job: string; flow: [string, string][] };
@@ -287,7 +288,7 @@ export default function Imagine() {
               className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-[17px] font-semibold tracking-tight text-white ring-1 ring-white/15 outline-none transition hover:ring-white/35 focus:ring-white/60">
               {IMAGINE.map((x, i) => <option key={x.k} value={i} className="bg-[#111] text-white">{i === IMAGINE.length - 1 ? "something else" : x.k.toLowerCase()}</option>)}
             </select>
-            <svg aria-hidden="true" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" /></svg>
+            <I.chevD size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60" />
           </div>
         </div>
         <div id="imagine-panel" role="tabpanel" className="mt-8 grid gap-8 md:grid-cols-12 md:items-stretch md:gap-12">
@@ -312,7 +313,7 @@ export default function Imagine() {
                 </motion.li>))}
             </ol>
             <p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">Example scenario · roles and dishes are illustrative</p>
-            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo →</a><p className="mt-2 text-[13px] text-white/50">Bring one of your real jobs. We'll build it with you.</p></div>
+            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-[13px] text-white/50">Bring one of your real jobs. We'll build it with you.</p></div>
           </div>
         </div>
       </div>

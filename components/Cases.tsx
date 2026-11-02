@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { Arr } from "@/components/Icons";
 import { Video } from "./Site";
 const ease = [0.22, 1, 0.36, 1] as const;
 type Case = { id: string; k: string; h: string; pov: string; steps: [string, string][]; out: string; bg: { img?: string; v?: string }; note?: string; ba?: [string, string]; ui?: "sop" | "quiz" };
@@ -74,7 +75,7 @@ export default function Cases({ lang }: { lang: "en" | "tr" }) {
                 <p className="mt-2 text-[14px] leading-[1.35] text-white/60">{c.steps.map((x) => x[0]).join(" → ")}</p>
                 <p className="mt-3 text-[14px] font-semibold text-white">{c.out}</p>
                 {c.note && <p className="mt-2 text-[11px] leading-[1.35] text-white/40">{c.note}</p>}
-                {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? "Senaryoyu incele →" : "See the use case →"}</a>}
+                {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? "Senaryoyu incele" : "See the use case"} <Arr className="ml-1" /></a>}
               </div>
             </motion.article>))}
         </div>

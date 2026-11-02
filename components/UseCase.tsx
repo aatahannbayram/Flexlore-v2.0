@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Bar } from "./Blog";
 import { Footer } from "./Sections";
-import { I } from "./Icons";
+import { I, Arr } from "./Icons";
 import { SITE } from "./config";
 
 export type UC = { slug: string; crumb: string; k: string; h1: string; seoH: string; lede: string; img: string; alt: string; quote: string;
@@ -37,10 +37,10 @@ export default function UseCase({ c }: { c: UC }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         <div className="relative mx-auto w-full max-w-[1400px]">
           <nav aria-label="Breadcrumb" className="mono text-[11px] uppercase tracking-[.18em] text-white/55"><Link href="/" className="link-u hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
-          <p className="mono mt-6 text-[11px] uppercase tracking-[.2em] text-flame">● {c.k}</p>
+          <p className="mono mt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-flame" />{c.k}</p>
           <h1 className="display mt-4 max-w-[17ch] text-[clamp(2.8rem,7vw,6.8rem)]">{c.h1}<span className="sr-only"> {c.seoH}</span></h1>
           <p className="mt-5 max-w-[58ch] text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.4] text-white/80">{c.lede}</p>
-          <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo →</a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
+          <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
         </div>
       </section>
       <section className="px-6 py-24 md:px-10" aria-labelledby="uc-p">
@@ -53,12 +53,12 @@ export default function UseCase({ c }: { c: UC }) {
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-s">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
           <div className="md:col-span-4"><h2 id="uc-s" className="display text-[clamp(2.2rem,4.4vw,4rem)]">How it works</h2><p className="mt-3 text-[16px] leading-[1.4] text-white/60">Film it. Approve it. Assign it.</p></div>
-          <ol className="border-t border-white/15 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[2.5rem_1fr] gap-3 border-b border-white/15 py-6">{[<I.record key="a" />, <I.split key="b" />, <I.quiz key="c" />, <I.ready key="d" />][i]}<div><p className="text-[19px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/60">{p}</p></div></li>)}</ol>
+          <ol className="border-t border-white/15 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-3 border-b border-white/15 py-6"><span className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-white/15 text-white/80">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[19px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/60">{p}</p></div></li>)}</ol>
         </div>
       </section>
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-o">
         <div className="mx-auto max-w-[1400px] border-t border-white/15 pt-12"><h2 id="uc-o" className="eyebrow">What changes</h2>
-          <ul className="mt-6 grid gap-6 md:grid-cols-3">{c.out.map((o) => <li key={o} className="flex gap-3 text-[20px] font-semibold leading-[1.2] tracking-tight"><I.check className="mt-0.5 shrink-0 text-flame" />{o}</li>)}</ul></div>
+          <ul className="mt-6 grid gap-6 md:grid-cols-3">{c.out.map((o) => <li key={o} className="flex gap-3 text-[20px] font-semibold leading-[1.2] tracking-tight"><I.check size={22} className="mt-0.5 shrink-0 text-white/60" />{o}</li>)}</ul></div>
       </section>
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-f">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12"><h2 id="uc-f" className="display text-[clamp(2rem,4vw,3.4rem)] md:col-span-4">Questions</h2>
@@ -66,7 +66,7 @@ export default function UseCase({ c }: { c: UC }) {
       </section>
       <section className="px-6 pb-24 md:px-10"><div className="mx-auto max-w-[1400px] border-t border-white/15 pt-10">
         <p className="mono text-[10px] uppercase tracking-[.2em] text-white/40">Related use case</p>
-        <Link href={`/use-cases/${r.slug}/`} className="link-u mt-3 inline-block text-[clamp(1.4rem,2.6vw,2.2rem)] font-semibold tracking-tight">{r.crumb} →</Link></div></section>
+        <Link href={`/use-cases/${r.slug}/`} className="link-u mt-3 inline-block text-[clamp(1.4rem,2.6vw,2.2rem)] font-semibold tracking-tight">{r.crumb} <Arr className="ml-1" /></Link></div></section>
     </main>
     <Footer />
   </>);

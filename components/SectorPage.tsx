@@ -6,6 +6,7 @@ import { K } from "./Kinetic";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { sectors } from "./sectors";
+import { Arr } from "@/components/Icons";
 import { Video } from "./Site";
 const ease = [0.22, 1, 0.36, 1] as const;
 const Rev = ({ children, d = 0, className = "" }: { children: React.ReactNode; d?: number; className?: string }) => (
@@ -121,7 +122,7 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-80"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           <div className="relative mx-auto w-full max-w-7xl"><p className="mono text-[12px] uppercase tracking-[.18em] text-flame">Next sector · {next.idx}</p>
-            <p className="display mt-4 text-[clamp(3rem,10vw,10rem)] transition group-hover:translate-x-4">{next.en} →</p></div>
+            <p className="display mt-4 text-[clamp(3rem,10vw,10rem)] transition group-hover:translate-x-4">{next.en} <Arr className="ml-[.1em]" /></p></div>
         </Link>
       </main>
       <Footer />

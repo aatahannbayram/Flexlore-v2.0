@@ -13,7 +13,7 @@ import Cases from "./Cases";
 import Copq from "./Copq";
 import Imagine from "./Imagine";
 import { AISection, Integrations, PricingTeaser, Footer } from "./Sections";
-import { StoreButtons } from "./Icons";
+import { StoreButtons, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
@@ -103,8 +103,8 @@ function Hero({ t }: { t: C }) {
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
         <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-7 md:px-10">
-          <div><h1 className=" max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} →</a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
-          <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll ↓</p>
+          <div><h1 className=" max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
+          <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll <Arr dir="d" className="ml-1" /></p>
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
           <p className="mono mb-6 text-[11px] uppercase tracking-[.2em] text-flame">01 — {t.heroK}</p>
@@ -227,7 +227,7 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
                   <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
                   <p className="display mt-3 text-[clamp(2.8rem,9vw,9rem)] leading-[.92] break-words">{lang === "tr" ? s.tr : s.en}</p>
                   <p className="mt-4 max-w-md text-[17px] leading-[1.3] text-white/75">{s.h}</p>
-                  <span className="mono mt-6 inline-flex items-center gap-3 text-[11px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <span aria-hidden="true">→</span></span>
+                  <span className="mono mt-6 inline-flex items-center gap-3 text-[11px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <Arr className="transition-transform group-hover:translate-x-1" /></span>
                 </div>
               </Link>
             </li>))}
@@ -256,7 +256,7 @@ function Proof({ lang }: { lang: Lang }) {
           {items.map((x, i) => (<li key={x.k} className={`border-b border-white/10 ${i ? "md:border-l md:pl-10" : ""}`}>
             <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-5">
               <span><span className="mono block text-[11px] uppercase tracking-[.2em] text-white/45">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
-              <span aria-hidden="true" className="text-2xl text-white/50 transition group-hover:translate-x-1 group-hover:text-flame">↗</span></a></li>))}
+              <span aria-hidden="true" className="text-2xl text-white/50 transition group-hover:translate-x-1 group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
         </ul>
       </div>
     </section>);
@@ -288,7 +288,7 @@ function End({ t }: { t: C }) {
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
-          <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <span aria-hidden="true">→</span></Magnetic>
+          <Magnetic href="https://app-eu1.hubspot.com/meetings/alper-kalip?troubleshoot=true&uuid=6feee1d8-83b2-400a-b3f2-929119a9047d" className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <Arr className="ml-1" /></Magnetic>
         </div>
       </div>
     </section>
