@@ -1,0 +1,44 @@
+name: Deploy preprod2a4
+on:
+  push:
+    branches: [main, mikel-coffee]
+  workflow_dispatch:
+concurrency:
+  group: deploy-preprod2a4
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Package static export
+        run: test -f out/index.html && tar -C out -czf out.tgz .
+      - name: Deploy (forced-command SSH, atomic swap on server)
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/deploy && chmod 600 ~/.ssh/deploy
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          for i in 1 2 3 4 5 6; do
+            ssh -i ~/.ssh/deploy -o IdentitiesOnly=yes -o ConnectTimeout=25 -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" < out.tgz && exit 0
+            echo "retry $i"; sleep 15
+          done
+          exit 1
+      - name: Health check
+        run: |
+          for p in / /demo/mikel-coffee/; do
+            h=$(curl -sSI "https://preprod2a4.flexlore.com$p")
+            echo "$h" | head -1 | grep -q " 200" || { echo "$p not 200"; exit 1; }
+            echo "$h" | grep -qi "x-robots-tag: noindex" || { echo "$p noindex missing"; exit 1; }
+          done
