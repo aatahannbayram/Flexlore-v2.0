@@ -8,6 +8,7 @@ import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
 import { WebSection, Platforms } from "./WebApp";
+import Programs from "./Programs";
 import Cases from "./Cases";
 import Copq from "./Copq";
 import Imagine from "./Imagine";
@@ -204,33 +205,38 @@ function Ready({ t }: { t: C }) {
 
 function Sectors({ t, lang }: { t: C; lang: Lang }) {
   const { ref, p } = useSec();
-  const x = useTransform(p, [0.05, 0.95], ["0%", "-72%"]);
+  const n = sectors.length;
+  // Hold each full-screen panel, then slide to the next (snap feel).
+  const seg = 1 / n, ins: number[] = [], outs: string[] = [];
+  for (let i = 0; i < n; i++) { ins.push(i * seg + seg * 0.15, i * seg + seg * 0.7); outs.push(`-${i * 100}vw`, `-${i * 100}vw`); }
+  const x = useTransform(p, ins, outs);
+  const [a, setA] = useState(0);
+  useEffect(() => p.on("change", (v) => setA(Math.min(n - 1, Math.max(0, Math.floor(v * n - 0.2))))), [p, n]);
   return (
-    <section ref={ref} id="sectors" className="relative h-[420vh]">
-      <div className="sticky top-0 flex h-svh flex-col justify-center overflow-hidden">
-        <div className="mx-auto flex w-full max-w-[1400px] items-end justify-between px-6 md:px-10">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — {t.whereK}</p><h2 className="display mt-4 text-[clamp(3rem,7vw,7rem)]"><K text={t.where} /></h2></div>
-          <p className="mono hidden self-end pb-3 text-[11px] uppercase tracking-[.2em] text-white/50 md:block">{lang === "tr" ? "Altı sektör · açmak için tıklayın" : "Six sectors · click to open"}</p>
-        </div>
-        <motion.ul style={{ x }} className="mt-10 flex w-max gap-5 pl-6 md:gap-8 md:pl-10">
+    <section ref={ref} id="sectors" aria-label={t.whereK} className="relative" style={{ height: `${n * 80}vh` }}>
+      <div className="sticky top-0 h-svh overflow-hidden">
+        <motion.ul style={{ x }} className="flex h-full w-max">
           {sectors.map((s) => (
-            <li key={s.slug} className="w-[78vw] md:w-[34vw]">
-              <Link href={`/sektor/${s.slug}/`} className="group block">
-                <div className="relative aspect-[4/5] overflow-hidden bg-neutral-900 md:aspect-[5/6]">
-                  <div className="absolute inset-0 transition duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-105"><Video name={s.v} /></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30" />
-                  <span className="num absolute left-5 top-4 text-[4.5rem] text-white/85">{s.idx}</span>
-                  <span className="absolute right-5 top-6 flex h-14 w-14 scale-75 items-center justify-center rounded-full bg-flame text-black opacity-0 transition duration-500 group-hover:scale-100 group-hover:opacity-100">→</span>
-                  <div className="absolute inset-x-0 bottom-0 p-5 md:p-7">
-                    <p className="mono text-[10px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
-                    <p className="display mt-2 text-[clamp(2.4rem,3.6vw,3.6rem)]">{lang === "tr" ? s.tr : s.en}</p>
-                    <p className="mt-2 max-w-sm text-[14px] leading-[1.3] text-white/70">{s.h}</p>
-                  </div>
+            <li key={s.slug} className="relative h-full w-screen shrink-0">
+              <Link href={`/sektor/${s.slug}/`} className="group absolute inset-0 block">
+                <div className="absolute inset-0 transition duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"><Video name={s.v} /></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
+                <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[14vh] md:px-10">
+                  <span className="num text-[clamp(4rem,9vw,9rem)] leading-none text-white/85">{s.idx}</span>
+                  <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
+                  <p className="display mt-3 text-[clamp(2.8rem,9vw,9rem)] leading-[.92] break-words">{lang === "tr" ? s.tr : s.en}</p>
+                  <p className="mt-4 max-w-md text-[17px] leading-[1.3] text-white/75">{s.h}</p>
+                  <span className="mono mt-6 inline-flex items-center gap-3 text-[11px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <span aria-hidden="true">→</span></span>
                 </div>
               </Link>
             </li>))}
         </motion.ul>
-        <div className="mx-auto mt-8 w-full max-w-[1400px] px-6 md:px-10"><div className="h-px bg-white/10"><motion.div style={{ scaleX: p }} className="h-full origin-left bg-white/70" /></div></div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 mx-auto flex max-w-[1400px] items-start justify-between px-6 pt-24 md:px-10 md:pt-28">
+          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — {t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
+          <p className="mono hidden pt-1 text-[11px] uppercase tracking-[.2em] text-white/60 md:block tabular-nums">{String(a + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</p>
+        </div>
+        <div className="absolute inset-x-0 bottom-[6vh] mx-auto max-w-[1400px] px-6 md:px-10"><div className="h-px bg-white/15"><motion.div style={{ scaleX: p }} className="h-full origin-left bg-white/80" /></div></div>
       </div>
     </section>
   );
@@ -350,7 +356,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><AISection /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><Programs lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
       </main>
       <Footer />
     </>
