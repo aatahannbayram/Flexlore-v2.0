@@ -106,7 +106,7 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
   const po = useTransform(p, [0.35, 0.9], [0, 1]);
   const glow = useTransform(p, [0.3, 1], [0, 1]);
   const tr = lang === "tr";
-  return (<section ref={sec} id="web" aria-label="Flexlore Web" className="relative overflow-hidden px-5 py-28 md:px-10 md:py-40">
+  return (<section ref={sec} id="web" aria-label="Flexlore Web" className="relative overflow-hidden px-5 py-16 md:px-10 md:py-24">
     <motion.div aria-hidden="true" style={{ opacity: glow }} className="pointer-events-none absolute inset-x-0 top-1/3 mx-auto h-[60%] max-w-[1100px] rounded-[50%] bg-[radial-gradient(closest-side,rgba(255,106,26,.13),transparent)]" />
     <div className="relative mx-auto max-w-[1400px]">
       <div className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
@@ -134,11 +134,11 @@ export function Platforms({ lang }: { lang: "en" | "tr" }) {
     ["Android", tr ? "Google Play" : "Google Play", "M6 9h12v8a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zM7 9a5 5 0 0 1 10 0M9 6 7.5 4M15 6l1.5-2M3.5 10v5M20.5 10v5"],
     ["Web", tr ? "Tarayıcıda yönetim" : "Manage in the browser", "M3 5h18v12H3zM8 21h8M12 17v4"],
   ];
-  return (<section aria-label={tr ? "Platformlar" : "Platforms"} className="relative px-5 pb-28 md:px-10 md:pb-36">
+  return (<section aria-label={tr ? "Platformlar" : "Platforms"} className="relative px-5 pb-16 md:px-10 md:pb-20">
     <div className="mx-auto max-w-[1400px]">
       <ul className="grid grid-cols-2 border-y border-white/10 md:grid-cols-3">
         {items.map(([h, s, d], i) => <motion.li key={h} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .6 }} transition={{ delay: i * .08, duration: .7, ease }}
-          className={`group flex items-center gap-4 py-7 md:py-9 ${i % 2 ? "pl-5" : ""} ${i ? "md:border-l md:border-white/10 md:pl-8" : ""} ${i > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}>
+          className={`group flex items-center gap-4 py-5 md:py-6 ${i % 2 ? "pl-5" : ""} ${i ? "md:border-l md:border-white/10 md:pl-8" : ""} ${i > 1 ? "border-t border-white/10 md:border-t-0" : ""}`}>
           <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-white/[.06] text-white/80 ring-1 ring-white/10 transition duration-500 group-hover:bg-flame group-hover:text-black group-hover:ring-flame">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg></span>
           <span><span className="block text-[17px] font-semibold tracking-[-.02em]">{h}</span><span className="block text-[12.5px] text-white/50">{s}</span></span></motion.li>)}

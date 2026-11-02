@@ -12,7 +12,7 @@ export default function Copq({ lang }: { lang: "en" | "tr" }) {
   const [d, setD] = useState(20); const [c, setC] = useState(50); const [r, setR] = useState(30);
   const month = d * c; const saved = month * (r / 100);
   return (
-    <section id="cost-of-poor-quality" aria-label={tr ? "Kalitesizlik maliyeti hesaplayıcı" : "Cost of poor quality calculator"} className="px-6 py-32 md:px-10 md:py-40">
+    <section id="cost-of-poor-quality" aria-label={tr ? "Kalitesizlik maliyeti hesaplayıcı" : "Cost of poor quality calculator"} className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
           <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Kalitesizlik maliyeti" : "Cost of poor quality"}</p>

@@ -86,23 +86,23 @@ function Hero({ t }: { t: C }) {
   const io = useTransform(p, [0, 0.12], [1, 0]);
   const words = t.hero.split(" ");
   return (
-    <section ref={ref} className="relative h-[260vh]" aria-label={t.hero}>
+    <section ref={ref} className="relative h-[200vh]" aria-label={t.hero}>
       <div className="sticky top-0 h-svh overflow-hidden">
         <div className="absolute inset-0" style={{ filter: "brightness(1.9) contrast(1.05)" }}><Video name="plating" eager /></div>
         <motion.div style={{ opacity: mo }} className="absolute inset-0 bg-white/30" />
         <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
         {/* signature: video lives inside the letters, then the mask opens up */}
-        <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
-          <motion.p aria-hidden="true" style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-white">
+        <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-start justify-center bg-black pt-[17vh] mix-blend-multiply md:pt-[15vh]">
+          <motion.p aria-hidden="true" style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-white">
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
             </motion.p>
         </motion.div>
-        <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <motion.p style={{ scale: ms }} className="display origin-[50%_55%] px-4 text-center text-[clamp(6.2rem,15.2vw,17rem)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
+        <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-start justify-center pt-[17vh] md:pt-[15vh]">
+          <motion.p style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
-        <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-8 md:px-10">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">● {t.heroK}</p><h1 className="mt-3 max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} →</a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
+        <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-7 md:px-10">
+          <div><h1 className=" max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} →</a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
           <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll ↓</p>
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
@@ -126,7 +126,7 @@ function Statement({ t }: { t: C }) {
   const vo = useTransform(p, [0, 0.15, 0.85, 1], [0.15, 0.6, 0.6, 0]);
   const so = useTransform(p, [0.55, 0.75], [0, 1]);
   return (
-    <section ref={ref} className="relative h-[220vh]" id="problem">
+    <section ref={ref} className="relative h-[170vh]" id="problem">
       <div className="sticky top-0 flex h-svh items-center overflow-hidden">
         <motion.div style={{ opacity: vo }} className="absolute inset-0"><Video name="kitchen" /></motion.div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" /><div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
@@ -146,7 +146,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
   const qz = sectors[0].quiz;
   const bar = useTransform(p, [0, 1], [0, 1]);
   return (
-    <section ref={ref} className="relative h-[460vh]" id="method" aria-label={t.pK}>
+    <section ref={ref} className="relative h-[380vh]" id="method" aria-label={t.pK}>
       <div className="sticky top-0 h-svh overflow-hidden">
         <div className="absolute inset-0 opacity-25"><Video name="line" /></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
@@ -187,7 +187,7 @@ function Ready({ t }: { t: C }) {
   const s = useTransform(p, [0, 0.55], [1.9, 1]);
   const po = useTransform(p, [0.55, 0.75], [0, 1]);
   return (
-    <section ref={ref} className="relative h-[260vh]" id="readiness" aria-label={t.rK}>
+    <section ref={ref} className="relative h-[200vh]" id="readiness" aria-label={t.rK}>
       <div className="sticky top-0 h-svh overflow-hidden">
         <div className="absolute inset-0" style={{ filter: "brightness(1.45) contrast(1.1)" }}><Video name="kitchen" /></div>
         <div className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
@@ -243,12 +243,12 @@ function Proof({ lang }: { lang: Lang }) {
     { k: "Product Hunt", h: tr ? "Product Hunt lansmanı" : "Launched on Product Hunt", u: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app" },
   ];
   return (
-    <section id="proof" aria-label={tr ? "Kanıt" : "Proof"} className="px-6 pt-32 md:px-10 md:pt-40">
+    <section id="proof" aria-label={tr ? "Kanıt" : "Proof"} className="px-6 pt-16 md:px-10 md:pt-20">
       <div className="mx-auto max-w-[1400px]">
         <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Kendiniz görün" : "See for yourself"}</p>
         <ul className="mt-8 grid border-t border-white/10 md:grid-cols-2">
           {items.map((x, i) => (<li key={x.k} className={`border-b border-white/10 ${i ? "md:border-l md:pl-10" : ""}`}>
-            <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-8">
+            <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-5">
               <span><span className="mono block text-[11px] uppercase tracking-[.2em] text-white/45">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
               <span aria-hidden="true" className="text-2xl text-white/50 transition group-hover:translate-x-1 group-hover:text-flame">↗</span></a></li>))}
         </ul>
@@ -258,11 +258,11 @@ function Proof({ lang }: { lang: Lang }) {
 
 function Faq({ t }: { t: C }) {
   return (
-    <section id="faq" className="px-6 py-32 md:py-40">
+    <section id="faq" className="px-6 py-16 md:py-20">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.4fr]">
         <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
         <div>{t.faq.map((q) => (
-          <details key={q.q} className="group border-t border-white/10 py-6 transition-colors duration-500 last:border-b hover:border-white/30">
+          <details key={q.q} className="group border-t border-white/10 py-4 transition-colors duration-500 last:border-b hover:border-white/30">
             <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
             <p className="mt-4 max-w-xl leading-[1.4] text-white/65">{q.a}</p>
           </details>))}
@@ -277,7 +277,7 @@ function End({ t }: { t: C }) {
     <section id="demo" className="relative flex min-h-svh items-end overflow-hidden">
       <Video name="hotel" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
-      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 md:px-10">
+      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 pt-24 md:px-10">
         <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">07 — Flexlore</p>
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
@@ -350,7 +350,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><Ready t={t} /><Imagine /><Cases lang={lang} /><AISection /><WebSection lang={lang} /><Platforms lang={lang} /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><AISection /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
       </main>
       <Footer />
     </>

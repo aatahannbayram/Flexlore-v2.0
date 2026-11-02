@@ -19,7 +19,7 @@ const AI_NEXT = [
 ];
 export function AISection() {
   return (
-    <section id="ai" className="px-6 py-24 md:px-10 md:py-32" aria-labelledby="ai-h">
+    <section id="ai" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="ai-h">
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">AI</p>
         <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">AI does the paperwork. Your experts keep the say.</h2>
@@ -56,7 +56,7 @@ const DIR: { cat: string; items: It[] }[] = [
 ];
 export function Integrations() {
   return (
-    <section id="integrations" className="px-6 py-24 md:px-10 md:py-32" aria-labelledby="int-h">
+    <section id="integrations" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="int-h">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7"><p className="eyebrow">Integrations</p>
@@ -78,7 +78,7 @@ export function Integrations() {
 
 export function PricingTeaser() {
   return (
-    <section id="pricing" className="px-6 py-24 md:px-10 md:py-28" aria-labelledby="pt-h">
+    <section id="pricing" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="pt-h">
       <div className="mx-auto grid max-w-[1400px] gap-10 border-t border-white/15 pt-12 md:grid-cols-12">
         <div className="md:col-span-5"><p className="eyebrow">Pricing</p><h2 id="pt-h" className="display mt-4 text-[clamp(2.4rem,5vw,4.8rem)]">Pricing that fits your floor.</h2>
           <p className="mt-4 max-w-md text-[17px] leading-[1.4] text-white/60">Priced per location, with unlimited operators. Book a demo and we will walk you through the options.</p>

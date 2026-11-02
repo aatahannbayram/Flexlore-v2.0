@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import { Video } from "./Site";
-import { Device, SopScreen, QuizScreen } from "./AppScreens";
 const ease = [0.22, 1, 0.36, 1] as const;
 type Case = { id: string; k: string; h: string; pov: string; steps: [string, string][]; out: string; bg: { img?: string; v?: string }; note?: string; ba?: [string, string]; ui?: "sop" | "quiz" };
 const en: { k: string; h: string; p: string; cases: Case[] } = {
@@ -50,40 +49,35 @@ const tr: typeof en = {
       note: "Yalnızca örnektir: ayda 25 kez tekrarlanan, 40 € yeniden işleme maliyetli bir hata ayda 1.000 € eder. Müşteri verisi değildir." },
   ],
 };
+const LINK: Record<string, string> = { "case-master-apprentice": "/use-cases/master-apprentice-skills-transfer/", "case-installation": "/use-cases/installation-training-on-site-orientation/" };
 export default function Cases({ lang }: { lang: "en" | "tr" }) {
   const t = lang === "tr" ? tr : en;
   return (
-    <section id="cases" aria-label={t.k} className="relative">
-      <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-32 md:px-10 md:pt-44">
-        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">03 — {t.k}</p>
-        <h2 className="display mt-4 max-w-[14ch] text-[clamp(3rem,7vw,7rem)]">{t.h}</h2>
-        <p className="mt-4 max-w-xl text-xl leading-[1.3] text-white/70">{t.p}</p>
+    <section id="cases" aria-label={t.k} className="px-6 py-16 md:px-10 md:py-20">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-4 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7"><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">03 — {t.k}</p>
+            <h2 className="display mt-3 text-[clamp(2.4rem,5vw,4.6rem)]">{t.h}</h2></div>
+          <p className="max-w-md text-[17px] leading-[1.3] text-white/65 md:col-span-5">{t.p}</p>
+        </div>
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {t.cases.map((c, i) => (
+            <motion.article key={c.id} id={c.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ duration: .7, delay: i * .06, ease }}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[.03]">
+              <div className="relative aspect-[16/10] overflow-hidden">
+                {c.bg.img ? <img src={c.bg.img} alt="" loading="lazy" className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-[1.03]" /> : <Video name={c.bg.v!} className="opacity-80" />}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <p className="mono absolute bottom-3 left-4 text-[10px] uppercase tracking-[.18em] text-white/85">0{i + 1} / {c.k}</p>
+              </div>
+              <div className="flex flex-1 flex-col p-4">
+                <h3 className="text-[19px] font-semibold leading-[1.15] tracking-tight">{c.h}</h3>
+                <p className="mt-2 text-[14px] leading-[1.35] text-white/60">{c.steps.map((x) => x[0]).join(" → ")}</p>
+                <p className="mt-3 text-[14px] font-semibold text-white">{c.out}</p>
+                {c.note && <p className="mt-2 text-[11px] leading-[1.35] text-white/40">{c.note}</p>}
+                {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? "Senaryoyu incele →" : "See the use case →"}</a>}
+              </div>
+            </motion.article>))}
+        </div>
       </div>
-      {t.cases.map((c, i) => (
-        <article key={c.id} id={c.id} className="relative flex min-h-svh items-end overflow-hidden">
-          <div className="absolute inset-0">{c.bg.v ? <Video name={c.bg.v} /> : <img src={c.bg.img} alt="" loading="lazy" className="grade absolute inset-0 h-full w-full object-cover" />}</div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/10" />
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black to-transparent" />
-          <div className="relative mx-auto grid w-full max-w-[1400px] gap-10 px-6 pb-20 pt-40 md:grid-cols-12 md:px-10 md:pb-24">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: 1, ease }} className="md:col-span-6">
-              <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">0{i + 1} / {c.k}</p>
-              <h3 className="display mt-5 text-[clamp(2.4rem,5vw,5rem)] leading-[.95]">{c.h}</h3>
-              <p className="mt-4 max-w-lg text-lg leading-[1.3] text-white/80">{c.pov}</p>
-              <p className="mt-4 max-w-lg text-[17px] font-semibold tracking-tight text-white">{c.out}</p>
-              {c.ba && <div className="mt-8 grid max-w-lg grid-cols-2 border-y border-white/20 text-[14px] leading-[1.3]">
-                <div className="py-4 pr-4 text-white/55"><p className="mono mb-2 text-[10px] uppercase tracking-[.2em] text-white/40">{lang === "tr" ? "Önce" : "Before"}</p><span className="block first-letter:uppercase">{c.ba[0].replace(/^(Before|Önce): /, "")}</span></div>
-                <div className="border-l border-white/20 py-4 pl-4 text-white"><p className="mono mb-2 text-[10px] uppercase tracking-[.2em] text-flame">{lang === "tr" ? "Sonra" : "After"}</p><span className="block first-letter:uppercase">{c.ba[1].replace(/^(After|Sonra): /, "")}</span></div></div>}
-            </motion.div>
-            <motion.ol initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .3 }} transition={{ duration: 1, delay: .15, ease }} className="self-end md:col-span-5 md:col-start-8">
-              {c.ui && <li className="mb-8 hidden list-none md:block"><div className="ml-auto w-[210px]"><Device label={c.ui === "sop" ? "Flexlore step-by-step SOP screen" : "Flexlore quiz screen"}>{c.ui === "sop" ? <SopScreen active /> : <QuizScreen active q="Which step comes first at this station?" a={["Start the machine", "Check the safety guard", "Load the part"]} ok={1} />}</Device></div></li>}
-              {c.steps.map(([h, p], k) => (
-                <li key={h} className="grid grid-cols-[3rem_1fr] border-t border-white/20 py-5 last:border-b">
-                  <span className="mono pt-1 text-[12px] text-flame">{String(k + 1).padStart(2, "0")}</span>
-                  <span><span className="block text-xl font-semibold tracking-tight">{h}</span><span className="mt-1 block text-[15px] leading-[1.3] text-white/65">{p}</span></span>
-                </li>))}
-              {c.note && <li className="mono mt-5 list-none text-[10.5px] uppercase leading-[1.4] tracking-[.14em] text-white/45">{c.note}</li>}
-            </motion.ol>
-          </div>
-        </article>))}
     </section>);
 }

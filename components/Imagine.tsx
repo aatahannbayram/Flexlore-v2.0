@@ -277,7 +277,7 @@ export default function Imagine() {
   const [a, setA] = useState(0);
   const o = IMAGINE[a];
   return (
-    <section id="imagine" className="px-6 py-24 md:px-10 md:py-32" aria-labelledby="imagine-h">
+    <section id="imagine" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="imagine-h">
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">Imagine it in your business</p>
         <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">Pick your work. See it in Flexlore.</h2>
