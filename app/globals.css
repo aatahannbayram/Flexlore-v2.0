@@ -48,3 +48,7 @@ video.grade,img.grade{filter:saturate(.78) contrast(1.08) brightness(.92) sepia(
 .prose-blog li + li { margin-top: .5em; } .prose-blog li::marker { color: var(--color-flame, #ff5a1f); }
 .prose-blog a { color:#fff; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,.35); }
 .prose-blog img { border-radius: 16px; width: 100%; }
+.rng { -webkit-appearance:none; appearance:none; height:2px; border-radius:2px; background: linear-gradient(to right,#ff6a1a var(--p,0%),rgba(255,255,255,.15) var(--p,0%)); outline:none; cursor:pointer; }
+.rng::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#f5f5f7; box-shadow:0 0 0 4px rgba(255,255,255,.08); transition: transform .2s; }
+.rng::-moz-range-thumb { width:16px; height:16px; border:0; border-radius:50%; background:#f5f5f7; }
+.rng:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 4px rgba(255,106,26,.45); }

@@ -6,5 +6,5 @@ import { USE_CASES } from "@/components/UseCase";
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (p: string, priority: number) => ({ url: SITE.url + p, lastModified: "2026-11-02", priority });
-  return [u("/", 1), u("/pricing/", 0.9), ...USE_CASES.map((c) => u(`/use-cases/${c.slug}/`, 0.8)), ...sectors.map((s) => u(`/sektor/${s.slug}/`, 0.7)), u("/blog/", 0.6), ...posts.map((p) => u(`/blog/${p.slug}/`, 0.5))];
+  return [u("/", 1), u("/pricing/", 0.9), u("/ai/", 0.7), u("/integrations/", 0.7), ...USE_CASES.map((c) => u(`/use-cases/${c.slug}/`, 0.8)), ...sectors.map((s) => u(`/sektor/${s.slug}/`, 0.7)), u("/blog/", 0.6), ...posts.map((p) => u(`/blog/${p.slug}/`, 0.5))];
 }

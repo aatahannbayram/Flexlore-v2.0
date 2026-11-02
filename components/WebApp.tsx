@@ -102,28 +102,26 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
   const rx = useTransform(p, [0, 1], reduce ? [0, 0] : [22, 0]);
   const sc = useTransform(p, [0, 1], reduce ? [1, 1] : [0.86, 1]);
   const bo = useTransform(p, [0, 0.6], [0.2, 1]);
-  const px = useTransform(p, [0.35, 1], reduce ? [0, 0] : [140, 0]);
+  const px = useTransform(p, [0.35, 1], reduce ? [0, 0] : [60, 0]);
   const po = useTransform(p, [0.35, 0.9], [0, 1]);
-  const glow = useTransform(p, [0.3, 1], [0, 1]);
   const tr = lang === "tr";
   return (<section ref={sec} id="web" aria-label="Flexlore Web" className="relative overflow-hidden px-5 py-16 md:px-10 md:py-24">
-    <motion.div aria-hidden="true" style={{ opacity: glow }} className="pointer-events-none absolute inset-x-0 top-1/3 mx-auto h-[60%] max-w-[1100px] rounded-[50%] bg-[radial-gradient(closest-side,rgba(255,106,26,.13),transparent)]" />
     <div className="relative mx-auto max-w-[1400px]">
       <div className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
         <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">03 — {tr ? "Web'de de" : "Also on the web"}</p>
           <h2 className="display mt-5 text-[clamp(3rem,7vw,6.5rem)] text-white">Flexlore Web.</h2></div>
         <p className="max-w-sm text-[17px] leading-[1.3] text-white/65 md:pb-3">{tr ? "Telefonda kaydedin, masada yönetin. Aynı kütüphane, aynı oryantasyon verisi, büyük ekranda." : "Record on the phone, manage from the desk. The same library and orientation data, on a big screen."}</p>
       </div>
-      <div ref={ref} className="relative mt-14 [perspective:1800px] md:mt-20 lg:mr-[170px]">
+      <div ref={ref} className="mt-12 grid items-end gap-8 [perspective:1800px] md:mt-16 lg:grid-cols-[1fr_230px] lg:gap-10"><div>
         <motion.div style={{ rotateX: rx, scale: sc, opacity: bo, transformOrigin: "50% 100%" }} className="overflow-hidden rounded-[10px] bg-[#1a1a1c] shadow-[0_60px_160px_rgba(0,0,0,.8)] ring-1 ring-white/[.12] md:rounded-[14px]">
           <div className="flex h-7 items-center gap-1.5 border-b border-white/[.06] bg-[#222225] px-3 md:h-9 md:gap-2 md:px-4">
             <span className="h-2 w-2 rounded-full bg-[#ff5f57] md:h-3 md:w-3" /><span className="h-2 w-2 rounded-full bg-[#febc2e] md:h-3 md:w-3" /><span className="h-2 w-2 rounded-full bg-[#28c840] md:h-3 md:w-3" />
             <span className="mx-auto flex h-5 w-[min(60%,380px)] items-center justify-center gap-1.5 rounded-md bg-black/30 text-[9px] text-white/55 md:h-6 md:text-[11px]"><svg width="9" height="10" viewBox="0 0 9 10" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="1" y="4.5" width="7" height="5" rx="1"/><path d="M2.5 4.5V3a2 2 0 0 1 4 0v1.5"/></svg>app.flexlore.com/library</span><span className="w-6 md:w-12" /></div>
           <Fit><Dashboard on={on} /></Fit>
         </motion.div>
-        <motion.div style={{ x: px, opacity: po }} className="absolute -bottom-20 right-2 w-[78px] sm:-bottom-12 sm:w-[130px] lg:-bottom-12 lg:-right-[170px] lg:w-[210px]" aria-hidden="true"><Device label="Flexlore mobile app"><SopScreen active={on} /></Device></motion.div>
+        </div><motion.div style={{ x: px, opacity: po }} className="hidden w-[230px] lg:block" aria-hidden="true"><Device label="Flexlore mobile app"><SopScreen active={on} /></Device></motion.div>
       </div>
-      <p className="mono mt-16 text-[10px] uppercase tracking-[.2em] text-white/35">{tr ? "Örnek veriler · gösterim amaçlı" : "Sample data · for illustration"}</p>
+      <p className="mono mt-8 text-[10px] uppercase tracking-[.2em] text-white/35">{tr ? "Örnek veriler · gösterim amaçlı" : "Sample data · for illustration"}</p>
     </div></section>);
 }
 

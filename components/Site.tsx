@@ -89,9 +89,9 @@ function Hero({ t }: { t: C }) {
   return (
     <section ref={ref} className="relative h-[200vh]" aria-label={t.hero}>
       <div className="sticky top-0 h-svh overflow-hidden">
-        <div className="absolute inset-0" style={{ filter: "brightness(1.9) contrast(1.05)" }}><Video name="plating" eager /></div>
-        <motion.div style={{ opacity: mo }} className="absolute inset-0 bg-white/30" />
-        <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
+        <div className="absolute inset-0" style={{ filter: "brightness(.95) contrast(.9) saturate(.85)" }}><Video name="plating" eager /></div>
+        <motion.div style={{ opacity: mo }} className="absolute inset-0 bg-black/30" />
+                <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
         {/* signature: video lives inside the letters, then the mask opens up */}
         <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-start justify-center bg-black pt-[17vh] mix-blend-multiply md:pt-[15vh]">
           <motion.p aria-hidden="true" style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-white">
@@ -356,7 +356,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
       <Nav t={t} lang={lang} setLang={setLang} />
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Proof lang={lang} /><Programs lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
       </main>
       <Footer />
     </>

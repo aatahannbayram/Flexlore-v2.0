@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Video } from "./Site";
-import { I } from "./Icons";
 import { SITE } from "./config";
 
 type O = { k: string; media: { v?: string; img?: string; alt: string }; job: string; flow: [string, string][] };
@@ -281,14 +280,18 @@ export default function Imagine() {
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">Imagine it in your business</p>
         <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">Pick your work. See it in Flexlore.</h2>
-        <p className="mt-4 max-w-xl text-lg leading-[1.4] text-white/65">Choose your industry. Don't see yours? Pick My business is different. Same idea everywhere: one job, filmed from the doer's side, cut into steps, checked with a quiz.</p>
-        <div role="tablist" aria-label="Choose your industry" className="no-sb -mx-6 mt-10 flex gap-x-1 gap-y-2 overflow-x-auto px-6 md:mx-0 md:flex-wrap md:px-0">
-          {IMAGINE.map((x, i) => (
-            <button key={x.k} role="tab" aria-selected={a === i} aria-controls="imagine-panel" onClick={() => setA(i)}
-              className={`shrink-0 rounded-full border px-3.5 py-1.5 text-[13px] transition ${a === i ? "border-white bg-white text-black" : "border-white/15 text-white/70 hover:border-white/40 hover:text-white"} ${i === IMAGINE.length - 1 ? "border-dashed" : ""}`}>{x.k}</button>))}
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <label htmlFor="imagine-pick" className="text-[15px] text-white/60">My business is</label>
+          <div className="relative">
+            <select id="imagine-pick" value={a} onChange={(e) => setA(Number(e.target.value))} aria-controls="imagine-panel"
+              className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-[17px] font-semibold tracking-tight text-white ring-1 ring-white/15 outline-none transition hover:ring-white/35 focus:ring-white/60">
+              {IMAGINE.map((x, i) => <option key={x.k} value={i} className="bg-[#111] text-white">{i === IMAGINE.length - 1 ? "something else" : x.k.toLowerCase()}</option>)}
+            </select>
+            <svg aria-hidden="true" className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="m2.5 4.5 3.5 3.5 3.5-3.5" /></svg>
+          </div>
         </div>
-        <div id="imagine-panel" role="tabpanel" className="mt-8 grid gap-8 md:grid-cols-12 md:gap-10">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white/5 md:col-span-7 md:aspect-auto md:min-h-[520px]">
+        <div id="imagine-panel" role="tabpanel" className="mt-8 grid gap-8 md:grid-cols-12 md:items-stretch md:gap-12">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white/5 md:col-span-7 md:aspect-[16/11]">
             <AnimatePresence mode="wait">
               <motion.div key={o.k} initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
                 {o.media.v ? <Video name={o.media.v} /> : <img src={o.media.img} alt={o.media.alt} loading="lazy" className="grade absolute inset-0 h-full w-full object-cover" />}
@@ -296,19 +299,19 @@ export default function Imagine() {
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-              <p className="mono flex items-center gap-2 text-[11px] uppercase tracking-[.18em] text-white/70"><I.eye size={16} /> Example scenario · {o.k}</p>
+              <p className="mono text-[11px] uppercase tracking-[.18em] text-white/65">Example scenario · {o.k}</p>
               <p className="mt-2 max-w-[30ch] text-[clamp(1.3rem,2.2vw,2rem)] font-semibold leading-[1.15] tracking-tight">{o.job}</p>
             </div>
           </div>
           <div className="flex flex-col md:col-span-5">
-            <ol className="border-t border-white/15">
+            <ol className="border-t border-white/10">
               {o.flow.map((f, i) => (
-                <motion.li key={o.k + i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i, duration: 0.5 }} className="grid grid-cols-[2.5rem_1fr] items-start gap-2 border-b border-white/15 py-5">
-                  <span className="text-white/80">{i === 0 ? <I.record /> : i === 1 ? <I.split /> : <I.ready />}</span>
+                <motion.li key={o.k + i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i, duration: 0.5 }} className="grid grid-cols-[2.5rem_1fr] items-start gap-2 border-b border-white/10 py-6">
+                  <span className="mono pt-1 text-[12px] tabular-nums text-flame">{String(i + 1).padStart(2, "0")}</span>
                   <span><span className="block text-[17px] font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-[15px] leading-[1.4] text-white/65">{f[1]}</span></span>
                 </motion.li>))}
             </ol>
-            <p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">Example scenario. Roles, machines and dishes are illustrative.</p>
+            <p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">Example scenario · roles and dishes are illustrative</p>
             <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo →</a><p className="mt-2 text-[13px] text-white/50">Bring one of your real jobs. We'll build it with you.</p></div>
           </div>
         </div>

@@ -17,27 +17,36 @@ const AI_NEXT = [
   { i: I.qr, h: "Scan a QR, start the job", p: "Every job gets a shareable link. Print a QR for a machine, a station or a branch door. Scan it and the right job opens." },
   { i: I.chat, h: "Ask your training data anything", p: "An API, a Power BI connection and an MCP server for Claude and other AI assistants. Ask “Who isn’t ready at branch 3?” in your own tools." },
 ];
+const Card = ({ title, live, items, muted }: { title: string; live: boolean; items: string[]; muted?: boolean }) => (
+  <div className={`rounded-2xl p-7 md:p-9 ${muted ? "bg-white/[.025] ring-1 ring-white/[.07]" : "bg-white/[.05] ring-1 ring-white/10"}`}>
+    <div className="flex items-baseline justify-between"><h3 className="text-[15px] font-semibold">{title}</h3><Tag live={live} /></div>
+    <ol className="mt-8 space-y-4">{items.map((h, i) => (<li key={h} className="flex items-baseline gap-4"><span className="mono w-6 text-[11px] tabular-nums text-white/35">{String(i + 1).padStart(2, "0")}</span><span className={`text-[clamp(1.2rem,1.8vw,1.55rem)] font-semibold tracking-tight ${muted ? "text-white/55" : "text-white"}`}>{h}</span></li>))}</ol>
+  </div>);
+
 export function AISection() {
   return (
     <section id="ai" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="ai-h">
       <div className="mx-auto max-w-[1400px]">
-        <p className="eyebrow">AI</p>
-        <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">AI does the paperwork. Your experts keep the say.</h2>
-        <p className="mt-4 max-w-xl text-lg leading-[1.4] text-white/65">Your team reviews and approves every draft before it goes out.</p>
-        <div className="mt-14 grid gap-x-10 md:grid-cols-12">
-          <div className="md:col-span-5">
-            <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h3 className="text-[15px] font-semibold">Today</h3><Tag live /></div>
-            {AI_NOW.map((x) => (<div key={x.h} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-white/10 py-6"><x.i className="text-white" /><div><p className="text-[19px] font-semibold tracking-tight">{x.h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/60">{x.p}</p></div></div>))}
-          </div>
-          <div className="mt-14 md:col-span-6 md:col-start-7 md:mt-0">
-            <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h3 className="text-[15px] font-semibold">Coming soon</h3><Tag live={false} /></div>
-            {AI_NEXT.map((x) => (<div key={x.h} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-white/10 py-6"><x.i className="text-white/80" /><div><p className="text-[19px] font-semibold tracking-tight text-white/90">{x.h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/55">{x.p}</p></div></div>))}
-            <p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">On our roadmap. No dates yet.</p>
-          </div>
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-8"><p className="eyebrow">AI</p>
+            <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-[clamp(2.6rem,5.6vw,5.6rem)]">AI does the paperwork. Your experts keep the say.</h2></div>
+          <p className="text-[17px] leading-[1.4] text-white/60 md:col-span-4">Every draft is reviewed and approved by your team before it goes out.</p>
         </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2">
+          <Card title="Today" live items={AI_NOW.map((x) => x.h)} />
+          <Card title="Coming soon" live={false} muted items={AI_NEXT.map((x) => x.h)} />
+        </div>
+        <Link href="/ai/" className="link-u mt-6 inline-block text-[14px] text-white/70 hover:text-white">Full AI roadmap →</Link>
       </div>
     </section>
   );
+}
+
+export function AIDetail() {
+  const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (<div>
+    <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h2 className="text-[15px] font-semibold">{t}</h2><Tag live={live} /></div>
+    {xs.map((x) => (<div key={x.h} className="border-b border-white/10 py-6"><h3 className={`text-[20px] font-semibold tracking-tight ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[15px] leading-[1.45] text-white/60">{x.p}</p></div>))}</div>);
+  return (<div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-10"><Col t="Today" live xs={AI_NOW} /><div><Col t="Coming soon" live={false} xs={AI_NEXT} /><p className="mono mt-4 text-[10px] uppercase tracking-[.16em] text-white/35">On our roadmap. No dates yet.</p></div></div>);
 }
 
 // Directory by category. Only what Linear/Notion verify: apps + web are live; FLE-124 covers API, webhooks,
@@ -55,36 +64,53 @@ const DIR: { cat: string; items: It[] }[] = [
   { cat: "HRIS · LMS · MES/ERP", items: [ { i: I.plug, h: "Through the API", p: "No named connectors yet. Tell us what you run.", live: false } ] },
 ];
 export function Integrations() {
+  const live = DIR[0].items; const soon = DIR.slice(1).flatMap((c) => c.items).filter((x) => x.h !== "Through the API");
   return (
     <section id="integrations" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="int-h">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7"><p className="eyebrow">Integrations</p>
+          <div className="md:col-span-8"><p className="eyebrow">Integrations</p>
             <h2 id="int-h" className="display mt-4 text-[clamp(2.6rem,5.6vw,5.6rem)]">Works where your team already is.</h2></div>
-          <p className="text-[17px] leading-[1.4] text-white/60 md:col-span-4 md:col-start-9">Phones for the people doing the job, web for the people running it. Data connections are on the roadmap and labelled as such.</p>
+          <p className="text-[17px] leading-[1.4] text-white/60 md:col-span-4">Phones for the people doing the job, web for the people running it.</p>
         </div>
-        <div className="mt-12 border-t border-white/15">
-          {DIR.map((c) => (<div key={c.cat} className="grid gap-4 border-b border-white/15 py-6 md:grid-cols-12">
-            <p className="mono text-[11px] uppercase tracking-[.18em] text-white/45 md:col-span-3">{c.cat}</p>
-            <ul className="grid gap-6 sm:grid-cols-2 md:col-span-9 lg:grid-cols-3">
-              {c.items.map((x) => { const body = (<div className="flex gap-3"><x.i className={x.live ? "text-white" : "text-white/55"} /><div><p className="flex flex-wrap items-baseline gap-x-3 text-[17px] font-semibold tracking-tight">{x.h} <Tag live={x.live} /></p><p className="mt-1 text-[14px] leading-[1.4] text-white/55">{x.p}</p></div></div>);
-                return <li key={x.h}>{x.href ? <a href={x.href} target="_blank" rel="noopener" className="block hover:opacity-80">{body}</a> : body}</li>; })}
-            </ul></div>))}
+        <ul className="mt-12 grid gap-4 md:grid-cols-3">
+          {live.map((x) => { const body = (<div className="flex h-full flex-col justify-between rounded-2xl bg-white/[.05] p-7 ring-1 ring-white/10 transition hover:bg-white/[.08]"><Tag live /><div className="mt-10"><p className="text-[clamp(1.5rem,2.4vw,2rem)] font-semibold tracking-tight">{x.h}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/55">{x.p}</p></div></div>);
+            return <li key={x.h}>{x.href ? <a href={x.href} target="_blank" rel="noopener" className="block h-full">{body}</a> : body}</li>; })}
+        </ul>
+        <div className="mt-6 flex flex-col gap-3 border-t border-white/10 pt-5 md:flex-row md:items-baseline md:justify-between">
+          <p className="text-[14px] text-white/45"><span className="mono mr-3 text-[10px] uppercase tracking-[.18em] text-white/35">Coming soon</span>{soon.map((x) => x.h).join(" · ")}</p>
+          <Link href="/integrations/" className="link-u text-[14px] text-white/70 hover:text-white">All integrations →</Link>
         </div>
       </div>
     </section>
   );
 }
 
+export function IntegrationsDetail() {
+  return (<div className="mt-14 border-t border-white/15">
+    {DIR.map((c) => (<div key={c.cat} className="grid gap-4 border-b border-white/15 py-7 md:grid-cols-12">
+      <h2 className="mono text-[11px] uppercase tracking-[.18em] text-white/45 md:col-span-3">{c.cat}</h2>
+      <ul className="grid gap-6 sm:grid-cols-2 md:col-span-9 lg:grid-cols-3">
+        {c.items.map((x) => (<li key={x.h}><p className={`text-[17px] font-semibold tracking-tight ${x.live ? "" : "text-white/70"}`}>{x.h}</p><div className="mt-1"><Tag live={x.live} /></div><p className="mt-2 text-[14px] leading-[1.4] text-white/55">{x.p}</p></li>))}
+      </ul></div>))}
+  </div>);
+}
+
 export function PricingTeaser() {
+  const proof = [["App Store", "iPhone app is live", SITE.appStore], ["Google Play", "Android app is live", SITE.googlePlay], ["Product Hunt", "Launched on Product Hunt", SITE.productHunt]];
   return (
     <section id="pricing" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="pt-h">
-      <div className="mx-auto grid max-w-[1400px] gap-10 border-t border-white/15 pt-12 md:grid-cols-12">
-        <div className="md:col-span-5"><p className="eyebrow">Pricing</p><h2 id="pt-h" className="display mt-4 text-[clamp(2.4rem,5vw,4.8rem)]">Pricing that fits your floor.</h2>
-          <p className="mt-4 max-w-md text-[17px] leading-[1.4] text-white/60">Priced per location, with unlimited operators. Book a demo and we will walk you through the options.</p>
-          <div className="mt-5 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">See pricing →</Link><a href={SITE.demo} className="btn-g">Book a demo</a></div></div>
-        <ul className="grid gap-px bg-white/10 md:col-span-7 md:grid-cols-3">
-          {PLANS.map((p) => (<li key={p.id} className="bg-black p-5"><p className="text-[15px] font-semibold">{p.name}</p><p className="mt-1 text-[13px] leading-[1.35] text-white/55">{p.for}</p><p className="mt-8 text-[13px] text-white/80">{p.price ?? "Price on request"}<span className="block text-white/40">{PRICING.operators}</span></p></li>))}
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7"><p className="eyebrow">Pricing</p><h2 id="pt-h" className="display mt-4 text-[clamp(2.4rem,5vw,4.8rem)]">Pricing that fits your floor.</h2></div>
+          <div className="md:col-span-5"><p className="text-[17px] leading-[1.4] text-white/60">Priced per location, with unlimited operators.</p>
+            <div className="mt-4 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">See pricing →</Link><a href={SITE.demo} className="btn-g">Book a demo</a></div></div>
+        </div>
+        <ul className="mt-10 grid gap-4 md:grid-cols-3">
+          {PLANS.map((p) => (<li key={p.id} className={`rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-white/20" : "bg-white/[.03] ring-white/10"}`}><p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/55">{p.for}</p><p className="mt-8 border-t border-white/10 pt-4 text-[13px] text-white/75">{p.price ?? "Price on request"}<span className="text-white/40"> · {PRICING.operators}</span></p></li>))}
+        </ul>
+        <ul aria-label="See for yourself" className="mt-10 grid gap-x-8 border-t border-white/10 pt-5 sm:grid-cols-3">
+          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[10px] uppercase tracking-[.18em] text-white/40">{k}</span><span className="mt-1 block text-[15px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/40 transition group-hover:text-flame">↗</span></a></li>))}
         </ul>
       </div>
     </section>
