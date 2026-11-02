@@ -71,7 +71,7 @@ const MASTER: [string, string, string, string][] = [
 function Status() { return <div className="flex h-[44px] items-center justify-between px-6 pt-1 text-[13px] font-semibold text-white"><span>09:41</span><span className="flex gap-1 opacity-90"><i className="h-[9px] w-[14px] rounded-[2px] bg-white" /></span></div>; }
 function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
   const s = d.steps[i];
-  return (<div className="absolute inset-0 flex flex-col bg-[#0b0b0c]">
+  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]">
     <Status />
     <div className="flex h-[40px] items-center px-3 text-[14px]"><span style={{ color: O }}>‹ {t2(l, "Reçeteler", "Recipes")}</span><span className="absolute left-1/2 -translate-x-1/2 font-semibold text-white">{t2(l, d.tr, d.en)}</span></div>
     <div className="relative mx-3 h-[170px] overflow-hidden rounded-[14px] bg-black">
@@ -79,33 +79,66 @@ function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
       <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">{t2(l, "Adım", "Step")} {i + 1}/{d.steps.length}</span>
       <div className="absolute inset-x-2 bottom-2 flex gap-1">{d.steps.map((_, k) => <span key={k} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/20">{k <= i && <motion.span layout className="block h-full" style={{ background: O, width: k < i ? "100%" : "60%" }} />}</span>)}</div>
     </div>
-    <AnimatePresence mode="wait"><motion.div key={d.k + i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .35 }} className="mx-3 mt-3 rounded-[14px] bg-[#161618] p-3">
+    <AnimatePresence mode="wait"><motion.div key={d.k + i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .35 }} className="mx-3 mt-3 rounded-[14px] bg-[#1a1512] p-3">
       <p className="text-[15px] font-semibold leading-tight text-white">{t2(l, s[0], s[1])}</p>
       <p className="mt-1.5 text-[11px] text-white/50">{s[2].split(" · ")[l === "tr" ? 0 : 1] ?? s[2]}</p>
     </motion.div></AnimatePresence>
     <div className="mx-3 mt-2 space-y-1">{d.steps.map((x, k) => <div key={k} className={`flex items-center gap-2 rounded-[10px] px-2.5 py-1.5 text-[11.5px] ${k === i ? "bg-white/[.06] text-white" : "text-white/40"}`}>
-      <span className={`grid h-4 w-4 shrink-0 place-items-center rounded-full text-[8px] font-semibold ${k < i ? "bg-[#30a46c] text-white" : k === i ? "text-black" : "ring-1 ring-white/20"}`} style={k === i ? { background: O } : {}}>{k < i ? "✓" : k + 1}</span><span className="truncate">{t2(l, x[0], x[1])}</span></div>)}</div>
+      <span className={`grid h-4 w-4 shrink-0 place-items-center rounded-full text-[8px] font-semibold ${k < i ? "bg-[#e9dcc6] text-[#1b1410]" : k === i ? "text-black" : "ring-1 ring-white/20"}`} style={k === i ? { background: O } : {}}>{k < i ? "✓" : k + 1}</span><span className="truncate">{t2(l, x[0], x[1])}</span></div>)}</div>
   </div>);
 }
 function OpenScreen({ n, l }: { n: number; l: L }) {
-  return (<div className="absolute inset-0 flex flex-col bg-[#0b0b0c]"><Status />
+  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status />
     <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">{t2(l, "Kahve istasyonu", "Coffee station")}</p><p className="text-[20px] font-semibold tracking-tight text-white">{t2(l, "Vardiya açılışı", "Shift opening")}</p>
       <div className="mt-3 h-[4px] overflow-hidden rounded-full bg-white/[.08]"><motion.div className="h-full" style={{ background: O }} animate={{ width: `${(n / OPEN.length) * 100}%` }} transition={{ duration: .6, ease }} /></div>
       <p className="mt-1.5 text-[11px] tabular-nums text-white/45">{n}/{OPEN.length} {t2(l, "tamamlandı", "done")}</p></div>
-    <div className="mt-3 space-y-1.5 px-3">{OPEN.map((x, k) => <div key={k} className={`flex items-center gap-2.5 rounded-[12px] px-3 py-2.5 text-[12.5px] transition ${k < n ? "bg-[#161618] text-white/45 line-through decoration-white/20" : k === n ? "bg-[#1f1f22] text-white ring-1 ring-white/10" : "bg-[#161618]/60 text-white/60"}`}>
-      <span className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full ${k < n ? "bg-[#30a46c]" : "ring-1 ring-white/25"}`}>{k < n && <I.check size={11} strokeWidth={2.5} className="text-white" />}</span>{t2(l, x[0], x[1])}</div>)}</div>
+    <div className="mt-3 space-y-1.5 px-3">{OPEN.map((x, k) => <div key={k} className={`flex items-center gap-2.5 rounded-[12px] px-3 py-2.5 text-[12.5px] transition ${k < n ? "bg-[#1a1512] text-white/45 line-through decoration-white/20" : k === n ? "bg-[#241d18] text-white ring-1 ring-white/10" : "bg-[#1a1512]/60 text-white/60"}`}>
+      <span className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full ${k < n ? "bg-[#e9dcc6]" : "ring-1 ring-white/25"}`}>{k < n && <I.check size={11} strokeWidth={2.5} className="text-[#1b1410]" />}</span>{t2(l, x[0], x[1])}</div>)}</div>
   </div>);
 }
 function QuizScreen({ pick, setPick, l }: { pick: number | null; setPick: (n: number) => void; l: L }) {
   const opts = [t2(l, "Aynı pitcher'la devam et", "Carry on with the same pitcher"), t2(l, "Ayrı pitcher kullan, çubuğu sil ve boşalt", "Use a separate pitcher, wipe and purge the wand"), t2(l, "Sadece pitcher'ı suyla çalkala", "Just rinse the pitcher with water")];
-  return (<div className="absolute inset-0 flex flex-col bg-[#0b0b0c]"><Status />
+  return (<div className="absolute inset-0 flex flex-col bg-[#0e0b09]"><Status />
     <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">Quiz · {t2(l, "Alerjen", "Allergen")}</p>
       <p className="mt-2 text-[16px] font-semibold leading-snug text-white">{t2(l, "Müşteri süt alerjisi olduğunu söylüyor ve yulaf sütlü latte istiyor. Az önce inek sütü buharladın. Ne yaparsın?", "A guest says they have a milk allergy and orders an oat latte. You just steamed dairy. What do you do?")}</p></div>
     <div className="mt-4 space-y-2 px-3">{opts.map((o, k) => { const sel = pick === k, ok = k === 1; return (
-      <button key={k} onClick={() => setPick(k)} className={`flex w-full items-start gap-2.5 rounded-[12px] px-3 py-2.5 text-left text-[12.5px] leading-snug transition ${sel ? (ok ? "bg-[#30a46c]/15 text-white ring-1 ring-[#30a46c]/60" : "bg-[#e5484d]/12 text-white ring-1 ring-[#e5484d]/50") : "bg-[#161618] text-white/80 hover:bg-[#1f1f22]"}`}>
-        <span className={`mt-0.5 h-[14px] w-[14px] shrink-0 rounded-full ${sel ? (ok ? "bg-[#30a46c]" : "bg-[#e5484d]") : "ring-1 ring-white/25"}`} />{o}</button>); })}</div>
+      <button key={k} onClick={() => setPick(k)} className={`flex w-full items-start gap-2.5 rounded-[12px] px-3 py-2.5 text-left text-[12.5px] leading-snug transition ${sel ? (ok ? "bg-[#e9dcc6]/[.09] text-white ring-1 ring-[#e9dcc6]/45" : "bg-[#b4532a]/[.12] text-white ring-1 ring-[#b4532a]/45") : "bg-[#1a1512] text-white/80 hover:bg-[#241d18]"}`}>
+        <span className={`mt-0.5 h-[14px] w-[14px] shrink-0 rounded-full ${sel ? (ok ? "bg-[#e9dcc6]" : "bg-[#b4532a]") : "ring-1 ring-white/25"}`} />{o}</button>); })}</div>
     {pick !== null && <p className="mx-4 mt-3 text-[11.5px] leading-snug text-white/55">{pick === 1 ? t2(l, "Doğru. Bu adımın videosu reçetede 6. adım olarak duruyor.", "Correct. This step has its own video in the recipe.") : t2(l, "Tekrar bak: çapraz temas riski var. Adım videosu açılıyor.", "Look again: cross-contact risk. Opening the step video.")}</p>}
   </div>);
+}
+
+
+function Roi({ l }: { l: L }) {
+  const [v, setV] = useState({ br: 20, nb: 6, h: 16, c: 250, sv: 30, rm: 4, cc: 90, rr: 25 });
+  const F: [keyof typeof v, string, string, number, number, number, string][] = [
+    ["br", "Şube sayısı", "Branches", 1, 200, 1, ""],
+    ["nb", "Şube başına yılda yeni barista", "New baristas per branch / year", 1, 30, 1, ""],
+    ["h", "Yeni barista başına usta eğitim saati", "Lead training hours per new barista", 2, 60, 1, " sa"],
+    ["c", "Usta barista saat maliyeti", "Lead barista hourly cost", 50, 1000, 10, " ₺"],
+    ["sv", "Videoyla azalan eğitim saati (varsayım)", "Training hours saved by video (assumption)", 0, 70, 5, "%"],
+    ["rm", "Şube başına günlük yeniden yapılan içecek", "Remade drinks per branch / day", 0, 30, 1, ""],
+    ["cc", "Yeniden yapılan içeceğin maliyeti", "Cost of a remade drink", 10, 300, 5, " ₺"],
+    ["rr", "Standartla azalan yeniden yapım (varsayım)", "Remakes avoided by the standard (assumption)", 0, 70, 5, "%"],
+  ];
+  const hrs = v.br * v.nb * v.h * v.sv / 100, tr = hrs * v.c, rw = v.br * v.rm * 360 * v.rr / 100 * v.cc;
+  const fmt = (x: number) => Math.round(x).toLocaleString(l === "tr" ? "tr-TR" : "en-US");
+  return (<section className="relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent"><div className="mx-auto max-w-[1400px]">
+    <p className="eyebrow">06 · {t2(l, "Örnek getiri hesabı", "Example return estimate")}</p>
+    <h2 className="display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Kendi rakamlarınızla hesaplayın.", "Run it with your own numbers.")}</h2>
+    <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.5] text-white/55">{t2(l, "Varsayılan değerler yalnızca örnek tahmindir; Mikel Coffee verisi ya da Flexlore taahhüdü değildir. Kaydırıcıları kendi şube, eğitim ve fire bilgilerinize göre ayarlayın. Gerçek rakamı pilotta birlikte ölçeriz.", "Defaults are example estimates only, not Mikel Coffee data or a Flexlore promise. Move the sliders to your own branch, training and remake figures. We measure the real number together in a pilot.")}</p>
+    <div className="mt-14 grid gap-16 md:grid-cols-12">
+      <div className="grid gap-x-12 gap-y-7 sm:grid-cols-2 md:col-span-7">{F.map(([k, a, b, mn, mx, st, u]) => <label key={k} className="block border-t border-[#e9dcc6]/[.08] pt-4">
+        <span className="flex items-baseline justify-between gap-3 text-[13px] text-white/60"><span>{t2(l, a, b)}</span><span className="mono tabular-nums text-[#f4efe8]">{u === " ₺" ? fmt(v[k]) + " ₺" : v[k] + u}</span></span>
+        <input type="range" min={mn} max={mx} step={st} value={v[k]} onChange={(e) => setV({ ...v, [k]: +e.target.value })} className="rng mt-4 w-full" style={{ ["--p" as string]: `${((v[k] - mn) / (mx - mn)) * 100}%` }} aria-label={t2(l, a, b)} /></label>)}</div>
+      <div className="md:col-span-5 md:col-start-8"><div className="border-l border-[#e9dcc6]/[.12] pl-8 md:pl-10">
+        {[[t2(l, "Ustaya geri dönen eğitim saati / yıl", "Lead training hours freed / year"), fmt(hrs) + t2(l, " sa", " h")], [t2(l, "Eğitim zamanı karşılığı / yıl", "Training time value / year"), fmt(tr) + " ₺"], [t2(l, "Önlenen yeniden yapım / yıl", "Remakes avoided / year"), fmt(rw) + " ₺"]].map(([a, b], k) => <div key={k} className={k ? "mt-8 border-t border-[#e9dcc6]/[.08] pt-8" : ""}><p className="text-[13px] text-white/50">{a}</p><p className="num mt-3 text-[clamp(2.4rem,4vw,3.6rem)] text-[#f4efe8]">{b}</p></div>)}
+        <div className="mt-8 border-t border-[#e9dcc6]/[.16] pt-8"><p className="text-[13px]" style={{ color: O }}>{t2(l, "Toplam örnek tahmin / yıl", "Total example estimate / year")}</p><p className="num mt-3 text-[clamp(3rem,5.5vw,5rem)] text-white">{fmt(tr + rw)} ₺</p></div>
+        <p className="mt-6 text-[12px] leading-[1.5] text-white/35">{t2(l, "Hesap: şube × yeni barista × eğitim saati × azalma × saat maliyeti; artı şube × günlük yeniden yapım × 360 gün × azalma × içecek maliyeti. Lisans bedeli, tutarlılık ve müşteri deneyimi etkisi dahil değildir.", "Formula: branches × new baristas × training hours × reduction × hourly cost; plus branches × daily remakes × 360 days × reduction × drink cost. Excludes licence cost and consistency or guest-experience effects.")}</p>
+      </div></div>
+    </div>
+    <div className="mt-14"><a href={SITE.demo} className="btn-p">{t2(l, "Bu hesabı birlikte doğrulayalım", "Let's validate this together")} <Arr className="ml-1" /></a></div>
+  </div></section>);
 }
 
 /* ---------- page ---------- */
@@ -118,7 +151,7 @@ export default function MikelCoffee() {
   useEffect(() => { if (!play || reduce) return; const id = setInterval(() => setI((x) => (x + 1) % drink.steps.length), 2600); return () => clearInterval(id); }, [play, reduce, drink]);
   useEffect(() => { if (reduce) { setN(OPEN.length); return; } const id = setInterval(() => setN((x) => (x >= OPEN.length ? 0 : x + 1)), 1500); return () => clearInterval(id); }, [reduce]);
   useEffect(() => { document.documentElement.lang = l; }, [l]);
-  const sec = "relative px-6 py-20 md:px-10 md:py-28";
+  const sec = "relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent";
   return (<>
     <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-gradient-to-b from-black/85 to-transparent px-6 py-4 pb-10 md:px-10">
       <Link href="/" className="flex items-center gap-3"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-7 w-auto" /><span className="mono hidden text-[10px] uppercase tracking-[.2em] text-white/50 sm:inline">× Mikel Coffee</span></Link>
@@ -126,10 +159,10 @@ export default function MikelCoffee() {
         <div className="flex rounded-full bg-white/[.07] p-0.5 text-[11px] font-medium ring-1 ring-white/10" role="group" aria-label="Language">{(["tr", "en"] as L[]).map((x) => <button key={x} onClick={() => setL(x)} aria-pressed={l === x} className={`rounded-full px-2.5 py-1 uppercase ${l === x ? "bg-white text-black" : "text-white/60"}`}>{x}</button>)}</div>
         <a href={SITE.demo} className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-black">{t2(l, "Görüşme planla", "Book a call")}</a></div>
     </header>
-    <main id="main" className="bg-black text-white">
+    <main id="main" className="bg-[#0c0a09] text-[#f4efe8]">
       {/* hero */}
       <section className="relative h-svh overflow-hidden">
-        <Video name="coffee" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        <Video name="coffee" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0c0a09] via-[#0c0a09]/70 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[11vh] md:px-10">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .4 }} className="eyebrow">{t2(l, "Mikel Coffee için hazırlanmış demo · Kahve operasyonu", "Prepared for Mikel Coffee · Coffee operations")}</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5, duration: 1, ease }} className="display mt-5 max-w-[13ch] text-[clamp(3rem,8.5vw,8.5rem)]">{t2(l, "Her franchise'ta, aynı Freddo.", "Every franchise, the same Freddo.")}</motion.h1>
@@ -141,21 +174,21 @@ export default function MikelCoffee() {
       {/* problem */}
       <section className={sec}><div className="mx-auto max-w-[1400px]">
         <Rev><p className="eyebrow">{t2(l, "Tezgâhta olan", "What happens at the bar")}</p><h2 className="display mt-4 max-w-[18ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Reçete kâğıtta aynı. Fincan şubeden şubeye değişiyor.", "The recipe is the same on paper. The cup changes branch to branch.")}</h2></Rev>
-        <div className="mt-14 grid border-t border-white/15 md:grid-cols-3">{[
+        <div className="mt-14 grid border-t border-[#e9dcc6]/[.09] md:grid-cols-3">{[
           [t2(l, "Yoğun saatte yeni barista", "A new barista at rush hour"), t2(l, "Gösterecek kimse yok; reçeteyi duvardaki çıktıdan okumaya çalışıyor.", "Nobody free to show them; they try to read the recipe off a printout.")],
           [t2(l, "Usta tek kişi", "One lead barista"), t2(l, "Doğru süt dokusu, doğru döküm, doğru temizlik onun elinde. İzinde olduğunda standart kayıyor.", "The right foam, the right pour, the right clean live in their hands. On their day off the standard drifts.")],
           [t2(l, "Alerjen sorusu", "The allergen question"), t2(l, "Bitki bazlı süt, şurup içerikleri, çapraz temas: müşteri sorduğunda cevap kişiye göre değişiyor.", "Plant milk, syrup ingredients, cross-contact: the answer depends on who is on shift.")],
-        ].map(([h, p], k) => <Rev key={h} d={k * .08} className={`py-8 md:px-8 ${k ? "border-t border-white/15 md:border-l md:border-t-0" : "md:pl-0"}`}><span className="mono text-[11px] text-white/35">0{k + 1}</span><h3 className="mt-3 text-[22px] font-semibold tracking-tight">{h}</h3><p className="mt-2 text-[15px] leading-[1.45] text-white/60">{p}</p></Rev>)}</div>
+        ].map(([h, p], k) => <Rev key={h} d={k * .08} className={`py-8 md:px-8 ${k ? "border-t border-[#e9dcc6]/[.09] md:border-l md:border-t-0" : "md:pl-0"}`}><span className="mono text-[11px] text-white/35">0{k + 1}</span><h3 className="mt-3 text-[22px] font-semibold tracking-tight">{h}</h3><p className="mt-2 text-[15px] leading-[1.45] text-white/60">{p}</p></Rev>)}</div>
       </div></section>
 
       {/* recipe simulator */}
-      <section id="recete" className={`${sec} border-t border-white/10`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
+      <section id="recete" className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
         <div className="md:col-span-6">
           <p className="eyebrow">01 · {t2(l, "İçecek reçeteleri, video adımlar", "Drink recipes as video steps")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Barista gözünden, adım adım.", "Through the barista's eyes, step by step.")}</h2>
           <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Bir içecek seçin. Telefon, yeni bir baristanın tezgâhta gördüğünü gösterir. Adımlar örnektir; gerçek demoda sizin reçeteniz ve ölçüleriniz kullanılır.", "Pick a drink. The phone shows what a new barista sees at the counter. Steps are examples; in a real demo we use your recipe and measures.")}</p>
           <div className="mt-8 flex flex-wrap gap-2">{DRINKS.map((x, k) => <button key={x.k} onClick={() => { setD(k); setI(0); setPlay(true); }} aria-pressed={d === k} className={`rounded-full px-4 py-2 text-[14px] font-medium ring-1 transition ${d === k ? "bg-white text-black ring-white" : "text-white/75 ring-white/20 hover:ring-white/50"}`}>{t2(l, x.tr, x.en)}</button>)}</div>
-          <ol className="mt-8 border-t border-white/10">{drink.steps.map((s, k) => <li key={k}><button onClick={() => { setI(k); setPlay(false); }} className={`grid w-full grid-cols-[2.5rem_1fr] items-baseline border-b border-white/10 py-3 text-left transition ${k === i ? "text-white" : "text-white/45 hover:text-white/80"}`}>
+          <ol className="mt-8 ">{drink.steps.map((s, k) => <li key={k}><button onClick={() => { setI(k); setPlay(false); }} className={`grid w-full grid-cols-[2.5rem_1fr] items-baseline border-b border-[#e9dcc6]/[.08] py-3 text-left transition ${k === i ? "text-white" : "text-white/45 hover:text-white/80"}`}>
             <span className="mono text-[11px] tabular-nums" style={k === i ? { color: O } : {}}>{String(k + 1).padStart(2, "0")}</span><span className="text-[17px] font-medium tracking-tight">{t2(l, s[0], s[1])}</span></button></li>)}</ol>
           <button onClick={() => setPlay((p) => !p)} className="mono mt-4 text-[11px] uppercase tracking-[.18em] text-white/50 hover:text-white">{play ? t2(l, "Duraklat", "Pause") : t2(l, "Otomatik oynat", "Autoplay")}</button>
         </div>
@@ -163,7 +196,7 @@ export default function MikelCoffee() {
       </div></section>
 
       {/* shift opening */}
-      <section className={`${sec} border-t border-white/10`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
+      <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
         <div className="order-2 mx-auto w-[min(78vw,330px)] md:order-1 md:col-span-5"><Device label={t2(l, "Kahve istasyonu açılış listesi", "Coffee station opening checklist")}><OpenScreen n={n} l={l} /></Device></div>
         <div className="order-1 md:order-2 md:col-span-6 md:col-start-7">
           <p className="eyebrow">02 · {t2(l, "Vardiya açılışı", "Shift opening")}</p>
@@ -174,11 +207,11 @@ export default function MikelCoffee() {
       </div></section>
 
       {/* allergen / hygiene */}
-      <section className={`${sec} border-t border-white/10`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-start">
+      <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-start">
         <div className="md:col-span-6">
           <p className="eyebrow">03 · {t2(l, "Alerjen ve hijyen", "Allergen and hygiene")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Müşteri sorduğunda herkes aynı cevabı verir.", "When a guest asks, everyone gives the same answer.")}</h2>
-          <div className="mt-10 border-t border-white/10">{ALLERGEN.map(([a, b, c, e], k) => <Rev key={a} d={k * .05} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-white/10 py-5"><span className="mono pt-1 text-[11px] text-white/35">0{k + 1}</span><div><h3 className="text-[19px] font-semibold tracking-tight">{t2(l, a, b)}</h3><p className="mt-1 text-[15px] leading-[1.45] text-white/60">{t2(l, c, e)}</p></div></Rev>)}</div>
+          <div className="mt-10 ">{ALLERGEN.map(([a, b, c, e], k) => <Rev key={a} d={k * .05} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-[#e9dcc6]/[.08] py-5"><span className="mono pt-1 text-[11px] text-white/35">0{k + 1}</span><div><h3 className="text-[19px] font-semibold tracking-tight">{t2(l, a, b)}</h3><p className="mt-1 text-[15px] leading-[1.45] text-white/60">{t2(l, c, e)}</p></div></Rev>)}</div>
           <p className="mt-5 text-[13px] text-white/40">{t2(l, "İçerik ve alerjen bilgisi sizin onaylı listenizden gelir; Flexlore onu tezgâhta gösterilebilir hale getirir.", "Ingredient and allergen facts come from your approved list; Flexlore makes them showable at the counter.")}</p>
         </div>
         <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8 md:sticky md:top-24"><Device label={t2(l, "Alerjen quiz ekranı", "Allergen quiz screen")}><QuizScreen pick={pick} setPick={setPick} l={l} /></Device>
@@ -186,32 +219,33 @@ export default function MikelCoffee() {
       </div></section>
 
       {/* master-apprentice */}
-      <section className={`${sec} border-t border-white/10`}><div className="mx-auto max-w-[1400px]">
+      <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto max-w-[1400px]">
         <Rev><p className="eyebrow">04 · {t2(l, "Usta–çırak", "Master–apprentice")}</p><h2 className="display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Ustanın eli, her şubede.", "Your lead's hands, in every branch.")}</h2></Rev>
-        <ol className="mt-14 grid gap-4 md:grid-cols-4">{MASTER.map(([a, b, c, e], k) => <Rev key={a} d={k * .08}><li className="flex h-full flex-col rounded-2xl bg-white/[.04] p-7 ring-1 ring-white/10">
-          <span className="grid h-10 w-10 place-items-center rounded-full text-white/80 ring-1 ring-white/15">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.qr key="c" size={20} />, <I.ready key="d" size={20} />][k]}</span>
+        <ol className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-4">{MASTER.map(([a, b, c, e], k) => <Rev key={a} d={k * .08}><li className="flex h-full flex-col border-t border-[#e9dcc6]/[.14] pt-7 pr-4">
+          <span className="grid h-10 w-10 place-items-center rounded-full text-white/80 ring-1 ring-[#e9dcc6]/20">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.qr key="c" size={20} />, <I.ready key="d" size={20} />][k]}</span>
           <span className="mono mt-8 text-[11px]" style={{ color: O }}>0{k + 1}</span><h3 className="mt-2 text-[20px] font-semibold leading-tight tracking-tight">{t2(l, a, b)}</h3><p className="mt-2 text-[14.5px] leading-[1.45] text-white/60">{t2(l, c, e)}</p></li></Rev>)}</ol>
       </div></section>
 
       {/* manager view */}
-      <section className={`${sec} border-t border-white/10`}><div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-12 md:items-center">
+      <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-12 md:items-center">
         <div className="md:col-span-5"><p className="eyebrow">05 · {t2(l, "Bölge ve şube sorumlusu", "Area and branch leads")}</p>
           <h2 className="display mt-4 text-[clamp(2.2rem,4.2vw,4rem)]">{t2(l, "Kim hangi içeceğe hazır, tek ekranda.", "Who is ready for which drink, on one screen.")}</h2>
           <p className="mt-5 max-w-[44ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Web panelinde reçeteleri şubelere atayın, quiz sonuçlarını görün, yeni reçeteyi tek seferde tüm kahve noktalarına gönderin.", "In the web panel, assign recipes to branches, see quiz results and send a new recipe to every coffee point at once.")}</p></div>
-        <div className="md:col-span-7"><Rev className="overflow-hidden rounded-2xl bg-[#0f0f10] ring-1 ring-white/10">
-          <div className="flex items-center justify-between border-b border-white/[.07] px-5 py-3 text-[12px] text-white/50"><span>{t2(l, "Hazırlık · Kahve istasyonu", "Readiness · Coffee station")}</span><span className="mono text-[10px] uppercase tracking-[.16em] text-white/35">{t2(l, "Örnek görünüm", "Sample view")}</span></div>
+        <div className="md:col-span-7"><Rev className="overflow-hidden rounded-[6px] bg-[#120e0c]/80 ring-[.5px] ring-[#e9dcc6]/[.12]">
+          <div className="flex items-center justify-between border-b border-[#e9dcc6]/[.07] px-5 py-3 text-[12px] text-white/50"><span>{t2(l, "Hazırlık · Kahve istasyonu", "Readiness · Coffee station")}</span><span className="mono text-[10px] uppercase tracking-[.16em] text-white/35">{t2(l, "Örnek görünüm", "Sample view")}</span></div>
           <table className="w-full text-left text-[13px]"><thead className="text-[11px] uppercase tracking-[.12em] text-white/35"><tr><th className="px-5 py-3 font-medium">{t2(l, "Barista", "Barista")}</th>{DRINKS.map((x) => <th key={x.k} className="px-3 py-3 font-medium">{t2(l, x.tr, x.en)}</th>)}</tr></thead>
-            <tbody>{[["Barista A", [2, 2, 1, 2]], ["Barista B", [2, 1, 0, 2]], ["Barista C", [1, 0, 0, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-white/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-[12px] ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-[#30a46c]" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table>
+            <tbody>{[["Barista A", [2, 2, 1, 2]], ["Barista B", [2, 1, 0, 2]], ["Barista C", [1, 0, 0, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-[#e9dcc6]/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-[12px] ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-[#e9dcc6]" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table>
         </Rev></div>
       </div></section>
 
       {/* cta */}
-      <section className={`${sec} border-t border-white/10`}><div className="mx-auto max-w-[1400px]">
+      <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto max-w-[1400px]">
         <h2 className="display max-w-[14ch] text-[clamp(3rem,8vw,8rem)]">{t2(l, "Bir reçeteyle başlayalım.", "Let's start with one recipe.")}</h2>
         <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.4] text-white/65">{t2(l, "Bir kahve noktanızdan tek bir içeceği birlikte çekelim. Aynı gün adımlar, açılış listesi ve quiz hazır olsun; ekibiniz kendi tezgâhında denesin.", "Let's film one drink at one of your coffee points together. Same day: steps, opening checklist and quiz ready for your team to try at their own bar.")}</p>
         <div className="mt-8 flex flex-wrap items-center gap-3"><a href={SITE.demo} className="btn-p">{t2(l, "Görüşme planla", "Book a call")} <Arr className="ml-1" /></a><Link href="/" className="btn-g">{t2(l, "Flexlore'u tanı", "About Flexlore")}</Link></div>
-        <p className="mt-16 border-t border-white/10 pt-6 text-[12px] text-white/35">{t2(l, "Bu sayfa Mikel Coffee ekibi için hazırlanmış bir demodur. Mikel Coffee'nin resmi bir yayını değildir; reçete adımları ve ekran içerikleri örnektir.", "This page is a demo prepared for the Mikel Coffee team. It is not an official Mikel Coffee publication; recipe steps and screen contents are examples.")}</p>
+        <p className="mt-16 border-t border-[#e9dcc6]/[.08] pt-6 text-[12px] text-white/35">{t2(l, "Bu sayfa Mikel Coffee ekibi için hazırlanmış bir demodur. Mikel Coffee'nin resmi bir yayını değildir; reçete adımları ve ekran içerikleri örnektir.", "This page is a demo prepared for the Mikel Coffee team. It is not an official Mikel Coffee publication; recipe steps and screen contents are examples.")}</p>
       </div></section>
+      <Roi l={l} />
     </main>
   </>);
 }
