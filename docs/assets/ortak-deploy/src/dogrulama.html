@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Doğrulama kaydı</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* Veriler GitHub Actions run 41472203941 özetinden ve curl çıktısından (2 Kasım 2026). */
+  body { width: 1600px; height: 580px; position: relative; overflow: hidden; padding: 48px 72px; }
+  .head { display: flex; justify-content: space-between; align-items: center; }
+  .head h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.01em; }
+  .head h1 span { color: var(--muted); font-weight: 600; }
+  .head img { height: 26px; }
+  .grid { margin-top: 40px; display: grid; grid-template-columns: 420px 1fr; gap: 24px; }
+  .run { padding: 28px; }
+  .run h2 { font-size: 26px; font-weight: 700; margin: 10px 0 18px; }
+  .kv { display: grid; grid-template-columns: 110px 1fr; row-gap: 12px; font-size: 18px; }
+  .kv dt { color: var(--muted); }
+  .kv dd { color: var(--ink); font-weight: 600; }
+  .big { margin-top: 26px; font-size: 56px; font-weight: 800; letter-spacing: -0.02em; color: var(--accent); line-height: 1; }
+  .big small { display: block; font-size: 16px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-top: 8px; }
+  .tables { display: flex; flex-direction: column; gap: 24px; }
+  .t { padding: 24px 28px; }
+  .t .label { margin-bottom: 12px; }
+  table { width: 100%; border-collapse: collapse; font-size: 18px; }
+  th { text-align: left; font-size: 14px; font-weight: 600; color: var(--muted); padding: 0 0 10px; }
+  td { padding: 12px 0; border-top: 1px solid var(--line); color: var(--ink); }
+  td.dim { color: var(--muted); }
+  .foot { margin-top: 24px; font-size: 17px; color: var(--muted); }
+  .foot b { color: var(--ink); font-weight: 600; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>Doğrulama <span>· 2 Kasım 2026</span></h1>
+    <img src="wordmark-dark-main.svg" alt="Flexlore">
+  </div>
+  <div class="grid">
+    <div class="run card">
+      <div class="label">GitHub Actions</div>
+      <h2>Deploy preprod2a4 #2</h2>
+      <dl class="kv">
+        <dt>Tetik</dt><dd>push · main</dd>
+        <dt>Commit</dt><dd>dfa12c6</dd>
+        <dt>Run</dt><dd>41472203941</dd>
+        <dt>Sonuç</dt><dd><span class="ok">Başarılı</span>, tüm adımlar</dd>
+      </dl>
+      <div class="big">1 dk 28 sn<small>build, deploy, health check ve güvenlik testi dahil run süresi</small></div>
+    </div>
+    <div class="tables">
+      <div class="t card">
+        <div class="label">Health check · curl</div>
+        <table>
+          <tr><th>Sayfa</th><th>HTTP</th><th>X-Robots-Tag</th><th>Build</th></tr>
+          <tr><td>/</td><td><span class="ok">200</span></td><td>noindex, nofollow</td><td class="dim">ldA9bVQ8yyUZ_j94Marnb</td></tr>
+          <tr><td>/demo/mikel-coffee/</td><td><span class="ok">200</span></td><td>noindex, nofollow</td><td class="dim">ldA9bVQ8yyUZ_j94Marnb</td></tr>
+        </table>
+      </div>
+      <div class="t card">
+        <div class="label">Güvenlik testi · CI anahtarıyla</div>
+        <table>
+          <tr><th>Deneme</th><th>Sonuç</th></tr>
+          <tr><td>ssh … 'id; echo SHELL_$((6*7))' &lt; out.tgz</td><td>Shell yok, komut yok sayıldı</td></tr>
+          <tr><td>ssh -N -R … (port yönlendirme)</td><td>Reddedildi</td></tr>
+          <tr><td>Testlerden sonra /demo/mikel-coffee/</td><td>200 + noindex + aynı build</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <p class="foot"><b>Bekliyor:</b> takım anahtarıyla elle deploy (anahtarı root ekler) ve ops/preprod2a4 kurulumu (root erişimi gerekiyor).</p>
+</body>
+</html>

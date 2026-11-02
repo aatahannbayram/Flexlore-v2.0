@@ -6,7 +6,7 @@
 
 - **Hedef:** yalnızca `/var/www/preprod2a4` (VPS `72.60.84.196`)
 - **Kapı:** `flexlore-deploy` kullanıcısı. Yalnızca anahtarla girer, shell almaz, sadece yayın scriptini çalıştırır.
-- **Süre:** 2 Kasım'daki ilk otomatik deploy, push'tan health check'e kadar 40 saniye sürdü.
+- **Süre:** 2 Kasım'daki ilk otomatik deploy 40 saniye, güvenlik testli ikinci çalışma 1 dakika 28 saniye sürdü.
 
 ## 15 saniyede akış
 
@@ -89,6 +89,19 @@ Bir adım hata verirse script durur, nedeni ekrana ve `/var/log/flexlore-deploy.
 ![Beş katman koruma](assets/ortak-deploy/katmanlar.png)
 
 > **Kurulum durumu (2 Kasım 2026):** Sunucuda şu an 2 Kasım 17:33'te kurulan ilk sürüm çalışıyor ve otomatik deploy onunla başarılı. Bu sürümün içeriği root erişimi olmadan incelenemedi. Yukarıdaki iki görseldeki davranış, [`ops/preprod2a4/`](../ops/preprod2a4/) altındaki gözden geçirilmiş sürüme aittir: arşiv yetkisiz kullanıcıyla açılır, boyut sınırı, demo sayfası kontrolü, macOS `._` temizliği, "kim yayınladı" logu ve sshd `ForceCommand` katmanı ekler. Docker'da Ubuntu 26.04 üzerinde test edildi, sunucuya henüz kurulmadı. Kurmak için aşağıdaki "Sunucu kurulumu" bölümü yeterli.
+
+## Doğrulama kaydı (2 Kasım 2026)
+
+![Doğrulama: Actions run 41472203941, health check ve güvenlik testi](assets/ortak-deploy/dogrulama.png)
+
+| Kontrol | Sonuç | Kaynak |
+| --- | --- | --- |
+| `main`'e push ile otomatik deploy | Başarılı, 1 dk 28 sn | [Actions run 41472203941](https://github.com/aatahannbayram/Flexlore-v2.0/actions/runs/41472203941) |
+| `curl -sI` ile `/` ve `/demo/mikel-coffee/` | HTTP 200, `X-Robots-Tag: noindex, nofollow` | Aynı run'ın health check'i ve elle curl |
+| Deploy kullanıcısıyla komut ve shell denemesi | Shell yok, komut yok sayıldı | Aynı run'ın güvenlik testi (CI anahtarı) |
+| Port yönlendirme denemesi | Reddedildi | Aynı run'ın güvenlik testi |
+| Takım anahtarıyla elle deploy | Yapılmadı: anahtarı eklemek root ister | Bekliyor |
+| `ops/preprod2a4` scriptleri | Gerçek build, boş, bozuk, eksik sayfa, `../`, aygıt dosyası, symlink, eşzamanlı deploy, shell, PTY ve yönlendirme denemeleri geçti | Docker, Ubuntu 26.04 |
 
 ## Takım anahtarı ekleme ve kaldırma
 
