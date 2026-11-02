@@ -52,3 +52,6 @@ video.grade,img.grade{filter:saturate(.78) contrast(1.08) brightness(.92) sepia(
 .rng::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#f5f5f7; box-shadow:0 0 0 4px rgba(255,255,255,.08); transition: transform .2s; }
 .rng::-moz-range-thumb { width:16px; height:16px; border:0; border-radius:50%; background:#f5f5f7; }
 .rng:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 4px rgba(255,106,26,.45); }
+.rng-cream{height:1px;background:linear-gradient(to right,#e9dcc6 var(--p,0%),rgba(233,220,198,.14) var(--p,0%))}
+.rng-cream::-webkit-slider-thumb{-webkit-appearance:none;width:11px;height:11px;border-radius:50%;background:#f4efe8;border:0;box-shadow:0 0 0 4px rgba(12,10,9,1)}
+.rng-cream::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:#f4efe8;border:0}

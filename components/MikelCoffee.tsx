@@ -9,7 +9,7 @@ import { SITE } from "./config";
 
 type L = "tr" | "en";
 const ease = [0.22, 1, 0.36, 1] as const;
-const O = "#f5580a";
+const O = "#c9b79c";
 const Rev = ({ children, d = 0, className = "" }: { children: React.ReactNode; d?: number; className?: string }) => (
   <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: .9, delay: d, ease }} className={className}>{children}</motion.div>);
 const t2 = (l: L, tr: string, en: string) => (l === "tr" ? tr : en);
@@ -109,35 +109,57 @@ function QuizScreen({ pick, setPick, l }: { pick: number | null; setPick: (n: nu
 }
 
 
+const MW = { gross: 33030, employer: 40874.63, hours: 225 }; // ÇSGB 2026, monthly; 225 h = 30 days × 7.5 h
 function Roi({ l }: { l: L }) {
-  const [v, setV] = useState({ br: 20, nb: 6, h: 16, c: 250, sv: 30, rm: 4, cc: 90, rr: 25 });
-  const F: [keyof typeof v, string, string, number, number, number, string][] = [
-    ["br", "Şube sayısı", "Branches", 1, 200, 1, ""],
-    ["nb", "Şube başına yılda yeni barista", "New baristas per branch / year", 1, 30, 1, ""],
-    ["h", "Yeni barista başına usta eğitim saati", "Lead training hours per new barista", 2, 60, 1, " sa"],
-    ["c", "Usta barista saat maliyeti", "Lead barista hourly cost", 50, 1000, 10, " ₺"],
-    ["sv", "Videoyla azalan eğitim saati (varsayım)", "Training hours saved by video (assumption)", 0, 70, 5, "%"],
-    ["rm", "Şube başına günlük yeniden yapılan içecek", "Remade drinks per branch / day", 0, 30, 1, ""],
-    ["cc", "Yeniden yapılan içeceğin maliyeti", "Cost of a remade drink", 10, 300, 5, " ₺"],
-    ["rr", "Standartla azalan yeniden yapım (varsayım)", "Remakes avoided by the standard (assumption)", 0, 70, 5, "%"],
+  const [v, setV] = useState({ br: 100, st: 6, to: 50, h: 24, sv: 30, mx: 1, rm: 3, cc: 60, rr: 25 });
+  const hr = (MW.employer / MW.hours) * v.mx;
+  type K = keyof typeof v;
+  const G: [string, string, [K, string, string, number, number, number, (x: number) => string][]][] = [
+    ["Ölçek", "Scale", [
+      ["br", "Şube sayısı", "Branches", 50, 300, 10, (x) => `${x}`],
+      ["st", "Şube başına ortalama çalışan", "Average staff per branch", 3, 12, 1, (x) => `${x}`],
+      ["to", "Yıllık yeni çalışan oranı", "Annual new-hire rate", 10, 120, 5, (x) => `%${x}`]]],
+    ["Eğitim", "Onboarding", [
+      ["h", "Yeni çalışan başına eğitim saati", "Training hours per new hire", 8, 80, 2, (x) => `${x} ${t2(l, "sa", "h")}`],
+      ["sv", "Video adımlarla azalan süre", "Time saved with video steps", 0, 60, 5, (x) => `%${x}`],
+      ["mx", "Saat maliyeti (asgari ücretin katı)", "Hourly cost (× minimum wage)", 1, 2.5, .1, (x) => `${x.toFixed(1)}×`]]],
+    ["Fire ve yeniden yapım", "Waste and remakes", [
+      ["rm", "Şube başına günlük yeniden yapılan içecek", "Remade drinks per branch / day", 0, 15, 1, (x) => `${x}`],
+      ["cc", "Yeniden yapılan içeceğin malzeme maliyeti", "Ingredient cost per remade drink", 20, 200, 5, (x) => `${x} ₺`],
+      ["rr", "Standartla azalan yeniden yapım", "Remakes avoided by the standard", 0, 60, 5, (x) => `%${x}`]]],
   ];
-  const hrs = v.br * v.nb * v.h * v.sv / 100, tr = hrs * v.c, rw = v.br * v.rm * 360 * v.rr / 100 * v.cc;
+  const hires = v.br * v.st * v.to / 100;
+  const hrs = hires * v.h * 2 * v.sv / 100; // trainee + trainer
+  const lab = hrs * hr, waste = v.br * v.rm * 360 * v.rr / 100 * v.cc;
   const fmt = (x: number) => Math.round(x).toLocaleString(l === "tr" ? "tr-TR" : "en-US");
-  return (<section className="relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent"><div className="mx-auto max-w-[1400px]">
-    <p className="eyebrow">06 · {t2(l, "Örnek getiri hesabı", "Example return estimate")}</p>
-    <h2 className="display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Kendi rakamlarınızla hesaplayın.", "Run it with your own numbers.")}</h2>
-    <p className="mt-5 max-w-[60ch] text-[15px] leading-[1.5] text-white/55">{t2(l, "Varsayılan değerler yalnızca örnek tahmindir; Mikel Coffee verisi ya da Flexlore taahhüdü değildir. Kaydırıcıları kendi şube, eğitim ve fire bilgilerinize göre ayarlayın. Gerçek rakamı pilotta birlikte ölçeriz.", "Defaults are example estimates only, not Mikel Coffee data or a Flexlore promise. Move the sliders to your own branch, training and remake figures. We measure the real number together in a pilot.")}</p>
-    <div className="mt-14 grid gap-16 md:grid-cols-12">
-      <div className="grid gap-x-12 gap-y-7 sm:grid-cols-2 md:col-span-7">{F.map(([k, a, b, mn, mx, st, u]) => <label key={k} className="block border-t border-[#e9dcc6]/[.08] pt-4">
-        <span className="flex items-baseline justify-between gap-3 text-[13px] text-white/60"><span>{t2(l, a, b)}</span><span className="mono tabular-nums text-[#f4efe8]">{u === " ₺" ? fmt(v[k]) + " ₺" : v[k] + u}</span></span>
-        <input type="range" min={mn} max={mx} step={st} value={v[k]} onChange={(e) => setV({ ...v, [k]: +e.target.value })} className="rng mt-4 w-full" style={{ ["--p" as string]: `${((v[k] - mn) / (mx - mn)) * 100}%` }} aria-label={t2(l, a, b)} /></label>)}</div>
-      <div className="md:col-span-5 md:col-start-8"><div className="border-l border-[#e9dcc6]/[.12] pl-8 md:pl-10">
-        {[[t2(l, "Ustaya geri dönen eğitim saati / yıl", "Lead training hours freed / year"), fmt(hrs) + t2(l, " sa", " h")], [t2(l, "Eğitim zamanı karşılığı / yıl", "Training time value / year"), fmt(tr) + " ₺"], [t2(l, "Önlenen yeniden yapım / yıl", "Remakes avoided / year"), fmt(rw) + " ₺"]].map(([a, b], k) => <div key={k} className={k ? "mt-8 border-t border-[#e9dcc6]/[.08] pt-8" : ""}><p className="text-[13px] text-white/50">{a}</p><p className="num mt-3 text-[clamp(2.4rem,4vw,3.6rem)] text-[#f4efe8]">{b}</p></div>)}
-        <div className="mt-8 border-t border-[#e9dcc6]/[.16] pt-8"><p className="text-[13px]" style={{ color: O }}>{t2(l, "Toplam örnek tahmin / yıl", "Total example estimate / year")}</p><p className="num mt-3 text-[clamp(3rem,5.5vw,5rem)] text-white">{fmt(tr + rw)} ₺</p></div>
-        <p className="mt-6 text-[12px] leading-[1.5] text-white/35">{t2(l, "Hesap: şube × yeni barista × eğitim saati × azalma × saat maliyeti; artı şube × günlük yeniden yapım × 360 gün × azalma × içecek maliyeti. Lisans bedeli, tutarlılık ve müşteri deneyimi etkisi dahil değildir.", "Formula: branches × new baristas × training hours × reduction × hourly cost; plus branches × daily remakes × 360 days × reduction × drink cost. Excludes licence cost and consistency or guest-experience effects.")}</p>
+  const rows: [string, string, string][] = [
+    [t2(l, "Yılda yeni çalışan", "New hires / year"), fmt(hires), t2(l, "şube × çalışan × oran", "branches × staff × rate")],
+    [t2(l, "Geri kazanılan eğitim saati", "Training hours recovered"), `${fmt(hrs)} ${t2(l, "sa", "h")}`, t2(l, "yeni çalışan × saat × 2 kişi × azalma", "hires × hours × 2 people × saving")],
+    [t2(l, "Eğitim zamanının karşılığı", "Value of training time"), `${fmt(lab)} ₺`, `${t2(l, "saat", "hours")} × ${fmt(hr)} ₺`],
+    [t2(l, "Önlenen yeniden yapım", "Remakes avoided"), `${fmt(waste)} ₺`, t2(l, "şube × günlük × 360 × azalma × maliyet", "branches × daily × 360 × saving × cost")],
+  ];
+  return (<section id="roi" className="relative px-6 py-24 md:px-10 md:py-32 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent"><div className="mx-auto max-w-[1400px]">
+    <div className="grid gap-10 md:grid-cols-12 md:items-end">
+      <div className="md:col-span-7"><p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">06 · {t2(l, "Örnek getiri çerçevesi", "Example return framework")}</p>
+        <h2 className="mt-5 max-w-[18ch] text-[clamp(2.2rem,4.4vw,4.2rem)] font-medium leading-[1.02] tracking-[-.035em] text-[#f4efe8]">{t2(l, "Yüz şubede, aynı standardın değeri.", "The value of one standard across a hundred branches.")}</h2></div>
+      <p className="text-[14.5px] leading-[1.6] text-[#f4efe8]/55 md:col-span-5">{t2(l, "Planlama varsayımlarıyla hazırlanmış bir çerçevedir. Mikel Coffee tarafından doğrulanmış veri, müşteri sonucu ya da Flexlore taahhüdü değildir. Lisans bedeli hesaba dahil değildir. Gerçek değerleri pilotta birlikte ölçeriz.", "A framework built on planning assumptions. It is not data confirmed by Mikel Coffee, a customer result or a Flexlore promise. No licence cost is included. We measure the real values together in a pilot.")}</p>
+    </div>
+    <div className="mt-20 grid gap-16 md:grid-cols-12">
+      <div className="md:col-span-6">{G.map(([ga, gb, fs]) => <div key={ga} className="mb-12 last:mb-0">
+        <p className="mono border-b border-[#e9dcc6]/[.14] pb-3 text-[10.5px] uppercase tracking-[.22em] text-[#f4efe8]/40">{t2(l, ga, gb)} · {t2(l, "planlama varsayımı", "planning assumption")}</p>
+        {fs.map(([k, a, b, mn, mx, st, f]) => <label key={k} className="block border-b border-[#e9dcc6]/[.06] py-4">
+          <span className="flex items-baseline justify-between gap-4 text-[13.5px] text-[#f4efe8]/65"><span>{t2(l, a, b)}</span><span className="tabular-nums text-[15px] text-[#f4efe8]">{f(v[k])}</span></span>
+          <input type="range" min={mn} max={mx} step={st} value={v[k]} onChange={(e) => setV({ ...v, [k]: +e.target.value })} className="rng rng-cream mt-3 w-full" style={{ ["--p" as string]: `${((v[k] - mn) / (mx - mn)) * 100}%` }} aria-label={t2(l, a, b)} /></label>)}
+      </div>)}</div>
+      <div className="md:col-span-5 md:col-start-8"><div className="md:sticky md:top-28">
+        <p className="mono border-b border-[#e9dcc6]/[.14] pb-3 text-[10.5px] uppercase tracking-[.22em] text-[#f4efe8]/40">{t2(l, "Yıllık örnek tahmin", "Annual example estimate")}</p>
+        {rows.map(([a, b, c]) => <div key={a} className="flex items-baseline justify-between gap-6 border-b border-[#e9dcc6]/[.06] py-5"><div><p className="text-[14px] text-[#f4efe8]/75">{a}</p><p className="mt-1 text-[11.5px] text-[#f4efe8]/35">{c}</p></div><p className="shrink-0 tabular-nums text-[20px] font-medium tracking-[-.02em] text-[#f4efe8]">{b}</p></div>)}
+        <div className="border-b border-[#e9dcc6]/[.14] py-8"><p className="text-[13px] text-[#c9b79c]">{t2(l, "Toplam örnek tahmin / yıl", "Total example estimate / year")}</p><p className="mt-3 tabular-nums text-[clamp(2.8rem,5vw,4.4rem)] font-medium leading-none tracking-[-.045em] text-[#f4efe8]">{fmt(lab + waste)} ₺</p></div>
+        <p className="mt-6 text-[11.5px] leading-[1.6] text-[#f4efe8]/35">{t2(l, `İşçilik bazı: 2026 asgari ücreti, brüt ${fmt(MW.gross)} ₺/ay, işverene maliyet (indirimsiz) ${fmt(MW.employer)} ₺/ay; 225 saat/ay ile ${fmt(MW.employer / MW.hours)} ₺/saat. Kaynak: T.C. Çalışma ve Sosyal Güvenlik Bakanlığı, Resmî Gazete 26.12.2025/33119. Kamuya açık referanstır, Mikel Coffee ücret verisi değildir. Eğitim saati, eğiten ve eğitilen için iki kez sayılır.`, `Labour basis: Turkey's 2026 minimum wage, gross ${fmt(MW.gross)} ₺/month, employer cost (no incentives) ${fmt(MW.employer)} ₺/month; at 225 h/month that is ${fmt(MW.employer / MW.hours)} ₺/h. Source: Turkish Ministry of Labour and Social Security, Official Gazette 26.12.2025/33119. A public reference, not Mikel Coffee wage data. Training hours count twice: trainer and trainee.`)}</p>
+        <a href={SITE.demo} className="mt-8 inline-flex items-center gap-2 border-b border-[#e9dcc6]/40 pb-1 text-[14px] text-[#f4efe8] transition hover:border-[#f4efe8]">{t2(l, "Bu çerçeveyi kendi verinizle doğrulayalım", "Validate this with your own data")} <Arr /></a>
       </div></div>
     </div>
-    <div className="mt-14"><a href={SITE.demo} className="btn-p">{t2(l, "Bu hesabı birlikte doğrulayalım", "Let's validate this together")} <Arr className="ml-1" /></a></div>
+    <p className="mt-24 border-t border-[#e9dcc6]/[.08] pt-6 text-[11.5px] text-[#f4efe8]/30">{t2(l, "Bu sayfa Mikel Coffee ekibi için Flexlore Inc. tarafından hazırlanmış bir demodur. Mikel Coffee'nin resmi bir yayını değildir; reçete adımları, ekran içerikleri ve hesaplamalar örnektir.", "This page is a demo prepared by Flexlore Inc. for the Mikel Coffee team. It is not an official Mikel Coffee publication; recipe steps, screen contents and calculations are examples.")}</p>
   </div></section>);
 }
 
@@ -164,7 +186,7 @@ export default function MikelCoffee() {
       <section className="relative h-svh overflow-hidden">
         <Video name="coffee" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0c0a09] via-[#0c0a09]/70 to-transparent" />
         <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[11vh] md:px-10">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .4 }} className="eyebrow">{t2(l, "Mikel Coffee için hazırlanmış demo · Kahve operasyonu", "Prepared for Mikel Coffee · Coffee operations")}</motion.p>
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .4 }} className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">{t2(l, "Mikel Coffee için hazırlanmış demo · Kahve operasyonu", "Prepared for Mikel Coffee · Coffee operations")}</motion.p>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .5, duration: 1, ease }} className="display mt-5 max-w-[13ch] text-[clamp(3rem,8.5vw,8.5rem)]">{t2(l, "Her franchise'ta, aynı Freddo.", "Every franchise, the same Freddo.")}</motion.h1>
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .9 }} className="mt-6 max-w-[52ch] text-[18px] leading-[1.4] text-white/75">{t2(l, "Usta baristanızın elini bir kez telefonla çekin. Flexlore onu adım adım video reçeteye, açılış listesine ve kısa quize çevirsin. Yeni barista tezgâhta izler, uygular, sorumlu kimin hazır olduğunu görür.", "Film your lead barista's hands once on a phone. Flexlore turns it into step-by-step video recipes, an opening checklist and a short quiz. New baristas watch at the counter, do it, and the lead sees who is ready.")}</motion.p>
           <div className="mt-8 flex flex-wrap gap-3"><a href="#recete" className="btn-p">{t2(l, "Simülasyonu izle", "See the simulation")} <Arr dir="d" className="ml-1" /></a><a href={SITE.demo} className="btn-g">{t2(l, "Kendi reçetenizle deneyelim", "Try it with your recipe")}</a></div>
@@ -173,7 +195,7 @@ export default function MikelCoffee() {
 
       {/* problem */}
       <section className={sec}><div className="mx-auto max-w-[1400px]">
-        <Rev><p className="eyebrow">{t2(l, "Tezgâhta olan", "What happens at the bar")}</p><h2 className="display mt-4 max-w-[18ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Reçete kâğıtta aynı. Fincan şubeden şubeye değişiyor.", "The recipe is the same on paper. The cup changes branch to branch.")}</h2></Rev>
+        <Rev><p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">{t2(l, "Tezgâhta olan", "What happens at the bar")}</p><h2 className="display mt-4 max-w-[18ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Reçete kâğıtta aynı. Fincan şubeden şubeye değişiyor.", "The recipe is the same on paper. The cup changes branch to branch.")}</h2></Rev>
         <div className="mt-14 grid border-t border-[#e9dcc6]/[.09] md:grid-cols-3">{[
           [t2(l, "Yoğun saatte yeni barista", "A new barista at rush hour"), t2(l, "Gösterecek kimse yok; reçeteyi duvardaki çıktıdan okumaya çalışıyor.", "Nobody free to show them; they try to read the recipe off a printout.")],
           [t2(l, "Usta tek kişi", "One lead barista"), t2(l, "Doğru süt dokusu, doğru döküm, doğru temizlik onun elinde. İzinde olduğunda standart kayıyor.", "The right foam, the right pour, the right clean live in their hands. On their day off the standard drifts.")],
@@ -184,7 +206,7 @@ export default function MikelCoffee() {
       {/* recipe simulator */}
       <section id="recete" className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
         <div className="md:col-span-6">
-          <p className="eyebrow">01 · {t2(l, "İçecek reçeteleri, video adımlar", "Drink recipes as video steps")}</p>
+          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">01 · {t2(l, "İçecek reçeteleri, video adımlar", "Drink recipes as video steps")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Barista gözünden, adım adım.", "Through the barista's eyes, step by step.")}</h2>
           <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Bir içecek seçin. Telefon, yeni bir baristanın tezgâhta gördüğünü gösterir. Adımlar örnektir; gerçek demoda sizin reçeteniz ve ölçüleriniz kullanılır.", "Pick a drink. The phone shows what a new barista sees at the counter. Steps are examples; in a real demo we use your recipe and measures.")}</p>
           <div className="mt-8 flex flex-wrap gap-2">{DRINKS.map((x, k) => <button key={x.k} onClick={() => { setD(k); setI(0); setPlay(true); }} aria-pressed={d === k} className={`rounded-full px-4 py-2 text-[14px] font-medium ring-1 transition ${d === k ? "bg-white text-black ring-white" : "text-white/75 ring-white/20 hover:ring-white/50"}`}>{t2(l, x.tr, x.en)}</button>)}</div>
@@ -199,7 +221,7 @@ export default function MikelCoffee() {
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
         <div className="order-2 mx-auto w-[min(78vw,330px)] md:order-1 md:col-span-5"><Device label={t2(l, "Kahve istasyonu açılış listesi", "Coffee station opening checklist")}><OpenScreen n={n} l={l} /></Device></div>
         <div className="order-1 md:order-2 md:col-span-6 md:col-start-7">
-          <p className="eyebrow">02 · {t2(l, "Vardiya açılışı", "Shift opening")}</p>
+          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">02 · {t2(l, "Vardiya açılışı", "Shift opening")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Kepenk açılmadan istasyon hazır.", "The station is ready before the shutters open.")}</h2>
           <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Açılışı yapan kim olursa olsun, aynı sıra. Her maddenin arkasında ustanın 20 saniyelik videosu var; takılan kişi dokunur, izler, devam eder.", "Whoever opens, the same order. Behind each item is a short clip from your lead; whoever gets stuck taps, watches, carries on.")}</p>
           <ul className="mt-8 grid gap-x-8 gap-y-3 text-[15px] text-white/75 sm:grid-cols-2">{OPEN.map((x) => <li key={x[0]} className="flex gap-2.5"><I.check size={18} className="mt-0.5 shrink-0 text-white/40" />{t2(l, x[0], x[1])}</li>)}</ul>
@@ -209,7 +231,7 @@ export default function MikelCoffee() {
       {/* allergen / hygiene */}
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-start">
         <div className="md:col-span-6">
-          <p className="eyebrow">03 · {t2(l, "Alerjen ve hijyen", "Allergen and hygiene")}</p>
+          <p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">03 · {t2(l, "Alerjen ve hijyen", "Allergen and hygiene")}</p>
           <h2 className="display mt-4 text-[clamp(2.4rem,4.8vw,4.6rem)]">{t2(l, "Müşteri sorduğunda herkes aynı cevabı verir.", "When a guest asks, everyone gives the same answer.")}</h2>
           <div className="mt-10 ">{ALLERGEN.map(([a, b, c, e], k) => <Rev key={a} d={k * .05} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-[#e9dcc6]/[.08] py-5"><span className="mono pt-1 text-[11px] text-white/35">0{k + 1}</span><div><h3 className="text-[19px] font-semibold tracking-tight">{t2(l, a, b)}</h3><p className="mt-1 text-[15px] leading-[1.45] text-white/60">{t2(l, c, e)}</p></div></Rev>)}</div>
           <p className="mt-5 text-[13px] text-white/40">{t2(l, "İçerik ve alerjen bilgisi sizin onaylı listenizden gelir; Flexlore onu tezgâhta gösterilebilir hale getirir.", "Ingredient and allergen facts come from your approved list; Flexlore makes them showable at the counter.")}</p>
@@ -220,7 +242,7 @@ export default function MikelCoffee() {
 
       {/* master-apprentice */}
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto max-w-[1400px]">
-        <Rev><p className="eyebrow">04 · {t2(l, "Usta–çırak", "Master–apprentice")}</p><h2 className="display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Ustanın eli, her şubede.", "Your lead's hands, in every branch.")}</h2></Rev>
+        <Rev><p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">04 · {t2(l, "Usta–çırak", "Master–apprentice")}</p><h2 className="display mt-4 max-w-[16ch] text-[clamp(2.4rem,5vw,5rem)]">{t2(l, "Ustanın eli, her şubede.", "Your lead's hands, in every branch.")}</h2></Rev>
         <ol className="mt-16 grid gap-x-10 gap-y-12 md:grid-cols-4">{MASTER.map(([a, b, c, e], k) => <Rev key={a} d={k * .08}><li className="flex h-full flex-col border-t border-[#e9dcc6]/[.14] pt-7 pr-4">
           <span className="grid h-10 w-10 place-items-center rounded-full text-white/80 ring-1 ring-[#e9dcc6]/20">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.qr key="c" size={20} />, <I.ready key="d" size={20} />][k]}</span>
           <span className="mono mt-8 text-[11px]" style={{ color: O }}>0{k + 1}</span><h3 className="mt-2 text-[20px] font-semibold leading-tight tracking-tight">{t2(l, a, b)}</h3><p className="mt-2 text-[14.5px] leading-[1.45] text-white/60">{t2(l, c, e)}</p></li></Rev>)}</ol>
@@ -228,7 +250,7 @@ export default function MikelCoffee() {
 
       {/* manager view */}
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-12 md:grid-cols-12 md:items-center">
-        <div className="md:col-span-5"><p className="eyebrow">05 · {t2(l, "Bölge ve şube sorumlusu", "Area and branch leads")}</p>
+        <div className="md:col-span-5"><p className="mono text-[11px] uppercase tracking-[.22em] text-[#c9b79c]">05 · {t2(l, "Bölge ve şube sorumlusu", "Area and branch leads")}</p>
           <h2 className="display mt-4 text-[clamp(2.2rem,4.2vw,4rem)]">{t2(l, "Kim hangi içeceğe hazır, tek ekranda.", "Who is ready for which drink, on one screen.")}</h2>
           <p className="mt-5 max-w-[44ch] text-[16px] leading-[1.5] text-white/60">{t2(l, "Web panelinde reçeteleri şubelere atayın, quiz sonuçlarını görün, yeni reçeteyi tek seferde tüm kahve noktalarına gönderin.", "In the web panel, assign recipes to branches, see quiz results and send a new recipe to every coffee point at once.")}</p></div>
         <div className="md:col-span-7"><Rev className="overflow-hidden rounded-[6px] bg-[#120e0c]/80 ring-[.5px] ring-[#e9dcc6]/[.12]">
@@ -243,7 +265,6 @@ export default function MikelCoffee() {
         <h2 className="display max-w-[14ch] text-[clamp(3rem,8vw,8rem)]">{t2(l, "Bir reçeteyle başlayalım.", "Let's start with one recipe.")}</h2>
         <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.4] text-white/65">{t2(l, "Bir kahve noktanızdan tek bir içeceği birlikte çekelim. Aynı gün adımlar, açılış listesi ve quiz hazır olsun; ekibiniz kendi tezgâhında denesin.", "Let's film one drink at one of your coffee points together. Same day: steps, opening checklist and quiz ready for your team to try at their own bar.")}</p>
         <div className="mt-8 flex flex-wrap items-center gap-3"><a href={SITE.demo} className="btn-p">{t2(l, "Görüşme planla", "Book a call")} <Arr className="ml-1" /></a><Link href="/" className="btn-g">{t2(l, "Flexlore'u tanı", "About Flexlore")}</Link></div>
-        <p className="mt-16 border-t border-[#e9dcc6]/[.08] pt-6 text-[12px] text-white/35">{t2(l, "Bu sayfa Mikel Coffee ekibi için hazırlanmış bir demodur. Mikel Coffee'nin resmi bir yayını değildir; reçete adımları ve ekran içerikleri örnektir.", "This page is a demo prepared for the Mikel Coffee team. It is not an official Mikel Coffee publication; recipe steps and screen contents are examples.")}</p>
       </div></section>
       <Roi l={l} />
     </main>
