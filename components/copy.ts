@@ -1,7 +1,7 @@
 export type Lang = "en" | "tr";
 export type C = {
-  skip: string; nav: string[]; navP: string; menu: string; close: string; heroK: string; heroH: string; heroMicro: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
-  hero: string; heroSub: string; heroLine: string;
+  skip: string; nav: string[]; navP: string; menu: string; close: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
+  hero: string; heroLine: string;
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
   steps: { h: string; p: string }[];
@@ -13,7 +13,7 @@ export type C = {
 export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["How it works", "Your business", "Cases", "AI"], navP: "Pricing", menu: "Menu", close: "Close",
-    heroK: "Step-by-step video SOPs · AI quizzes · Readiness", heroH: "Every job, through the eyes of the person who does it.", heroMicro: "Kitchens, lines, hotels, clinics, job sites, service bays. If it's done by hand, it works here.", h1: [{ t: "The World's Easiest Way to " }, { t: "Create Standard Work Instructions.", o: true }], heroLine: "Film the real job on a phone. Flexlore turns it into step-by-step video instructions and a quiz, then shows you who's ready. Fewer mistakes. Faster onboarding. Know-how that stays.",
+    h1: [{ t: "The World's Easiest Way to " }, { t: "Create Standard Work Instructions.", o: true }], heroLine: "Film the real job on a phone. Flexlore turns it into step-by-step video instructions and a quiz, then shows you who's ready. Fewer mistakes. Faster onboarding. Know-how that stays.",
     alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
@@ -24,7 +24,6 @@ export const copy: Record<Lang, C> = {
       { q: "How do I see if training worked?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by team, shift and location." },
     ], cta: "Book a demo", langLabel: "Language",
     hero: "Step by step.",
-    heroSub: "See the job exactly as the operator does it. Then do it right.",
     stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "It leaves when they do. New people copy whoever is on shift, and a step learned by guessing comes back as scrap, rework, returns, remakes and callbacks. The binder is on a shelf. The job is on the floor. Flexlore puts the job on every phone.",
     pK: "Follow one job", pH: ["Film it.", "Approve it.", "Assign it."],
     pP: "Record the task on a phone. Flexlore splits it into steps, writes the instructions and drafts a quiz. You check it and send it out.",
@@ -49,7 +48,7 @@ export const copy: Record<Lang, C> = {
   },
   tr: {
     skip: "İçeriğe geç", nav: ["Nasıl çalışır", "Sizin işiniz", "Örnekler", "Yapay zekâ"], navP: "Fiyatlar", menu: "Menü", close: "Kapat",
-    heroK: "Adım adım video SOP · Yapay zekâ quiz · Hazırlık", heroH: "Her iş, onu yapan kişinin gözünden.", heroMicro: "Mutfaklar, hatlar, oteller, klinikler, şantiyeler, servisler. Elle yapılan her iş için.", h1: [{ t: "Standart iş talimatı oluşturmanın", o: true }, { t: " dünyadaki en kolay yolu." }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
+    h1: [{ t: "Standart iş talimatı oluşturmanın", o: true }, { t: " dünyadaki en kolay yolu." }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
     alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [
@@ -60,7 +59,6 @@ export const copy: Record<Lang, C> = {
       { q: "Eğitimin işe yaradığını nasıl görürüm?", a: "Flexlore kimin izlediğini, işi kimin tamamladığını ve quizi kimin geçtiğini ekip, vardiya ve şube bazında gösterir." },
     ], cta: "Demo isteyin", langLabel: "Dil",
     hero: "Adım adım.",
-    heroSub: "İşi, operatörün gördüğü gibi görün. Sonra doğru yapın.",
     stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
     pK: "Bir işi takip edin", pH: ["Çek.", "Onayla.", "Ata."],
     pP: "Görevi telefonla kaydedin. Flexlore adımlara böler, talimatları yazar ve bir quiz hazırlar. Siz kontrol edip gönderirsiniz.",

@@ -89,7 +89,11 @@ function Hero({ t }: { t: C }) {
   const mo = useTransform(p, [0.45, 0.75], [1, 0]);
   const so = useTransform(p, [0.7, 0.9], [0, 1]);
   const sy = useTransform(p, [0.7, 0.9], [40, 0]);
-  const io = useTransform(p, [0, 0.12], [1, 0]);
+  // Giriş yalnızca video ve "Step by step." ile açılır; başlık, açıklama ve butonlar maske açılınca gelir.
+  const [shown, setShown] = useState(false);
+  useEffect(() => so.on("change", (v) => setShown(v > 0.5)), [so]);
+  // Klavyeyle gizli butona gelinirse bölümü kaydırıp görünür yap.
+  const reveal = () => { const el = ref.current; if (shown || !el) return; const top = el.getBoundingClientRect().top + window.scrollY; window.scrollTo({ top: top + (el.offsetHeight - window.innerHeight) * 0.92 }); };
   const words = t.hero.split(" ");
   return (
     <section ref={ref} className="relative h-[200vh]" aria-label={t.hero}>
@@ -107,13 +111,10 @@ function Hero({ t }: { t: C }) {
           <motion.p style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
-        <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-7 md:px-10">
-          <div><h1 className="max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)] [text-wrap:balance]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1><p className="mt-3 max-w-[40ch] text-[clamp(1.05rem,1.5vw,1.35rem)] font-semibold leading-[1.2] tracking-[-.01em] text-white/90 [text-shadow:0_2px_20px_rgba(0,0,0,.6)] [text-wrap:balance]">{t.heroH}</p><p className="mt-2 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
-          <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll <Arr dir="d" className="ml-1" /></p>
-        </motion.div>
-        <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
-          <p className="mono mb-6 text-[11px] uppercase tracking-[.2em] text-flame">{t.heroK}</p>
-          <p className="display max-w-[16ch] text-[clamp(2.6rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]"><K text={t.heroSub} accent={-1} /></p>
+        <motion.div style={{ opacity: so, y: sy }} onFocusCapture={reveal} className={`absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[10vh] md:px-10 ${shown ? "" : "pointer-events-none"}`}>
+          <h1 className="display max-w-[17ch] text-[clamp(2.5rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
+          <p className="mt-5 max-w-[50ch] text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.4] text-white/80 [text-wrap:pretty]">{t.heroLine}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div>
         </motion.div>
       </div>
     </section>
@@ -300,7 +301,7 @@ function End({ t }: { t: C }) {
   );
 }
 
-function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => void }) {
+function Nav({ t, lang, setLang, paused, setPaused, motionOk }: { t: C; lang: Lang; setLang: (l: Lang) => void; paused: boolean; setPaused: (p: boolean) => void; motionOk: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
@@ -317,6 +318,13 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
           {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-white" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}{l}
         </button>))}
     </div>);
+  // 16: döngülü videolar için durdurma düğmesi; girişi kalabalıklaştırmasın diye menü çubuğunda küçük bir ikon.
+  const pauseLabel = paused ? (lang === "tr" ? "Videoları oynat" : "Play videos") : (lang === "tr" ? "Videoları durdur" : "Pause videos");
+  const PauseBtn = motionOk && (
+    <button type="button" onClick={() => setPaused(!paused)} aria-label={pauseLabel} title={pauseLabel}
+      className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/70 ring-1 ring-white/15 transition hover:text-white hover:ring-white/40">
+      {paused ? <Play size={11} fill="currentColor" strokeWidth={0} className="ml-px" /> : <Pause size={11} fill="currentColor" strokeWidth={0} />}
+    </button>);
   return (
     <>
       <motion.header initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
@@ -330,6 +338,7 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
             {links.map((l) => <li key={l.h}><a href={l.h} className="link-u hover:text-white">{l.n}</a></li>)}
           </ul>
           <div className="flex items-center gap-2">
+            {PauseBtn}
             <div className="hidden sm:block">{Lang2}</div>
             <Magnetic href={SITE.demo} className="btn-p inline-flex whitespace-nowrap">{t.cta}</Magnetic>
             <button ref={menuBtn} onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-2 py-1.5 text-[13px] text-white/85 hover:text-white md:hidden">{t.menu}</button>
@@ -353,17 +362,6 @@ function Nav({ t, lang, setLang }: { t: C; lang: Lang; setLang: (l: Lang) => voi
   );
 }
 
-// 16: döngülü videolar için görünür durdurma düğmesi. Masaüstünde alt ortada, mobilde başlığın altında sağda.
-function PauseVideos({ paused, setPaused, lang }: { paused: boolean; setPaused: (p: boolean) => void; lang: Lang }) {
-  const tr = lang === "tr";
-  const label = paused ? (tr ? "Videoları oynat" : "Play videos") : (tr ? "Videoları durdur" : "Pause videos");
-  return (
-    <button type="button" onClick={() => setPaused(!paused)} aria-label={label}
-      className="fixed right-3 top-[76px] z-40 inline-flex h-8 items-center gap-1.5 rounded-full bg-[rgba(20,20,22,.66)] px-2.5 text-[12px] text-white/85 ring-1 ring-white/15 backdrop-blur-xl transition hover:text-white hover:ring-white/40 md:bottom-6 md:left-1/2 md:right-auto md:top-auto md:-translate-x-1/2 md:px-3">
-      {paused ? <Play size={12} fill="currentColor" strokeWidth={0} /> : <Pause size={12} fill="currentColor" strokeWidth={0} />}<span className="hidden md:inline">{label}</span>
-    </button>);
-}
-
 export default function Site() {
   const [lang, setLang] = useState<Lang>("en");
   const [paused, setPaused] = useState(false);
@@ -374,8 +372,7 @@ export default function Site() {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
-      <Nav t={t} lang={lang} setLang={setLang} />
-      {!reduce && <PauseVideos paused={paused} setPaused={setPaused} lang={lang} />}
+      <Nav t={t} lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
       <main id="main">
         <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser /><Faq t={t} /><End t={t} />
