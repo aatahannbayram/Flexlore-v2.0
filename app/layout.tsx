@@ -11,7 +11,7 @@ const description = seo["/"].d;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title, description,
-  keywords: ["video SOP", "job simulation", "work instruction simulation", "standard work", "frontline training", "AI quiz", "work instructions", "employee onboarding"],
+  keywords: ["video SOP", "video work instructions", "standard work instructions", "standard work", "frontline training", "AI quiz", "work instructions", "employee onboarding"],
   alternates: { canonical: "/" },
   robots, // driven by SITE.noindex in components/config.ts
   openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 526, height: 526, alt: "Flexlore video SOPs, step by step" }] },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#000000" };
 const ld = [
   { "@context": "https://schema.org", "@type": "Organization", "@id": SITE.url + "/#org", name: "Flexlore", legalName: "Flexlore Inc.", url: SITE.url, logo: SITE.url + "/brand/logo.png", email: "hello@flexlore.com",
-    founder: { "@type": "Person", name: "Ata Han Bayram", jobTitle: "Co-Founder & CEO" },
+    founder: { "@type": "Person", name: "Ata Han Bayram", jobTitle: "Co-founder and CEO" },
     sameAs: [SITE.social.linkedin, SITE.social.instagram, SITE.social.youtube, SITE.appStore, SITE.googlePlay] },
   { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Flexlore", applicationCategory: "BusinessApplication", operatingSystem: "iOS, Android, Web",
     description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },

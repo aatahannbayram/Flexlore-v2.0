@@ -13,7 +13,7 @@ export const PRICING_FAQ = [
   { q: "Who checks what the AI writes?", a: "You do. Steps, instructions and quizzes are drafts until your team approves them." },
   { q: "Does it work across several locations?", a: "Yes. Assign jobs and see readiness by team, shift and location. Control who can view, edit or complete each job by role and location." },
   { q: "Can it carry our branding?", a: "Custom branding is coming soon. Ask us on the demo call how it will fit your plan." },
-  { q: "Can we connect Flexlore to our own tools?", a: "An API, a Power BI connection and an MCP server for AI assistants are coming soon. Tell us what you would connect and we will keep you posted." },
+  { q: "Can we connect Flexlore to our own tools?", a: "An API, connections to the BI tools you already use and an MCP server for AI assistants are coming soon. Tell us what you would connect and we will keep you posted." },
   { q: "How does billing and cancellation work?", a: "See our Subscription & Billing policy, or ask us on the demo call." },
   { q: "Where can I read about data and security?", a: "Our Privacy Policy, Data Processing, Sub-processors and Security pages cover it. Still have questions? Ask on the demo call." },
 ];
@@ -27,7 +27,7 @@ export default function Pricing() {
     <main id="main" className="px-6 pt-36 md:px-10">
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">Pricing</p>
-        <h1 className="display mt-4 max-w-[15ch] text-[clamp(3rem,8vw,7.5rem)]">Pricing that fits your floor.<span className="sr-only"> Video SOP and job simulation software, priced per location.</span></h1>
+        <h1 className="display mt-4 max-w-[15ch] text-[clamp(3rem,8vw,7.5rem)]">Pricing that fits your floor.</h1>
         <p className="mt-4 max-w-xl text-lg leading-[1.4] text-white/65">Start with one job. Grow to every team, shift and site. Priced per location, with unlimited operators.</p>
 
         <ul className="mt-14 grid gap-px overflow-hidden rounded-2xl bg-white/10 md:grid-cols-3" aria-label="Plans">

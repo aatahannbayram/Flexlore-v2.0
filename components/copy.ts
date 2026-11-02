@@ -1,6 +1,6 @@
 export type Lang = "en" | "tr";
 export type C = {
-  skip: string; nav: string[]; navP: string; menu: string; close: string; heroK: string; heroH: string; heroMicro: string; h1seo: string; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
+  skip: string; nav: string[]; navP: string; menu: string; close: string; heroK: string; heroH: string; heroMicro: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
   hero: string; heroSub: string; heroLine: string;
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
@@ -13,7 +13,7 @@ export type C = {
 export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["How it works", "Your business", "Cases", "AI"], navP: "Pricing", menu: "Menu", close: "Close",
-    heroK: "Step-by-step video SOPs · AI quizzes · Readiness", heroH: "Every job, through the eyes of the person who does it.", heroMicro: "Kitchens, lines, hotels, clinics, job sites, service bays. If it's done by hand, it works here.", h1seo: "Flexlore is job simulation software: video SOPs and work instruction simulation, step by step, from the point of view of the operator who does the job.", heroLine: "Film the real job on a phone. Flexlore turns it into step-by-step video instructions and a quiz, then shows you who's ready. Fewer mistakes. Faster onboarding. Know-how that stays.",
+    heroK: "Step-by-step video SOPs · AI quizzes · Readiness", heroH: "Every job, through the eyes of the person who does it.", heroMicro: "Kitchens, lines, hotels, clinics, job sites, service bays. If it's done by hand, it works here.", h1: [{ t: "The World's Easiest Way to " }, { t: "Create Standard Work Instructions.", o: true }], heroLine: "Film the real job on a phone. Flexlore turns it into step-by-step video instructions and a quiz, then shows you who's ready. Fewer mistakes. Faster onboarding. Know-how that stays.",
     alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
@@ -49,7 +49,7 @@ export const copy: Record<Lang, C> = {
   },
   tr: {
     skip: "İçeriğe geç", nav: ["Nasıl çalışır", "Sizin işiniz", "Örnekler", "Yapay zekâ"], navP: "Fiyatlar", menu: "Menü", close: "Kapat",
-    heroK: "Adım adım video SOP · Yapay zekâ quiz · Hazırlık", heroH: "Her iş, onu yapan kişinin gözünden.", heroMicro: "Mutfaklar, hatlar, oteller, klinikler, şantiyeler, servisler. Elle yapılan her iş için.", h1seo: "Flexlore bir işin nasıl yapıldığını, operatörün gözünden adım adım simüle eder.", heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
+    heroK: "Adım adım video SOP · Yapay zekâ quiz · Hazırlık", heroH: "Her iş, onu yapan kişinin gözünden.", heroMicro: "Mutfaklar, hatlar, oteller, klinikler, şantiyeler, servisler. Elle yapılan her iş için.", h1: [{ t: "Standart iş talimatı oluşturmanın", o: true }, { t: " dünyadaki en kolay yolu." }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
     alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [

@@ -32,7 +32,7 @@ export const PLANS: Plan[] = [
   { id: "multi", name: "Multi-location", for: "Several sites that must work to one standard.", price: null, checkout: null, cta: "Book a demo", featured: true,
     points: ["Everything in Single location", "Readiness by team, shift and location", "Role- and location-based access", "Notices to teams", "Same job sent to every site at once"] },
   { id: "enterprise", name: "Enterprise", for: "Franchises, plants and networks of sites.", price: null, checkout: null, cta: "Contact sales",
-    points: ["Everything in Multi-location", "Rollout support across sites", "Custom branding (coming soon)", "API, Power BI and MCP (coming soon)"] },
+    points: ["Everything in Multi-location", "Rollout support across sites", "Custom branding (coming soon)", "API, BI tools and AI assistants (coming soon)"] },
 ];
 export const COMPARE: { f: string; v: (boolean | string)[] }[] = [
   { f: "Operators per location", v: ["Unlimited", "Unlimited", "Unlimited"] },

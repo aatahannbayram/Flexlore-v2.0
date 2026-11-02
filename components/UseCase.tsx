@@ -4,11 +4,11 @@ import { Footer } from "./Sections";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
 
-export type UC = { slug: string; crumb: string; k: string; h1: string; seoH: string; lede: string; img: string; alt: string; quote: string;
+export type UC = { slug: string; crumb: string; k: string; h1: string; lede: string; img: string; alt: string; quote: string;
   problem: [string, string][]; steps: [string, string][]; out: string[]; faq: { q: string; a: string }[]; related: string };
 export const USE_CASES: UC[] = [
   { slug: "master-apprentice-skills-transfer", crumb: "Master-apprentice skills transfer", k: "Use case · Master → apprentice",
-    h1: "Master-apprentice skills transfer, on video, step by step.", seoH: "Video SOPs and job simulation for master-apprentice knowledge transfer.",
+    h1: "Master-apprentice skills transfer, on video, step by step.",
     lede: "Your master records the job once, the way it has always been done right. Apprentices replay any step as often as they need, pass a quiz and get signed off. The know-how no longer depends on being on the same shift.",
     img: "/photos/operators.webp", alt: "Two technicians working side by side", quote: "\u201cWatch how I do it. Then do it again.\u201d",
     problem: [["Learned by shadowing", "Apprentices copy whoever is on shift. Every handover bends the standard a little."], ["The master is a bottleneck", "One person can only show one apprentice at a time, and only when they are both on shift."], ["Gone on their day off", "When the master is on leave or retires, setups drift and small errors repeat."]],
@@ -17,7 +17,7 @@ export const USE_CASES: UC[] = [
     faq: [{ q: "Does the master need to write anything?", a: "No. The master films the job. Flexlore drafts the steps, the instructions and the quiz; the master reviews and approves them." }, { q: "Can the apprentice rewatch a single step?", a: "Yes. Every step is its own clip, so the apprentice can replay exactly the step they are on." }, { q: "How do we know the apprentice is ready?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by person, team, shift and location." }],
     related: "installation-training-on-site-orientation" },
   { slug: "installation-training-on-site-orientation", crumb: "Installation training and on-site orientation", k: "Use case · Installation at a customer site",
-    h1: "Installation training that stays after your team leaves.", seoH: "Video SOPs and work instruction simulation for on-site orientation after installation.",
+    h1: "Installation training that stays after your team leaves.",
     lede: "Your team installs a machine at a customer site, runs the orientation and drives away. With Flexlore, the installer films start-up, cleaning and daily checks on that exact machine, so every step is still there for the next shift, months later.",
     img: "/photos/after-install.webp", alt: "Site office with jackets and an orange hard hat after an installation", quote: "\u201cThe installers left. The know-how stayed.\u201d",
     problem: [["Orientation is a one-day event", "The customer's team sees it once, on install day. New shifts never do."], ["Know-how leaves with the installers", "What the installer explained lives in their head and drives away with them."], ["Questions become support calls", "Every forgotten step turns into a call, a ticket or a site visit."]],
@@ -38,7 +38,7 @@ export default function UseCase({ c }: { c: UC }) {
         <div className="relative mx-auto w-full max-w-[1400px]">
           <nav aria-label="Breadcrumb" className="mono text-[11px] uppercase tracking-[.18em] text-white/55"><Link href="/" className="link-u hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
           <p className="mono mt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-flame" />{c.k}</p>
-          <h1 className="display mt-4 max-w-[17ch] text-[clamp(2.8rem,7vw,6.8rem)]">{c.h1}<span className="sr-only"> {c.seoH}</span></h1>
+          <h1 className="display mt-4 max-w-[17ch] text-[clamp(2.8rem,7vw,6.8rem)]">{c.h1}</h1>
           <p className="mt-5 max-w-[58ch] text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.4] text-white/80">{c.lede}</p>
           <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
         </div>

@@ -84,7 +84,7 @@ export default function SectorPage({ i }: { i: number }) {
             <div className="mt-10 grid gap-8 border-t border-white/15 md:grid-cols-3">
               {s.how.map((h, k) => (
                 <Rev key={h.k} d={k * 0.12} className="bg-black p-0 md:pr-10">
-                  <div className="py-10 md:py-4"><p className="mono text-[12px] uppercase tracking-[.18em] text-white/45">0{k + 1} — {h.k}</p>
+                  <div className="py-10 md:py-4"><p className="mono text-[12px] uppercase tracking-[.18em] text-white/45">0{k + 1}. {h.k}</p>
                     <h3 className="display mt-5 text-[clamp(2rem,3.2vw,3rem)]"><K text={h.h} /></h3>
                     <p className="mt-5 max-w-sm text-lg leading-snug text-white/70">{h.p}</p></div>
                 </Rev>))}

@@ -57,7 +57,7 @@ export default function Cases({ lang }: { lang: "en" | "tr" }) {
     <section id="cases" aria-label={t.k} className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-4 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7"><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">03 — {t.k}</p>
+          <div className="md:col-span-7"><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.k}</p>
             <h2 className="display mt-3 text-[clamp(2.4rem,5vw,4.6rem)]">{t.h}</h2></div>
           <p className="max-w-md text-[17px] leading-[1.3] text-white/65 md:col-span-5">{t.p}</p>
         </div>

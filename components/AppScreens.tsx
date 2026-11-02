@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ChevronsUpDown, MoreHorizontal, ListOrdered, Maximize2, Undo2, Redo2, Play, Pause, Sticker, Type, Eye, EyeOff, Check, CircleCheck, Info, Scissors } from "lucide-react";
 /* Design tokens (phone, 320pt design width) */
-const O = "#f5580a";
+const O = "#EC6726";
 const S0 = "#0b0b0c", S1 = "#161618", S2 = "#1f1f22";
 const HL = "rgba(255,255,255,.07)";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -109,7 +109,7 @@ export function RecordScreen({ active }: { active: boolean }) {
       <span className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full bg-[#e5484d] px-2 py-1 text-[10px] font-semibold tabular-nums text-white shadow-[0_2px_10px_rgba(229,72,77,.4)]"><motion.i animate={active ? { opacity: [1, .25, 1] } : {}} transition={{ repeat: Infinity, duration: 1.2 }} className="h-1.5 w-1.5 rounded-full bg-white" />REC {mm(t)}</span>
       <span className="absolute bottom-[44px] right-3 flex flex-col items-end gap-1.5">
         <span className="rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[11px] font-medium text-white backdrop-blur">Cancel Step</span>
-        <motion.span animate={active ? { scale: [1, 1.04, 1] } : {}} transition={{ repeat: Infinity, duration: 1.8 }} className="rounded-full px-3 py-1.5 text-[11px] font-semibold text-white shadow-[0_4px_14px_rgba(245,88,10,.45),inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: O }}>Complete Step</motion.span></span>
+        <motion.span animate={active ? { scale: [1, 1.04, 1] } : {}} transition={{ repeat: Infinity, duration: 1.8 }} className="rounded-full px-3 py-1.5 text-[11px] font-semibold text-white shadow-[0_4px_14px_rgba(236,103,38,.45),inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: O }}>Complete Step</motion.span></span>
       <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 text-[10px] tabular-nums text-white/80"><span>{mm(t)}</span><Bar v={t / 600} h={3} /><span className="text-white/50">10:00</span><Maximize2 {...ic} size={12} /></div>
     </div>
     <div className="flex items-center justify-between px-6 py-2.5 text-white/80" style={{ borderBottom: `1px solid ${HL}` }}>
@@ -140,7 +140,7 @@ export function SopScreen({ active }: { active: boolean }) {
     <div className={`mx-3 overflow-hidden ${card}`} style={{ background: S1 }}>{SOP.map((x, i) => { const ok = i < done, open = i === done; return (
       <div key={x} style={{ borderTop: i ? `1px solid ${HL}` : undefined }} className={open ? "bg-white/[.025]" : ""}>
         <div className="flex h-[40px] items-center gap-2.5 px-3 text-[13px] tracking-[-.01em] text-white">
-          <span className={`grid h-[20px] w-[20px] shrink-0 place-items-center rounded-full text-[10px] font-semibold tabular-nums transition-colors duration-500 ${ok ? "text-white" : open ? "text-white ring-1 ring-[#f5580a]" : "text-white/50 ring-1 ring-white/15"}`} style={{ background: ok ? O : "transparent" }}>{ok ? <Check size={11} strokeWidth={3} /> : i + 1}</span>
+          <span className={`grid h-[20px] w-[20px] shrink-0 place-items-center rounded-full text-[10px] font-semibold tabular-nums transition-colors duration-500 ${ok ? "text-white" : open ? "text-white ring-1 ring-[#EC6726]" : "text-white/50 ring-1 ring-white/15"}`} style={{ background: ok ? O : "transparent" }}>{ok ? <Check size={11} strokeWidth={3} /> : i + 1}</span>
           <span className={`flex-1 truncate ${ok ? "text-white/50" : ""}`}>{x}</span>
           <ChevronRight {...ic} size={14} className={`text-white/30 transition-transform duration-500 ${open ? "rotate-90 text-white/60" : ""}`} /></div>
         <motion.div initial={false} animate={{ height: open ? 150 : 0, opacity: open ? 1 : 0 }} transition={{ duration: .55, ease }} className="overflow-hidden px-3">
@@ -157,7 +157,7 @@ export function QuizScreen({ active, q, a }: { active: boolean; q: string; a: st
   const Q = ({ k, t, o, sel }: { k: number; t: string; o: string[]; sel: number }) => (
     <div className={`px-3.5 py-3 ${card}`} style={{ background: S1 }}><div className="flex items-center justify-between"><span className="rounded-full bg-white/[.06] px-2 py-0.5 text-[10px] font-medium tabular-nums text-white/60">Question {k}</span><span className="text-[10px] text-white/35">Single choice</span></div>
       <p className="mt-2 text-[13px] font-medium leading-[1.35] tracking-[-.01em] text-white">{t}</p>
-      <ul className="mt-2.5 space-y-1.5">{o.map((x, i) => <li key={x} className={`flex items-center gap-2.5 rounded-[10px] px-2.5 py-[7px] text-[12px] leading-snug transition-colors duration-300 ${sel === i ? "bg-[#f5580a]/[.12] text-white ring-1 ring-[#f5580a]/60" : "bg-white/[.03] text-white/70 ring-1 ring-white/[.06]"}`}>
+      <ul className="mt-2.5 space-y-1.5">{o.map((x, i) => <li key={x} className={`flex items-center gap-2.5 rounded-[10px] px-2.5 py-[7px] text-[12px] leading-snug transition-colors duration-300 ${sel === i ? "bg-[#EC6726]/[.12] text-white ring-1 ring-[#EC6726]/60" : "bg-white/[.03] text-white/70 ring-1 ring-white/[.06]"}`}>
         <span className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[5px] text-[10px] font-semibold ${sel === i ? "text-white" : "bg-white/[.06] text-white/55"}`} style={sel === i ? { background: O } : {}}>{String.fromCharCode(65 + i)}</span>
         <span className="flex-1">{x}</span>{sel === i && <motion.span layoutId={`r${k}`}><CircleCheck {...ic} size={14} style={{ color: O }} /></motion.span>}</li>)}</ul></div>);
   return (<div className="absolute inset-0 flex flex-col" style={{ background: S0 }}>

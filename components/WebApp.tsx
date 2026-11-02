@@ -4,7 +4,7 @@ import { motion, useInView, useScroll, useTransform, useReducedMotion } from "fr
 import { Device, SopScreen } from "./AppScreens";
 import { I } from "./Icons";
 import { Home, Library, Bell, BarChart3, ListChecks, Users, ChevronsUpDown, Search, Settings, ChevronRight, ChevronDown, Share2, Plus, ArrowUpDown, Play, Check, TriangleAlert } from "lucide-react";
-const O = "#f5580a";
+const O = "#EC6726";
 const ease = [0.22, 1, 0.36, 1] as const;
 const W = 1180, H = 720;
 
@@ -29,7 +29,7 @@ const BADGE: Record<string, string> = { Published: "text-[#4cc38a] bg-[#30a46c]/
 function Av({ i, c, s = 24 }: { i: string; c: string; s?: number }) {
   return <span className="grid shrink-0 place-items-center rounded-full text-[10px] font-semibold text-white ring-2 ring-[#0b0b0c]" style={{ width: s, height: s, background: `linear-gradient(180deg,${c},${c}cc)` }}>{i}</span>;
 }
-const cellBg = (g: number) => g === 2 ? `linear-gradient(180deg,#ff7a2e,${O})` : g === 1 ? "rgba(245,88,10,.28)" : "rgba(255,255,255,.04)";
+const cellBg = (g: number) => g === 2 ? `linear-gradient(180deg,#ff7a2e,${O})` : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
 
 function Dashboard({ on }: { on: boolean }) {
   const [hover, setHover] = useState(0);
@@ -54,12 +54,12 @@ function Dashboard({ on }: { on: boolean }) {
         <span className="ml-auto flex -space-x-1.5">{PEOPLE.slice(0, 4).map(([n, i, c]) => <Av key={n} i={i} c={c} />)}<span className="grid h-6 w-6 place-items-center rounded-full bg-[#2a2a2e] text-[10px] font-medium text-white/70 ring-2 ring-[#0b0b0c]">+8</span></span>
         <span className="h-5 w-px bg-white/10" />
         <span className="flex h-8 items-center gap-1.5 rounded-[8px] border border-white/10 bg-white/[.03] px-3 text-[12px] text-white/80"><Share2 {...ic} size={13} />Share</span>
-        <motion.span animate={{ scale: hover === 3 ? 0.97 : 1 }} className="flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-[12px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25),0_2px_8px_rgba(245,88,10,.35)]" style={{ background: O }}><Plus size={14} strokeWidth={2} />Record new</motion.span>
+        <motion.span animate={{ scale: hover === 3 ? 0.97 : 1 }} className="flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-[12px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25),0_2px_8px_rgba(236,103,38,.35)]" style={{ background: O }}><Plus size={14} strokeWidth={2} />Record new</motion.span>
       </header>
       <div className="flex-1 overflow-hidden px-6 py-4">
         <div className="flex items-center gap-1 text-[12px]">{[["All", 24], ["Kitchen", 11], ["Front of house", 7], ["Cleaning", 6]].map(([x, c], k) => <span key={x} className={`relative flex h-7 items-center gap-1.5 rounded-full px-3 ${k ? "text-white/55" : "text-white"}`}>{!k && <span className="absolute inset-0 -z-0 rounded-full bg-white/[.08] ring-1 ring-white/10" />}<span className="relative">{x}</span><span className="relative tabular-nums text-white/35">{c}</span></span>)}
           <span className="ml-auto flex items-center gap-1.5 text-white/45"><ArrowUpDown {...ic} size={13} />Last updated</span></div>
-        <div className="mt-3 grid grid-cols-6 gap-3">{LIB.map(([t, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <motion.div key={t} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -3 : 0) : 14 }} transition={{ delay: on && !hv ? i * .06 : 0, duration: .5, ease }} className={`overflow-hidden ${panel} transition-[border-color] ${hv ? "!border-[#f5580a]/60" : ""}`} style={{ background: S2 }}>
+        <div className="mt-3 grid grid-cols-6 gap-3">{LIB.map(([t, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <motion.div key={t} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -3 : 0) : 14 }} transition={{ delay: on && !hv ? i * .06 : 0, duration: .5, ease }} className={`overflow-hidden ${panel} transition-[border-color] ${hv ? "!border-[#EC6726]/60" : ""}`} style={{ background: S2 }}>
           <div className="relative aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url(/video/${v}.jpg)` }}>
             <span className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             <span className={`absolute left-1/2 top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-black shadow-lg transition-all duration-300 ${hv ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}><Play size={13} fill="currentColor" strokeWidth={0} className="ml-0.5" /></span>
@@ -88,7 +88,7 @@ function Dashboard({ on }: { on: boolean }) {
                 <text x={x + 15} y="145" fontSize="10" fill="rgba(255,255,255,.5)" textAnchor="middle">{q}</text>
                 {lo && <text x={x + 15} y={122 - hgt} fontSize="10" fontWeight="600" fill="#fff" textAnchor="middle">{v}/5</text>}</g>; })}
             </svg>
-            <div className={`mt-auto flex items-start gap-2.5 rounded-[10px] border px-3 py-2.5 text-[12px] leading-[1.3] transition-colors ${hover === 3 ? "border-[#f5580a]/40 bg-[#f5580a]/[.08] text-white" : "border-white/[.06] bg-white/[.03] text-white/70"}`}><TriangleAlert {...ic} size={14} className="mt-0.5 shrink-0" style={{ color: O }} />Q4 is missed most. Review the step 3 video with the team.</div></div>
+            <div className={`mt-auto flex items-start gap-2.5 rounded-[10px] border px-3 py-2.5 text-[12px] leading-[1.3] transition-colors ${hover === 3 ? "border-[#EC6726]/40 bg-[#EC6726]/[.08] text-white" : "border-white/[.06] bg-white/[.03] text-white/70"}`}><TriangleAlert {...ic} size={14} className="mt-0.5 shrink-0" style={{ color: O }} />Q4 is missed most. Review the step 3 video with the team.</div></div>
         </div>
       </div>
     </main>
@@ -109,7 +109,7 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
   return (<section ref={sec} id="web" aria-label="Flexlore Web" className="relative overflow-hidden px-5 py-16 md:px-10 md:py-24">
     <div className="relative mx-auto max-w-[1400px]">
       <div className="grid items-end gap-6 md:grid-cols-[1fr_auto]">
-        <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">03 — {tr ? "Web'de de" : "Also on the web"}</p>
+        <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Web'de de" : "Also on the web"}</p>
           <h2 className="display mt-5 text-[clamp(3rem,7vw,6.5rem)] text-white">Flexlore Web.</h2></div>
         <p className="max-w-sm text-[17px] leading-[1.3] text-white/65 md:pb-3">{tr ? "Telefonda kaydedin, masada yönetin. Aynı kütüphane, aynı oryantasyon verisi, büyük ekranda." : "Record on the phone, manage from the desk. The same library and orientation data, on a big screen."}</p>
       </div>

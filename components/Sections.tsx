@@ -15,7 +15,7 @@ const AI_NEXT = [
   { i: I.lang, h: "Multilingual content", p: "Content in the languages your team speaks, so the standard holds whoever is on shift." },
   { i: I.brand, h: "Your brand, your words", p: "Your logo, colours and welcome screen in the app, with templates adapted to your roles, branches and terms." },
   { i: I.qr, h: "Scan a QR, start the job", p: "Every job gets a shareable link. Print a QR for a machine, a station or a branch door. Scan it and the right job opens." },
-  { i: I.chat, h: "Ask your training data anything", p: "An API, a Power BI connection and an MCP server for Claude and other AI assistants. Ask “Who isn’t ready at branch 3?” in your own tools." },
+  { i: I.chat, h: "Ask your training data anything", p: "Connect training data to the BI tools you already use. Ask your AI assistant which location isn’t ready." },
 ];
 const Card = ({ title, live, items, muted }: { title: string; live: boolean; items: string[]; muted?: boolean }) => (
   <div className={`rounded-2xl p-7 md:p-9 ${muted ? "bg-white/[.025] ring-1 ring-white/[.07]" : "bg-white/[.05] ring-1 ring-white/10"}`}>
@@ -29,7 +29,7 @@ export function AISection() {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8"><p className="eyebrow">AI</p>
-            <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-[clamp(2.6rem,5.6vw,5.6rem)]">AI does the paperwork. Your experts keep the say.</h2></div>
+            <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-[clamp(2.6rem,5.6vw,5.6rem)]">AI does the paperwork. Your experts have the final say.</h2></div>
           <p className="text-[17px] leading-[1.4] text-white/60 md:col-span-4">Every draft is reviewed and approved by your team before it goes out.</p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2">
@@ -50,7 +50,7 @@ export function AIDetail() {
 }
 
 // Directory by category. Only what Linear/Notion verify: apps + web are live; FLE-124 covers API, webhooks,
-// Power BI and an MCP server. HRIS, LMS and MES/ERP have no named connector on the roadmap, so they are
+// BI connections and an MCP server. HRIS, LMS and MES/ERP have no named connector on the roadmap, so they are
 // listed as "through the API, coming soon" with no partner names or logos.
 type It = { i: (p: { className?: string }) => React.ReactNode; h: string; p: string; live: boolean; href?: string };
 const DIR: { cat: string; items: It[] }[] = [
@@ -58,8 +58,8 @@ const DIR: { cat: string; items: It[] }[] = [
     { i: I.phone, h: "iOS", p: "Film and learn on iPhone.", live: true, href: SITE.appStore },
     { i: I.phone, h: "Android", p: "Film and learn on Android.", live: true, href: SITE.googlePlay },
     { i: I.web, h: "Web platform", p: "Managers assign jobs and track readiness.", live: true } ] },
-  { cat: "BI & reporting", items: [ { i: I.chart, h: "Power BI", p: "Training and readiness data in your own reports.", live: false } ] },
-  { cat: "AI assistants (MCP)", items: [ { i: I.chat, h: "MCP server", p: "Ask Claude and other assistants about readiness.", live: false } ] },
+  { cat: "BI & reporting", items: [ { i: I.chart, h: "BI tools", p: "Connect training data to the BI tools you already use.", live: false } ] },
+  { cat: "AI assistants (MCP)", items: [ { i: I.chat, h: "MCP server", p: "Ask your AI assistant which location isn’t ready.", live: false } ] },
   { cat: "API & webhooks", items: [ { i: I.plug, h: "REST API", p: "Read people, jobs, quiz results and readiness.", live: false }, { i: I.hook, h: "Webhooks", p: "Events when a quiz is passed or readiness changes.", live: false } ] },
   { cat: "HRIS · LMS · MES/ERP", items: [ { i: I.plug, h: "Through the API", p: "No named connectors yet. Tell us what you run.", live: false } ] },
 ];
@@ -135,7 +135,7 @@ export function Footer() {
           <nav aria-label="Industries" className="md:col-span-2"><p className={col}>Industries</p><ul className="space-y-2.5">
             {[["Restaurants", "restoran"], ["Manufacturing", "uretim"], ["Hotels", "otel"], ["Franchises", "franchise"], ["Warehouses", "depo"], ["Bakeries & cafés", "firin"]].map(([n, s]) => <li key={s}><Link className={a} href={`/sektor/${s}/`}>{n}</Link></li>)}</ul></nav>
           <nav aria-label="Company" className="md:col-span-2"><p className={col}>Company</p><ul className="space-y-2.5">
-            <li><Link className={a} href="/blog/">Blog</Link></li><li><a className={a} href="https://www.flexlore.com/careers">Careers</a></li><li><a className={a} href="https://www.flexlore.com/support">Support</a></li><li><a className={a} href="mailto:hello@flexlore.com">hello@flexlore.com</a></li></ul></nav>
+            <li><Link className={a} href="/blog/">Blog</Link></li><li><a className={a} href="mailto:hello@flexlore.com">Support</a></li><li><a className={a} href="mailto:hello@flexlore.com">hello@flexlore.com</a></li></ul></nav>
           <nav aria-label="Follow" className="md:col-span-2"><p className={col}>Follow</p><ul className="space-y-2.5">
             <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
         </div>

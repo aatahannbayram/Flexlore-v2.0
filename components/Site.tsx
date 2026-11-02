@@ -103,11 +103,11 @@ function Hero({ t }: { t: C }) {
             {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
         </motion.div>
         <motion.div style={{ opacity: io }} className="absolute inset-x-0 bottom-0 mx-auto flex max-w-[1400px] items-end justify-between px-6 pb-7 md:px-10">
-          <div><h1 className=" max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.heroH}<span className="sr-only"> {t.h1seo}</span></h1><p className="mt-3 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
+          <div><h1 className="max-w-[22ch] text-[clamp(1.7rem,3.2vw,3rem)] font-bold leading-[1.02] tracking-[-.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,.6)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1><p className="mt-3 max-w-[40ch] text-[clamp(1.05rem,1.5vw,1.35rem)] font-semibold leading-[1.2] tracking-[-.01em] text-white/90 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroH}</p><p className="mt-2 max-w-[48ch] text-[clamp(.98rem,1.2vw,1.1rem)] leading-[1.35] text-white/85 [text-shadow:0_2px_20px_rgba(0,0,0,.6)]">{t.heroLine}</p><div className="pointer-events-auto mt-4 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div><p className="mt-3 max-w-[48ch] text-[12px] text-white/55">{t.heroMicro}</p></div>
           <p className="mono hidden text-[11px] uppercase tracking-[.2em] text-white/70 md:block">Scroll <Arr dir="d" className="ml-1" /></p>
         </motion.div>
         <motion.div style={{ opacity: so, y: sy }} className="absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[12vh] md:px-10">
-          <p className="mono mb-6 text-[11px] uppercase tracking-[.2em] text-flame">01 — {t.heroK}</p>
+          <p className="mono mb-6 text-[11px] uppercase tracking-[.2em] text-flame">{t.heroK}</p>
           <p className="display max-w-[16ch] text-[clamp(2.6rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]"><K text={t.heroSub} accent={-1} /></p>
         </motion.div>
       </div>
@@ -153,7 +153,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
-            <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">02 — {t.pK}</p>
+            <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.pK}</p>
             <div className="mt-6 flex items-start gap-5 md:mt-10 md:gap-10">
               <span className="num text-[clamp(5rem,13vw,13rem)] text-white/90 tabular-nums">0{a + 1}</span>
               <div className="relative mt-3 h-[9.5rem] flex-1 md:h-[14rem]">
@@ -195,7 +195,7 @@ function Ready({ t }: { t: C }) {
           <motion.h2 style={{ scale: s }} className="display px-4 text-center text-[clamp(3.6rem,13vw,14rem)] text-white">{t.rH}</motion.h2>
         </div>
         <motion.div style={{ opacity: po }} className="absolute inset-x-0 bottom-[12vh] mx-auto max-w-lg px-6 text-center">
-          <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">05 — {t.rK}</p>
+          <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.rK}</p>
           <p className="mt-3 text-xl leading-[1.3] text-white/80">{t.rP}</p>
         </motion.div>
       </div>
@@ -233,7 +233,7 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
             </li>))}
         </motion.ul>
         <div className="pointer-events-none absolute inset-x-0 top-0 mx-auto flex max-w-[1400px] items-start justify-between px-6 pt-24 md:px-10 md:pt-28">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">06 — {t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
+          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
           <p className="mono hidden pt-1 text-[11px] uppercase tracking-[.2em] text-white/60 md:block tabular-nums">{String(a + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</p>
         </div>
         <div className="absolute inset-x-0 bottom-[6vh] mx-auto max-w-[1400px] px-6 md:px-10"><div className="h-px bg-white/15"><motion.div style={{ scaleX: p }} className="h-full origin-left bg-white/80" /></div></div>
@@ -284,7 +284,7 @@ function End({ t }: { t: C }) {
       <Video name="hotel" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 pt-24 md:px-10">
-        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">07 — Flexlore</p>
+        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">Flexlore</p>
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
