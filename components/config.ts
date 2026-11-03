@@ -11,8 +11,8 @@ export const SITE = {
   // TODO(ata): official Google for Startups and Claude for Startups badges; until then their names show as text, never a redrawn logo.
   programs: [
     // Official member badge (RGB, for screen) from NVIDIA's Inception brand guide, design.nvidia.com/partners/inception.
-    // Rules: full colour only, colours unchanged, never larger than the Flexlore logo, keep clear space, legal line in footer.
-    { name: "NVIDIA Inception", org: "NVIDIA", badge: "/brand/programs/nvidia-inception-badge.svg" as string | null, badgeW: 111, badgeH: 48 },
+    // Rules: full colour only, colours unchanged, keep clear space, legal line in footer. Shown on white, as in NVIDIA's own JPG export.
+    { name: "NVIDIA Inception", org: "NVIDIA", badge: "/brand/programs/nvidia-inception-badge.svg" as string | null, badgeW: 130, badgeH: 56 },
     { name: "Google for Startups Cloud Program", org: "Google", badge: null as string | null, badgeW: 0, badgeH: 0 },
     { name: "Claude for Startups", org: "Anthropic", badge: null as string | null, badgeW: 0, badgeH: 0 },
   ],

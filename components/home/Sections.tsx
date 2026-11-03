@@ -47,7 +47,7 @@ export function TrustStrip({ lang }: { lang: Lang }) {
             {SITE.programs.map((p) => (
               <li key={p.name}>
                 {p.badge
-                  ? <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-12 w-auto" />
+                  ? <span className="block bg-white"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-14 w-auto" /></span>
                   : <span className="block text-[19px] font-semibold leading-tight tracking-[-.02em] text-ice-300">{p.name}{!p.name.includes(p.org) && <span className="font-normal text-ice-400"> by {p.org}</span>}</span>}
               </li>))}
           </ul>
