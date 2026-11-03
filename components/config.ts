@@ -30,6 +30,8 @@ export const SITE = {
    Payment Link or Checkout URL into `checkout`. Plan names and limits are placeholders. */
 export const PRICING = { unit: "per location / month", operators: "Unlimited operators", currency: null as string | null };
 export type Plan = { id: string; name: string; for: string; price: string | null; checkout: string | null; cta: string; featured?: boolean; points: string[] };
+/* Membership plan cards (PLANS[0..1]) + Enterprise block (30+ users). NO prices yet: Ata Han sends the
+   price visuals; until then every price renders as a visible placeholder ("$—" + "Pricing coming soon"). */
 export const PLANS: Plan[] = [
   { id: "location", name: "Single location", for: "One site getting its jobs on video.", price: null, checkout: null, cta: "Book a demo",
     points: ["Unlimited operators", "Video SOPs filmed on iOS and Android", "Video into steps, drafted instructions", "AI-drafted quizzes, approved by you", "Readiness by person and shift", "Web platform for managers"] },
@@ -51,4 +53,30 @@ export const COMPARE: { f: string; v: (boolean | string)[] }[] = [
   { f: "Custom branding", v: [false, false, "Coming soon"] },
   { f: "QR and job links", v: ["Coming soon", "Coming soon", "Coming soon"] },
   { f: "API and integrations", v: [false, false, "Coming soon"] },
+];
+
+// Enterprise tiers for 30+ users. Tier ranges and prices are placeholders until confirmed. Do not invent numbers.
+export const ENTERPRISE_TIERS = [
+  { id: "t1", en: "Tier 1", tr: "Kademe 1" },
+  { id: "t2", en: "Tier 2", tr: "Kademe 2" },
+  { id: "t3", en: "Tier 3", tr: "Kademe 3" },
+];
+export const PLAN_TR: Record<string, { name: string; for: string; points: string[] }> = {
+  location: { name: "Tek lokasyon", for: "İşlerini videoya almaya başlayan tek bir işletme.", points: ["Sınırsız operatör", "iOS ve Android'de çekilen video SOP'lar", "Videodan adımlar, taslak talimatlar", "Yapay zekâ taslağı quizler, sizin onayınızla", "Kişi ve vardiya bazında hazırlık", "Yöneticiler için web platformu"] },
+  multi: { name: "Çoklu lokasyon", for: "Aynı standartla çalışması gereken birden fazla lokasyon.", points: ["Tek lokasyon'daki her şey", "Ekip, vardiya ve lokasyon bazında hazırlık", "Rol ve lokasyon bazlı erişim", "Ekiplere duyurular", "Aynı işi tüm lokasyonlara tek seferde gönderme"] },
+  enterprise: { name: "Enterprise", for: "Franchise'lar, fabrikalar ve lokasyon ağları.", points: ["Çoklu lokasyon'daki her şey", "Lokasyonlar arası yaygınlaştırma desteği", "Özel marka (yakında)", "API, BI araçları ve yapay zekâ asistanları (yakında)"] },
+};
+
+export const PRICING_FAQ = [
+  { q: "How much does Flexlore cost?", a: "Flexlore is priced per location, with unlimited operators at each one. The exact plan depends on your team and how you will use it. Book a demo and we will put together the right plan with you." },
+  { q: "Do I pay per user?", a: "No. Pricing is per location. Every operator at that location can learn on Flexlore." },
+  { q: "Can I try it before I commit?", a: "Ask us on the demo call. We will build one of your real jobs with you so you can see it working on your floor." },
+  { q: "Do I need technical skills to set it up?", a: "No. If you can film with a phone, you can create a step-by-step video SOP." },
+  { q: "Which devices does it run on?", a: "iOS and Android for your team, plus a web platform for managers." },
+  { q: "Who checks what the AI writes?", a: "You do. Steps, instructions and quizzes are drafts until your team approves them." },
+  { q: "Does it work across several locations?", a: "Yes. Assign jobs and see readiness by team, shift and location. Control who can view, edit or complete each job by role and location." },
+  { q: "Can it carry our branding?", a: "Custom branding is coming soon. Ask us on the demo call how it will fit your plan." },
+  { q: "Can we connect Flexlore to our own tools?", a: "An API, connections to the BI tools you already use and an MCP server for AI assistants are coming soon. Tell us what you would connect and we will keep you posted." },
+  { q: "How does billing and cancellation work?", a: "See our Subscription & Billing policy, or ask us on the demo call." },
+  { q: "Where can I read about data and security?", a: "Our Privacy Policy, Data Processing, Sub-processors and Security pages cover it. Still have questions? Ask on the demo call." },
 ];
