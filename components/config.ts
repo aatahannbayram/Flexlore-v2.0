@@ -8,13 +8,13 @@ export const SITE = {
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
   // Programs Flexlore is accepted into (confirmed by Ata, 2026-11-04). Shown in the home trust strip.
   // badge: path to the OFFICIAL badge file from each program's member kit, used unaltered under its usage rules.
-  // TODO(ata): official Google for Startups and Claude for Startups badges; until then their names show as text, never a redrawn logo.
+  // TODO(ata): official Google for Startups and Claude Startups badges (membership confirmed in Claude Console, no badge file offered there); until then their names show as text, never a redrawn logo.
   programs: [
     // Official member badge (RGB, for screen) from NVIDIA's Inception brand guide, design.nvidia.com/partners/inception.
     // Rules: full colour only, colours unchanged, keep clear space, legal line in footer. Shown on white, as in NVIDIA's own JPG export.
     { name: "NVIDIA Inception", org: "NVIDIA", badge: "/brand/programs/nvidia-inception-badge.svg" as string | null, badgeW: 130, badgeH: 56 },
     { name: "Google for Startups Cloud Program", org: "Google", badge: null as string | null, badgeW: 0, badgeH: 0 },
-    { name: "Claude for Startups", org: "Anthropic", badge: null as string | null, badgeW: 0, badgeH: 0 },
+    { name: "Claude Startups", org: "Anthropic", badge: null as string | null, badgeW: 0, badgeH: 0 },
   ],
   // Sections that need real content. Off = not rendered, so placeholders never ship.
   flags: { proof: false },
