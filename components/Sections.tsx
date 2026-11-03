@@ -103,11 +103,11 @@ export function PricingTeaser() {
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7"><p className="eyebrow">Pricing</p><h2 id="pt-h" className="display mt-4 text-[clamp(2.4rem,5vw,4.8rem)]">Pricing that fits your floor.</h2></div>
-          <div className="md:col-span-5"><p className="text-[17px] leading-[1.4] text-white/70">Priced per location, with unlimited operators.</p>
+          <div className="md:col-span-5"><p className="text-[17px] leading-[1.4] text-white/70">Standard plans are priced per location, with unlimited operators. Enterprise (30+ users) is priced by user count.</p>
             <div className="mt-4 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">See pricing <Arr className="ml-1" /></Link><a href={SITE.demo} className="btn-g">Book a demo</a></div></div>
         </div>
         <ul className="mt-10 grid gap-4 md:grid-cols-3">
-          {PLANS.map((p) => (<li key={p.id} className={`rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-white/20" : "bg-white/[.03] ring-white/10"}`}><p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/70">{p.for}</p><p className="mt-8 border-t border-white/10 pt-4 text-[13px] text-white/75">{p.price ?? "Price on request"}<span className="text-white/70"> · {PRICING.operators}</span></p></li>))}
+          {PLANS.map((p) => (<li key={p.id} className={`rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-white/20" : "bg-white/[.03] ring-white/10"}`}><p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/70">{p.for}</p><p className="mt-8 border-t border-white/10 pt-4 text-[13px] text-white/75">{p.price ?? "Price on request"}<span className="text-white/70"> · {p.id === "enterprise" ? "Priced by user count" : `${PRICING.unit.replace(" / month", "")}, ${PRICING.operators.toLowerCase()}`}</span></p></li>))}
         </ul>
         <ul aria-label="See for yourself" className="mt-10 grid gap-x-8 border-t border-white/10 pt-5 sm:grid-cols-3">
           {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[12px] uppercase tracking-[.18em] text-white/70">{k}</span><span className="mt-1 block text-[15px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/70 transition group-hover:text-white"><Arr dir="ur" /></span></a></li>))}

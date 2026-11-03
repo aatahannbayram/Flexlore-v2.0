@@ -24,7 +24,8 @@ export const SITE = {
   ] as [string, string][],
 };
 
-/* Pricing. Model: priced per location (site), unlimited operators at every location.
+/* Pricing. Model: standard plans priced per location (site), unlimited operators at every location.
+   Enterprise (30+ users) is priced by user count, in tiers.
    No Stripe access yet and no approved prices, so every `price` is null and every CTA
    falls back to Book a demo / Contact sales. To go live: fill `price`, and paste a Stripe
    Payment Link or Checkout URL into `checkout`. Plan names and limits are placeholders. */
@@ -41,6 +42,7 @@ export const PLANS: Plan[] = [
     points: ["Everything in Multi-location", "Rollout support across sites", "Custom branding (coming soon)", "API, BI tools and AI assistants (coming soon)"] },
 ];
 export const COMPARE: { f: string; tr: string; v: (boolean | string)[] }[] = [
+  { f: "Billing basis", tr: "Fiyatlandırma esası", v: ["Per location", "Per location", "By user count (30+ users)"] },
   { f: "Operators per location", tr: "Lokasyon başına operatör", v: ["Unlimited", "Unlimited", "Unlimited"] },
   { f: "Video SOPs filmed on a phone", tr: "Telefonla çekilen video SOP'lar", v: [true, true, true] },
   { f: "Video into steps", tr: "Videodan adımlara", v: [true, true, true] },
@@ -67,10 +69,10 @@ export const PLAN_TR: Record<string, { name: string; for: string; points: string
   enterprise: { name: "Enterprise", for: "Franchise'lar, fabrikalar ve lokasyon ağları.", points: ["Çoklu lokasyon'daki her şey", "Lokasyonlar arası yaygınlaştırma desteği", "Özel marka (yakında)", "API, BI araçları ve yapay zekâ asistanları (yakında)"] },
 };
 
-// TR versions of the pricing FAQ. "Lokasyon başına" mirrors the EN "per location" wording; the pricing model is not decided yet.
+// TR versions of the pricing FAQ. Model: standard plans per location, Enterprise (30+ users) by user count.
 export const PRICING_FAQ_TR = [
-  { q: "Flexlore'un ücreti ne kadar?", a: "Flexlore lokasyon başına fiyatlandırılır ve her lokasyonda operatör sayısı sınırsızdır. Size uygun plan, ekibinize ve Flexlore'u nasıl kullanacağınıza göre belirlenir. Bir demo ayarlayın, doğru planı birlikte oluşturalım." },
-  { q: "Kullanıcı başına mı ödüyorum?", a: "Hayır. Fiyatlandırma lokasyon başınadır. O lokasyondaki her operatör Flexlore'da öğrenebilir." },
+  { q: "Flexlore'un ücreti ne kadar?", a: "Standart planlar lokasyon başına fiyatlanır ve her lokasyonda operatör sayısı sınırsızdır. Enterprise (30+ kullanıcı) kullanıcı sayısına göre fiyatlanır. Size uygun plan, ekibinize ve Flexlore'u nasıl kullanacağınıza göre belirlenir. Bir demo ayarlayın, doğru planı birlikte oluşturalım." },
+  { q: "Kullanıcı başına mı ödüyorum?", a: "Standart planlar lokasyon başına fiyatlanır. Enterprise (30+ kullanıcı) kullanıcı sayısına göre fiyatlanır. Standart planlarda o lokasyondaki her operatör Flexlore'da öğrenebilir." },
   { q: "Karar vermeden önce deneyebilir miyim?", a: "Demo görüşmesinde bize sorun. Gerçek işlerinizden birini sizinle birlikte hazırlarız, sahada nasıl çalıştığını kendiniz görürsünüz." },
   { q: "Kurulum için teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız adım adım bir video SOP oluşturabilirsiniz." },
   { q: "Hangi cihazlarda çalışır?", a: "Ekibiniz için iOS ve Android, yöneticiler için web platformu." },
@@ -83,8 +85,8 @@ export const PRICING_FAQ_TR = [
 ];
 
 export const PRICING_FAQ = [
-  { q: "How much does Flexlore cost?", a: "Flexlore is priced per location, with unlimited operators at each one. The exact plan depends on your team and how you will use it. Book a demo and we will put together the right plan with you." },
-  { q: "Do I pay per user?", a: "No. Pricing is per location. Every operator at that location can learn on Flexlore." },
+  { q: "How much does Flexlore cost?", a: "Standard plans are priced per location, with unlimited operators at each one. Enterprise (30+ users) is priced by user count. The exact plan depends on your team and how you will use it. Book a demo and we will put together the right plan with you." },
+  { q: "Do I pay per user?", a: "Standard plans are priced per location. Enterprise (30+ users) is priced by user count. On standard plans, every operator at that location can learn on Flexlore." },
   { q: "Can I try it before I commit?", a: "Ask us on the demo call. We will build one of your real jobs with you so you can see it working on your floor." },
   { q: "Do I need technical skills to set it up?", a: "No. If you can film with a phone, you can create a step-by-step video SOP." },
   { q: "Which devices does it run on?", a: "iOS and Android for your team, plus a web platform for managers." },
