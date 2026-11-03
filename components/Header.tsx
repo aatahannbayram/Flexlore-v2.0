@@ -1,72 +1,102 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { Pause, Play, List, X } from "@phosphor-icons/react/dist/ssr";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
 import { copy, Lang } from "./copy";
 import { SITE } from "./config";
+import { EASE } from "./ui/Reveal";
 
-/** One header for every page (home, sectors, use cases, pricing, blog, demo). EN and TR share it.
- *  `home` keeps in-page anchors; elsewhere they point back to "/#...". Language toggle and video pause
- *  only render when the page passes the handlers. Log in shows only when SITE.login is set. */
+/** One header for every page. Full container width, 64 px, translucent #111111 with blur, hairline after 8 px of scroll.
+ *  Hides on scroll down after 400 px, comes back on scroll up, and always shows while focus is inside it.
+ *  `home` keeps in-page anchors; elsewhere they point back to "/#...". */
 export function Header({ lang = "en", setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
   const t = copy[lang];
-  const [scrolled, setScrolled] = useState(false);
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const [lined, setLined] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [focusIn, setFocusIn] = useState(false);
   const [open, setOpen] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setLined(y > 8);
+    if (y < 400) setHidden(false); else if (y > prev + 4) setHidden(true); else if (y < prev - 4) setHidden(false);
+  });
+  useEffect(() => { setLined(window.scrollY > 8); }, []);
   useEffect(() => { if (wasOpen.current && !open) menuBtn.current?.focus(); wasOpen.current = open; }, [open]);
-  useEffect(() => { const f = () => setScrolled(window.scrollY > 40); f(); window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f); }, []);
-  useEffect(() => { document.body.style.overflow = open ? "hidden" : ""; const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false); window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k); }, [open]);
-  const links = [...t.nav.map((n, i) => ({ n, h: (home ? "" : "/") + ["#product", "#sectors"][i] })), { n: t.navP, h: "/pricing/" }, { n: "Blog", h: "/blog/" }];
-  const Lang2 = setLang && (
-    <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-xs">
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    const k = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
+  }, [open]);
+
+  const base = home ? "" : "/";
+  const links = [{ n: t.nav[0], h: base + "#product" }, { n: t.nav[1], h: base + "#industries" }, { n: t.navP, h: "/pricing/" }, { n: "Blog", h: "/blog/" }];
+  const show = !hidden || focusIn || open;
+
+  const LangSwitch = setLang && (
+    <div role="group" aria-label={t.langLabel} className="relative flex rounded-full border border-line p-0.5 text-xs font-semibold">
       {(["en", "tr"] as Lang[]).map((l) => (
-        <button key={l} onClick={() => setLang!(l)} aria-pressed={lang === l} aria-label={l === "tr" ? "Türkçe" : "English"} lang={l} className={`relative z-10 rounded-full px-2.5 py-1 uppercase transition-colors ${lang === l ? "text-black" : "text-white/80 hover:text-white"}`}>
-          {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-white" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}{l}
+        <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} lang={l} aria-label={l === "tr" ? "Türkçe" : "English"}
+          className={`relative z-10 grid h-8 min-w-9 place-items-center rounded-full px-2 uppercase transition-colors ${lang === l ? "text-bg" : "text-ink-muted hover:text-ink"}`}>
+          {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}{l}
         </button>))}
     </div>);
-  // 16: döngülü videolar için durdurma düğmesi; girişi kalabalıklaştırmasın diye menü çubuğunda küçük bir ikon.
   const pauseLabel = paused ? (lang === "tr" ? "Videoları oynat" : "Play videos") : (lang === "tr" ? "Videoları durdur" : "Pause videos");
   const PauseBtn = motionOk && setPaused && (
-    <button type="button" onClick={() => setPaused!(!paused)} aria-label={pauseLabel} title={pauseLabel}
-      className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/70 transition hover:text-white">
-      {paused ? <Play size={11} fill="currentColor" strokeWidth={0} className="ml-px" /> : <Pause size={11} fill="currentColor" strokeWidth={0} />}
+    <button type="button" onClick={() => setPaused(!paused)} aria-label={pauseLabel} title={pauseLabel}
+      className="hidden h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink sm:grid">
+      {paused ? <Play size={14} weight="fill" aria-hidden="true" /> : <Pause size={14} weight="fill" aria-hidden="true" />}
     </button>);
+
   return (
     <>
-      <motion.header initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3">
-        <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
-          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full bg-bg2 pl-5 pr-2" : "h-16 w-[min(100%,1200px)] rounded-none bg-transparent px-3"}`}>
-          <a href={home ? "#main" : "/"} className="flex items-center gap-2" aria-label="Flexlore">
-            <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-6 sm:h-7" : "h-6 sm:h-9"}`} />
-          </a>{brand}
-          <ul className="hidden items-center gap-7 text-sm text-white/85 md:flex">
-            {links.map((l) => <li key={l.h}><a href={l.h} className="hover:text-white">{l.n}</a></li>)}
+      <motion.header
+        onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusIn(false); }}
+        animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
+        className={`fixed inset-x-0 top-0 z-40 border-b bg-[rgb(17_17_17/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined ? "border-line" : "border-transparent"}`}>
+        <nav aria-label="Main" className="container-x flex h-[var(--header-h)] items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <a href={home ? "#main" : "/"} className="flex h-11 items-center" aria-label="Flexlore home">
+              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
+            </a>{brand}
+          </div>
+          <ul className="hidden items-center gap-1 text-[15px] md:flex">
+            {links.map((l) => <li key={l.h}><a href={l.h} className="inline-flex h-11 items-center rounded-full px-3.5 text-ink-muted transition-colors hover:text-ink">{l.n}</a></li>)}
           </ul>
           <div className="flex items-center gap-2">
             {PauseBtn}
-            <div className="hidden sm:block">{Lang2}</div>
-            {SITE.login && <a href={SITE.login} className="hidden whitespace-nowrap rounded-full px-3 py-1.5 text-sm text-white/85 hover:text-white sm:inline">{t.login}</a>}
-            <a href={SITE.demo} className="btn-p inline-flex whitespace-nowrap">{t.cta}</a>
-            <button ref={menuBtn} onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" className="rounded-full px-2 py-1.5 text-sm text-white/85 hover:text-white md:hidden">{t.menu}</button>
+            <div className="hidden sm:block">{LangSwitch}</div>
+            {SITE.login && <a href={SITE.login} className="hidden h-11 items-center px-3 text-[15px] text-ink-muted hover:text-ink lg:inline-flex">{t.login}</a>}
+            <a href={SITE.demo} className="btn btn-primary btn-sm hidden sm:inline-flex">{t.cta}</a>
+            <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
+              className="grid h-11 w-11 place-items-center rounded-full text-ink md:hidden"><List size={22} aria-hidden="true" /></button>
           </div>
-        </motion.nav>
+        </nav>
       </motion.header>
-      {open && (
-        <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex flex-col bg-bg px-6 pb-10 pt-5">
-          <div className="flex items-center justify-between"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-9 w-auto" />
-            <button onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-sm" autoFocus>{t.close}</button></div>
-          <ul className="mt-16 space-y-3">
-            {links.map((l, i) => (
-              <motion.li key={l.h} initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: [0.22, 1, 0.36, 1], duration: 0.6 }}>
-                <a href={l.h} onClick={() => setOpen(false)} className="display block text-h2">{l.n}</a></motion.li>))}
-          </ul>
-          {SITE.login && <a href={SITE.login} className="mt-10 block text-base text-white/85">{t.login}</a>}
-          <div className="mt-auto flex items-center justify-between">{Lang2}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn-p">{t.cta}</a></div>
-        </motion.div>)}
+
+      <AnimatePresence>
+        {open && (
+          <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex flex-col bg-bg">
+            <div className="container-x flex h-[var(--header-h)] items-center justify-between">
+              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
+              <button type="button" onClick={() => setOpen(false)} aria-label={t.close} autoFocus className="grid h-11 w-11 place-items-center rounded-full"><X size={22} aria-hidden="true" /></button>
+            </div>
+            <ul className="container-x mt-10 space-y-1">
+              {links.map((l, i) => (
+                <motion.li key={l.h} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: EASE, duration: 0.5 }}>
+                  <a href={l.h} onClick={() => setOpen(false)} className="h2 flex min-h-14 items-center">{l.n}</a></motion.li>))}
+            </ul>
+            <div className="container-x mt-auto flex items-center justify-between gap-4 pb-8 pt-6">
+              {LangSwitch}
+              <a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
+            </div>
+          </motion.div>)}
+      </AnimatePresence>
     </>
   );
 }
-

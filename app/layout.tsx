@@ -26,5 +26,5 @@ const ld = [
     description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={schibsted.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}<div aria-hidden="true" className="grain" /></body></html>);
+  return (<html lang="en" className={schibsted.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased">{children}</body></html>);
 }

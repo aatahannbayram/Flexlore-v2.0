@@ -1,8 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { Pause, Play } from "lucide-react";
-import Image from "next/image";
-import Lenis from "lenis";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useReducedMotion, MotionValue } from "framer-motion";
 import { copy, Lang, C } from "./copy";
 import Link from "next/link";
@@ -13,86 +10,16 @@ import { PricingTeaser, Footer } from "./Sections";
 import { StoreButtons, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Header } from "./Header";
-import { HeroMedia } from "./HeroMedia";
-import { playOnly } from "./media";
+import { Hero } from "./home/Hero";
+import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
-// Sayfadaki tüm döngülü videoları tek düğmeyle durdurur (WCAG 2.2.2). Sağlayıcı yoksa (ör. demo sayfaları) videolar oynar.
-const VideoPause = createContext(false);
-
-export function Video({ name, eager = false, className = "" }: { name: string; eager?: boolean; className?: string }) {
-  const reduce = useReducedMotion();
-  const paused = useContext(VideoPause);
-  const ref = useRef<HTMLVideoElement>(null);
-  const [on, setOn] = useState(eager);
-  useEffect(() => {
-    if (eager || reduce) return;
-    const el = ref.current; if (!el) return;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setOn(true); io.disconnect(); } }, { rootMargin: "60% 0px" });
-    io.observe(el); return () => io.disconnect();
-  }, [eager, reduce]);
-  useEffect(() => { const el = ref.current; if (!el || !on || reduce) return;
-    const io = new IntersectionObserver(([e]) => { e.intersectionRatio >= 0.35 && !paused ? playOnly(el) : el.pause(); }, { threshold: [0, 0.35] });
-    io.observe(el); return () => { io.disconnect(); el.pause(); }; }, [on, reduce, paused]);
-  const cls = `absolute inset-0 h-full w-full object-cover ${className}`;
-  if (reduce) return <img src={`/video/${name}.jpg`} alt="" className={cls} />;
-  return (
-    <video ref={ref} className={cls} poster={`/video/${name}.jpg`} muted loop playsInline autoPlay={eager && !paused}
-      preload={eager ? "metadata" : "none"} aria-hidden="true">
-      {on && <source src={`/video/${name}.webm`} type="video/webm" />}
-      {on && <source src={`/video/${name}.mp4`} type="video/mp4" />}
-    </video>
-  );
+/** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
+export function Video({ name, className = "" }: { name: string; eager?: boolean; className?: string }) {
+  return <SmartVideo name={name} className={className} threshold={0.35} />;
 }
 
 function useSec() { const ref = useRef<HTMLElement>(null); const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] }); return { ref, p: scrollYProgress }; }
-
-export function Magnetic({ children, className = "", href, onClick }: { children: React.ReactNode; className?: string; href: string; onClick?: () => void }) {
-  const ref = useRef<HTMLAnchorElement>(null);
-  const [m, setM] = useState({ x: 0, y: 0 });
-  return (
-    <a ref={ref} href={href} onClick={onClick} className={`inline-flex will-change-transform ${className}`}
-      onMouseMove={(e) => { const r = ref.current!.getBoundingClientRect(); setM({ x: (e.clientX - r.left - r.width / 2) * 0.3, y: (e.clientY - r.top - r.height / 2) * 0.4 }); }}
-      onMouseLeave={() => setM({ x: 0, y: 0 })}
-      style={{ transform: `translate(${m.x}px, ${m.y}px)`, transition: "transform .5s cubic-bezier(.22,1,.36,1)" }}>
-      <span style={{ transform: `translate(${m.x * 0.3}px, ${m.y * 0.3}px)`, transition: "transform .5s cubic-bezier(.22,1,.36,1)" }} className="inline-flex items-center gap-2">{children}</span>
-    </a>);
-}
-
-function Loader() {
-  const reduce = useReducedMotion();
-  const [done, setDone] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setDone(true), reduce ? 0 : 900); return () => clearTimeout(t); }, [reduce]);
-  if (reduce) return null;
-  return (
-    <motion.div aria-hidden="true" initial={{ y: 0 }} animate={{ y: done ? "-100%" : 0 }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
-      className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#111111]">
-      <motion.img src="/brand/app-icon.webp" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
-      <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-h2"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
-      <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
-      <p className="mono mt-4 text-xs uppercase tracking-[.2em] text-white/70">Step by step · from the operator's eyes</p>
-    </motion.div>);
-}
-
-function Hero({ t, lang, paused }: { t: C; lang: Lang; paused: boolean }) {
-  // P0: değer önerisi ilk ekranda. "Step by step." artık eyebrow; video karartması ≤%50.
-  return (
-    <section className="relative flex min-h-svh items-end overflow-hidden" aria-label={t.hero}>
-      <HeroMedia lang={lang} paused={paused} />
-      <div aria-hidden="true" className="absolute inset-0 bg-black/25" />
-      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-[14vh] pt-28 md:px-10 md:pb-[16vh]">
-        <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} className="eyebrow">{t.hero}</motion.p>
-        <h1 className="display mt-4 max-w-[20ch] text-h1 [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
-        <p className="mt-5 max-w-[52ch] text-lg leading-[1.4] text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,.6)] [text-wrap:pretty]">{t.heroLine}</p>
-        <div className="mt-7 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div>
-      </div>
-      <a href="#problem" aria-label="Scroll to content" className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/80 hover:text-white">
-        <span className="mono text-xs uppercase tracking-[.2em]">Scroll</span>
-        <motion.span aria-hidden="true" animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }} className="block h-6 w-px bg-white/80" />
-      </a>
-    </section>
-  );
-}
 
 function Line({ p, r, children }: { p: MotionValue<number>; r: [number, number]; children: React.ReactNode }) {
   const o = useTransform(p, [r[0], r[1]], [0.12, 1]);
@@ -157,25 +84,6 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
 }
 
 
-function Intro({ lang, onPlay }: { lang: Lang; onPlay: () => void }) {
-  const [on, setOn] = useState(false); const tr = lang === "tr";
-  const title = tr ? "Flexlore'u 2 dakikada izleyin" : "Watch Flexlore in 2 minutes";
-  return (
-    <section id="intro" aria-labelledby="intro-h2" className="px-6 py-20 md:px-10 md:py-24">
-      <div className="mx-auto max-w-[1100px]">
-        <h2 id="intro-h2" className="display text-h2">{title}</h2>
-        <p className="mt-3 max-w-2xl text-base text-white/70">{tr ? "Bir işin bir kez çekilip ekibe adım adım video eğitime dönüşmesini görün." : "See one job filmed once and turned into step-by-step video training for the team."}</p>
-        <div className="relative mt-8 aspect-video overflow-hidden rounded-2xl bg-bg2">
-          {on ? <iframe className="absolute inset-0 h-full w-full" src="https://www.youtube-nocookie.com/embed/4CLIlnp0L28?autoplay=1&rel=0" title={title} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
-            : <button type="button" onClick={() => { document.querySelectorAll("video").forEach((v) => v.pause()); onPlay(); setOn(true); }} aria-label={(tr ? "Videoyu oynat: " : "Play video: ") + title} className="group absolute inset-0 h-full w-full">
-                <picture><source srcSet="/intro/poster.avif" type="image/avif" /><img src="/intro/poster.webp" alt="" width={640} height={360} loading="lazy" className="h-full w-full object-cover" /></picture>
-                <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-flame text-black transition-transform duration-200 ease-out group-hover:scale-105"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg></span>
-              </button>}
-        </div>
-      </div>
-    </section>
-  );
-}
 const SEE_CHIPS: [string, string, string][] = [["cafe-restaurant", "Cafe & restaurant chains", "Kafe ve restoran zincirleri"], ["franchise", "Franchise", "Franchise"], ["manufacturing", "Manufacturing", "Üretim"], ["hotel", "Hotel", "Otel"]];
 function SeeItCard({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
@@ -190,7 +98,7 @@ function SeeItCard({ lang }: { lang: Lang }) {
 
 function Sectors({ t, lang }: { t: C; lang: Lang }) {
   return (
-    <section id="sectors" aria-labelledby="sec-h2" className="bg-bg2 px-6 py-24 md:px-10 md:py-32">
+    <section id="industries" aria-labelledby="sec-h2" className="bg-bg2 px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">{t.whereK}</p><h2 id="sec-h2" className="display mt-4 max-w-[16ch] text-h2">{t.where}</h2>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -259,14 +167,13 @@ export default function Site() {
   const t = copy[lang];
   const reduce = useReducedMotion();
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
-  useEffect(() => { if (reduce) return; const l = new Lenis({ lerp: 0.075, wheelMultiplier: 0.9 }); let r = 0; const f = (x: number) => { l.raf(x); r = requestAnimationFrame(f); }; r = requestAnimationFrame(f); return () => { cancelAnimationFrame(r); l.destroy(); }; }, [reduce]);
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:text-black">{t.skip}</a>
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-3 focus:text-bg">{t.skip}</a>
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
       <main id="main">
-        <Hero t={t} lang={lang} paused={paused} /><Intro lang={lang} onPlay={() => setPaused(true)} /><Statement t={t} /><Product t={t} lang={lang} /><ProductSuite lang={lang} /><Sectors t={t} lang={lang} /><PricingTeaser lang={lang} /><Faq t={t} />
+        <Hero t={t} lang={lang} /><Statement t={t} /><Product t={t} lang={lang} /><ProductSuite lang={lang} /><Sectors t={t} lang={lang} /><PricingTeaser lang={lang} /><Faq t={t} />
       </main>
       </VideoPause.Provider>
       <Footer />

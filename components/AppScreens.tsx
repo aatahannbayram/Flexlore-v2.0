@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { playOnly } from "./media";
+import { playOnly, stopVideo } from "./media";
 import { ChevronLeft, ChevronRight, ChevronsUpDown, MoreHorizontal, ListOrdered, Maximize2, Undo2, Redo2, Play, Pause, Sticker, Type, Eye, EyeOff, Check, CircleCheck, Info, Scissors } from "lucide-react";
 /* Design tokens (phone, 320pt design width) */
 const O = "#EC6726";
-const S0 = "#0b0b0c", S1 = "#161618", S2 = "#1f1f22";
+const S0 = "#111111", S1 = "#161618", S2 = "#1f1f22";
 const HL = "rgba(255,255,255,.07)";
 const ease = [0.22, 1, 0.36, 1] as const;
 const ic = { size: 15, strokeWidth: 1.5, absoluteStrokeWidth: true } as const;
@@ -18,7 +18,7 @@ function useTick(active: boolean, ms: number, max: number) {
 }
 function Clip({ name, active, className = "" }: { name: string; active: boolean; className?: string }) {
   const r = useRef<HTMLVideoElement>(null); const [ready, setReady] = useState(false);
-  useEffect(() => { const v = r.current; if (!v) return; if (active) playOnly(v); else v.pause(); }, [active]);
+  useEffect(() => { const v = r.current; if (!v) return; if (active) playOnly(v); else stopVideo(v); }, [active]);
   return (<div className="relative h-full w-full">
     <video ref={r} muted loop playsInline preload="none" poster={`/video/${name}.jpg`} onLoadedData={() => setReady(true)} className={`h-full w-full object-cover ${className}`}>
       <source src={`/video/${name}.webm`} type="video/webm" /><source src={`/video/${name}.mp4`} type="video/mp4" /></video>
@@ -43,11 +43,11 @@ function Scaled({ children }: { children: React.ReactNode }) {
 }
 /** iPhone 15 Pro-style frame: brushed titanium rim, inner black bezel, Dynamic Island, glass reflection. */
 export function Device({ children, label }: { children: React.ReactNode; label: string }) {
-  const btn = "absolute w-[3px] bg-[#3b3b3e] shadow-[0_0_0_.5px_rgba(0,0,0,.6)]";
+  const btn = "absolute w-[3px] bg-[#3b3b3e]";
   return (<div role="img" aria-label={label} className="relative aspect-[393/852] w-full">
     <span className={`${btn} -left-[2px] top-[16%] h-[4%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[23%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[32%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -right-[2px] top-[26%] h-[11%] rounded-r-sm`} />
     {/* titanium rim */}
-    <div className="absolute inset-0 rounded-[3.2rem] bg-[#2a2a2d] p-[2.5px] shadow-[0_2px_0_rgba(255,255,255,.08)_inset,0_70px_120px_-30px_rgba(0,0,0,.9),0_30px_60px_-20px_rgba(0,0,0,.7),0_0_0_1px_rgba(0,0,0,.8)]">
+    <div className="absolute inset-0 rounded-[3.2rem] bg-[#2a2a2d] p-[2.5px] ring-1 ring-white/10">
       <div className="h-full w-full rounded-[3.05rem] bg-[#050506] p-[1px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]">
         <div className="h-full w-full rounded-[3rem] bg-black p-[8px]">
           <Scaled>
@@ -143,7 +143,7 @@ export function SopScreen({ active }: { active: boolean }) {
           <span className={`flex-1 truncate ${ok ? "text-white/50" : ""}`}>{x}</span>
           <ChevronRight {...ic} size={14} className={`text-white/30 transition-transform duration-500 ${open ? "rotate-90 text-white/60" : ""}`} /></div>
         <motion.div initial={false} animate={{ height: open ? 150 : 0, opacity: open ? 1 : 0 }} transition={{ duration: .55, ease }} className="overflow-hidden px-3">
-          <div className="relative mb-3 h-[138px] overflow-hidden rounded-[10px] ring-1 ring-white/10"><Clip name="line" active={active && open} />
+          <div className="relative mb-3 h-[138px] overflow-hidden rounded-[10px] ring-1 ring-white/10"><Clip name="plating" active={active && open} />
             <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/80 to-transparent px-2.5 pb-2 pt-6 text-xs tabular-nums text-white/85"><Play size={11} fill="currentColor" strokeWidth={0} />0:0{(n % 9) + 1}<Bar v={((n % 9) + 1) / 12} h={3} />0:12</span></div></motion.div>
       </div>); })}</div>
     <Toast show={active && n >= SOP.length} text="Checklist complete" sub="6 of 6 steps" /></div>);

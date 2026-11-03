@@ -35,7 +35,7 @@ export const I = {
   play: ({ size = 18, className = "" }: P) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M4.2 2.6 13.6 12l-9.4 9.4c-.3-.2-.5-.6-.5-1V3.6c0-.4.2-.8.5-1Zm10.4 10.4 2.3 2.3-10.6 6 8.3-8.3Zm3.3-3.3 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.6-2.6 2.6-2.9ZM6.3 2.7l10.6 6-2.3 2.3-8.3-8.3Z" /></svg>,
 };
 export function StoreButtons({ className = "", small = false }: { className?: string; small?: boolean }) {
-  const c = `inline-flex items-center gap-2 rounded-full border border-white/25 ${small ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm"} font-medium text-white transition hover:border-white/60 hover:bg-white/5`;
+  const c = `inline-flex min-h-11 items-center gap-2 rounded-full border border-line-strong ${small ? "px-3.5 text-[13px]" : "px-4 text-sm"} font-medium text-ink transition-colors hover:border-white/30 hover:bg-surface-1`;
   return (<div className={`flex flex-wrap gap-2 ${className}`}>
     <a className={c} href="https://apps.apple.com/tr/app/flexlore/id6751126206?l" target="_blank" rel="noopener" aria-label="Download Flexlore on the App Store"><I.apple size={small ? 14 : 16} /><span><span className="sr-only">Download on the </span>App Store</span></a>
     <a className={c} href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" target="_blank" rel="noopener" aria-label="Get Flexlore on Google Play"><I.play size={small ? 13 : 15} /><span><span className="sr-only">Get it on </span>Google Play</span></a>
