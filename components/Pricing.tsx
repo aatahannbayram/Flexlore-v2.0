@@ -7,6 +7,7 @@ import { Footer } from "./Sections";
 import Copq from "./Copq";
 import { PL, BillingToggle, PriceBlock } from "./PriceUI";
 import type { Lang } from "./copy";
+import { StoreCTA } from "./StoreCTA";
 
 const CELL_TR: Record<string, string> = { "Talk to sales": "Satışla görüşün", "Standard": "Standart", "Premium": "Premium", "3 quizzes": "3 quiz", "10 quizzes": "10 quiz", "Unlimited": "Sınırsız", "Coming soon": "Yakında", "By number of users": "Kullanıcı sayısına göre" };
 const Cell = ({ v, tr }: { v: boolean | string; tr?: boolean }) => v === true ? <I.check size={18} className="mx-auto text-white" /> : v === false ? <span className="text-[14px] text-white/70">{tr ? "Dahil değil" : "Not included"}</span> :
@@ -41,7 +42,9 @@ export default function Pricing() {
             </div>
             {prev && <p className="mt-6 text-[14px] font-semibold text-white">{t.plus(prev.name)}</p>}
             <ul className={`${prev ? "mt-3" : "mt-6"} space-y-2.5 text-[14px] text-white/80`}>{pts.map((x) => <li key={x} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{x}</li>)}</ul>
-            <a href={p.checkout ?? SITE.demo} className={`${p.featured ? "btn-p" : "btn-g"} mt-auto self-start`} style={{ marginTop: "2rem" }}>{p.id === "enterprise" ? t.contact : p.id === "free" ? t.start : t.choose} <Arr className="ml-1" /></a>
+            {p.id === "enterprise"
+              ? <a href={SITE.demo} className={`${p.featured ? "btn-p" : "btn-g"} mt-auto self-start`} style={{ marginTop: "2rem" }}>{t.contact} <Arr className="ml-1" /></a>
+              : <div className="mt-auto flex" style={{ paddingTop: "2rem" }}><StoreCTA label={p.id === "free" ? t.start : t.choose} primary={p.featured} tr={tr} /></div>}
           </li>); })}
         </ul>
 
