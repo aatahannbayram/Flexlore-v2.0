@@ -13,7 +13,7 @@ export type C = {
 export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["How it works", "Your business", "Cases", "AI"], navP: "Pricing", menu: "Menu", close: "Close",
-    h1: [{ t: "The World's Easiest Way to " }, { t: "Create Standard Work Instructions.", o: true }], heroLine: "Film the real job on a phone. Flexlore turns it into step-by-step video instructions and a quiz, then shows you who's ready. Fewer mistakes. Faster onboarding. Know-how that stays.",
+    h1: [{ t: "Every job, step by step. " }, { t: "Through the eyes of the person who does it.", o: true }], heroLine: "Film the real job on a phone, from the operator's side. Flexlore turns it into steps and a quiz, then shows you who's ready.",
     alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
@@ -48,7 +48,7 @@ export const copy: Record<Lang, C> = {
   },
   tr: {
     skip: "İçeriğe geç", nav: ["Nasıl çalışır", "Sizin işiniz", "Örnekler", "Yapay zekâ"], navP: "Fiyatlar", menu: "Menü", close: "Kapat",
-    h1: [{ t: "Standart iş talimatı oluşturmanın", o: true }, { t: " dünyadaki en kolay yolu." }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
+    h1: [{ t: "Her iş, adım adım. " }, { t: "Onu yapan kişinin gözünden.", o: true }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
     alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [

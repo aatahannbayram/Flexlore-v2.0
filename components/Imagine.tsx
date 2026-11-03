@@ -282,13 +282,13 @@ export default function Imagine() {
         <p className="eyebrow">Imagine it in your business</p>
         <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">Pick your work. See it in Flexlore.</h2>
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <label htmlFor="imagine-pick" className="text-[15px] text-white/60">My business is</label>
+          <label htmlFor="imagine-pick" className="text-[15px] text-white/70">My business is</label>
           <div className="relative">
             <select id="imagine-pick" value={a} onChange={(e) => setA(Number(e.target.value))} aria-controls="imagine-panel"
               className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-[17px] font-semibold tracking-tight text-white ring-1 ring-white/15 outline-none transition hover:ring-white/35 focus:ring-white/60">
               {IMAGINE.map((x, i) => <option key={x.k} value={i} className="bg-[#111] text-white">{i === IMAGINE.length - 1 ? "something else" : x.k.toLowerCase()}</option>)}
             </select>
-            <I.chevD size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/60" />
+            <I.chevD size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/70" />
           </div>
         </div>
         <div id="imagine-panel" role="tabpanel" className="mt-8 grid gap-8 md:grid-cols-12 md:items-stretch md:gap-12">
@@ -300,7 +300,7 @@ export default function Imagine() {
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-              <p className="mono text-[11px] uppercase tracking-[.18em] text-white/65">Example scenario · {o.k}</p>
+              <p className="mono text-[12px] uppercase tracking-[.18em] text-white/65">Example scenario · {o.k}</p>
               <p className="mt-2 max-w-[30ch] text-[clamp(1.3rem,2.2vw,2rem)] font-semibold leading-[1.15] tracking-tight">{o.job}</p>
             </div>
           </div>
@@ -313,7 +313,7 @@ export default function Imagine() {
                 </motion.li>))}
             </ol>
             <p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">Example scenario · roles and dishes are illustrative</p>
-            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-[13px] text-white/50">Bring one of your real jobs. We'll build it with you.</p></div>
+            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-[13px] text-white/70">Bring one of your real jobs. We'll build it with you.</p></div>
           </div>
         </div>
       </div>

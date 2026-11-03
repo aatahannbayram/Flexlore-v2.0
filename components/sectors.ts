@@ -54,7 +54,7 @@ export const sectors: Sector[] = [
     slug: "otel", v: "hotel", still: "/photos/hotel-room.jpg", en: "Hotels", tr: "Oteller", idx: "03",
     kicker: "Hotels & hospitality", h: "Every room, turned the same way.",
     lede: "Guests notice the details your best housekeeper never misses. Flexlore turns those details into a standard every new team member can follow.",
-    problem: { h: "Seasonal teams, every season.", p: ["New staff arrive in waves and learn in a rush, often in several languages.", "Standards for room turn, front desk and breakfast drift from one property to the next."] },
+    problem: { h: "Seasonal teams, every season.", p: ["New staff arrive in waves and learn in a rush. The video shows what words can't.", "Standards for room turn, front desk and breakfast drift from one property to the next."] },
     sops: [
       { t: "Housekeeping room turn", steps: ["Strip, ventilate, check for left items", "Bathroom top to bottom", "Bed made to the house standard", "Amenities placed by reference photo"] },
       { t: "Front desk check-in", steps: ["Greeting and ID", "Room features and Wi-Fi", "Breakfast and checkout times", "Escalation for special requests"] },
@@ -67,7 +67,7 @@ export const sectors: Sector[] = [
       { k: "Readiness", h: "Ready before the guest arrives.", p: "See who has learned room turn, check-in and breakfast, by property and shift." },
     ],
     quiz: { q: "You find a guest's item while stripping the room. What do you do?", a: ["Leave it on the bed", "Log it and hand it to lost and found", "Bin it"], ok: 1 },
-    flow: [ { when: "Day 0", what: "Head housekeeper films room turn and amenities" }, { when: "Day 1", what: "Translated steps and quiz approved" }, { when: "Arrival day", what: "Seasonal staff learn before their first floor" }, { when: "Every shift", what: "Duty manager sees who is ready, by property" } ],
+    flow: [ { when: "Day 0", what: "Head housekeeper films room turn and amenities" }, { when: "Day 1", what: "Steps and quiz approved" }, { when: "Arrival day", what: "Seasonal staff learn before their first floor" }, { when: "Every shift", what: "Duty manager sees who is ready, by property" } ],
     ready: "Ready for: room turn, breakfast.",
   },
   {
@@ -87,7 +87,7 @@ export const sectors: Sector[] = [
       { k: "Readiness", h: "See every location.", p: "Compare readiness by branch, region and shift before a launch or a field visit." },
     ],
     quiz: { q: "A new item launches Monday. When should the branch team learn it?", a: ["On launch day", "Before launch, with the video and quiz", "When a guest asks"], ok: 1 },
-    flow: [ { when: "Day 0", what: "Training team films the new standard at the flagship" }, { when: "Day 1", what: "Steps, translations and quiz approved centrally" }, { when: "Before launch", what: "Every branch is assigned the same standard" }, { when: "Launch day", what: "Head office sees readiness, branch by branch" } ],
+    flow: [ { when: "Day 0", what: "Training team films the new standard at the flagship" }, { when: "Day 1", what: "Steps and quiz approved centrally" }, { when: "Before launch", what: "Every branch is assigned the same standard" }, { when: "Launch day", what: "Head office sees readiness, branch by branch" } ],
     ready: "Ready branches: compared side by side.",
   },
   {

@@ -39,7 +39,7 @@ export function Video({ name, eager = false, className = "" }: { name: string; e
   if (reduce) return <img src={`/video/${name}.jpg`} alt="" className={cls} />;
   return (
     <video ref={ref} className={cls} poster={`/video/${name}.jpg`} muted loop playsInline autoPlay={eager && !paused}
-      preload={eager ? "auto" : "none"} aria-hidden="true">
+      preload={eager ? "metadata" : "none"} aria-hidden="true">
       {on && <source src={`/video/${name}.webm`} type="video/webm" />}
       {on && <source src={`/video/${name}.mp4`} type="video/mp4" />}
     </video>
@@ -71,52 +71,34 @@ export function Magnetic({ children, className = "", href, onClick }: { children
 function Loader() {
   const reduce = useReducedMotion();
   const [done, setDone] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setDone(true), reduce ? 0 : 1900); return () => clearTimeout(t); }, [reduce]);
+  useEffect(() => { const t = setTimeout(() => setDone(true), reduce ? 0 : 900); return () => clearTimeout(t); }, [reduce]);
   if (reduce) return null;
   return (
     <motion.div aria-hidden="true" initial={{ y: 0 }} animate={{ y: done ? "-100%" : 0 }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#111111]">
-      <motion.img src="/brand/app-icon.png" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
+      <motion.img src="/brand/app-icon.webp" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
       <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
       <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
-      <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-white/40">Step by step · from the operator's eyes</p>
+      <p className="mono mt-4 text-[12px] uppercase tracking-[.2em] text-white/70">Step by step · from the operator's eyes</p>
     </motion.div>);
 }
 
 function Hero({ t }: { t: C }) {
-  const { ref, p } = useSec();
-  const ms = useTransform(p, [0, 0.75], [1, 9]);
-  const mo = useTransform(p, [0.45, 0.75], [1, 0]);
-  const so = useTransform(p, [0.7, 0.9], [0, 1]);
-  const sy = useTransform(p, [0.7, 0.9], [40, 0]);
-  // Giriş yalnızca video ve "Step by step." ile açılır; başlık, açıklama ve butonlar maske açılınca gelir.
-  const [shown, setShown] = useState(false);
-  useEffect(() => so.on("change", (v) => setShown(v > 0.5)), [so]);
-  // Klavyeyle gizli butona gelinirse bölümü kaydırıp görünür yap.
-  const reveal = () => { const el = ref.current; if (shown || !el) return; const top = el.getBoundingClientRect().top + window.scrollY; window.scrollTo({ top: top + (el.offsetHeight - window.innerHeight) * 0.92 }); };
-  const words = t.hero.split(" ");
+  // P0: değer önerisi ilk ekranda. "Step by step." artık eyebrow; video karartması ≤%50.
   return (
-    <section ref={ref} className="relative h-[200vh]" aria-label={t.hero}>
-      <div className="sticky top-0 h-svh overflow-hidden">
-        <div className="absolute inset-0" style={{ filter: "brightness(.95) contrast(.9) saturate(.85)" }}><Video name="plating" eager /></div>
-        <motion.div style={{ opacity: mo }} className="absolute inset-0 bg-black/30" />
-                <motion.div style={{ opacity: so }} className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/60" />
-        {/* signature: video lives inside the letters, then the mask opens up */}
-        <motion.div style={{ opacity: mo }} className="absolute inset-0 flex items-start justify-center bg-black pt-[17vh] mix-blend-multiply md:pt-[15vh]">
-          <motion.p aria-hidden="true" style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-white">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}
-            </motion.p>
-        </motion.div>
-        <motion.div aria-hidden="true" style={{ opacity: mo }} className="pointer-events-none absolute inset-0 flex items-start justify-center pt-[17vh] md:pt-[15vh]">
-          <motion.p style={{ scale: ms }} className="display origin-[50%_45%] px-4 text-center text-[min(21vw,24svh)] md:text-[min(13.5vw,26svh)] leading-[.82] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,.28)]">
-            {words.map((w, i) => (<span key={w + i} className="inline-block overflow-hidden pb-[.06em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.15 + i * 0.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="inline-block">{w}&nbsp;</motion.span></span>))}</motion.p>
-        </motion.div>
-        <motion.div style={{ opacity: so, y: sy }} onFocusCapture={reveal} className={`absolute inset-x-0 bottom-0 mx-auto max-w-[1400px] px-6 pb-[10vh] md:px-10 ${shown ? "" : "pointer-events-none"}`}>
-          <h1 className="display max-w-[17ch] text-[clamp(2.5rem,6vw,6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
-          <p className="mt-5 max-w-[50ch] text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.4] text-white/80 [text-wrap:pretty]">{t.heroLine}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div>
-        </motion.div>
+    <section className="relative flex min-h-svh items-end overflow-hidden" aria-label={t.hero}>
+      <div className="absolute inset-0" style={{ filter: "brightness(.95) contrast(.9) saturate(.85)" }}><Video name="plating" eager /></div>
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/35 to-black/25" />
+      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-[14vh] pt-28 md:px-10 md:pb-[16vh]">
+        <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} className="eyebrow">{t.hero}</motion.p>
+        <h1 className="display mt-4 max-w-[20ch] text-[clamp(2.4rem,5.6vw,5.6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
+        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,1.3vw,1.25rem)] leading-[1.4] text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,.6)] [text-wrap:pretty]">{t.heroLine}</p>
+        <div className="mt-7 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div>
       </div>
+      <a href="#problem" aria-label="Scroll to content" className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/80 hover:text-white">
+        <span className="mono text-[12px] uppercase tracking-[.2em]">Scroll</span>
+        <motion.span aria-hidden="true" animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }} className="block h-6 w-px bg-white/80" />
+      </a>
     </section>
   );
 }
@@ -159,7 +141,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
-            <p className="mono text-[12px] uppercase tracking-[.16em] text-white/60">{t.pK}</p>
+            <p className="mono text-[12px] uppercase tracking-[.16em] text-white/70">{t.pK}</p>
             <div className="mt-6 flex items-start gap-5 md:mt-10 md:gap-10">
               <span className="num text-[clamp(5rem,13vw,13rem)] text-white/90 tabular-nums">0{a + 1}</span>
               <div className="relative mt-3 h-[9.5rem] flex-1 md:h-[14rem]">
@@ -201,7 +183,7 @@ function Ready({ t }: { t: C }) {
           <motion.h2 style={{ scale: s }} className="display px-4 text-center text-[clamp(3.6rem,13vw,14rem)] text-white">{t.rH}</motion.h2>
         </div>
         <motion.div style={{ opacity: po }} className="absolute inset-x-0 bottom-[12vh] mx-auto max-w-lg px-6 text-center">
-          <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.rK}</p>
+          <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.rK}</p>
           <p className="mt-3 text-xl leading-[1.3] text-white/80">{t.rP}</p>
         </motion.div>
       </div>
@@ -230,17 +212,17 @@ function Sectors({ t, lang }: { t: C; lang: Lang }) {
                 <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
                 <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[14vh] md:px-10">
                   <span className="num text-[clamp(4rem,9vw,9rem)] leading-none text-white/85">{s.idx}</span>
-                  <p className="mono mt-4 text-[11px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
+                  <p className="mono mt-4 text-[12px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
                   <p className="display mt-3 text-[clamp(2.8rem,9vw,9rem)] leading-[.92] break-words">{lang === "tr" ? s.tr : s.en}</p>
                   <p className="mt-4 max-w-md text-[17px] leading-[1.3] text-white/75">{s.h}</p>
-                  <span className="mono mt-6 inline-flex items-center gap-3 text-[11px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <Arr className="transition-transform group-hover:translate-x-1" /></span>
+                  <span className="mono mt-6 inline-flex items-center gap-3 text-[12px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <Arr className="transition-transform group-hover:translate-x-1" /></span>
                 </div>
               </Link>
             </li>))}
         </motion.ul>
         <div className="pointer-events-none absolute inset-x-0 top-0 mx-auto flex max-w-[1400px] items-start justify-between px-6 pt-24 md:px-10 md:pt-28">
-          <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
-          <p className="mono hidden pt-1 text-[11px] uppercase tracking-[.2em] text-white/60 md:block tabular-nums">{String(a + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</p>
+          <div><p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
+          <p className="mono hidden pt-1 text-[12px] uppercase tracking-[.2em] text-white/70 md:block tabular-nums">{String(a + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</p>
         </div>
         <div className="absolute inset-x-0 bottom-[6vh] mx-auto max-w-[1400px] px-6 md:px-10"><div className="h-px bg-white/15"><motion.div style={{ scaleX: p }} className="h-full origin-left bg-white/80" /></div></div>
       </div>
@@ -257,12 +239,12 @@ function Proof({ lang }: { lang: Lang }) {
   return (
     <section id="proof" aria-label={tr ? "Kanıt" : "Proof"} className="px-6 pt-16 md:px-10 md:pt-20">
       <div className="mx-auto max-w-[1400px]">
-        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{tr ? "Kendiniz görün" : "See for yourself"}</p>
+        <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{tr ? "Kendiniz görün" : "See for yourself"}</p>
         <ul className="mt-8 grid border-t border-white/10 md:grid-cols-2">
           {items.map((x, i) => (<li key={x.k} className={`border-b border-white/10 ${i ? "md:border-l md:pl-10" : ""}`}>
             <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-5">
-              <span><span className="mono block text-[11px] uppercase tracking-[.2em] text-white/45">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
-              <span aria-hidden="true" className="text-2xl text-white/50 transition group-hover:translate-x-1 group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
+              <span><span className="mono block text-[12px] uppercase tracking-[.2em] text-white/70">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
+              <span aria-hidden="true" className="text-2xl text-white/70 transition group-hover:translate-x-1 group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
         </ul>
       </div>
     </section>);
@@ -272,10 +254,10 @@ function Faq({ t }: { t: C }) {
   return (
     <section id="faq" className="px-6 py-16 md:py-20">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.4fr]">
-        <div><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
+        <div><p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
         <div>{t.faq.map((q) => (
           <details key={q.q} className="group border-t border-white/10 py-4 transition-colors duration-500 last:border-b hover:border-white/30">
-            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/50 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
+            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/70 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
             <p className="mt-4 max-w-xl leading-[1.4] text-white/65">{q.a}</p>
           </details>))}
         </div>
@@ -290,7 +272,7 @@ function End({ t }: { t: C }) {
       <Video name="hotel" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 pt-24 md:px-10">
-        <p className="mono text-[11px] uppercase tracking-[.2em] text-flame">Flexlore</p>
+        <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">Flexlore</p>
         <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
         <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
@@ -314,7 +296,7 @@ function Nav({ t, lang, setLang, paused, setPaused, motionOk }: { t: C; lang: La
   const Lang2 = (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[0.07] p-0.5 text-[12px]">
       {(["en", "tr"] as Lang[]).map((l) => (
-        <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} aria-label={l === "tr" ? "Türkçe" : "English"} lang={l} className={`relative z-10 rounded-full px-2.5 py-1 uppercase transition-colors ${lang === l ? "text-black" : "text-white/55 hover:text-white"}`}>
+        <button key={l} onClick={() => setLang(l)} aria-pressed={lang === l} aria-label={l === "tr" ? "Türkçe" : "English"} lang={l} className={`relative z-10 rounded-full px-2.5 py-1 uppercase transition-colors ${lang === l ? "text-black" : "text-white/80 hover:text-white"}`}>
           {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-white" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}{l}
         </button>))}
     </div>);
@@ -330,11 +312,11 @@ function Nav({ t, lang, setLang, paused, setPaused, motionOk }: { t: C; lang: La
       <motion.header initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3">
         <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
-          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.66)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
+          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.92)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
           <a href="#main" className="flex items-center gap-2" aria-label="Flexlore">
             <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-6 sm:h-7" : "h-6 sm:h-9"}`} />
           </a>
-          <ul className="hidden items-center gap-7 text-[13px] text-white/70 md:flex">
+          <ul className="hidden items-center gap-7 text-[14px] text-white/85 md:flex">
             {links.map((l) => <li key={l.h}><a href={l.h} className="link-u hover:text-white">{l.n}</a></li>)}
           </ul>
           <div className="flex items-center gap-2">

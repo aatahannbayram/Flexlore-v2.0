@@ -36,8 +36,8 @@ export default function UseCase({ c }: { c: UC }) {
         <img src={c.img} alt={c.alt} className="grade absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         <div className="relative mx-auto w-full max-w-[1400px]">
-          <nav aria-label="Breadcrumb" className="mono text-[11px] uppercase tracking-[.18em] text-white/55"><Link href="/" className="link-u hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
-          <p className="mono mt-6 inline-flex items-center gap-2 text-[11px] uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-flame" />{c.k}</p>
+          <nav aria-label="Breadcrumb" className="mono text-[12px] uppercase tracking-[.18em] text-white/70"><Link href="/" className="link-u hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
+          <p className="mono mt-6 inline-flex items-center gap-2 text-[12px] uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-flame" />{c.k}</p>
           <h1 className="display mt-4 max-w-[17ch] text-[clamp(2.8rem,7vw,6.8rem)]">{c.h1}</h1>
           <p className="mt-5 max-w-[58ch] text-[clamp(1rem,1.3vw,1.2rem)] leading-[1.4] text-white/80">{c.lede}</p>
           <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
@@ -47,25 +47,25 @@ export default function UseCase({ c }: { c: UC }) {
         <div className="mx-auto max-w-[1400px]">
           <p className="display text-[clamp(2rem,4.4vw,4.2rem)] text-white/90">{c.quote}</p>
           <h2 id="uc-p" className="eyebrow mt-16">The problem</h2>
-          <ul className="mt-6 grid border-t border-white/15 md:grid-cols-3">{c.problem.map(([h, p], i) => <li key={h} className="border-b border-white/15 py-6 md:border-r md:pr-6 md:[&:not(:first-child)]:pl-6 md:last:border-r-0"><span className="mono text-[11px] text-white/35">0{i + 1}</span><p className="mt-3 text-[20px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/60">{p}</p></li>)}</ul>
+          <ul className="mt-6 grid border-t border-white/15 md:grid-cols-3">{c.problem.map(([h, p], i) => <li key={h} className="border-b border-white/15 py-6 md:border-r md:pr-6 md:[&:not(:first-child)]:pl-6 md:last:border-r-0"><span className="mono text-[12px] text-white/70">0{i + 1}</span><p className="mt-3 text-[20px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/70">{p}</p></li>)}</ul>
         </div>
       </section>
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-s">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
-          <div className="md:col-span-4"><h2 id="uc-s" className="display text-[clamp(2.2rem,4.4vw,4rem)]">How it works</h2><p className="mt-3 text-[16px] leading-[1.4] text-white/60">Film it. Approve it. Assign it.</p></div>
-          <ol className="border-t border-white/15 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-3 border-b border-white/15 py-6"><span className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-white/15 text-white/80">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[19px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/60">{p}</p></div></li>)}</ol>
+          <div className="md:col-span-4"><h2 id="uc-s" className="display text-[clamp(2.2rem,4.4vw,4rem)]">How it works</h2><p className="mt-3 text-[16px] leading-[1.4] text-white/70">Film it. Approve it. Assign it.</p></div>
+          <ol className="border-t border-white/15 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-3 border-b border-white/15 py-6"><span className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-white/15 text-white/80">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[19px] font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-[15px] leading-[1.4] text-white/70">{p}</p></div></li>)}</ol>
         </div>
       </section>
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-o">
         <div className="mx-auto max-w-[1400px] border-t border-white/15 pt-12"><h2 id="uc-o" className="eyebrow">What changes</h2>
-          <ul className="mt-6 grid gap-6 md:grid-cols-3">{c.out.map((o) => <li key={o} className="flex gap-3 text-[20px] font-semibold leading-[1.2] tracking-tight"><I.check size={22} className="mt-0.5 shrink-0 text-white/60" />{o}</li>)}</ul></div>
+          <ul className="mt-6 grid gap-6 md:grid-cols-3">{c.out.map((o) => <li key={o} className="flex gap-3 text-[20px] font-semibold leading-[1.2] tracking-tight"><I.check size={22} className="mt-0.5 shrink-0 text-white/70" />{o}</li>)}</ul></div>
       </section>
       <section className="px-6 pb-24 md:px-10" aria-labelledby="uc-f">
         <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12"><h2 id="uc-f" className="display text-[clamp(2rem,4vw,3.4rem)] md:col-span-4">Questions</h2>
-          <div className="border-t border-white/15 md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group border-b border-white/15 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[18px] font-semibold tracking-tight">{f.q}<span className="text-white/50 transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] text-[15px] leading-[1.45] text-white/65">{f.a}</p></details>)}</div></div>
+          <div className="border-t border-white/15 md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group border-b border-white/15 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[18px] font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] text-[15px] leading-[1.45] text-white/65">{f.a}</p></details>)}</div></div>
       </section>
       <section className="px-6 pb-24 md:px-10"><div className="mx-auto max-w-[1400px] border-t border-white/15 pt-10">
-        <p className="mono text-[10px] uppercase tracking-[.2em] text-white/40">Related use case</p>
+        <p className="mono text-[12px] uppercase tracking-[.2em] text-white/70">Related use case</p>
         <Link href={`/use-cases/${r.slug}/`} className="link-u mt-3 inline-block text-[clamp(1.4rem,2.6vw,2.2rem)] font-semibold tracking-tight">{r.crumb} <Arr className="ml-1" /></Link></div></section>
     </main>
     <Footer />

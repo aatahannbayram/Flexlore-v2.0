@@ -57,7 +57,7 @@ export default function Cases({ lang }: { lang: "en" | "tr" }) {
     <section id="cases" aria-label={t.k} className="px-6 py-16 md:px-10 md:py-20">
       <div className="mx-auto max-w-[1400px]">
         <div className="grid gap-4 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7"><p className="mono text-[11px] uppercase tracking-[.2em] text-flame">{t.k}</p>
+          <div className="md:col-span-7"><p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.k}</p>
             <h2 className="display mt-3 text-[clamp(2.4rem,5vw,4.6rem)]">{t.h}</h2></div>
           <p className="max-w-md text-[17px] leading-[1.3] text-white/65 md:col-span-5">{t.p}</p>
         </div>
@@ -68,11 +68,11 @@ export default function Cases({ lang }: { lang: "en" | "tr" }) {
               <div className="relative aspect-[16/10] overflow-hidden">
                 {c.bg.img ? <img src={c.bg.img} alt="" loading="lazy" className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-[1.03]" /> : <Video name={c.bg.v!} className="opacity-80" />}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                <p className="mono absolute bottom-3 left-4 text-[10px] uppercase tracking-[.18em] text-white/85">0{i + 1} / {c.k}</p>
+                <p className="mono absolute bottom-3 left-4 text-[12px] uppercase tracking-[.18em] text-white/85">0{i + 1} / {c.k}</p>
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <h3 className="text-[19px] font-semibold leading-[1.15] tracking-tight">{c.h}</h3>
-                <p className="mt-2 text-[14px] leading-[1.35] text-white/60">{c.steps.map((x) => x[0]).join(" → ")}</p>
+                <p className="mt-2 text-[14px] leading-[1.35] text-white/70">{c.steps.map((x) => x[0]).join(" → ")}</p>
                 <p className="mt-3 text-[14px] font-semibold text-white">{c.out}</p>
                 {c.note && <p className="mt-2 text-[12px] leading-[1.35] text-white/70">{c.note}</p>}
                 {LINK[c.id] && <a href={LINK[c.id]} className="mt-auto pt-4 text-[13px] text-flame hover:underline">{lang === "tr" ? (c.id === "case-installation" ? "Kurulum eğitimi senaryosu" : "Usta-çırak senaryosu") : (c.id === "case-installation" ? "Installation training use case" : "Master to apprentice use case")} <Arr className="ml-1" /></a>}
