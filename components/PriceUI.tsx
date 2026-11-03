@@ -8,18 +8,18 @@ export const PL = {
 };
 export function BillingToggle({ yearly, setYearly, lang }: { yearly: boolean; setYearly: (v: boolean) => void; lang: Lang }) {
   const t = PL[lang];
-  const b = (on: boolean) => `rounded-full px-4 py-1.5 text-[14px] font-semibold transition ${on ? "bg-white text-black" : "text-white/80 hover:text-white"}`;
+  const b = (on: boolean) => `rounded-full px-4 py-1.5 text-sm font-semibold transition ${on ? "bg-white text-black" : "text-white/80 hover:text-white"}`;
   return (<div role="group" aria-label={t.bill} className="inline-flex rounded-full p-1 ring-1 ring-white/20">
     <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={b(!yearly)}>{t.mo}</button>
     <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={b(yearly)}>{t.yr}</button></div>);
 }
 export function PriceBlock({ p, yearly, lang, small }: { p: typeof PLANS[number]; yearly: boolean; lang: Lang; small?: boolean }) {
   const t = PL[lang]; const pr = yearly ? p.yearly : p.monthly;
-  if (!pr) return <p className={`${small ? "text-[22px]" : "text-[clamp(1.8rem,3vw,2.4rem)]"} font-bold tracking-[-.03em]`}>{t.contact}</p>;
+  if (!pr) return <p className={`${small ? "text-lg" : "text-h3"} font-bold tracking-[-.03em]`}>{t.contact}</p>;
   return (<div>
-    <p className="flex flex-wrap items-baseline gap-x-2">{pr.was && <s className="text-[16px] font-medium text-white/60" aria-label={`was ${pr.was}`}>{pr.was}</s>}<span className={`${small ? "text-[22px]" : "text-[clamp(1.8rem,3vw,2.4rem)]"} font-bold tracking-[-.03em]`}>{pr.now}</span><span className="text-[14px] text-white/70">{t.perMo}</span></p>
-    {p.id !== "free" && <p className="mt-1 text-[13px] text-white/75">{yearly ? t.yrNote : t.moNote}</p>}
-    {p.id !== "free" && !yearly && <p className="mt-1 text-[13px] font-semibold text-[#EC6726]">{t.save}</p>}
+    <p className="flex flex-wrap items-baseline gap-x-2">{pr.was && <s className="text-base font-medium text-white/60" aria-label={`was ${pr.was}`}>{pr.was}</s>}<span className={`${small ? "text-lg" : "text-h3"} font-bold tracking-[-.03em]`}>{pr.now}</span><span className="text-sm text-white/70">{t.perMo}</span></p>
+    {p.id !== "free" && <p className="mt-1 text-sm text-white/75">{yearly ? t.yrNote : t.moNote}</p>}
+    {p.id !== "free" && !yearly && <p className="mt-1 text-sm font-semibold text-flame">{t.save}</p>}
   </div>);
 }
 

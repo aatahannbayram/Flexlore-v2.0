@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { HERO, HeroSrc } from "./config";
+import { playOnly } from "./media";
 
 const MOBILE = "(max-width: 768px)";
 const BIG = "(min-width: 1921px), (min-width: 1281px) and (min-resolution: 1.5dppx)";
@@ -20,7 +21,7 @@ export function HeroMedia({ lang = "en", paused = false }: { lang?: "en" | "tr";
     const s = m && v.mobile ? v.mobile : big && v.d2560 ? v.d2560 : v.d1920;
     setSrc({ s, poster: m ? P.mobile.avif : big ? P.d2560.avif : P.d1920.avif });
   }, [reduce, P]);
-  useEffect(() => { const el = ref.current; if (!el) return; paused ? el.pause() : el.play().catch(() => {}); }, [paused, src]);
+  useEffect(() => { const el = ref.current; if (!el) return; paused ? el.pause() : playOnly(el); }, [paused, src]);
   return (
     <div className="absolute inset-0">
       <picture>
@@ -31,7 +32,7 @@ export function HeroMedia({ lang = "en", paused = false }: { lang?: "en" | "tr";
         <img src={P.d1920.webp} alt={lang === "tr" ? P.altTr : P.alt} fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[70%_50%] md:object-right" />
       </picture>
       {src && (
-        <video ref={ref} className="absolute inset-0 h-full w-full object-cover" poster={src.poster} muted loop playsInline autoPlay={!paused} preload="metadata" aria-hidden="true">
+        <video ref={ref} className="absolute inset-0 h-full w-full object-cover" poster={src.poster} muted loop playsInline preload="metadata" aria-hidden="true">
           {TYPES.map(([k, type]) => src.s[k] && <source key={k} src={src.s[k]} type={type} />)}
         </video>)}
     </div>);

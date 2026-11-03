@@ -8,17 +8,13 @@ import { copy, Lang, C } from "./copy";
 import Link from "next/link";
 import { sectors } from "./sectors";
 import { K } from "./Kinetic";
-import { WebSection, Platforms } from "./WebApp";
-import Programs from "./Programs";
-import Cases from "./Cases";
-import Copq from "./Copq";
-import Imagine from "./Imagine";
-import Security from "./Security";
-import { AISection, Integrations, PricingTeaser, Footer } from "./Sections";
+import { WebSection } from "./WebApp";
+import { PricingTeaser, Footer } from "./Sections";
 import { StoreButtons, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Header } from "./Header";
 import { HeroMedia } from "./HeroMedia";
+import { playOnly } from "./media";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 // Sayfadaki tüm döngülü videoları tek düğmeyle durdurur (WCAG 2.2.2). Sağlayıcı yoksa (ör. demo sayfaları) videolar oynar.
@@ -36,8 +32,8 @@ export function Video({ name, eager = false, className = "" }: { name: string; e
     io.observe(el); return () => io.disconnect();
   }, [eager, reduce]);
   useEffect(() => { const el = ref.current; if (!el || !on || reduce) return;
-    const io = new IntersectionObserver(([e]) => { e.isIntersecting && !paused ? el.play().catch(() => {}) : el.pause(); });
-    io.observe(el); return () => io.disconnect(); }, [on, reduce, paused]);
+    const io = new IntersectionObserver(([e]) => { e.intersectionRatio >= 0.35 && !paused ? playOnly(el) : el.pause(); }, { threshold: [0, 0.35] });
+    io.observe(el); return () => { io.disconnect(); el.pause(); }; }, [on, reduce, paused]);
   const cls = `absolute inset-0 h-full w-full object-cover ${className}`;
   if (reduce) return <img src={`/video/${name}.jpg`} alt="" className={cls} />;
   return (
@@ -46,14 +42,6 @@ export function Video({ name, eager = false, className = "" }: { name: string; e
       {on && <source src={`/video/${name}.webm`} type="video/webm" />}
       {on && <source src={`/video/${name}.mp4`} type="video/mp4" />}
     </video>
-  );
-}
-
-function Phone({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative aspect-[390/820] w-full overflow-hidden rounded-[2.6rem] bg-black p-[7px] shadow-[0_40px_120px_rgba(0,0,0,.7)] ring-1 ring-white/15">
-      <div className="relative h-full w-full overflow-hidden rounded-[2.2rem]"><Image src={src} alt={alt} fill sizes="320px" className="object-cover" /></div>
-    </div>
   );
 }
 
@@ -80,9 +68,9 @@ function Loader() {
     <motion.div aria-hidden="true" initial={{ y: 0 }} animate={{ y: done ? "-100%" : 0 }} transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
       className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[#111111]">
       <motion.img src="/brand/app-icon.webp" alt="Flexlore" initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }} className="h-12 w-12" />
-      <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-5xl"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
+      <div className="mt-6 overflow-hidden"><motion.p initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="display text-h2"><img src="/brand/wordmark-tagline-light.png" alt="Flexlore" className="h-20 w-auto" /></motion.p></div>
       <div className="mt-8 h-px w-40 overflow-hidden bg-white/10"><motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.6, ease: [0.65, 0, 0.35, 1] }} className="h-full origin-left bg-flame" /></div>
-      <p className="mono mt-4 text-[12px] uppercase tracking-[.2em] text-white/70">Step by step · from the operator's eyes</p>
+      <p className="mono mt-4 text-xs uppercase tracking-[.2em] text-white/70">Step by step · from the operator's eyes</p>
     </motion.div>);
 }
 
@@ -94,19 +82,17 @@ function Hero({ t, lang, paused }: { t: C; lang: Lang; paused: boolean }) {
       <div aria-hidden="true" className="absolute inset-0 bg-black/25" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-[14vh] pt-28 md:px-10 md:pb-[16vh]">
         <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} className="eyebrow">{t.hero}</motion.p>
-        <h1 className="display mt-4 max-w-[20ch] text-[clamp(2.4rem,5.6vw,5.6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
-        <p className="mt-5 max-w-[52ch] text-[clamp(1rem,1.3vw,1.25rem)] leading-[1.4] text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,.6)] [text-wrap:pretty]">{t.heroLine}</p>
+        <h1 className="display mt-4 max-w-[20ch] text-h1 [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
+        <p className="mt-5 max-w-[52ch] text-lg leading-[1.4] text-white/90 [text-shadow:0_1px_12px_rgba(0,0,0,.6)] [text-wrap:pretty]">{t.heroLine}</p>
         <div className="mt-7 flex flex-wrap items-center gap-2"><a href={SITE.demo} className="btn-p">{t.cta} <Arr className="ml-1" /></a><StoreButtons small /></div>
       </div>
       <a href="#problem" aria-label="Scroll to content" className="absolute bottom-5 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/80 hover:text-white">
-        <span className="mono text-[12px] uppercase tracking-[.2em]">Scroll</span>
+        <span className="mono text-xs uppercase tracking-[.2em]">Scroll</span>
         <motion.span aria-hidden="true" animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }} className="block h-6 w-px bg-white/80" />
       </a>
     </section>
   );
 }
-
-function Fade() { return <div aria-hidden="true" className="pointer-events-none relative z-10 -mt-px h-24 bg-gradient-to-b from-black to-transparent md:h-32" style={{ marginBottom: "-8rem" }} />; }
 
 function Line({ p, r, children }: { p: MotionValue<number>; r: [number, number]; children: React.ReactNode }) {
   const o = useTransform(p, [r[0], r[1]], [0.12, 1]);
@@ -121,10 +107,10 @@ function Statement({ t }: { t: C }) {
     <section ref={ref} className="relative h-[170vh]" id="problem">
       <div className="sticky top-0 flex h-svh items-center overflow-hidden">
         <motion.div style={{ opacity: vo }} className="absolute inset-0"><Video name="kitchen" /></motion.div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" /><div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent" />
+        <div className="absolute inset-0 bg-black/55" />
         <div className="relative mx-auto w-full max-w-6xl px-6">
-          <p className="eyebrow mb-6">{t.stK}</p><h2 className="display text-[clamp(3.2rem,9vw,9rem)]"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
-          <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-xl leading-[1.3] text-white/75">{t.stSub}</motion.p>
+          <p className="eyebrow mb-6">{t.stK}</p><h2 className="display text-h1"><Line p={p} r={[0.1, 0.3]}>{t.st[0]}</Line><Line p={p} r={[0.3, 0.5]}>{t.st[1]}</Line></h2>
+          <motion.p style={{ opacity: so }} className="mt-10 max-w-lg text-lg leading-[1.3] text-white/75">{t.stSub}</motion.p>
         </div>
       </div>
     </section>
@@ -136,27 +122,24 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
   const [a, setA] = useState(0);
   useEffect(() => p.on("change", (v) => setA(Math.min(3, Math.max(0, Math.floor(v * 4.2 - 0.1))))), [p]);
   const qz = sectors[0].quiz;
-  const bar = useTransform(p, [0, 1], [0, 1]);
   return (
-    <section ref={ref} className="relative h-[380vh]" id="method" aria-label={t.pK}>
+    <section ref={ref} className="relative h-[380vh] bg-bg2" id="method" aria-label={t.pK}>
       <div className="sticky top-0 h-svh overflow-hidden">
-        <div className="absolute inset-0 opacity-25"><Video name="line" /></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/40" /><div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent" /><div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent" />
         <div className="relative mx-auto grid h-full max-w-[1400px] grid-cols-12 items-center gap-6 px-6 md:px-10">
           <div className="col-span-12 self-end pb-6 md:col-span-6 md:self-center md:pb-0">
-            <p className="mono text-[12px] uppercase tracking-[.16em] text-white/70">{t.pK}</p>
+            <p className="mono text-xs uppercase tracking-[.16em] text-white/70">{t.pK}</p>
             <div className="mt-6 flex items-start gap-5 md:mt-10 md:gap-10">
-              <span className="num text-[clamp(5rem,13vw,13rem)] text-white/90 tabular-nums">0{a + 1}</span>
+              <span className="num text-h1 text-white/90 tabular-nums">0{a + 1}</span>
               <div className="relative mt-3 h-[9.5rem] flex-1 md:h-[14rem]">
                 {t.steps.map((s, i) => (
                   <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.35, delay: a === i ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i}>
-                    <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]"><K text={s.h} /></h2>
-                    <p className="mt-3 max-w-sm text-[16px] leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
+                    <h2 className="display text-h1"><K text={s.h} /></h2>
+                    <p className="mt-3 max-w-sm text-base leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
                   </motion.div>))}
               </div>
             </div>
-            <ol className="mono mt-8 grid max-w-md grid-cols-4 gap-2 text-[12px] uppercase tracking-[.12em] md:mt-14">
-              {t.steps.map((s, i) => (<li key={i}><button type="button" onClick={() => { const el = ref.current; if (!el) return; const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight; window.scrollTo({ top: top + span * ((i + 0.35) / 4.2), behavior: "smooth" }); }} aria-current={a === i ? "step" : undefined} className={`w-full border-t pt-2 text-left uppercase transition-colors duration-500 hover:text-white ${a >= i ? "border-white text-white" : "border-white/20 text-white/70"}`}>{s.h.replace(".", "")}</button></li>))}
+            <ol className="mono mt-8 grid max-w-md grid-cols-4 gap-2 text-xs uppercase tracking-[.12em] md:mt-14">
+              {t.steps.map((s, i) => (<li key={i}><button type="button" onClick={() => { const el = ref.current; if (!el) return; const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight; window.scrollTo({ top: top + span * ((i + 0.35) / 4.2), behavior: "smooth" }); }} aria-current={a === i ? "step" : undefined} className={`w-full  pt-2 text-left uppercase transition-colors duration-500 hover:text-white ${a >= i ? "border-white text-white" : " text-white/70"}`}>{s.h.replace(".", "")}</button></li>))}
             </ol>
           </div>
           <div className="col-span-12 row-start-1 flex justify-center pt-20 md:col-span-5 md:col-start-8 md:row-auto md:pt-0">
@@ -165,7 +148,6 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
                 <motion.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, x: a === i ? 0 : a > i ? -36 : 36, scale: a === i ? 1 : 0.98, filter: a === i ? "blur(0px)" : "blur(4px)" }} transition={{ duration: 0.35, delay: a === i ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
                   {i === 0 ? <RecordScreen active={a === 0} /> : i === 1 ? <SopScreen active={a === 1} /> : i === 2 ? <QuizScreen active={a === 2} q={qz.q} a={qz.a} ok={qz.ok} /> : <ReadyScreen active={a === 3} />}
                 </motion.div>))}</Device>
-              <motion.div style={{ scaleY: bar }} className="absolute -right-6 top-0 hidden h-full w-px origin-top bg-white/50 md:block" />
             </div>
           </div>
         </div>
@@ -174,116 +156,101 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
   );
 }
 
-function Ready({ t }: { t: C }) {
-  const { ref, p } = useSec();
-  const s = useTransform(p, [0, 0.55], [1.9, 1]);
-  const po = useTransform(p, [0.55, 0.75], [0, 1]);
+
+function Intro({ lang, onPlay }: { lang: Lang; onPlay: () => void }) {
+  const [on, setOn] = useState(false); const tr = lang === "tr";
+  const title = tr ? "Flexlore'u 2 dakikada izleyin" : "Watch Flexlore in 2 minutes";
   return (
-    <section ref={ref} className="relative h-[200vh]" id="readiness" aria-label={t.rK}>
-      <div className="sticky top-0 h-svh overflow-hidden">
-        <div className="absolute inset-0" style={{ filter: "brightness(1.45) contrast(1.1)" }}><Video name="kitchen" /></div>
-        <div className="absolute inset-0 flex items-center justify-center bg-black mix-blend-multiply">
-          <motion.h2 style={{ scale: s }} className="display px-4 text-center text-[clamp(3.6rem,13vw,14rem)] text-white">{t.rH}</motion.h2>
+    <section id="intro" aria-labelledby="intro-h2" className="px-6 py-20 md:px-10 md:py-24">
+      <div className="mx-auto max-w-[1100px]">
+        <h2 id="intro-h2" className="display text-h2">{title}</h2>
+        <p className="mt-3 max-w-2xl text-base text-white/70">{tr ? "Bir işin bir kez çekilip ekibe adım adım video eğitime dönüşmesini görün." : "See one job filmed once and turned into step-by-step video training for the team."}</p>
+        <div className="relative mt-8 aspect-video overflow-hidden rounded-2xl bg-bg2">
+          {on ? <iframe className="absolute inset-0 h-full w-full" src="https://www.youtube-nocookie.com/embed/4CLIlnp0L28?autoplay=1&rel=0" title={title} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            : <button type="button" onClick={() => { document.querySelectorAll("video").forEach((v) => v.pause()); onPlay(); setOn(true); }} aria-label={(tr ? "Videoyu oynat: " : "Play video: ") + title} className="group absolute inset-0 h-full w-full">
+                <picture><source srcSet="/intro/poster.avif" type="image/avif" /><img src="/intro/poster.webp" alt="" width={640} height={360} loading="lazy" className="h-full w-full object-cover" /></picture>
+                <span className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-flame text-black transition-transform duration-200 ease-out group-hover:scale-105"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg></span>
+              </button>}
         </div>
-        <motion.div style={{ opacity: po }} className="absolute inset-x-0 bottom-[12vh] mx-auto max-w-lg px-6 text-center">
-          <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.rK}</p>
-          <p className="mt-3 text-xl leading-[1.3] text-white/80">{t.rP}</p>
-        </motion.div>
       </div>
     </section>
+  );
+}
+const SEE_CHIPS: [string, string, string][] = [["cafe-restaurant", "Cafe & restaurant chains", "Kafe ve restoran zincirleri"], ["franchise", "Franchise", "Franchise"], ["manufacturing", "Manufacturing", "Üretim"], ["hotel", "Hotel", "Otel"]];
+function SeeItCard({ lang }: { lang: Lang }) {
+  const tr = lang === "tr";
+  return (
+    <div className="mt-12 rounded-2xl bg-card p-8 md:p-10">
+      <h3 className="text-h3 font-semibold tracking-tight">{tr ? "Flexlore'u kendi işinde gör" : "See Flexlore in your business"}</h3>
+      <ul className="mt-5 flex flex-wrap gap-2">{SEE_CHIPS.map(([id, en, t]) => <li key={id}><Link href={`/see-it/?industry=${id}`} className="inline-block rounded-full bg-white/10 px-4 py-2 text-sm text-white/85 transition-colors hover:bg-white/15 hover:text-white">{tr ? t : en}</Link></li>)}</ul>
+      <Link href="/see-it/" className="btn-p mt-7 inline-flex">{tr ? "Kendi senaryonu gör" : "See your scenario"} <Arr className="ml-1" /></Link>
+    </div>
   );
 }
 
 function Sectors({ t, lang }: { t: C; lang: Lang }) {
-  const { ref, p } = useSec();
-  const n = sectors.length;
-  // Hold each full-screen panel, then slide to the next (snap feel).
-  const seg = 1 / n, ins: number[] = [], outs: string[] = [];
-  for (let i = 0; i < n; i++) { ins.push(i * seg + seg * 0.15, i * seg + seg * 0.7); outs.push(`-${i * 100}vw`, `-${i * 100}vw`); }
-  const x = useTransform(p, ins, outs);
-  const [a, setA] = useState(0);
-  useEffect(() => p.on("change", (v) => setA(Math.min(n - 1, Math.max(0, Math.floor(v * n - 0.2))))), [p, n]);
   return (
-    <section ref={ref} id="sectors" aria-label={t.whereK} className="relative" style={{ height: `${n * 80}vh` }}>
-      <div className="sticky top-0 h-svh overflow-hidden">
-        <motion.ul style={{ x }} className="flex h-full w-max">
+    <section id="sectors" aria-labelledby="sec-h2" className="bg-bg2 px-6 py-24 md:px-10 md:py-32">
+      <div className="mx-auto max-w-[1400px]">
+        <p className="eyebrow">{t.whereK}</p><h2 id="sec-h2" className="display mt-4 max-w-[16ch] text-h2">{t.where}</h2>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((s) => (
-            <li key={s.slug} className="relative h-full w-screen shrink-0">
-              <Link href={`/sektor/${s.slug}/`} className="group absolute inset-0 block">
-                <div className="absolute inset-0 transition duration-[1.4s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]"><Video name={s.v} /></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent" />
-                <div className="relative mx-auto flex h-full max-w-[1400px] flex-col justify-end px-6 pb-[14vh] md:px-10">
-                  <span className="num text-[clamp(4rem,9vw,9rem)] leading-none text-white/85">{s.idx}</span>
-                  <p className="mono mt-4 text-[12px] uppercase tracking-[.2em] text-flame">{s.kicker}</p>
-                  <p className="display mt-3 text-[clamp(2.8rem,9vw,9rem)] leading-[.92] break-words">{lang === "tr" ? s.tr : s.en}</p>
-                  <p className="mt-4 max-w-md text-[17px] leading-[1.3] text-white/75">{s.h}</p>
-                  <span className="mono mt-6 inline-flex items-center gap-3 text-[12px] uppercase tracking-[.2em] text-white/70 transition group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <Arr className="transition-transform group-hover:translate-x-1" /></span>
-                </div>
-              </Link>
-            </li>))}
-        </motion.ul>
-        <div className="pointer-events-none absolute inset-x-0 top-0 mx-auto flex max-w-[1400px] items-start justify-between px-6 pt-24 md:px-10 md:pt-28">
-          <div><p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.whereK}</p><h2 className="display mt-3 max-w-[16ch] text-[clamp(2rem,4vw,3.6rem)]"><K text={t.where} /></h2></div>
-          <p className="mono hidden pt-1 text-[12px] uppercase tracking-[.2em] text-white/70 md:block tabular-nums">{String(a + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</p>
-        </div>
-        <div className="absolute inset-x-0 bottom-[6vh] mx-auto max-w-[1400px] px-6 md:px-10"><div className="h-px bg-white/15"><motion.div style={{ scaleX: p }} className="h-full origin-left bg-white/80" /></div></div>
+            <li key={s.slug}><Link href={`/sektor/${s.slug}/`} className="group block overflow-hidden rounded-2xl bg-card">
+              <div className="relative aspect-[16/10] overflow-hidden"><img src={`/video/${s.v}.jpg`} alt="" loading="lazy" className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]" /></div>
+              <div className="p-6"><p className="text-xs uppercase tracking-[.16em] text-white/60">{s.kicker}</p>
+                <h3 className="mt-2 text-lg font-semibold tracking-tight">{lang === "tr" ? s.tr : s.en}</h3>
+                <p className="mt-2 text-base leading-[1.45] text-white/70">{s.h}</p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm text-white/80 group-hover:text-flame">{lang === "tr" ? "Sektörü aç" : "Open sector"} <Arr className="transition-transform group-hover:translate-x-1" /></span></div>
+            </Link></li>))}
+        </ul>
+        <SeeItCard lang={lang} />
       </div>
     </section>
   );
-}
-
-function Proof({ lang }: { lang: Lang }) {
-  const tr = lang === "tr";
-  const items = [
-    { k: "App Store", h: tr ? "iPhone uygulaması yayında" : "Live on the App Store", u: "https://apps.apple.com/tr/app/flexlore/id6751126206?l" },
-    { k: "Product Hunt", h: tr ? "Product Hunt lansmanı" : "Launched on Product Hunt", u: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app" },
-  ];
-  return (
-    <section id="proof" aria-label={tr ? "Kanıt" : "Proof"} className="px-6 pt-16 md:px-10 md:pt-20">
-      <div className="mx-auto max-w-[1400px]">
-        <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{tr ? "Kendiniz görün" : "See for yourself"}</p>
-        <ul className="mt-8 grid border-t border-white/10 md:grid-cols-2">
-          {items.map((x, i) => (<li key={x.k} className={`border-b border-white/10 ${i ? "md:border-l md:pl-10" : ""}`}>
-            <a href={x.u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-6 py-5">
-              <span><span className="mono block text-[12px] uppercase tracking-[.2em] text-white/70">{x.k}</span><span className="display mt-2 block text-[clamp(1.8rem,3vw,2.8rem)]">{x.h}</span></span>
-              <span aria-hidden="true" className="text-2xl text-white/70 transition group-hover:translate-x-1 group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
-        </ul>
-      </div>
-    </section>);
 }
 
 function Faq({ t }: { t: C }) {
   return (
-    <section id="faq" className="px-6 py-16 md:py-20">
+    <section id="faq" className="px-6 py-24 md:px-10 md:py-32">
       <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.4fr]">
-        <div><p className="mono text-[12px] uppercase tracking-[.2em] text-flame">{t.faqK}</p><h2 className="display mt-4 text-[clamp(2.8rem,5.5vw,5rem)]"><K text={t.faqH} /></h2></div>
-        <div>{t.faq.map((q) => (
-          <details key={q.q} className="group border-t border-white/10 py-4 transition-colors duration-500 last:border-b hover:border-white/30">
-            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-xl font-medium tracking-tight text-white/85 transition-colors group-hover:text-white group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-white/70 ring-1 ring-white/15 transition duration-500 group-hover:ring-white/40 group-open:rotate-45 group-open:bg-flame group-open:text-black group-open:ring-flame">+</span></summary>
-            <p className="mt-4 max-w-xl leading-[1.4] text-white/65">{q.a}</p>
+        <div><p className="eyebrow">{t.faqK}</p><h2 className="display mt-4 text-h2">{t.faqH}</h2></div>
+        <div className="space-y-3">{t.faq.map((q) => (
+          <details key={q.q} className="group rounded-2xl bg-bg2 px-6 py-5">
+            <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-lg font-medium tracking-tight text-white/90 group-open:text-white"><h3>{q.q}</h3><span aria-hidden="true" className="shrink-0 text-white/60 transition group-open:rotate-45">+</span></summary>
+            <p className="mt-3 max-w-xl text-base leading-[1.5] text-white/70">{q.a}</p>
           </details>))}
+        </div>
+      </div>
+      <div id="demo" className="mx-auto mt-24 max-w-6xl rounded-3xl bg-bg2 px-8 py-14 md:mt-32 md:px-14 md:py-20">
+        <h2 className="display max-w-[14ch] text-h1">{t.endH}</h2>
+        <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-md text-lg leading-[1.4] text-white/75">{t.endP}</p>
+          <div className="flex flex-wrap items-center gap-3"><a href={SITE.demo} className="btn-p">{t.endCta} <Arr className="ml-1" /></a><StoreButtons small /></div>
         </div>
       </div>
     </section>
   );
 }
 
-function End({ t }: { t: C }) {
+function ProductSuite({ lang }: { lang: Lang }) {
+  const tr = lang === "tr";
+  const lines = tr
+    ? [["Yapay zekâ taslak, siz onay", "Adımları, talimatları ve quizi yapay zekâ taslak olarak hazırlar. Ekibiniz onaylamadan hiçbir şey yayınlanmaz."],
+       ["Rol ve lokasyona göre erişim", "Herkes yalnızca kendi rolü ve lokasyonu için gerekeni görür. Kimin neyi göreceğini yöneticiler belirler."],
+       ["iOS, Android ve web", "Telefonda kaydedin ve öğrenin, tarayıcıda atayın ve takip edin."]]
+    : [["AI drafts, you approve", "AI drafts the steps, instructions and quiz. Nothing goes out until your team approves it."],
+       ["Role- and location-based access", "People see only what their role and site need. Managers decide who sees what."],
+       ["iOS, Android and web", "Record and learn on the phone, assign and track in the browser."]];
   return (
-    <section id="demo" className="relative flex min-h-svh items-end overflow-hidden">
-      <Video name="hotel" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40" />
-      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 pt-24 md:px-10">
-        <p className="mono text-[12px] uppercase tracking-[.2em] text-flame">Flexlore</p>
-        <h2 className="display mt-6 max-w-[11ch] text-[clamp(4rem,11vw,12rem)] leading-[.85]"><K text={t.endH} accent={-1} /></h2>
-        <div className="mt-12 flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
-          <p className="max-w-md text-xl leading-[1.3] text-white/75">{t.endP}</p>
-          <Magnetic href={SITE.demo} className="h-40 w-40 items-center justify-center rounded-full bg-flame transition-[filter] hover:brightness-110 active:brightness-90 active:scale-95 text-center text-[17px] font-medium tracking-tight text-black md:h-48 md:w-48">{t.endCta} <Arr className="ml-1" /></Magnetic>
+    <div id="product">
+      <WebSection lang={lang} />
+      <div className="px-6 pb-24 md:px-10 md:pb-32">
+        <div className="mx-auto max-w-[1400px]">
+          <ul className="grid gap-4 md:grid-cols-3">{lines.map(([h, p]) => <li key={h} className="rounded-2xl bg-bg2 p-7"><h3 className="text-lg font-semibold tracking-tight">{h}</h3><p className="mt-2 text-base leading-[1.5] text-white/70">{p}</p></li>)}</ul>
+          <p className="mt-8 text-sm text-white/60"><span className="mr-2 font-semibold uppercase tracking-[.14em] text-white/80">{tr ? "Yol haritası" : "Roadmap"}</span>{tr ? "Henüz tarih yok: çok dilli içerik, kendi markanız, QR ile iş bağlantıları, BI araçları, MCP sunucusu, REST API ve webhook'lar." : "No dates yet: multilingual content, your own branding, QR job links, BI tools, an MCP server, REST API and webhooks."}</p>
         </div>
       </div>
-    </section>
-  );
+    </div>);
 }
 
 export default function Site() {
@@ -299,7 +266,7 @@ export default function Site() {
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
       <main id="main">
-        <Hero t={t} lang={lang} paused={paused} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser lang={lang} /><Security lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} lang={lang} paused={paused} /><Intro lang={lang} onPlay={() => setPaused(true)} /><Statement t={t} /><Product t={t} lang={lang} /><ProductSuite lang={lang} /><Sectors t={t} lang={lang} /><PricingTeaser lang={lang} /><Faq t={t} />
       </main>
       </VideoPause.Provider>
       <Footer />

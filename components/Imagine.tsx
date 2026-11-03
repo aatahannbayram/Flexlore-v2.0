@@ -236,12 +236,12 @@ export default function Imagine() {
     <section id="imagine" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="imagine-h">
       <div className="mx-auto max-w-[1400px]">
         <p className="eyebrow">Imagine it in your business</p>
-        <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">Pick your work. See it in Flexlore.</h2>
+        <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-h1">Pick your work. See it in Flexlore.</h2>
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <label htmlFor="imagine-pick" className="text-[16px] text-white/70">My business is</label>
+          <label htmlFor="imagine-pick" className="text-base text-white/70">My business is</label>
           <div className="relative">
             <select id="imagine-pick" value={a} onChange={(e) => setA(Number(e.target.value))} aria-controls="imagine-panel"
-              className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-[17px] font-semibold tracking-tight text-white ring-1 ring-white/15 outline-none transition hover:ring-white/35 focus:ring-white/60">
+              className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-base font-semibold tracking-tight text-white outline-none transition">
               {IMAGINE.map((x, i) => <option key={x.k} value={i} className="bg-[#111] text-white">{i === IMAGINE.length - 1 ? "something else" : x.k.toLowerCase()}</option>)}
             </select>
             <I.chevD size={16} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white/70" />
@@ -256,20 +256,20 @@ export default function Imagine() {
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-              <p className="mono text-[12px] uppercase tracking-[.18em] text-white/65">Example scenario · {o.k}</p>
-              <p className="mt-2 max-w-[30ch] text-[clamp(1.3rem,2.2vw,2rem)] font-semibold leading-[1.15] tracking-tight">{o.job}</p>
+              <p className="mono text-xs uppercase tracking-[.18em] text-white/65">Example scenario · {o.k}</p>
+              <p className="mt-2 max-w-[30ch] text-h3 font-semibold leading-[1.15] tracking-tight">{o.job}</p>
             </div>
           </div>
           <div className="flex flex-col md:col-span-5">
-            <ol className="border-t border-white/10">
+            <ol className="">
               {o.flow.map((f, i) => (
-                <motion.li key={o.k + i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i, duration: 0.5 }} className="grid grid-cols-[2.5rem_1fr] items-start gap-2 border-b border-white/10 py-6">
-                  <span className="mono pt-1 text-[12px] tabular-nums text-flame">{String(i + 1).padStart(2, "0")}</span>
-                  <span><span className="block text-[17px] font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-[16px] leading-[1.4] text-white/65">{f[1]}</span></span>
+                <motion.li key={o.k + i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i, duration: 0.5 }} className="grid grid-cols-[2.5rem_1fr] items-start gap-2 py-6">
+                  <span className="mono pt-1 text-xs tabular-nums text-flame">{String(i + 1).padStart(2, "0")}</span>
+                  <span><span className="block text-base font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-base leading-[1.4] text-white/65">{f[1]}</span></span>
                 </motion.li>))}
             </ol>
-            <p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">Example scenario · roles and dishes are illustrative</p>
-            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-[13px] text-white/70">Bring one of your real jobs. We'll build it with you.</p></div>
+            <p className="mono mt-4 text-xs uppercase tracking-[.14em] text-white/70">Example scenario · roles and dishes are illustrative</p>
+            <div className="mt-auto pt-8"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><p className="mt-2 text-sm text-white/70">Bring one of your real jobs. We'll build it with you.</p></div>
           </div>
         </div>
       </div>

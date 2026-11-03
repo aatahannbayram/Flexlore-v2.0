@@ -11,8 +11,8 @@ export default function Programs({ lang }: { lang: "en" | "tr" }) {
   if (!on) return null;
   return (
     <section aria-label={lang === "tr" ? "Programlar" : "Programs"} className="px-6 pt-12 md:px-10">
-      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-16 gap-y-8 border-t border-white/10 pt-8">
-        <p className="mono text-[12px] uppercase tracking-[.2em] text-white/70">{lang === "tr" ? "Program katılımı" : "Program participation"}</p>
+      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center gap-x-16 gap-y-8 pt-8">
+        <p className="mono text-xs uppercase tracking-[.2em] text-white/70">{lang === "tr" ? "Program katılımı" : "Program participation"}</p>
         {items.map((b) => (<img key={b.src} src={b.src} alt={b.alt} className="h-12 w-auto p-3 md:h-14" />))}
       </div>
     </section>);
