@@ -8,7 +8,7 @@ import Copq from "./Copq";
 import { PL, BillingToggle, PriceBlock } from "./PriceUI";
 import type { Lang } from "./copy";
 
-const CELL_TR: Record<string, string> = { "Talk to sales": "Satışla görüşün", "Standard": "Standart", "Premium": "Premium", "3 quizzes": "3 quiz", "10 quizzes": "10 quiz", "Unlimited": "Sınırsız", "Coming soon": "Yakında", "Per location": "Lokasyon başına", "By user count (30+ users)": "Kullanıcı sayısına göre (30+ kullanıcı)" };
+const CELL_TR: Record<string, string> = { "Talk to sales": "Satışla görüşün", "Standard": "Standart", "Premium": "Premium", "3 quizzes": "3 quiz", "10 quizzes": "10 quiz", "Unlimited": "Sınırsız", "Coming soon": "Yakında", "By number of users": "Kullanıcı sayısına göre" };
 const Cell = ({ v, tr }: { v: boolean | string; tr?: boolean }) => v === true ? <I.check size={18} className="mx-auto text-white" /> : v === false ? <span className="text-[14px] text-white/70">{tr ? "Dahil değil" : "Not included"}</span> :
   <span className={`text-[14px] ${v.startsWith("Coming") ? "text-white/75" : "text-white"}`}>{tr ? CELL_TR[v] ?? v : v}</span>;
 
@@ -37,8 +37,7 @@ export default function Pricing() {
             <p className="mt-1.5 text-[14px] leading-[1.4] text-white/70">{p.for}</p>
             <div className="mt-6 border-t border-white/10 pt-6">
               <PriceBlock p={p0} yearly={yearly} lang={lang} />
-              {/* Kept on purpose: "per location" wording awaits Ata Han's decision (app plans are user-limited). */}
-              <p className="mt-1 text-[13px] text-white/70">{p.id === "enterprise" ? t.entB : t.unit}</p>
+              <p className="mt-1 text-[13px] text-white/70">{p.id === "enterprise" ? t.entB : t.unit(p0.id === "free" ? "3" : p0.id === "pro" ? "10" : "30")}</p>
             </div>
             {prev && <p className="mt-6 text-[14px] font-semibold text-white">{t.plus(prev.name)}</p>}
             <ul className={`${prev ? "mt-3" : "mt-6"} space-y-2.5 text-[14px] text-white/80`}>{pts.map((x) => <li key={x} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{x}</li>)}</ul>
@@ -54,7 +53,7 @@ export default function Pricing() {
             <li key={x.id} className="flex flex-col rounded-xl bg-black/40 p-5 ring-1 ring-white/10"><p className="text-[16px] font-semibold">Enterprise {x.name}</p>
               <p className="mt-3 text-[22px] font-bold">{x.custom ? t.custom : <>{x.price}<span className="text-[14px] font-normal text-white/70">{t.perMo}</span></>}</p>
               <p className="mt-1 text-[13px] text-white/70">{t.users(tr ? x.usersTr : x.users)}</p>
-              <ul className="mt-4 space-y-2 text-[14px] text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}</ul></li>))}</ul>
+              <ul className="mt-4 space-y-2 text-[14px] text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[.1em] text-white/80 ring-1 ring-white/30">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
           <a href={SITE.demo} className="btn-p mt-8">{t.sales} <Arr className="ml-1" /></a>
         </section>
 

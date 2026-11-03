@@ -3,8 +3,8 @@ import type { Lang } from "./copy";
 import { PLANS } from "./config";
 
 export const PL = {
-  en: { mo: "Monthly", yr: "Yearly", bill: "Billing period", perMo: "/mo", yrNote: "per month, yearly plan", moNote: "per month, monthly plan", save: "Save with yearly", plus: (x: string) => `Everything in ${x}, plus:`, unit: "per location / month", contact: "Contact us", custom: "Custom pricing", users: (n: string) => `${n} users`, entB: "Priced by user count", choose: "Choose plan", start: "Start free" },
-  tr: { mo: "Aylık", yr: "Yıllık", bill: "Faturalama dönemi", perMo: "/ay", yrNote: "aylık, yıllık planda", moNote: "aylık, aylık planda", save: "Yıllıkta tasarruf edin", plus: (x: string) => `${x} planındaki her şey, ayrıca:`, unit: "lokasyon başına / aylık", contact: "Bize ulaşın", custom: "Özel fiyat", users: (n: string) => `${n} kullanıcı`, entB: "Kullanıcı sayısına göre fiyatlanır", choose: "Planı seçin", start: "Ücretsiz başlayın" },
+  en: { mo: "Monthly", yr: "Yearly", bill: "Billing period", perMo: "/mo", yrNote: "per month, yearly plan", moNote: "per month, monthly plan", save: "Save with yearly", plus: (x: string) => `Everything in ${x}, plus:`, unit: (n: string) => `Up to ${n} users`, contact: "Contact us", custom: "Custom pricing", users: (n: string) => `${n} users`, entB: "Priced by user count", choose: "Choose plan", start: "Start free" },
+  tr: { mo: "Aylık", yr: "Yıllık", bill: "Faturalama dönemi", perMo: "/ay", yrNote: "aylık, yıllık planda", moNote: "aylık, aylık planda", save: "Yıllıkta tasarruf edin", plus: (x: string) => `${x} planındaki her şey, ayrıca:`, unit: (n: string) => `${n} kullanıcıya kadar`, contact: "Bize ulaşın", custom: "Özel fiyat", users: (n: string) => `${n} kullanıcı`, entB: "Kullanıcı sayısına göre fiyatlanır", choose: "Planı seçin", start: "Ücretsiz başlayın" },
 };
 export function BillingToggle({ yearly, setYearly, lang }: { yearly: boolean; setYearly: (v: boolean) => void; lang: Lang }) {
   const t = PL[lang];
