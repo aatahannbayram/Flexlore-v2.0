@@ -43,11 +43,11 @@ export function TrustStrip({ lang }: { lang: Lang }) {
         </div>
         <div className="col-span-12 lg:col-span-6 lg:col-start-7">
           <p className="eyebrow">{c.programs}</p>
-          <ul className="mt-4 flex flex-wrap items-center gap-x-10 gap-y-4">
+          <ul className="mt-4 flex flex-wrap items-center gap-x-12 gap-y-5">
             {SITE.programs.map((p) => (
               <li key={p.name}>
                 {p.badge
-                  ? <img src={p.badge} alt={p.name} className="h-7 w-auto opacity-80" />
+                  ? <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-12 w-auto" />
                   : <span className="block text-[19px] font-semibold leading-tight tracking-[-.02em] text-ice-300">{p.name}{!p.name.includes(p.org) && <span className="font-normal text-ice-400"> by {p.org}</span>}</span>}
               </li>))}
           </ul>

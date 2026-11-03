@@ -124,7 +124,7 @@ export function Footer({ lang = "en" }: { lang?: "en" | "tr" }) {
           <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
       </div>
       <div className="container-x mt-14"><div className="flex flex-col gap-4 py-8 text-caption text-ink-faint md:flex-row md:items-center md:justify-between">
-        <span>© 2026 Flexlore Inc.</span>
+        <span className="max-w-[46rem]">© 2026 Flexlore Inc. <span className="mt-2 block">© 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.</span></span>
         <ul className="flex flex-wrap gap-x-5 gap-y-1">{SITE.legal.map(([n, h]) => <li key={n}><a className="inline-flex min-h-9 items-center hover:text-ink" href={h}>{n}</a></li>)}</ul>
       </div></div>
     </footer>
