@@ -36,9 +36,9 @@ export function VideoModal({ open, onClose, title, youtubeId, closeLabel }: { op
             initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.35, ease: EASE }}>
             <div className="mb-3 flex items-center justify-between gap-4">
               <p className="text-base font-semibold">{title}</p>
-              <button type="button" onClick={onClose} aria-label={closeLabel} className="grid h-11 w-11 place-items-center rounded-full border border-line-strong hover:bg-surface-1"><X size={18} aria-hidden="true" /></button>
+              <button type="button" onClick={onClose} aria-label={closeLabel} className="grid h-11 w-11 place-items-center rounded-full bg-white/[.07] hover:bg-white/[.12]"><X size={18} aria-hidden="true" /></button>
             </div>
-            <div className="relative aspect-video overflow-hidden rounded-2xl border border-line bg-surface-1">
+            <div className="relative aspect-video overflow-hidden rounded-2xl bg-surface-1">
               <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`} title={title}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
             </div>

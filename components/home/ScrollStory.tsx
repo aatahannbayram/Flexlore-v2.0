@@ -57,12 +57,12 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
                     <li key={i}>
                       <button type="button" onClick={() => jump(i)} aria-current={on ? "step" : undefined}
                         className="group relative grid w-full grid-cols-[3rem_1fr] items-center gap-x-4 rounded-2xl py-3.5 pl-5 pr-4 text-left">
-                        <span aria-hidden="true" className={`absolute inset-0 rounded-2xl border transition-colors duration-500 ${on ? "border-line bg-surface-1" : "border-transparent"}`} />
-                        <span className={`relative text-sm font-semibold tabular-nums transition-colors ${on ? "text-accent-text" : "text-ink-faint"}`}>0{i + 1}</span>
+                        <span aria-hidden="true" className={`absolute inset-0 rounded-[20px] transition-colors duration-500 ${on ? "bg-surface-1" : "bg-transparent"}`} />
+                        <span className={`relative text-sm font-semibold tabular-nums transition-colors ${on ? "text-ice-100" : "text-ink-faint"}`}>0{i + 1}</span>
                         <h3 className={`h3 relative transition-colors ${on ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{s.h.replace(".", "")}</h3>
                         {/* progress rail */}
                         <span aria-hidden="true" className="absolute bottom-3 left-5 right-4 h-px overflow-hidden bg-transparent">
-                          {on && <m.span layoutId="story-rail" className="block h-full bg-accent" />}
+                          {on && <m.span layoutId="story-rail" className="block h-full bg-ice-300" />}
                         </span>
                       </button>
                     </li>);
@@ -115,7 +115,7 @@ function StoryCarousel({ t, hint, devices }: { t: C; hint: string; devices: bool
       <ol ref={track} className="no-sb -mx-[var(--pad-x)] flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] pb-2" aria-label={hint}>
         {t.steps.map((s, k) => (
           <li key={k} className="panel w-[82%] shrink-0 snap-start p-5 sm:w-[60%]">
-            <p className="text-sm font-semibold tabular-nums text-accent-text">0{k + 1}</p>
+            <p className="text-sm font-semibold tabular-nums text-ice-400">0{k + 1}</p>
             <h3 className="h3 mt-2">{s.h.replace(".", "")}</h3>
             <p className="mt-2 text-base text-ink-muted">{s.p}</p>
             {devices && <div className="mx-auto mt-6 w-[min(100%,230px)]"><Device label={t.alts[k]}><Screen i={k} active={i === k} /></Device></div>}
@@ -125,7 +125,7 @@ function StoryCarousel({ t, hint, devices }: { t: C; hint: string; devices: bool
         {t.steps.map((s, k) => (
           <button key={k} type="button" onClick={() => go(k)} aria-label={`${k + 1}: ${s.h.replace(".", "")}`} aria-current={i === k ? "step" : undefined}
             className="grid h-11 w-11 place-items-center">
-            <span className={`block h-1.5 rounded-full transition-all duration-300 ${i === k ? "w-6 bg-accent" : "w-1.5 bg-line-strong"}`} />
+            <span className={`block h-1.5 rounded-full transition-all duration-300 ${i === k ? "w-6 bg-ice-100" : "w-1.5 bg-white/20"}`} />
           </button>))}
       </div>
     </div>);

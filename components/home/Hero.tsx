@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Play } from "../ui/icons";
 import type { C, Lang } from "../copy";
 import { SITE } from "../config";
-import { StoreButtons } from "../Icons";
 import { Device, SopScreen } from "../AppScreens";
 import { MagneticButton } from "../ui/MagneticButton";
 import { SmartVideo } from "../ui/SmartVideo";
@@ -36,7 +35,7 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
             <p className="eyebrow hs-in" style={{ animationDelay: "0ms" }}>{t.hero}</p>
             <h1 id="hero-h" className="display mt-5 text-display">
               {t.h1.map((s, i) => (
-                <span key={i} className={s.o ? "text-accent" : undefined}>
+                <span key={i} className={s.o ? "text-ice-400" : undefined}>
                   {s.t.trim().split(" ").map((word, j, arr) => (
                     <span key={j}><span className="hs-word" style={{ animationDelay: `${80 + 55 * w++}ms` }}>{word}</span>{j < arr.length - 1 || i < t.h1.length - 1 ? " " : ""}</span>))}
                 </span>))}
@@ -47,10 +46,6 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary">
                 <Play size={14} weight="fill" aria-hidden="true" />{t.watch}
               </button>
-            </div>
-            <div className="hs-in mt-8 flex flex-wrap items-center gap-x-4 gap-y-3" style={{ animationDelay: "700ms" }}>
-              <span className="text-caption text-ink-faint">{t.storeNote}</span>
-              <StoreButtons small />
             </div>
           </div>
 
@@ -64,7 +59,7 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
                   <span className="rounded-full bg-[rgb(104_210_185/0.12)] px-2 py-0.5 text-xs font-semibold text-calm-aqua">{t.chip.status}</span>
                 </div>
                 <div className="mt-3 flex items-center gap-3">
-                  <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-surface-2"><span className="absolute inset-y-0 left-0 w-[86%] rounded-full bg-calm-aqua" /></span>
+                  <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-surface-2"><span className="absolute inset-y-0 left-0 w-[86%] rounded-full bg-ice-200" /></span>
                   <span className="text-sm font-semibold tabular-nums">12/14</span>
                 </div>
                 <p className="mt-2 text-xs text-ink-faint">{t.chip.note}</p>

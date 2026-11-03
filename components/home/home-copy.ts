@@ -11,13 +11,13 @@ export type HomeCopy = {
   ind: { k: string; h: string; lead: string; open: string; more: string; picker: string; pickerLead: string; see: string };
   pricing: { k: string; h: string; lead: string; all: string; demo: string };
   faq: { k: string; h: string; items: { q: string; a: string }[] };
-  end: { h: string; p: string; cta: string };
+  end: { h: [string, string]; p: string; cta: string };
   footer: { tag: string; app: string; product: string; industries: string; company: string; follow: string; how: string; web: string; scenario: string; pricing: string; blog: string; support: string };
 };
 
 export const home: Record<Lang, HomeCopy> = {
   en: {
-    trust: { live: "Live today", ios: "iPhone app on the App Store", android: "Android app on Google Play", ph: "Launched on Product Hunt", programs: "Programs we are part of" },
+    trust: { live: "Available now", ios: "iPhone app on the App Store", android: "Android app on Google Play", ph: "Launched on Product Hunt", programs: "Member of" },
     problem: {
       k: "Why it matters", h: ["Know-how lives", "in someone's hands."],
       p: "It leaves when they do. New people copy whoever is on shift, and the binder stays on the shelf.",
@@ -70,11 +70,11 @@ export const home: Record<Lang, HomeCopy> = {
         { q: "How is it priced?", a: "Plans are priced by number of users: Free covers 3, Pro 10 and ProPlus 30. Enterprise starts at 30+ users." },
       ],
     },
-    end: { h: "See it on your floor.", p: "Twenty minutes. One of your real jobs.", cta: "Book a demo" },
+    end: { h: ["See it on", "your floor."], p: "Twenty minutes. One of your real jobs.", cta: "Book a demo" },
     footer: { tag: "Every job, step by step. Through the eyes of the person who does it.", app: "Get the app", product: "Product", industries: "Industries", company: "Company", follow: "Follow", how: "How it works", web: "Flexlore Web", scenario: "Your business", pricing: "Pricing", blog: "Blog", support: "Support" },
   },
   tr: {
-    trust: { live: "Bugün yayında", ios: "App Store'da iPhone uygulaması", android: "Google Play'de Android uygulaması", ph: "Product Hunt'ta yayınlandı", programs: "Yer aldığımız programlar" },
+    trust: { live: "Şimdi indirin", ios: "App Store'da iPhone uygulaması", android: "Google Play'de Android uygulaması", ph: "Product Hunt'ta yayınlandı", programs: "Üyesi olduğumuz programlar" },
     problem: {
       k: "Neden önemli", h: ["Bilgi birinin", "ellerinde yaşar."],
       p: "O kişi gidince bilgi de gider. Yeni gelen, vardiyada kim varsa onu taklit eder; klasör rafta kalır.",
@@ -124,7 +124,7 @@ export const home: Record<Lang, HomeCopy> = {
         { q: "Fiyatlandırma nasıl?", a: "Planlar kullanıcı sayısına göre fiyatlanır: Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar." },
       ],
     },
-    end: { h: "Kendi sahanızda görün.", p: "Yirmi dakika. Gerçek işlerinizden biri.", cta: "Demo isteyin" },
+    end: { h: ["Kendi sahanızda", "görün."], p: "Yirmi dakika. Gerçek işlerinizden biri.", cta: "Demo isteyin" },
     footer: { tag: "Her iş, adım adım. İşi yapan kişinin gözünden.", app: "Uygulamayı indirin", product: "Ürün", industries: "Sektörler", company: "Şirket", follow: "Takip edin", how: "Nasıl çalışır", web: "Flexlore Web", scenario: "Sizin işiniz", pricing: "Fiyatlar", blog: "Blog", support: "Destek" },
   },
 };

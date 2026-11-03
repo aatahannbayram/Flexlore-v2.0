@@ -30,7 +30,7 @@ export function BlogIndex() {
     <>
       <Bar />
       <main id="main" className="container-x pt-36">
-        <p className="mono text-xs uppercase tracking-[.18em] text-flame">Flexlore</p>
+        <p className="mono text-xs uppercase tracking-[.18em] text-ice-400">Flexlore</p>
         <h1 className="display mt-4 text-h1">Articles</h1>
         <div className="mt-16"><Card p={first} big /></div>
         <div className="mt-20 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">{rest.map((p) => <Card key={p.slug} p={p} />)}</div>

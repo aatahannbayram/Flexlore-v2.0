@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SITE } from "./config";
-import { I, Arr } from "./Icons";
+import { Arr, StoreBadge } from "./Icons";
 
 export const APP_STORE_URL = "https://apps.apple.com/app/flexlore/id6751126206";
 type OS = "ios" | "android" | "other";
@@ -21,13 +21,12 @@ export function StoreCTA({ label, primary, tr, className = "" }: { label: string
   const btn = `${primary ? "btn-p" : "btn-g"} self-start`;
   if (os === "ios") return <a href={APP_STORE_URL} target="_blank" rel="noopener" className={`${btn} ${className}`}>{label} <Arr className="ml-1" /></a>;
   if (os === "android") return <a href={SITE.googlePlay} target="_blank" rel="noopener" className={`${btn} ${className}`}>{label} <Arr className="ml-1" /></a>;
-  const s = "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium ring-1 ring-white/30 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#EC6726]";
   return (
     <div className={`self-start ${className}`} role="group" aria-label={tr ? `${label}: uygulamayı indirin` : `${label}: get the app`}>
-      <p className="text-sm font-semibold text-white">{label}</p>
+      <p className="text-sm font-semibold text-ink">{label}</p>
       <div className="mt-2 flex flex-wrap gap-2">
-        <a href={APP_STORE_URL} target="_blank" rel="noopener" className={s} aria-label={tr ? "App Store'dan indirin" : "Download on the App Store"}><I.apple size={14} /><span>App Store</span></a>
-        <a href={SITE.googlePlay} target="_blank" rel="noopener" className={s} aria-label={tr ? "Google Play'den alın" : "Get it on Google Play"}><I.play size={13} /><span>Google Play</span></a>
+        <StoreBadge href={APP_STORE_URL} top={tr ? "iPhone için" : "For iPhone"} name="App Store" size="sm" />
+        <StoreBadge href={SITE.googlePlay} top={tr ? "Android için" : "For Android"} name="Google Play" size="sm" />
       </div>
     </div>
   );

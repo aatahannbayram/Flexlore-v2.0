@@ -20,7 +20,7 @@ export function Heading({ id, eyebrow, title, lead, light = false, className = "
 }) {
   return (
     <div className={`max-w-[46rem] ${className}`}>
-      {eyebrow && <p className={`eyebrow ${light ? "!text-light-accent-text" : ""}`}>{eyebrow}</p>}
+      {eyebrow && <p className={`eyebrow ${light ? "!text-light-muted" : ""}`}>{eyebrow}</p>}
       <h2 id={id} className={`h2 ${eyebrow ? "mt-4" : ""}`}>{title}</h2>
       {lead && <p className={`lead mt-5 measure ${light ? "!text-light-muted" : ""}`}>{lead}</p>}
     </div>);

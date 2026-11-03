@@ -6,7 +6,7 @@ import { home } from "./home/home-copy";
 
 const Tag = ({ live }: { live: boolean }) => (
   <span className={`mono inline-flex items-center gap-1.5 text-xs uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
-    <span className={`h-1.5 w-1.5 rounded-full ${live ? "bg-flame" : "bg-white/40"}`} />{live ? "Live" : "Coming soon"}</span>);
+    <span className={`h-1.5 w-1.5 rounded-full ${live ? "bg-ice-100" : "bg-white/40"}`} />{live ? "Live" : "Coming soon"}</span>);
 
 const AI_NOW = [
   { i: I.split, h: "Video into steps", p: "Upload a phone video of the job. Flexlore cuts it into clear steps, so nobody scrubs through a long recording to find the bit they need." },
@@ -100,11 +100,11 @@ export function IntegrationsDetail() {
 
 export function Footer({ lang = "en" }: { lang?: "en" | "tr" }) {
   const f = home[lang].footer; const tr = lang === "tr";
-  const col = "mb-4 text-caption font-semibold uppercase tracking-[.12em] text-ink-faint";
+  const col = "mb-4 text-[15px] font-medium text-ice-400";
   const a = "inline-flex min-h-9 items-center text-ink-muted transition-colors hover:text-ink";
   const ind: [string, string, string][] = [["Restaurants", "Restoranlar", "restoran"], ["Manufacturing", "Üretim", "uretim"], ["Hotels", "Oteller", "otel"], ["Franchises", "Franchise", "franchise"], ["Warehouses", "Depolar", "depo"], ["Bakeries & cafés", "Fırın ve kafeler", "firin"]];
   return (
-    <footer className="border-t border-line bg-bg pt-16 text-[15px]" aria-labelledby="footer-h">
+    <footer className="bg-bg pt-20 text-[15px]" aria-labelledby="footer-h">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
       <div className="container-x grid-12 gap-y-12">
         <div className="col-span-12 lg:col-span-4">
@@ -123,7 +123,7 @@ export function Footer({ lang = "en" }: { lang?: "en" | "tr" }) {
         <nav aria-label={f.follow} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.follow}</p><ul className="space-y-1">
           <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
       </div>
-      <div className="container-x mt-14"><div className="flex flex-col gap-4 border-t border-line py-6 text-caption text-ink-faint md:flex-row md:items-center md:justify-between">
+      <div className="container-x mt-14"><div className="flex flex-col gap-4 py-8 text-caption text-ink-faint md:flex-row md:items-center md:justify-between">
         <span>© 2026 Flexlore Inc.</span>
         <ul className="flex flex-wrap gap-x-5 gap-y-1">{SITE.legal.map(([n, h]) => <li key={n}><a className="inline-flex min-h-9 items-center hover:text-ink" href={h}>{n}</a></li>)}</ul>
       </div></div>

@@ -6,7 +6,7 @@ import { copy, Lang } from "./copy";
 import { SITE } from "./config";
 import { EASE } from "./ui/Reveal";
 
-/** One header for every page. Full container width, 64 px, translucent #111111 with blur, hairline after 8 px of scroll.
+/** One header for every page. Full container width, 64 px, translucent #111111 with blur that deepens after 8 px of scroll (no rule line).
  *  Hides on scroll down after 400 px, comes back on scroll up, and always shows while focus is inside it.
  *  `home` keeps in-page anchors; elsewhere they point back to "/#...". */
 export function Header({ lang = "en", setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
@@ -38,7 +38,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
   const show = !hidden || focusIn || open;
 
   const LangSwitch = setLang && (
-    <div role="group" aria-label={t.langLabel} className="relative flex rounded-full border border-line p-0.5 text-xs font-semibold">
+    <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[.06] p-0.5 text-xs font-semibold">
       {(["en", "tr"] as Lang[]).map((l) => (
         <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} lang={l} aria-label={l === "tr" ? "Türkçe" : "English"}
           className={`relative z-10 grid h-8 min-w-9 place-items-center rounded-full px-2 uppercase transition-colors ${lang === l ? "text-bg" : "text-ink-muted hover:text-ink"}`}>
@@ -57,7 +57,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusIn(false); }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 border-b bg-[rgb(17_17_17/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined ? "border-line" : "border-transparent"}`}>
+        className={`fixed inset-x-0 top-0 z-40 backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined ? "bg-[rgb(17_17_17/0.82)]" : "bg-[rgb(17_17_17/0.55)]"}`}>
         <nav aria-label="Main" className="container-x flex h-[var(--header-h)] items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 items-center" aria-label="Flexlore home">
@@ -71,7 +71,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
             {PauseBtn}
             <div className="hidden sm:block">{LangSwitch}</div>
             {SITE.login && <a href={SITE.login} className="hidden h-11 items-center px-3 text-[15px] text-ink-muted hover:text-ink lg:inline-flex">{t.login}</a>}
-            <a href={SITE.demo} className="btn btn-primary btn-sm hidden sm:inline-flex">{t.cta}</a>
+            <a href={SITE.demo} className="btn btn-primary btn-sm">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink md:hidden"><List size={22} aria-hidden="true" /></button>
           </div>

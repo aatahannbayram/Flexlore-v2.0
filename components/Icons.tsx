@@ -34,11 +34,22 @@ export const I = {
   apple: ({ size = 18, className = "" }: P) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-.9-2.4-3.2ZM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4Z" /></svg>,
   play: ({ size = 18, className = "" }: P) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M4.2 2.6 13.6 12l-9.4 9.4c-.3-.2-.5-.6-.5-1V3.6c0-.4.2-.8.5-1Zm10.4 10.4 2.3 2.3-10.6 6 8.3-8.3Zm3.3-3.3 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.6-2.6 2.6-2.9ZM6.3 2.7l10.6 6-2.3 2.3-8.3-8.3Z" /></svg>,
 };
-export function StoreButtons({ className = "", small = false }: { className?: string; small?: boolean }) {
-  const c = `inline-flex min-h-11 items-center gap-2 rounded-full border border-line-strong ${small ? "px-3.5 text-[13px]" : "px-4 text-sm"} font-medium text-ink transition-colors hover:border-white/30 hover:bg-surface-1`;
+/** Store and launch badges in one consistent, logo-free style.
+ *  Apple's and Google's guidelines only allow their marks as the official, unaltered badges, and the official Google Play
+ *  badge carries a multi-colour (blue) logo that the Flexlore brand rules exclude. Text badges respect both. */
+export function StoreBadge({ href, top, name, size = "md" }: { href: string; top: string; name: string; size?: "sm" | "md" }) {
+  return (
+    <a href={href} target="_blank" rel="noopener"
+      className={`group inline-flex flex-col justify-center rounded-2xl bg-white/[.07] text-left transition-colors hover:bg-white/[.12] ${size === "sm" ? "min-h-11 px-3.5 py-1.5" : "min-h-14 px-4 py-2"}`}>
+      <span className="text-[11px] leading-tight text-ice-400">{top}</span>
+      <span className={`${size === "sm" ? "text-[15px]" : "text-[17px]"} font-semibold leading-tight tracking-[-.01em] text-ink`}>{name}</span>
+    </a>);
+}
+export function StoreButtons({ className = "", small = false, lang = "en" }: { className?: string; small?: boolean; lang?: "en" | "tr" }) {
+  const tr = lang === "tr"; const size = small ? "sm" : "md";
   return (<div className={`flex flex-wrap gap-2 ${className}`}>
-    <a className={c} href="https://apps.apple.com/tr/app/flexlore/id6751126206?l" target="_blank" rel="noopener" aria-label="Download Flexlore on the App Store"><I.apple size={small ? 14 : 16} /><span><span className="sr-only">Download on the </span>App Store</span></a>
-    <a className={c} href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" target="_blank" rel="noopener" aria-label="Get Flexlore on Google Play"><I.play size={small ? 13 : 15} /><span><span className="sr-only">Get it on </span>Google Play</span></a>
+    <StoreBadge href="https://apps.apple.com/tr/app/flexlore/id6751126206?l" top={tr ? "iPhone için" : "For iPhone"} name="App Store" size={size} />
+    <StoreBadge href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" top={tr ? "Android için" : "For Android"} name="Google Play" size={size} />
   </div>);
 }
 

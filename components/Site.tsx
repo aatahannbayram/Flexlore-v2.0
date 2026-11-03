@@ -27,7 +27,7 @@ export default function Site() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-3 focus:text-bg">{t.skip}</a>
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
-        <main id="main">
+        <main id="main" lang={lang}>
           <Hero t={t} lang={lang} />
           <TrustStrip lang={lang} />
           <Problem lang={lang} />
@@ -41,7 +41,7 @@ export default function Site() {
           <FinalCta lang={lang} />
         </main>
       </VideoPause.Provider>
-      <Footer lang={lang} />
+      <div lang={lang}><Footer lang={lang} /></div>
     </>
   );
 }

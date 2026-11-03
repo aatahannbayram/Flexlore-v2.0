@@ -23,7 +23,6 @@ export default function SectorPage({ i }: { i: number }) {
   const [sop, setSop] = useState(0);
   return (
     <>
-      <motion.div aria-hidden="true" initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 0.9, ease }} className="pointer-events-none fixed inset-0 z-50 origin-top bg-flame" />
       <Header />
       <main id="main">
         <section ref={hero} className="relative h-svh overflow-hidden">
@@ -31,7 +30,7 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/75 to-transparent" />
           <motion.div style={{ y: ty }} className="relative flex h-full flex-col justify-end pb-[10vh] container-x">
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mono text-xs uppercase tracking-[.18em] text-flame">{s.idx} / {s.kicker}</motion.p>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mono text-xs uppercase tracking-[.18em] text-ice-400">{s.idx} / {s.kicker}</motion.p>
             <h1 className="display mt-5 max-w-[14ch] text-h1 [text-shadow:0_4px_40px_rgba(0,0,0,.6)]">
               {s.h.split(" ").map((w, k) => <span key={k} className="inline-block overflow-hidden pb-[.08em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.5 + k * 0.08, duration: 1, ease }} className="inline-block">{w}&nbsp;</motion.span></span>)}
             </h1>
@@ -61,7 +60,7 @@ export default function SectorPage({ i }: { i: number }) {
                 <img src={s.still} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" />
                 <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/50" />
                 <motion.div key={sop} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="relative">
-                  <p className="mono text-xs uppercase tracking-[.18em] text-flame">Video SOP · {s.sops[sop].steps.length} steps</p>
+                  <p className="mono text-xs uppercase tracking-[.18em] text-ice-400">Video SOP · {s.sops[sop].steps.length} steps</p>
                   <h3 className="mt-3 text-h3 font-semibold tracking-tight">{s.sops[sop].t}</h3>
                   <ol className="mt-8 space-y-4">
                     {s.sops[sop].steps.map((st, k) => <li key={st} className="flex gap-4 pt-4 text-lg"><span className="mono w-14 shrink-0 text-xs text-white/70">0:{String(k * 12 + 8).padStart(2, "0")}</span>{st}</li>)}
@@ -91,7 +90,7 @@ export default function SectorPage({ i }: { i: number }) {
             <Rev><p className="eyebrow">Sample quiz</p><h2 className="display mt-4 text-h2"><K text={s.quiz.q} /></h2><p className="mt-6 text-white/70">Drafted from the video. Edited and approved by your team.</p></Rev>
             <div className="space-y-3 self-end">
               {s.quiz.a.map((a, k) => {
-                const st = pick === null ? "" : k === s.quiz.ok ? "bg-flame text-black" : pick === k ? " text-white/70 line-through" : "opacity-40";
+                const st = pick === null ? "" : k === s.quiz.ok ? "bg-ice-100 text-bg" : pick === k ? " text-white/70 line-through" : "opacity-40";
                 return <button key={a} onClick={() => setPick(k)} className={`flex w-full items-center justify-between rounded-xl bg-bg2 px-6 py-5 text-left text-lg transition duration-300 hover:bg-card ${st}`}>{a}<span className="mono text-xs">{String.fromCharCode(65 + k)}</span></button>;
               })}
               <p className="mono h-5 text-xs uppercase tracking-[.18em] text-white/70" aria-live="polite">{pick === null ? "Tap an answer" : pick === s.quiz.ok ? "Correct. Logged to readiness." : "Not quite. The clip replays this step."}</p>
@@ -105,7 +104,7 @@ export default function SectorPage({ i }: { i: number }) {
             <ol className="mt-16 grid gap-8 md:grid-cols-4">
               {s.flow.map((f, k) => (
                 <li key={k} className="list-none">
-                  <Rev d={k * 0.1} className="bg-black py-8 md:pr-8"><span className="mono text-xs uppercase tracking-[.18em] text-flame">{f.when}</span><p className="mt-4 text-lg leading-snug">{f.what}</p></Rev>
+                  <Rev d={k * 0.1} className="bg-black py-8 md:pr-8"><span className="mono text-xs uppercase tracking-[.18em] text-ice-400">{f.when}</span><p className="mt-4 text-lg leading-snug">{f.what}</p></Rev>
                 </li>))}
             </ol>
             <Rev><p className="mono mt-16 text-xs uppercase tracking-[.18em] text-white/70">Readiness view · {s.ready}</p></Rev>
@@ -115,7 +114,7 @@ export default function SectorPage({ i }: { i: number }) {
         <Link href={`/sektor/${next.slug}/`} className="group relative flex h-[80svh] items-end overflow-hidden pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-80"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-          <div className="relative w-full container-x"><p className="mono text-xs uppercase tracking-[.18em] text-flame">Next sector · {next.idx}</p>
+          <div className="relative w-full container-x"><p className="mono text-xs uppercase tracking-[.18em] text-ice-400">Next sector · {next.idx}</p>
             <p className="display mt-4 text-h1 transition group-hover:translate-x-4">{next.en} <Arr className="ml-[.1em]" /></p></div>
         </Link>
       </main>

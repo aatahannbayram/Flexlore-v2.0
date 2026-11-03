@@ -16,10 +16,10 @@ export function BillingToggle({ yearly, setYearly, lang, light = false, id = "bi
   const b = (on: boolean) => `relative z-10 inline-flex h-10 items-center gap-2 rounded-full px-4 text-sm font-semibold transition-colors ${on ? (light ? "text-white" : "text-bg") : light ? "text-light-muted hover:text-light-ink" : "text-ink-muted hover:text-ink"}`;
   const pill = <m.span layoutId={`${id}-pill`} className={`absolute inset-0 -z-10 rounded-full ${light ? "bg-light-ink" : "bg-ink"}`} transition={{ type: "spring", stiffness: 260, damping: 30 }} />;
   return (
-    <div role="group" aria-label={t.bill} className={`inline-flex rounded-full border p-1 ${light ? "border-light-surface bg-light-bg" : "border-line bg-surface-1"}`}>
+    <div role="group" aria-label={t.bill} className={`inline-flex rounded-full p-1 ${light ? "bg-light-surface" : "bg-surface-1"}`}>
       <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={b(!yearly)}>{!yearly && pill}{t.mo}</button>
       <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={b(yearly)}>{yearly && pill}{t.yr}
-        {best > 0 && <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${yearly ? (light ? "bg-white/15 text-white" : "bg-bg/10 text-bg") : light ? "bg-[rgb(168_73_27/0.1)] text-light-accent-text" : "bg-[rgb(236_103_38/0.12)] text-accent-text"}`}>{t.upTo(best)}</span>}
+        {best > 0 && <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${yearly ? (light ? "bg-white/15 text-white" : "bg-bg/10 text-bg") : light ? "bg-light-surface text-light-ink" : "bg-white/10 text-ice-100"}`}>{t.upTo(best)}</span>}
       </button>
     </div>);
 }
@@ -37,7 +37,7 @@ export function PriceBlock({ p, yearly, lang, small, light = false }: { p: typeo
           initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span>
       </AnimatePresence>
       <span className={`text-sm ${muted}`}>{t.perMo}</span>
-      {save && <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${light ? "bg-[rgb(168_73_27/0.1)] text-light-accent-text" : "bg-[rgb(236_103_38/0.12)] text-accent-text"}`}>{t.save(save)}</span>}
+      {save && <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${light ? "bg-light-surface text-light-ink" : "bg-white/10 text-ice-100"}`}>{t.save(save)}</span>}
     </div>
     <p className={`mt-2 text-sm ${muted}`}>{p.id === "free" ? t.free : yearly ? t.yrNote : t.moNote}</p>
   </div>);

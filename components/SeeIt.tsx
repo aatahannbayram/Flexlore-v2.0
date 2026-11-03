@@ -30,7 +30,7 @@ export default function SeeIt() {
         <div role="radiogroup" aria-label={tr ? "Sektör" : "Industry"} className="mt-10 grid grid-cols-1 gap-2 rounded-2xl bg-bg2 p-2 sm:grid-cols-2 lg:grid-cols-4">
           {INDUSTRIES.map((x) => { const on = x.id === id; return (
             <button key={x.id} role="radio" aria-checked={on} onClick={() => pick(x.id)}
-              className={`rounded-xl px-5 py-4 text-left text-base font-semibold tracking-tight transition-colors duration-200 ease-out ${on ? "bg-flame text-black" : "text-white/80 hover:bg-card hover:text-white"}`}>{x[lang].label}</button>); })}
+              className={`rounded-xl px-5 py-4 text-left text-base font-semibold tracking-tight transition-colors duration-200 ease-out ${on ? "bg-ice-100 text-bg" : "text-white/80 hover:bg-card hover:text-white"}`}>{x[lang].label}</button>); })}
         </div>
         <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="relative aspect-video overflow-hidden rounded-2xl bg-bg2 lg:col-span-7">
@@ -49,7 +49,7 @@ export default function SeeIt() {
                 <p className="text-lg font-semibold leading-[1.35] tracking-tight">{c.job}</p>
                 <ol className="mt-6 space-y-3">
                   {c.flow.map((f, i) => (<li key={i} className="grid grid-cols-[2.5rem_1fr] gap-2 rounded-xl bg-bg2 p-5">
-                    <span className="pt-0.5 text-sm font-semibold tabular-nums text-flame">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="pt-0.5 text-sm font-semibold tabular-nums text-ice-400">{String(i + 1).padStart(2, "0")}</span>
                     <span><span className="block text-base font-semibold">{f[0]}</span><span className="mt-1 block text-base leading-[1.45] text-white/70">{f[1]}</span></span></li>))}
                 </ol>
               </motion.div>

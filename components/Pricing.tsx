@@ -33,8 +33,8 @@ export default function Pricing() {
         <div className="mt-12"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} /></div>
         <ul className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4" aria-label="Plans">
           {members.map((p0, i) => { const p = pl(p0); const prev = i > 0 ? pl(members[i - 1]) : null; const pts = prev ? p.points.slice(1) : p.points; const badge = tr ? p0.badgeTr : p0.badge; return (
-          <li key={p.id} className={`relative flex flex-col rounded-2xl p-7 ${p.featured ? "border border-accent bg-card" : "border border-line bg-bg2"}`}>
-            {badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[.1em] ${p.featured ? "bg-surface-2 text-ink" : "bg-white/10 text-white"}`}>{badge}</span>}
+          <li key={p.id} className={`relative flex flex-col rounded-2xl p-7 ${p.featured ? "bg-surface-2" : "bg-surface-1"}`}>
+            {badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold ${p.featured ? "bg-ice-100 text-bg" : "bg-white/10 text-white"}`}>{badge}</span>}
             <h2 className="text-lg font-semibold tracking-tight">{p.name}</h2>
             <p className="mt-1.5 text-sm leading-[1.4] text-white/70">{p.for}</p>
             <div className="mt-6 pt-6">
@@ -50,14 +50,14 @@ export default function Pricing() {
         </ul>
 
         <section aria-labelledby="ent-h" className="mt-16 rounded-2xl bg-bg2 p-7 md:p-10">
-          <p className="mono text-xs uppercase tracking-[.18em] text-flame">{t.entK}</p>
+          <p className="eyebrow">{t.entK}</p>
           <h2 id="ent-h" className="display mt-3 text-h2">{t.entH}</h2>
           <p className="mt-3 max-w-xl text-base leading-[1.45] text-white/70">{t.entP}</p>
           <ul className="mt-8 grid gap-3 md:grid-cols-3">{ENTERPRISE_TIERS.map((x) => (
             <li key={x.id} className="flex flex-col rounded-xl bg-black/40 p-5"><p className="text-base font-semibold">Enterprise {x.name}</p>
               <p className="mt-3 text-lg font-bold">{x.custom ? t.custom : <>{x.price}<span className="text-sm font-normal text-white/70">{t.perMo}</span></>}</p>
               <p className="mt-1 text-sm text-white/70">{t.users(tr ? x.usersTr : x.users)}</p>
-              <ul className="mt-4 space-y-2 text-sm text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-xs font-semibold uppercase tracking-[.1em] text-white/80">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
+              <ul className="mt-4 space-y-2 text-sm text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-xs font-semibold text-white/80">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
           <a href={SITE.demo} className="btn-p mt-8">{t.sales} <Arr className="ml-1" /></a>
         </section>
 
