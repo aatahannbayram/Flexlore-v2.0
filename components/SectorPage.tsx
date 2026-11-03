@@ -9,6 +9,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { sectors } from "./sectors";
 import { Arr } from "@/components/Icons";
 import { Video } from "./Site";
+import { Header } from "./Header";
 const ease = [0.22, 1, 0.36, 1] as const;
 const Rev = ({ children, d = 0, className = "" }: { children: React.ReactNode; d?: number; className?: string }) => (
   <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: 1, delay: d, ease }} className={className}>{children}</motion.div>);
@@ -25,13 +26,7 @@ export default function SectorPage({ i }: { i: number }) {
   return (
     <>
       <motion.div aria-hidden="true" initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 0.9, ease }} className="pointer-events-none fixed inset-0 z-50 origin-top bg-flame" />
-      <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-4 bg-gradient-to-b from-black/85 to-transparent pb-10 md:px-10">
-        <Link href="/" className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.04em]"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-8 w-auto" /></Link>
-        <nav aria-label="Sectors" className="mono hidden gap-5 text-[14px] uppercase tracking-[.14em] md:flex">
-          {sectors.map((x) => <Link key={x.slug} href={`/sektor/${x.slug}/`} aria-current={x.slug === s.slug ? "page" : undefined} className={x.slug === s.slug ? "text-white" : "text-white/70 hover:text-white"}>{x.idx} {x.en.split(" ")[0]}</Link>)}
-        </nav>
-        <span className="flex gap-6 text-[13px]"><Link href="/blog/" className="link-u">Blog</Link><a href={SITE.demo} className="link-u">Book a demo</a></span>
-      </header>
+      <Header />
       <main id="main">
         <section ref={hero} className="relative h-svh overflow-hidden">
           <motion.div style={{ scale: vs }} className="absolute inset-0"><Video name={s.v} eager /></motion.div>

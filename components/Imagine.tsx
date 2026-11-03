@@ -162,28 +162,6 @@ export const IMAGINE: O[] = [
   ]
  },
  {
-  "k": "Healthcare & clinics",
-  "media": {
-   "img": "/photos/health.webp",
-   "alt": "Clinical team reviewing notes together"
-  },
-  "job": "A new assistant has to prepare a treatment room exactly the way your clinic's protocol says.",
-  "flow": [
-   [
-    "Filmed by your senior staff",
-    "Room prep and instrument handling, as your team really does it."
-   ],
-   [
-    "Critical steps, checked",
-    "Steps follow your protocol; a quiz confirms the ones that can't be skipped."
-   ],
-   [
-    "Ready before working alone",
-    "The clinic manager sees who has passed, by role and location."
-   ]
-  ]
- },
- {
   "k": "Retail",
   "media": {
    "img": "/photos/office.webp",
@@ -202,28 +180,6 @@ export const IMAGINE: O[] = [
    [
     "Ready for the weekend",
     "The area manager sees readiness, store by store."
-   ]
-  ]
- },
- {
-  "k": "Construction",
-  "media": {
-   "img": "/photos/after-install.webp",
-   "alt": "Site office with jackets and an orange hard hat"
-  },
-  "job": "A new crew joins mid-project and has to run the pre-start check the way your site does it.",
-  "flow": [
-   [
-    "Filmed on site",
-    "The foreman records the pre-start check and the task itself."
-   ],
-   [
-    "Safety steps, confirmed",
-    "A quiz covers the critical steps before work starts."
-   ],
-   [
-    "Cleared by task",
-    "The site manager sees who's cleared for which task, by crew."
    ]
   ]
  },

@@ -1,6 +1,6 @@
 export type Lang = "en" | "tr";
 export type C = {
-  skip: string; nav: string[]; navP: string; menu: string; close: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string;
+  skip: string; nav: string[]; navP: string; menu: string; close: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string; login: string;
   hero: string; heroLine: string;
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
@@ -19,10 +19,10 @@ export const copy: Record<Lang, C> = {
     faq: [
       { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
       { q: "How do the quizzes work?", a: "Each standard work can carry a short quiz drafted from its steps. Employees answer after watching, so you see who understood the process, not just who pressed play." },
-      { q: "Which teams get the most from it?", a: "Teams where the job is learned by doing: kitchens and coffee shops, production lines, hotels, clinics, franchises and training programmes." },
+      { q: "Which teams get the most from it?", a: "Teams where the job is learned by doing: kitchens and coffee shops, production lines, hotels, franchises and training programmes." },
       { q: "Do I need technical knowledge?", a: "No. If you can film with a phone, you can create a standard work." },
       { q: "How do I see if training worked?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by team, shift and location." },
-    ], cta: "Book a demo", langLabel: "Language",
+    ], cta: "Book a demo", langLabel: "Language", login: "Log in",
     hero: "Step by step.",
     stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "It leaves when they do. New people copy whoever is on shift, and a step learned by guessing comes back as scrap, rework, returns, remakes and callbacks. The binder is on a shelf. The job is on the floor. Flexlore puts the job on every phone.",
     pK: "Follow one job", pH: ["Film it.", "Approve it.", "Assign it."],
@@ -54,10 +54,10 @@ export const copy: Record<Lang, C> = {
     faq: [
       { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
       { q: "Quizler nasıl çalışır?", a: "Her standart işe adımlarından hazırlanan kısa bir quiz eklenebilir. Çalışanlar izledikten sonra yanıtlar; böylece kimin oynat tuşuna bastığını değil, kimin süreci anladığını görürsünüz." },
-      { q: "En çok hangi ekipler faydalanır?", a: "İşin yaparak öğrenildiği ekipler: mutfaklar ve kafeler, üretim hatları, oteller, klinikler, franchise'lar ve eğitim programları." },
+      { q: "En çok hangi ekipler faydalanır?", a: "İşin yaparak öğrenildiği ekipler: mutfaklar ve kafeler, üretim hatları, oteller, franchise'lar ve eğitim programları." },
       { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız standart iş oluşturabilirsiniz." },
       { q: "Eğitimin işe yaradığını nasıl görürüm?", a: "Flexlore kimin izlediğini, işi kimin tamamladığını ve quizi kimin geçtiğini ekip, vardiya ve şube bazında gösterir." },
-    ], cta: "Demo isteyin", langLabel: "Dil",
+    ], cta: "Demo isteyin", langLabel: "Dil", login: "Giriş yap",
     hero: "Adım adım.",
     stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
     pK: "Bir işi takip edin", pH: ["Çek.", "Onayla.", "Ata."],

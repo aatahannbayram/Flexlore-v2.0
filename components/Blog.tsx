@@ -1,25 +1,14 @@
 import Link from "next/link";
 import { SITE } from "./config";
 import { Footer } from "./Sections";
+import { Header } from "./Header";
 import { Arr } from "@/components/Icons";
 import posts from "@/lib/blog.json";
 export type Post = (typeof posts)[number];
 export { posts };
 export const cardTitle = (p: Post) => p.cardTitle || p.h1;
 
-export function Bar() {
-  return (
-    <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-gradient-to-b from-black/90 to-transparent px-6 py-4 pb-10 md:px-10">
-      <Link href="/" className="flex items-center gap-2 text-[17px] font-semibold tracking-[-0.04em]"><img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className="h-8 w-auto" /></Link>
-      <nav aria-label="Primary" className="flex items-center gap-6 text-[14px]">
-        <Link href="/#imagine" className="link-u hidden text-white/70 hover:text-white sm:inline">Your business</Link>
-        <Link href="/pricing/" className="link-u text-white/70 hover:text-white">Pricing</Link>
-        <Link href="/blog/" className="link-u text-white/70 hover:text-white">Blog</Link>
-        <a href={SITE.demo} className="btn-p">Book a demo</a>
-      </nav>
-    </header>
-  );
-}
+export function Bar() { return <Header />; }
 const Foot = () => <div className="mt-32"><Footer /></div>;
 
 function Card({ p, big = false }: { p: Post; big?: boolean }) {
@@ -53,6 +42,8 @@ export function BlogIndex() {
 export function Article({ p }: { p: Post }) {
   const more = posts.filter((x) => x.slug !== p.slug);
   const body = p.title && p.h1 === p.title ? p.body.replace(/^<h1>[\s\S]*?<\/h1>/, "") : p.body;
+  // Drop a leading <h2> that only repeats the title (duplicate heading in the DOM).
+  const body2 = p.title ? body.replace(/^\s*<h2>([\s\S]*?)<\/h2>/, (m, t) => (t.replace(/<[^>]+>/g, "").trim() === p.title.trim() ? "" : m)) : body;
   return (
     <>
       <Bar />
@@ -63,7 +54,7 @@ export function Article({ p }: { p: Post }) {
           <p className="mono mt-6 flex gap-4 text-[12px] uppercase tracking-[.18em] text-white/70"><span>{p.date}</span>{p.author && <span className="text-white/70">{p.author}</span>}</p>
         </article>
         <div className="mx-auto mt-12 max-w-[1100px] overflow-hidden rounded-3xl ring-1 ring-white/10"><img src={p.cover} alt={p.coverAlt || cardTitle(p)} className="w-full" /></div>
-        <div className="prose-blog mx-auto mt-16 max-w-[760px]" dangerouslySetInnerHTML={{ __html: body }} />
+        <div className="prose-blog mx-auto mt-16 max-w-[760px]" dangerouslySetInnerHTML={{ __html: body2 }} />
         <section className="mx-auto mt-32 max-w-[1400px]">
           <p className="mono mb-10 text-[12px] uppercase tracking-[.18em] text-white/70">Articles</p>
           <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{more.map((x) => <Card key={x.slug} p={x} />)}</div>

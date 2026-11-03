@@ -3,6 +3,8 @@ export const SITE = {
   url: "https://www.flexlore.com",
   // DEMO: keep true. Flip to false at launch: robots, sitemap and every page's meta follow this flag.
   noindex: true,
+  // Log in link in the header. Empty = hidden. Paste the app login URL here when it is decided.
+  login: "",
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
   // Unverified program badges (NVIDIA Inception, Claude for Startups). Keep false until confirmed.
   programBadges: false,

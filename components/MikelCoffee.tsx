@@ -7,6 +7,7 @@ import { Device } from "./AppScreens";
 import { Video } from "./Site";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
+import { Header } from "./Header";
 
 type L = "tr" | "en";
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -147,8 +148,8 @@ function QuizScreen({ pick, setPick, l }: { pick: number | null; setPick: (n: nu
     <div className="px-4 pt-1"><p className="text-[11px] uppercase tracking-[.14em] text-white/40">Quiz · {t2(l, "Alerjen", "Allergen")}</p>
       <p className="mt-2 text-[16px] font-semibold leading-snug text-white">{t2(l, "Müşteri süt alerjisi olduğunu söylüyor ve yulaf sütlü latte istiyor. Az önce inek sütü buharladın. Ne yaparsın?", "A guest says they have a milk allergy and orders an oat latte. You just steamed dairy. What do you do?")}</p></div>
     <div className="mt-4 space-y-2 px-3">{opts.map((o, k) => { const sel = pick === k, ok = k === 1; return (
-      <button key={k} onClick={() => setPick(k)} className={`flex w-full items-start gap-2.5 rounded-[12px] px-3 py-2.5 text-left text-[12.5px] leading-snug transition ${sel ? (ok ? "bg-[#EC6726]/[.10] text-white ring-1 ring-[#EC6726]/50" : "bg-[#b4532a]/[.12] text-white ring-1 ring-[#b4532a]/45") : "bg-[#1a1512] text-white/80 hover:bg-[#241d18]"}`}>
-        <span className={`mt-0.5 h-[14px] w-[14px] shrink-0 rounded-full ${sel ? (ok ? "bg-[#EC6726]" : "bg-[#b4532a]") : "ring-1 ring-white/25"}`} />{o}</button>); })}</div>
+      <button key={k} onClick={() => setPick(k)} className={`flex w-full items-start gap-2.5 rounded-[12px] px-3 py-2.5 text-left text-[12.5px] leading-snug transition ${sel ? (ok ? "bg-[#EC6726]/[.10] text-white ring-1 ring-[#EC6726]/50" : "bg-[#EC6726]/[.12] text-white ring-1 ring-[#EC6726]/45") : "bg-[#1a1512] text-white/80 hover:bg-[#241d18]"}`}>
+        <span className={`mt-0.5 h-[14px] w-[14px] shrink-0 rounded-full ${sel ? (ok ? "bg-[#EC6726]" : "bg-[#EC6726]") : "ring-1 ring-white/25"}`} />{o}</button>); })}</div>
     {pick !== null && <p className="mx-4 mt-3 text-[11.5px] leading-snug text-white/55">{pick === 1 ? t2(l, "Doğru. Bu adımın videosu reçetede 6. adım olarak duruyor.", "Correct. This step has its own video in the recipe.") : t2(l, "Tekrar bak: çapraz temas riski var. Adım videosu açılıyor.", "Look again: cross-contact risk. Opening the step video.")}</p>}
   </div>);
 }
@@ -220,12 +221,7 @@ export default function MikelCoffee() {
   useEffect(() => { document.documentElement.lang = l; }, [l]);
   const sec = "relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent";
   return (<>
-    <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between bg-gradient-to-b from-black/85 to-transparent px-6 py-4 pb-10 md:px-10">
-      <Link href="/" className="flex items-center gap-3"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-7 w-auto" /><span className="text-[13px] text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-9 w-auto" /></Link>
-      <div className="flex items-center gap-3">
-        <div className="flex rounded-full bg-white/[.07] p-0.5 text-[11px] font-medium ring-1 ring-white/10" role="group" aria-label="Language">{(["tr", "en"] as L[]).map((x) => <button key={x} onClick={() => setL(x)} aria-pressed={l === x} className={`rounded-full px-2.5 py-1 uppercase ${l === x ? "bg-white text-black" : "text-white/60"}`}>{x}</button>)}</div>
-        <a href={SITE.demo} className="rounded-full bg-white px-4 py-2 text-[13px] font-medium text-black">{t2(l, "Görüşme planla", "Book a call")}</a></div>
-    </header>
+    <Header lang={l} setLang={setL} brand={<span className="ml-3 flex items-center gap-3"><span aria-hidden="true" className="text-[13px] text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-7 w-auto" /></span>} />
     <main id="main" className="bg-[#0c0a09] text-[#f4efe8]">
       {/* hero */}
       <section className="relative h-svh overflow-hidden">

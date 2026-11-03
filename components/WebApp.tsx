@@ -22,14 +22,14 @@ const NAV: [string, [string, typeof Home, string?][]][] = [
   ["Admin", [["Manage Access", Users]]],
 ];
 const LIB = [["Opening checklist", "line", 6, "0:48", "Published"], ["Allergen handling", "plating", 4, "0:36", "Published"], ["Knife safety", "steam", 5, "0:52", "Draft"], ["Fryer cleaning", "kitchen", 7, "1:04", "Published"], ["Room turnover", "hotel", 8, "1:12", "In review"], ["Pallet receiving", "warehouse", 5, "0:44", "Published"]] as const;
-const PEOPLE = [["Line cook 1", "LC", "#A8491B"], ["Line cook 2", "LK", "#666666"], ["Prep cook", "PC", "#D75E23"], ["Server", "SV", "#4d4d4d"], ["New starter", "NS", "#823915"]] as const;
+const PEOPLE = [["Line cook 1", "LC", "#EC6726"], ["Line cook 2", "LK", "#666666"], ["Prep cook", "PC", "#D75E23"], ["Server", "SV", "#4d4d4d"], ["New starter", "NS", "#823915"]] as const;
 // 0 none, 1 viewed, 2 viewed + quiz passed  (sample grid)
 const GRID = [[2, 2, 2, 1, 0], [2, 1, 2, 2, 1], [1, 1, 0, 2, 0], [2, 2, 1, 1, 2], [1, 0, 0, 0, 0]];
-const BADGE: Record<string, string> = { Published: "text-[#68D2B9] bg-[#68D2B9]/12 ring-[#68D2B9]/25", Draft: "text-white/70 bg-white/[.06] ring-white/10", "In review": "text-[#B4A7E5] bg-[#B4A7E5]/12 ring-[#B4A7E5]/25" };
+const BADGE: Record<string, string> = { Published: "text-[#EC6726] bg-[#EC6726]/12 ring-[#EC6726]/25", Draft: "text-white/70 bg-white/[.06] ring-white/10", "In review": "text-[#EC6726] bg-[#EC6726]/12 ring-[#EC6726]/25" };
 function Av({ i, c, s = 24 }: { i: string; c: string; s?: number }) {
   return <span className="grid shrink-0 place-items-center rounded-full text-[12px] font-semibold text-white ring-2 ring-[#0b0b0c]" style={{ width: s, height: s, background: `linear-gradient(180deg,${c},${c}cc)` }}>{i}</span>;
 }
-const cellBg = (g: number) => g === 2 ? `linear-gradient(180deg,#F08551,${O})` : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
+const cellBg = (g: number) => g === 2 ? `linear-gradient(180deg,#EC6726,${O})` : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
 
 function Dashboard({ on }: { on: boolean }) {
   const [hover, setHover] = useState(0);
@@ -39,7 +39,7 @@ function Dashboard({ on }: { on: boolean }) {
   return (<div className="relative flex h-full w-full bg-[#0b0b0c] font-sans text-white antialiased [font-feature-settings:'cv11','ss01']">
     <div className="flex w-[232px] flex-col border-r border-white/[.06] px-3 py-3" style={{ background: S1 }}>
       <div className="flex items-center gap-2.5 rounded-[10px] px-2 py-2 hover:bg-white/5">
-        <span className="grid h-7 w-7 place-items-center rounded-[8px] text-[12px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: `linear-gradient(180deg,#F08551,${O})` }}>SK</span>
+        <span className="grid h-7 w-7 place-items-center rounded-[8px] text-[12px] font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: `linear-gradient(180deg,#EC6726,${O})` }}>SK</span>
         <span className="flex-1 leading-tight"><span className="block text-[13px] font-semibold tracking-[-.01em]">Sample Kitchen</span><span className="block text-[12px] text-white/70">Main · Pro</span></span>
         <ChevronsUpDown {...ic} size={14} className="text-white/70" /></div>
       <div className="mt-2 flex h-8 items-center gap-2 rounded-[8px] border border-white/[.07] bg-white/[.03] px-2.5 text-[13px] text-white/70"><Search {...ic} size={14} /><span className="flex-1">Search</span><kbd className="rounded-[4px] border border-white/10 bg-white/[.04] px-1.5 font-sans text-[12px] text-white/70">⌘K</kbd></div>
@@ -76,12 +76,12 @@ function Dashboard({ on }: { on: boolean }) {
               <div className="space-y-2 px-4 py-3">{PEOPLE.map(([p, ini, c], r) => { const sc = GRID[r].reduce((a, b) => a + b, 0) / 10; return <div key={p} className={`grid grid-cols-[150px_repeat(5,1fr)_70px] items-center gap-1.5 rounded-[6px] ${hover === 2 && r === 0 ? "bg-white/[.03]" : ""}`}>
                 <span className="flex items-center gap-2 text-[12px] text-white/85"><Av i={ini} c={c} s={22} />{p}</span>
                 {GRID[r].map((g, k) => <motion.span key={k} initial={false} animate={{ opacity: on ? 1 : 0, scale: on ? 1 : .6 }} transition={{ delay: .4 + (r * 5 + k) * .025, duration: .35 }} className={`relative h-[36px] rounded-[6px] shadow-[inset_0_1px_0_rgba(255,255,255,.08)] ${hover === 1 && r === 2 && k === 3 ? "ring-2 ring-white/80" : ""}`} style={{ background: cellBg(g) }}>
-                  {hover === 1 && r === 2 && k === 3 && <motion.span initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-[34px] left-1/2 z-10 w-[190px] -translate-x-1/2 rounded-[8px] whitespace-nowrap border border-white/10 bg-[#26262a] px-2.5 py-2 text-left text-[12px] leading-[1.3] shadow-[0_10px_30px_rgba(0,0,0,.6)]"><span className="block font-semibold">Prep cook · Fryer cleaning</span><span className="mt-0.5 flex items-center gap-1 text-[#68D2B9]"><Check size={11} strokeWidth={2.5} />Viewed · Quiz passed</span><span className="absolute -bottom-[5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-b border-r border-white/10 bg-[#26262a]" /></motion.span>}</motion.span>)}
+                  {hover === 1 && r === 2 && k === 3 && <motion.span initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-[34px] left-1/2 z-10 w-[190px] -translate-x-1/2 rounded-[8px] whitespace-nowrap border border-white/10 bg-[#26262a] px-2.5 py-2 text-left text-[12px] leading-[1.3] shadow-[0_10px_30px_rgba(0,0,0,.6)]"><span className="block font-semibold">Prep cook · Fryer cleaning</span><span className="mt-0.5 flex items-center gap-1 text-[#EC6726]"><Check size={11} strokeWidth={2.5} />Viewed · Quiz passed</span><span className="absolute -bottom-[5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-b border-r border-white/10 bg-[#26262a]" /></motion.span>}</motion.span>)}
                 <span className="flex items-center justify-end gap-2"><span className="h-1 w-8 overflow-hidden rounded-full bg-white/[.08]"><motion.span className="block h-full rounded-full" style={{ background: O }} initial={false} animate={{ width: on ? `${sc * 100}%` : 0 }} transition={{ delay: .8, duration: 1, ease }} /></span><span className="w-7 text-right text-[12px] tabular-nums text-white/70">{Math.round(sc * 100)}%</span></span></div>; })}</div></div></div>
           <div className={`flex flex-col p-4 ${panel}`} style={{ background: S2 }}>
             <div className="flex items-center justify-between"><p className="text-[13px] font-semibold tracking-[-.01em]">Quiz results</p><span className="flex h-6 items-center gap-1 rounded-[6px] border border-white/10 px-2 text-[12px] text-white/70">Opening checklist<ChevronDown {...ic} size={12} /></span></div>
             <svg viewBox="0 0 300 170" className="mt-3 w-full">
-              <defs><linearGradient id="qb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F08551" /><stop offset="1" stopColor={O} stopOpacity=".7" /></linearGradient></defs>
+              <defs><linearGradient id="qb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#EC6726" /><stop offset="1" stopColor={O} stopOpacity=".7" /></linearGradient></defs>
               {[0, 1, 2, 3, 4, 5].map((g) => <g key={g}><line x1="22" x2="300" y1={130 - g * 24} y2={130 - g * 24} stroke="rgba(255,255,255,.06)" strokeDasharray={g ? "2 3" : undefined} /><text x="14" y={133 - g * 24} fontSize="9" fill="rgba(255,255,255,.35)" textAnchor="end" className="tabular-nums">{g}</text></g>)}
               {quiz.map(([q, v], k) => { const x = 40 + k * 54, hgt = v * 24, lo = hover === 3 && k === 3; return <g key={q}>
                 <motion.rect x={x} width="30" rx="5" fill={lo ? "#F2996E" : "url(#qb)"} initial={false} animate={{ y: on ? 130 - hgt : 130, height: on ? hgt : 0 }} transition={{ delay: .6 + k * .1, duration: .9, ease }} />
