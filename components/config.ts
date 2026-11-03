@@ -40,19 +40,19 @@ export const PLANS: Plan[] = [
   { id: "enterprise", name: "Enterprise", for: "Franchises, plants and networks of sites.", price: null, checkout: null, cta: "Contact sales",
     points: ["Everything in Multi-location", "Rollout support across sites", "Custom branding (coming soon)", "API, BI tools and AI assistants (coming soon)"] },
 ];
-export const COMPARE: { f: string; v: (boolean | string)[] }[] = [
-  { f: "Operators per location", v: ["Unlimited", "Unlimited", "Unlimited"] },
-  { f: "Video SOPs filmed on a phone", v: [true, true, true] },
-  { f: "Video into steps", v: [true, true, true] },
-  { f: "AI-drafted quizzes", v: [true, true, true] },
-  { f: "Readiness tracking", v: [true, true, true] },
-  { f: "Notices", v: [true, true, true] },
-  { f: "Role- and location-based access", v: [false, true, true] },
-  { f: "Multiple locations", v: [false, true, true] },
-  { f: "Multilingual content", v: ["Coming soon", "Coming soon", "Coming soon"] },
-  { f: "Custom branding", v: [false, false, "Coming soon"] },
-  { f: "QR and job links", v: ["Coming soon", "Coming soon", "Coming soon"] },
-  { f: "API and integrations", v: [false, false, "Coming soon"] },
+export const COMPARE: { f: string; tr: string; v: (boolean | string)[] }[] = [
+  { f: "Operators per location", tr: "Lokasyon başına operatör", v: ["Unlimited", "Unlimited", "Unlimited"] },
+  { f: "Video SOPs filmed on a phone", tr: "Telefonla çekilen video SOP'lar", v: [true, true, true] },
+  { f: "Video into steps", tr: "Videodan adımlara", v: [true, true, true] },
+  { f: "AI-drafted quizzes", tr: "Yapay zekâ taslağı quizler", v: [true, true, true] },
+  { f: "Readiness tracking", tr: "Hazırlık takibi", v: [true, true, true] },
+  { f: "Notices", tr: "Duyurular", v: [true, true, true] },
+  { f: "Role- and location-based access", tr: "Rol ve lokasyon bazlı erişim", v: [false, true, true] },
+  { f: "Multiple locations", tr: "Birden fazla lokasyon", v: [false, true, true] },
+  { f: "Multilingual content", tr: "Çok dilli içerik", v: ["Coming soon", "Coming soon", "Coming soon"] },
+  { f: "Custom branding", tr: "Özel marka", v: [false, false, "Coming soon"] },
+  { f: "QR and job links", tr: "QR ve iş bağlantıları", v: ["Coming soon", "Coming soon", "Coming soon"] },
+  { f: "API and integrations", tr: "API ve entegrasyonlar", v: [false, false, "Coming soon"] },
 ];
 
 // Enterprise tiers for 30+ users. Tier ranges and prices are placeholders until confirmed. Do not invent numbers.
@@ -66,6 +66,21 @@ export const PLAN_TR: Record<string, { name: string; for: string; points: string
   multi: { name: "Çoklu lokasyon", for: "Aynı standartla çalışması gereken birden fazla lokasyon.", points: ["Tek lokasyon'daki her şey", "Ekip, vardiya ve lokasyon bazında hazırlık", "Rol ve lokasyon bazlı erişim", "Ekiplere duyurular", "Aynı işi tüm lokasyonlara tek seferde gönderme"] },
   enterprise: { name: "Enterprise", for: "Franchise'lar, fabrikalar ve lokasyon ağları.", points: ["Çoklu lokasyon'daki her şey", "Lokasyonlar arası yaygınlaştırma desteği", "Özel marka (yakında)", "API, BI araçları ve yapay zekâ asistanları (yakında)"] },
 };
+
+// TR versions of the pricing FAQ. "Lokasyon başına" mirrors the EN "per location" wording; the pricing model is not decided yet.
+export const PRICING_FAQ_TR = [
+  { q: "Flexlore'un ücreti ne kadar?", a: "Flexlore lokasyon başına fiyatlandırılır ve her lokasyonda operatör sayısı sınırsızdır. Size uygun plan, ekibinize ve Flexlore'u nasıl kullanacağınıza göre belirlenir. Bir demo ayarlayın, doğru planı birlikte oluşturalım." },
+  { q: "Kullanıcı başına mı ödüyorum?", a: "Hayır. Fiyatlandırma lokasyon başınadır. O lokasyondaki her operatör Flexlore'da öğrenebilir." },
+  { q: "Karar vermeden önce deneyebilir miyim?", a: "Demo görüşmesinde bize sorun. Gerçek işlerinizden birini sizinle birlikte hazırlarız, sahada nasıl çalıştığını kendiniz görürsünüz." },
+  { q: "Kurulum için teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız adım adım bir video SOP oluşturabilirsiniz." },
+  { q: "Hangi cihazlarda çalışır?", a: "Ekibiniz için iOS ve Android, yöneticiler için web platformu." },
+  { q: "Yapay zekânın yazdıklarını kim kontrol ediyor?", a: "Siz. Adımlar, talimatlar ve quizler ekibiniz onaylayana kadar taslak olarak kalır." },
+  { q: "Birden fazla lokasyonda çalışır mı?", a: "Evet. İşleri atayın, hazırlığı ekip, vardiya ve lokasyon bazında görün. Her işi kimin görebileceğini, düzenleyebileceğini veya tamamlayabileceğini rol ve lokasyona göre belirleyin." },
+  { q: "Kendi markamızı taşıyabilir mi?", a: "Özel marka yakında geliyor. Planınıza nasıl uyacağını demo görüşmesinde sorabilirsiniz." },
+  { q: "Flexlore'u kendi araçlarımıza bağlayabilir miyiz?", a: "API, kullandığınız BI araçlarına bağlantılar ve yapay zekâ asistanları için bir MCP sunucusu yakında geliyor. Neyi bağlamak istediğinizi söyleyin, sizi haberdar edelim." },
+  { q: "Faturalandırma ve iptal nasıl işliyor?", a: "Abonelik ve Faturalandırma politikamıza göz atın ya da demo görüşmesinde bize sorun." },
+  { q: "Veri ve güvenlik hakkında nereden bilgi alabilirim?", a: "Gizlilik Politikası, Veri İşleme, Alt İşleyenler ve Güvenlik sayfalarımızda bulabilirsiniz. Başka sorunuz varsa demo görüşmesinde sorun." },
+];
 
 export const PRICING_FAQ = [
   { q: "How much does Flexlore cost?", a: "Flexlore is priced per location, with unlimited operators at each one. The exact plan depends on your team and how you will use it. Book a demo and we will put together the right plan with you." },

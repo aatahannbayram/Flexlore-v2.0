@@ -1,14 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { PLANS, COMPARE, PRICING_FAQ, SITE, ENTERPRISE_TIERS, PLAN_TR } from "./config";
+import { PLANS, COMPARE, PRICING_FAQ, PRICING_FAQ_TR, SITE, ENTERPRISE_TIERS, PLAN_TR } from "./config";
 import { I, Arr } from "./Icons";
 import { Header } from "./Header";
 import { Footer } from "./Sections";
 import Copq from "./Copq";
 import type { Lang } from "./copy";
 
-const Cell = ({ v }: { v: boolean | string }) => v === true ? <I.check size={18} className="mx-auto text-white" /> : v === false ? <span className="text-[14px] text-white/70">Not included</span> :
-  <span className={`text-[14px] ${v.startsWith("Coming") ? "text-white/75" : "text-white"}`}>{v}</span>;
+const CELL_TR: Record<string, string> = { "Unlimited": "Sınırsız", "Coming soon": "Yakında" };
+const Cell = ({ v, tr }: { v: boolean | string; tr?: boolean }) => v === true ? <I.check size={18} className="mx-auto text-white" /> : v === false ? <span className="text-[14px] text-white/70">{tr ? "Dahil değil" : "Not included"}</span> :
+  <span className={`text-[14px] ${v.startsWith("Coming") ? "text-white/75" : "text-white"}`}>{tr ? CELL_TR[v] ?? v : v}</span>;
 
 const L = {
   en: { eyebrow: "Pricing", h1: "Pricing that fits your floor.", sub: "Start with one job. Grow to every team, shift and site.", soon: "Pricing coming soon", ph: "Placeholder", rec: "Recommended", plus: (x: string) => `Everything in ${x}, plus:`, unit: "per month", note: "Plans and prices shown here are placeholders. Final prices will be added once confirmed.", entK: "30+ users", entH: "Enterprise", entP: "For teams of 30 or more users. Tiered by team size, with rollout support across sites.", tierR: "User range to be confirmed", sales: "Talk to sales", cta: "Book a demo" },
@@ -65,8 +66,8 @@ export default function Pricing() {
           <h2 id="cmp-h" className="display text-[clamp(2.2rem,4.4vw,4rem)]">{tr ? "Planları karşılaştırın" : "Compare plans"}</h2>
           <div className="no-sb mt-8 overflow-x-auto">
             <table className="w-full min-w-[640px] border-collapse text-left text-[14px]">
-              <thead><tr className="border-b border-white/25"><th className="py-3 pr-4 font-normal text-white/70">Feature</th>{PLANS.map((p) => <th key={p.id} className="w-[18%] py-3 text-center font-semibold">{p.name}</th>)}</tr></thead>
-              <tbody>{COMPARE.map((r) => <tr key={r.f} className="border-b border-white/10"><td className="py-3.5 pr-4 text-white/80">{r.f}</td>{r.v.map((v, i) => <td key={i} className="py-3.5 text-center">{<Cell v={v} />}</td>)}</tr>)}</tbody>
+              <thead><tr className="border-b border-white/25"><th className="py-3 pr-4 font-normal text-white/70">{tr ? "Özellik" : "Feature"}</th>{PLANS.map((p) => <th key={p.id} className="w-[18%] py-3 text-center font-semibold">{tr ? PLAN_TR[p.id]?.name ?? p.name : p.name}</th>)}</tr></thead>
+              <tbody>{COMPARE.map((r) => <tr key={r.f} className="border-b border-white/10"><td className="py-3.5 pr-4 text-white/80">{tr ? r.tr : r.f}</td>{r.v.map((v, i) => <td key={i} className="py-3.5 text-center">{<Cell v={v} tr={tr} />}</td>)}</tr>)}</tbody>
             </table>
           </div>
         </section>
@@ -76,15 +77,15 @@ export default function Pricing() {
     <section aria-labelledby="pfaq-h" className="px-6 py-24 md:px-10">
       <div className="mx-auto grid max-w-[1400px] gap-10 md:grid-cols-12">
         <h2 id="pfaq-h" className="display text-[clamp(2.2rem,4.4vw,4rem)] md:col-span-4">{tr ? "Fiyatlandırma soruları" : "Pricing questions"}</h2>
-        <div className="border-t border-white/15 md:col-span-8">{PRICING_FAQ.map((f) => (
+        <div className="border-t border-white/15 md:col-span-8">{(tr ? PRICING_FAQ_TR : PRICING_FAQ).map((f) => (
           <details key={f.q} className="group border-b border-white/15 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[18px] font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary>
             <p className="mt-2 max-w-[62ch] text-[15px] leading-[1.45] text-white/65">{f.a}</p></details>))}</div>
       </div>
     </section>
     <section className="px-6 pb-24 md:px-10"><div className="mx-auto max-w-[1400px] border-t border-white/15 pt-12">
       <p className="display max-w-[18ch] text-[clamp(2rem,4vw,3.6rem)]">{tr ? "Hangi plan size uygun, emin değil misiniz?" : "Not sure which plan fits?"}</p>
-      <p className="mt-3 text-[17px] text-white/70">Twenty minutes, one of your real jobs.</p>
-      <a href={SITE.demo} className="btn-p mt-6">Book a demo <Arr className="ml-1" /></a></div></section>
+      <p className="mt-3 text-[17px] text-white/70">{tr ? "Yirmi dakika, gerçek işlerinizden biriyle." : "Twenty minutes, one of your real jobs."}</p>
+      <a href={SITE.demo} className="btn-p mt-6">{tr ? "Demo ayarlayın" : "Book a demo"} <Arr className="ml-1" /></a></div></section>
     <Footer />
   </>);
 }

@@ -14,7 +14,9 @@ export const copy: Record<Lang, C> = {
   en: {
     skip: "Skip to content", nav: ["How it works", "Your business", "Cases", "AI"], navP: "Pricing", menu: "Menu", close: "Close",
     // TEMPORARY hero H1 (decision 2026-11-03, Ata Han may change it).
-    h1: [{ t: "Film the job once. " }, { t: "Know who's ready to do it.", o: true }], heroLine: "Film the real job on a phone, from the operator's side. Flexlore turns it into steps and a quiz, then shows you who's ready.",
+    h1: [{ t: "Film the job once. " }, { t: "Know who's ready to do it.", o: true }], 
+    // TEMPORARY hero subline (decision 2026-11-03, Ata Han may change it).
+    heroLine: "Record how a job is done once. Flexlore turns it into step-by-step video training with quick checks, and shows who's ready at every location.",
     alts: ["Flexlore app recording a line cook's opening checklist on video", "Flexlore app showing the opening checklist as standard work steps ticking off", "Flexlore app quiz question drafted from the step video", "Flexlore readiness view showing sample progress by role"],
     faqK: "Questions", faqH: "Asked, answered.",
     faq: [
@@ -24,7 +26,8 @@ export const copy: Record<Lang, C> = {
       { q: "Do I need technical knowledge?", a: "No. If you can film with a phone, you can create a standard work." },
       { q: "How do I see if training worked?", a: "Flexlore shows who watched, who completed the work and who passed the quiz, by team, shift and location." },
     ], cta: "Book a demo", langLabel: "Language", login: "Log in",
-    hero: "Step by step.",
+    // TEMPORARY hero eyebrow (decision 2026-11-03).
+    hero: "VIDEO WORK INSTRUCTIONS",
     stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "It leaves when they do. New people copy whoever is on shift, and a step learned by guessing comes back as scrap, rework, returns, remakes and callbacks. The binder is on a shelf. The job is on the floor. Flexlore puts the job on every phone.",
     pK: "Follow one job", pH: ["Film it.", "Approve it.", "Assign it."],
     pP: "Record the task on a phone. Flexlore splits it into steps, writes the instructions and drafts a quiz. You check it and send it out.",
@@ -50,7 +53,9 @@ export const copy: Record<Lang, C> = {
   tr: {
     skip: "İçeriğe geç", nav: ["Nasıl çalışır", "Sizin işiniz", "Örnekler", "Yapay zekâ"], navP: "Fiyatlar", menu: "Menü", close: "Kapat",
     // GEÇİCİ hero H1 (EN geçici başlığın çevirisi; Ata Han değiştirebilir).
-    h1: [{ t: "İşi bir kez çek. " }, { t: "Kimin hazır olduğunu bil.", o: true }], heroLine: "Daha az kalite hatası. Yeni çalışanlar daha hızlı hazır. Ustanın bilgisi kaybolmadan aktarılır. Flexlore her işi, onu yapan operatörün gözünden adım adım gösterir.",
+    h1: [{ t: "İşi bir kez çek. " }, { t: "Kimin hazır olduğunu bil.", o: true }], 
+    // GEÇİCİ hero alt metni (karar 2026-11-03, Ata Han değiştirebilir).
+    heroLine: "Bir işin nasıl yapıldığını bir kez kaydedin. Flexlore bunu adım adım video eğitime ve kısa testlere dönüştürür, her şubede kimin hazır olduğunu gösterir.",
     alts: ["Açılış kontrol listesini videoya kaydeden Flexlore uygulaması", "Standart iş adımları tek tek tamamlanan Flexlore ekranı", "Adım videosundan hazırlanan Flexlore quiz sorusu", "Rol bazında örnek hazırlık durumunu gösteren Flexlore ekranı"],
     faqK: "Sorular", faqH: "Soruldu, yanıtlandı.",
     faq: [
@@ -60,7 +65,8 @@ export const copy: Record<Lang, C> = {
       { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız standart iş oluşturabilirsiniz." },
       { q: "Eğitimin işe yaradığını nasıl görürüm?", a: "Flexlore kimin izlediğini, işi kimin tamamladığını ve quizi kimin geçtiğini ekip, vardiya ve şube bazında gösterir." },
     ], cta: "Demo isteyin", langLabel: "Dil", login: "Giriş yap",
-    hero: "Adım adım.",
+    // GEÇİCİ hero üst etiketi (karar 2026-11-03).
+    hero: "VİDEO İŞ TALİMATLARI",
     stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
     pK: "Bir işi takip edin", pH: ["Çek.", "Onayla.", "Ata."],
     pP: "Görevi telefonla kaydedin. Flexlore adımlara böler, talimatları yazar ve bir quiz hazırlar. Siz kontrol edip gönderirsiniz.",
