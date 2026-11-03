@@ -298,7 +298,7 @@ export default function Site() {
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser /><Security lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser lang={lang} /><Security lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       </VideoPause.Provider>
       <Footer />

@@ -24,49 +24,48 @@ export const SITE = {
   ] as [string, string][],
 };
 
-/* Pricing. Model: standard plans priced per location (site), unlimited operators at every location.
-   Enterprise (30+ users) is priced by user count, in tiers.
-   No Stripe access yet and no approved prices, so every `price` is null and every CTA
-   falls back to Book a demo / Contact sales. To go live: fill `price`, and paste a Stripe
-   Payment Link or Checkout URL into `checkout`. Plan names and limits are placeholders. */
-export const PRICING = { unit: "per location / month", operators: "Unlimited operators", currency: null as string | null };
-export type Plan = { id: string; name: string; for: string; price: string | null; checkout: string | null; cta: string; featured?: boolean; points: string[] };
-/* Membership plan cards (PLANS[0..1]) + Enterprise block (30+ users). NO prices yet: Ata Han sends the
-   price visuals; until then every price renders as a visible placeholder ("$—" + "Pricing coming soon"). */
+/* Pricing. Source: app plan visuals from Ata Han (app-plans.png, enterprise.png), 2026-11-03.
+   Model text kept as decided earlier: standard plans "per location", "unlimited operators" (awaiting decision,
+   the app plans are user-limited). Do not change those strings until Ata Han decides. */
+export const PRICING = { unit: "per location / month", operators: "Unlimited operators", currency: "$" as string | null };
+export type Price = { now: string; was: string | null };
+export type Plan = { id: string; name: string; for: string; badge: string | null; badgeTr: string | null; monthly: Price | null; yearly: Price | null; checkout: string | null; featured?: boolean; points: string[] };
+/* Plan cards. points[0] of every plan after the first is the "Everything in X" link line; rest are additions. */
 export const PLANS: Plan[] = [
-  { id: "location", name: "Single location", for: "One site getting its jobs on video.", price: null, checkout: null, cta: "Book a demo",
-    points: ["Unlimited operators", "Video SOPs filmed on iOS and Android", "Video into steps, drafted instructions", "AI-drafted quizzes, approved by you", "Readiness by person and shift", "Web platform for managers"] },
-  { id: "multi", name: "Multi-location", for: "Several sites that must work to one standard.", price: null, checkout: null, cta: "Book a demo", featured: true,
-    points: ["Everything in Single location", "Readiness by team, shift and location", "Role- and location-based access", "Notices to teams", "Same job sent to every site at once"] },
-  { id: "enterprise", name: "Enterprise", for: "Franchises, plants and networks of sites.", price: null, checkout: null, cta: "Contact sales",
-    points: ["Everything in Multi-location", "Rollout support across sites", "Custom branding (coming soon)", "API, BI tools and AI assistants (coming soon)"] },
+  { id: "free", name: "Free", for: "Try Flexlore with a small team.", badge: null, badgeTr: null, monthly: { now: "$0", was: null }, yearly: { now: "$0", was: null }, checkout: null,
+    points: ["Orientation Analysis", "AI quiz generator: 3 quizzes", "2 workspaces", "Unlimited folders", "5 works", "1 GB cloud storage", "3 users", "Standard support"] },
+  { id: "pro", name: "Pro", for: "For a small business getting its jobs on video.", badge: "Recommended for Small Business", badgeTr: "Küçük işletmeler için önerilen", monthly: { now: "$99.99", was: "$149.99" }, yearly: { now: "$49.99", was: "$149.99" }, checkout: null,
+    points: ["Everything in Free", "AI quiz generator: 10 quizzes", "5 workspaces", "Unlimited works", "5 GB cloud storage", "10 users"] },
+  { id: "proplus", name: "ProPlus", for: "For growing teams that train every day.", badge: "Most popular", badgeTr: "En popüler", monthly: { now: "$149.99", was: "$299.99" }, yearly: { now: "$79.99", was: "$299.99" }, checkout: null, featured: true,
+    points: ["Everything in Pro", "Unlimited quizzes", "Unlimited folders and works", "10 GB cloud storage", "30 users", "Premium support"] },
+  { id: "enterprise", name: "Enterprise", for: "For teams of 30 or more users.", badge: null, badgeTr: null, monthly: null, yearly: null, checkout: null,
+    points: ["Everything in ProPlus", "Cloud storage set with our sales team", "User count set with our sales team"] },
 ];
 export const COMPARE: { f: string; tr: string; v: (boolean | string)[] }[] = [
-  { f: "Billing basis", tr: "Fiyatlandırma esası", v: ["Per location", "Per location", "By user count (30+ users)"] },
-  { f: "Operators per location", tr: "Lokasyon başına operatör", v: ["Unlimited", "Unlimited", "Unlimited"] },
-  { f: "Video SOPs filmed on a phone", tr: "Telefonla çekilen video SOP'lar", v: [true, true, true] },
-  { f: "Video into steps", tr: "Videodan adımlara", v: [true, true, true] },
-  { f: "AI-drafted quizzes", tr: "Yapay zekâ taslağı quizler", v: [true, true, true] },
-  { f: "Readiness tracking", tr: "Hazırlık takibi", v: [true, true, true] },
-  { f: "Notices", tr: "Duyurular", v: [true, true, true] },
-  { f: "Role- and location-based access", tr: "Rol ve lokasyon bazlı erişim", v: [false, true, true] },
-  { f: "Multiple locations", tr: "Birden fazla lokasyon", v: [false, true, true] },
-  { f: "Multilingual content", tr: "Çok dilli içerik", v: ["Coming soon", "Coming soon", "Coming soon"] },
-  { f: "Custom branding", tr: "Özel marka", v: [false, false, "Coming soon"] },
-  { f: "QR and job links", tr: "QR ve iş bağlantıları", v: ["Coming soon", "Coming soon", "Coming soon"] },
-  { f: "API and integrations", tr: "API ve entegrasyonlar", v: [false, false, "Coming soon"] },
+  { f: "Billing basis", tr: "Fiyatlandırma esası", v: ["Per location", "Per location", "Per location", "By user count (30+ users)"] },
+  { f: "Operators per location", tr: "Lokasyon başına operatör", v: ["Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+  { f: "Orientation Analysis", tr: "Oryantasyon Analizi", v: [true, true, true, true] },
+  { f: "AI quiz generator", tr: "Yapay zekâ quiz oluşturucu", v: ["3 quizzes", "10 quizzes", "Unlimited", "Unlimited"] },
+  { f: "Workspaces", tr: "Çalışma alanları", v: ["2", "5", "Unlimited", "Unlimited"] },
+  { f: "Folders", tr: "Klasörler", v: ["Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+  { f: "Works", tr: "İşler", v: ["5", "Unlimited", "Unlimited", "Unlimited"] },
+  { f: "Cloud storage", tr: "Bulut depolama", v: ["1 GB", "5 GB", "10 GB", "Talk to sales"] },
+  { f: "Users", tr: "Kullanıcılar", v: ["3", "10", "30", "Talk to sales"] },
+  { f: "Support", tr: "Destek", v: ["Standard", "Standard", "Premium", "Premium"] },
 ];
 
-// Enterprise tiers for 30+ users. Tier ranges and prices are placeholders until confirmed. Do not invent numbers.
+// Enterprise tiers for 30+ users (enterprise.png). ACV values intentionally not shown.
+// Scale: SLA, SSO/SAML and dedicated infrastructure left out pending Ata Han's decision.
 export const ENTERPRISE_TIERS = [
-  { id: "t1", en: "Tier 1", tr: "Kademe 1" },
-  { id: "t2", en: "Tier 2", tr: "Kademe 2" },
-  { id: "t3", en: "Tier 3", tr: "Kademe 3" },
+  { id: "starter", name: "Starter", price: "$249", custom: false, users: "40", usersTr: "40", points: ["Priority support", "Mobile + standard RBAC", "Annual agreement"], pointsTr: ["Öncelikli destek", "Mobil + standart RBAC", "Yıllık anlaşma"] },
+  { id: "growth", name: "Growth", price: "$449", custom: false, users: "75", usersTr: "75", points: ["Custom integration + CSM", "Multi-location dashboard", "Annual agreement"], pointsTr: ["Özel entegrasyon + CSM", "Çoklu lokasyon paneli", "Yıllık anlaşma"] },
+  { id: "scale", name: "Scale", price: null, custom: true, users: "100+", usersTr: "100+", points: ["Custom contract"], pointsTr: ["Özel kontrat"] },
 ];
 export const PLAN_TR: Record<string, { name: string; for: string; points: string[] }> = {
-  location: { name: "Tek lokasyon", for: "İşlerini videoya almaya başlayan tek bir işletme.", points: ["Sınırsız operatör", "iOS ve Android'de çekilen video SOP'lar", "Videodan adımlar, taslak talimatlar", "Yapay zekâ taslağı quizler, sizin onayınızla", "Kişi ve vardiya bazında hazırlık", "Yöneticiler için web platformu"] },
-  multi: { name: "Çoklu lokasyon", for: "Aynı standartla çalışması gereken birden fazla lokasyon.", points: ["Tek lokasyon'daki her şey", "Ekip, vardiya ve lokasyon bazında hazırlık", "Rol ve lokasyon bazlı erişim", "Ekiplere duyurular", "Aynı işi tüm lokasyonlara tek seferde gönderme"] },
-  enterprise: { name: "Enterprise", for: "Franchise'lar, fabrikalar ve lokasyon ağları.", points: ["Çoklu lokasyon'daki her şey", "Lokasyonlar arası yaygınlaştırma desteği", "Özel marka (yakında)", "API, BI araçları ve yapay zekâ asistanları (yakında)"] },
+  free: { name: "Free", for: "Flexlore'u küçük bir ekiple deneyin.", points: ["Oryantasyon Analizi", "Yapay zekâ quiz oluşturucu: 3 quiz", "2 çalışma alanı", "Sınırsız klasör", "5 iş", "1 GB bulut depolama", "3 kullanıcı", "Standart destek"] },
+  pro: { name: "Pro", for: "İşlerini videoya almaya başlayan küçük işletmeler için.", points: ["Free planındaki her şey", "Yapay zekâ quiz oluşturucu: 10 quiz", "5 çalışma alanı", "Sınırsız iş", "5 GB bulut depolama", "10 kullanıcı"] },
+  proplus: { name: "ProPlus", for: "Her gün eğitim veren, büyüyen ekipler için.", points: ["Pro planındaki her şey", "Sınırsız quiz", "Sınırsız klasör ve iş", "10 GB bulut depolama", "30 kullanıcı", "Premium destek"] },
+  enterprise: { name: "Enterprise", for: "30 ve üzeri kullanıcılı ekipler için.", points: ["ProPlus planındaki her şey", "Bulut depolama satış ekibiyle belirlenir", "Kullanıcı sayısı satış ekibiyle belirlenir"] },
 };
 
 // TR versions of the pricing FAQ. Model: standard plans per location, Enterprise (30+ users) by user count.
