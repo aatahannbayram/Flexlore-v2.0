@@ -186,8 +186,8 @@ export const IMAGINE: O[] = [
  {
   "k": "Auto service",
   "media": {
-   "img": "/photos/operators.webp",
-   "alt": "Two technicians working side by side"
+   "img": "/photos/factory.webp",
+   "alt": "Technician working at a production line"
   },
   "job": "A junior technician is about to service a model they've never worked on.",
   "flow": [
@@ -238,7 +238,7 @@ export default function Imagine() {
         <p className="eyebrow">Imagine it in your business</p>
         <h2 id="imagine-h" className="display mt-4 max-w-[16ch] text-[clamp(2.8rem,6.4vw,6.4rem)]">Pick your work. See it in Flexlore.</h2>
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <label htmlFor="imagine-pick" className="text-[15px] text-white/70">My business is</label>
+          <label htmlFor="imagine-pick" className="text-[16px] text-white/70">My business is</label>
           <div className="relative">
             <select id="imagine-pick" value={a} onChange={(e) => setA(Number(e.target.value))} aria-controls="imagine-panel"
               className="appearance-none rounded-full bg-white/[.07] py-2.5 pl-5 pr-11 text-[17px] font-semibold tracking-tight text-white ring-1 ring-white/15 outline-none transition hover:ring-white/35 focus:ring-white/60">
@@ -251,7 +251,7 @@ export default function Imagine() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white/5 md:col-span-7 md:aspect-[16/11]">
             <AnimatePresence mode="wait">
               <motion.div key={o.k} initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
-                {o.media.v ? <Video name={o.media.v} /> : <img src={o.media.img} alt={o.media.alt} loading="lazy" className="grade absolute inset-0 h-full w-full object-cover" />}
+                {o.media.v ? <Video name={o.media.v} /> : <img src={o.media.img} alt={o.media.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
               </motion.div>
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
@@ -265,7 +265,7 @@ export default function Imagine() {
               {o.flow.map((f, i) => (
                 <motion.li key={o.k + i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 * i, duration: 0.5 }} className="grid grid-cols-[2.5rem_1fr] items-start gap-2 border-b border-white/10 py-6">
                   <span className="mono pt-1 text-[12px] tabular-nums text-flame">{String(i + 1).padStart(2, "0")}</span>
-                  <span><span className="block text-[17px] font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-[15px] leading-[1.4] text-white/65">{f[1]}</span></span>
+                  <span><span className="block text-[17px] font-semibold tracking-tight">{f[0]}</span><span className="mt-1 block text-[16px] leading-[1.4] text-white/65">{f[1]}</span></span>
                 </motion.li>))}
             </ol>
             <p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">Example scenario · roles and dishes are illustrative</p>

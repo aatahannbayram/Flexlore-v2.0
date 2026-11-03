@@ -56,7 +56,7 @@ export default function Pricing() {
             <li key={x.id} className="flex flex-col rounded-xl bg-black/40 p-5 ring-1 ring-white/10"><p className="text-[16px] font-semibold">Enterprise {x.name}</p>
               <p className="mt-3 text-[22px] font-bold">{x.custom ? t.custom : <>{x.price}<span className="text-[14px] font-normal text-white/70">{t.perMo}</span></>}</p>
               <p className="mt-1 text-[13px] text-white/70">{t.users(tr ? x.usersTr : x.users)}</p>
-              <ul className="mt-4 space-y-2 text-[14px] text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[.1em] text-white/80 ring-1 ring-white/30">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
+              <ul className="mt-4 space-y-2 text-[14px] text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-[12px] font-semibold uppercase tracking-[.1em] text-white/80 ring-1 ring-white/30">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
           <a href={SITE.demo} className="btn-p mt-8">{t.sales} <Arr className="ml-1" /></a>
         </section>
 
@@ -77,7 +77,7 @@ export default function Pricing() {
         <h2 id="pfaq-h" className="display text-[clamp(2.2rem,4.4vw,4rem)] md:col-span-4">{tr ? "Fiyatlandırma soruları" : "Pricing questions"}</h2>
         <div className="border-t border-white/15 md:col-span-8">{(tr ? PRICING_FAQ_TR : PRICING_FAQ).map((f) => (
           <details key={f.q} className="group border-b border-white/15 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[18px] font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary>
-            <p className="mt-2 max-w-[62ch] text-[15px] leading-[1.45] text-white/65">{f.a}</p></details>))}</div>
+            <p className="mt-2 max-w-[62ch] text-[16px] leading-[1.45] text-white/65">{f.a}</p></details>))}</div>
       </div>
     </section>
     <section className="px-6 pb-24 md:px-10"><div className="mx-auto max-w-[1400px] border-t border-white/15 pt-12">

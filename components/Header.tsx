@@ -38,7 +38,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
       <motion.header initial={{ y: -30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-40 flex justify-center px-3 pt-3">
         <motion.nav aria-label="Main" layout transition={{ type: "spring", stiffness: 260, damping: 32 }}
-          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[rgba(20,20,22,0.92)] pl-5 pr-2 shadow-[0_10px_40px_rgba(0,0,0,.45)] backdrop-blur-2xl backdrop-saturate-150" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
+          className={`relative flex items-center justify-between overflow-hidden transition-[background,border-color,box-shadow] duration-500 ${scrolled ? "h-14 w-[min(100%,900px)] rounded-full border border-white/10 bg-[#111113] pl-5 pr-2" : "h-16 w-[min(100%,1200px)] rounded-none border border-transparent bg-transparent px-3"}`}>
           <a href={home ? "#main" : "/"} className="flex items-center gap-2" aria-label="Flexlore">
             <img src="/brand/wordmark-light.png" alt="Flexlore" width={166} height={36} className={`w-auto transition-[height] duration-500 ${scrolled ? "h-6 sm:h-7" : "h-6 sm:h-9"}`} />
           </a>{brand}
@@ -57,7 +57,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
       </motion.header>
       {open && (
         <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex flex-col bg-black/90 px-6 pb-10 pt-5 backdrop-blur-2xl">
+          className="fixed inset-0 z-50 flex flex-col bg-[#0b0b0c] px-6 pb-10 pt-5">
           <div className="flex items-center justify-between"><img src="/brand/wordmark-light.png" alt="Flexlore" className="h-9 w-auto" />
             <button onClick={() => setOpen(false)} className="rounded-full px-3 py-1.5 text-[13px]" autoFocus>{t.close}</button></div>
           <ul className="mt-16 space-y-3">

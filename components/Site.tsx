@@ -18,6 +18,7 @@ import { AISection, Integrations, PricingTeaser, Footer } from "./Sections";
 import { StoreButtons, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Header } from "./Header";
+import { HeroMedia } from "./HeroMedia";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "./AppScreens";
 
 // Sayfadaki tüm döngülü videoları tek düğmeyle durdurur (WCAG 2.2.2). Sağlayıcı yoksa (ör. demo sayfaları) videolar oynar.
@@ -37,7 +38,7 @@ export function Video({ name, eager = false, className = "" }: { name: string; e
   useEffect(() => { const el = ref.current; if (!el || !on || reduce) return;
     const io = new IntersectionObserver(([e]) => { e.isIntersecting && !paused ? el.play().catch(() => {}) : el.pause(); });
     io.observe(el); return () => io.disconnect(); }, [on, reduce, paused]);
-  const cls = `grade absolute inset-0 h-full w-full object-cover ${className}`;
+  const cls = `absolute inset-0 h-full w-full object-cover ${className}`;
   if (reduce) return <img src={`/video/${name}.jpg`} alt="" className={cls} />;
   return (
     <video ref={ref} className={cls} poster={`/video/${name}.jpg`} muted loop playsInline autoPlay={eager && !paused}
@@ -85,12 +86,12 @@ function Loader() {
     </motion.div>);
 }
 
-function Hero({ t }: { t: C }) {
+function Hero({ t, lang, paused }: { t: C; lang: Lang; paused: boolean }) {
   // P0: değer önerisi ilk ekranda. "Step by step." artık eyebrow; video karartması ≤%50.
   return (
     <section className="relative flex min-h-svh items-end overflow-hidden" aria-label={t.hero}>
-      <div className="absolute inset-0" style={{ filter: "brightness(.95) contrast(.9) saturate(.85)" }}><Video name="plating" eager /></div>
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/35 to-black/25" />
+      <HeroMedia lang={lang} paused={paused} />
+      <div aria-hidden="true" className="absolute inset-0 bg-black/25" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-[14vh] pt-28 md:px-10 md:pb-[16vh]">
         <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }} className="eyebrow">{t.hero}</motion.p>
         <h1 className="display mt-4 max-w-[20ch] text-[clamp(2.4rem,5.6vw,5.6rem)] [text-shadow:0_2px_30px_rgba(0,0,0,.5)]">{t.h1.map((s, i) => <span key={i} className={s.o ? "text-flame" : undefined}>{s.t}</span>)}</h1>
@@ -150,7 +151,7 @@ function Product({ t, lang }: { t: C; lang: Lang }) {
                 {t.steps.map((s, i) => (
                   <motion.div key={i + lang} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : a > i ? -24 : 24 }} transition={{ duration: 0.35, delay: a === i ? 0.3 : 0, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0" aria-hidden={a !== i}>
                     <h2 className="display text-[clamp(2.6rem,5.5vw,5.5rem)]"><K text={s.h} /></h2>
-                    <p className="mt-3 max-w-sm text-[15px] leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
+                    <p className="mt-3 max-w-sm text-[16px] leading-[1.3] text-white/70 md:text-lg">{s.p}</p>
                   </motion.div>))}
               </div>
             </div>
@@ -298,7 +299,7 @@ export default function Site() {
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
       <main id="main">
-        <Hero t={t} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser lang={lang} /><Security lang={lang} /><Faq t={t} /><End t={t} />
+        <Hero t={t} lang={lang} paused={paused} /><Statement t={t} /><Product t={t} lang={lang} /><WebSection lang={lang} /><Platforms lang={lang} /><Cases lang={lang} /><Imagine /><Ready t={t} /><Sectors t={t} lang={lang} /><AISection /><Integrations /><Copq lang={lang} /><Programs lang={lang} /><PricingTeaser lang={lang} /><Security lang={lang} /><Faq t={t} /><End t={t} />
       </main>
       </VideoPause.Provider>
       <Footer />

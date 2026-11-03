@@ -29,7 +29,7 @@ const BADGE: Record<string, string> = { Published: "text-[#EC6726] bg-[#EC6726]/
 function Av({ i, c, s = 24 }: { i: string; c: string; s?: number }) {
   return <span className="grid shrink-0 place-items-center rounded-full text-[12px] font-semibold text-white ring-2 ring-[#0b0b0c]" style={{ width: s, height: s, background: `linear-gradient(180deg,${c},${c}cc)` }}>{i}</span>;
 }
-const cellBg = (g: number) => g === 2 ? `linear-gradient(180deg,#EC6726,${O})` : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
+const cellBg = (g: number) => g === 2 ? O : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
 
 function Dashboard({ on }: { on: boolean }) {
   const [hover, setHover] = useState(0);
@@ -54,7 +54,7 @@ function Dashboard({ on }: { on: boolean }) {
         <span className="ml-auto flex -space-x-1.5">{PEOPLE.slice(0, 4).map(([n, i, c]) => <Av key={n} i={i} c={c} />)}<span className="grid h-6 w-6 place-items-center rounded-full bg-[#2a2a2e] text-[12px] font-medium text-white/70 ring-2 ring-[#0b0b0c]">+8</span></span>
         <span className="h-5 w-px bg-white/10" />
         <span className="flex h-8 items-center gap-1.5 rounded-[8px] border border-white/10 bg-white/[.03] px-3 text-[12px] text-white/80"><Share2 {...ic} size={13} />Share</span>
-        <motion.span animate={{ scale: hover === 3 ? 0.97 : 1 }} className="flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-[12px] font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25),0_2px_8px_rgba(236,103,38,.35)]" style={{ background: O }}><Plus size={14} strokeWidth={2} />Record new</motion.span>
+        <motion.span animate={{ scale: hover === 3 ? 0.97 : 1 }} className="flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-[12px] font-semibold text-white" style={{ background: O }}><Plus size={14} strokeWidth={2} />Record new</motion.span>
       </div>
       <div className="flex-1 overflow-hidden px-6 py-4">
         <div className="flex items-center gap-1 text-[12px]">{[["All", 24], ["Kitchen", 11], ["Front of house", 7], ["Cleaning", 6]].map(([x, c], k) => <span key={x} className={`relative flex h-7 items-center gap-1.5 rounded-full px-3 ${k ? "text-white/70" : "text-white"}`}>{!k && <span className="absolute inset-0 -z-0 rounded-full bg-white/[.08] ring-1 ring-white/10" />}<span className="relative">{x}</span><span className="relative tabular-nums text-white/70">{c}</span></span>)}
@@ -65,7 +65,7 @@ function Dashboard({ on }: { on: boolean }) {
             <span className={`absolute left-1/2 top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-black shadow-lg transition-all duration-300 ${hv ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}><Play size={13} fill="currentColor" strokeWidth={0} className="ml-0.5" /></span>
             <span className="absolute bottom-1.5 right-1.5 rounded-[4px] bg-black/70 px-1 text-[12px] font-medium tabular-nums text-white">{d}</span></div>
           <div className="px-2.5 py-2"><p className="truncate text-[12px] font-medium tracking-[-.01em]">{t}</p>
-            <div className="mt-1 flex items-center justify-between"><span className="text-[12px] tabular-nums text-white/70">{st} steps</span><span className={`rounded-full px-1.5 py-[1px] text-[9px] font-medium ring-1 ${BADGE[b]}`}>{b}</span></div></div></motion.div>; })}</div>
+            <div className="mt-1 flex items-center justify-between"><span className="text-[12px] tabular-nums text-white/70">{st} steps</span><span className={`rounded-full px-1.5 py-[1px] text-[12px] font-medium ring-1 ${BADGE[b]}`}>{b}</span></div></div></motion.div>; })}</div>
         <div className="mt-4 grid grid-cols-[1.6fr_1fr] gap-4">
           <div className={`overflow-hidden ${panel}`} style={{ background: S2 }}>
             <div className="flex items-center justify-between px-4 py-3"><p className="text-[13px] font-semibold tracking-[-.01em]">Orientation Data <span className="font-normal text-white/70">· by person</span></p>
@@ -85,8 +85,8 @@ function Dashboard({ on }: { on: boolean }) {
               {[0, 1, 2, 3, 4, 5].map((g) => <g key={g}><line x1="22" x2="300" y1={130 - g * 24} y2={130 - g * 24} stroke="rgba(255,255,255,.06)" strokeDasharray={g ? "2 3" : undefined} /><text x="14" y={133 - g * 24} fontSize="9" fill="rgba(255,255,255,.35)" textAnchor="end" className="tabular-nums">{g}</text></g>)}
               {quiz.map(([q, v], k) => { const x = 40 + k * 54, hgt = v * 24, lo = hover === 3 && k === 3; return <g key={q}>
                 <motion.rect x={x} width="30" rx="5" fill={lo ? "#F2996E" : "url(#qb)"} initial={false} animate={{ y: on ? 130 - hgt : 130, height: on ? hgt : 0 }} transition={{ delay: .6 + k * .1, duration: .9, ease }} />
-                <text x={x + 15} y="145" fontSize="10" fill="rgba(255,255,255,.5)" textAnchor="middle">{q}</text>
-                {lo && <text x={x + 15} y={122 - hgt} fontSize="10" fontWeight="600" fill="#fff" textAnchor="middle">{v}/5</text>}</g>; })}
+                <text x={x + 15} y="145" fontSize="12" fill="rgba(255,255,255,.5)" textAnchor="middle">{q}</text>
+                {lo && <text x={x + 15} y={122 - hgt} fontSize="12" fontWeight="600" fill="#fff" textAnchor="middle">{v}/5</text>}</g>; })}
             </svg>
             <div className={`mt-auto flex items-start gap-2.5 rounded-[10px] border px-3 py-2.5 text-[12px] leading-[1.3] transition-colors ${hover === 3 ? "border-[#EC6726]/40 bg-[#EC6726]/[.08] text-white" : "border-white/[.06] bg-white/[.03] text-white/70"}`}><TriangleAlert {...ic} size={14} className="mt-0.5 shrink-0" style={{ color: O }} />Q4 is missed most. Review the step 3 video with the team.</div></div>
         </div>
@@ -117,7 +117,7 @@ export function WebSection({ lang }: { lang: "en" | "tr" }) {
         <motion.div role="img" aria-label={tr ? "Flexlore web uygulaması, örnek veri" : "Flexlore web app, sample data"} style={{ rotateX: rx, scale: sc, opacity: bo, transformOrigin: "50% 100%" }} className="overflow-hidden rounded-[10px] bg-[#1a1a1c] shadow-[0_60px_160px_rgba(0,0,0,.8)] ring-1 ring-white/[.12] md:rounded-[14px]">
           <div className="flex h-7 items-center gap-1.5 border-b border-white/[.06] bg-[#222225] px-3 md:h-9 md:gap-2 md:px-4">
             <span className="h-2 w-2 rounded-full bg-white/20 md:h-3 md:w-3" /><span className="h-2 w-2 rounded-full bg-white/20 md:h-3 md:w-3" /><span className="h-2 w-2 rounded-full bg-white/20 md:h-3 md:w-3" />
-            <span className="mx-auto flex h-5 w-[min(60%,380px)] items-center justify-center gap-1.5 rounded-md bg-black/30 text-[9px] text-white/70 md:h-6 md:text-[12px]"><svg width="9" height="10" viewBox="0 0 9 10" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="1" y="4.5" width="7" height="5" rx="1"/><path d="M2.5 4.5V3a2 2 0 0 1 4 0v1.5"/></svg>app.flexlore.com/library</span><span className="w-6 md:w-12" /></div>
+            <span className="mx-auto flex h-5 w-[min(60%,380px)] items-center justify-center gap-1.5 rounded-md bg-black/30 text-[12px] text-white/70 md:h-6 md:text-[12px]"><svg width="9" height="10" viewBox="0 0 9 10" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="1" y="4.5" width="7" height="5" rx="1"/><path d="M2.5 4.5V3a2 2 0 0 1 4 0v1.5"/></svg>app.flexlore.com/library</span><span className="w-6 md:w-12" /></div>
           <Fit><Dashboard on={on} /></Fit>
         </motion.div>
         </div><motion.div style={{ x: px, opacity: po }} className="hidden w-[230px] lg:block" aria-hidden="true"><Device label="Flexlore mobile app"><SopScreen active={on} /></Device></motion.div>

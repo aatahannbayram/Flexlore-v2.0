@@ -94,3 +94,26 @@ export const PRICING_FAQ = [
   { q: "How does billing and cancellation work?", a: "See our Subscription & Billing policy, or ask us on the demo call." },
   { q: "Where can I read about data and security?", a: "Our Privacy Policy, Data Processing, Sub-processors and Security pages cover it. Still have questions? Ask on the demo call." },
 ];
+
+/* Hero media. Swap paths here when the new 4K footage arrives (spec: docs/hero-video-spec in deep-audit §2).
+   While `video` is null the hero shows the still `poster` only (real app screenshots, no stock or AI footage).
+   Video sources are tried in order; the browser picks the first format it can play.
+   desktop: 1920 = default, 2560 = large/retina screens. mobile: vertical 1080x1920 (max-width:768px). */
+export type HeroSrc = { av1?: string; vp9?: string; h264?: string };
+export const HERO: {
+  poster: { mobile: { avif: string; webp: string }; d1920: { avif: string; webp: string }; d2560: { avif: string; webp: string }; alt: string; altTr: string };
+  video: null | { d1920: HeroSrc; d2560?: HeroSrc; mobile?: HeroSrc };
+} = {
+  poster: {
+    mobile: { avif: "/hero/hero-app-1080x1920.avif", webp: "/hero/hero-app-1080x1920.webp" },
+    d1920: { avif: "/hero/hero-app-1920.avif", webp: "/hero/hero-app-1920.webp" },
+    d2560: { avif: "/hero/hero-app-2560.avif", webp: "/hero/hero-app-2560.webp" },
+    alt: "Flexlore app: recording a step video and the standard work steps for making espresso",
+    altTr: "Flexlore uygulaması: adım videosu kaydı ve espresso hazırlamanın standart iş adımları",
+  },
+  // New footage goes here, e.g.
+  // video: { d1920: { av1: "/video/hero/hero-1920.av1.webm", vp9: "/video/hero/hero-1920.vp9.webm", h264: "/video/hero/hero-1920.mp4" },
+  //          d2560: { av1: "/video/hero/hero-2560.av1.webm", h264: "/video/hero/hero-2560.mp4" },
+  //          mobile: { av1: "/video/hero/hero-1080x1920.av1.webm", h264: "/video/hero/hero-1080x1920.mp4" } },
+  video: null,
+};

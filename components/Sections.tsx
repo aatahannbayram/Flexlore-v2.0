@@ -23,7 +23,7 @@ const AI_NEXT = [
 ];
 const Card = ({ title, live, items, muted }: { title: string; live: boolean; items: string[]; muted?: boolean }) => (
   <div className={`rounded-2xl p-7 md:p-9 ${muted ? "bg-white/[.025] ring-1 ring-white/[.07]" : "bg-white/[.05] ring-1 ring-white/10"}`}>
-    <div className="flex items-baseline justify-between"><h3 className="text-[15px] font-semibold">{title}</h3><Tag live={live} /></div>
+    <div className="flex items-baseline justify-between"><h3 className="text-[16px] font-semibold">{title}</h3><Tag live={live} /></div>
     <ol className="mt-8 space-y-4">{items.map((h, i) => (<li key={h} className="flex items-baseline gap-4"><span className="mono w-6 text-[12px] tabular-nums text-white/70">{String(i + 1).padStart(2, "0")}</span><span className={`text-[clamp(1.2rem,1.8vw,1.55rem)] font-semibold tracking-tight ${muted ? "text-white/70" : "text-white"}`}>{h}</span></li>))}</ol>
   </div>);
 
@@ -48,8 +48,8 @@ export function AISection() {
 
 export function AIDetail() {
   const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (<div>
-    <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h2 className="text-[15px] font-semibold">{t}</h2><Tag live={live} /></div>
-    {xs.map((x) => (<div key={x.h} className="border-b border-white/10 py-6"><h3 className={`text-[20px] font-semibold tracking-tight ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[15px] leading-[1.45] text-white/70">{x.p}</p></div>))}</div>);
+    <div className="flex items-baseline justify-between border-b border-white/25 pb-3"><h2 className="text-[16px] font-semibold">{t}</h2><Tag live={live} /></div>
+    {xs.map((x) => (<div key={x.h} className="border-b border-white/10 py-6"><h3 className={`text-[20px] font-semibold tracking-tight ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[16px] leading-[1.45] text-white/70">{x.p}</p></div>))}</div>);
   return (<div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-10"><Col t="Today" live xs={AI_NOW} /><div><Col t="Coming soon" live={false} xs={AI_NEXT} /><p className="mono mt-4 text-[12px] uppercase tracking-[.14em] text-white/70">On our roadmap. No dates yet.</p></div></div>);
 }
 
@@ -114,10 +114,10 @@ export function PricingTeaser({ lang = "en" }: { lang?: "en" | "tr" }) {
         </div>
         <div className="mt-10"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} /></div>
         <ul className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {PLANS.map((p) => { const badge = tr ? p.badgeTr : p.badge; return (<li key={p.id} className={`relative rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-2 ring-[#EC6726]" : "bg-white/[.03] ring-white/10"}`}>{badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[.1em] ${p.featured ? "bg-[#EC6726] text-black" : "bg-black text-white ring-1 ring-white/40"}`}>{badge}</span>}<p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/70">{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p><div className="mt-6 border-t border-white/10 pt-4"><PriceBlock p={p} yearly={yearly} lang={lang} small /></div><p className="mt-2 text-[13px] text-white/70">{p.id === "enterprise" ? (tr ? "Kullanıcı sayısına göre fiyatlanır" : "Priced by user count") : tr ? `${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} kullanıcıya kadar` : `Up to ${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} users`}</p>{p.id !== "enterprise" && <div className="mt-5 flex"><StoreCTA label={p.id === "free" ? (tr ? "Ücretsiz başlayın" : "Start free") : (tr ? "Planı seçin" : "Choose plan")} primary={p.featured} tr={tr} /></div>}</li>); })}
+          {PLANS.map((p) => { const badge = tr ? p.badgeTr : p.badge; return (<li key={p.id} className={`relative rounded-2xl p-7 ring-1 ${p.featured ? "bg-white/[.07] ring-2 ring-[#EC6726]" : "bg-white/[.03] ring-white/10"}`}>{badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-[12px] font-semibold uppercase tracking-[.1em] ${p.featured ? "bg-[#EC6726] text-black" : "bg-black text-white ring-1 ring-white/40"}`}>{badge}</span>}<p className="text-[18px] font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-[14px] leading-[1.4] text-white/70">{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p><div className="mt-6 border-t border-white/10 pt-4"><PriceBlock p={p} yearly={yearly} lang={lang} small /></div><p className="mt-2 text-[13px] text-white/70">{p.id === "enterprise" ? (tr ? "Kullanıcı sayısına göre fiyatlanır" : "Priced by user count") : tr ? `${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} kullanıcıya kadar` : `Up to ${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} users`}</p>{p.id !== "enterprise" && <div className="mt-5 flex"><StoreCTA label={p.id === "free" ? (tr ? "Ücretsiz başlayın" : "Start free") : (tr ? "Planı seçin" : "Choose plan")} primary={p.featured} tr={tr} /></div>}</li>); })}
         </ul>
         <ul aria-label="See for yourself" className="mt-10 grid gap-x-8 border-t border-white/10 pt-5 sm:grid-cols-3">
-          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[12px] uppercase tracking-[.18em] text-white/70">{k}</span><span className="mt-1 block text-[15px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/70 transition group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
+          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-[12px] uppercase tracking-[.18em] text-white/70">{k}</span><span className="mt-1 block text-[16px] font-medium">{h}</span></span><span aria-hidden="true" className="text-white/70 transition group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
         </ul>
       </div>
     </section>
