@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { m, useReducedMotion, type Variants } from "framer-motion";
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,7 +15,7 @@ export function Reveal({ children, className = "", stagger = 0, delay = 0, as = 
   children: React.ReactNode; className?: string; stagger?: number; delay?: number; as?: "div" | "ul" | "ol" | "li";
 }) {
   const hydrated = useHydrated(); const reduce = useReducedMotion();
-  const M = motion[as];
+  const M = m[as];
   if (!hydrated || reduce) { const T = as; return <T className={className}>{children}</T>; }
   return (
     <M className={className} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-10% 0px" }}
@@ -26,7 +26,7 @@ export function Reveal({ children, className = "", stagger = 0, delay = 0, as = 
 
 export function RevealItem({ children, className = "", as = "div" }: { children: React.ReactNode; className?: string; as?: "div" | "li" }) {
   const hydrated = useHydrated(); const reduce = useReducedMotion();
-  const M = motion[as];
+  const M = m[as];
   if (!hydrated || reduce) { const T = as; return <T className={className}>{children}</T>; }
   return <M className={className} variants={item}>{children}</M>;
 }

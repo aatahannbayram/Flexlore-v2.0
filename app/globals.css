@@ -101,6 +101,8 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 
 }
 
+/* Base outline colour is the accent too, so colour transitions never fade the ring in from the text colour. */
+:where(a, button, input, select, textarea, summary, [tabindex]) { outline-color: var(--color-accent); }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
 section[id], [id]:target { scroll-margin-top: calc(var(--header-h) + 16px); }
 details summary::-webkit-details-marker { display:none; }
@@ -108,16 +110,32 @@ details summary::-webkit-details-marker { display:none; }
 .no-sb{scrollbar-width:none}
 
 /* HeroSequence: CSS only, so the hero is readable without JS and LCP is not held by hydration.
-   Opacity starts at .001 (not 0) so the browser still counts the headline for LCP. */
+   Text moves but never fades: it is painted in the first frame, so LCP is not delayed by the animation. */
 .hs-word { display: inline-block; animation: hs-rise .7s var(--ease-out-expo) both; }
 .hs-in { animation: hs-fade .6s var(--ease-out-expo) both; }
 .hs-device { animation: hs-settle .9s var(--ease-out-expo) both; }
-@keyframes hs-rise { from { opacity: .001; transform: translateY(0.35em); } to { opacity: 1; transform: none; } }
-@keyframes hs-fade { from { opacity: .001; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes hs-rise { from { transform: translateY(0.18em); } to { transform: none; } }
+@keyframes hs-fade { from { transform: translateY(10px); } to { transform: none; } }
 @keyframes hs-settle { from { opacity: .001; transform: scale(.96); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hs-word, .hs-in, .hs-device { animation: none; } }
 
 .marquee{animation:mq 60s linear infinite}
+
+/* Bento micro-visuals: CSS only, final state shown under reduced motion. */
+.bento-swap .bento-a { animation: bento-a 4.8s var(--ease-out-expo) infinite; animation-delay: inherit; }
+.bento-swap .bento-b { animation: bento-b 4.8s var(--ease-out-expo) infinite; animation-delay: inherit; }
+@keyframes bento-a { 0%, 40% { opacity: 1; transform: none; } 50%, 90% { opacity: 0; transform: translateY(-4px); } 100% { opacity: 1; } }
+@keyframes bento-b { 0%, 40% { opacity: 0; transform: translateY(4px); } 50%, 90% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+.bento-cell { animation: bento-cell 3.6s ease-in-out infinite; }
+@keyframes bento-cell { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.bento-pick { animation: bento-pick 3.2s var(--ease-out-expo) infinite; }
+@keyframes bento-pick { 0%, 30% { background: transparent; } 45%, 100% { background: rgb(104 210 185 / .12); } }
+.bento-bar { transform-origin: left; animation: bento-bar 1.4s var(--ease-out-expo) both; }
+@keyframes bento-bar { from { transform: scaleX(0); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .bento-swap .bento-a { animation: none; opacity: 0; } .bento-swap .bento-b { animation: none; opacity: 1; }
+  .bento-cell, .bento-bar { animation: none; } .bento-pick { animation: none; background: rgb(104 210 185 / .12); }
+}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 @media (prefers-reduced-motion: reduce) {

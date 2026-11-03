@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { Play } from "@phosphor-icons/react/dist/ssr";
+import { useEffect, useState } from "react";
+import { Play } from "../ui/icons";
 import type { C, Lang } from "../copy";
 import { SITE } from "../config";
 import { StoreButtons } from "../Icons";
@@ -14,12 +14,18 @@ import { VideoModal } from "../ui/VideoModal";
  *  It runs without JS, ends fully visible, and is switched off by prefers-reduced-motion. */
 export function Hero({ t, lang }: { t: C; lang: Lang }) {
   const [demo, setDemo] = useState(false);
+  // The background loop only plays on wider screens; phones keep the still (saves ~0.4 MB on mobile data).
+  const [wide, setWide] = useState(false);
+  useEffect(() => { setWide(window.matchMedia("(min-width: 768px)").matches); }, []);
   let w = 0;
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
       {/* Background: warm kitchen loop at ~20%, faded toward #111111. Poster only under reduced motion / Save-Data. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 opacity-[0.2]"><SmartVideo name="kitchen" threshold={0.2} /></div>
+        <div className="absolute inset-0 opacity-[0.2]">
+          <picture><source srcSet="/video/kitchen-bg.avif" type="image/avif" /><img src="/video/kitchen-bg.webp" alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
+          {wide && <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} idle />}
+        </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#111111_0%,rgb(17_17_17/0.92)_45%,rgb(17_17_17/0.7)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#111111,rgb(17_17_17/0))]" />
       </div>

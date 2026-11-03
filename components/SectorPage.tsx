@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Footer } from "./Sections";
 import Link from "next/link";
 import { K } from "./Kinetic";
-import Lenis from "lenis";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { sectors } from "./sectors";
 import { Arr } from "@/components/Icons";
@@ -22,7 +21,6 @@ export default function SectorPage({ i }: { i: number }) {
   const vs = useTransform(p, [0, 1], [1, 1.15]); const ty = useTransform(p, [0, 1], ["0%", "30%"]);
   const [pick, setPick] = useState<number | null>(null);
   const [sop, setSop] = useState(0);
-  useEffect(() => { if (reduce) return; const l = new Lenis({ lerp: 0.075 }); let r = 0; const f = (x: number) => { l.raf(x); r = requestAnimationFrame(f); }; r = requestAnimationFrame(f); return () => { cancelAnimationFrame(r); l.destroy(); }; }, [reduce]);
   return (
     <>
       <motion.div aria-hidden="true" initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 0.9, ease }} className="pointer-events-none fixed inset-0 z-50 origin-top bg-flame" />
@@ -32,7 +30,7 @@ export default function SectorPage({ i }: { i: number }) {
           <motion.div style={{ scale: vs }} className="absolute inset-0"><Video name={s.v} eager /></motion.div>
           <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/75 to-transparent" />
-          <motion.div style={{ y: ty }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-[10vh] md:px-10">
+          <motion.div style={{ y: ty }} className="relative flex h-full flex-col justify-end pb-[10vh] container-x">
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }} className="mono text-xs uppercase tracking-[.18em] text-flame">{s.idx} / {s.kicker}</motion.p>
             <h1 className="display mt-5 max-w-[14ch] text-h1 [text-shadow:0_4px_40px_rgba(0,0,0,.6)]">
               {s.h.split(" ").map((w, k) => <span key={k} className="inline-block overflow-hidden pb-[.08em] align-bottom"><motion.span initial={{ y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.5 + k * 0.08, duration: 1, ease }} className="inline-block">{w}&nbsp;</motion.span></span>)}
@@ -41,13 +39,13 @@ export default function SectorPage({ i }: { i: number }) {
           </motion.div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-12 px-6 py-32 md:grid-cols-[1fr_1.3fr] md:px-10 md:py-44">
+        <section className="grid container-x gap-12 py-32 md:grid-cols-[1fr_1.3fr] md:py-44">
           <Rev><p className="eyebrow">The problem</p><h2 className="display mt-4 text-h2"><K text={s.problem.h} /></h2></Rev>
           <div className="space-y-6 self-end text-lg leading-snug text-white/75">{s.problem.p.map((x, k) => <Rev key={k} d={k * 0.1}><p>{x}</p></Rev>)}</div>
         </section>
 
-        <section className="px-6 py-32 md:px-10">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-32">
+          <div className="container-x">
             <Rev><p className="eyebrow">From the operator's eyes</p><h2 className="display mt-4 text-h2"><K text="Real tasks. Step by step." /></h2><p className="mt-6 max-w-xl text-lg leading-snug text-white/70">Each task is filmed from where the person doing it stands, then split into steps they can replay on their phone: for onboarding, for passing the master's know-how on, and for retraining the exact step behind a quality issue.</p></Rev>
             <div className="mt-16 grid gap-10 md:grid-cols-[1fr_1.2fr]">
               <ul className="">
@@ -74,8 +72,8 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
-        <section className="px-6 py-32 md:px-10">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-32">
+          <div className="container-x">
             <Rev><p className="eyebrow">How Flexlore solves it</p></Rev>
             <div className="mt-10 grid gap-8 md:grid-cols-3">
               {s.how.map((h, k) => (
@@ -88,8 +86,8 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
-        <section className="relative overflow-hidden px-6 py-32 md:px-10">
-          <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2">
+        <section className="relative overflow-hidden py-32">
+          <div className="grid container-x gap-12 md:grid-cols-2">
             <Rev><p className="eyebrow">Sample quiz</p><h2 className="display mt-4 text-h2"><K text={s.quiz.q} /></h2><p className="mt-6 text-white/70">Drafted from the video. Edited and approved by your team.</p></Rev>
             <div className="space-y-3 self-end">
               {s.quiz.a.map((a, k) => {
@@ -101,23 +99,23 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
-        <section className="px-6 py-32 md:px-10">
-          <div className="mx-auto max-w-7xl">
+        <section className="py-32">
+          <div className="container-x">
             <Rev><p className="eyebrow">A sample rollout</p><h2 className="display mt-4 text-h2"><K text="From one phone to every shift." /></h2></Rev>
             <ol className="mt-16 grid gap-8 md:grid-cols-4">
               {s.flow.map((f, k) => (
-                <Rev key={k} d={k * 0.1} className="bg-black">
-                  <li className="list-none py-8 md:pr-8"><span className="mono text-xs uppercase tracking-[.18em] text-flame">{f.when}</span><p className="mt-4 text-lg leading-snug">{f.what}</p></li>
-                </Rev>))}
+                <li key={k} className="list-none">
+                  <Rev d={k * 0.1} className="bg-black py-8 md:pr-8"><span className="mono text-xs uppercase tracking-[.18em] text-flame">{f.when}</span><p className="mt-4 text-lg leading-snug">{f.what}</p></Rev>
+                </li>))}
             </ol>
             <Rev><p className="mono mt-16 text-xs uppercase tracking-[.18em] text-white/70">Readiness view · {s.ready}</p></Rev>
           </div>
         </section>
 
-        <Link href={`/sektor/${next.slug}/`} className="group relative flex h-[80svh] items-end overflow-hidden px-6 pb-16 md:px-10">
+        <Link href={`/sektor/${next.slug}/`} className="group relative flex h-[80svh] items-end overflow-hidden pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-80"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-          <div className="relative mx-auto w-full max-w-7xl"><p className="mono text-xs uppercase tracking-[.18em] text-flame">Next sector · {next.idx}</p>
+          <div className="relative w-full container-x"><p className="mono text-xs uppercase tracking-[.18em] text-flame">Next sector · {next.idx}</p>
             <p className="display mt-4 text-h1 transition group-hover:translate-x-4">{next.en} <Arr className="ml-[.1em]" /></p></div>
         </Link>
       </main>

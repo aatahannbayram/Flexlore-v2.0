@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
 import { I, StoreButtons, Arr } from "./Icons";
-import { SITE, PLANS, PRICING, PLAN_TR } from "./config";
-import { BillingToggle, PriceBlock } from "./PriceUI";
-import { StoreCTA } from "./StoreCTA";
-import { useState } from "react";
+import { SITE } from "./config";
+import { home } from "./home/home-copy";
 
 const Tag = ({ live }: { live: boolean }) => (
   <span className={`mono inline-flex items-center gap-1.5 text-xs uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
@@ -29,8 +27,8 @@ const Card = ({ title, live, items, muted }: { title: string; live: boolean; ite
 
 export function AISection() {
   return (
-    <section id="ai" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="ai-h">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="ai" className="py-14 md:py-20" aria-labelledby="ai-h">
+      <div className="container-x">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8"><p className="eyebrow">AI</p>
             <h2 id="ai-h" className="display mt-4 max-w-[15ch] text-h1">AI does the paperwork. Your experts have the final say.</h2></div>
@@ -70,8 +68,8 @@ const DIR: { cat: string; items: It[] }[] = [
 export function Integrations() {
   const live = DIR[0].items; const soon = DIR.slice(1).flatMap((c) => c.items).filter((x) => x.h !== "Through the API");
   return (
-    <section id="integrations" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="int-h">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="integrations" className="py-14 md:py-20" aria-labelledby="int-h">
+      <div className="container-x">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8"><p className="eyebrow">Integrations</p>
             <h2 id="int-h" className="display mt-4 text-h1">Works where your team already is.</h2></div>
@@ -100,57 +98,35 @@ export function IntegrationsDetail() {
   </div>);
 }
 
-export function PricingTeaser({ lang = "en" }: { lang?: "en" | "tr" }) {
-  const [yearly, setYearly] = useState(false);
-  const tr = lang === "tr";
-  const proof = [["App Store", "iPhone app is live", SITE.appStore], ["Google Play", "Android app is live", SITE.googlePlay], ["Product Hunt", "Launched on Product Hunt", SITE.productHunt]];
+export function Footer({ lang = "en" }: { lang?: "en" | "tr" }) {
+  const f = home[lang].footer; const tr = lang === "tr";
+  const col = "mb-4 text-caption font-semibold uppercase tracking-[.12em] text-ink-faint";
+  const a = "inline-flex min-h-9 items-center text-ink-muted transition-colors hover:text-ink";
+  const ind: [string, string, string][] = [["Restaurants", "Restoranlar", "restoran"], ["Manufacturing", "Üretim", "uretim"], ["Hotels", "Oteller", "otel"], ["Franchises", "Franchise", "franchise"], ["Warehouses", "Depolar", "depo"], ["Bakeries & cafés", "Fırın ve kafeler", "firin"]];
   return (
-    <section id="pricing" className="px-6 py-14 md:px-10 md:py-20" aria-labelledby="pt-h">
-      <div className="mx-auto max-w-[1400px]">
-        <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7"><p className="eyebrow">{tr ? "Fiyatlandırma" : "Pricing"}</p><h2 id="pt-h" className="display mt-4 text-h2">{tr ? "İşletmenize uyan fiyatlandırma." : "Pricing that fits your floor."}</h2></div>
-          <div className="md:col-span-5"><p className="text-base leading-[1.4] text-white/70">{tr ? "Planlar kullanıcı sayısına göre fiyatlanır. Enterprise 30+ kullanıcıdan başlar." : "Plans are priced by number of users. Enterprise starts at 30+ users."}</p>
-            <div className="mt-4 flex flex-wrap gap-3"><Link href="/pricing/" className="btn-p">{tr ? "Fiyatları görün" : "See pricing"} <Arr className="ml-1" /></Link><a href={SITE.demo} className="btn-g">{tr ? "Demo isteyin" : "Book a demo"}</a></div></div>
-        </div>
-        <div className="mt-10"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} /></div>
-        <ul className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {PLANS.map((p) => { const badge = tr ? p.badgeTr : p.badge; return (<li key={p.id} className={`relative rounded-2xl p-7  ${p.featured ? "bg-card" : "bg-bg2"}`}>{badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[.1em] ${p.featured ? "bg-flame text-black" : "bg-white/10 text-white"}`}>{badge}</span>}<p className="text-lg font-semibold tracking-tight">{p.name}</p><p className="mt-1 text-sm leading-[1.4] text-white/70">{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p><div className="mt-6 pt-4"><PriceBlock p={p} yearly={yearly} lang={lang} small /></div><p className="mt-2 text-sm text-white/70">{p.id === "enterprise" ? (tr ? "Kullanıcı sayısına göre fiyatlanır" : "Priced by user count") : tr ? `${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} kullanıcıya kadar` : `Up to ${p.id === "free" ? "3" : p.id === "pro" ? "10" : "30"} users`}</p>{p.id !== "enterprise" && <div className="mt-5 flex"><StoreCTA label={p.id === "free" ? (tr ? "Ücretsiz başlayın" : "Start free") : (tr ? "Planı seçin" : "Choose plan")} primary={p.featured} tr={tr} /></div>}</li>); })}
-        </ul>
-        <ul aria-label="See for yourself" className="mt-10 grid gap-x-8 pt-5 sm:grid-cols-3">
-          {proof.map(([k, h, u]) => (<li key={k}><a href={u} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4 py-2"><span><span className="mono block text-xs uppercase tracking-[.18em] text-white/70">{k}</span><span className="mt-1 block text-base font-medium">{h}</span></span><span aria-hidden="true" className="text-white/70 transition group-hover:text-white"><Arr dir="ur" /></span></a></li>))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-export function Footer() {
-  const col = "mono mb-4 text-xs uppercase tracking-[.16em] text-white/70";
-  const a = "text-white/65 hover:text-white";
-  return (
-    <footer className="px-6 pb-8 text-sm md:px-10" aria-labelledby="footer-h">
+    <footer className="border-t border-line bg-bg pt-16 text-[15px]" aria-labelledby="footer-h">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
-      <div className="mx-auto max-w-[1400px] pt-14">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <img src="/brand/wordmark-light.png" alt="Flexlore" className="h-9 w-auto" width={166} height={36} />
-            <p className="mt-4 max-w-xs leading-[1.4] text-white/70">Every job, step by step. Through the eyes of the person who does it.</p>
-            <p className={`${col} mt-8`}>Get the app</p><StoreButtons small />
-          </div>
-          <nav aria-label="Product" className="md:col-span-2 md:col-start-6"><p className={col}>Product</p><ul className="space-y-2.5">
-            <li><a className={a} href="/#method">How it works</a></li><li><a className={a} href="/#imagine">Your business</a></li><li><Link className={a} href="/use-cases/master-apprentice-skills-transfer/">Master to apprentice</Link></li><li><Link className={a} href="/use-cases/installation-training-on-site-orientation/">Installation training</Link></li><li><a className={a} href="/#ai">AI</a></li><li><a className={a} href="/#integrations">Integrations</a></li><li><Link className={a} href="/pricing/">Pricing</Link></li></ul></nav>
-          <nav aria-label="Industries" className="md:col-span-2"><p className={col}>Industries</p><ul className="space-y-2.5">
-            {[["Restaurants", "restoran"], ["Manufacturing", "uretim"], ["Hotels", "otel"], ["Franchises", "franchise"], ["Warehouses", "depo"], ["Bakeries & cafés", "firin"]].map(([n, s]) => <li key={s}><Link className={a} href={`/sektor/${s}/`}>{n}</Link></li>)}</ul></nav>
-          <nav aria-label="Company" className="md:col-span-2"><p className={col}>Company</p><ul className="space-y-2.5">
-            <li><Link className={a} href="/blog/">Blog</Link></li><li><a className={a} href="mailto:hello@flexlore.com">Support</a></li><li><a className={a} href="mailto:hello@flexlore.com">hello@flexlore.com</a></li></ul></nav>
-          <nav aria-label="Follow" className="md:col-span-2"><p className={col}>Follow</p><ul className="space-y-2.5">
-            <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
+      <div className="container-x grid-12 gap-y-12">
+        <div className="col-span-12 lg:col-span-4">
+          <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
+          <p className="mt-4 max-w-xs text-ink-muted">{f.tag}</p>
+          <p className={`${col} mt-8`}>{f.app}</p><StoreButtons small />
         </div>
-        <div className="mt-8 flex flex-col gap-4 pt-6 text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-          <span>© 2026 Flexlore Inc.</span>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">{SITE.legal.map(([n, h]) => <li key={n}><a className="hover:text-white" href={h}>{n}</a></li>)}</ul>
-        </div>
+        <nav aria-label={f.product} className="col-span-6 md:col-span-3 lg:col-span-2 lg:col-start-5"><p className={col}>{f.product}</p><ul className="space-y-1">
+          <li><a className={a} href="/#product">{f.how}</a></li><li><a className={a} href="/#web">{f.web}</a></li><li><Link className={a} href="/see-it/">{f.scenario}</Link></li>
+          <li><Link className={a} href="/use-cases/master-apprentice-skills-transfer/">{tr ? "Ustadan çırağa" : "Master to apprentice"}</Link></li><li><Link className={a} href="/use-cases/installation-training-on-site-orientation/">{tr ? "Kurulum eğitimi" : "Installation training"}</Link></li>
+          <li><Link className={a} href="/ai/">AI</Link></li><li><Link className={a} href="/integrations/">{tr ? "Entegrasyonlar" : "Integrations"}</Link></li><li><Link className={a} href="/pricing/">{f.pricing}</Link></li></ul></nav>
+        <nav aria-label={f.industries} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.industries}</p><ul className="space-y-1">
+          {ind.map(([en, t, s]) => <li key={s}><Link className={a} href={`/sektor/${s}/`}>{tr ? t : en}</Link></li>)}</ul></nav>
+        <nav aria-label={f.company} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.company}</p><ul className="space-y-1">
+          <li><Link className={a} href="/blog/">{f.blog}</Link></li><li><a className={a} href="mailto:hello@flexlore.com">{f.support}</a></li><li><a className={a} href="mailto:hello@flexlore.com">hello@flexlore.com</a></li></ul></nav>
+        <nav aria-label={f.follow} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.follow}</p><ul className="space-y-1">
+          <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
       </div>
+      <div className="container-x mt-14"><div className="flex flex-col gap-4 border-t border-line py-6 text-caption text-ink-faint md:flex-row md:items-center md:justify-between">
+        <span>© 2026 Flexlore Inc.</span>
+        <ul className="flex flex-wrap gap-x-5 gap-y-1">{SITE.legal.map(([n, h]) => <li key={n}><a className="inline-flex min-h-9 items-center hover:text-ink" href={h}>{n}</a></li>)}</ul>
+      </div></div>
     </footer>
   );
 }

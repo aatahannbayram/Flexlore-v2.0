@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { X } from "@phosphor-icons/react/dist/ssr";
+import { AnimatePresence, m } from "framer-motion";
+import { X } from "./icons";
 import { pauseAll } from "./SmartVideo";
 import { EASE } from "./Reveal";
 
@@ -30,9 +30,9 @@ export function VideoModal({ open, onClose, title, youtubeId, closeLabel }: { op
   return (
     <AnimatePresence>
       {open && (
-        <motion.div className="fixed inset-0 z-[80] grid place-items-center bg-bg/90 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
+        <m.div className="fixed inset-0 z-[80] grid place-items-center bg-bg/90 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
           onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-          <motion.div ref={box} role="dialog" aria-modal="true" aria-label={title} className="w-full max-w-[1100px]"
+          <m.div ref={box} role="dialog" aria-modal="true" aria-label={title} className="w-full max-w-[1100px]"
             initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.35, ease: EASE }}>
             <div className="mb-3 flex items-center justify-between gap-4">
               <p className="text-base font-semibold">{title}</p>
@@ -42,7 +42,7 @@ export function VideoModal({ open, onClose, title, youtubeId, closeLabel }: { op
               <iframe className="absolute inset-0 h-full w-full" src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`} title={title}
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
             </div>
-          </motion.div>
-        </motion.div>)}
+          </m.div>
+        </m.div>)}
     </AnimatePresence>);
 }

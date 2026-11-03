@@ -23,8 +23,8 @@ export default function SeeIt() {
   const tx = reduce ? {} : { y: 8 };
   return (<>
     <Header lang={lang} setLang={setLang} />
-    <main id="main" className="px-6 pb-24 pt-32 md:px-10 md:pt-40">
-      <div className="mx-auto max-w-[1400px]">
+    <main id="main" className="pb-24 pt-32 md:pt-40">
+      <div className="container-x">
         <p className="eyebrow">{tr ? "Kendi işinizde görün" : "See it in your business"}</p>
         <h1 id="see-h" className="display mt-4 max-w-[18ch] scroll-mt-32 text-h1">{tr ? "İşinizi seçin. Flexlore'da görün." : "Pick your work. See it in Flexlore."}</h1>
         <div role="radiogroup" aria-label={tr ? "Sektör" : "Industry"} className="mt-10 grid grid-cols-1 gap-2 rounded-2xl bg-bg2 p-2 sm:grid-cols-2 lg:grid-cols-4">

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { m, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 
 /** Primary CTA: follows the pointer by at most 6 px on a spring, presses to 0.98. Off on touch and reduced motion. */
 export function MagneticButton({ href, children, className = "btn btn-primary", onClick, external }: {
@@ -17,9 +17,9 @@ export function MagneticButton({ href, children, className = "btn btn-primary", 
     const clamp = (v: number) => Math.max(-6, Math.min(6, v));
     x.set(clamp((e.clientX - r.left - r.width / 2) * 0.15)); y.set(clamp((e.clientY - r.top - r.height / 2) * 0.3)); };
   return (
-    <motion.a ref={ref} href={href} onClick={onClick} className={className} style={on ? { x: sx, y: sy } : undefined}
+    <m.a ref={ref} href={href} onClick={onClick} className={className} style={on ? { x: sx, y: sy } : undefined}
       onPointerMove={move} onPointerLeave={() => { x.set(0); y.set(0); }} whileTap={reduce ? undefined : { scale: 0.98 }}
       {...(external ? { target: "_blank", rel: "noopener" } : {})}>
       {children}
-    </motion.a>);
+    </m.a>);
 }

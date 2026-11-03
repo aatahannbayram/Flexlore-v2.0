@@ -184,18 +184,35 @@ Consequences: merging PR #1 into `main` will start the CI deploy by itself, befo
 
 See the CHECKPOINT 1 message. Items marked `TODO(ata)` in code will be listed at CHECKPOINT 3.
 
-## 11. Definition of done tracker
+## 11. Definition of done tracker (updated at CHECKPOINT 3, 2026-11-04)
 
-| # | Item | Status |
-|---|---|---|
-| 1 | Hero readable, no overlap 320 to 1920 px | Open |
-| 2 | Header background, blur, never collides | Open |
-| 3 | One grid, one left edge | Open |
-| 4 | Rhythm, light section, no dead space | Open |
-| 5 | Trust strip, roadmap line removed | Open |
-| 6 | Pricing fixed | Open |
-| 7 | Industries hierarchy | Open |
-| 8 | FAQ 6 to 8 | Open |
-| 9 | A11y (alt, duplicate text, focus, landmarks) | Open |
-| 10 | Video count and budgets | Open |
-| 11 | Mobile length and hero | Open |
+| # | Item | Status | How |
+|---|---|---|---|
+| 1 | Hero readable, no overlap 320 to 1920 px | Done | Split 12-col hero; overflow checked at 320, 375, 768, 1024, 1440, 1920 |
+| 2 | Header background, blur, never collides | Done | `rgba(17,17,17,.72)` + blur 16px, hairline after 8 px, hides after 400 px |
+| 3 | One grid, one left edge | Done | `container-x` on every page; h1/h2 left edge measured: one value per width on home |
+| 4 | Rhythm, light section, no dead space | Done | Fluid type scale, light pricing section, no 170vh/380vh sections |
+| 5 | Trust strip, roadmap line removed | Done | Live apps, Product Hunt, 3 confirmed programs (text until official badges arrive) |
+| 6 | Pricing fixed | Done | No struck prices; yearly "Save X%" from real numbers; one "Recommended"; Talk to sales; comparison collapsible on mobile |
+| 7 | Industries hierarchy | Done | 3 featured media cards with loops, 3 compact, scenario picker |
+| 8 | FAQ 6 to 8 | Done | 8 questions, facts only, uncertain topics left as TODO(ata) |
+| 9 | A11y | Done | Lighthouse Accessibility 100 on home, pricing, see-it, sector; one h1 per page; focus ring 2px orange; skip link; real buttons |
+| 10 | Video count and budgets | Done | 8 `<video>` in DOM (was 14), all `preload="none"`, max 2 playing; home JS 176 kB gzip; hero media 0.58 MB |
+| 11 | Mobile length and hero | Done | 13,575 px at 375 (was ~14,000); story, industries and plans swipe on mobile |
+
+## 12. CHECKPOINT 3 results
+
+Lighthouse (local `out/` served by `serve`, mobile = Lighthouse default slow 4G + 4x CPU):
+
+| Page | Perf | A11y | Best | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| Home, mobile | 93 | 100 | 100 | 69 | 3.2 s | 0 | 30 ms |
+| Home, mobile, fast 4G (10 Mbps, 40 ms) | 99 | | | | 0.7 s | 0 | 110 ms |
+| Home, desktop | 100 | 100 | 100 | 69 | 0.7 s | 0.003 | 0 ms |
+| Pricing, mobile | 97 | 100 | 100 | 69 | 2.6 s | 0 | 30 ms |
+| See it, mobile | 90 | 100 | 100 | 69 | 3.6 s | 0 | 30 ms |
+| Sector (restaurant), mobile | 93 | 100 | 100 | 69 | | | |
+
+SEO 69 is only `is-crawlable`: preprod is `noindex` (`SITE.noindex = true`, robots `Disallow: /`). Unchanged on purpose.
+
+Open items for Ata: see the TODO(ata) list in the CHECKPOINT 3 message.

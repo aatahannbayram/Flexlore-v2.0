@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, List, X } from "@phosphor-icons/react/dist/ssr";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
+import { Pause, Play, List, X } from "./ui/icons";
+import { AnimatePresence, m, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
 import { copy, Lang } from "./copy";
 import { SITE } from "./config";
 import { EASE } from "./ui/Reveal";
@@ -42,7 +42,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
       {(["en", "tr"] as Lang[]).map((l) => (
         <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} lang={l} aria-label={l === "tr" ? "Türkçe" : "English"}
           className={`relative z-10 grid h-8 min-w-9 place-items-center rounded-full px-2 uppercase transition-colors ${lang === l ? "text-bg" : "text-ink-muted hover:text-ink"}`}>
-          {lang === l && <motion.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}{l}
+          {lang === l && <m.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}{l}
         </button>))}
     </div>);
   const pauseLabel = paused ? (lang === "tr" ? "Videoları oynat" : "Play videos") : (lang === "tr" ? "Videoları durdur" : "Pause videos");
@@ -54,7 +54,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
 
   return (
     <>
-      <motion.header
+      <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setFocusIn(false); }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
         className={`fixed inset-x-0 top-0 z-40 border-b bg-[rgb(17_17_17/0.72)] backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined ? "border-line" : "border-transparent"}`}>
@@ -76,11 +76,11 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
               className="grid h-11 w-11 place-items-center rounded-full text-ink md:hidden"><List size={22} aria-hidden="true" /></button>
           </div>
         </nav>
-      </motion.header>
+      </m.header>
 
       <AnimatePresence>
         {open && (
-          <motion.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
+          <m.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
             className="fixed inset-0 z-50 flex flex-col bg-bg">
             <div className="container-x flex h-[var(--header-h)] items-center justify-between">
               <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
@@ -88,14 +88,14 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
             </div>
             <ul className="container-x mt-10 space-y-1">
               {links.map((l, i) => (
-                <motion.li key={l.h} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: EASE, duration: 0.5 }}>
-                  <a href={l.h} onClick={() => setOpen(false)} className="h2 flex min-h-14 items-center">{l.n}</a></motion.li>))}
+                <m.li key={l.h} initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.05 + i * 0.06, ease: EASE, duration: 0.5 }}>
+                  <a href={l.h} onClick={() => setOpen(false)} className="h2 flex min-h-14 items-center">{l.n}</a></m.li>))}
             </ul>
             <div className="container-x mt-auto flex items-center justify-between gap-4 pb-8 pt-6">
               {LangSwitch}
               <a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
             </div>
-          </motion.div>)}
+          </m.div>)}
       </AnimatePresence>
     </>
   );

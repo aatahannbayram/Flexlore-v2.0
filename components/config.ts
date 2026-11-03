@@ -6,8 +6,16 @@ export const SITE = {
   // Log in link in the header. Empty = hidden. Paste the app login URL here when it is decided.
   login: "",
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
-  // Unverified program badges (NVIDIA Inception, Claude for Startups). Keep false until confirmed.
-  programBadges: false,
+  // Programs Flexlore is accepted into (confirmed by Ata, 2026-11-04). Shown in the home trust strip.
+  // badge: path to the OFFICIAL badge file from each program's member kit, used unaltered under its usage rules.
+  // TODO(ata): supply official badge files; until then the strip shows the names as text, never a redrawn logo.
+  programs: [
+    { name: "NVIDIA Inception", org: "NVIDIA", badge: null as string | null },
+    { name: "Google for Startups Cloud Program", org: "Google", badge: null as string | null },
+    { name: "Claude for Startups", org: "Anthropic", badge: null as string | null },
+  ],
+  // Sections that need real content. Off = not rendered, so placeholders never ship.
+  flags: { proof: false },
   appStore: "https://apps.apple.com/tr/app/flexlore/id6751126206?l",
   googlePlay: "https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en",
   productHunt: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app",
@@ -27,15 +35,21 @@ export const SITE = {
 /* Pricing. Source: app plan visuals from Ata Han (app-plans.png, enterprise.png), 2026-11-03.
    Model: plans are priced by number of users (Free 3, Pro 10, ProPlus 30). Enterprise starts at 30+ users. */
 export const PRICING = { unit: "by number of users", currency: "$" as string | null };
-export type Price = { now: string; was: string | null };
+export type Price = { now: string };
+/** Yearly saving vs paying monthly, from the real prices above (yearly "now" is the per-month equivalent). */
+export function savePct(p: { monthly: Price | null; yearly: Price | null }): number | null {
+  const n = (x: Price | null) => (x ? parseFloat(x.now.replace(/[^0-9.]/g, "")) : 0);
+  const m = n(p.monthly), y = n(p.yearly);
+  return m > 0 && y > 0 && y < m ? Math.floor((1 - y / m) * 100) : null;
+}
 export type Plan = { id: string; name: string; for: string; badge: string | null; badgeTr: string | null; monthly: Price | null; yearly: Price | null; checkout: string | null; featured?: boolean; points: string[] };
 /* Plan cards. points[0] of every plan after the first is the "Everything in X" link line; rest are additions. */
 export const PLANS: Plan[] = [
-  { id: "free", name: "Free", for: "Try Flexlore with a small team.", badge: null, badgeTr: null, monthly: { now: "$0", was: null }, yearly: { now: "$0", was: null }, checkout: null,
+  { id: "free", name: "Free", for: "Try Flexlore with a small team.", badge: null, badgeTr: null, monthly: { now: "$0" }, yearly: { now: "$0" }, checkout: null,
     points: ["Orientation Analysis", "AI quiz generator: 3 quizzes", "2 workspaces", "Unlimited folders", "5 works", "1 GB cloud storage", "3 users", "Standard support"] },
-  { id: "pro", name: "Pro", for: "For a small business getting its jobs on video.", badge: "Recommended for Small Business", badgeTr: "Küçük işletmeler için önerilen", monthly: { now: "$99.99", was: "$149.99" }, yearly: { now: "$49.99", was: "$149.99" }, checkout: null,
+  { id: "pro", name: "Pro", for: "For a small business getting its jobs on video.", badge: null, badgeTr: null, monthly: { now: "$99.99" }, yearly: { now: "$49.99" }, checkout: null,
     points: ["Everything in Free", "AI quiz generator: 10 quizzes", "5 workspaces", "Unlimited works", "5 GB cloud storage", "10 users"] },
-  { id: "proplus", name: "ProPlus", for: "For growing teams that train every day.", badge: "Most popular", badgeTr: "En popüler", monthly: { now: "$149.99", was: "$299.99" }, yearly: { now: "$79.99", was: "$299.99" }, checkout: null, featured: true,
+  { id: "proplus", name: "ProPlus", for: "For growing teams that train every day.", badge: "Recommended", badgeTr: "Önerilen", monthly: { now: "$149.99" }, yearly: { now: "$79.99" }, checkout: null, featured: true,
     points: ["Everything in Pro", "Unlimited quizzes", "Unlimited folders and works", "10 GB cloud storage", "30 users", "Premium support"] },
   { id: "enterprise", name: "Enterprise", for: "For teams of 30 or more users.", badge: null, badgeTr: null, monthly: null, yearly: null, checkout: null,
     points: ["Everything in ProPlus", "Cloud storage set with our sales team", "User count set with our sales team"] },
@@ -94,26 +108,3 @@ export const PRICING_FAQ = [
   { q: "How does billing and cancellation work?", a: "See our Subscription & Billing policy, or ask us on the demo call." },
   { q: "Where can I read about data and security?", a: "Our Privacy Policy, Data Processing, Sub-processors and Security pages cover it. Still have questions? Ask on the demo call." },
 ];
-
-/* Hero media. Swap paths here when the new 4K footage arrives (spec: docs/hero-video-spec in deep-audit §2).
-   While `video` is null the hero shows the still `poster` only (real app screenshots, no stock or AI footage).
-   Video sources are tried in order; the browser picks the first format it can play.
-   desktop: 1920 = default, 2560 = large/retina screens. mobile: vertical 1080x1920 (max-width:768px). */
-export type HeroSrc = { av1?: string; vp9?: string; h264?: string };
-export const HERO: {
-  poster: { mobile: { avif: string; webp: string }; d1920: { avif: string; webp: string }; d2560: { avif: string; webp: string }; alt: string; altTr: string };
-  video: null | { d1920: HeroSrc; d2560?: HeroSrc; mobile?: HeroSrc };
-} = {
-  poster: {
-    mobile: { avif: "/hero/hero-app-1080x1920.avif", webp: "/hero/hero-app-1080x1920.webp" },
-    d1920: { avif: "/hero/hero-app-1920.avif", webp: "/hero/hero-app-1920.webp" },
-    d2560: { avif: "/hero/hero-app-2560.avif", webp: "/hero/hero-app-2560.webp" },
-    alt: "Flexlore app: recording a step video and the standard work steps for making espresso",
-    altTr: "Flexlore uygulaması: adım videosu kaydı ve espresso hazırlamanın standart iş adımları",
-  },
-  // New footage goes here, e.g.
-  // video: { d1920: { av1: "/video/hero/hero-1920.av1.webm", vp9: "/video/hero/hero-1920.vp9.webm", h264: "/video/hero/hero-1920.mp4" },
-  //          d2560: { av1: "/video/hero/hero-2560.av1.webm", h264: "/video/hero/hero-2560.mp4" },
-  //          mobile: { av1: "/video/hero/hero-1080x1920.av1.webm", h264: "/video/hero/hero-1080x1920.mp4" } },
-  video: null,
-};
