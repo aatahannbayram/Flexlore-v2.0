@@ -3,6 +3,7 @@ import Link from "next/link";
 import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
 import { useLocale } from "./i18n/LocaleProvider";
+const ALL_FEATURES: Record<string, string> = { en: "All features", tr: "Tüm özellikler", de: "Alle Funktionen", ar: "جميع الميزات", es: "Todas las funciones", ru: "Все функции", fr: "Toutes les fonctionnalités", pl: "Wszystkie funkcje" };
 
 /* Footer: brand block (wordmark, line, social marks, store badges) and four balanced link groups.
  * Layers are separated by surface tone, not rules. Social marks are the official monochrome glyphs
@@ -15,6 +16,7 @@ type Item = { k: string; en: string; tr?: string; href: string; ext?: boolean };
 
 const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; tr: string; items: Item[] }[] = [
   { g: "product", en: "Product", tr: "Ürün", items: [
+    { k: "features", en: "All features", href: "/features/" },
     { k: "how", en: "How it works", tr: "Nasıl çalışır", href: "/#how" },
     { k: "web", en: "Flexlore Web", href: "/#web" },
     { k: "ai", en: "AI", href: "/ai/" },
@@ -58,7 +60,7 @@ const AI: [string, (q: string) => string][] = [
 ];
 
 export function Footer({ lang: _l }: { lang?: L } = {}) {
-  const { d, lang } = useLocale(); const f = d.footer;
+  const { d, lang, locale } = useLocale(); const f = d.footer;
   return (
     <footer aria-labelledby="footer-h" className="footer-dots px-3 pb-3 pt-10 md:px-5 md:pb-5 md:pt-16">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
@@ -92,7 +94,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                   <p className="mb-4 text-[17px] font-medium text-white">{f.groups[g.g]}</p>
                   <ul className="space-y-1">
                     {g.items.map((x) => {
-                      const label = (f.links as Record<string, string>)[x.k] ?? x.en;
+                      const label = x.k === "features" ? ALL_FEATURES[locale] : (f.links as Record<string, string>)[x.k] ?? x.en;
                       return (
                         <li key={x.href + x.en}>
                           {x.ext || x.href.startsWith("/#")

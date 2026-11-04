@@ -316,7 +316,7 @@ export function Web5() {
     <section id="web" aria-labelledby="web-h" className="section-y pt-0">
       <div className="container-x grid-12 items-center gap-y-10">
         <div className="col-span-12 lg:col-span-5">
-          <Label icon={ChartBar}>{c.k}</Label>
+          <div className="flex flex-wrap items-center gap-3"><Label icon={ChartBar}>{c.k}</Label><span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{d.ai.soon}</span></div>
           <H2 id="web-h" className="max-w-[14ch]">{c.h}</H2>
           <p className="mt-5 max-w-[30rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
           <a href={SITE.demo} className="btn btn-primary mt-8 h-12 px-6 text-[16px]">{c.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
@@ -364,8 +364,8 @@ export function AI5() {
           </div>
         </div>
         <div className="mx-auto mt-6 flex max-w-[1040px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[14px] text-ink-muted">
-          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}: {c.liveItems.join(" · ")}</span>
-          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-ink-faint" />{d.ai.soon}: REST API · Webhooks · MCP</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}: {c.liveItems.slice(0, 2).join(" · ")}</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-ink-faint" />{d.ai.soon}: {c.liveItems[2]} · REST API · Webhooks · MCP</span>
           <Link href="/integrations/" className="inline-flex items-center gap-1.5 font-semibold text-ink hover:underline">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
       </div>
@@ -632,5 +632,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the process section, in page order. */
 export default function Below() {
-  return (<><Compare5 /><Process5 /><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
+  return (<><Compare5 /><Process5 /><Bento5 /><Caps5 /><Web5 /><Workspace5 /><AI5 /><Roles5 /><Industries5 /><Cases5 /><Statement5 /><Pricing5 /><Faq5 /><End5 /></>);
 }

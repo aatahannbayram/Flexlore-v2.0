@@ -107,7 +107,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   {mega === g.id && (
                     <m.div key="mega" id={`mega-${g.id}`} onMouseEnter={() => enter(g.id)} onMouseLeave={leave}
                       initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: reduce ? 0 : 0.22, ease: EASE }}
-                      className="absolute left-1/2 top-[calc(var(--header-h)-4px)] w-[min(820px,calc(100vw-48px))] -translate-x-1/2">
+                      className={`absolute left-1/2 top-[calc(var(--header-h)-4px)] ${g.id === "product" ? "w-[min(1000px,calc(100vw-48px))]" : "w-[min(820px,calc(100vw-48px))]"} -translate-x-1/2`}>
                       <MegaPanel id={g.id} lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setMega(null)} reduce={!!reduce} />
                     </m.div>)}
                 </AnimatePresence>
