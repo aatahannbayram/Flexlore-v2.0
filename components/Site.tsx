@@ -5,7 +5,8 @@ import { copy, Lang } from "./copy";
 import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { TrustStrip, PricingPreview, Faq } from "./home/Sections";
-import { HeroV3, ProblemV3, StepsV3, FieldV3, ManagerV3, IndustriesV3, EndV3 } from "./home/v3";
+import { Hero } from "./home/Hero";
+import { ProblemV3, StepsV3, FieldV3, ManagerV3, IndustriesV3, EndV3 } from "./home/v3";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -27,8 +28,8 @@ export default function Site({ useCases }: { useCases?: React.ReactNode }) {
       <Header home lang={lang} setLang={setLang} paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
         <main id="main" lang={lang} className="home-v3">
-          <HeroV3 t={t} lang={lang} />
-          <div className="pt-16 md:pt-20"><TrustStrip lang={lang} /></div>
+          <Hero t={t} lang={lang} />
+          <TrustStrip lang={lang} />
           <ProblemV3 lang={lang} />
           <StepsV3 t={t} lang={lang} />
           <FieldV3 lang={lang} />
