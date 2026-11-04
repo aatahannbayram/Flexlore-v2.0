@@ -6,7 +6,8 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { TrustStrip, PricingPreview, Faq } from "./home/Sections";
 import { Hero } from "./home/Hero";
-import { ProblemV3, StepsV3, FieldV3, ManagerV3, IndustriesV3, EndV3 } from "./home/v3";
+import { ProblemV3, StepsV3, IndustriesV3, EndV3 } from "./home/v3";
+import { BentoV4, RolesV4, StatementV4, WorkspaceV4, WebV4 } from "./home/v4";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -32,8 +33,11 @@ export default function Site({ useCases }: { useCases?: React.ReactNode }) {
           <TrustStrip lang={lang} />
           <ProblemV3 lang={lang} />
           <StepsV3 t={t} lang={lang} />
-          <FieldV3 lang={lang} />
-          <ManagerV3 lang={lang} />
+          <BentoV4 lang={lang} />
+          <RolesV4 lang={lang} />
+          <WorkspaceV4 lang={lang} />
+          <WebV4 lang={lang} />
+          <StatementV4 lang={lang} />
           <IndustriesV3 lang={lang} />
           <div className="band" style={{ ["--color-bg" as string]: "var(--band)", ["--color-surface-1" as string]: "var(--band-card)" }}>{useCases}</div>
           <PricingPreview lang={lang} />

@@ -50,7 +50,7 @@ const V3 = {
     },
     mgr: { k: "For managers", h: "Know where every location stands.", lead: "Assign jobs, follow completion and spot the step people get wrong, in one web dashboard.", sample: "Sample data, for illustration" },
     ind: { k: "Industries", h: "For teams that learn by doing.", more: "See Flexlore in your business",
-      cards: [["Restaurants and cafés", "/sektor/restoran/", "cafe-opening"], ["Manufacturing", "/sektor/uretim/", "safety"], ["Hotels", "/sektor/otel/", "hotel-desk"], ["Franchises", "/sektor/franchise/", "huddle"]] as [string, string, string][] },
+      cards: [["Restaurants and cafés", "/sektor/restoran/", "chef-plating"], ["Manufacturing", "/sektor/uretim/", "field"], ["Hotels", "/sektor/otel/", "hotel-desk"], ["Franchises", "/sektor/franchise/", "huddle"]] as [string, string, string][] },
     end: { h: "See it on your floor.", p: "Twenty minutes, one of your real jobs. We build it with you on the call.", cta: "Book a demo" },
   },
   tr: {
@@ -78,7 +78,7 @@ const V3 = {
     },
     mgr: { k: "Yöneticiler için", h: "Her şubenin nerede olduğunu bilin.", lead: "İş atayın, tamamlanmayı takip edin ve en çok hata yapılan adımı tek bir web panelinde görün.", sample: "Örnek veriler, gösterim amaçlı" },
     ind: { k: "Sektörler", h: "İşi yaparak öğrenen ekipler için.", more: "Flexlore'u kendi işletmenizde görün",
-      cards: [["Restoran ve kafeler", "/sektor/restoran/", "cafe-opening"], ["Üretim", "/sektor/uretim/", "safety"], ["Oteller", "/sektor/otel/", "hotel-desk"], ["Franchise'lar", "/sektor/franchise/", "huddle"]] as [string, string, string][] },
+      cards: [["Restoran ve kafeler", "/sektor/restoran/", "chef-plating"], ["Üretim", "/sektor/uretim/", "field"], ["Oteller", "/sektor/otel/", "hotel-desk"], ["Franchise'lar", "/sektor/franchise/", "huddle"]] as [string, string, string][] },
     end: { h: "Kendi sahanızda görün.", p: "Yirmi dakika, gerçek işlerinizden biri. Görüşmede birlikte hazırlıyoruz.", cta: "Demo planlayın" },
   },
 };

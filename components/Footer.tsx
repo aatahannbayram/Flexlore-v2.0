@@ -14,7 +14,7 @@ type Item = { en: string; tr?: string; href: string; ext?: boolean };
 
 const GROUPS: { en: string; tr: string; items: Item[] }[] = [
   { en: "Product", tr: "Ürün", items: [
-    { en: "How it works", tr: "Nasıl çalışır", href: "/#product" },
+    { en: "How it works", tr: "Nasıl çalışır", href: "/#how" },
     { en: "Flexlore Web", href: "/#web" },
     { en: "AI", href: "/ai/" },
     { en: "Integrations", tr: "Entegrasyonlar", href: "/integrations/" },
@@ -47,75 +47,87 @@ const SOCIAL: [string, string, string][] = [
   ["Product Hunt", "producthunt", SITE.productHunt],
 ];
 
-const link = "group inline-flex min-h-9 items-center text-ink-muted transition-colors duration-200 hover:text-ink";
+const link = "group inline-flex min-h-9 items-center text-[16px] text-white/70 transition-colors duration-200 hover:text-white";
+
+/* "Get an AI summary": opens the assistant with a ready prompt about Flexlore (plain text labels, no third-party logos). */
+const AI_Q = { en: "Summarise what Flexlore (https://flexlore.com) does, who it is for and how it works.", tr: "Flexlore'un (https://flexlore.com) ne yaptığını, kimler için olduğunu ve nasıl çalıştığını özetle." };
+const AI: [string, (q: string) => string][] = [
+  ["ChatGPT", (q) => `https://chatgpt.com/?q=${encodeURIComponent(q)}`],
+  ["Claude", (q) => `https://claude.ai/new?q=${encodeURIComponent(q)}`],
+  ["Perplexity", (q) => `https://www.perplexity.ai/search?q=${encodeURIComponent(q)}`],
+];
 
 export function Footer({ lang = "en" }: { lang?: L }) {
   const f = home[lang].footer; const tr = lang === "tr";
   return (
-    <footer className="bg-bg pt-16 text-[15px] md:pt-24" aria-labelledby="footer-h">
+    <footer aria-labelledby="footer-h" className="footer-dots px-3 pb-3 pt-10 md:px-5 md:pb-5 md:pt-16">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
-      <div className="container-x">
-        <div className="grid gap-y-14 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
-          {/* Brand: stacked on phone, a row on tablet, a column on desktop */}
-          <div className="gap-8 md:flex md:items-end md:justify-between lg:col-span-4 lg:block">
-            <div>
-              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={128} height={28} className="logo-dark h-7 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={128} height={28} className="logo-light h-7 w-auto" />
-              <p className="mt-5 max-w-[30ch] leading-[1.5] text-ink-muted">{f.tag}</p>
-              <a href="mailto:support@flexlore.com" className="group mt-6 inline-flex min-h-11 items-center gap-2.5 rounded-full bg-white/[.05] pl-4 pr-5 text-ink transition-colors duration-200 hover:bg-white/[.1]">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />support@flexlore.com
-              </a>
-            </div>
-            <div className="mt-8 shrink-0 md:mt-0 lg:mt-9">
-              <ul className="flex gap-2" aria-label={f.follow}>
+      <div className="dark overflow-hidden rounded-[32px] bg-[linear-gradient(160deg,#242322_0%,#33322f_55%,#2a2927_100%)] text-[15px] text-white">
+        <div className="mx-auto max-w-[calc(var(--container)+2*var(--pad-x))] px-6 pb-8 pt-14 md:px-12 md:pt-20">
+          <div className="grid gap-y-14 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
+            <div className="lg:col-span-5">
+              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={240} height={52} className="h-11 w-auto md:h-14" />
+              <p className="mt-6 max-w-[32ch] text-[16px] leading-[1.5] text-white/70">{f.tag}</p>
+
+              <p className="mt-10 text-[17px] font-medium">{tr ? "Yapay zekâ ile özetleyin" : "Get an AI summary"}</p>
+              <ul className="mt-4 flex flex-wrap gap-2">
+                {AI.map(([n, u]) => (
+                  <li key={n}><a href={u(AI_Q[lang])} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center rounded-full bg-white/[.08] px-4 text-[14px] font-medium text-white/85 transition-colors hover:bg-white/[.14] hover:text-white">{n}</a></li>))}
+              </ul>
+
+              <ul className="mt-10 flex gap-2" aria-label={f.follow}>
                 {SOCIAL.map(([n, k, h]) => (
                   <li key={k}>
                     <a href={h} target="_blank" rel="noopener" aria-label={n} title={n}
-                      className="grid h-11 w-11 place-items-center rounded-full bg-white/[.05] text-ice-300 transition-colors duration-200 hover:bg-white/[.1] hover:text-ink">
+                      className="grid h-11 w-11 place-items-center rounded-full bg-white/[.08] text-white/80 transition-colors duration-200 hover:bg-white/[.14] hover:text-white">
                       <span aria-hidden="true" className="social-mark h-[18px] w-[18px]" style={{ ["--m" as string]: `url(/brand/social/${k}.svg)` }} />
                     </a>
                   </li>))}
               </ul>
-              <p className="mt-7 text-[13px] font-medium text-ice-400">{f.app}</p>
-              <StoreButtons small lang={lang} className="mt-3" />
+            </div>
+
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:col-span-7">
+              {GROUPS.map((g) => (
+                <nav key={g.en} aria-label={tr ? g.tr : g.en}>
+                  <p className="mb-4 text-[17px] font-medium text-white">{tr ? g.tr : g.en}</p>
+                  <ul className="space-y-1">
+                    {g.items.map((x) => {
+                      const label = tr && x.tr ? x.tr : x.en;
+                      return (
+                        <li key={x.href + x.en}>
+                          {x.ext || x.href.startsWith("/#")
+                            ? <a className={link} href={x.href}>{label}</a>
+                            : <Link className={link} href={x.href}>{label}</Link>}
+                        </li>);
+                    })}
+                  </ul>
+                </nav>))}
             </div>
           </div>
 
-          {/* Links: 2 columns on phone, 4 from tablet up */}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:col-span-8 lg:col-start-5">
-            {GROUPS.map((g) => (
-              <nav key={g.en} aria-label={tr ? g.tr : g.en}>
-                <p className="mb-3 text-[13px] font-medium tracking-[.01em] text-ice-400">{tr ? g.tr : g.en}</p>
-                <ul>
-                  {g.items.map((x) => {
-                    const label = tr && x.tr ? x.tr : x.en;
-                    return (
-                      <li key={x.href + x.en}>
-                        {x.ext || x.href.startsWith("/#")
-                          ? <a className={link} href={x.href}>{label}</a>
-                          : <Link className={link} href={x.href}>{label}</Link>}
-                      </li>);
-                  })}
-                </ul>
-              </nav>))}
+          <div className="mt-16 flex flex-col gap-6 md:mt-20 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+              <a href="mailto:support@flexlore.com" className="inline-flex min-h-11 items-center gap-2.5 rounded-full bg-white/[.08] pl-4 pr-5 text-white transition-colors hover:bg-white/[.14]">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />support@flexlore.com</a>
+            </div>
+            <div><p className="mb-3 text-[13px] text-white/60">{f.app}</p><StoreButtons small lang={lang} /></div>
           </div>
-        </div>
 
-        {/* Bottom bar on a raised surface: copyright and legal on one line, trademark note under it */}
-        <div className="mt-16 rounded-2xl bg-surface-1 px-5 py-5 text-caption md:mt-20 md:px-7">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <span className="flex items-center gap-4 text-ink-muted">© 2026 Flexlore Inc.
-              <a href="#" className="group inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/[.05] px-3 text-[13px] text-ice-300 transition-colors hover:bg-white/[.1] hover:text-ink">
-                <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">↑</span>{tr ? "Başa dön" : "Back to top"}</a></span>
-            <ul className="-mx-2 flex flex-wrap" aria-label={tr ? "Yasal" : "Legal"}>
-              {SITE.legal.map(([n, h]) => (
-                <li key={n}><a className="inline-flex min-h-9 items-center px-2 text-ink-faint transition-colors duration-200 hover:text-ink" href={h}>{n}</a></li>))}
-            </ul>
+          <div className="mt-10 border-t border-white/[.1] pt-6 text-[13px]">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <span className="flex items-center gap-4 text-white/70">© 2026 Flexlore Inc. {tr ? "Tüm hakları saklıdır." : "All rights reserved."}
+                <a href="#" className="group inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/[.08] px-3 text-white/80 transition-colors hover:bg-white/[.14] hover:text-white">
+                  <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">↑</span>{tr ? "Başa dön" : "Back to top"}</a></span>
+              <ul className="-mx-2 flex flex-wrap" aria-label={tr ? "Yasal" : "Legal"}>
+                {SITE.legal.map(([n, h]) => (
+                  <li key={n}><a className="inline-flex min-h-9 items-center px-2 text-white/65 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
+              </ul>
+            </div>
+            <p className="mt-3 max-w-[90ch] text-[12px] leading-[1.5] text-white/55">
+              © 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
+            </p>
           </div>
-          <p className="mt-3 max-w-[90ch] text-[12px] leading-[1.5] text-ink-faint">
-            © 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
-          </p>
         </div>
-        <div className="h-6 md:h-8" />
       </div>
     </footer>
   );
