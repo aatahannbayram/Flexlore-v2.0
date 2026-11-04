@@ -57,7 +57,7 @@ export default function Pricing() {
                 <p className="mt-2 text-[14px] text-ink-muted">{fmt(t.entUsers, { n: x.users })}</p>
                 <ul className="mt-5 space-y-2 text-[14px] text-ink-muted">
                   {x.pts.map((y) => <li key={y} className="flex items-start gap-2.5"><Check size={15} className="mt-0.5 shrink-0" />{y}</li>)}
-                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-accent-text" />{y}<span className="rounded-full bg-[rgb(236_103_38/0.14)] px-2 py-0.5 text-[11px] font-semibold text-accent-text">{t.soon}</span></li>)}
+                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-ink-faint" />{y}<span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[11px] font-semibold text-ink-muted">{t.soon}</span></li>)}
                 </ul>
               </li>))}
           </ul>
@@ -69,7 +69,7 @@ export default function Pricing() {
         <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mt-6 md:hidden">{cmp ? t.hide : t.show}</button>
         <div id="cmp-table" className={`no-sb mt-8 overflow-x-auto rounded-[24px] bg-[var(--card)] p-2 ${cmp ? "block" : "hidden"} md:block`}>
           <table className="w-full min-w-[680px] border-collapse text-start text-[14px]">
-            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${p.featured ? "text-accent-text" : ""}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
+            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${p.featured ? "text-ink" : "text-ink-muted"}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
             <tbody>{COMPARE.map((r, k) => <tr key={r.f} className="odd:bg-[var(--card-2)]/60"><td className="rounded-s-xl px-4 py-3.5 text-ink-muted">{t.rows[k] ?? r.f}</td>{r.v.map((v, i) => <td key={i} className={`py-3.5 text-center ${i === 3 ? "rounded-e-xl" : ""}`}>{cell(v)}</td>)}</tr>)}</tbody>
           </table>
         </div>

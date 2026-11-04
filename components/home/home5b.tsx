@@ -1,25 +1,91 @@
 "use client";
 /* Home sections below the fold (5 to 16). Split from home5.tsx so their code loads after the first paint;
  * their HTML is still rendered on the server. Same rules as home5.tsx. */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE, PLANS, savePct } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { LOCALES } from "../i18n/locales";
-import { Device } from "../AppScreens";
+import { EXTRA } from "../i18n/extra";
+import { Device, WorkScreen } from "../AppScreens";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, inner, Corner, Title, type Ic } from "./home5";
 import {
   ArrowRight, Check, CheckCircle, Users, BookOpen, Sparkle, MapPin, LockSimple, FilmSlate, Question, ChartBar,
-  Plus, ShieldCheck, CookingPot, GraduationCap, UserPlus, Storefront, FirstAid, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle,
-  PlugsConnected, ChatCircle, Tag, Lightning, Buildings, ForkKnife, Factory, Bed,
+  Plus, ShieldCheck, ListChecks, Pause, Play, CookingPot, GraduationCap, UserPlus, Storefront, FirstAid, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle,
+  PlugsConnected, ChatCircle, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code,
 } from "../ui/icons";
 
+const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
+const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
+
+/* ---------- 4. Process: one story, four steps, one stage ---------- */
+const STAGE = [{ v: "kitchen", icon: FilmSlate }, { v: "line", icon: Sparkle }, { v: "plating", icon: ListChecks }, { v: "coffee", icon: ChartBar }] as const;
+export function Process5() {
+  const { d, lang, locale } = useLocale(); const c = d.process; const x = EXTRA[locale]; const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
+  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
+  const run = on && !hold && !paused && !reduce;
+  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 4), 6000); return () => window.clearTimeout(t); }, [run, i]);
+  const screen = i === 0 ? <Editor active={on} lang={lang} /> : i === 1 ? <WorkScreen active={on} lang={lang} />
+    : i === 2 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
+  const ChipIc = [FilmSlate, Sparkle, Play, CheckCircle][i];
+  return (
+    <section id="how" aria-labelledby="how-h" className="section-y">
+      <div className="container-x">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div><Label icon={Lightning}>{c.k}</Label><H2 id="how-h" className="max-w-[20ch]">{c.h}</H2></div>
+          {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] text-ink-muted transition-colors hover:text-ink">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
+        </div>
+        <div ref={ref} className="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+          <ol className="no-sb flex gap-2 overflow-x-auto lg:col-span-5 lg:flex-col lg:justify-center lg:gap-1 lg:overflow-visible" role="tablist" aria-label={c.k}>
+            {c.steps.map(([h, p], k) => { const I = STAGE[k].icon; const act = i === k; return (
+              <li key={h} className="shrink-0 basis-[80%] sm:basis-[46%] lg:basis-auto">
+                <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
+                  className={`relative block h-full w-full rounded-[22px] p-5 text-start transition-colors duration-300 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
+                  <span className="flex items-center gap-4">
+                    <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-[14px] transition-colors duration-300 ${act ? "bg-[var(--card-2)] text-ink" : "text-ink-faint"}`}><I size={20} /></span>
+                    <span className="min-w-0">
+                      <span className="block text-[12px] font-medium uppercase tracking-[.08em] text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
+                      <span className={`block text-[19px] font-semibold tracking-[-0.015em] transition-colors ${act ? "text-ink" : "text-ink-muted"}`}>{h}</span>
+                    </span>
+                  </span>
+                  <span className={`mt-3 block text-[15px] leading-[1.6] text-ink-muted lg:ps-[3.75rem] ${act ? "" : "lg:hidden"}`}>{p}</span>
+                  {act && <span aria-hidden="true" className="mt-4 block h-[2px] overflow-hidden rounded-full bg-[var(--card-2)] lg:ms-[3.75rem]">
+                    <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-ink/70 rtl:origin-right" style={{ animation: run ? "procbar 6s linear forwards" : "none", transform: run ? undefined : "scaleX(1)" }} /></span>}
+                </button>
+              </li>); })}
+          </ol>
+          <div className="dark relative aspect-[4/5] overflow-hidden rounded-[32px] bg-[#141414] sm:aspect-[16/11] lg:col-span-7 lg:aspect-auto lg:min-h-[620px]">
+            <AnimatePresence initial={false}>
+              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}>
+                <img src={`/video/${STAGE[i].v}.webp`} alt="" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />
+                {near && <SmartVideo name={STAGE[i].v} poster={`/video/${STAGE[i].v}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />}
+              </m.div>
+            </AnimatePresence>
+            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(20_20_20/0)_0%,rgb(20_20_20/0.75)_75%)]" />
+            <div className="absolute left-1/2 top-[17%] w-[min(50%,280px)] -translate-x-1/2" dir="ltr">
+              <Device label={c.steps[i][0]}>{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device>
+            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
+                className="absolute start-5 top-5 flex w-max max-w-[80%] items-center gap-3 rounded-full bg-[rgb(30_30_30/0.85)] py-2 pe-5 ps-2 text-[14px] font-medium text-white ring-1 ring-white/10 backdrop-blur-md">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#111]"><ChipIc size={15} /></span>{x.chips[i]}
+              </m.div>
+            </AnimatePresence>
+          </div>
+        </div>
+        <div className="mt-6 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between">
+          <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
+        </div>
+      </div>
+    </section>);
+}
 
 /* ---------- 5. Capabilities (video cards, restored) ---------- */
 const CAP_MEDIA = ["steam", "warehouse", "hotel"];
@@ -105,11 +171,11 @@ export function Bento5() {
           </article>
         </div>
         <div className="mt-3 grid gap-3 md:grid-cols-3">
-          <article className="relative min-h-[440px] overflow-hidden rounded-[28px] bg-accent p-6 text-[#111111] md:p-7">
-            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.c[0]} <span className="text-[#111111]/65">{c.c[1]}</span></h3>
+          <article className={`${card} min-h-[440px] p-6 md:p-7`}>
+            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.c[0]} <span className="text-ink-faint">{c.c[1]}</span></h3>
             <div aria-hidden="true" className="absolute inset-x-6 bottom-6 md:inset-x-7 md:bottom-7">
-              <p className="flex items-start gap-2.5 rounded-[16px] bg-[rgb(255_255_255/0.9)] p-4 text-[14px] font-medium leading-snug"><Question size={17} className="mt-px shrink-0" />{c.q}</p>
-              <ul className="mt-2 space-y-2 text-[14px]">{c.qa.map((a, k) => <li key={a} className={`flex items-center justify-between rounded-[14px] px-4 py-3 ${k === 1 ? "bg-[#111111] text-[#fff]" : "bg-[rgb(255_255_255/0.45)]"}`}>{a}{k === 1 && <Check size={15} />}</li>)}</ul>
+              <p className="flex items-start gap-2.5 rounded-[16px] bg-[var(--card-2)] p-4 text-[14px] font-medium leading-snug"><Question size={17} className="mt-px shrink-0 text-ink-muted" />{c.q}</p>
+              <ul className="mt-2 space-y-2 text-[14px]">{c.qa.map((a, k) => <li key={a} className={`flex items-center justify-between rounded-[14px] px-4 py-3 ${k === 1 ? "bg-ink text-bg" : "bg-[var(--card-2)]/60 text-ink-muted"}`}>{a}{k === 1 && <Check size={15} />}</li>)}</ul>
             </div>
           </article>
           <article className={`${card} min-h-[440px] p-6 md:p-7`}>
@@ -132,7 +198,7 @@ export function Bento5() {
               <p className="flex items-center justify-between text-[13px] text-ink-muted"><span>{c.jobs[1]}</span><span>{c.sample}</span></p>
               <ul className="mt-4 space-y-3.5">{c.locs.map((n, k) => { const v = [92, 78, 64][k]; return (
                 <li key={n}><p className="flex justify-between text-[14px]"><span className="flex items-center gap-1.5 font-medium"><MapPin size={13} />{n}</span><span className="tabular-nums text-ink-muted">{v}%</span></p>
-                  <span className="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-[var(--card)]"><span className={`block h-full rounded-full ${v < 70 ? "bg-accent" : "bg-ink"}`} style={{ width: `${v}%` }} /></span></li>); })}</ul>
+                  <span className="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-[var(--card)]"><span className={`block h-full rounded-full ${v < 70 ? "bg-ink-faint" : "bg-ink"}`} style={{ width: `${v}%` }} /></span></li>); })}</ul>
             </div>
           </article>
         </div>
@@ -225,48 +291,59 @@ export function Web5() {
     </section>);
 }
 
-/* ---------- 10. AI and connectors (planned) ---------- */
+/* ---------- 10. AI and integrations (planned, labelled) ---------- */
 export function AI5() {
-  const { d } = useLocale(); const c = d.ai;
+  const { d, locale } = useLocale(); const c = d.ai; const x = EXTRA[locale];
+  const soon = <span className="rounded-full bg-[var(--card-2)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{c.soon}</span>;
+  const tiles: [string, string, Ic][] = [...c.tools.map((t) => [t, x.asst, ChatCircle] as [string, string, Ic]), [x.app[0], x.app[1], Code], [x.bi[0], x.bi[1], ChartBar]];
   return (
     <section id="ai" aria-labelledby="ai-h" className="section-y pt-0">
       <div className="container-x">
-        <div className={`${card} overflow-hidden px-5 py-12 sm:px-10 md:py-16 lg:px-14`}>
-          <div aria-hidden="true" className="pointer-events-none absolute -end-40 -top-40 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.14),transparent_65%)]" />
-          <div className="grid-12 relative items-center gap-y-12">
-            <div className="col-span-12 lg:col-span-5">
-              <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card-2)] text-ink"><PlugsConnected size={16} /></span>{c.k}<span className="rounded-full bg-[rgb(236_103_38/0.14)] px-2.5 py-0.5 text-[12px] font-semibold text-accent-text">{c.soon}</span></p>
-              <H2 id="ai-h" className="max-w-[16ch]">{c.h}</H2>
-              <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-ink-muted">{c.p}</p>
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                <div className={`${inner} p-4`}><p className="flex items-center gap-2 text-[14px] font-semibold"><CheckCircle size={16} weight="fill" className="text-calm-aqua" />{c.today}</p><ul className="mt-2 space-y-1.5 text-[14px] text-ink-muted">{c.todayList.map((x) => <li key={x}>{x}</li>)}</ul></div>
-                <div className={`${inner} p-4`}><p className="flex items-center gap-2 text-[14px] font-semibold"><Lightning size={16} className="text-accent-text" />{c.next}</p><ul className="mt-2 space-y-1.5 text-[14px] text-ink-muted">{c.nextList.map((x) => <li key={x}>{x}</li>)}</ul></div>
+        <div className="grid-12 items-center gap-y-12">
+          <div className="col-span-12 lg:col-span-5">
+            <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><PlugsConnected size={16} /></span>{c.k}{soon}</p>
+            <H2 id="ai-h" className="max-w-[15ch]">{x.aiH}</H2>
+            <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-ink-muted">{x.aiP}</p>
+            <p className="mt-6 flex max-w-[32rem] items-start gap-2.5 text-[14px] leading-[1.55] text-ink-muted"><CheckCircle size={17} weight="fill" className="mt-0.5 shrink-0 text-calm-aqua" />{x.todayLine}</p>
+            <Link href="/ai/" className="btn btn-secondary mt-8">{c.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+          </div>
+          {/* An assistant window with Flexlore connected: question, the data it read, the answer. */}
+          <div className="col-span-12 lg:col-span-7 lg:ps-6" aria-hidden="true">
+            <div className={`${card} p-2`}>
+              <div className="flex items-center justify-between gap-3 px-4 py-3">
+                <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" /><span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" /><span className="h-2.5 w-2.5 rounded-full bg-ink-faint/40" /></span>
+                <span className="text-[13px] font-medium text-ink-muted">{x.window}</span>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--card-2)] py-1 pe-2.5 ps-1.5 text-[12px] text-ink-muted"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{x.connected}</span>
               </div>
-              <Link href="/ai/" className="btn btn-secondary mt-8">{c.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-            </div>
-            {/* Hub: Flexlore in the middle, assistants around it, one sample exchange below. */}
-            <div className="col-span-12 lg:col-span-7 lg:ps-8" aria-hidden="true">
-              <div className="relative mx-auto aspect-[16/9] max-w-[560px]">
-                <svg viewBox="0 0 560 315" className="absolute inset-0 h-full w-full text-ink-faint/40">
-                  {[[90, 60], [470, 60], [90, 255], [470, 255]].map(([x, y], k) => (
-                    <g key={k}><path d={`M280 157 L${x} ${y}`} stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 6" fill="none" />
-                      <circle r="3.5" fill="#EC6726" className="ai-dot" style={{ offsetPath: `path("M280 157 L${x} ${y}")`, animationDelay: `${k * 0.7}s` }} /></g>))}
-                </svg>
-                <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[28px] bg-[#111111] ring-1 ring-white/10"><img src="/brand/symbol-main.svg" alt="" className="h-11 w-11" /></div>
-                {c.tools.map((t, k) => { const pos = ["left-[2%] top-[6%]", "right-[2%] top-[6%]", "left-[2%] bottom-[6%]", "right-[2%] bottom-[6%]"][k]; return (
-                  <span key={t} className={`absolute ${pos} inline-flex h-12 items-center gap-2 rounded-2xl bg-[var(--card-2)] px-4 text-[15px] font-semibold ring-1 ring-line`}><ChatCircle size={17} className="text-ink-muted" />{t}</span>); })}
-              </div>
-              <div className="mx-auto mt-6 max-w-[520px] space-y-2.5">
-                <p className="ms-auto w-fit max-w-[85%] rounded-[18px] rounded-ee-md bg-ink px-4 py-3 text-[14px] text-bg">{c.ask}</p>
-                <div className={`${inner} max-w-[92%] p-4`}>
-                  <p className="flex items-center gap-2 text-[12px] text-ink-faint"><img src="/brand/symbol-main.svg" alt="" className="h-3.5 w-3.5" />{c.from}</p>
-                  <p className="mt-2 text-[14px] leading-[1.55]">{c.answer}</p>
+              <div className="space-y-3 rounded-[22px] bg-[var(--card-2)] p-5 md:p-7">
+                <p className="ms-auto w-fit max-w-[85%] rounded-[18px] rounded-ee-md bg-ink px-4 py-3 text-[15px] text-bg">{c.ask}</p>
+                <p className="flex w-fit items-center gap-2 rounded-full bg-[var(--card)] px-3 py-1.5 text-[12px] text-ink-muted"><img src="/brand/symbol-main.svg" alt="" className="h-3.5 w-3.5" />{x.tool}<Check size={13} /></p>
+                <div className="max-w-[92%] rounded-[18px] bg-[var(--card)] p-4">
+                  <p className="text-[15px] leading-[1.6]">{c.answer}</p>
+                  <ul className="mt-4 space-y-2.5">{d.bento.locs.map((n, k) => { const v = [100, 79, 64][k]; return (
+                    <li key={n} className="grid grid-cols-[6.5rem_1fr_2.5rem] items-center gap-3 text-[13px]"><span className="truncate text-ink-muted">{n}</span>
+                      <span className="h-1.5 overflow-hidden rounded-full bg-[var(--card-2)]"><span className="block h-full rounded-full bg-ink" style={{ width: `${v}%`, opacity: v === 100 ? 1 : 0.55 }} /></span>
+                      <span className="text-end tabular-nums text-ink-muted">{v}%</span></li>); })}</ul>
                 </div>
-                <p className="pt-1 text-center text-[12px] text-ink-faint">{c.sample}</p>
               </div>
             </div>
+            <p className="mt-3 text-center text-[12px] text-ink-faint">{c.sample}</p>
           </div>
         </div>
+        <ul className="mt-12 grid gap-3 md:grid-cols-[1.6fr_1fr_1fr]">
+          <li className={`${card} flex flex-col p-6`}>
+            <span className="flex items-center justify-between"><span className="grid h-10 w-10 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink"><ChatCircle size={18} /></span>{soon}</span>
+            <p className="mt-5 text-[17px] font-semibold">MCP</p>
+            <p className="mt-1 text-[14px] leading-[1.5] text-ink-muted">{x.asst}</p>
+            <ul className="mt-5 flex flex-wrap gap-2">{c.tools.map((t) => <li key={t} className="rounded-full bg-[var(--card-2)] px-3.5 py-1.5 text-[14px] font-medium">{t}</li>)}</ul>
+          </li>
+          {tiles.slice(4).map(([name, line, I]) => (
+            <li key={name} className={`${card} flex flex-col p-6`}>
+              <span className="flex items-center justify-between"><span className="grid h-10 w-10 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink"><I size={18} /></span>{soon}</span>
+              <p className="mt-5 text-[17px] font-semibold">{name}</p>
+              <p className="mt-1 text-[14px] leading-[1.5] text-ink-muted">{line}</p>
+            </li>))}
+        </ul>
       </div>
     </section>);
 }
@@ -341,8 +418,8 @@ export function Industries5() {
     </section>);
 }
 
-/* ---------- 13. Use cases ---------- */
-const CASE_META: [string, Ic][] = [["/sektor/uretim/", ShieldCheck], ["/use-cases/installation-training-on-site-orientation/", MapPin], ["/sektor/restoran/", CookingPot], ["/use-cases/master-apprentice-skills-transfer/", GraduationCap], ["/see-it/", UserPlus], ["/sektor/franchise/", Storefront]];
+/* ---------- 13. Use cases, each with a photograph ---------- */
+const CASE_META: [string, Ic, string][] = [["/sektor/uretim/", ShieldCheck, "safety"], ["/use-cases/installation-training-on-site-orientation/", MapPin, "phone-mount"], ["/sektor/restoran/", CookingPot, "chef-plating"], ["/use-cases/master-apprentice-skills-transfer/", GraduationCap, "chef-fire"], ["/see-it/", UserPlus, "brewery"], ["/sektor/franchise/", Storefront, "huddle"]];
 export function Cases5() {
   const { d } = useLocale(); const c = d.cases;
   return (
@@ -352,13 +429,19 @@ export function Cases5() {
         <H2 id="uc-h" className="max-w-[18ch]">{c.h}</H2>
         <p className="mt-5 max-w-[40rem] text-[17px] leading-[1.55] text-ink-muted">{c.lead}</p>
         <Reveal as="ul" stagger={0.05} className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {c.items.map(([tag, h, p], k) => { const [href, I] = CASE_META[k]; return (
+          {c.items.map(([tag, h, p], k) => { const [href, I, img] = CASE_META[k]; return (
             <RevealItem as="li" key={h}>
-              <Link href={href} className={`group flex h-full flex-col ${card} p-6 transition-colors duration-300 hover:bg-[var(--card-2)] md:p-7`}>
-                <span className="flex items-center justify-between gap-3"><span className="grid h-11 w-11 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink transition-colors group-hover:bg-[var(--card)]"><I size={20} /></span><span className="text-[13px] text-ink-faint">{tag}</span></span>
-                <h3 className="mt-7 text-[19px] font-semibold leading-[1.25] tracking-[-.015em]">{h}</h3>
-                <p className="mt-2.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
-                <span className="mt-auto flex items-center gap-2 pt-6 text-[14px] font-medium text-ink-muted transition-colors group-hover:text-ink">{c.more}<ArrowRight size={13} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100" /></span>
+              <Link href={href} className={`group flex h-full flex-col ${card} p-2 transition-colors duration-300 hover:bg-[var(--card-2)]`}>
+                <span className="dark relative block aspect-[16/10] overflow-hidden rounded-[22px] bg-[#1a1816]">
+                  <Pic n={img} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
+                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_45%)]" />
+                  <span className="absolute start-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.65)] py-1.5 pe-3 ps-2 text-[12px] font-medium text-white backdrop-blur"><I size={14} />{tag}</span>
+                </span>
+                <span className="flex flex-1 flex-col px-4 pb-4 pt-5">
+                  <h3 className="text-[19px] font-semibold leading-[1.25] tracking-[-.015em]">{h}</h3>
+                  <p className="mt-2.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
+                  <span className="mt-auto flex items-center gap-2 pt-5 text-[14px] font-medium text-ink-muted transition-colors group-hover:text-ink">{c.more}<ArrowRight size={13} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100" /></span>
+                </span>
               </Link>
             </RevealItem>); })}
         </Reveal>
@@ -375,7 +458,7 @@ export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setY
     <div role="group" aria-label={c.billing} className="inline-flex rounded-full bg-[var(--card)] p-1 ring-1 ring-line">
       <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={b(!yearly)}>{!yearly && pill}{c.monthly}</button>
       <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={b(yearly)}>{yearly && pill}{c.yearly}
-        {best > 0 && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${yearly ? "bg-accent text-[#111]" : "bg-[rgb(236_103_38/0.14)] text-accent-text"}`}>{fmt(c.upTo, { pct: best })}</span>}</button>
+        {best > 0 && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${yearly ? "bg-bg/15 text-bg" : "bg-[var(--card-2)] text-ink-muted"}`}>{fmt(c.upTo, { pct: best })}</span>}</button>
     </div>);
 }
 const PLAN_IC: Record<string, Ic> = { free: Sparkle, pro: Lightning, proplus: Users, enterprise: Buildings };
@@ -391,7 +474,7 @@ export function PlanCard({ id, yearly, full = false }: { id: string; yearly: boo
     <li className={`relative flex flex-col rounded-[28px] p-6 md:p-7 ${rec ? "bg-ink text-bg" : "bg-[var(--card)]"}`}>
       <div className="flex items-center justify-between gap-3">
         <span className={`grid h-11 w-11 place-items-center rounded-[14px] ${rec ? "bg-bg/10" : "bg-[var(--card-2)]"}`}><I size={20} /></span>
-        {rec && <span className="rounded-full bg-accent px-3 py-1 text-[12px] font-semibold text-[#111]">{c.recommended}</span>}
+        {rec && <span className="rounded-full bg-bg/10 px-3 py-1 text-[12px] font-semibold">{c.recommended}</span>}
       </div>
       <h3 className="mt-6 text-[20px] font-semibold">{name}</h3>
       <p className={`mt-1 min-h-[2.6rem] text-[14px] leading-snug ${rec ? "text-bg/70" : "text-ink-muted"}`}>{forWho}</p>
@@ -400,7 +483,7 @@ export function PlanCard({ id, yearly, full = false }: { id: string; yearly: boo
           <div className="flex flex-wrap items-baseline gap-x-2">
             <AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[40px] font-bold leading-none tracking-[-.03em]" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span></AnimatePresence>
             <span className={`text-[14px] ${rec ? "text-bg/70" : "text-ink-muted"}`}>{c.perMo}</span>
-            {save && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${rec ? "bg-accent text-[#111]" : "bg-[rgb(236_103_38/0.14)] text-accent-text"}`}>{fmt(c.save, { pct: save })}</span>}
+            {save && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${rec ? "bg-bg/10" : "bg-[var(--card-2)] text-ink-muted"}`}>{fmt(c.save, { pct: save })}</span>}
           </div>
           <p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{id === "free" ? c.free : yearly ? c.yrNote : c.moNote}</p>
         </> : <><p className="text-[34px] font-bold leading-none tracking-[-.03em]">{c.contact}</p><p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{c.custom}</p></>}
@@ -488,5 +571,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the process section, in page order. */
 export default function Below() {
-  return (<><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
+  return (<><Process5 /><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
 }

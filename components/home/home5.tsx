@@ -102,63 +102,11 @@ export function Problem5() {
         <Reveal as="ul" stagger={0.08} className="mt-12 grid gap-3 md:grid-cols-3">
           {c.points.map(([h, p], i) => { const I = icons[i]; return (
             <RevealItem as="li" key={h} className={`${card} p-6 md:p-7`}>
-              <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-[var(--card-2)] text-accent-text"><I size={21} /></span>
+              <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink"><I size={21} /></span>
               <h3 className="mt-8 text-[20px] font-semibold tracking-[-0.02em]">{h}</h3>
               <p className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
             </RevealItem>); })}
         </Reveal>
-      </div>
-    </section>);
-}
-
-/* ---------- 4. Process: one story, four steps, one stage ---------- */
-const STAGE = [{ v: "kitchen", icon: FilmSlate }, { v: "line", icon: Sparkle }, { v: "plating", icon: ListChecks }, { v: "coffee", icon: ChartBar }] as const;
-export function Process5() {
-  const { d, lang } = useLocale(); const c = d.process; const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
-  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
-  const run = on && !hold && !paused && !reduce;
-  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((x) => (x + 1) % 4), 6000); return () => window.clearTimeout(t); }, [run, i]);
-  const screen = i === 0 ? <Editor active={on} lang={lang} /> : i === 1 ? <WorkScreen active={on} lang={lang} />
-    : i === 2 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
-  return (
-    <section id="how" aria-labelledby="how-h" className="section-y">
-      <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div><Label icon={Lightning}>{c.k}</Label><H2 id="how-h" className="max-w-[20ch]">{c.h}</H2></div>
-          {!reduce && <button type="button" onClick={() => setPaused(!paused)} className="btn btn-secondary">{paused ? <Play size={14} weight="fill" aria-hidden="true" /> : <Pause size={14} weight="fill" aria-hidden="true" />}{paused ? c.play : c.pause}</button>}
-        </div>
-        <div ref={ref} className="mt-12 grid gap-4 lg:grid-cols-12" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <ol className="flex gap-2 overflow-x-auto no-sb lg:col-span-5 lg:flex-col lg:overflow-visible" role="tablist" aria-label={c.k}>
-            {c.steps.map(([h, p], k) => { const I = STAGE[k].icon; const act = i === k; return (
-              <li key={h} className="shrink-0 basis-[78%] sm:basis-[46%] lg:basis-auto">
-                <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
-                  className={`relative block h-full w-full overflow-hidden rounded-[22px] p-5 text-start transition-colors duration-300 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/60"}`}>
-                  <span className="flex items-center gap-3.5">
-                    <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-[12px] transition-colors ${act ? "bg-ink text-bg" : "bg-[var(--card-2)] text-ink-muted"}`}><I size={19} /></span>
-                    <span className={`text-[19px] font-semibold tracking-[-0.015em] ${act ? "text-ink" : "text-ink-muted"}`}><span className="me-2 tabular-nums text-ink-faint">{k + 1}</span>{h}</span>
-                  </span>
-                  <span className={`mt-3 block text-[15px] leading-[1.55] text-ink-muted lg:ps-[3.4rem] ${act ? "" : "lg:hidden"}`}>{p}</span>
-                  {act && <span aria-hidden="true" className="absolute inset-x-5 bottom-0 h-[3px] overflow-hidden rounded-full bg-[var(--card-2)]">
-                    <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-accent rtl:origin-right" style={{ animation: run ? "procbar 6s linear forwards" : "none", transform: run ? undefined : "scaleX(1)" }} /></span>}
-                </button>
-              </li>); })}
-          </ol>
-          <div className="dark relative aspect-[4/5] overflow-hidden rounded-[32px] bg-[#1a1816] sm:aspect-[16/11] lg:col-span-7 lg:aspect-auto lg:min-h-[600px]">
-            <AnimatePresence initial={false}>
-              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}>
-                <img src={`/video/${STAGE[i].v}.webp`} alt="" className="absolute inset-0 h-full w-full object-cover opacity-70" />
-                {near && <SmartVideo name={STAGE[i].v} poster={`/video/${STAGE[i].v}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full object-cover opacity-70" />}
-              </m.div>
-            </AnimatePresence>
-            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.15),rgb(17_17_17/0.7))]" />
-            <div className="absolute left-1/2 top-1/2 w-[min(46%,270px)] -translate-x-1/2 -translate-y-1/2" dir="ltr">
-              <Device label={c.steps[i][0]}>{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device>
-            </div>
-            <span className="absolute bottom-4 start-4 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1.5 text-[12px] text-white/80 backdrop-blur">{c.sample}</span>
-          </div>
-        </div>
-        <p className="mt-5 flex items-start gap-2.5 text-[14px] text-ink-faint"><ShieldCheck size={16} aria-hidden="true" className="mt-0.5 shrink-0" />{c.note}</p>
       </div>
     </section>);
 }

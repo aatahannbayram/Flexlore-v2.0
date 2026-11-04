@@ -19,6 +19,7 @@ export { ChartBar } from "./icons/ChartBar";
 export { ChatCircle } from "./icons/ChatCircle";
 export { Check } from "./icons/Check";
 export { CheckCircle } from "./icons/CheckCircle";
+export { Code } from "./icons/Code";
 export { Coffee } from "./icons/Coffee";
 export { CookingPot } from "./icons/CookingPot";
 export { DotsThree } from "./icons/DotsThree";

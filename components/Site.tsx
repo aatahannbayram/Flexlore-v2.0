@@ -5,7 +5,7 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { TrustStrip } from "./home/Sections";
 import dynamic from "next/dynamic";
-import { Hero5, Problem5, Process5 } from "./home/home5";
+import { Hero5, Problem5 } from "./home/home5";
 const Below = dynamic(() => import("./home/home5b"));
 import { useLocale } from "./i18n/LocaleProvider";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
@@ -30,7 +30,6 @@ export default function Site() {
           <Hero5 />
           <TrustStrip label={d.trust.programs} />
           <Problem5 />
-          <Process5 />
           <Below />
         </main>
       </VideoPause.Provider>
