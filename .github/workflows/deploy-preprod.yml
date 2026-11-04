@@ -1,9 +1,10 @@
 name: Deploy preprod2a4
-# main ya da mikel-coffee'ye her push statik export'u https://preprod2a4.flexlore.com/ adresine yayınlar.
-# Sunucu tarafı: ops/preprod2a4 (flexlore-deploy, forced command, flexlore-publish). Rehber: docs/ortak-deploy.md
+# Statik export'u https://preprod2a4.flexlore.com/ adresine yayınlar. YALNIZCA ELLE çalışır (Actions > Run workflow).
+# Push ile otomatik deploy 2026-11-04'te kapatıldı: site ortak bir VPS'e (187.126.24.152) taşındı ve
+# sunucu tarafı (ops/preprod2a4: flexlore-deploy kullanıcısı, forced command) orada henüz kurulu değil.
+# Yeniden açmadan önce: install.sh yeni sunucuya kurulmalı ve DEPLOY_HOST/DEPLOY_KNOWN_HOSTS secret'ları güncellenmeli.
+# Hedef: /opt/sites/flexlore-preprod/html (yerinde güncelleme, silme ve swap yok). Rehber: docs/ortak-deploy.md
 on:
-  push:
-    branches: [main, mikel-coffee]
   workflow_dispatch:
 permissions:
   contents: read
@@ -35,7 +36,7 @@ jobs:
           tar -C out -czf out.tgz .
           echo "BUILD_ID=$(cat .next/BUILD_ID)" >> "$GITHUB_ENV"
           echo "out.tgz: $(du -h out.tgz | cut -f1), $(find out -type f | wc -l) dosya"
-      - name: Deploy (forced-command SSH, atomic swap on server)
+      - name: Deploy (forced-command SSH, backup + in-place update on server)
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}

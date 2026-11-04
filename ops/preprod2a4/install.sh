@@ -2,8 +2,10 @@
 # install.sh: preprod2a4 ortak deploy kurulumunu sunucuya kurar ya da günceller.
 # Root olarak çalışır, tekrar tekrar çalıştırılabilir. Mevcut anahtarlara, nginx'e ve site içeriğine dokunmaz.
 #
+# DİKKAT: Sunucu ORTAK bir VPS (187.126.24.152). Bu script /etc/ssh, /etc/sudoers.d ve /etc/logrotate.d'ye yazar
+# ve sshd'yi reload eder: tüm sunucuyu etkiler. Çalıştırmadan önce sunucu sorumlusunun (Teknik) onayı gerekir.
 # Mac'ten (repo kökünde, root anahtarıyla):
-#   COPYFILE_DISABLE=1 tar -C ops/preprod2a4 -cz . | ssh root@72.60.84.196 'd=$(mktemp -d) && tar -xz --warning=no-unknown-keyword -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
+#   COPYFILE_DISABLE=1 tar -C ops/preprod2a4 -cz . | ssh root@187.126.24.152 'd=$(mktemp -d) && tar -xz --warning=no-unknown-keyword -C "$d" && bash "$d/install.sh"; rc=$?; rm -rf "$d"; exit $rc'
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -12,10 +14,9 @@ readonly SSHD_SNIPPET=/etc/ssh/sshd_config.d/60-flexlore-deploy.conf
 readonly LOG=/var/log/flexlore-deploy.log
 
 [ "$(id -u)" -eq 0 ] || { echo "root olarak çalıştırın" >&2; exit 1; }
-for c in flock setpriv tar gzip sudo sshd visudo ssh-keygen; do
+for c in flock setpriv tar gzip cp sudo sshd visudo ssh-keygen; do
   command -v "$c" >/dev/null || { echo "eksik araç: $c" >&2; exit 1; }
 done
-command -v exch >/dev/null || command -v python3 >/dev/null || { echo "atomik değişim için exch ya da python3 gerekli" >&2; exit 1; }
 grep -Eq '^[[:space:]]*Include[[:space:]]+/etc/ssh/sshd_config\.d/\*\.conf' /etc/ssh/sshd_config \
   || { echo "sshd_config, sshd_config.d/*.conf dosyalarını içermiyor; elle bakılmalı" >&2; exit 1; }
 

@@ -1,19 +1,26 @@
 #!/bin/bash
-# flexlore-publish: stdin'den gelen statik site arşivini (tar.gz) preprod2a4'e atomik olarak yayınlar.
+# flexlore-publish: stdin'den gelen statik site arşivini (tar.gz) preprod2a4'e yayınlar.
+#
+# Sunucu (2026-11-04'ten beri): 187.126.24.152, ORTAK VPS (başka projeler de çalışıyor).
+# Canlı dizin /opt/sites/flexlore-preprod/html, nginx container'ı flexlore-preprod'a bind mount (:ro).
+# Bind mount yüzünden dizin değiştirilemez (swap/rename yok): içerik YERİNDE güncellenir.
+# Bu script yalnızca /opt/sites/flexlore-preprod altına yazar ve oradan hiçbir şey silmez.
 #
 # Çağıran: flexlore-deploy kullanıcısının SSH forced command'i
 #   authorized_keys: restrict,command="sudo /usr/local/bin/flexlore-publish" ssh-ed25519 AAAA... isim@flexlore
 # Kaynak: ops/preprod2a4/flexlore-publish (Flexlore-v2.0). Sunucuya ops/preprod2a4/install.sh kurar.
 #
-# Akış: arşivi al -> boyut ve gzip kontrolü -> kilit -> .new dizinine yetkisiz kullanıcıyla aç
-#       -> symlink ve özel dosya temizliği, root:root -> zorunlu sayfa kontrolü -> atomik değişim -> eski sürümü sil.
-# Bir adım hata verirse canlı dizine dokunulmaz.
+# Akış: arşivi al -> boyut ve gzip kontrolü -> kilit -> geçici stage dizinine (/var/tmp) yetkisiz kullanıcıyla aç
+#       -> symlink ve özel dosya temizliği, root:root -> zorunlu sayfa kontrolü
+#       -> canlı dizinin yedeği (backup-*.tgz) -> stage içeriğini canlı dizinin İÇİNE kopyala (üzerine yazar, silmez).
+# Yedek alınamazsa ya da bir doğrulama adımı hata verirse canlı dizine dokunulmaz.
+# Silinen tek şey scriptin kendi oluşturduğu /var/tmp/flexlore-publish.* geçici dizinidir.
 set -Eeuo pipefail
 umask 022
 export LC_ALL=C PATH=/usr/sbin:/usr/bin:/sbin:/bin
 
-readonly LIVE=/var/www/preprod2a4
-readonly STAGE=/var/www/preprod2a4.new
+readonly BASE=/opt/sites/flexlore-preprod
+readonly LIVE=$BASE/html
 readonly LOG=/var/log/flexlore-deploy.log
 readonly LOCK=/run/flexlore-publish.lock
 readonly AUTH_KEYS=/home/flexlore-deploy/.ssh/authorized_keys
@@ -25,6 +32,7 @@ started=$(date +%s)
 who="bilinmiyor"
 from="yerel"
 tmp=""
+STAGE=""
 have_lock=0
 
 # Log ve ekran için: yazdırılamayan karakterleri at, uzunluğu sınırla.
@@ -39,10 +47,9 @@ fail() {
   exit 1
 }
 
-# Geçici dosyaları sil. .new dizinine yalnızca kilidi tutan süreç dokunur.
+# Yalnızca bu çalıştırmanın /var/tmp altındaki geçici dizinini sil (stage de onun içinde).
 cleanup() {
-  [ -z "$tmp" ] || rm -rf -- "$tmp"
-  [ "$have_lock" != 1 ] || rm -rf -- "$STAGE"
+  case "$tmp" in /var/tmp/flexlore-publish.?*) rm -rf -- "$tmp" ;; esac
 }
 
 # Yayını kimin yaptığı: sshd (ExposeAuthInfo) kullanılan anahtarı verir, authorized_keys'teki yorumu bulunur.
@@ -67,25 +74,11 @@ deployer() {
   fi
 }
 
-# İki dizini tek sistem çağrısıyla (renameat2 RENAME_EXCHANGE) yer değiştirir: arada boş an olmaz.
-swap() {
-  if command -v exch >/dev/null 2>&1; then
-    exch "$1" "$2"
-  else
-    python3 - "$1" "$2" <<'PY'
-import ctypes, os, sys
-libc = ctypes.CDLL(None, use_errno=True)
-if libc.renameat2(-100, sys.argv[1].encode(), -100, sys.argv[2].encode(), 2) != 0:
-    sys.exit("renameat2: " + os.strerror(ctypes.get_errno()))
-PY
-  fi
-}
-
 [ "$(id -u)" -eq 0 ] || { echo "HATA: flexlore-publish sudo ile çalışmalı" >&2; exit 2; }
 cd /
 
 who=$(clean "$(deployer)" 60)
-from=$(clean "${SSH_CONNECTION%% *}" 45)
+from=$(clean "${SSH_CONNECTION:-}" 45); from=${from%% *}
 from=${from:-yerel}
 trap 'log "FAIL by=$who from=$from reason=\"beklenmeyen hata, satır $LINENO\""' ERR
 trap cleanup EXIT
@@ -97,6 +90,7 @@ if [ -n "${SSH_ORIGINAL_COMMAND:-}" ]; then
 fi
 
 tmp=$(mktemp -d /var/tmp/flexlore-publish.XXXXXX)
+STAGE=$tmp/stage
 
 # 1) Arşivi al ve doğrula (bağlantı açık kalırsa 10 dakikada vazgeç)
 max_tgz=$((MAX_TGZ_MB * 1024 * 1024))
@@ -114,8 +108,8 @@ exec 9> "$LOCK"
 flock -w 300 9 || fail "başka bir yayın sürüyor; 5 dakika beklendi, sonra tekrar deneyin"
 have_lock=1
 
-# 3) .new dizinine yetkisiz kullanıcıyla aç: aygıt dosyası, sahiplik ya da dışarı yazma hilesi işlemez
-rm -rf -- "$STAGE"
+# 3) Stage dizinine yetkisiz kullanıcıyla aç: aygıt dosyası, sahiplik ya da dışarı yazma hilesi işlemez
+chmod 0711 "$tmp"
 install -d -m 0700 -o nobody -g nogroup "$STAGE"
 if ! setpriv --reuid=nobody --regid=nogroup --clear-groups --no-new-privs \
     tar -xzf - -C "$STAGE" --no-same-owner --no-same-permissions --warning=no-unknown-keyword \
@@ -135,15 +129,13 @@ done
 files=$(find "$STAGE" -type f | wc -l)
 mb=$(du -sm "$STAGE" | cut -f1)
 
-# 6) Atomik değişim, ardından eski sürümü sil (ek yedek tutulmaz)
-[ ! -L "$LIVE" ] || fail "$LIVE bir symlink; beklenmeyen yapı"
-if [ -d "$LIVE" ]; then
-  swap "$STAGE" "$LIVE" || fail "atomik değişim başarısız"
-  rm -rf -- "$STAGE"
-else
-  mv -T "$STAGE" "$LIVE"
-fi
+# 6) Yedek, ardından içeriği yerinde güncelle (silme yok, swap yok: bind mount aynı dizini görmeye devam eder)
+[ -d "$LIVE" ] && [ ! -L "$LIVE" ] || fail "$LIVE yok ya da symlink; beklenmeyen yapı"
+backup="$BASE/backup-$(date +%Y%m%d-%H%M%S).tgz"
+tar -czf "$backup" -C "$BASE" html 2> "$tmp/bak.err" || fail "yedek alınamadı: $(clean "$(head -n 1 "$tmp/bak.err")" 120)"
+gzip -t "$backup" || fail "yedek doğrulanamadı: $backup"
+cp -R --preserve=mode,timestamps --no-target-directory "$STAGE" "$LIVE" || fail "kopyalama yarıda kaldı; geri almak için: tar -C $BASE -xzf $backup"
 
 took=$(( $(date +%s) - started ))
-log "OK by=$who from=$from files=$files size=${mb}MB tgz=$((size / 1024 / 1024))MB removed=$removed took=${took}s"
-echo "OK: preprod2a4 güncellendi · $files dosya · ${mb} MB · ${took} sn · https://preprod2a4.flexlore.com/"
+log "OK by=$who from=$from files=$files size=${mb}MB tgz=$((size / 1024 / 1024))MB removed=$removed backup=$backup took=${took}s"
+echo "OK: preprod2a4 güncellendi · $files dosya · ${mb} MB · ${took} sn · yedek $backup · https://preprod2a4.flexlore.com/"
