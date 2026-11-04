@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
-import { I, StoreButtons, Arr } from "./Icons";
+import { I, Arr } from "./Icons";
 import { SITE } from "./config";
-import { home } from "./home/home-copy";
 
 const Tag = ({ live }: { live: boolean }) => (
   <span className={`mono inline-flex items-center gap-1.5 text-xs uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
@@ -98,35 +97,4 @@ export function IntegrationsDetail() {
   </div>);
 }
 
-export function Footer({ lang = "en" }: { lang?: "en" | "tr" }) {
-  const f = home[lang].footer; const tr = lang === "tr";
-  const col = "mb-4 text-[15px] font-medium text-ice-400";
-  const a = "inline-flex min-h-9 items-center text-ink-muted transition-colors hover:text-ink";
-  const ind: [string, string, string][] = [["Restaurants", "Restoranlar", "restoran"], ["Manufacturing", "Üretim", "uretim"], ["Hotels", "Oteller", "otel"], ["Franchises", "Franchise", "franchise"], ["Warehouses", "Depolar", "depo"], ["Bakeries & cafés", "Fırın ve kafeler", "firin"]];
-  return (
-    <footer className="bg-bg pt-20 text-[15px]" aria-labelledby="footer-h">
-      <h2 id="footer-h" className="sr-only">Flexlore</h2>
-      <div className="container-x grid-12 gap-y-12">
-        <div className="col-span-12 lg:col-span-4">
-          <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
-          <p className="mt-4 max-w-xs text-ink-muted">{f.tag}</p>
-          <p className={`${col} mt-8`}>{f.app}</p><StoreButtons small />
-        </div>
-        <nav aria-label={f.product} className="col-span-6 md:col-span-3 lg:col-span-2 lg:col-start-5"><p className={col}>{f.product}</p><ul className="space-y-1">
-          <li><a className={a} href="/#product">{f.how}</a></li><li><a className={a} href="/#web">{f.web}</a></li><li><Link className={a} href="/see-it/">{f.scenario}</Link></li>
-          <li><Link className={a} href="/use-cases/master-apprentice-skills-transfer/">{tr ? "Ustadan çırağa" : "Master to apprentice"}</Link></li><li><Link className={a} href="/use-cases/installation-training-on-site-orientation/">{tr ? "Kurulum eğitimi" : "Installation training"}</Link></li>
-          <li><Link className={a} href="/ai/">AI</Link></li><li><Link className={a} href="/integrations/">{tr ? "Entegrasyonlar" : "Integrations"}</Link></li><li><Link className={a} href="/pricing/">{f.pricing}</Link></li></ul></nav>
-        <nav aria-label={f.industries} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.industries}</p><ul className="space-y-1">
-          {ind.map(([en, t, s]) => <li key={s}><Link className={a} href={`/sektor/${s}/`}>{tr ? t : en}</Link></li>)}</ul></nav>
-        <nav aria-label={f.company} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.company}</p><ul className="space-y-1">
-          <li><Link className={a} href="/blog/">{f.blog}</Link></li><li><a className={a} href="mailto:hello@flexlore.com">{f.support}</a></li><li><a className={a} href="mailto:hello@flexlore.com">hello@flexlore.com</a></li></ul></nav>
-        <nav aria-label={f.follow} className="col-span-6 md:col-span-3 lg:col-span-2"><p className={col}>{f.follow}</p><ul className="space-y-1">
-          <li><a className={a} href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a></li><li><a className={a} href={SITE.social.instagram} target="_blank" rel="noopener">Instagram</a></li><li><a className={a} href={SITE.social.youtube} target="_blank" rel="noopener">YouTube</a></li><li><a className={a} href={SITE.productHunt} target="_blank" rel="noopener">Product Hunt</a></li></ul></nav>
-      </div>
-      <div className="container-x mt-14"><div className="flex flex-col gap-4 py-8 text-caption text-ink-faint md:flex-row md:items-center md:justify-between">
-        <span className="max-w-[46rem]">© 2026 Flexlore Inc. <span className="mt-2 block">© 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.</span></span>
-        <ul className="flex flex-wrap gap-x-5 gap-y-1">{SITE.legal.map(([n, h]) => <li key={n}><a className="inline-flex min-h-9 items-center hover:text-ink" href={h}>{n}</a></li>)}</ul>
-      </div></div>
-    </footer>
-  );
-}
+export { Footer } from "./Footer";

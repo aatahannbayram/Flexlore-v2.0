@@ -143,58 +143,61 @@ export function WebShowcase({ lang }: { lang: Lang }) {
 }
 
 /* 8. Industries: three featured media cards with loops, three compact cards, then the scenario picker. */
-function MediaCard({ card, lang, cta }: { card: typeof IND_CARDS[number]; lang: Lang; cta: string }) {
-  const [hover, setHover] = useState(false);
-  const [fine, setFine] = useState(false);
-  useEffect(() => { setFine(window.matchMedia("(hover: hover) and (pointer: fine)").matches); }, []);
-  const tr = lang === "tr";
-  return (
-    <Link href={`/sektor/${card.slug}/`} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} onFocus={() => setHover(true)} onBlur={() => setHover(false)}
-      className="group relative block overflow-hidden rounded-[24px]">
-      <div className="relative aspect-[4/5] overflow-hidden bg-surface-1 md:aspect-[3/4]">
-        <div className="absolute inset-0 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]">
-          <picture><source srcSet={card.still.replace(".webp", ".avif")} type="image/avif" /><img src={card.still} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
-          {card.v && <SmartVideo name={card.v} poster={card.still} threshold={0.6} play={fine ? hover : undefined} />}
-        </div>
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_35%,rgb(17_17_17/0.92)_100%)]" />
-        <div className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-1">
-          <h3 className="h3">{tr ? card.tr : card.en}</h3>
-          <p className="mt-1 text-base text-ink-muted">{tr ? card.lineTr : card.lineEn}</p>
-          <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">{cta}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1" /></span>
-        </div>
-      </div>
-    </Link>);
-}
-
+/* 8. Industries: one calm list of the six sectors that have a page, with the matching still beside it on desktop.
+   Hover or focus a row and the picture crossfades (CSS only). The capabilities section above already carries the
+   video cards, so this section stays quiet: list, picture, then the other areas and languages. */
 export function Industries({ lang }: { lang: Lang }) {
   const c = home[lang].ind; const tr = lang === "tr";
-  const featured = IND_CARDS.filter((x) => x.featured);
+  const [on, setOn] = useState(0);
+  const others = c.areas.filter(([, slug]) => !slug);
   return (
     <section id="industries" aria-labelledby="ind-h" className="section-y bg-bg">
       <div className="container-x">
         <Heading id="ind-h" eyebrow={c.k} title={c.h} lead={c.lead} />
-        <Reveal as="ul" stagger={0.08} className="no-sb -mx-[var(--pad-x)] mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
-          {featured.map((card) => <RevealItem as="li" key={card.slug} className="w-[78%] shrink-0 snap-start md:w-auto"><MediaCard card={card} lang={lang} cta={c.open} /></RevealItem>)}
-        </Reveal>
-        {/* Where teams use Flexlore: every area as a calm chip; sector pages link through. A dot horizon sits underneath. */}
-        <div className="relative mt-20 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-14 text-center md:pt-16">
-          <p className="eyebrow">{c.more}</p>
+        <div className="mt-12 grid gap-6 lg:mt-14 lg:grid-cols-12 lg:items-stretch">
+          <Reveal as="ul" stagger={0.05} className="lg:col-span-6">
+            {IND_CARDS.map((x, i) => (
+              <RevealItem as="li" key={x.slug}>
+                <Link href={`/sektor/${x.slug}/`} onMouseEnter={() => setOn(i)} onFocus={() => setOn(i)} data-on={on === i || undefined}
+                  className="group flex items-center gap-4 rounded-2xl px-2 py-3 transition-colors duration-300 hover:bg-white/[.04] focus-visible:bg-white/[.04] sm:px-4 sm:py-4 lg:data-[on]:bg-white/[.05]">
+                  <picture className="shrink-0 lg:hidden"><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
+                    <img src={x.still} alt="" loading="lazy" width={64} height={64} className="h-14 w-14 rounded-xl object-cover sm:h-16 sm:w-16" /></picture>
+                  <span className="hidden w-7 text-[13px] tabular-nums text-ice-500 lg:block">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[19px] font-semibold leading-tight tracking-[-.02em] sm:text-[22px]">{tr ? x.tr : x.en}</span>
+                    <span className="mt-1 block truncate text-[15px] text-ice-400">{tr ? x.lineTr : x.lineEn}</span>
+                  </span>
+                  <span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[.06] text-ice-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-ink group-hover:text-bg lg:group-data-[on]:bg-ink lg:group-data-[on]:text-bg">
+                    <ArrowRight size={14} />
+                  </span>
+                </Link>
+              </RevealItem>))}
+          </Reveal>
+          <div aria-hidden="true" className="relative hidden overflow-hidden rounded-[28px] bg-surface-1 lg:col-span-6 lg:block">
+            {IND_CARDS.map((x, i) => (
+              <picture key={x.slug}><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
+                <img src={x.still} alt="" loading="lazy" className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] ${on === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`} /></picture>))}
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_55%,rgb(17_17_17/0.85)_100%)]" />
+            <p className="absolute bottom-6 left-7 text-[15px] font-medium text-ink">{tr ? IND_CARDS[on].tr : IND_CARDS[on].en}</p>
+          </div>
+        </div>
+        {/* Other areas (no page yet) and languages: one quiet panel with the dot horizon underneath. */}
+        <div className="relative mt-16 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-12 text-center md:mt-20 md:pt-14">
+          <p className="eyebrow">{tr ? "Ayrıca kullanıldığı alanlar" : "Also used in"}</p>
           <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
-            {c.areas.map(([name, slug], i) => { const Ic = AREA_ICONS[i] ?? DotsThreeCircle; return (
+            {others.map(([name]) => { const Ic = AREA_ICONS[c.areas.findIndex(([n]) => n === name)] ?? DotsThreeCircle; return (
               <RevealItem as="li" key={name}>
-                {slug
-                  ? <Link href={`/sektor/${slug}/`} className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.08] pl-3 pr-4 text-[15px] font-medium text-ink transition-colors hover:bg-white/[.14]"><Ic size={17} className="text-ice-300 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" />{name}</Link>
-                  : <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.04] pl-3 pr-4 text-[15px] text-ice-300"><Ic size={17} className="text-ice-400" />{name}</span>}
+                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.05] pl-3 pr-4 text-[15px] text-ice-200"><Ic size={17} className="text-ice-400" />{name}</span>
               </RevealItem>); })}
           </Reveal>
           {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}
-          <div className="relative z-10 mt-12">
+          <div className="relative z-10 mt-10">
             <p className="text-[15px] font-medium text-ink">{copy[lang].lP}</p>
             <p className="mx-auto mt-3 flex max-w-[44rem] flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ice-400">
               {copy[lang].langs.map((l) => <span key={l} lang={LANG_CODES[l]} dir={l === "العربية" ? "rtl" : undefined}>{l}</span>)}
             </p>
           </div>
-          <div className="relative -mt-6 h-[220px] md:h-[300px]"><DotGlobe /></div>
+          <div className="relative -mt-6 h-[200px] md:h-[260px]"><DotGlobe /></div>
         </div>
         <div className="mt-8 flex justify-center"><Link href="/see-it/" className="btn btn-secondary">{c.picker}<ArrowRight size={14} aria-hidden="true" /></Link></div>
       </div>

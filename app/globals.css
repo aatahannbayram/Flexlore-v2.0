@@ -66,7 +66,7 @@
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
-  --section-y: clamp(80px, 12vh, 160px);
+  --section-y: clamp(72px, 10vh, 136px);
   --header-h: 64px;
 }
 @media (max-width: 767px) { :root { --gutter: 16px; } }
@@ -164,3 +164,6 @@ details summary::-webkit-details-marker { display:none; }
 .prose-blog li + li { margin-top: .5em; } .prose-blog li::marker { color: var(--color-accent); }
 .prose-blog a { color:var(--color-ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgb(255 255 255 / .35); }
 .prose-blog img { border-radius: 16px; width: 100%; }
+
+/* Footer social marks: official monochrome glyph as a mask, painted with the current text colour. */
+.social-mark { display:block; background-color: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
