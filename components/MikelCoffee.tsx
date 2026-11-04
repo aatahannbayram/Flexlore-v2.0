@@ -321,7 +321,7 @@ export default function MikelCoffee() {
         <div className="mt-12 border-t border-white/[.07] pt-8"><p className="mono text-xs uppercase tracking-[.22em] text-flame">{t2(l, "Uygulamayı indirin", "Get the app")}</p>
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <a href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener" aria-label="App Store'dan indirin" className="transition-opacity hover:opacity-80"><img src="/brand/stores/appstore-tr.svg" alt="App Store'dan İndirin" className="h-[48px] w-auto" /></a>
-            <a href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener" aria-label="Google Play'den alın" className="transition-opacity hover:opacity-80"><img src="/brand/stores/googleplay-tr.png" alt="Google Play'den Alın" className="-my-[11px] h-[70px] w-auto" /></a>
+            <a href="https://play.google.com/store/apps/details?id=com.flexlore.app" target="_blank" rel="noopener" aria-label="Google Play'den alın" className="transition-opacity hover:opacity-80"><img src="/brand/stores/googleplay-tr.png" alt="Google Play'den Alın" className="h-12 w-auto" /></a>
           </div></div>
       </div></section>
       <Roi l={l} />

@@ -1,5 +1,7 @@
 // Brand guard (runs as prebuild). Fails on: blue Tailwind classes, blue-hued colour values, em dashes in copy,
 // and font families other than Schibsted Grotesk. Brand source: Flexlore Hyper design system ("Never use blue").
+// Exception (Hyper, "official app store badges"): the unaltered Google Play badge PNG/WebP in public/brand/stores.
+// Raster files are not scanned, so the badge passes as is; do not add blue anywhere else.
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, extname, relative } from "node:path";
 

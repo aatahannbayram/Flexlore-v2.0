@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { SITE } from "./config";
-import { Arr, StoreBadge, AppStoreBadge } from "./Icons";
+import { Arr, GooglePlayBadge, AppStoreBadge } from "./Icons";
 
 export const APP_STORE_URL = "https://apps.apple.com/app/flexlore/id6751126206";
 type OS = "ios" | "android" | "other";
@@ -26,7 +26,7 @@ export function StoreCTA({ label, primary, tr, className = "" }: { label: string
       <p className="text-sm font-semibold text-ink">{label}</p>
       <div className="mt-2 flex flex-wrap items-center gap-2.5">
         <AppStoreBadge lang={tr ? "tr" : "en"} height={40} />
-        <StoreBadge href={SITE.googlePlay} top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" size="sm" />
+        <GooglePlayBadge lang={tr ? "tr" : "en"} height={40} />
       </div>
     </div>
   );

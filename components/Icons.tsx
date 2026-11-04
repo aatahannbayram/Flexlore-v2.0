@@ -46,23 +46,22 @@ export function AppStoreBadge({ lang = "en", height = 44 }: { lang?: "en" | "tr"
       <img src={tr ? "/brand/stores/appstore-tr.svg" : "/brand/stores/appstore-en.svg"} alt={tr ? "App Store'dan indirin" : "Download on the App Store"} height={height} width={Math.round(height * (tr ? 3.78 : 2.99))} style={{ height }} className="block w-auto" />
     </a>);
 }
-/** Google Play badge in the official badge's geometry (646:192, black, #A6A6A6 hairline, small caps line over the
- *  wordmark), sized like the App Store badge next to it. The Play logo itself is left out: it contains blue, which the
- *  brand rules forbid, and Google does not allow it to be recoloured. */
-export function StoreBadge({ href, top, name, size = "md" }: { href: string; top: string; name: string; size?: "sm" | "md" }) {
-  const h = size === "sm" ? 40 : 44;
+/** Official Google Play badge, unaltered (play.google.com/intl/en_us/badges, transparent margin trimmed), at the same
+ *  height as the App Store badge. The one place blue may appear: Flexlore Hyper, "One exception: official app store
+ *  badges" (approved by the org admin, 2026-11-04). */
+export function GooglePlayBadge({ lang = "en", height = 44 }: { lang?: "en" | "tr"; height?: number }) {
+  const tr = lang === "tr"; const ratio = tr ? 3.365 : 3.357;
   return (
-    <a href={href} target="_blank" rel="noopener" style={{ height: h, minWidth: Math.round(h * 3.0) }}
-      className="inline-flex flex-col justify-center rounded-[8px] bg-black px-3.5 text-left ring-1 ring-inset ring-[#A6A6A6] transition-opacity hover:opacity-85">
-      <span className="text-[9px] font-medium uppercase leading-none tracking-[.04em] text-white">{top}</span>
-      <span className={`${size === "sm" ? "text-[17px]" : "text-[19px]"} mt-[3px] font-medium leading-none tracking-[-.015em] text-white`}>{name}</span>
+    <a href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" target="_blank" rel="noopener" className="inline-block rounded-[8px] transition-opacity hover:opacity-85">
+      <picture><source srcSet={`/brand/stores/googleplay-${lang}.webp`} type="image/webp" />
+        <img src={`/brand/stores/googleplay-${lang}.png`} alt={tr ? "Google Play'den alın" : "Get it on Google Play"} height={height} width={Math.round(height * ratio)} style={{ height }} className="block w-auto" /></picture>
     </a>);
 }
 export function StoreButtons({ className = "", small = false, lang = "en" }: { className?: string; small?: boolean; lang?: "en" | "tr" }) {
   const tr = lang === "tr";
   return (<div className={`flex flex-wrap items-center gap-3 ${className}`}>
     <AppStoreBadge lang={lang} height={small ? 40 : 44} />
-    <StoreBadge href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" size={small ? "sm" : "md"} />
+    <GooglePlayBadge lang={lang} height={small ? 40 : 44} />
   </div>);
 }
 
