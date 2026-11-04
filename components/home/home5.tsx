@@ -12,7 +12,7 @@ import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { LOCALES } from "../i18n/locales";
 import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
-import { Rotator } from "../ui/Rotator";
+import { HERO_TAG } from "../i18n/hero-tag";
 import { VideoModal } from "../ui/VideoModal";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
@@ -51,10 +51,12 @@ export function Hero5() {
       <div className="container-x">
         <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),860px)] items-center gap-y-12 pb-14 pt-8 lg:py-10">
           <div className="col-span-12 lg:col-span-6">
-            <p className="hs-in inline-flex items-center gap-2.5 rounded-full bg-[var(--card)] py-1.5 pe-4 ps-2.5 text-[13px] text-ink-muted ring-1 ring-line">
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-ink-faint" />
-              <span>{h.rotPre}<Rotator key={locale} words={h.rot} />{h.rotPost}</span>
-            </p>
+            <div className="hs-in flex items-center gap-3">
+              <span aria-hidden="true" className="flex -space-x-2 rtl:space-x-reverse">
+                {["chef-plating", "safety", "hotel-desk", "huddle"].map((n) => <img key={n} src={`/photos/${n}-800.webp`} alt="" className="h-8 w-8 rounded-full object-cover ring-2 ring-bg" />)}
+              </span>
+              <p className="text-[14px] text-ink-muted">{HERO_TAG[locale]}</p>
+            </div>
             <h1 id="hero-h" className="mt-7 max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-[620] leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
               <span className="block">{h.h1a}</span><span className="block text-ink-faint">{h.h1b}</span>
             </h1>

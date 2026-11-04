@@ -14,6 +14,7 @@ import { SITE } from "../config";
 import { FEATURES, GROUPS, FEAT_NAV, type Feature } from "./data";
 import { FICON } from "./ficons";
 import { FeatureVisual } from "./visuals";
+import { Compare5 } from "../home/home5b";
 import { Reveal, RevealItem } from "../ui/Reveal";
 import { ArrowRight, Check, Plus, CheckCircle, Lightning, Users, Clock, Warning } from "../ui/icons";
 
@@ -223,6 +224,7 @@ export function FeaturesIndex() {
           <h2 id={`g-${g}`} className="text-[22px] font-semibold tracking-[-0.02em]">{t.groups[g]}</h2>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{FEATURES.filter((f) => f.group === g).map((f) => <FeatureCard key={f.slug} f={f} />)}</ul>
         </section>))}
+      <div className="pt-[var(--section-y)]"><Compare5 /></div>
       <End c={c} />
     </main>
     <Footer />

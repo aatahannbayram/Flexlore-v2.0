@@ -101,3 +101,4 @@ export const COMPARE5: Record<Locale, Cmp> = {
   pl: { k: "Przed i po", h: "Od przekazu ustnego do standardu, którego wszyscy przestrzegają.", lead: "Flexlore zamienia wiedzę operacyjną Twojej firmy w szkolenia wideo dla pracowników: krok po kroku, wspierane przez AI i mierzalne.", old: "Tradycyjnie", now: "Z Flexlore",
     rows: [["Szkolenie przekazywane ustnie", "Szkolenie wideo, które każdy może powtórzyć"], ["Dokumenty rozrzucone po folderach", "Jedna centralna biblioteka"], ["Nauka od osoby na zmianie", "Standardowe instrukcje pracy"], ["Nie wiadomo, kto zrozumiał", "Quiz przygotowany przez AI do każdego zadania"], ["Ręczne śledzenie postępów", "Ukończenie wg osoby, zespołu i lokalizacji"], ["Każdy oddział robi to po swojemu", "Jedna procedura we wszystkich lokalizacjach"]] },
 };
+

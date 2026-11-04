@@ -643,5 +643,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the process section, in page order. */
 export default function Below() {
-  return (<><Compare5 /><Process5 /><Bento5 /><Caps5 /><Web5 /><Workspace5 /><AI5 /><Roles5 /><Industries5 /><Cases5 /><Statement5 /><Pricing5 /><Faq5 /><End5 /></>);
+  return (<><Process5 /><Bento5 /><Caps5 /><Web5 /><Workspace5 /><AI5 /><Roles5 /><Industries5 /><Cases5 /><Statement5 /><Compare5 /><Pricing5 /><Faq5 /><End5 /></>);
 }
