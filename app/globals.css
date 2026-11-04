@@ -167,3 +167,7 @@ details summary::-webkit-details-marker { display:none; }
 
 /* Footer social marks: official monochrome glyph as a mask, painted with the current text colour. */
 .social-mark { display:block; background-color: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+
+/* Server-rendered bilingual copy: show the language of the nearest [lang] block. */
+main[lang="tr"] .l-en { display: none; }
+main:not([lang="tr"]) .l-tr { display: none; }

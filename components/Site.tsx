@@ -8,7 +8,7 @@ import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
 import { TrustStrip, Problem, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
 import { Capabilities } from "./home/Capabilities";
-import { Positioning, UseCases } from "./home/Extras";
+import { Positioning } from "./home/Extras";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -18,7 +18,7 @@ export function Video({ name, className = "" }: { name: string; eager?: boolean;
 
 /** Home page, in brief order: header, hero, trust, problem, how it works, Flexlore Web, capabilities, industries,
  *  proof (flagged), pricing (light), FAQ, final CTA, footer. */
-export default function Site() {
+export default function Site({ useCases }: { useCases?: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>("en");
   const [paused, setPaused] = useState(false);
   const t = copy[lang];
@@ -38,7 +38,7 @@ export default function Site() {
           <WebShowcase lang={lang} />
           <Capabilities lang={lang} />
           <Industries lang={lang} />
-          <UseCases lang={lang} />
+          {useCases}
           <Proof />
           <PricingPreview lang={lang} />
           <Faq lang={lang} />
