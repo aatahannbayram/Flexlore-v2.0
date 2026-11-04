@@ -196,7 +196,7 @@ export function ReadyScreen({ active }: { active: boolean }) {
     <div className="mx-4 mb-1 mt-5 flex text-xs text-white/70"><span className="flex-1">Standart Work With Access</span><span className="w-9 text-center">View</span><span className="w-9 text-center">Quiz</span></div>
     <ul className="mx-3">{WORK.map(([t, v, e, q], i) => <m.li key={t} initial={false} animate={{ opacity: active ? 1 : .3, x: active ? 0 : 8 }} transition={{ delay: .3 + i * .08, duration: .5, ease }} className="flex h-[56px] items-center gap-2.5 px-1">
       <span className="h-11 w-11 shrink-0 rounded-[10px] bg-cover bg-center ring-1 ring-white/10" style={{ backgroundImage: `url(/video/${v}.webp)` }} />
-      <span className="min-w-0 flex-1"><span className="block truncate text-sm font-semibold tracking-[-.01em] text-white">{t}</span><span className="block text-xs tabular-nums text-[#666]">Last Updated : 14.03.2026</span></span>
+      <span className="min-w-0 flex-1"><span className="block truncate text-sm font-semibold tracking-[-.01em] text-white">{t}</span><span className="block truncate whitespace-nowrap text-[11px] tabular-nums text-[#666]">Updated : 14.03.2026</span></span>
       <span className="grid w-9 place-items-center">{e ? <Eye size={18} className="text-white" /> : <EyeSlash size={18} className="text-white/30" />}</span>
       <span className="grid w-9 place-items-center"><Check size={15} className={q ? "text-white" : "text-white/25"} /></span></m.li>)}</ul></div>);
 }

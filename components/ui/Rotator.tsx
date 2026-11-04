@@ -10,10 +10,10 @@ export function Rotator({ words, every = 2400 }: { words: string[]; every?: numb
   useEffect(() => { if (reduce) return; const id = window.setInterval(() => setI((v) => (v + 1) % words.length), every); return () => window.clearInterval(id); }, [reduce, words.length, every]);
   useEffect(() => { setI(0); }, [words]);
   return (
-    <span className="relative inline-flex overflow-hidden align-bottom">
+    <span className="relative inline-grid overflow-hidden align-bottom leading-[inherit]">
       <span className="sr-only">{words.join(", ")}</span>
-      <AnimatePresence mode="popLayout" initial={false}>
-        <m.span key={words[i]} aria-hidden="true" className="inline-block text-ice-200"
+      <AnimatePresence initial={false}>
+        <m.span key={words[i]} aria-hidden="true" className="col-start-1 row-start-1 whitespace-nowrap text-ice-200"
           initial={{ y: "100%", opacity: 0 }} animate={{ y: "0%", opacity: 1 }} exit={{ y: "-100%", opacity: 0 }} transition={{ duration: 0.45, ease: EASE }}>
           {words[i]}
         </m.span>

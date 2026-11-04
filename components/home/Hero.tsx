@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Play } from "../ui/icons";
 import type { C, Lang } from "../copy";
 import { SITE } from "../config";
-import { Device, SopScreen } from "../AppScreens";
+import { Device, SopScreen, ReadyScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
 import { Rotator } from "../ui/Rotator";
 import { MagneticButton } from "../ui/MagneticButton";
@@ -54,20 +54,27 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
             </div>
           </div>
 
-          <div className="col-span-12 md:col-span-5 lg:col-span-5 lg:col-start-8">
-            <div className="hs-device relative mx-auto w-[min(64vw,260px)] md:w-[min(100%,250px)] lg:w-[clamp(232px,calc((100svh-var(--header-h)-96px)*0.461),300px)]" style={{ animationDelay: "360ms" }}>
-              <Device label={t.alts[1]}><SopScreen active /></Device>
-              {/* Readiness chip: overlaps the device corner, never the copy column. */}
-              <div className="panel absolute -bottom-8 left-1/2 md:max-lg:hidden w-[14rem] -translate-x-1/2 px-4 py-3 lg:bottom-auto lg:left-[-15rem] lg:top-[58%] lg:translate-x-0">
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold">{t.chip.title}</p>
-                  <span className="rounded-full bg-[rgb(104_210_185/0.12)] px-2 py-0.5 text-xs font-semibold text-calm-aqua">{t.chip.status}</span>
+          {/* Product: the step-by-step player in front; on desktop the Orientation Analyzer stands behind it, offset and
+              slightly turned, so the hero shows both sides of the app (learn the job / see who is ready). */}
+          <div className="col-span-12 md:col-span-5 lg:col-span-6 lg:col-start-7">
+            <div className="relative mx-auto lg:h-[min(calc(100svh-var(--header-h)-64px),780px)] lg:w-full">
+              <div aria-hidden="true" className="hs-device absolute left-[4%] top-[9%] hidden w-[clamp(200px,calc((100svh-var(--header-h)-96px)*0.4),262px)] -rotate-[5deg] opacity-80 [filter:brightness(.82)] lg:block" style={{ animationDelay: "520ms" }}>
+                <Device label=""><ReadyScreen active /></Device>
+              </div>
+              <div className="hs-device relative z-10 mx-auto w-[min(64vw,260px)] md:w-[min(100%,250px)] lg:absolute lg:right-[2%] lg:top-1/2 lg:mx-0 lg:w-[clamp(232px,calc((100svh-var(--header-h)-96px)*0.461),300px)] lg:-translate-y-1/2" style={{ animationDelay: "360ms" }}>
+                <Device label={t.alts[1]}><SopScreen active /></Device>
+                {/* Readiness chip: phones only (on tablet and desktop the second screen tells this story). */}
+                <div className="panel absolute -bottom-8 left-1/2 w-[14rem] -translate-x-1/2 px-4 py-3 md:hidden">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-semibold">{t.chip.title}</p>
+                    <span className="rounded-full bg-[rgb(104_210_185/0.12)] px-2 py-0.5 text-xs font-semibold text-calm-aqua">{t.chip.status}</span>
+                  </div>
+                  <div className="mt-3 flex items-center gap-3">
+                    <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-surface-2"><span className="absolute inset-y-0 left-0 w-[86%] rounded-full bg-ice-200" /></span>
+                    <span className="text-sm font-semibold tabular-nums">12/14</span>
+                  </div>
+                  <p className="mt-2 text-xs text-ink-faint">{t.chip.note}</p>
                 </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <span className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-surface-2"><span className="absolute inset-y-0 left-0 w-[86%] rounded-full bg-ice-200" /></span>
-                  <span className="text-sm font-semibold tabular-nums">12/14</span>
-                </div>
-                <p className="mt-2 text-xs text-ink-faint">{t.chip.note}</p>
               </div>
             </div>
           </div>
