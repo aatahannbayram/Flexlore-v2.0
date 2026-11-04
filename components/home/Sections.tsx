@@ -6,7 +6,9 @@ import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import {
   ArrowCounterClockwise, UsersThree, BookOpen, ArrowRight, Sparkle, CheckCircle, LockSimple, MapPin, Plus,
 } from "../ui/icons";
-import type { Lang } from "../copy";
+import { copy, type Lang } from "../copy";
+
+const LANG_CODES: Record<string, string> = { English: "en", "Türkçe": "tr", Deutsch: "de", "العربية": "ar", "Español": "es", "Русский": "ru", "Français": "fr", Polski: "pl" };
 import { home, IND_CARDS } from "./home-copy";
 import { SITE, PLANS, PLAN_TR } from "../config";
 import { INDUSTRIES, type Ind } from "../seeit-data";
@@ -187,7 +189,14 @@ export function Industries({ lang }: { lang: Lang }) {
                   : <span className="inline-flex min-h-11 items-center rounded-full bg-white/[.04] px-4 text-[15px] text-ice-300">{name}</span>}
               </RevealItem>))}
           </Reveal>
-          <div className="relative -mt-2 h-[220px] md:h-[300px]"><DotGlobe /></div>
+          {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}
+          <div className="relative z-10 mt-12">
+            <p className="text-[15px] font-medium text-ink">{copy[lang].lP}</p>
+            <p className="mx-auto mt-3 flex max-w-[44rem] flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ice-400">
+              {copy[lang].langs.map((l) => <span key={l} lang={LANG_CODES[l]} dir={l === "العربية" ? "rtl" : undefined}>{l}</span>)}
+            </p>
+          </div>
+          <div className="relative -mt-6 h-[220px] md:h-[300px]"><DotGlobe /></div>
         </div>
         <ScenarioPicker lang={lang} />
       </div>

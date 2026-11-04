@@ -77,8 +77,8 @@ export const home: Record<Lang, HomeCopy> = {
         // TODO(ata): confirm offline behaviour before mentioning it.
         { q: "Which devices does it run on?", a: "iOS and Android for your team, plus a web platform for managers." },
         { q: "Who can see our content?", a: "You decide. Access is set by role and location, so people see only the jobs meant for them. Our Privacy, Security and Sub-processors pages cover how data is handled." },
-        // TODO(ata): list app languages once confirmed.
-        { q: "Which languages are supported?", a: "Multilingual content is coming soon. Tell us which languages your team speaks and we will keep you posted." },
+        // Confirmed by Ata 2026-11-04: 8 languages (list as in copy.ts langs).
+        { q: "Which languages are supported?", a: "Flexlore is available in 8 languages: English, Turkish, German, Arabic, Spanish, Russian, French and Polish." },
         { q: "How is it priced?", a: "Plans are priced by number of users: Free covers 3, Pro 10 and ProPlus 30. Enterprise starts at 30+ users." },
       ],
     },
@@ -143,7 +143,7 @@ export const home: Record<Lang, HomeCopy> = {
         { q: "Başlamak için ne gerekir?", a: "Bir telefon ve gerçek bir iş. Çekin, yapay zekânın hazırladığı taslağı kontrol edin, sonra atayın. Demo görüşmesinde işlerinizden birini sizinle birlikte hazırlarız." },
         { q: "Hangi cihazlarda çalışır?", a: "Ekibiniz için iOS ve Android, yöneticiler için web platformu." },
         { q: "İçeriğimizi kimler görebilir?", a: "Siz karar verirsiniz. Erişim rol ve şubeye göre belirlenir; herkes yalnızca kendisi için olan işleri görür. Verinin nasıl işlendiği Gizlilik, Güvenlik ve Alt İşleyenler sayfalarımızda yer alır." },
-        { q: "Hangi diller destekleniyor?", a: "Çok dilli içerik yakında geliyor. Ekibinizin hangi dilleri konuştuğunu bize söyleyin, sizi haberdar edelim." },
+        { q: "Hangi diller destekleniyor?", a: "Flexlore 8 dilde kullanılabilir: İngilizce, Türkçe, Almanca, Arapça, İspanyolca, Rusça, Fransızca ve Lehçe." },
         { q: "Fiyatlandırma nasıl?", a: "Planlar kullanıcı sayısına göre fiyatlanır: Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar." },
       ],
     },
