@@ -45,20 +45,20 @@ export const Title = ({ a, b }: { a: string; b: string }) => <h3 className="max-
 
 /* ---------- 1. Hero ---------- */
 export function Hero5() {
-  const { d, lang } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false);
+  const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false);
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
       <div className="container-x">
         <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),860px)] items-center gap-y-12 pb-14 pt-8 lg:py-10">
           <div className="col-span-12 lg:col-span-6">
             <p className="hs-in inline-flex items-center gap-2.5 rounded-full bg-[var(--card)] py-1.5 pe-4 ps-2.5 text-[13px] text-ink-muted ring-1 ring-line">
-              <span aria-hidden="true" className="relative grid h-2 w-2 place-items-center"><span className="absolute h-2 w-2 animate-ping rounded-full bg-flame/60 motion-reduce:hidden" /><span className="h-1.5 w-1.5 rounded-full bg-flame" /></span>
-              <span>{h.rotPre}<Rotator words={h.rot} />{h.rotPost}</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-ink-faint" />
+              <span>{h.rotPre}<Rotator key={locale} words={h.rot} />{h.rotPost}</span>
             </p>
-            <h1 id="hero-h" className="mt-6 max-w-[16ch] text-[clamp(36px,0.9rem+2.6vw,60px)] font-[600] leading-[1.04] tracking-[-0.035em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-7 max-w-[15ch] text-[clamp(40px,1rem+3vw,68px)] font-[620] leading-[0.98] tracking-[-0.045em] [text-wrap:balance]">
               <span className="block">{h.h1a}</span><span className="block text-ink-faint">{h.h1b}</span>
             </h1>
-            <p className="hs-in mt-5 max-w-[30rem] text-[17px] leading-[1.6] text-ink-muted" style={{ animationDelay: "200ms" }}>{h.sub}</p>
+            <p className="hs-in mt-6 max-w-[30rem] text-[18px] leading-[1.6] text-ink-muted" style={{ animationDelay: "200ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "300ms" }}>
               <MagneticButton href={SITE.demo}>{d.nav.cta}</MagneticButton>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary"><Play size={14} weight="fill" aria-hidden="true" />{h.watch}</button>
@@ -72,9 +72,10 @@ export function Hero5() {
           <div className="col-span-12 lg:col-span-6">
             <div className="hs-device relative mx-auto aspect-[4/5] max-w-[560px] lg:me-0" style={{ animationDelay: "250ms" }}>
               <div className="dark absolute inset-y-0 end-0 w-[86%] overflow-hidden rounded-[32px] bg-[#2a2622]">
-                <Pic n="kitchenline" eager sizes="(min-width:1024px) 40vw, 90vw" className="kenburns absolute inset-0 h-full w-full object-cover object-[35%_center]" />
+                <Pic n="kitchenline" eager sizes="(min-width:1024px) 40vw, 90vw" className="absolute inset-0 h-full w-full object-cover object-[35%_center]" />
+                <SmartVideo name="kitchen" poster="/photos/kitchenline-1600.webp" threshold={0.2} className="absolute inset-0 h-full w-full object-cover" />
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(200deg,rgb(17_17_17/0)_40%,rgb(17_17_17/0.55)_100%)]" />
-                <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur"><span className="h-2 w-2 animate-pulse rounded-full bg-[#E54A4A]" />{h.live}</span>
+                <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur"><span className="h-2 w-2 rounded-full bg-[#E54A4A]" />{h.live}</span>
               </div>
               <div className="absolute bottom-[6%] start-0 w-[46%] max-w-[250px]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
               <div className="absolute bottom-[10%] end-[6%] w-[44%] max-w-[230px] rounded-[20px] bg-[rgb(var(--bg-rgb)/0.9)] p-4 ring-1 ring-line backdrop-blur-md">

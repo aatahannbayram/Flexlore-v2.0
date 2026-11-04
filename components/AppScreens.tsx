@@ -159,8 +159,8 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
             <span className="relative h-[3px] flex-1 rounded-full" style={{ background: S3 }}><m.span className="absolute inset-y-0 left-0 rounded-full bg-white/55" initial={false} animate={{ width: `${(v / 12) * 100}%` }} transition={{ duration: reduce ? 0 : .8, ease }} /></span>
             <span className="w-8 text-right font-medium text-white/85">{v}/12</span></div>)}
           <div className="mt-3 flex gap-2 text-[12px]">
-            <span className="flex-1 rounded-full py-[9px] text-center text-white" style={{ background: S3 }}>{L.eq}</span>
-            <span className="flex-1 rounded-full py-[9px] text-center font-medium text-[#111111]" style={{ background: O }}>{L.det}</span></div>
+            <span className="min-w-0 flex-1 truncate whitespace-nowrap rounded-full px-1.5 py-[9px] text-center text-[11px] text-white" style={{ background: S3 }}>{L.eq}</span>
+            <span className="min-w-0 flex-1 truncate whitespace-nowrap rounded-full px-1.5 py-[9px] text-center text-[11px] font-medium text-white" style={{ background: O }}>{L.det}</span></div>
         </div>
         {/* Operator */}
         <div className="mt-2.5 flex items-center rounded-[16px] px-3.5 py-3 text-[14px] text-white" style={{ background: S1 }}>

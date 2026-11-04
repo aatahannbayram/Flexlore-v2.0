@@ -18,9 +18,9 @@ export function FlagPicker({ up = false, className = "" }: { up?: boolean; class
   return (
     <div ref={box} className={`relative ${className}`}>
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open} aria-label={`${d.nav.language}: ${cur.name}`}
-        className="flex h-11 items-center gap-1.5 rounded-full px-2 text-ink-muted transition-colors hover:text-ink">
-        <img src={`/flags/${cur.flag}.svg`} alt="" width={22} height={22} className="h-[22px] w-[22px] rounded-full" />
-        <CaretDown size={12} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
+        className="flex h-9 items-center gap-1 rounded-full pe-2 ps-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
+        <img src={`/flags/${cur.flag}.svg`} alt="" width={16} height={16} className="h-4 w-4 rounded-full" />
+        <CaretDown size={10} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
         <ul role="listbox" aria-label={d.nav.language} className={`absolute z-50 w-52 rounded-2xl bg-surface-1 p-1.5 ring-1 ring-line ${up ? "bottom-full mb-2" : "top-full mt-2"} end-0`}>
@@ -28,7 +28,7 @@ export function FlagPicker({ up = false, className = "" }: { up?: boolean; class
             <li key={l.code} role="option" aria-selected={l.code === locale}>
               <button type="button" lang={l.code} dir={l.dir} onClick={() => { setLocale(l.code); setOpen(false); }}
                 className={`flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-start text-[15px] transition-colors hover:bg-surface-2 ${l.code === locale ? "text-ink" : "text-ink-muted"}`}>
-                <img src={`/flags/${l.flag}.svg`} alt="" width={20} height={20} className="h-5 w-5 rounded-full" />
+                <img src={`/flags/${l.flag}.svg`} alt="" width={20} height={20} className="h-[18px] w-[18px] rounded-full" />
                 <span className="flex-1">{l.name}</span>{l.code === locale && <Check size={15} aria-hidden="true" />}
               </button>
             </li>))}

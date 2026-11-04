@@ -39,7 +39,6 @@
 :root[data-theme="light"] .hover\:ring-white\/50:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .hover\:text-white:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .hover\:text-white\/80:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
-@media (min-width: 1024px) { :root[data-theme="light"] .lg\:bg-white\/\[\.06\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.051); } }
 :root[data-theme="light"] .ring-white:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/10:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .ring-white\/20:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.2); }

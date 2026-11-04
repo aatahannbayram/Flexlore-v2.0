@@ -10,24 +10,33 @@ import { EASE } from "./ui/Reveal";
 
 /* Menu content (icons, descriptions) for the header. Loaded on first interaction, so it is not part of the first page load. */
 
+/* One featured card per menu, with a blog photograph: a calm visual anchor next to the links. */
+const FEATURE: Record<string, { img: string; href: string; t: (d?: Dict, lang?: Lang) => string; k: (d?: Dict) => string }> = {
+  product: { img: "vvyMkqyAHHEpN8ItawEya0MuNM", href: "/see-it/", t: (d, l) => tt(d, "seeit", 0, l === "tr" ? "Kendi işinizde görün" : "See it in your business"), k: (d) => tt(d, "seeit", 1, "One real job, start to finish") },
+  industries: { img: "KaY79DZIn2DIGC4EcRjC6onFOk", href: "/see-it/", t: (d, l) => d ? d.nav.seeAll : l === "tr" ? "Flexlore'u kendi işinizde görün" : "See Flexlore in your business", k: (d) => tt(d, "seeit", 1, "One real job, start to finish") },
+  resources: { img: "exrv3Azw8JV3f2UvuRcEXLveb9Q", href: "/blog/training-gaps-and-quality-defects-what-the-data-shows/", t: () => "Training Gaps and Quality Defects: What the Data Shows", k: (d) => tt(d, "blog", 0, "Blog") },
+};
 export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; lang: Lang; d?: Dict; home: boolean; close: () => void; reduce: boolean }) {
-  const g = NAV.find((x) => x.id === id)!;
+  const g = NAV.find((x) => x.id === id)!; const f = FEATURE[id];
   const [hover, setHover] = useState<number | null>(null);
   return (
-    <div className="rounded-[24px] bg-surface-1 p-3">
-      <ul className="grid grid-cols-2 gap-1" onMouseLeave={() => setHover(null)}>
+    <div className="grid grid-cols-[1fr_230px] gap-2 rounded-[24px] bg-surface-1 p-2 ring-1 ring-line">
+      <ul className="grid grid-cols-2 content-start gap-0.5 p-1" onMouseLeave={() => setHover(null)}>
         {g.items.map((it, i) => { const Ic = it.icon; return (
           <li key={it.href} onMouseEnter={() => setHover(i)} className="relative">
-            {hover === i && <m.span layoutId="mega-hover" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 34 }} className="absolute inset-0 rounded-2xl bg-white/[.06]" />}
-            <a href={navHref(it, home)} onClick={close} onFocus={() => setHover(i)} className="relative flex items-start gap-3.5 rounded-2xl p-3">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[.07] text-ink"><Ic size={19} /></span>
-              <span><span className="block text-[15px] font-semibold text-ink">{tt(d, it.k, 0, it.t[lang])}</span><span className="mt-0.5 block text-[13px] leading-snug text-ink-muted">{tt(d, it.k, 1, it.d[lang])}</span></span>
+            {hover === i && <m.span layoutId="mega-hover" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 34 }} className="absolute inset-0 rounded-2xl bg-[var(--card-2)]" />}
+            <a href={navHref(it, home)} onClick={close} onFocus={() => setHover(i)} className="relative flex items-center gap-3 rounded-2xl px-3 py-2.5">
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[var(--card-2)] text-ink"><Ic size={17} /></span>
+              <span className="min-w-0"><span className="block text-[14px] font-semibold text-ink">{tt(d, it.k, 0, it.t[lang])}</span><span className="block truncate text-[12.5px] text-ink-faint">{tt(d, it.k, 1, it.d[lang])}</span></span>
             </a>
           </li>); })}
       </ul>
-      {g.more && (
-        <a href={g.more.href} onClick={close} className="mt-1 flex items-center justify-between rounded-2xl bg-white/[.04] px-4 py-3 text-sm font-medium text-ink-muted transition-colors hover:text-ink">
-          {d ? d.nav.seeAll : g.more.t[lang]}<ArrowRight size={14} aria-hidden="true" /></a>)}
+      <a href={f.href} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
+        <picture><source srcSet={`/blog/${f.img}-800.avif`} type="image/avif" /><img src={`/blog/${f.img}-800.webp`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></picture>
+        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.85)_100%)]" />
+        <span className="relative text-[12px] text-white/70">{f.k(d)}</span>
+        <span className="relative mt-1 flex items-end justify-between gap-2 text-[14px] font-semibold leading-snug text-white">{f.t(d, lang)}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
+      </a>
     </div>);
 }
 

@@ -107,7 +107,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   {mega === g.id && (
                     <m.div key="mega" id={`mega-${g.id}`} onMouseEnter={() => enter(g.id)} onMouseLeave={leave}
                       initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: reduce ? 0 : 0.22, ease: EASE }}
-                      className="absolute left-1/2 top-[calc(var(--header-h)-4px)] w-[min(760px,calc(100vw-48px))] -translate-x-1/2">
+                      className="absolute left-1/2 top-[calc(var(--header-h)-4px)] w-[min(820px,calc(100vw-48px))] -translate-x-1/2">
                       <MegaPanel id={g.id} lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setMega(null)} reduce={!!reduce} />
                     </m.div>)}
                 </AnimatePresence>
@@ -117,10 +117,10 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
 
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button type="button" onClick={() => setSearch(true)} aria-keyshortcuts="Meta+K Control+K"
-              className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:w-auto lg:gap-2 lg:bg-white/[.06] lg:px-3.5 lg:text-sm">
+              className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:h-10 lg:w-auto lg:gap-2 lg:bg-[var(--card)] lg:px-3.5 lg:text-sm">
               <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{own ? (tr ? "Ara" : "Search") : n.search}</span><span className="sr-only">{own ? (tr ? ": sitede" : " the site") : ""}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
             </button>
-            <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} className="hidden sm:grid" /><div className="hidden sm:block">{own ? LangSwitch : <FlagPicker />}</div>
+            {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></> : <div className="hidden items-center rounded-full bg-[var(--card)] p-0.5 sm:flex"><ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-9 !w-9" /><FlagPicker /></div>}
             <a href={SITE.demo} className="btn btn-primary btn-sm">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>

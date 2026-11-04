@@ -254,3 +254,34 @@ main:not([lang="tr"]) .l-tr { display: none; }
 .ai-dot { offset-rotate: 0deg; animation: aidot 2.8s ease-in-out infinite; }
 @keyframes aidot { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ai-dot { animation: none; opacity: 0; } }
+/* Non-English first load: hold the page until its dictionary is in (see I18N_BOOT in app/layout.tsx). */
+html.i18n-wait body { opacity: 0; }
+html body { transition: opacity .25s ease; }
+/* Bento choreography (components/home/home5b.tsx). Before .bx-go nothing moves; after it each piece plays once.
+   Reduced motion: final state at once. */
+.bx-rise, .bx-in, .bx-pop, .bx-cursor { opacity: 0; }
+.bx-bar { transform: scaleX(0); }
+.bx-fill { transform: scaleX(0); transform-origin: left; }
+.bx-go .bx-rise { animation: bxRise .6s var(--ease-out-expo) both; }
+.bx-go .bx-in { animation: bxFade .4s ease both; }
+.bx-go .bx-out { animation: bxFadeOut .4s ease both; }
+.bx-go .bx-pop { animation: bxPop .45s cubic-bezier(.34,1.56,.64,1) both; }
+.bx-go .bx-bar, .bx-go .bx-fill { animation: bxBar 1.1s var(--ease-out-expo) both; }
+.bx-go .bx-ink { animation: bxInk .4s ease both; }
+.bx-go .bx-cursor { animation: bxCursor 1.2s var(--ease-out-expo) both; }
+.bx-go .bx-press { animation: bxPress .5s ease both; }
+@keyframes bxRise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes bxFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bxFadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes bxPop { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+@keyframes bxBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes bxInk { from { color: inherit; } to { color: var(--color-bg); } }
+@keyframes bxCursor { 0% { opacity: 0; transform: translate(60px, 40px); } 30% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+@keyframes bxPress { 0%, 100% { transform: none; } 50% { transform: scale(.94); } }
+@media (prefers-reduced-motion: reduce) {
+  .bx-rise, .bx-in, .bx-pop, .bx-cursor { opacity: 1; animation: none !important; }
+  .bx-out { opacity: 0; animation: none !important; } .bx-bar, .bx-fill { transform: none; animation: none !important; } .bx-ink { color: var(--color-bg); animation: none !important; }
+}
+.rot-in { animation: rotIn .45s var(--ease-out-expo) both; }
+@keyframes rotIn { from { transform: translateY(70%); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .rot-in { animation: none; } }

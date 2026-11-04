@@ -17,7 +17,7 @@ export const base = (l: Locale): "en" | "tr" => (l === "tr" ? "tr" : "en");
 
 /* Country from the browser's time zone (no network, no permission prompt, nothing leaves the device).
    Only zones that clearly map to one of our languages are listed; everything else falls back to the browser language. */
-const TZ: Record<string, Locale> = {
+export const TZ: Record<string, Locale> = {
   "Europe/Istanbul": "tr", "Asia/Istanbul": "tr", "Asia/Nicosia": "tr",
   "Europe/Berlin": "de", "Europe/Vienna": "de", "Europe/Zurich": "de", "Europe/Busingen": "de", "Europe/Vaduz": "de",
   "Europe/Paris": "fr", "Europe/Monaco": "fr", "Africa/Casablanca": "fr", "Africa/Tunis": "fr", "Africa/Algiers": "fr", "Africa/Dakar": "fr", "Africa/Abidjan": "fr", "Indian/Reunion": "fr",

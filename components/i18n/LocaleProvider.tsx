@@ -20,14 +20,14 @@ export const fmt = (s: string, v: Record<string, string | number>) => s.replace(
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const [locale, set] = useState<Locale>("en"); const [d, setD] = useState<Dict>(en); const [ready, setReady] = useState(false);
   const apply = useCallback((l: Locale) => {
-    set(l); LOAD[l]().then(setD).catch(() => setD(en));
+    set(l); LOAD[l]().then(setD).catch(() => setD(en)).finally(() => requestAnimationFrame(() => document.documentElement.classList.remove("i18n-wait")));
     const dir = LOCALES.find((x) => x.code === l)?.dir ?? "ltr";
     document.documentElement.lang = l; document.documentElement.dir = dir;
   }, []);
   useEffect(() => {
     let saved: string | null = null; try { saved = localStorage.getItem(KEY); } catch {}
     const l = isLocale(saved) ? saved : detectLocale();
-    if (l !== "en") apply(l); setReady(true);
+    if (l !== "en") apply(l); else document.documentElement.classList.remove("i18n-wait"); setReady(true);
   }, [apply]);
   const setLocale = useCallback((l: Locale) => { try { localStorage.setItem(KEY, l); } catch {} apply(l); }, [apply]);
   return <C.Provider value={{ locale, lang: base(locale), d, setLocale, ready }}>{children}</C.Provider>;

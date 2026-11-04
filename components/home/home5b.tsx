@@ -134,71 +134,85 @@ export function Caps5() {
     </section>);
 }
 
-/* ---------- 6. Bento ---------- */
+/* ---------- 6. Bento: the product in five moves, animated once in view (final state under reduced motion) ---------- */
+const BLOG = (id: string) => <picture><source srcSet={`/blog/${id}-800.avif`} type="image/avif" /><img src={`/blog/${id}-800.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>;
+const gl = "rounded-[18px] bg-[rgb(20_20_20/0.72)] ring-1 ring-white/10 backdrop-blur-md";
 export function Bento5() {
-  const { d, lang } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null);
-  const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.2 });
+  const { d, lang } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
+  const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.2 }); const seen = useInView(ref, { amount: 0.25, once: true });
+  const go = seen || !!reduce;
   const thumbs = ["kitchenline", "chef-plating", "chef-fire"];
+  const st = (delay: number) => (reduce ? {} : { animationDelay: `${delay}ms` });
   return (
     <section id="product" aria-labelledby="bento-h" className="section-y pt-0">
       <div className="container-x">
         <Label icon={Sparkle}>{c.k}</Label>
         <H2 id="bento-h" className="max-w-[18ch]">{c.h}</H2>
-        <div ref={ref} className="mt-12 grid gap-3 lg:grid-cols-2">
-          <article className={`${card} min-h-[520px] p-6 md:p-8`}>
+        <div ref={ref} className={`mt-12 grid gap-3 lg:grid-cols-[1.15fr_1fr] ${go ? "bx-go" : ""}`}>
+          {/* A: drafts arrive and get approved */}
+          <article className={`${card} min-h-[500px] p-6 md:p-8`}>
             <Title a={c.a[0]} b={c.a[1]} /><Corner href="/ai/" label={c.a[0]} />
-            <div aria-hidden="true" className="mx-auto mt-10 max-w-[26rem] space-y-2.5">
+            <div aria-hidden="true" className="mx-auto mt-10 max-w-[27rem] space-y-2">
               {c.jobs.map((j, k) => (
-                <div key={j} className={inner}>
-                  <div className="flex items-center gap-3.5 p-2.5 pe-3">
-                    <span className="h-12 w-12 shrink-0 overflow-hidden rounded-xl"><Pic n={thumbs[k]} sizes="48px" className="h-full w-full object-cover" /></span>
-                    <span className="flex-1 text-[16px] font-medium tracking-[-0.01em]">{j}</span>
-                    <span className="rounded-full bg-[var(--card)] px-3.5 py-1.5 text-[13px] font-medium">{c.view}</span>
-                  </div>
-                  {k > 0 && <div className="flex justify-between px-4 pb-2.5 pt-1 text-[13px]"><span className="text-ink-faint">{c.assigned}</span><span className="text-ink-muted">{c.who[k - 1]}</span></div>}
+                <div key={j} className={`${inner} bx-rise flex items-center gap-3.5 p-2.5 pe-3`} style={st(150 + k * 220)}>
+                  <span className="h-11 w-11 shrink-0 overflow-hidden rounded-xl"><Pic n={thumbs[k]} sizes="44px" className="h-full w-full object-cover" /></span>
+                  <span className="min-w-0 flex-1"><span className="block truncate text-[15px] font-medium">{j}</span><span className="block text-[12px] text-ink-faint">{c.assigned} · {c.who[k % 2]}</span></span>
+                  <span className="relative grid h-7 w-[6.6rem] shrink-0 text-[12px] font-semibold">
+                    <span className="bx-out absolute inset-0 grid place-items-center rounded-full bg-[var(--card)] text-ink-muted" style={st(1100 + k * 260)}><span className="flex items-center gap-1"><Sparkle size={12} weight="fill" />{d.caps.frag.draft}</span></span>
+                    <span className="bx-in absolute inset-0 grid place-items-center rounded-full bg-ink text-bg" style={st(1100 + k * 260)}><span className="flex items-center gap-1"><CheckCircle size={12} weight="fill" />{d.caps.frag.ok}</span></span>
+                  </span>
                 </div>))}
-              <div className="relative flex justify-center pt-5">
-                <span className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-semibold text-bg"><CheckCircle size={16} weight="fill" />{c.approve}</span>
-                <span className="absolute start-[64%] top-[-14px] flex items-end gap-1" dir="ltr">
-                  <svg width="22" height="22" viewBox="0 0 24 24" className="text-ink"><path fill="currentColor" d="M4 2l16 9-7 2-3 7z" /></svg>
+              <div className="relative flex justify-center pt-6">
+                <span className="bx-press inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-semibold text-bg" style={st(2100)}><CheckCircle size={16} weight="fill" />{c.approve}</span>
+                <span className="bx-cursor absolute start-[62%] top-0 flex items-end gap-1" dir="ltr" style={st(1700)}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" className="text-ink"><path fill="currentColor" d="M4 2l16 9-7 2-3 7z" /></svg>
                   <span className="rounded-full bg-ink px-2.5 py-1 text-[12px] font-semibold text-bg">{c.cursor}</span></span>
               </div>
             </div>
           </article>
-          <article className={`${card} min-h-[520px] p-6 md:p-8`}>
+          {/* B: the phone, the standard on every shift */}
+          <article className={`${card} min-h-[500px] p-6 md:p-8`}>
             <Title a={c.b[0]} b={c.b[1]} /><Corner href="/#how" label={c.b[0]} />
-            <div className="absolute bottom-[-120px] left-1/2 w-[250px] -translate-x-1/2 md:w-[270px]" dir="ltr"><Device label={c.b[0]}>{near ? <Editor active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device></div>
+            <div className="absolute left-1/2 top-[170px] w-[240px] -translate-x-1/2 md:w-[256px]" dir="ltr"><Device label={c.b[0]}>{near ? <Editor active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device></div>
           </article>
         </div>
-        <div className="mt-3 grid gap-3 md:grid-cols-3">
+        <div className={`mt-3 grid gap-3 md:grid-cols-3 ${go ? "bx-go" : ""}`}>
+          {/* C: the quiz picks its answer */}
           <article className={`${card} min-h-[440px] p-6 md:p-7`}>
             <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.c[0]} <span className="text-ink-faint">{c.c[1]}</span></h3>
             <div aria-hidden="true" className="absolute inset-x-6 bottom-6 md:inset-x-7 md:bottom-7">
               <p className="flex items-start gap-2.5 rounded-[16px] bg-[var(--card-2)] p-4 text-[14px] font-medium leading-snug"><Question size={17} className="mt-px shrink-0 text-ink-muted" />{c.q}</p>
-              <ul className="mt-2 space-y-2 text-[14px]">{c.qa.map((a, k) => <li key={a} className={`flex items-center justify-between rounded-[14px] px-4 py-3 ${k === 1 ? "bg-ink text-bg" : "bg-[var(--card-2)]/60 text-ink-muted"}`}>{a}{k === 1 && <Check size={15} />}</li>)}</ul>
+              <ul className="mt-2 space-y-2 text-[14px]">{c.qa.map((q, k) => (
+                <li key={q} className={`bx-rise relative overflow-hidden rounded-[14px] bg-[var(--card-2)]/60 px-4 py-3 text-ink-muted`} style={st(300 + k * 150)}>
+                  {k === 1 && <span className="bx-fill absolute inset-0 rounded-[14px] bg-ink" style={st(1300)} />}
+                  <span className={`relative flex items-center justify-between ${k === 1 ? "bx-ink" : ""}`} style={k === 1 ? st(1300) : undefined}>{q}{k === 1 && <Check size={15} />}</span>
+                </li>))}</ul>
             </div>
           </article>
-          <article className={`${card} min-h-[440px] p-6 md:p-7`}>
-            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.d[0]} <span className="text-ink-faint">{c.d[1]}</span></h3>
+          {/* D: one standard sent to every location (glass over a photograph) */}
+          <article className="dark relative min-h-[440px] overflow-hidden rounded-[28px] bg-[#1a1a1a] p-6 text-white md:p-7">
+            {BLOG("Gwdo8HCLd9MKZb2aJJ3vh2EgM")}<span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.75)_0%,rgb(17_17_17/0.2)_45%,rgb(17_17_17/0.6)_100%)]" />
+            <h3 className="relative max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.d[0]} <span className="text-white/60">{c.d[1]}</span></h3>
             <Corner href="/sektor/franchise/" label={c.d[0]} />
-            <div aria-hidden="true" className="absolute inset-x-6 bottom-0 rounded-t-[20px] bg-[var(--card-2)] p-3 pb-5 md:inset-x-7">
-              <div className="h-24 overflow-hidden rounded-[14px] [mask-image:linear-gradient(180deg,#000_55%,transparent)]"><Pic n="cafe-opening" sizes="400px" className="h-full w-full object-cover" /></div>
-              <div className="mt-3 flex items-center justify-between px-1"><p className="text-[15px] font-semibold">{c.jobs[0]}</p><span className="text-[12px] text-ink-faint">{c.today}</span></div>
-              <p className="flex items-center gap-1.5 px-1 text-[13px] text-ink-muted"><Storefront size={14} />{c.sent}</p>
-              <div className="mt-3 flex items-center gap-3 rounded-[14px] bg-[var(--card)] p-3">
-                <span className="grid h-9 w-9 place-items-center rounded-xl bg-[rgb(104_210_185/0.16)] text-calm-aqua"><Users size={17} /></span>
-                <span><span className="block text-[14px] font-semibold">{c.branch}</span><span className="block text-[12px] text-ink-muted">{c.branchP}</span></span>
-              </div>
+            <div aria-hidden="true" className={`${gl} absolute inset-x-6 bottom-6 space-y-1.5 p-2.5 md:inset-x-7`}>
+              <p className="flex items-center justify-between px-2 pb-1 pt-0.5 text-[12px] text-white/70"><span className="flex items-center gap-1.5"><Storefront size={13} />{c.jobs[0]}</span><span>{c.today}</span></p>
+              {[c.branch, ...c.locs].slice(0, 3).map((n, k) => (
+                <div key={n} className="bx-rise flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.07)] px-3 py-2.5 text-[13px]" style={st(400 + k * 350)}>
+                  <MapPin size={13} className="text-white/60" /><span className="flex-1">{n}</span>
+                  <CheckCircle size={15} weight="fill" className="bx-pop text-[#D2D8D9]" style={st(700 + k * 350)} />
+                </div>))}
             </div>
           </article>
-          <article className={`${card} min-h-[440px] p-6 md:p-7`}>
-            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.e[0]} <span className="text-ink-faint">{c.e[1]}</span></h3>
+          {/* E: completion fills in, by location (glass over a photograph) */}
+          <article className="dark relative min-h-[440px] overflow-hidden rounded-[28px] bg-[#1a1a1a] p-6 text-white md:p-7">
+            {BLOG("vvyMkqyAHHEpN8ItawEya0MuNM")}<span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.75)_0%,rgb(17_17_17/0.2)_45%,rgb(17_17_17/0.6)_100%)]" />
+            <h3 className="relative max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.e[0]} <span className="text-white/60">{c.e[1]}</span></h3>
             <Corner href="/#web" label={c.e[0]} />
-            <div aria-hidden="true" className="absolute inset-x-6 bottom-6 rotate-[-2deg] rounded-[20px] bg-[var(--card-2)] p-5 md:inset-x-7">
-              <p className="flex items-center justify-between text-[13px] text-ink-muted"><span>{c.jobs[1]}</span><span>{c.sample}</span></p>
-              <ul className="mt-4 space-y-3.5">{c.locs.map((n, k) => { const v = [92, 78, 64][k]; return (
-                <li key={n}><p className="flex justify-between text-[14px]"><span className="flex items-center gap-1.5 font-medium"><MapPin size={13} />{n}</span><span className="tabular-nums text-ink-muted">{v}%</span></p>
-                  <span className="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-[var(--card)]"><span className={`block h-full rounded-full ${v < 70 ? "bg-ink-faint" : "bg-ink"}`} style={{ width: `${v}%` }} /></span></li>); })}</ul>
+            <div aria-hidden="true" className={`${gl} absolute inset-x-6 bottom-6 p-4 md:inset-x-7`}>
+              <p className="flex items-center justify-between text-[12px] text-white/70"><span>{c.jobs[1]}</span><span>{c.sample}</span></p>
+              <ul className="mt-3.5 space-y-3">{c.locs.map((n, k) => { const v = [92, 78, 64][k]; return (
+                <li key={n}><p className="flex justify-between text-[13px]"><span className="flex items-center gap-1.5"><MapPin size={12} className="text-white/60" />{n}</span><span className="tabular-nums text-white/70">{v}%</span></p>
+                  <span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-[rgb(255_255_255/0.12)]"><span className="bx-bar block h-full origin-left rounded-full bg-[#E7EBEB] rtl:origin-right" style={{ width: `${v}%`, ...st(500 + k * 250) }} /></span></li>); })}</ul>
             </div>
           </article>
         </div>
@@ -420,6 +434,8 @@ export function Industries5() {
 
 /* ---------- 13. Use cases, each with a photograph ---------- */
 const CASE_META: [string, Ic, string][] = [["/sektor/uretim/", ShieldCheck, "safety"], ["/use-cases/installation-training-on-site-orientation/", MapPin, "phone-mount"], ["/sektor/restoran/", CookingPot, "chef-plating"], ["/use-cases/master-apprentice-skills-transfer/", GraduationCap, "chef-fire"], ["/see-it/", UserPlus, "brewery"], ["/sektor/franchise/", Storefront, "huddle"]];
+/* A loop for each case on the large panel (poster first, video once in view). */
+const CASE_VIDEO = ["warehouse2", "line", "plating", "steam", "coffee", "kitchen"];
 export function Cases5() {
   const { d } = useLocale(); const c = d.cases; const [on, setOn] = useState(0); const reduce = useReducedMotion();
   const Overlay = ({ k, big }: { k: number; big?: boolean }) => { const [tag, h, p] = c.items[k]; const [href, I] = CASE_META[k]; return (
@@ -445,7 +461,7 @@ export function Cases5() {
               <li key={h}>
                 <button type="button" role="tab" aria-selected={act} onMouseEnter={() => setOn(k)} onFocus={() => setOn(k)} onClick={() => setOn(k)}
                   className={`flex w-full items-center gap-4 rounded-[20px] p-3 pe-5 text-start transition-colors duration-300 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
-                  <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px]"><Pic n={CASE_META[k][2]} sizes="56px" className={`h-full w-full object-cover transition-opacity ${act ? "" : "opacity-70"}`} /></span>
+                  <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px]"><img src={`/video/${CASE_VIDEO[k]}.webp`} alt="" loading="lazy" className={`h-full w-full object-cover transition-opacity ${act ? "" : "opacity-70"}`} /></span>
                   <span className="min-w-0 flex-1">
                     <span className="flex items-center gap-1.5 text-[12px] text-ink-faint"><I size={13} />{tag}</span>
                     <span className={`mt-0.5 block text-[16px] font-semibold leading-snug tracking-[-0.01em] ${act ? "text-ink" : "text-ink-muted"}`}>{h}</span>
@@ -457,7 +473,8 @@ export function Cases5() {
           <div className="dark relative min-h-[560px] overflow-hidden rounded-[32px] bg-[#1a1816] lg:col-span-7" role="tabpanel">
             <AnimatePresence initial={false}>
               <m.div key={on} className="absolute inset-0" initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}>
-                <Pic n={CASE_META[on][2]} sizes="60vw" className="absolute inset-0 h-full w-full object-cover" />
+                <img src={`/video/${CASE_VIDEO[on]}.webp`} alt="" className="absolute inset-0 h-full w-full object-cover" />
+                <SmartVideo name={CASE_VIDEO[on]} poster={`/video/${CASE_VIDEO[on]}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full object-cover" />
                 {shade}<Overlay k={on} big />
               </m.div>
             </AnimatePresence>
