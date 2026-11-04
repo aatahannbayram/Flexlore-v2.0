@@ -231,6 +231,9 @@ export function Proof() {
 export function PricingPreview({ lang }: { lang: Lang }) {
   const c = home[lang].pricing; const t = PL[lang]; const tr = lang === "tr"; const [yearly, setYearly] = useState(false);
   const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
+  // Plans are bought in the app: on a phone the plan buttons open the right store, on desktop the full pricing page.
+  const [store, setStore] = useState<string | null>(null);
+  useEffect(() => { const ua = navigator.userAgent; setStore(/iPhone|iPad|iPod/i.test(ua) ? SITE.appStore : /Android/i.test(ua) ? SITE.googlePlay : null); }, []);
   return (
     <section id="pricing" aria-labelledby="pp-h" className="section-y bg-light-bg text-light-ink">
       <div className="container-x">
@@ -250,7 +253,7 @@ export function PricingPreview({ lang }: { lang: Lang }) {
               <div className="mt-5">
                 {p.id === "enterprise"
                   ? <a href={SITE.demo} className="btn group w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></a>
-                  : <Link href="/pricing/" className={`btn group w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></Link>}
+                  : <Link href={store ?? "/pricing/"} {...(store ? { target: "_blank", rel: "noopener" } : {})} className={`btn group w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></Link>}
               </div>
               <div className={`mt-6 flex-1 rounded-2xl p-4 ${rec ? "bg-white/[.06]" : "bg-light-bg"}`}>
                 <p className={`flex items-center gap-2 text-sm font-semibold ${rec ? "text-ice-100" : "text-light-ink"}`}>
