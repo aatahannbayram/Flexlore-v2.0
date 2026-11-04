@@ -5,7 +5,7 @@ import type { Lang } from "../copy";
 export type HomeCopy = {
   trust: { live: string; ios: string; android: string; ph: string; programs: string };
   problem: { k: string; h: [string, string]; p: string; points: { h: string; p: string }[] };
-  story: { k: string; h: string; lead: string; hint: string };
+  story: { k: string; h: string; lead: string; hint: string; chips: [string, string][]; sample: string };
   web: { k: string; h: string; lead: string; callouts: { h: string; p: string }[]; sample: string };
   bento: { k: string; h: string; lead: string; tiles: Record<"ai" | "ready" | "quiz" | "access" | "devices" | "sites", { h: string; p: string }> };
   ind: { k: string; h: string; lead: string; open: string; more: string; picker: string; pickerLead: string; see: string };
@@ -20,14 +20,15 @@ export const home: Record<Lang, HomeCopy> = {
     trust: { live: "Available now", ios: "iPhone app on the App Store", android: "Android app on Google Play", ph: "Launched on Product Hunt", programs: "Member of" },
     problem: {
       k: "Why it matters", h: ["Know-how lives", "in someone's hands."],
-      p: "It leaves when they do. New people copy whoever is on shift, and the binder stays on the shelf.",
+      p: "It leaves when they do. New people copy whoever is on shift.",
       points: [
-        { h: "Scrap and rework", p: "A step learned by guessing comes back as remakes, returns and callbacks." },
-        { h: "Uneven across shifts", p: "Morning and night learn the same job from different people, and it shows." },
-        { h: "Binders nobody reads", p: "The standard is written down. On the floor, under pressure, nobody opens it." },
+        { h: "Scrap and rework", p: "Guesswork comes back as remakes and returns." },
+        { h: "Uneven across shifts", p: "Every shift learns it from someone else." },
+        { h: "Binders nobody reads", p: "Written down. Never opened on the floor." },
       ],
     },
-    story: { k: "How it works", h: "Film it. Approve it. Know who's ready.", lead: "One job, from a phone video to a readiness score.", hint: "Swipe to see each step" },
+    story: { k: "How it works", h: "Film it. Approve it. Know who's ready.", lead: "One job, from a phone video to a readiness score.", hint: "Swipe to see each step",
+      chips: [["Recording", "Line cook 1 · 00:58"], ["AI split it", "6 steps, instructions drafted"], ["Quiz drafted", "5 questions from the steps"], ["Morning shift", "12 of 14 ready"]], sample: "Sample data" },
     web: {
       k: "Flexlore Web", h: "Record on the phone. Manage from the desk.",
       lead: "The same library and readiness data on a big screen, for the people running the operation.",
@@ -77,14 +78,15 @@ export const home: Record<Lang, HomeCopy> = {
     trust: { live: "Şimdi indirin", ios: "App Store'da iPhone uygulaması", android: "Google Play'de Android uygulaması", ph: "Product Hunt'ta yayınlandı", programs: "Üyesi olduğumuz programlar" },
     problem: {
       k: "Neden önemli", h: ["Bilgi birinin", "ellerinde yaşar."],
-      p: "O kişi gidince bilgi de gider. Yeni gelen, vardiyada kim varsa onu taklit eder; klasör rafta kalır.",
+      p: "O kişi gidince bilgi de gider. Yeni gelen, vardiyada kim varsa onu taklit eder.",
       points: [
-        { h: "Fire ve yeniden işleme", p: "Tahminle öğrenilen bir adım, yeniden yapım, iade ve şikâyet olarak geri döner." },
-        { h: "Vardiyadan vardiyaya fark", p: "Sabah ve gece aynı işi farklı kişilerden öğrenir, sonuç da farklı olur." },
-        { h: "Kimsenin açmadığı klasörler", p: "Standart yazılıdır. Sahada, baskı altında kimse açıp bakmaz." },
+        { h: "Fire ve yeniden işleme", p: "Tahmin, yeniden yapım ve iade olarak geri döner." },
+        { h: "Vardiyadan vardiyaya fark", p: "Her vardiya işi başka birinden öğrenir." },
+        { h: "Kimsenin açmadığı klasörler", p: "Yazılı ama sahada hiç açılmıyor." },
       ],
     },
-    story: { k: "Nasıl çalışır", h: "Çek. Onayla. Kimin hazır olduğunu gör.", lead: "Tek bir iş: telefon videosundan hazırlık skoruna.", hint: "Adımları görmek için kaydırın" },
+    story: { k: "Nasıl çalışır", h: "Çek. Onayla. Kimin hazır olduğunu gör.", lead: "Tek bir iş: telefon videosundan hazırlık skoruna.", hint: "Adımları görmek için kaydırın",
+      chips: [["Kayıt", "Hat aşçısı 1 · 00:58"], ["Yapay zekâ böldü", "6 adım, talimatlar hazır"], ["Quiz hazır", "Adımlardan 5 soru"], ["Sabah vardiyası", "14 kişiden 12'si hazır"]], sample: "Örnek veri" },
     web: {
       k: "Flexlore Web", h: "Telefonda kaydedin. Masadan yönetin.",
       lead: "Aynı kütüphane ve hazırlık verisi, operasyonu yöneten ekip için büyük ekranda.",

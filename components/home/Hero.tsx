@@ -30,17 +30,17 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
       </div>
 
       <div className="container-x">
-        <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),880px)] items-center gap-y-14 pb-16 pt-12 md:pb-24 md:pt-16">
+        <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),820px)] items-center gap-y-14 pb-16 pt-10 md:pb-20 md:pt-12">
           <div className="col-span-12 lg:col-span-6">
             <p className="eyebrow hs-in" style={{ animationDelay: "0ms" }}>{t.hero}</p>
-            <h1 id="hero-h" className="display mt-5 text-display">
+            <h1 id="hero-h" className="mt-5 text-[clamp(40px,1.15rem+3.3vw,76px)] font-[620] leading-[1.02] tracking-[-0.042em] [text-wrap:balance]">
               {t.h1.map((s, i) => (
                 <span key={i} className={s.o ? "text-ice-400" : undefined}>
                   {s.t.trim().split(" ").map((word, j, arr) => (
                     <span key={j}><span className="hs-word" style={{ animationDelay: `${80 + 55 * w++}ms` }}>{word}</span>{j < arr.length - 1 || i < t.h1.length - 1 ? " " : ""}</span>))}
                 </span>))}
             </h1>
-            <p className="lead hs-in mt-6 max-w-[34rem]" style={{ animationDelay: "520ms" }}>{t.heroLine}</p>
+            <p className="lead hs-in mt-6 max-w-[31rem]" style={{ animationDelay: "520ms" }}>{t.heroLine}</p>
             <div className="hs-in mt-9 flex flex-wrap items-center gap-3" style={{ animationDelay: "620ms" }}>
               <MagneticButton href={SITE.demo}>{t.cta}</MagneticButton>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary">
@@ -50,10 +50,10 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
           </div>
 
           <div className="col-span-12 lg:col-span-5 lg:col-start-8">
-            <div className="hs-device relative mx-auto w-[min(72vw,300px)] lg:w-[340px]" style={{ animationDelay: "360ms" }}>
+            <div className="hs-device relative mx-auto w-[min(64vw,260px)] lg:w-[288px]" style={{ animationDelay: "360ms" }}>
               <Device label={t.alts[1]}><SopScreen active /></Device>
               {/* Readiness chip: overlaps the device corner, never the copy column. */}
-              <div className="panel absolute -bottom-5 -left-6 w-[15.5rem] px-4 py-3.5 sm:-left-16">
+              <div className="panel absolute -bottom-6 -left-8 w-[14rem] px-4 py-3 sm:-left-20">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-sm font-semibold">{t.chip.title}</p>
                   <span className="rounded-full bg-[rgb(104_210_185/0.12)] px-2 py-0.5 text-xs font-semibold text-calm-aqua">{t.chip.status}</span>

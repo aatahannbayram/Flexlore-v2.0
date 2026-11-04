@@ -16,39 +16,45 @@ import { SmartVideo } from "../ui/SmartVideo";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, SopScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
-import { StoreBadge } from "../Icons";
+import { StoreBadge, AppStoreBadge } from "../Icons";
 
 // The dashboard mockup is below the fold: its code loads only when the section nears the viewport.
 // The placeholder keeps the same 1180:720 ratio, so nothing shifts when it arrives.
 const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
-const IconBox = ({ children }: { children: React.ReactNode }) => (
-  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-surface-2 text-ink">{children}</span>);
 
-/* 3. Trust strip: confirmed facts only, no cards, no rules. Program marks appear only as official badge files
-   (SITE.programs[].badge); until those exist the names are set as a quiet typographic row, never a redrawn logo. */
+/* 3. Trust strip: confirmed facts only. Official artwork where the owner provides it (Apple badge, NVIDIA badge, Google's
+   Cloud Program identifier), each linking to its source; plain text where no official mark exists (see config.ts). */
 export function TrustStrip({ lang }: { lang: Lang }) {
   const c = home[lang].trust; const tr = lang === "tr";
   return (
     <section aria-label={c.programs} className="bg-bg">
-      <div className="container-x grid-12 items-center gap-y-10 py-14 md:py-16">
+      <div className="container-x grid-12 items-start gap-y-10 py-16 md:py-20">
         <div className="col-span-12 lg:col-span-5">
           <p className="eyebrow">{c.live}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <StoreBadge href={SITE.appStore} top={tr ? "iPhone için" : "For iPhone"} name="App Store" />
-            <StoreBadge href={SITE.googlePlay} top={tr ? "Android için" : "For Android"} name="Google Play" />
-            {/* TODO(ata): replace with Product Hunt's official embed badge once we have the post id from the maker dashboard. */}
-            <StoreBadge href={SITE.productHunt} top={tr ? "Yayınlandı" : "Launched on"} name="Product Hunt" />
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <AppStoreBadge lang={lang} />
+            <StoreBadge href={SITE.googlePlay} top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" />
+            {/* TODO(ata): swap for Product Hunt's official embed badge once we have the post id (maker dashboard, Embed). */}
+            <StoreBadge href={SITE.productHunt} top={tr ? "YAYINLANDI" : "LAUNCHED ON"} name="Product Hunt" />
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6 lg:col-start-7">
           <p className="eyebrow">{c.programs}</p>
-          <ul className="mt-4 flex flex-wrap items-center gap-x-12 gap-y-5">
+          <ul className="mt-5 flex flex-wrap items-start gap-4">
             {SITE.programs.map((p) => (
               <li key={p.name}>
-                {p.badge
-                  ? <span className="block bg-white"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-14 w-auto" /></span>
-                  : <span className="block text-[19px] font-semibold leading-tight tracking-[-.02em] text-ice-300">{p.name}{!p.name.includes(p.org) && <span className="font-normal text-ice-400"> by {p.org}</span>}</span>}
+                <a href={p.href} target="_blank" rel="noopener" className="group block">
+                  {p.badge
+                    ? <span className="flex h-[72px] items-center bg-white px-3 transition-opacity group-hover:opacity-90">
+                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} style={{ height: p.badgeH }} className="block w-auto" />
+                      </span>
+                    : <span className="flex h-[72px] flex-col justify-center rounded-[14px] bg-surface-1 px-5 transition-colors group-hover:bg-surface-2">
+                        <span className="text-[18px] font-semibold leading-tight tracking-[-.02em] text-ink">{p.name}</span>
+                        <span className="text-[13px] leading-tight text-ice-400">by {p.org}</span>
+                      </span>}
+                  {p.caption && <span className="mt-2 block text-[13px] text-ice-400">{p.caption}</span>}
+                </a>
               </li>))}
           </ul>
         </div>
@@ -56,25 +62,33 @@ export function TrustStrip({ lang }: { lang: Lang }) {
     </section>);
 }
 
-/* 4. Problem: one viewport, statement left, three consequences right. */
+/* 4. Problem: short statement left; right, a real kitchen loop with the three consequences rising over it in turn.
+   Less copy, more picture. */
 export function Problem({ lang }: { lang: Lang }) {
   const c = home[lang].problem;
   const icons = [ArrowCounterClockwise, UsersThree, BookOpen];
   return (
     <section id="problem" aria-labelledby="problem-h" className="section-y bg-bg">
-      <div className="container-x grid-12 gap-y-12">
-        <Reveal className="col-span-12 lg:col-span-6">
+      <div className="container-x grid-12 items-center gap-y-12">
+        <Reveal className="col-span-12 lg:col-span-5">
           <p className="eyebrow">{c.k}</p>
           <h2 id="problem-h" className="h2 mt-4">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
-          <p className="lead mt-6 max-w-[30rem]">{c.p}</p>
+          <p className="lead mt-6 max-w-[26rem]">{c.p}</p>
         </Reveal>
-        <Reveal as="ul" stagger={0.07} className="col-span-12 space-y-3 lg:col-span-5 lg:col-start-8">
-          {c.points.map((x, i) => { const Ic = icons[i]; return (
-            <RevealItem as="li" key={x.h} className="panel flex gap-4 p-5">
-              <IconBox><Ic size={20} aria-hidden="true" /></IconBox>
-              <div><h3 className="text-lg font-semibold tracking-[-.01em]">{x.h}</h3><p className="mt-1 text-base text-ink-muted">{x.p}</p></div>
-            </RevealItem>); })}
-        </Reveal>
+        <div className="col-span-12 lg:col-span-7">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-1 sm:aspect-[16/12]">
+            <picture><source srcSet="/video/plating.avif" type="image/avif" /><img src="/video/plating.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+            <SmartVideo name="plating" poster="/video/plating.webp" threshold={0.4} />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
+            <Reveal as="ul" stagger={0.12} delay={0.15} className="absolute inset-x-4 bottom-4 space-y-2 sm:inset-x-6 sm:bottom-6 sm:max-w-[25rem]">
+              {c.points.map((x, i) => { const Ic = icons[i]; return (
+                <RevealItem as="li" key={x.h} className="flex items-center gap-3.5 rounded-2xl bg-[rgb(17_17_17/0.72)] px-4 py-3 backdrop-blur-md">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/[.08] text-ink"><Ic size={18} aria-hidden="true" /></span>
+                  <span><span className="block text-[15px] font-semibold tracking-[-.01em]">{x.h}</span><span className="block text-[13px] text-ice-300">{x.p}</span></span>
+                </RevealItem>); })}
+            </Reveal>
+          </div>
+        </div>
       </div>
     </section>);
 }
