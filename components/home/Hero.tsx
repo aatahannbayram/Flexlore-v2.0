@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { Play } from "../ui/icons";
 import type { C, Lang } from "../copy";
 import { SITE } from "../config";
-import { Device, SopScreen, ReadyScreen } from "../AppScreens";
+import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
 import { Rotator } from "../ui/Rotator";
 import { MagneticButton } from "../ui/MagneticButton";
@@ -13,11 +14,15 @@ import { VideoModal } from "../ui/VideoModal";
 /** Hero. Split 12-column layout: copy in columns 1 to 6, the product in a device frame in 7 to 12. Text and media never overlap.
  *  HeroSequence is CSS-only (globals.css .hs-*): words rise in turn, then the device settles from 0.96 to 1.
  *  It runs without JS, ends fully visible, and is switched off by prefers-reduced-motion. */
+// Decorative back phone (desktop only): its screen comes from the story chunk, fetched after mount on lg screens.
+const LazyReady = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111111]" /> });
+
 export function Hero({ t, lang }: { t: C; lang: Lang }) {
   const [demo, setDemo] = useState(false);
   // The background loop only plays on wider screens; phones keep the still (saves ~0.4 MB on mobile data).
   const [wide, setWide] = useState(false);
-  useEffect(() => { setWide(window.matchMedia("(min-width: 768px)").matches); }, []);
+  const [lg, setLg] = useState(false);
+  useEffect(() => { setWide(window.matchMedia("(min-width: 768px)").matches); setLg(window.matchMedia("(min-width: 1024px)").matches); }, []);
   let w = 0;
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
@@ -59,10 +64,10 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
           <div className="col-span-12 md:col-span-5 lg:col-span-6 lg:col-start-7">
             <div className="relative mx-auto lg:h-[min(calc(100svh-var(--header-h)-64px),780px)] lg:w-full">
               <div aria-hidden="true" className="hs-device absolute left-[4%] top-[9%] hidden w-[clamp(200px,calc((100svh-var(--header-h)-96px)*0.4),262px)] -rotate-[5deg] opacity-80 [filter:brightness(.82)] lg:block" style={{ animationDelay: "520ms" }}>
-                <Device label=""><ReadyScreen active /></Device>
+                <Device label="">{lg ? <LazyReady active lang={lang} /> : <div className="absolute inset-0 bg-[#111111]" />}</Device>
               </div>
               <div className="hs-device relative z-10 mx-auto w-[min(64vw,260px)] md:w-[min(100%,250px)] lg:absolute lg:right-[2%] lg:top-1/2 lg:mx-0 lg:w-[clamp(232px,calc((100svh-var(--header-h)-96px)*0.461),300px)] lg:-translate-y-1/2" style={{ animationDelay: "360ms" }}>
-                <Device label={t.alts[1]}><SopScreen active /></Device>
+                <Device label={t.alts[1]}><WorkScreen active lang={lang} /></Device>
                 {/* Readiness chip: phones only (on tablet and desktop the second screen tells this story). */}
                 <div className="panel absolute -bottom-8 left-1/2 w-[14rem] -translate-x-1/2 px-4 py-3 md:hidden">
                   <div className="flex items-center justify-between gap-3">

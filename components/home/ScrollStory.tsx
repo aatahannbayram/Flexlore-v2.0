@@ -1,17 +1,18 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { AnimatePresence, m, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { C, Lang } from "../copy";
 import { home } from "./home-copy";
-import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "../AppScreens";
+import { Device } from "../AppScreens";
 import { EASE } from "../ui/Reveal";
 import { Sparkle, CheckCircle, ListChecks, UsersThree } from "../ui/icons";
 
-// Same quiz as the restaurant sector page (sectors.ts), inlined so the home bundle does not carry every sector's copy.
-const QUIZ = { q: "Raw chicken was prepped on a board. What comes next?", a: ["Rinse and reuse for salad", "Clean, sanitise, then switch to the right colour board", "Wipe with a dry cloth"], ok: 1 };
-
-function Screen({ i, active }: { i: number; active: boolean }) {
-  return i === 0 ? <RecordScreen active={active} /> : i === 1 ? <SopScreen active={active} /> : i === 2 ? <QuizScreen active={active} q={QUIZ.q} a={QUIZ.a} ok={QUIZ.ok} /> : <ReadyScreen active={active} />;
+// The four story screens (editor, work, quiz, readiness) live in their own chunk, fetched when the section nears the
+// viewport. Placeholder: the app's screen colour, same box as the screen, so nothing shifts when it arrives.
+const StoryScreen = dynamic(() => import("../AppScreensStory").then((x) => x.StoryScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111111]" /> });
+function Screen({ i, active, lang }: { i: number; active: boolean; lang: Lang }) {
+  return <StoryScreen i={i} active={active} lang={lang} />;
 }
 
 /* Per step: a small lift of the phone, so each change reads as movement. */
@@ -108,7 +109,7 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
                         {[0, 1, 2, 3].map((i) => (
                           <m.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97, y: a === i ? 0 : a > i ? -14 : 14 }} transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
                             className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
-                            <Screen i={i} active={a === i} />
+                            <Screen i={i} active={a === i} lang={lang} />
                           </m.div>))}
                       </Device>
                     </m.div>)}
@@ -117,7 +118,7 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
             </div>
 
             <div className="col-span-12 lg:hidden">
-              <StoryCarousel t={t} hint={h.hint} chips={h.chips} devices={lg === false && near} />
+              <StoryCarousel t={t} lang={lang} hint={h.hint} chips={h.chips} devices={lg === false && near} />
             </div>
           </div>
         </div>
@@ -125,7 +126,7 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
     </section>);
 }
 
-function StoryCarousel({ t, hint, chips, devices }: { t: C; hint: string; chips: [string, string][]; devices: boolean }) {
+function StoryCarousel({ t, lang, hint, chips, devices }: { t: C; lang: Lang; hint: string; chips: [string, string][]; devices: boolean }) {
   const track = useRef<HTMLOListElement>(null);
   const [i, setI] = useState(0);
   useEffect(() => {
@@ -145,7 +146,7 @@ function StoryCarousel({ t, hint, chips, devices }: { t: C; hint: string; chips:
             <h3 className="h3 mt-2">{s.h.replace(".", "")}</h3>
             <p className="mt-2 text-base text-ink-muted">{s.p}</p>
             {devices && <div className="mx-auto mt-6 w-[min(100%,220px)]">
-              <Device label={t.alts[k]}><Screen i={k} active={i === k} /></Device>
+              <Device label={t.alts[k]}><Screen i={k} active={i === k} lang={lang} /></Device>
             </div>}
             <div aria-hidden="true" className="mt-4 flex justify-center"><Chip i={k} chips={chips} /></div>
           </li>))}

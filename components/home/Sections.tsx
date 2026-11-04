@@ -16,7 +16,7 @@ import { Heading } from "../ui/Layout";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { SmartVideo } from "../ui/SmartVideo";
 import { MagneticButton } from "../ui/MagneticButton";
-import { Device, SopScreen } from "../AppScreens";
+import { Device, WorkScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
 
 // One icon per area, in the order of home-copy.ts ind.areas.
@@ -131,7 +131,7 @@ export function WebShowcase({ lang }: { lang: Lang }) {
               <m.span key={i} aria-hidden="true" initial={false} animate={{ opacity: step >= i ? 1 : 0, scale: step >= i ? 1 : 0.6 }} transition={{ duration: 0.35, ease: EASE }}
                 className="absolute hidden h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-ice-100 text-xs font-bold text-bg md:grid" style={{ left: `${x}%`, top: `${y}%` }}>{i + 1}</m.span>))}
           </m.div>
-          <div aria-hidden="true" className="absolute -bottom-10 right-0 hidden w-[190px] lg:block"><Device label=""><SopScreen active={inView} /></Device></div>
+          <div aria-hidden="true" className="absolute -bottom-10 right-0 hidden w-[190px] lg:block"><Device label=""><WorkScreen active={inView} lang={lang} /></Device></div>
         </div>
         <ol className="mt-12 grid gap-8 md:grid-cols-3 lg:mr-36">
           {c.callouts.map((x, i) => (
@@ -179,8 +179,11 @@ export function Industries({ lang }: { lang: Lang }) {
           </Reveal>
           <div aria-hidden="true" className="relative hidden overflow-hidden rounded-[28px] bg-surface-1 lg:col-span-6 lg:block">
             {IND_CARDS.map((x, i) => (
-              <picture key={x.slug}><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
-                <img src={x.still} alt="" loading="lazy" className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] ${on === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`} /></picture>))}
+              <div key={x.slug} className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] ${on === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`}>
+                <picture><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
+                  <img src={x.still} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+                {x.v && on === i && <SmartVideo name={x.v} poster={x.still} threshold={0.3} />}
+              </div>))}
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_55%,rgb(17_17_17/0.85)_100%)]" />
             <p className="absolute bottom-6 left-7 text-[15px] font-medium text-ink">{tr ? IND_CARDS[on].tr : IND_CARDS[on].en}</p>
           </div>

@@ -29,7 +29,7 @@ export const home: Record<Lang, HomeCopy> = {
       ],
     },
     story: { k: "How it works", h: "Film it. Approve it. Know who's ready.", lead: "One job, from a phone video to a readiness score.", hint: "Swipe to see each step",
-      chips: [["Recording", "Line cook 1 · 00:58"], ["AI split it", "6 steps, instructions drafted"], ["Quiz drafted", "5 questions from the steps"], ["Morning shift", "12 of 14 ready"]], sample: "Sample data" },
+      chips: [["Marking steps", "Operator 1 · Step 1 saved"], ["AI split it", "6 steps, instructions drafted"], ["Quiz drafted", "5 questions from the steps"], ["Morning shift", "12 of 14 ready"]], sample: "Sample data" },
     web: {
       k: "Flexlore Web", h: "Record on the phone. Manage from the desk.",
       lead: "The same library and readiness data on a big screen, for the people running the operation.",
@@ -98,7 +98,7 @@ export const home: Record<Lang, HomeCopy> = {
       ],
     },
     story: { k: "Nasıl çalışır", h: "Çek. Onayla. Kimin hazır olduğunu gör.", lead: "Tek bir iş: telefon videosundan hazırlık skoruna.", hint: "Adımları görmek için kaydırın",
-      chips: [["Kayıt", "Hat aşçısı 1 · 00:58"], ["Yapay zekâ böldü", "6 adım, talimatlar hazır"], ["Quiz hazır", "Adımlardan 5 soru"], ["Sabah vardiyası", "14 kişiden 12'si hazır"]], sample: "Örnek veri" },
+      chips: [["Adımlar işaretleniyor", "Operatör 1 · Adım 1 kaydedildi"], ["Yapay zekâ böldü", "6 adım, talimatlar hazır"], ["Quiz hazır", "Adımlardan 5 soru"], ["Sabah vardiyası", "14 kişiden 12'si hazır"]], sample: "Örnek veri" },
     web: {
       k: "Flexlore Web", h: "Telefonda kaydedin. Masadan yönetin.",
       lead: "Aynı kütüphane ve hazırlık verisi, operasyonu yöneten ekip için büyük ekranda.",
@@ -158,8 +158,8 @@ export const home: Record<Lang, HomeCopy> = {
 export const IND_CARDS: { slug: string; v?: string; still: string; en: string; tr: string; lineEn: string; lineTr: string; featured: boolean }[] = [
   { slug: "restoran", v: "kitchen", still: "/video/kitchen.webp", en: "Restaurants", tr: "Restoranlar", lineEn: "Same plate, every shift.", lineTr: "Her vardiyada aynı tabak.", featured: true },
   { slug: "uretim", v: "line", still: "/video/line.webp", en: "Manufacturing", tr: "Üretim", lineEn: "Changeover, without the guesswork.", lineTr: "Tahmin yürütmeden kalıp değişimi.", featured: true },
-  { slug: "otel", v: "hotel", still: "/video/hotel.webp", en: "Hotels", tr: "Oteller", lineEn: "Every room to your house standard.", lineTr: "Her oda sizin standardınızda.", featured: true },
-  { slug: "franchise", still: "/video/plating.webp", en: "Franchises", tr: "Franchise", lineEn: "One launch, every branch.", lineTr: "Tek lansman, her şube.", featured: false },
-  { slug: "depo", still: "/video/warehouse.webp", en: "Warehouses", tr: "Depolar", lineEn: "Picking and safety, learned the same way.", lineTr: "Toplama ve güvenlik, herkes aynı şekilde.", featured: false },
-  { slug: "firin", still: "/video/coffee.webp", en: "Bakeries & cafés", tr: "Fırın ve kafeler", lineEn: "The recipe, not a guess.", lineTr: "Tahmin değil, tarif.", featured: false },
+  { slug: "otel", v: "hotel2", still: "/video/hotel2.webp", en: "Hotels", tr: "Oteller", lineEn: "Every room to your house standard.", lineTr: "Her oda sizin standardınızda.", featured: true },
+  { slug: "franchise", v: "plating", still: "/video/plating.webp", en: "Franchises", tr: "Franchise", lineEn: "One launch, every branch.", lineTr: "Tek lansman, her şube.", featured: false },
+  { slug: "depo", v: "warehouse2", still: "/video/warehouse2.webp", en: "Warehouses", tr: "Depolar", lineEn: "Picking and safety, learned the same way.", lineTr: "Toplama ve güvenlik, herkes aynı şekilde.", featured: false },
+  { slug: "firin", v: "gen-baker", still: "/video/gen-baker.webp", en: "Bakeries & cafés", tr: "Fırın ve kafeler", lineEn: "The recipe, not a guess.", lineTr: "Tahmin değil, tarif.", featured: false },
 ];

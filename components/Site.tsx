@@ -6,6 +6,7 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
+import { Duo } from "./home/Duo";
 import { TrustStrip, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
 import { Capabilities } from "./home/Capabilities";
 import { Positioning } from "./home/Extras";
@@ -36,6 +37,7 @@ export default function Site({ useCases }: { useCases?: React.ReactNode }) {
           <Positioning lang={lang} />
           <ProblemChapters lang={lang} />
           <ScrollStory t={t} lang={lang} />
+          <Duo lang={lang} />
           <WebShowcase lang={lang} />
           <Capabilities lang={lang} />
           <Industries lang={lang} />
