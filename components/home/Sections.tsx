@@ -19,6 +19,7 @@ import { MagneticButton } from "../ui/MagneticButton";
 import { Device, WorkScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
 import { CtaDuo } from "./CtaDuo";
+const MountShot = dynamic(() => import("./MountShot").then((x) => x.MountShot), { ssr: false });
 
 // One icon per area, in the order of home-copy.ts ind.areas.
 const AREA_ICONS = [ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
@@ -178,9 +179,11 @@ export function Industries({ lang }: { lang: Lang }) {
           <div aria-hidden="true" className="relative hidden overflow-hidden rounded-[28px] bg-surface-1 lg:col-span-6 lg:block">
             {IND_CARDS.map((x, i) => (
               <div key={x.slug} className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] ${on === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`}>
+                {x.slug === "uretim" ? <MountShot active={on === i} lang={lang} /> : <>
                 <picture><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
                   <img src={x.still} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
                 {x.v && on === i && <SmartVideo name={x.v} poster={x.still} threshold={0.3} />}
+                </>}
               </div>))}
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_55%,rgb(17_17_17/0.85)_100%)]" />
             <p className="absolute bottom-6 left-7 text-[15px] font-medium text-ink">{tr ? IND_CARDS[on].tr : IND_CARDS[on].en}</p>
