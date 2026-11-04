@@ -46,13 +46,16 @@ export function AppStoreBadge({ lang = "en", height = 44 }: { lang?: "en" | "tr"
       <img src={tr ? "/brand/stores/appstore-tr.svg" : "/brand/stores/appstore-en.svg"} alt={tr ? "App Store'dan indirin" : "Download on the App Store"} height={height} width={Math.round(height * (tr ? 3.78 : 2.99))} style={{ height }} className="block w-auto" />
     </a>);
 }
+/** Google Play badge in the official badge's geometry (646:192, black, #A6A6A6 hairline, small caps line over the
+ *  wordmark), sized like the App Store badge next to it. The Play logo itself is left out: it contains blue, which the
+ *  brand rules forbid, and Google does not allow it to be recoloured. */
 export function StoreBadge({ href, top, name, size = "md" }: { href: string; top: string; name: string; size?: "sm" | "md" }) {
   const h = size === "sm" ? 40 : 44;
   return (
-    <a href={href} target="_blank" rel="noopener" style={{ height: h }}
+    <a href={href} target="_blank" rel="noopener" style={{ height: h, minWidth: Math.round(h * 3.0) }}
       className="inline-flex flex-col justify-center rounded-[8px] bg-black px-3.5 text-left ring-1 ring-inset ring-[#A6A6A6] transition-opacity hover:opacity-85">
-      <span className="text-[10px] leading-none text-white/85">{top}</span>
-      <span className={`${size === "sm" ? "text-[16px]" : "text-[18px]"} mt-0.5 font-semibold leading-none tracking-[-.02em] text-white`}>{name}</span>
+      <span className="text-[9px] font-medium uppercase leading-none tracking-[.04em] text-white">{top}</span>
+      <span className={`${size === "sm" ? "text-[17px]" : "text-[19px]"} mt-[3px] font-medium leading-none tracking-[-.015em] text-white`}>{name}</span>
     </a>);
 }
 export function StoreButtons({ className = "", small = false, lang = "en" }: { className?: string; small?: boolean; lang?: "en" | "tr" }) {
