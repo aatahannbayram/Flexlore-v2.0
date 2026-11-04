@@ -31,7 +31,7 @@ const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ss
 
 /* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
    official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
-const TILE = "flex h-11 w-full items-center justify-center rounded-[12px] bg-white/95 px-3 transition-[transform,background-color] duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:bg-white sm:h-12";
+const TILE = "flex h-11 w-full items-center justify-center rounded-[12px] bg-white/95 px-3 transition-[transform,background-color] duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:bg-white sm:h-[52px]";
 export function TrustStrip({ lang }: { lang: Lang }) {
   const c = home[lang].trust;
   return (
@@ -45,7 +45,7 @@ export function TrustStrip({ lang }: { lang: Lang }) {
                 <a href={p.href} target="_blank" rel="noopener" className="group block" aria-label={p.name}>
                   {p.badge
                     ? <span className={`${TILE} flex-col`}>
-                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[16px] sm:h-[18px]" : "h-[28px] sm:h-[32px]"}`} />
+                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[16px] sm:h-[18px]" : "h-[40px] sm:h-[46px]"}`} />
                         {p.caption && <span className="mt-0.5 text-[9px] font-medium text-[#5F6368]">{p.caption}</span>}
                       </span>
                     : <span className={`${TILE} flex-col`}>
@@ -58,7 +58,7 @@ export function TrustStrip({ lang }: { lang: Lang }) {
               {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                   third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
               <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
-                <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[118px]" loading="lazy" /></span>
+                <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[152px]" loading="lazy" /></span>
               </a>
             </RevealItem>
           </Reveal>
