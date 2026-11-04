@@ -4,6 +4,7 @@ import { Play } from "../ui/icons";
 import type { C, Lang } from "../copy";
 import { SITE } from "../config";
 import { Device, SopScreen } from "../AppScreens";
+import { StoreButtons } from "../Icons";
 import { MagneticButton } from "../ui/MagneticButton";
 import { SmartVideo } from "../ui/SmartVideo";
 import { VideoModal } from "../ui/VideoModal";
@@ -47,13 +48,16 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
                 <Play size={14} weight="fill" aria-hidden="true" />{t.watch}
               </button>
             </div>
+            <div className="hs-in mt-10 flex flex-wrap items-center gap-3" style={{ animationDelay: "700ms" }}>
+              <StoreButtons small lang={lang} />
+            </div>
           </div>
 
           <div className="col-span-12 lg:col-span-5 lg:col-start-8">
             <div className="hs-device relative mx-auto w-[min(64vw,260px)] lg:w-[288px]" style={{ animationDelay: "360ms" }}>
               <Device label={t.alts[1]}><SopScreen active /></Device>
               {/* Readiness chip: overlaps the device corner, never the copy column. */}
-              <div className="panel absolute -bottom-6 -left-8 w-[14rem] px-4 py-3 sm:-left-20">
+              <div className="panel absolute -bottom-8 left-1/2 w-[14rem] -translate-x-1/2 px-4 py-3 lg:bottom-auto lg:left-[-15rem] lg:top-[58%] lg:translate-x-0">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-sm font-semibold">{t.chip.title}</p>
                   <span className="rounded-full bg-[rgb(104_210_185/0.12)] px-2 py-0.5 text-xs font-semibold text-calm-aqua">{t.chip.status}</span>

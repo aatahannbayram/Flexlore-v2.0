@@ -48,7 +48,7 @@ export function Capabilities({ lang }: { lang: Lang }) {
   return (
     <section aria-labelledby="caps-h" className="section-y bg-bg">
       <div className="container-x">
-        <Heading id="caps-h" eyebrow={c.k} title={c.h} lead={c.lead} />
+        <Heading id="caps-h" eyebrow={c.k} title={<>{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></>} lead={c.lead} />
         <Reveal as="ul" stagger={0.1} className="no-sb -mx-[var(--pad-x)] mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] pb-1 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
           {c.cards.map((card, i) => (
             <RevealItem as="li" key={card.h} className="w-[82%] shrink-0 snap-start md:w-auto">

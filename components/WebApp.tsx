@@ -15,7 +15,7 @@ const S1 = "#111113", S2 = "#161618", S3 = "#1f1f22";
 const ic = { size: 16 } as const;
 const panel = "rounded-[12px] border border-white/[.07] shadow-[inset_0_1px_0_rgba(255,255,255,.04),0_1px_2px_rgba(0,0,0,.4),0_12px_32px_-16px_rgba(0,0,0,.7)]";
 const NAV: [string, [string, typeof House, string?][]][] = [
-  ["Workspace", [["House", House], ["Books", Books], ["Notices", Bell, "3"]]],
+  ["Workspace", [["Home", House], ["Library", Books], ["Notices", Bell, "3"]]],
   ["Insights", [["Orientation Analyzer", ChartBar], ["Quizzes", ListChecks]]],
   ["Admin", [["Manage Access", Users]]],
 ];
@@ -40,15 +40,15 @@ export function Dashboard({ on }: { on: boolean }) {
         <span className="grid h-7 w-7 place-items-center rounded-[8px] text-xs font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: `linear-gradient(180deg,#EC6726,${O})` }}>SK</span>
         <span className="flex-1 leading-tight"><span className="block text-sm font-semibold tracking-[-.01em]">Sample Kitchen</span><span className="block text-xs text-white/70">Main · Pro</span></span>
         <CaretUpDown {...ic} size={14} className="text-white/70" /></div>
-      <div className="mt-2 flex h-8 items-center gap-2 rounded-[8px] border border-white/[.07] bg-white/[.03] px-2.5 text-sm text-white/70"><MagnifyingGlass {...ic} size={14} /><span className="flex-1">MagnifyingGlass</span><kbd className="rounded-[4px] border border-white/10 bg-white/[.04] px-1.5 font-sans text-xs text-white/70">⌘K</kbd></div>
+      <div className="mt-2 flex h-8 items-center gap-2 rounded-[8px] border border-white/[.07] bg-white/[.03] px-2.5 text-sm text-white/70"><MagnifyingGlass {...ic} size={14} /><span className="flex-1">Search</span><kbd className="rounded-[4px] border border-white/10 bg-white/[.04] px-1.5 font-sans text-xs text-white/70">⌘K</kbd></div>
       {NAV.map(([sec, items]) => <div key={sec} className="mt-5"><p className="px-2.5 pb-1.5 text-xs font-medium text-white/70">{sec}</p>
-        {items.map(([n, Icon, b]) => { const act = n === "Books"; return <div key={n} className={`relative flex h-8 items-center gap-2.5 rounded-[8px] px-2.5 text-sm tracking-[-.01em] ${act ? "bg-white/[.07] text-white shadow-[inset_0_1px_0_rgba(255,255,255,.05)]" : "text-white/70"}`}>
+        {items.map(([n, Icon, b]) => { const act = n === "Library"; return <div key={n} className={`relative flex h-8 items-center gap-2.5 rounded-[8px] px-2.5 text-sm tracking-[-.01em] ${act ? "bg-white/[.07] text-white shadow-[inset_0_1px_0_rgba(255,255,255,.05)]" : "text-white/70"}`}>
           {act && <span className="absolute -left-3 top-1.5 h-5 w-[2px] rounded-r" style={{ background: O }} />}<Icon {...ic} size={16} style={act ? { color: O } : {}} /><span className="flex-1">{n}</span>{b && <span className="rounded-full bg-white/10 px-1.5 text-xs font-medium tabular-nums text-white/70">{b}</span>}</div>; })}</div>)}
       <div className="mt-auto flex items-center gap-2.5 rounded-[10px] border border-white/[.06] p-2.5"><Av i="AM" c="#4d4d4d" s={28} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium">Admin</span><span className="block text-xs text-white/70">Sample data only</span></span><Gear {...ic} size={14} className="text-white/70" /></div>
     </div>
     <div className="flex min-w-0 flex-1 flex-col">
       <div className="flex h-[52px] items-center gap-3 border-b border-white/[.06] px-6">
-        <span className="flex items-center gap-1.5 text-sm text-white/70">Sample Kitchen<CaretRight {...ic} size={13} /><span className="font-medium text-white">Books</span></span>
+        <span className="flex items-center gap-1.5 text-sm text-white/70">Sample Kitchen<CaretRight {...ic} size={13} /><span className="font-medium text-white">Library</span></span>
         <span className="ml-auto flex -space-x-1.5">{PEOPLE.slice(0, 4).map(([n, i, c]) => <Av key={n} i={i} c={c} />)}<span className="grid h-6 w-6 place-items-center rounded-full bg-[#2a2a2e] text-xs font-medium text-white/70 ring-2 ring-[#0b0b0c]">+8</span></span>
         <span className="h-5 w-px bg-white/10" />
         <span className="flex h-8 items-center gap-1.5 rounded-[8px] border border-white/10 bg-white/[.03] px-3 text-xs text-white/80"><ShareNetwork {...ic} size={13} />Share</span>

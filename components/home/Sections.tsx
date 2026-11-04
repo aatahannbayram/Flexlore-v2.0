@@ -4,14 +4,13 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import {
-  ArrowCounterClockwise, UsersThree, BookOpen, ArrowRight, Sparkle, CheckCircle, LockSimple, MapPin, Plus,
+  ArrowCounterClockwise, UsersThree, BookOpen, ArrowRight, Check, Plus,
 } from "../ui/icons";
 import { copy, type Lang } from "../copy";
 
 const LANG_CODES: Record<string, string> = { English: "en", "Türkçe": "tr", Deutsch: "de", "العربية": "ar", "Español": "es", "Русский": "ru", "Français": "fr", Polski: "pl" };
 import { home, IND_CARDS } from "./home-copy";
 import { SITE, PLANS, PLAN_TR } from "../config";
-import { INDUSTRIES, type Ind } from "../seeit-data";
 import { Heading } from "../ui/Layout";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { SmartVideo } from "../ui/SmartVideo";
@@ -19,51 +18,44 @@ import { DotGlobe } from "../ui/DotGlobe";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, SopScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
-import { StoreBadge, AppStoreBadge } from "../Icons";
 
 // The dashboard mockup is below the fold: its code loads only when the section nears the viewport.
 // The placeholder keeps the same 1180:720 ratio, so nothing shifts when it arrives.
 const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
 
-/* 3. Trust strip: confirmed facts only. Official artwork where the owner provides it (Apple badge, NVIDIA badge, Google's
-   Cloud Program identifier), each linking to its source; plain text where no official mark exists (see config.ts). */
+/* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
+   official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
+const PLATE = "flex h-[68px] w-[calc(50vw-22px)] max-w-[200px] items-center justify-center bg-white px-3 sm:h-[76px] sm:w-[200px] sm:px-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5";
 export function TrustStrip({ lang }: { lang: Lang }) {
-  const c = home[lang].trust; const tr = lang === "tr";
+  const c = home[lang].trust;
   return (
     <section aria-label={c.programs} className="bg-bg">
-      <div className="container-x grid-12 items-start gap-y-10 py-16 md:py-20">
-        <div className="col-span-12 lg:col-span-5">
-          <p className="eyebrow">{c.live}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-3">
-            <AppStoreBadge lang={lang} />
-            <StoreBadge href={SITE.googlePlay} top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" />
+      <div className="container-x py-16 text-center md:py-20">
+        <p className="eyebrow">{c.programs}</p>
+        <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
+          {SITE.programs.map((p) => (
+            <li key={p.name}>
+              <a href={p.href} target="_blank" rel="noopener" className="group block">
+                {p.badge
+                  ? <span className={`${PLATE} flex-col`}>
+                      <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[28px] sm:h-[34px]" : "h-[44px] sm:h-[52px]"}`} />
+                      {p.caption && <span className="mt-1 text-[11px] font-medium text-[#5F6368]">{p.caption}</span>}
+                    </span>
+                  : <span className={`${PLATE} flex-col`}>
+                      <span className="text-[16px] font-semibold leading-tight tracking-[-.02em] text-[#111111] sm:text-[18px]">{p.name}</span>
+                      <span className="text-[12px] text-[#5F6368]">by {p.org}</span>
+                    </span>}
+              </a>
+            </li>))}
+          <li>
             {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                 third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
-            <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-block transition-opacity hover:opacity-85">
-              <img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={204} height={44} style={{ height: 44 }} className="block w-auto" loading="lazy" />
+            <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
+              <span className={PLATE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[186px]" loading="lazy" /></span>
             </a>
-          </div>
-        </div>
-        <div className="col-span-12 lg:col-span-6 lg:col-start-7">
-          <p className="eyebrow">{c.programs}</p>
-          <ul className="mt-5 flex flex-wrap items-start gap-4">
-            {SITE.programs.map((p) => (
-              <li key={p.name}>
-                <a href={p.href} target="_blank" rel="noopener" className="group block">
-                  {p.badge
-                    ? <span className="flex h-[72px] items-center bg-white px-3 transition-opacity group-hover:opacity-90">
-                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} style={{ height: p.badgeH }} className="block w-auto" />
-                      </span>
-                    : <span className="flex h-[72px] flex-col justify-center rounded-[14px] bg-surface-1 px-5 transition-colors group-hover:bg-surface-2">
-                        <span className="text-[18px] font-semibold leading-tight tracking-[-.02em] text-ink">{p.name}</span>
-                        <span className="text-[13px] leading-tight text-ice-400">by {p.org}</span>
-                      </span>}
-                  {p.caption && <span className="mt-2 block text-[13px] text-ice-400">{p.caption}</span>}
-                </a>
-              </li>))}
-          </ul>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>);
 }
@@ -198,45 +190,9 @@ export function Industries({ lang }: { lang: Lang }) {
           </div>
           <div className="relative -mt-6 h-[220px] md:h-[300px]"><DotGlobe /></div>
         </div>
-        <ScenarioPicker lang={lang} />
+        <div className="mt-8 flex justify-center"><Link href="/see-it/" className="btn btn-secondary">{c.picker}<ArrowRight size={14} aria-hidden="true" /></Link></div>
       </div>
     </section>);
-}
-
-function ScenarioPicker({ lang }: { lang: Lang }) {
-  const c = home[lang].ind; const [id, setId] = useState<Ind>("cafe-restaurant"); const reduce = useReducedMotion();
-  const cur = INDUSTRIES.find((x) => x.id === id)!; const L = cur[lang];
-  return (
-    <div className="panel mt-16 p-5 md:p-8">
-      <h3 className="h3">{c.picker}</h3>
-      <p className="mt-2 text-base text-ink-muted">{c.pickerLead}</p>
-      <div role="tablist" aria-label={c.picker} className="no-sb -mx-1 mt-6 flex gap-1 overflow-x-auto px-1">
-        {INDUSTRIES.map((x) => (
-          <button key={x.id} role="tab" type="button" aria-selected={id === x.id} aria-controls="scenario-panel" id={`tab-${x.id}`} onClick={() => setId(x.id)}
-            className={`relative h-11 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors ${id === x.id ? "text-bg" : "text-ink-muted hover:text-ink"}`}>
-            {id === x.id && <m.span layoutId="scn-pill" className="absolute inset-0 -z-0 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}
-            <span className="relative">{x[lang].label}</span>
-          </button>))}
-      </div>
-      <div id="scenario-panel" role="tabpanel" aria-labelledby={`tab-${id}`} className="mt-6 grid gap-6 lg:grid-cols-12">
-        <AnimatePresence mode="wait" initial={false}>
-          <m.div key={id} className="contents" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.25 }}>
-            <div className="relative aspect-video overflow-hidden rounded-2xl lg:col-span-5">
-              <img src={`/video/${cur.v}.webp`} alt={L.alt} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-            </div>
-            <div className="lg:col-span-7">
-              <p className="text-lg font-medium leading-snug">{L.job}</p>
-              <ol className="mt-5 space-y-3">
-                {L.flow.map(([h, p], i) => (
-                  <li key={h} className="flex gap-4"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-surface-2 text-xs font-semibold tabular-nums">{i + 1}</span>
-                    <span><span className="block text-base font-semibold">{h}</span><span className="block text-base text-ink-muted">{p}</span></span></li>))}
-              </ol>
-              <Link href={`/see-it/?industry=${id}`} className="btn btn-secondary mt-6">{c.see}<ArrowRight size={14} aria-hidden="true" /></Link>
-            </div>
-          </m.div>
-        </AnimatePresence>
-      </div>
-    </div>);
 }
 
 /* 9. Proof: structure only. Hidden by SITE.flags.proof until real results or quotes exist. */
@@ -250,7 +206,8 @@ export function Proof() {
     </div></section>);
 }
 
-/* 10. Pricing preview on a light ground. Real plan numbers from config.ts. */
+/* 10. Pricing preview on a light ground. One structure per card so prices, users and features line up across all four.
+   Real plan numbers and features from config.ts. */
 export function PricingPreview({ lang }: { lang: Lang }) {
   const c = home[lang].pricing; const t = PL[lang]; const tr = lang === "tr"; const [yearly, setYearly] = useState(false);
   const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
@@ -261,68 +218,94 @@ export function PricingPreview({ lang }: { lang: Lang }) {
           <div className="col-span-12 lg:col-span-7"><Heading id="pp-h" eyebrow={c.k} title={c.h} lead={c.lead} light /></div>
           <div className="col-span-12 lg:col-span-5 lg:justify-self-end"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} light id="pp" /></div>
         </div>
-        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4">
-          {PLANS.map((p) => { const rec = p.featured; const name = tr ? PLAN_TR[p.id]?.name ?? p.name : p.name; return (
-            <li key={p.id} className={`relative flex w-[80%] shrink-0 snap-start flex-col rounded-[24px] p-6 sm:w-auto ${rec ? "bg-bg text-ice-100" : "bg-white"}`}>
+        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4">
+          {PLANS.map((p) => { const rec = !!p.featured; const name = tr ? PLAN_TR[p.id]?.name ?? p.name : p.name; const sub = rec ? "text-ice-300" : "text-light-muted"; return (
+            <li key={p.id} className={`grid w-[80%] shrink-0 snap-start grid-rows-[auto_auto_7.5rem_auto_1fr_auto] rounded-[24px] p-6 sm:w-auto ${rec ? "bg-bg text-ice-100" : "bg-white"}`}>
               <div className="flex items-center justify-between gap-3"><h3 className="text-lg font-semibold">{name}</h3>
                 {rec && <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-ice-100">{tr ? p.badgeTr : p.badge}</span>}</div>
-              <p className={`mt-1 text-sm ${rec ? "text-ice-300" : "text-light-muted"}`}>{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p>
-              <div className="mt-6"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
-              <p className={`mt-3 text-sm ${rec ? "text-ice-300" : "text-light-muted"}`}>{p.id === "enterprise" ? t.entB : t.unit(users[p.id])}</p>
-              <div className="mt-auto pt-6">
+              <p className={`mt-1 min-h-[2.6rem] text-sm leading-snug ${sub}`}>{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p>
+              <div className="pt-5"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
+              <p className={`text-sm font-medium ${rec ? "text-ice-100" : "text-light-ink"}`}>{p.id === "enterprise" ? "30+ " + (tr ? "kullanıcı" : "users") : t.unit(users[p.id])}</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                {c.feats[p.id].map((f) => <li key={f} className={`flex items-center gap-2.5 ${sub}`}><Check size={15} aria-hidden="true" className={rec ? "text-ice-200" : "text-light-ink"} />{f}</li>)}
+              </ul>
+              <div className="pt-6">
                 {p.id === "enterprise"
                   ? <a href={SITE.demo} className="btn w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}</a>
                   : <Link href="/pricing/" className={`btn w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}</Link>}
               </div>
             </li>); })}
         </ul>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="mt-8 flex justify-center">
           <Link href="/pricing/" className="inline-flex min-h-11 items-center gap-2 text-base font-semibold text-light-ink underline decoration-ice-300 underline-offset-4 hover:decoration-light-ink">{c.all}<ArrowRight size={14} aria-hidden="true" /></Link>
         </div>
       </div>
     </section>);
 }
 
-/* 11. FAQ: accordion, keyboard accessible (real buttons, aria-expanded/controls), height animated by measured content. */
+/* 11. FAQ: light rows (no fills until open), keyboard accessible, with a way out for anything not covered. */
 export function Faq({ lang }: { lang: Lang }) {
   const c = home[lang].faq; const [open, setOpen] = useState<number | null>(0); const reduce = useReducedMotion();
   return (
     <section id="faq" aria-labelledby="faq-h" className="section-y bg-bg">
-      <div className="container-x grid-12 gap-y-10">
-        <div className="col-span-12 lg:col-span-4"><p className="eyebrow">{c.k}</p><h2 id="faq-h" className="h2 mt-4">{c.h}</h2></div>
-        <ul className="col-span-12 space-y-2 lg:col-span-8">
+      <div className="container-x grid-12 gap-y-12">
+        <div className="col-span-12 lg:col-span-4">
+          <p className="eyebrow">{c.k}</p><h2 id="faq-h" className="h2 mt-4">{c.h}</h2>
+          <div className="mt-10 hidden max-w-[20rem] lg:block">
+            <p className="text-lg font-semibold tracking-[-.01em]">{c.more}</p>
+            <p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
+            <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+            <p className="mt-4 text-sm text-ink-faint"><a href="mailto:hello@flexlore.com" className="underline decoration-white/20 underline-offset-4 hover:text-ink">{c.email}</a></p>
+          </div>
+        </div>
+        <ul className="col-span-12 space-y-1 lg:col-span-7 lg:col-start-6">
           {c.items.map((q, i) => { const on = open === i; return (
-            <li key={q.q} className={`rounded-[20px] px-5 transition-colors md:px-6 ${on ? "bg-surface-1" : "bg-surface-1/50 hover:bg-surface-1"}`}>
+            <li key={q.q} className={`rounded-[20px] transition-colors duration-300 ${on ? "bg-surface-1" : "hover:bg-surface-1/40"}`}>
               <h3>
                 <button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)}
-                  className="flex min-h-16 w-full items-center justify-between gap-6 py-4 text-left text-lg font-semibold tracking-[-.01em]">
-                  {q.q}
-                  <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[.06] text-ink-muted"><Plus size={14} aria-hidden="true" /></m.span>
+                  className="flex min-h-16 w-full items-center justify-between gap-6 px-5 py-4 text-left text-[18px] font-semibold tracking-[-.01em] md:px-6">
+                  <span className={on ? "text-ink" : "text-ink/85"}>{q.q}</span>
+                  <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className="grid h-8 w-8 shrink-0 place-items-center text-ice-400"><Plus size={16} aria-hidden="true" /></m.span>
                 </button>
               </h3>
               <AnimatePresence initial={false}>
                 {on && (
                   <m.div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} key="a" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: reduce ? 0 : 0.35, ease: EASE }} className="overflow-hidden">
-                    <p className="measure pb-6 text-base text-ink-muted">{q.a}</p>
+                    <p className="measure px-5 pb-6 text-base text-ink-muted md:px-6">{q.a}</p>
                   </m.div>)}
               </AnimatePresence>
             </li>); })}
         </ul>
+        <div className="col-span-12 lg:hidden">
+          <p className="text-lg font-semibold">{c.more}</p><p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
+          <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+        </div>
       </div>
     </section>);
 }
 
-/* 12. Final CTA: one calm panel, one orange element (the button). */
+/* 12. Final CTA: calm copy on the left; behind it on the right, the real product (phone and web, static captures of the
+   mockups) set in perspective for depth, fading into the panel. One action. */
 export function FinalCta({ lang }: { lang: Lang }) {
   const c = home[lang].end;
   return (
     <section id="demo" aria-labelledby="end-h" className="bg-bg pb-[var(--section-y)]">
       <div className="container-x">
-        <div className="grid-12 -mx-[var(--pad-x)] items-end gap-y-8 bg-surface-1 px-[var(--pad-x)] py-16 md:rounded-[28px] md:py-24">
-          <div className="col-span-12 lg:col-span-8"><h2 id="end-h" className="display text-display">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2><p className="lead mt-5">{c.p}</p></div>
-          <div className="col-span-12 flex lg:col-span-4 lg:justify-end">
-            <MagneticButton href={SITE.demo}>{c.cta}</MagneticButton>
+        <div className="relative -mx-[var(--pad-x)] overflow-hidden bg-surface-1 px-[var(--pad-x)] py-16 md:rounded-[32px] md:py-28">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block [perspective:1600px]">
+            <div className="absolute right-[-14%] top-1/2 w-[860px] -translate-y-1/2 [transform:rotateY(-24deg)_rotateX(8deg)_rotateZ(2deg)] [transform-style:preserve-3d]">
+              <picture><source srcSet="/photos/cta-dashboard.avif" type="image/avif" /><img src="/photos/cta-dashboard.webp" alt="" loading="lazy" width={1400} height={901} className="block w-full rounded-[18px] opacity-90" /></picture>
+              <picture><source srcSet="/photos/cta-phone.avif" type="image/avif" /><img src="/photos/cta-phone.webp" alt="" loading="lazy" width={560} height={1213} className="absolute -left-20 top-[18%] w-[230px] [transform:translateZ(120px)]" /></picture>
+            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#191919_0%,rgb(25_25_25/0.75)_28%,rgb(25_25_25/0.15)_70%,rgb(25_25_25/0.5)_100%)]" />
+          </div>
+          <div className="relative max-w-[40rem]">
+            <h2 id="end-h" className="text-[clamp(40px,1.2rem+3.4vw,80px)] font-[620] leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
+            <p className="lead mt-5">{c.p}</p>
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <MagneticButton href={SITE.demo}>{c.cta}</MagneticButton>
+            </div>
           </div>
         </div>
       </div>

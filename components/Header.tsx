@@ -40,9 +40,9 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
   const LangSwitch = setLang && (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[.06] p-0.5 text-xs font-semibold">
       {(["en", "tr"] as Lang[]).map((l) => (
-        <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} lang={l} aria-label={l === "tr" ? "Türkçe" : "English"}
+        <button key={l} type="button" onClick={() => setLang(l)} aria-pressed={lang === l} lang={l}
           className={`relative z-10 grid h-8 min-w-9 place-items-center rounded-full px-2 uppercase transition-colors ${lang === l ? "text-bg" : "text-ink-muted hover:text-ink"}`}>
-          {lang === l && <m.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}{l}
+          {lang === l && <m.span layoutId="langpill" className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />}{l}<span className="sr-only"> {l === "tr" ? "Türkçe" : "English"}</span>
         </button>))}
     </div>);
   const pauseLabel = paused ? (lang === "tr" ? "Videoları oynat" : "Play videos") : (lang === "tr" ? "Videoları durdur" : "Pause videos");

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, m, useMotionValueEvent, useReducedMotion, useScroll } from "framer-motion";
+import { AnimatePresence, m, useMotionValueEvent, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { C, Lang } from "../copy";
 import { home } from "./home-copy";
 import { Device, RecordScreen, SopScreen, QuizScreen, ReadyScreen } from "../AppScreens";
@@ -14,9 +14,8 @@ function Screen({ i, active }: { i: number; active: boolean }) {
   return i === 0 ? <RecordScreen active={active} /> : i === 1 ? <SopScreen active={active} /> : i === 2 ? <QuizScreen active={active} q={QUIZ.q} a={QUIZ.a} ok={QUIZ.ok} /> : <ReadyScreen active={active} />;
 }
 
-/* Per step: where the live chip sits around the phone, and how the phone leans. */
-const CHIP_POS = ["left-[-9.5rem] top-[14%]", "right-[-10.5rem] top-[30%]", "left-[-10rem] top-[52%]", "right-[-9rem] bottom-[16%]"];
-const LEAN = [{ r: -3, y: 0 }, { r: 2, y: -10 }, { r: -1.5, y: -4 }, { r: 0, y: 6 }];
+/* Per step: a small lift of the phone, so each change reads as movement. */
+const LEAN = [{ y: 0 }, { y: -10 }, { y: -4 }, { y: 6 }];
 const CHIP_ICON = [() => <span className="block h-2.5 w-2.5 rounded-full bg-danger" />, () => <Sparkle size={16} weight="fill" />, () => <ListChecks size={16} />, () => <UsersThree size={16} />];
 
 function Chip({ i, chips }: { i: number; chips: [string, string][] }) {
@@ -30,8 +29,8 @@ function Chip({ i, chips }: { i: number; chips: [string, string][] }) {
 }
 
 /** "Record, Steps, Quiz, Readiness" as ONE story, no rules or dividers.
- *  Desktop (lg+): a 250vh section with a sticky stage. Scroll picks the step: a dot slides to it, its copy fades in, the phone
- *  leans and changes screen, and a live chip appears beside it.
+ *  Desktop (lg+): a 250vh section with a sticky stage. Scroll picks the step: its row fills and opens, a soft fill tracks progress
+ *  through it, the phone lifts and changes screen, and the corner chip says what just happened.
  *  Mobile/tablet: a swipe carousel with snap points and dots. Server HTML lists all four steps as text, once. */
 export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
   const h = home[lang].story;
@@ -39,6 +38,7 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
   const [a, setA] = useState(0);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const within = useTransform(scrollYProgress, (v) => Math.min(1, Math.max(0, v * 4 - Math.min(3, Math.floor(v * 4)))));
   useMotionValueEvent(scrollYProgress, "change", (v) => setA(Math.min(3, Math.max(0, Math.floor(v * 4)))));
   const n = t.steps.length;
   // Devices render only for the layout in use (null before mount: text only, so server HTML has no duplicate devices).
@@ -65,57 +65,55 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
               <h2 id="story-h" className="h2 mt-4 max-w-[15ch]">{h.h}</h2>
               <p className="lead mt-5 max-w-[30rem]">{h.lead}</p>
 
-              <ol className="mt-12 hidden lg:block">
+              {/* Step list: no rules. The active row is filled, carries its description, and a soft fill moves across it
+                  as you scroll through that step. */}
+              <ol className="mt-10 hidden space-y-1.5 lg:block">
                 {t.steps.map((s, i) => {
                   const on = a === i;
                   return (
                     <li key={i}><h3>
                       <button type="button" onClick={() => jump(i)} aria-current={on ? "step" : undefined}
-                        className="group flex w-full items-center gap-5 py-2.5 text-left">
-                        <span className="relative grid h-6 w-6 place-items-center">
-                          <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
-                          {on && <m.span layoutId="story-dot" transition={spring} className="absolute h-3 w-3 rounded-full bg-ice-100" />}
+                        className={`relative block w-full overflow-hidden rounded-[18px] px-5 py-4 text-left transition-colors duration-500 ${on ? "bg-surface-1" : "hover:bg-surface-1/50"}`}>
+                        {on && <m.span aria-hidden="true" style={{ scaleX: reduce ? 1 : within }} className="absolute inset-0 origin-left bg-white/[.035]" />}
+                        <span className="relative flex items-baseline gap-4">
+                          <span className={`w-6 text-sm font-semibold tabular-nums transition-colors ${on ? "text-ice-200" : "text-ink-faint"}`}>0{i + 1}</span>
+                          <span className={`text-[21px] font-semibold tracking-[-.02em] transition-colors duration-500 ${on ? "text-ink" : "text-ink-faint"}`}>{s.h.replace(".", "")}</span>
                         </span>
-                        <span className={`w-7 text-sm font-semibold tabular-nums transition-colors duration-500 ${on ? "text-ice-300" : "text-white/30"}`}>0{i + 1}</span>
-                        <m.span animate={{ x: on ? 6 : 0, opacity: on ? 1 : 0.38 }} transition={spring}
-                          className="text-[clamp(24px,1.1rem+0.9vw,32px)] font-semibold tracking-[-.03em] text-ink group-hover:opacity-80">
-                          {s.h.replace(".", "")}
-                        </m.span>
+                        <span className={`relative grid transition-[grid-template-rows,opacity] duration-500 ${on ? "mt-2 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                          <span className="overflow-hidden pl-10 text-[15px] leading-relaxed text-ink-muted">{s.p}</span>
+                        </span>
                       </button>
                     </h3></li>);
                 })}
               </ol>
-              {/* All four descriptions share one grid cell (height = tallest); only opacity and a small rise change. */}
-              <div className="mt-6 hidden pl-[3.25rem] lg:grid">
-                {t.steps.map((s, i) => (
-                  <m.p key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, y: a === i ? 0 : 8 }} transition={{ duration: reduce ? 0 : 0.45, ease: EASE }}
-                    className="max-w-[40ch] text-base text-ink-muted [grid-area:1/1]">{s.p}</m.p>))}
-              </div>
             </div>
 
-            {/* Desktop stage */}
-            <div className="relative col-span-12 hidden lg:col-span-6 lg:col-start-7 lg:block">
-              <div className="relative mx-auto w-[290px]">
-                {lg && near && (
-                  <m.div animate={{ rotate: LEAN[a].r, y: LEAN[a].y }} transition={spring} className="relative">
-                    <Device label={t.alts[a]}>
-                      {[0, 1, 2, 3].map((i) => (
-                        <m.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97, y: a === i ? 0 : a > i ? -14 : 14 }} transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
-                          className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
-                          <Screen i={i} active={a === i} />
-                        </m.div>))}
-                    </Device>
-                  </m.div>)}
+            {/* Desktop stage: one calm panel with faint footage, an upright phone and a fixed info chip in the corner. */}
+            <div className="relative col-span-12 hidden lg:col-span-7 lg:block">
+              <div className="relative h-[min(680px,calc(100svh-120px))] overflow-hidden rounded-[32px] bg-surface-1">
+                <picture aria-hidden="true"><source srcSet="/video/kitchen-bg.avif" type="image/avif" /><img src="/video/kitchen-bg.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-[0.16]" /></picture>
+                <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(25_25_25/0.2),rgb(25_25_25/0.85))]" />
                 <AnimatePresence mode="wait" initial={false}>
                   {lg && near && (
-                    <m.div key={a} aria-hidden="true" className={`absolute z-10 ${CHIP_POS[a]}`}
-                      initial={{ opacity: 0, y: 14, scale: 0.96 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                      transition={{ duration: reduce ? 0 : 0.45, ease: EASE, delay: reduce ? 0 : 0.15 }}>
+                    <m.div key={a} aria-hidden="true" className="absolute left-6 top-6 z-10"
+                      initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: reduce ? 0 : 0.4, ease: EASE }}>
                       <Chip i={a} chips={h.chips} />
                     </m.div>)}
                 </AnimatePresence>
+                <p className="absolute bottom-5 left-6 z-10 text-xs text-ink-faint">{h.sample}</p>
+                <div className="absolute inset-y-0 right-[12%] flex items-center">
+                  {lg && near && (
+                    <m.div animate={{ y: LEAN[a].y }} transition={spring} className="w-[min(270px,calc((100svh-200px)*0.46))]">
+                      <Device label={t.alts[a]}>
+                        {[0, 1, 2, 3].map((i) => (
+                          <m.div key={i} initial={false} animate={{ opacity: a === i ? 1 : 0, scale: a === i ? 1 : 0.97, y: a === i ? 0 : a > i ? -14 : 14 }} transition={{ duration: reduce ? 0 : 0.5, ease: EASE }}
+                            className="absolute inset-0" aria-hidden={a !== i} style={{ zIndex: a === i ? 2 : 1 }}>
+                            <Screen i={i} active={a === i} />
+                          </m.div>))}
+                      </Device>
+                    </m.div>)}
+                </div>
               </div>
-              <p className="mt-8 text-center text-xs text-ink-faint">{h.sample}</p>
             </div>
 
             <div className="col-span-12 lg:hidden">

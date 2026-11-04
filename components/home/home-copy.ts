@@ -9,16 +9,16 @@ export type HomeCopy = {
   web: { k: string; h: string; lead: string; callouts: { h: string; p: string }[]; sample: string };
   bento: { k: string; h: string; lead: string; tiles: Record<"ai" | "ready" | "quiz" | "access" | "devices" | "sites", { h: string; p: string }> };
   ind: { k: string; h: string; lead: string; open: string; more: string; picker: string; pickerLead: string; see: string; areas: [string, string | null][] };
-  caps: { k: string; h: string; lead: string; cards: { h: string; p: string }[]; sample: string };
-  pricing: { k: string; h: string; lead: string; all: string; demo: string };
-  faq: { k: string; h: string; items: { q: string; a: string }[] };
+  caps: { k: string; h: [string, string]; lead: string; cards: { h: string; p: string }[]; sample: string };
+  pricing: { k: string; h: string; lead: string; all: string; demo: string; feats: Record<string, string[]> };
+  faq: { k: string; h: string; items: { q: string; a: string }[]; more: string; moreP: string; email: string };
   end: { h: [string, string]; p: string; cta: string };
   footer: { tag: string; app: string; product: string; industries: string; company: string; follow: string; how: string; web: string; scenario: string; pricing: string; blog: string; support: string };
 };
 
 export const home: Record<Lang, HomeCopy> = {
   en: {
-    trust: { live: "Available now", ios: "iPhone app on the App Store", android: "Android app on Google Play", ph: "Launched on Product Hunt", programs: "Member of" },
+    trust: { live: "Available now", ios: "iPhone app on the App Store", android: "Android app on Google Play", ph: "Launched on Product Hunt", programs: "Programs and launches" },
     problem: {
       k: "Why it matters", h: ["Know-how lives", "in someone's hands."],
       p: "It leaves when they do. New people copy whoever is on shift.",
@@ -57,7 +57,7 @@ export const home: Record<Lang, HomeCopy> = {
       areas: [["Restaurants", "restoran"], ["Coffee shops and bakeries", "firin"], ["Manufacturing", "uretim"], ["Hotels", "otel"], ["Franchises", "franchise"], ["Warehouses", "depo"], ["Healthcare and clinics", null], ["Education", null], ["Training providers", null], ["Wellness and sport", null], ["Entertainment", null], ["And more", null]],
     },
     caps: {
-      k: "What you get", h: "Built for the floor, run from the office.", lead: "Three things every frontline team gets on day one.",
+      k: "Your standard", h: ["Keep your standard.", "Every shift, every site."], lead: "Film the job once. Every new person learns it the same way, wherever they work.",
       cards: [
         { h: "AI drafts, you approve", p: "Steps, instructions and the quiz are drafted for you. Nothing goes out until your team approves it." },
         { h: "Readiness by shift and site", p: "See who is ready for which job, by person, team, shift and location." },
@@ -65,9 +65,10 @@ export const home: Record<Lang, HomeCopy> = {
       ],
       sample: "Sample data",
     },
-    pricing: { k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.", all: "See all plans", demo: "Book a demo" },
+    pricing: { k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.", all: "Compare all plans", demo: "Book a demo",
+      feats: { free: ["Orientation Analysis", "3 AI quizzes", "5 works"], pro: ["10 AI quizzes", "Unlimited works", "5 GB storage"], proplus: ["Unlimited quizzes", "10 GB storage", "Premium support"], enterprise: ["Priority support", "Multi-location dashboard", "Rollout across sites"] } },
     faq: {
-      k: "Questions", h: "Asked, answered.",
+      k: "Questions", h: "Asked, answered.", more: "Still have a question?", moreP: "We answer it on a 20-minute call, with one of your real jobs.", email: "Or write to hello@flexlore.com",
       items: [
         { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
         { q: "Who is Flexlore for?", a: "Teams where the job is learned by doing: restaurants and café chains, production lines, hotels, franchises, warehouses and bakeries." },
@@ -86,7 +87,7 @@ export const home: Record<Lang, HomeCopy> = {
     footer: { tag: "Every job, step by step. Through the eyes of the person who does it.", app: "Get the app", product: "Product", industries: "Industries", company: "Company", follow: "Follow", how: "How it works", web: "Flexlore Web", scenario: "Your business", pricing: "Pricing", blog: "Blog", support: "Support" },
   },
   tr: {
-    trust: { live: "Şimdi indirin", ios: "App Store'da iPhone uygulaması", android: "Google Play'de Android uygulaması", ph: "Product Hunt'ta yayınlandı", programs: "Üyesi olduğumuz programlar" },
+    trust: { live: "Şimdi indirin", ios: "App Store'da iPhone uygulaması", android: "Google Play'de Android uygulaması", ph: "Product Hunt'ta yayınlandı", programs: "Programlar ve lansman" },
     problem: {
       k: "Neden önemli", h: ["Bilgi birinin", "ellerinde yaşar."],
       p: "O kişi gidince bilgi de gider. Yeni gelen, vardiyada kim varsa onu taklit eder.",
@@ -125,7 +126,7 @@ export const home: Record<Lang, HomeCopy> = {
       areas: [["Restoranlar", "restoran"], ["Kafe ve fırınlar", "firin"], ["Üretim", "uretim"], ["Oteller", "otel"], ["Franchise", "franchise"], ["Depolar", "depo"], ["Sağlık ve klinikler", null], ["Eğitim", null], ["Eğitim sağlayıcılar", null], ["Wellness ve spor", null], ["Eğlence", null], ["Ve dahası", null]],
     },
     caps: {
-      k: "Neler var", h: "Sahada kullanılır, ofisten yönetilir.", lead: "Her saha ekibinin ilk günden aldığı üç şey.",
+      k: "Standardınız", h: ["Standardınızı koruyun.", "Her vardiyada, her şubede."], lead: "İşi bir kez çekin. Her yeni kişi, nerede çalışırsa çalışsın, onu aynı şekilde öğrenir.",
       cards: [
         { h: "Yapay zekâ hazırlar, siz onaylarsınız", p: "Adımlar, talimatlar ve quiz sizin için hazırlanır. Ekibiniz onaylamadan hiçbir şey yayınlanmaz." },
         { h: "Vardiya ve şube bazında hazırlık", p: "Kimin hangi işe hazır olduğunu kişi, ekip, vardiya ve şube bazında görün." },
@@ -133,9 +134,10 @@ export const home: Record<Lang, HomeCopy> = {
       ],
       sample: "Örnek veri",
     },
-    pricing: { k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.", all: "Tüm planları görün", demo: "Demo isteyin" },
+    pricing: { k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.", all: "Tüm planları karşılaştırın", demo: "Demo isteyin",
+      feats: { free: ["Oryantasyon Analizi", "3 yapay zekâ quizi", "5 iş"], pro: ["10 yapay zekâ quizi", "Sınırsız iş", "5 GB depolama"], proplus: ["Sınırsız quiz", "10 GB depolama", "Premium destek"], enterprise: ["Öncelikli destek", "Çoklu lokasyon paneli", "Şubeler arası yaygınlaştırma"] } },
     faq: {
-      k: "Sorular", h: "Soruldu, yanıtlandı.",
+      k: "Sorular", h: "Soruldu, yanıtlandı.", more: "Başka bir sorunuz mu var?", moreP: "Gerçek işlerinizden biriyle, 20 dakikalık bir görüşmede yanıtlayalım.", email: "Ya da hello@flexlore.com adresine yazın",
       items: [
         { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
         { q: "Flexlore kimler için?", a: "İşin yaparak öğrenildiği ekipler için: restoran ve kafe zincirleri, üretim hatları, oteller, franchise'lar, depolar ve fırınlar." },
