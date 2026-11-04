@@ -35,7 +35,7 @@ const TILE = "flex h-[56px] w-full items-center justify-center rounded-[14px] bg
 export function TrustStrip({ lang }: { lang: Lang }) {
   const c = home[lang].trust;
   return (
-    <section aria-label={c.programs} className="bg-bg">
+    <section id="main-next" aria-label={c.programs} className="scroll-mt-[var(--header-h)] bg-bg">
       <div className="container-x pt-6 md:pt-8">
         <div className="rounded-[20px] bg-surface-1 p-2 lg:flex lg:items-center lg:gap-6 lg:pl-6">
           <p className="px-3 pb-2 pt-2 text-[13px] font-medium text-ice-400 lg:shrink-0 lg:p-0">{c.programs}</p>

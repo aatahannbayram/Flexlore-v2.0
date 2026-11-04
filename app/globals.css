@@ -176,3 +176,8 @@ main:not([lang="tr"]) .l-tr { display: none; }
 @keyframes kenburns { from { transform: scale(1.0) translate3d(0,0,0); } to { transform: scale(1.08) translate3d(-1.5%,-1%,0); } }
 .kenburns { animation: kenburns 28s ease-in-out infinite alternate; will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }
+
+/* Hero scroll cue. */
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+.scrollcue { animation: scrollcue 1.8s cubic-bezier(.65,0,.35,1) infinite; }
+@media (prefers-reduced-motion: reduce) { .scrollcue { animation: none; transform: none; } }
