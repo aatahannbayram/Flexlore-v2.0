@@ -6,9 +6,10 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
-import { TrustStrip, Problem, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
+import { TrustStrip, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
 import { Capabilities } from "./home/Capabilities";
 import { Positioning } from "./home/Extras";
+import { ProblemChapters } from "./home/ProblemChapters";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -33,7 +34,7 @@ export default function Site({ useCases }: { useCases?: React.ReactNode }) {
           <Hero t={t} lang={lang} />
           <TrustStrip lang={lang} />
           <Positioning lang={lang} />
-          <Problem lang={lang} />
+          <ProblemChapters lang={lang} />
           <ScrollStory t={t} lang={lang} />
           <WebShowcase lang={lang} />
           <Capabilities lang={lang} />
