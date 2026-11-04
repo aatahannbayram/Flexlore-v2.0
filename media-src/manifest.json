@@ -1,0 +1,61 @@
+{
+  "note": "Sources for scripts/encode-media.mjs. Current sources are the Mixkit clips listed in CREDITS.md (re-downloadable). Put new footage here and add an entry. grade: none | neutral | warm. role: card (1280px) | hero (1920px).",
+  "clips": {
+    "kitchen": {
+      "src": "kitchen-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 10,
+      "grade": "none"
+    },
+    "plating": {
+      "src": "plating-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "none"
+    },
+    "steam": {
+      "src": "steam-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "none"
+    },
+    "coffee": {
+      "src": "coffee-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "none"
+    },
+    "hotel": {
+      "src": "hotel-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "none"
+    },
+    "line": {
+      "src": "line-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "cool-fix"
+    },
+    "warehouse": {
+      "src": "warehouse-src.mp4",
+      "role": "card",
+      "start": 0,
+      "duration": 8,
+      "grade": "cool-fix"
+    },
+    "kitchen-bg": {
+      "src": "kitchen-src.mp4",
+      "role": "bg",
+      "start": 0,
+      "duration": 8,
+      "grade": "none"
+    }
+  }
+}

@@ -3,3 +3,8 @@ node_modules
 *.tsbuildinfo
 next-env.d.ts
 out/
+
+# media sources (see media-src/README.md)
+media-src/*
+!media-src/manifest.json
+!media-src/README.md

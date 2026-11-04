@@ -4,8 +4,8 @@
   "d": "Turn a phone video of the real job into step-by-step video SOPs and AI quizzes. See who's ready. Fewer mistakes, faster onboarding."
  },
  "/pricing/": {
-  "t": "Flexlore Pricing: Video SOP Software, Priced per Location",
-  "d": "Video SOPs, AI quizzes and readiness tracking, priced per location with unlimited operators. Book a demo to find the right plan."
+  "t": "Flexlore Pricing: Video SOP Software, Priced by Number of Users",
+  "d": "Video SOPs, AI quizzes and readiness tracking, priced by number of users. Free, Pro, ProPlus and Enterprise plans. Book a demo to find the right plan."
  },
  "/blog/": {
   "t": "Flexlore Blog: Frontline Onboarding and Training",
@@ -39,17 +39,9 @@
   "t": "Flexlore for Field Service: Orientation That Stays",
   "d": "Film start-up, cleaning and checks on the installed machine. The customer's operators keep every step after your team leaves."
  },
- "/sektor/klinik/": {
-  "t": "Flexlore for Clinics: Your Protocol, Step by Step",
-  "d": "Room prep and instrument handling filmed by your senior staff. New team members learn each step and pass a quiz before solo work."
- },
  "/sektor/perakende/": {
   "t": "Flexlore for Retail: The Same Standard in Every Store",
   "d": "Display set-up, till and returns filmed on the shop floor. New associates learn step by step; area managers see who's ready."
- },
- "/sektor/insaat/": {
-  "t": "Flexlore for Construction: Site Know-How, Step by Step",
-  "d": "Pre-start checks and tasks filmed on site by your foreman. New crews learn each step and pass a safety quiz before work starts."
  },
  "/sektor/oto-servis/": {
   "t": "Flexlore for Auto Service: Every Job Done Right in the Bay",

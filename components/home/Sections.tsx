@@ -1,0 +1,319 @@
+"use client";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+import { AnimatePresence, m, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import {
+  ArrowCounterClockwise, UsersThree, BookOpen, ArrowRight, Check, Plus,
+  ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle,
+} from "../ui/icons";
+import { copy, type Lang } from "../copy";
+
+const LANG_CODES: Record<string, string> = { English: "en", "Türkçe": "tr", Deutsch: "de", "العربية": "ar", "Español": "es", "Русский": "ru", "Français": "fr", Polski: "pl" };
+import { home, IND_CARDS } from "./home-copy";
+import { SITE, PLANS, PLAN_TR } from "../config";
+import { Heading } from "../ui/Layout";
+import { Reveal, RevealItem, EASE } from "../ui/Reveal";
+import { SmartVideo } from "../ui/SmartVideo";
+import { DotGlobe } from "../ui/DotGlobe";
+import { MagneticButton } from "../ui/MagneticButton";
+import { Device, SopScreen } from "../AppScreens";
+import { BillingToggle, PriceBlock, PL } from "../PriceUI";
+
+// One icon per area, in the order of home-copy.ts ind.areas.
+const AREA_ICONS = [ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
+
+// The dashboard mockup is below the fold: its code loads only when the section nears the viewport.
+// The placeholder keeps the same 1180:720 ratio, so nothing shifts when it arrives.
+const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
+
+
+/* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
+   official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
+const PLATE = "flex h-[68px] w-[calc(50vw-22px)] max-w-[200px] items-center justify-center bg-white px-3 sm:h-[76px] sm:w-[200px] sm:px-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5";
+export function TrustStrip({ lang }: { lang: Lang }) {
+  const c = home[lang].trust;
+  return (
+    <section aria-label={c.programs} className="bg-bg">
+      <div className="container-x py-16 text-center md:py-20">
+        <p className="eyebrow">{c.programs}</p>
+        <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
+          {SITE.programs.map((p) => (
+            <li key={p.name}>
+              <a href={p.href} target="_blank" rel="noopener" className="group block">
+                {p.badge
+                  ? <span className={`${PLATE} flex-col`}>
+                      <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[28px] sm:h-[34px]" : "h-[44px] sm:h-[52px]"}`} />
+                      {p.caption && <span className="mt-1 text-[11px] font-medium text-[#5F6368]">{p.caption}</span>}
+                    </span>
+                  : <span className={`${PLATE} flex-col`}>
+                      <span className="text-[16px] font-semibold leading-tight tracking-[-.02em] text-[#111111] sm:text-[18px]">{p.name}</span>
+                      <span className="text-[12px] text-[#5F6368]">by {p.org}</span>
+                    </span>}
+              </a>
+            </li>))}
+          <li>
+            {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
+                third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
+            <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
+              <span className={PLATE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[186px]" loading="lazy" /></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>);
+}
+
+/* 4. Problem: short statement left; right, a real kitchen loop with the three consequences rising over it in turn.
+   Less copy, more picture. */
+export function Problem({ lang }: { lang: Lang }) {
+  const c = home[lang].problem;
+  const icons = [ArrowCounterClockwise, UsersThree, BookOpen];
+  return (
+    <section id="problem" aria-labelledby="problem-h" className="section-y bg-bg">
+      <div className="container-x grid-12 items-center gap-y-12">
+        <Reveal className="col-span-12 lg:col-span-5">
+          <p className="eyebrow">{c.k}</p>
+          <h2 id="problem-h" className="h2 mt-4">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
+          <p className="lead mt-6 max-w-[26rem]">{c.p}</p>
+        </Reveal>
+        <div className="col-span-12 lg:col-span-7">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-1 sm:aspect-[16/12]">
+            <picture><source srcSet="/video/plating.avif" type="image/avif" /><img src="/video/plating.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+            <SmartVideo name="plating" poster="/video/plating.webp" threshold={0.4} />
+            <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
+            <Reveal as="ul" stagger={0.12} delay={0.15} className="absolute inset-x-4 bottom-4 space-y-2 sm:inset-x-6 sm:bottom-6 sm:max-w-[25rem]">
+              {c.points.map((x, i) => { const Ic = icons[i]; return (
+                <RevealItem as="li" key={x.h} className="flex items-center gap-3.5 rounded-2xl bg-[rgb(17_17_17/0.72)] px-4 py-3 backdrop-blur-md">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/[.08] text-ink"><Ic size={18} aria-hidden="true" /></span>
+                  <span><span className="block text-[15px] font-semibold tracking-[-.01em]">{x.h}</span><span className="block text-[13px] text-ice-300">{x.p}</span></span>
+                </RevealItem>); })}
+            </Reveal>
+          </div>
+        </div>
+      </div>
+    </section>);
+}
+
+/* 6. Flexlore Web: big browser frame, three numbered callouts that light up in turn, phone over the corner. */
+export function WebShowcase({ lang }: { lang: Lang }) {
+  const c = home[lang].web;
+  const frame = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: tp } = useScroll({ target: frame, offset: ["start end", "center center"] });
+  const tiltX = useTransform(tp, [0, 1], [22, 0]); const tiltS = useTransform(tp, [0, 1], [0.92, 1]);
+  const inView = useInView(frame, { amount: 0.35, once: true });
+  const near = useInView(frame, { margin: "600px 0px", once: true });
+  const [step, setStep] = useState(-1);
+  const reduce = useReducedMotion();
+  useEffect(() => {
+    if (!inView) return; if (reduce) { setStep(2); return; }
+    setStep(0); const a = setTimeout(() => setStep(1), 1400), b = setTimeout(() => setStep(2), 2800);
+    return () => { clearTimeout(a); clearTimeout(b); };
+  }, [inView, reduce]);
+  // callout anchor points on the 1180x720 dashboard (percent of the frame)
+  const pins = [[38, 26], [30, 66], [86, 62]];
+  return (
+    <section id="web" aria-labelledby="web-h" className="section-y overflow-hidden bg-surface-1">
+      <div className="container-x">
+        <Heading id="web-h" eyebrow={c.k} title={c.h} lead={c.lead} />
+        <div className="relative mt-14 lg:pr-36">
+          <m.div ref={frame} role="img" aria-label={`Flexlore Web. ${c.sample}`} style={reduce ? undefined : { rotateX: tiltX, scale: tiltS, transformPerspective: 1600, transformOrigin: "50% 0%" }} className="relative overflow-hidden rounded-[24px] bg-bg">
+            <div className="flex h-9 items-center gap-2 bg-surface-2 px-4" aria-hidden="true">
+              <span className="h-2.5 w-2.5 rounded-full bg-white/15" /><span className="h-2.5 w-2.5 rounded-full bg-white/15" /><span className="h-2.5 w-2.5 rounded-full bg-white/15" />
+              <span className="mx-auto hidden h-6 w-[min(60%,360px)] items-center justify-center rounded-md bg-bg text-xs text-ink-faint sm:flex">app.flexlore.com</span>
+            </div>
+            {near ? <LazyDash on={inView} /> : <div className="aspect-[1180/720] w-full" />}
+            {pins.map(([x, y], i) => (
+              <m.span key={i} aria-hidden="true" initial={false} animate={{ opacity: step >= i ? 1 : 0, scale: step >= i ? 1 : 0.6 }} transition={{ duration: 0.35, ease: EASE }}
+                className="absolute hidden h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-ice-100 text-xs font-bold text-bg md:grid" style={{ left: `${x}%`, top: `${y}%` }}>{i + 1}</m.span>))}
+          </m.div>
+          <div aria-hidden="true" className="absolute -bottom-10 right-0 hidden w-[190px] lg:block"><Device label=""><SopScreen active={inView} /></Device></div>
+        </div>
+        <ol className="mt-12 grid gap-8 md:grid-cols-3 lg:mr-36">
+          {c.callouts.map((x, i) => (
+            <li key={x.h} className={`transition-colors duration-500 ${step >= i ? "" : "[&_h3]:text-ink-muted [&_p]:text-ink-faint"}`}>
+              <div className="flex items-center gap-3"><span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold transition-colors ${step >= i ? "bg-ice-100 text-bg" : "bg-surface-2 text-ink-muted"}`}>{i + 1}</span>
+                <h3 className="text-lg font-semibold tracking-[-.01em]">{x.h}</h3></div>
+              <p className="mt-2 text-base text-ink-muted">{x.p}</p>
+            </li>))}
+        </ol>
+        <p className="mt-6 text-caption text-ink-faint">{c.sample}</p>
+      </div>
+    </section>);
+}
+
+/* 8. Industries: three featured media cards with loops, three compact cards, then the scenario picker. */
+function MediaCard({ card, lang, cta }: { card: typeof IND_CARDS[number]; lang: Lang; cta: string }) {
+  const [hover, setHover] = useState(false);
+  const [fine, setFine] = useState(false);
+  useEffect(() => { setFine(window.matchMedia("(hover: hover) and (pointer: fine)").matches); }, []);
+  const tr = lang === "tr";
+  return (
+    <Link href={`/sektor/${card.slug}/`} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)} onFocus={() => setHover(true)} onBlur={() => setHover(false)}
+      className="group relative block overflow-hidden rounded-[24px]">
+      <div className="relative aspect-[4/5] overflow-hidden bg-surface-1 md:aspect-[3/4]">
+        <div className="absolute inset-0 transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.03]">
+          <picture><source srcSet={card.still.replace(".webp", ".avif")} type="image/avif" /><img src={card.still} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+          {card.v && <SmartVideo name={card.v} poster={card.still} threshold={0.6} play={fine ? hover : undefined} />}
+        </div>
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_35%,rgb(17_17_17/0.92)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-1">
+          <h3 className="h3">{tr ? card.tr : card.en}</h3>
+          <p className="mt-1 text-base text-ink-muted">{tr ? card.lineTr : card.lineEn}</p>
+          <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-ink">{cta}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1" /></span>
+        </div>
+      </div>
+    </Link>);
+}
+
+export function Industries({ lang }: { lang: Lang }) {
+  const c = home[lang].ind; const tr = lang === "tr";
+  const featured = IND_CARDS.filter((x) => x.featured);
+  return (
+    <section id="industries" aria-labelledby="ind-h" className="section-y bg-bg">
+      <div className="container-x">
+        <Heading id="ind-h" eyebrow={c.k} title={c.h} lead={c.lead} />
+        <Reveal as="ul" stagger={0.08} className="no-sb -mx-[var(--pad-x)] mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
+          {featured.map((card) => <RevealItem as="li" key={card.slug} className="w-[78%] shrink-0 snap-start md:w-auto"><MediaCard card={card} lang={lang} cta={c.open} /></RevealItem>)}
+        </Reveal>
+        {/* Where teams use Flexlore: every area as a calm chip; sector pages link through. A dot horizon sits underneath. */}
+        <div className="relative mt-20 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-14 text-center md:pt-16">
+          <p className="eyebrow">{c.more}</p>
+          <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
+            {c.areas.map(([name, slug], i) => { const Ic = AREA_ICONS[i] ?? DotsThreeCircle; return (
+              <RevealItem as="li" key={name}>
+                {slug
+                  ? <Link href={`/sektor/${slug}/`} className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.08] pl-3 pr-4 text-[15px] font-medium text-ink transition-colors hover:bg-white/[.14]"><Ic size={17} className="text-ice-300 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" />{name}</Link>
+                  : <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.04] pl-3 pr-4 text-[15px] text-ice-300"><Ic size={17} className="text-ice-400" />{name}</span>}
+              </RevealItem>); })}
+          </Reveal>
+          {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}
+          <div className="relative z-10 mt-12">
+            <p className="text-[15px] font-medium text-ink">{copy[lang].lP}</p>
+            <p className="mx-auto mt-3 flex max-w-[44rem] flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ice-400">
+              {copy[lang].langs.map((l) => <span key={l} lang={LANG_CODES[l]} dir={l === "العربية" ? "rtl" : undefined}>{l}</span>)}
+            </p>
+          </div>
+          <div className="relative -mt-6 h-[220px] md:h-[300px]"><DotGlobe /></div>
+        </div>
+        <div className="mt-8 flex justify-center"><Link href="/see-it/" className="btn btn-secondary">{c.picker}<ArrowRight size={14} aria-hidden="true" /></Link></div>
+      </div>
+    </section>);
+}
+
+/* 9. Proof: structure only. Hidden by SITE.flags.proof until real results or quotes exist. */
+// TODO(ata): supply 1 to 3 real results or quotes (with permission), then set SITE.flags.proof = true.
+const PROOF: { quote: string; who: string; role: string }[] = [];
+export function Proof() {
+  if (!SITE.flags.proof || PROOF.length === 0) return null;
+  return (
+    <section aria-label="Results" className="section-y bg-bg"><div className="container-x grid gap-4 md:grid-cols-3">
+      {PROOF.map((p) => <figure key={p.who} className="panel p-6"><blockquote className="text-lg">{p.quote}</blockquote><figcaption className="mt-4 text-sm text-ink-muted">{p.who}, {p.role}</figcaption></figure>)}
+    </div></section>);
+}
+
+/* 10. Pricing preview on a light ground. One structure per card so prices, users and features line up across all four.
+   Real plan numbers and features from config.ts. */
+export function PricingPreview({ lang }: { lang: Lang }) {
+  const c = home[lang].pricing; const t = PL[lang]; const tr = lang === "tr"; const [yearly, setYearly] = useState(false);
+  const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
+  return (
+    <section id="pricing" aria-labelledby="pp-h" className="section-y bg-light-bg text-light-ink">
+      <div className="container-x">
+        <div className="grid-12 items-end gap-y-6">
+          <div className="col-span-12 lg:col-span-7"><Heading id="pp-h" eyebrow={c.k} title={c.h} lead={c.lead} light /></div>
+          <div className="col-span-12 lg:col-span-5 lg:justify-self-end"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} light id="pp" /></div>
+        </div>
+        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4">
+          {PLANS.map((p) => { const rec = !!p.featured; const name = tr ? PLAN_TR[p.id]?.name ?? p.name : p.name; const sub = rec ? "text-ice-300" : "text-light-muted"; return (
+            <li key={p.id} className={`grid w-[80%] shrink-0 snap-start grid-rows-[auto_auto_7.5rem_auto_1fr_auto] rounded-[24px] p-6 sm:w-auto ${rec ? "bg-bg text-ice-100" : "bg-white"}`}>
+              <div className="flex items-center justify-between gap-3"><h3 className="text-lg font-semibold">{name}</h3>
+                {rec && <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-ice-100">{tr ? p.badgeTr : p.badge}</span>}</div>
+              <p className={`mt-1 min-h-[2.6rem] text-sm leading-snug ${sub}`}>{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p>
+              <div className="pt-5"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
+              <p className={`text-sm font-medium ${rec ? "text-ice-100" : "text-light-ink"}`}>{p.id === "enterprise" ? "30+ " + (tr ? "kullanıcı" : "users") : t.unit(users[p.id])}</p>
+              <ul className="mt-4 space-y-2 text-sm">
+                {c.feats[p.id].map((f) => <li key={f} className={`flex items-center gap-2.5 ${sub}`}><Check size={15} aria-hidden="true" className={rec ? "text-ice-200" : "text-light-ink"} />{f}</li>)}
+              </ul>
+              <div className="pt-6">
+                {p.id === "enterprise"
+                  ? <a href={SITE.demo} className="btn w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}</a>
+                  : <Link href="/pricing/" className={`btn w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}</Link>}
+              </div>
+            </li>); })}
+        </ul>
+        <div className="mt-8 flex justify-center">
+          <Link href="/pricing/" className="inline-flex min-h-11 items-center gap-2 text-base font-semibold text-light-ink underline decoration-ice-300 underline-offset-4 hover:decoration-light-ink">{c.all}<ArrowRight size={14} aria-hidden="true" /></Link>
+        </div>
+      </div>
+    </section>);
+}
+
+/* 11. FAQ: light rows (no fills until open), keyboard accessible, with a way out for anything not covered. */
+export function Faq({ lang }: { lang: Lang }) {
+  const c = home[lang].faq; const [open, setOpen] = useState<number | null>(0); const reduce = useReducedMotion();
+  return (
+    <section id="faq" aria-labelledby="faq-h" className="section-y bg-bg">
+      <div className="container-x grid-12 gap-y-12">
+        <div className="col-span-12 lg:col-span-4">
+          <p className="eyebrow">{c.k}</p><h2 id="faq-h" className="h2 mt-4">{c.h}</h2>
+          <div className="mt-10 hidden max-w-[20rem] lg:block">
+            <p className="text-lg font-semibold tracking-[-.01em]">{c.more}</p>
+            <p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
+            <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+            <p className="mt-4 text-sm text-ink-faint"><a href="mailto:hello@flexlore.com" className="underline decoration-white/20 underline-offset-4 hover:text-ink">{c.email}</a></p>
+          </div>
+        </div>
+        <ul className="col-span-12 space-y-1 lg:col-span-7 lg:col-start-6">
+          {c.items.map((q, i) => { const on = open === i; return (
+            <li key={q.q} className={`rounded-[20px] transition-colors duration-300 ${on ? "bg-surface-1" : "hover:bg-surface-1/40"}`}>
+              <h3>
+                <button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)}
+                  className="flex min-h-16 w-full items-center justify-between gap-6 px-5 py-4 text-left text-[18px] font-semibold tracking-[-.01em] md:px-6">
+                  <span className={on ? "text-ink" : "text-ink/85"}>{q.q}</span>
+                  <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className="grid h-8 w-8 shrink-0 place-items-center text-ice-400"><Plus size={16} aria-hidden="true" /></m.span>
+                </button>
+              </h3>
+              <AnimatePresence initial={false}>
+                {on && (
+                  <m.div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} key="a" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: reduce ? 0 : 0.35, ease: EASE }} className="overflow-hidden">
+                    <p className="measure px-5 pb-6 text-base text-ink-muted md:px-6">{q.a}</p>
+                  </m.div>)}
+              </AnimatePresence>
+            </li>); })}
+        </ul>
+        <div className="col-span-12 lg:hidden">
+          <p className="text-lg font-semibold">{c.more}</p><p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
+          <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+        </div>
+      </div>
+    </section>);
+}
+
+/* 12. Final CTA: calm copy on the left; behind it on the right, the real product (phone and web, static captures of the
+   mockups) set in perspective for depth, fading into the panel. One action. */
+export function FinalCta({ lang }: { lang: Lang }) {
+  const c = home[lang].end;
+  return (
+    <section id="demo" aria-labelledby="end-h" className="bg-bg pb-[var(--section-y)]">
+      <div className="container-x">
+        <div className="relative -mx-[var(--pad-x)] overflow-hidden bg-surface-1 px-[var(--pad-x)] py-16 md:rounded-[32px] md:py-28">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block [perspective:1600px]">
+            <div className="absolute right-[-14%] top-1/2 w-[860px] -translate-y-1/2 [transform:rotateY(-24deg)_rotateX(8deg)_rotateZ(2deg)] [transform-style:preserve-3d]">
+              <picture><source srcSet="/photos/cta-dashboard.avif" type="image/avif" /><img src="/photos/cta-dashboard.webp" alt="" loading="lazy" width={1400} height={901} className="block w-full rounded-[18px] opacity-90" /></picture>
+              <picture><source srcSet="/photos/cta-phone.avif" type="image/avif" /><img src="/photos/cta-phone.webp" alt="" loading="lazy" width={560} height={1213} className="absolute -left-20 top-[18%] w-[230px] [transform:translateZ(120px)]" /></picture>
+            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#191919_0%,rgb(25_25_25/0.75)_28%,rgb(25_25_25/0.15)_70%,rgb(25_25_25/0.5)_100%)]" />
+          </div>
+          <div className="relative max-w-[40rem]">
+            <h2 id="end-h" className="text-[clamp(40px,1.2rem+3.4vw,80px)] font-[620] leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
+            <p className="lead mt-5">{c.p}</p>
+            <div className="mt-9 flex flex-wrap items-center gap-3">
+              <MagneticButton href={SITE.demo}>{c.cta}</MagneticButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+}

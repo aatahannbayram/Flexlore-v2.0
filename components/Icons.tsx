@@ -34,11 +34,32 @@ export const I = {
   apple: ({ size = 18, className = "" }: P) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-.9-2.4-3.2ZM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4Z" /></svg>,
   play: ({ size = 18, className = "" }: P) => <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true"><path d="M4.2 2.6 13.6 12l-9.4 9.4c-.3-.2-.5-.6-.5-1V3.6c0-.4.2-.8.5-1Zm10.4 10.4 2.3 2.3-10.6 6 8.3-8.3Zm3.3-3.3 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.6-2.6 2.6-2.9ZM6.3 2.7l10.6 6-2.3 2.3-8.3-8.3Z" /></svg>,
 };
-export function StoreButtons({ className = "", small = false }: { className?: string; small?: boolean }) {
-  const c = `inline-flex items-center gap-2 rounded-full border border-white/25 ${small ? "px-3 py-1.5 text-[12px]" : "px-4 py-2 text-[13px]"} font-medium text-white transition hover:border-white/60 hover:bg-white/5`;
-  return (<div className={`flex flex-wrap gap-2 ${className}`}>
-    <a className={c} href="https://apps.apple.com/tr/app/flexlore/id6751126206?l" target="_blank" rel="noopener" aria-label="Download Flexlore on the App Store"><I.apple size={small ? 14 : 16} /><span><span className="sr-only">Download on the </span>App Store</span></a>
-    <a className={c} href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" target="_blank" rel="noopener" aria-label="Get Flexlore on Google Play"><I.play size={small ? 13 : 15} /><span><span className="sr-only">Get it on </span>Google Play</span></a>
+/** Store and launch badges, all at the same 44 px height so they sit together as one row.
+ *  - App Store: Apple's official artwork (black; EN and TR files from Apple), unaltered, with 1/4-height clear space.
+ *  - Google Play: Google's official badge carries the multicolour Play logo (blue), which the Flexlore brand excludes, and Google
+ *    does not allow a recoloured badge. So it is a plain black text badge in Apple's proportions, without Google's logo.
+ *  - Product Hunt: same text style until Product Hunt's official embed badge (needs our post id) replaces it. */
+export function AppStoreBadge({ lang = "en", height = 44 }: { lang?: "en" | "tr"; height?: number }) {
+  const tr = lang === "tr";
+  return (
+    <a href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener" className="inline-block rounded-[8px] transition-opacity hover:opacity-85">
+      <img src={tr ? "/brand/stores/appstore-tr.svg" : "/brand/stores/appstore-en.svg"} alt={tr ? "App Store'dan indirin" : "Download on the App Store"} height={height} width={Math.round(height * (tr ? 3.78 : 2.99))} style={{ height }} className="block w-auto" />
+    </a>);
+}
+export function StoreBadge({ href, top, name, size = "md" }: { href: string; top: string; name: string; size?: "sm" | "md" }) {
+  const h = size === "sm" ? 40 : 44;
+  return (
+    <a href={href} target="_blank" rel="noopener" style={{ height: h }}
+      className="inline-flex flex-col justify-center rounded-[8px] bg-black px-3.5 text-left ring-1 ring-inset ring-[#A6A6A6] transition-opacity hover:opacity-85">
+      <span className="text-[10px] leading-none text-white/85">{top}</span>
+      <span className={`${size === "sm" ? "text-[16px]" : "text-[18px]"} mt-0.5 font-semibold leading-none tracking-[-.02em] text-white`}>{name}</span>
+    </a>);
+}
+export function StoreButtons({ className = "", small = false, lang = "en" }: { className?: string; small?: boolean; lang?: "en" | "tr" }) {
+  const tr = lang === "tr";
+  return (<div className={`flex flex-wrap items-center gap-3 ${className}`}>
+    <AppStoreBadge lang={lang} height={small ? 40 : 44} />
+    <StoreBadge href="https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en" top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" size={small ? "sm" : "md"} />
   </div>);
 }
 
