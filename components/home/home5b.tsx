@@ -1,0 +1,492 @@
+"use client";
+/* Home sections below the fold (5 to 16). Split from home5.tsx so their code loads after the first paint;
+ * their HTML is still rendered on the server. Same rules as home5.tsx. */
+import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
+import { SITE, PLANS, savePct } from "../config";
+import { useLocale, fmt } from "../i18n/LocaleProvider";
+import { LOCALES } from "../i18n/locales";
+import { Device } from "../AppScreens";
+import { SmartVideo } from "../ui/SmartVideo";
+import { Reveal, RevealItem, EASE } from "../ui/Reveal";
+import { Pic, Label, H2, card, inner, Corner, Title, type Ic } from "./home5";
+import {
+  ArrowRight, Check, CheckCircle, Users, BookOpen, Sparkle, MapPin, LockSimple, FilmSlate, Question, ChartBar,
+  Plus, ShieldCheck, CookingPot, GraduationCap, UserPlus, Storefront, FirstAid, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle,
+  PlugsConnected, ChatCircle, Tag, Lightning, Buildings, ForkKnife, Factory, Bed,
+} from "../ui/icons";
+
+const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
+const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
+
+/* ---------- 5. Capabilities (video cards, restored) ---------- */
+const CAP_MEDIA = ["steam", "warehouse", "hotel"];
+const glass = "rounded-2xl bg-[rgb(17_17_17/0.74)] p-3 backdrop-blur-md";
+export function Caps5() {
+  const { d } = useLocale(); const c = d.caps; const f = c.frag;
+  const frag = (i: number) => i === 0 ? (
+    <div className={`${glass} space-y-1.5`}>{[f.s1, f.s2].map((s, k) => (
+      <div key={s} className="flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.06)] px-3 py-2 text-[13px] text-white">
+        <span className="tabular-nums text-white/55">{k + 3}</span><span className="flex-1 truncate">{s}</span>
+        {k === 0 ? <span className="bento-swap relative h-6 w-[6.2rem] shrink-0 text-xs font-semibold">
+          <span className="bento-a absolute inset-0 grid place-items-center rounded-full bg-[rgb(255_255_255/0.1)] text-white/75"><span className="flex items-center gap-1"><Sparkle size={12} weight="fill" />{f.draft}</span></span>
+          <span className="bento-b absolute inset-0 grid place-items-center rounded-full bg-[#E7EBEB] text-[#111]"><span className="flex items-center gap-1"><CheckCircle size={12} weight="fill" />{f.ok}</span></span></span>
+          : <span className="grid h-6 w-[6.2rem] shrink-0 place-items-center rounded-full bg-[#E7EBEB] text-xs font-semibold text-[#111]"><span className="flex items-center gap-1"><CheckCircle size={12} weight="fill" />{f.ok}</span></span>}
+      </div>))}</div>
+  ) : i === 1 ? (
+    <div className={`${glass} space-y-2.5 px-4 py-3.5 text-white`}>{f.sites.map((n, k) => { const v = [92, 78, 64][k]; return (
+      <div key={n}><div className="flex items-baseline justify-between text-[13px]"><span>{n}</span><span className="font-semibold tabular-nums">{v}%</span></div>
+        <span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-[rgb(255_255_255/0.1)]"><span className="bento-bar block h-full rounded-full bg-[#D2D8D9]" style={{ width: `${v}%` }} /></span></div>); })}</div>
+  ) : (
+    <div className={`${glass} space-y-1.5`}>{f.roles.map(([r, l], k) => (
+      <div key={r} className="flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.06)] px-3 py-2 text-[13px] text-white">
+        <span className="flex-1">{r}</span><span className="flex items-center gap-1 text-xs text-white/55"><MapPin size={12} />{l}</span>
+        {k < 2 ? <CheckCircle size={15} weight="fill" className="text-[#D2D8D9]" /> : <LockSimple size={15} className="text-white/55" />}
+      </div>))}</div>);
+  return (
+    <section aria-labelledby="caps-h" className="section-y pt-0">
+      <div className="container-x">
+        <Label icon={ShieldCheck}>{c.k}</Label>
+        <H2 id="caps-h" className="max-w-[18ch]">{c.h} <span className="text-ink-faint">{c.h2}</span></H2>
+        <p className="mt-5 max-w-[36rem] text-[17px] leading-[1.55] text-ink-muted">{c.lead}</p>
+        <Reveal as="ul" stagger={0.1} className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] pb-1 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
+          {c.cards.map(([h, p], i) => (
+            <RevealItem as="li" key={h} className="w-[82%] shrink-0 snap-start md:w-auto">
+              <article className="dark relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-[28px] bg-[#1a1816] p-4 sm:p-5">
+                <picture aria-hidden="true"><source srcSet={`/video/${CAP_MEDIA[i]}.avif`} type="image/avif" /><img src={`/video/${CAP_MEDIA[i]}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+                <SmartVideo name={CAP_MEDIA[i]} poster={`/video/${CAP_MEDIA[i]}.webp`} threshold={0.6} />
+                <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.25)_0%,rgb(17_17_17/0)_35%,rgb(17_17_17/0.9)_100%)]" />
+                <div aria-hidden="true" className="relative">{frag(i)}</div>
+                <div className="relative text-white"><h3 className="text-[21px] font-semibold leading-tight tracking-[-.02em]">{h}</h3><p className="mt-2 text-[15px] leading-snug text-white/75">{p}</p></div>
+              </article>
+            </RevealItem>))}
+        </Reveal>
+        <p className="mt-4 text-[13px] text-ink-faint">{c.sample}</p>
+      </div>
+    </section>);
+}
+
+/* ---------- 6. Bento ---------- */
+export function Bento5() {
+  const { d, lang } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null);
+  const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.2 });
+  const thumbs = ["kitchenline", "chef-plating", "chef-fire"];
+  return (
+    <section id="product" aria-labelledby="bento-h" className="section-y pt-0">
+      <div className="container-x">
+        <Label icon={Sparkle}>{c.k}</Label>
+        <H2 id="bento-h" className="max-w-[18ch]">{c.h}</H2>
+        <div ref={ref} className="mt-12 grid gap-3 lg:grid-cols-2">
+          <article className={`${card} min-h-[520px] p-6 md:p-8`}>
+            <Title a={c.a[0]} b={c.a[1]} /><Corner href="/ai/" label={c.a[0]} />
+            <div aria-hidden="true" className="mx-auto mt-10 max-w-[26rem] space-y-2.5">
+              {c.jobs.map((j, k) => (
+                <div key={j} className={inner}>
+                  <div className="flex items-center gap-3.5 p-2.5 pe-3">
+                    <span className="h-12 w-12 shrink-0 overflow-hidden rounded-xl"><Pic n={thumbs[k]} sizes="48px" className="h-full w-full object-cover" /></span>
+                    <span className="flex-1 text-[16px] font-medium tracking-[-0.01em]">{j}</span>
+                    <span className="rounded-full bg-[var(--card)] px-3.5 py-1.5 text-[13px] font-medium">{c.view}</span>
+                  </div>
+                  {k > 0 && <div className="flex justify-between px-4 pb-2.5 pt-1 text-[13px]"><span className="text-ink-faint">{c.assigned}</span><span className="text-ink-muted">{c.who[k - 1]}</span></div>}
+                </div>))}
+              <div className="relative flex justify-center pt-5">
+                <span className="inline-flex h-11 items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-semibold text-bg"><CheckCircle size={16} weight="fill" />{c.approve}</span>
+                <span className="absolute start-[64%] top-[-14px] flex items-end gap-1" dir="ltr">
+                  <svg width="22" height="22" viewBox="0 0 24 24" className="text-ink"><path fill="currentColor" d="M4 2l16 9-7 2-3 7z" /></svg>
+                  <span className="rounded-full bg-ink px-2.5 py-1 text-[12px] font-semibold text-bg">{c.cursor}</span></span>
+              </div>
+            </div>
+          </article>
+          <article className={`${card} min-h-[520px] p-6 md:p-8`}>
+            <Title a={c.b[0]} b={c.b[1]} /><Corner href="/#how" label={c.b[0]} />
+            <div className="absolute bottom-[-120px] left-1/2 w-[250px] -translate-x-1/2 md:w-[270px]" dir="ltr"><Device label={c.b[0]}>{near ? <Editor active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device></div>
+          </article>
+        </div>
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
+          <article className="relative min-h-[440px] overflow-hidden rounded-[28px] bg-accent p-6 text-[#111111] md:p-7">
+            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.c[0]} <span className="text-[#111111]/65">{c.c[1]}</span></h3>
+            <div aria-hidden="true" className="absolute inset-x-6 bottom-6 md:inset-x-7 md:bottom-7">
+              <p className="flex items-start gap-2.5 rounded-[16px] bg-[rgb(255_255_255/0.9)] p-4 text-[14px] font-medium leading-snug"><Question size={17} className="mt-px shrink-0" />{c.q}</p>
+              <ul className="mt-2 space-y-2 text-[14px]">{c.qa.map((a, k) => <li key={a} className={`flex items-center justify-between rounded-[14px] px-4 py-3 ${k === 1 ? "bg-[#111111] text-[#fff]" : "bg-[rgb(255_255_255/0.45)]"}`}>{a}{k === 1 && <Check size={15} />}</li>)}</ul>
+            </div>
+          </article>
+          <article className={`${card} min-h-[440px] p-6 md:p-7`}>
+            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.d[0]} <span className="text-ink-faint">{c.d[1]}</span></h3>
+            <Corner href="/sektor/franchise/" label={c.d[0]} />
+            <div aria-hidden="true" className="absolute inset-x-6 bottom-0 rounded-t-[20px] bg-[var(--card-2)] p-3 pb-5 md:inset-x-7">
+              <div className="h-24 overflow-hidden rounded-[14px] [mask-image:linear-gradient(180deg,#000_55%,transparent)]"><Pic n="cafe-opening" sizes="400px" className="h-full w-full object-cover" /></div>
+              <div className="mt-3 flex items-center justify-between px-1"><p className="text-[15px] font-semibold">{c.jobs[0]}</p><span className="text-[12px] text-ink-faint">{c.today}</span></div>
+              <p className="flex items-center gap-1.5 px-1 text-[13px] text-ink-muted"><Storefront size={14} />{c.sent}</p>
+              <div className="mt-3 flex items-center gap-3 rounded-[14px] bg-[var(--card)] p-3">
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-[rgb(104_210_185/0.16)] text-calm-aqua"><Users size={17} /></span>
+                <span><span className="block text-[14px] font-semibold">{c.branch}</span><span className="block text-[12px] text-ink-muted">{c.branchP}</span></span>
+              </div>
+            </div>
+          </article>
+          <article className={`${card} min-h-[440px] p-6 md:p-7`}>
+            <h3 className="max-w-[14ch] text-[23px] font-semibold leading-[1.15] tracking-[-0.025em]">{c.e[0]} <span className="text-ink-faint">{c.e[1]}</span></h3>
+            <Corner href="/#web" label={c.e[0]} />
+            <div aria-hidden="true" className="absolute inset-x-6 bottom-6 rotate-[-2deg] rounded-[20px] bg-[var(--card-2)] p-5 md:inset-x-7">
+              <p className="flex items-center justify-between text-[13px] text-ink-muted"><span>{c.jobs[1]}</span><span>{c.sample}</span></p>
+              <ul className="mt-4 space-y-3.5">{c.locs.map((n, k) => { const v = [92, 78, 64][k]; return (
+                <li key={n}><p className="flex justify-between text-[14px]"><span className="flex items-center gap-1.5 font-medium"><MapPin size={13} />{n}</span><span className="tabular-nums text-ink-muted">{v}%</span></p>
+                  <span className="mt-1.5 block h-1.5 overflow-hidden rounded-full bg-[var(--card)]"><span className={`block h-full rounded-full ${v < 70 ? "bg-accent" : "bg-ink"}`} style={{ width: `${v}%` }} /></span></li>); })}</ul>
+            </div>
+          </article>
+        </div>
+        <p className="mt-4 text-[13px] text-ink-faint">{c.sample}</p>
+      </div>
+    </section>);
+}
+
+/* ---------- 7. Roles ---------- */
+export function Roles5() {
+  const { d } = useLocale(); const c = d.roles; const [on, setOn] = useState(1); const imgs = ["restaurant", "food-qa", "office"]; const icons: Ic[] = [Users, FilmSlate, Buildings];
+  return (
+    <section aria-labelledby="roles-h" className="section-y pt-0">
+      <div className="container-x">
+        <Label icon={Users}>{c.k}</Label>
+        <H2 id="roles-h" className="max-w-[20ch]">{c.h}</H2>
+        <ul className="mt-12 flex flex-col gap-6 md:flex-row md:gap-3">
+          {c.items.map(([h, p], i) => { const I = icons[i]; return (
+            <li key={h} onMouseEnter={() => setOn(i)} className={`transition-[flex-grow] duration-500 ease-[var(--ease-out-expo)] md:basis-0 ${on === i ? "md:grow-[2]" : "md:grow"}`}>
+              <button type="button" onClick={() => setOn(i)} onFocus={() => setOn(i)} aria-expanded={on === i} className="block w-full text-start">
+                <span className={`relative block aspect-[4/3] overflow-hidden rounded-[24px] md:aspect-auto md:h-[440px]`}>
+                  <Pic n={imgs[i]} sizes="(min-width:768px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <span className="absolute start-4 top-4 grid h-10 w-10 place-items-center rounded-[12px] bg-[rgb(17_17_17/0.6)] text-white backdrop-blur"><I size={18} /></span>
+                </span>
+                <span className="mt-5 block text-[22px] font-semibold leading-tight tracking-[-0.02em]">{h}</span>
+                <span className={`mt-2 block max-w-[34rem] text-[16px] leading-[1.55] text-ink-muted ${on === i ? "" : "md:hidden"}`}>{p}</span>
+              </button>
+            </li>); })}
+        </ul>
+      </div>
+    </section>);
+}
+
+/* ---------- 8. Workspaces ---------- */
+export function Workspace5() {
+  const { d } = useLocale(); const c = d.ws;
+  const nodes: [string, string, number, number, number][] = [[c.nodes[0], "office", 7, 48, 0], [c.nodes[1], "chef-fire", 12, 64, 5], [c.nodes[2], "cafe-opening", 9, 41, 3], [c.nodes[3], "safety", 13, 93, 8]];
+  const Node = ({ n }: { n: [string, string, number, number, number] }) => (
+    <div className="overflow-hidden rounded-[18px] bg-[var(--card-2)]">
+      <div className="relative h-20 md:h-24"><Pic n={n[1]} sizes="220px" className="h-full w-full object-cover" />{n[4] > 0 && <span className="absolute end-2 top-2 rounded-full bg-[rgb(255_255_255/0.92)] px-2 py-0.5 text-[11px] font-semibold text-[#A8491B]">{fmt(c.due, { n: n[4] })}</span>}</div>
+      <p className="px-3 py-3 text-center text-[14px] font-semibold md:text-[15px]">{n[0]}</p>
+      <div className="grid grid-cols-2 bg-[var(--card)]/40 text-[13px] text-ink-muted">
+        <span className="flex items-center justify-center gap-1.5 py-2.5" title={c.jobs}><BookOpen size={14} aria-hidden="true" />{n[2]}<span className="sr-only"> {c.jobs}</span></span>
+        <span className="flex items-center justify-center gap-1.5 py-2.5" title={c.people}><Users size={14} aria-hidden="true" />{n[3]}<span className="sr-only"> {c.people}</span></span>
+      </div>
+    </div>);
+  return (
+    <section aria-labelledby="ws-h" className="section-y pt-0">
+      <div className="container-x grid-12 items-center gap-y-12">
+        <div className="col-span-12 lg:col-span-7">
+          <div className={`${card} p-5 md:p-10`}>
+            <div className="mx-auto w-[46%] min-w-[150px] max-w-[220px]"><Node n={nodes[0]} /></div>
+            <svg aria-hidden="true" viewBox="0 0 300 40" preserveAspectRatio="none" className="mx-auto block h-10 w-[68%] text-ink-faint/50"><path d="M150 0 V18 M150 18 H40 Q30 18 30 28 V40 M150 18 H260 Q270 18 270 28 V40 M150 18 V40" fill="none" stroke="currentColor" strokeWidth="1.5" vectorEffect="non-scaling-stroke" /></svg>
+            <div className="grid grid-cols-3 gap-2 md:gap-3">{nodes.slice(1).map((k) => <Node key={k[0]} n={k} />)}</div>
+            <p className="mt-4 text-center text-[12px] text-ink-faint">{c.sample}</p>
+          </div>
+        </div>
+        <div className="col-span-12 lg:col-span-5 lg:ps-6">
+          <Label icon={Buildings}>{c.k}</Label>
+          <H2 id="ws-h" className="max-w-[14ch]">{c.h}</H2>
+          <p className="mt-5 text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
+          <ul className="mt-8 space-y-3">{c.pts.map((p) => <li key={p} className="flex items-center gap-3 text-[15px]"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--card)] text-ink"><Check size={14} aria-hidden="true" /></span>{p}</li>)}</ul>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 9. Web ---------- */
+export function Web5() {
+  const { d } = useLocale(); const c = d.web; const ref = useRef<HTMLDivElement>(null);
+  const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
+  return (
+    <section id="web" aria-labelledby="web-h" className="section-y pt-0">
+      <div className="container-x grid-12 items-center gap-y-10">
+        <div className="col-span-12 lg:col-span-5">
+          <Label icon={ChartBar}>{c.k}</Label>
+          <H2 id="web-h" className="max-w-[14ch]">{c.h}</H2>
+          <p className="mt-5 max-w-[30rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
+          <a href={SITE.demo} className="btn btn-primary mt-8 h-12 px-6 text-[16px]">{c.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+        </div>
+        <div ref={ref} className="col-span-12 lg:col-span-7">
+          <div className={`${card} ps-6 pt-8 md:ps-12 md:pt-14`} dir="ltr">
+            <div className="dark w-[130%] overflow-hidden rounded-tl-[22px] border-l-[10px] border-t-[10px] border-[#0b0b0b] md:w-[120%]">
+              <div role="img" aria-label={c.sample}>{near ? <Dash on={on} /> : <div className="aspect-[1180/720] w-full" />}</div>
+            </div>
+          </div>
+          <p className="mt-3 text-[13px] text-ink-faint">{c.sample}</p>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 10. AI and connectors (planned) ---------- */
+export function AI5() {
+  const { d } = useLocale(); const c = d.ai;
+  return (
+    <section id="ai" aria-labelledby="ai-h" className="section-y pt-0">
+      <div className="container-x">
+        <div className={`${card} overflow-hidden px-5 py-12 sm:px-10 md:py-16 lg:px-14`}>
+          <div aria-hidden="true" className="pointer-events-none absolute -end-40 -top-40 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.14),transparent_65%)]" />
+          <div className="grid-12 relative items-center gap-y-12">
+            <div className="col-span-12 lg:col-span-5">
+              <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card-2)] text-ink"><PlugsConnected size={16} /></span>{c.k}<span className="rounded-full bg-[rgb(236_103_38/0.14)] px-2.5 py-0.5 text-[12px] font-semibold text-accent-text">{c.soon}</span></p>
+              <H2 id="ai-h" className="max-w-[16ch]">{c.h}</H2>
+              <p className="mt-5 max-w-[32rem] text-[17px] leading-[1.6] text-ink-muted">{c.p}</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className={`${inner} p-4`}><p className="flex items-center gap-2 text-[14px] font-semibold"><CheckCircle size={16} weight="fill" className="text-calm-aqua" />{c.today}</p><ul className="mt-2 space-y-1.5 text-[14px] text-ink-muted">{c.todayList.map((x) => <li key={x}>{x}</li>)}</ul></div>
+                <div className={`${inner} p-4`}><p className="flex items-center gap-2 text-[14px] font-semibold"><Lightning size={16} className="text-accent-text" />{c.next}</p><ul className="mt-2 space-y-1.5 text-[14px] text-ink-muted">{c.nextList.map((x) => <li key={x}>{x}</li>)}</ul></div>
+              </div>
+              <Link href="/ai/" className="btn btn-secondary mt-8">{c.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+            </div>
+            {/* Hub: Flexlore in the middle, assistants around it, one sample exchange below. */}
+            <div className="col-span-12 lg:col-span-7 lg:ps-8" aria-hidden="true">
+              <div className="relative mx-auto aspect-[16/9] max-w-[560px]">
+                <svg viewBox="0 0 560 315" className="absolute inset-0 h-full w-full text-ink-faint/40">
+                  {[[90, 60], [470, 60], [90, 255], [470, 255]].map(([x, y], k) => (
+                    <g key={k}><path d={`M280 157 L${x} ${y}`} stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 6" fill="none" />
+                      <circle r="3.5" fill="#EC6726" className="ai-dot" style={{ offsetPath: `path("M280 157 L${x} ${y}")`, animationDelay: `${k * 0.7}s` }} /></g>))}
+                </svg>
+                <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[28px] bg-[#111111] ring-1 ring-white/10"><img src="/brand/symbol-main.svg" alt="" className="h-11 w-11" /></div>
+                {c.tools.map((t, k) => { const pos = ["left-[2%] top-[6%]", "right-[2%] top-[6%]", "left-[2%] bottom-[6%]", "right-[2%] bottom-[6%]"][k]; return (
+                  <span key={t} className={`absolute ${pos} inline-flex h-12 items-center gap-2 rounded-2xl bg-[var(--card-2)] px-4 text-[15px] font-semibold ring-1 ring-line`}><ChatCircle size={17} className="text-ink-muted" />{t}</span>); })}
+              </div>
+              <div className="mx-auto mt-6 max-w-[520px] space-y-2.5">
+                <p className="ms-auto w-fit max-w-[85%] rounded-[18px] rounded-ee-md bg-ink px-4 py-3 text-[14px] text-bg">{c.ask}</p>
+                <div className={`${inner} max-w-[92%] p-4`}>
+                  <p className="flex items-center gap-2 text-[12px] text-ink-faint"><img src="/brand/symbol-main.svg" alt="" className="h-3.5 w-3.5" />{c.from}</p>
+                  <p className="mt-2 text-[14px] leading-[1.55]">{c.answer}</p>
+                </div>
+                <p className="pt-1 text-center text-[12px] text-ink-faint">{c.sample}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 11. Statement ---------- */
+export function Statement5() {
+  const { d } = useLocale(); const c = d.statement;
+  return (
+    <section aria-labelledby="st-h" className="pb-[var(--section-y)]">
+      <div className="container-x">
+        <div className="dark relative grid min-h-[540px] place-items-center overflow-hidden rounded-[32px] px-6 py-20 text-center md:min-h-[640px]">
+          <img src="/video/gen-baker.webp" alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <SmartVideo name="gen-baker" poster="/video/gen-baker.webp" threshold={0.3} className="absolute inset-0 h-full w-full object-cover" />
+          <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.5),rgb(17_17_17/0.72))]" />
+          <div className="relative">
+            <h2 id="st-h" className="mx-auto max-w-[18ch] text-[clamp(32px,1rem+3vw,64px)] font-semibold leading-[1.04] tracking-[-0.035em] text-white">{c.h}</h2>
+            <p className="mx-auto mt-5 max-w-[34rem] text-[17px] leading-[1.55] text-white/80">{c.p}</p>
+            <a href="#how" className="mt-8 inline-flex h-12 items-center gap-3 rounded-full bg-[rgb(17_17_17/0.75)] pe-2 ps-6 text-[15px] font-semibold text-white backdrop-blur">{c.cta}<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#111]"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
+          </div>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 12. Industries + also used + 8 languages ---------- */
+const IND = [["/sektor/restoran/", "chef-plating", ForkKnife], ["/sektor/uretim/", "field", Factory], ["/sektor/otel/", "hotel-desk", Bed], ["/sektor/franchise/", "huddle", Storefront]] as const;
+const AREA_IC: Ic[] = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle];
+export function Industries5() {
+  const { d, setLocale, locale } = useLocale(); const c = d.ind;
+  return (
+    <section id="industries" aria-labelledby="ind-h" className="section-y pt-0">
+      <div className="container-x">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div><Label icon={Storefront}>{c.k}</Label><H2 id="ind-h" className="max-w-[16ch]">{c.h}</H2></div>
+          <Link href="/see-it/" className="btn btn-secondary">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        </div>
+        <ul className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {IND.map(([href, img, I], k) => (
+            <li key={href}>
+              <Link href={href} className="dark group relative block aspect-[3/4] overflow-hidden rounded-[24px] bg-[#2a2622]">
+                <Pic n={img} sizes="(min-width:1024px) 25vw, 50vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_45%,rgb(17_17_17/0.8)_100%)]" />
+                <span className="absolute start-4 top-4 grid h-10 w-10 place-items-center rounded-[12px] bg-[rgb(17_17_17/0.55)] text-white backdrop-blur"><I size={18} /></span>
+                <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-2 text-white md:inset-x-5 md:bottom-5">
+                  <span className="text-[16px] font-semibold leading-tight tracking-[-0.01em] md:text-[19px]">{c.cards[k]}</span>
+                  <span aria-hidden="true" className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[rgb(255_255_255/0.2)] backdrop-blur transition-colors group-hover:bg-white group-hover:text-[#111]"><ArrowRight size={14} className="rtl:-scale-x-100" /></span>
+                </span>
+              </Link>
+            </li>))}
+        </ul>
+        <div className="dark relative mt-3 overflow-hidden rounded-[28px] bg-[#161616] px-5 py-14 text-center md:py-20">
+          <div aria-hidden="true" className="absolute inset-0">
+            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-40 blur-[2px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.5)_0%,rgb(17_17_17/0.88)_70%,#111111_100%)]" />
+          </div>
+          <p className="relative text-[15px] text-white/70">{c.also}</p>
+          <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
+            {c.areas.map((name, k) => { const I = AREA_IC[k]; return (
+              <RevealItem as="li" key={name}><span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(255_255_255/0.08)] pe-4 ps-3 text-[15px] text-white ring-1 ring-white/[.06] backdrop-blur-md"><I size={17} className="text-white/70" />{name}</span></RevealItem>); })}
+          </Reveal>
+          <div className="relative z-10 mt-12">
+            <p className="text-[clamp(24px,1rem+1.4vw,36px)] font-semibold tracking-[-.03em] text-white">{c.langs}</p>
+            <ul className="mx-auto mt-6 flex max-w-[48rem] flex-wrap justify-center gap-2">
+              {LOCALES.map((l) => (
+                <li key={l.code}><button type="button" onClick={() => setLocale(l.code)} lang={l.code} dir={l.dir} aria-pressed={locale === l.code}
+                  className={`inline-flex min-h-11 items-center gap-2.5 rounded-full pe-4 ps-1.5 text-[15px] transition-colors ${locale === l.code ? "bg-white text-[#111]" : "bg-[rgb(255_255_255/0.08)] text-white hover:bg-[rgb(255_255_255/0.14)]"}`}>
+                  <img src={`/flags/${l.flag}.svg`} alt="" width={28} height={28} className="h-7 w-7 rounded-full" />{l.name}</button></li>))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 13. Use cases ---------- */
+const CASE_META: [string, Ic][] = [["/sektor/uretim/", ShieldCheck], ["/use-cases/installation-training-on-site-orientation/", MapPin], ["/sektor/restoran/", CookingPot], ["/use-cases/master-apprentice-skills-transfer/", GraduationCap], ["/see-it/", UserPlus], ["/sektor/franchise/", Storefront]];
+export function Cases5() {
+  const { d } = useLocale(); const c = d.cases;
+  return (
+    <section id="use-cases" aria-labelledby="uc-h" className="section-y pt-0">
+      <div className="container-x">
+        <Label icon={BookOpen}>{c.k}</Label>
+        <H2 id="uc-h" className="max-w-[18ch]">{c.h}</H2>
+        <p className="mt-5 max-w-[40rem] text-[17px] leading-[1.55] text-ink-muted">{c.lead}</p>
+        <Reveal as="ul" stagger={0.05} className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {c.items.map(([tag, h, p], k) => { const [href, I] = CASE_META[k]; return (
+            <RevealItem as="li" key={h}>
+              <Link href={href} className={`group flex h-full flex-col ${card} p-6 transition-colors duration-300 hover:bg-[var(--card-2)] md:p-7`}>
+                <span className="flex items-center justify-between gap-3"><span className="grid h-11 w-11 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink transition-colors group-hover:bg-[var(--card)]"><I size={20} /></span><span className="text-[13px] text-ink-faint">{tag}</span></span>
+                <h3 className="mt-7 text-[19px] font-semibold leading-[1.25] tracking-[-.015em]">{h}</h3>
+                <p className="mt-2.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
+                <span className="mt-auto flex items-center gap-2 pt-6 text-[14px] font-medium text-ink-muted transition-colors group-hover:text-ink">{c.more}<ArrowRight size={13} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100" /></span>
+              </Link>
+            </RevealItem>); })}
+        </Reveal>
+      </div>
+    </section>);
+}
+
+/* ---------- 14. Pricing preview (yearly by default) ---------- */
+export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setYearly: (v: boolean) => void; id: string }) {
+  const { d } = useLocale(); const c = d.pricing; const best = Math.max(...PLANS.map((p) => savePct(p) ?? 0));
+  const b = (on: boolean) => `relative z-10 inline-flex h-11 items-center gap-2 rounded-full px-5 text-[15px] font-semibold transition-colors ${on ? "text-bg" : "text-ink-muted hover:text-ink"}`;
+  const pill = <m.span layoutId={`${id}-pill`} className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />;
+  return (
+    <div role="group" aria-label={c.billing} className="inline-flex rounded-full bg-[var(--card)] p-1 ring-1 ring-line">
+      <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={b(!yearly)}>{!yearly && pill}{c.monthly}</button>
+      <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={b(yearly)}>{yearly && pill}{c.yearly}
+        {best > 0 && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${yearly ? "bg-accent text-[#111]" : "bg-[rgb(236_103_38/0.14)] text-accent-text"}`}>{fmt(c.upTo, { pct: best })}</span>}</button>
+    </div>);
+}
+const PLAN_IC: Record<string, Ic> = { free: Sparkle, pro: Lightning, proplus: Users, enterprise: Buildings };
+export function PlanCard({ id, yearly, full = false }: { id: string; yearly: boolean; full?: boolean }) {
+  const { d } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];
+  const [name, forWho] = c.plans[id as keyof typeof c.plans]; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
+  const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
+  const pts = full ? d.pricingPage.points[id as keyof typeof d.pricingPage.points] : c.feats[id as keyof typeof c.feats];
+  const prev = { pro: "free", proplus: "pro", enterprise: "proplus" }[id as "pro"] as keyof typeof c.plans | undefined;
+  const checkout = (yearly ? (p as { checkoutYearly?: string | null }).checkoutYearly : p.checkout) ?? null;
+  const reduce = useReducedMotion();
+  return (
+    <li className={`relative flex flex-col rounded-[28px] p-6 md:p-7 ${rec ? "bg-ink text-bg" : "bg-[var(--card)]"}`}>
+      <div className="flex items-center justify-between gap-3">
+        <span className={`grid h-11 w-11 place-items-center rounded-[14px] ${rec ? "bg-bg/10" : "bg-[var(--card-2)]"}`}><I size={20} /></span>
+        {rec && <span className="rounded-full bg-accent px-3 py-1 text-[12px] font-semibold text-[#111]">{c.recommended}</span>}
+      </div>
+      <h3 className="mt-6 text-[20px] font-semibold">{name}</h3>
+      <p className={`mt-1 min-h-[2.6rem] text-[14px] leading-snug ${rec ? "text-bg/70" : "text-ink-muted"}`}>{forWho}</p>
+      <div className="mt-6 min-h-[5.5rem]">
+        {pr ? <>
+          <div className="flex flex-wrap items-baseline gap-x-2">
+            <AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[40px] font-bold leading-none tracking-[-.03em]" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span></AnimatePresence>
+            <span className={`text-[14px] ${rec ? "text-bg/70" : "text-ink-muted"}`}>{c.perMo}</span>
+            {save && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${rec ? "bg-accent text-[#111]" : "bg-[rgb(236_103_38/0.14)] text-accent-text"}`}>{fmt(c.save, { pct: save })}</span>}
+          </div>
+          <p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{id === "free" ? c.free : yearly ? c.yrNote : c.moNote}</p>
+        </> : <><p className="text-[34px] font-bold leading-none tracking-[-.03em]">{c.contact}</p><p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{c.custom}</p></>}
+      </div>
+      {id === "enterprise"
+        ? <a href={SITE.demo} className={`btn mt-6 w-full ${rec ? "bg-bg text-ink" : "btn-secondary"}`}>{c.talk}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+        : <a href={checkout ?? "/pricing/"} className={`btn mt-6 w-full ${rec ? "bg-bg text-ink hover:opacity-90" : "btn-secondary"}`}>{id === "free" ? c.start : c.choose}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>}
+      <div className={`mt-6 flex-1 rounded-[20px] p-4 ${rec ? "bg-bg/[.08]" : "bg-[var(--card-2)]"}`}>
+        <p className="flex items-center gap-2 text-[14px] font-semibold"><Users size={16} aria-hidden="true" />{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
+        {full && prev && <p className={`mt-3 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
+        <ul className="mt-3 space-y-2 text-[14px]">{pts.map((f) => <li key={f} className={`flex items-start gap-2.5 ${rec ? "text-bg/85" : "text-ink-muted"}`}><Check size={15} aria-hidden="true" className="mt-0.5 shrink-0" />{f}</li>)}</ul>
+      </div>
+    </li>);
+}
+export function Pricing5() {
+  const { d } = useLocale(); const c = d.pricing; const [yearly, setYearly] = useState(true);
+  return (
+    <section id="pricing" aria-labelledby="pp-h" className="section-y pt-0">
+      <div className="container-x">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div><Label icon={Tag}>{c.k}</Label><H2 id="pp-h" className="max-w-[16ch]">{c.h}</H2><p className="mt-4 text-[17px] text-ink-muted">{c.lead}</p></div>
+          <BillingSwitch yearly={yearly} setYearly={setYearly} id="pp" />
+        </div>
+        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory items-stretch gap-3 overflow-x-auto px-[var(--pad-x)] py-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4 [&>li]:w-[84%] [&>li]:shrink-0 [&>li]:snap-start sm:[&>li]:w-auto">
+          {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} />)}
+        </ul>
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-[14px] text-ink-faint">
+          <span className="flex flex-wrap items-center gap-x-5 gap-y-2"><span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} />{c.cancel}</span><span>{c.appNote}</span></span>
+          <Link href="/pricing/" className="inline-flex items-center gap-1.5 font-semibold text-ink underline-offset-4 hover:underline">{c.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        </div>
+      </div>
+    </section>);
+}
+
+/* ---------- 15. FAQ ---------- */
+export function Faq5() {
+  const { d } = useLocale(); const c = d.faq; const [open, setOpen] = useState<number | null>(0); const reduce = useReducedMotion();
+  return (
+    <section id="faq" aria-labelledby="faq-h" className="section-y pt-0">
+      <div className="container-x grid-12 gap-y-12">
+        <div className="col-span-12 lg:col-span-4">
+          <Label icon={Question}>{c.k}</Label><H2 id="faq-h">{c.h}</H2>
+          <div className={`${card} mt-10 hidden max-w-[22rem] p-6 lg:block`}>
+            <p className="text-[18px] font-semibold tracking-[-.01em]">{c.more}</p><p className="mt-2 text-[15px] text-ink-muted">{c.moreP}</p>
+            <a href={SITE.demo} className="btn btn-primary mt-5">{d.end.cta}</a>
+            <p className="mt-4 text-[13px] text-ink-faint"><a href="mailto:support@flexlore.com" className="hover:text-ink">{c.email}</a></p>
+          </div>
+        </div>
+        <ul className="col-span-12 space-y-2 lg:col-span-7 lg:col-start-6">
+          {c.items.map(([q, a], i) => { const on = open === i; return (
+            <li key={q} className={`rounded-[20px] transition-colors duration-300 ${on ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/60"}`}>
+              <h3><button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)}
+                className="flex min-h-16 w-full items-center justify-between gap-6 px-5 py-4 text-start text-[18px] font-semibold tracking-[-.01em] md:px-6">
+                <span className={on ? "text-ink" : "text-ink/85"}>{q}</span>
+                <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted"><Plus size={15} aria-hidden="true" /></m.span>
+              </button></h3>
+              <AnimatePresence initial={false}>{on && (
+                <m.div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35, ease: EASE }} className="overflow-hidden">
+                  <p className="measure px-5 pb-6 text-[16px] leading-[1.6] text-ink-muted md:px-6">{a}</p></m.div>)}</AnimatePresence>
+            </li>); })}
+        </ul>
+      </div>
+    </section>);
+}
+
+/* ---------- 16. Closing ---------- */
+export function End5() {
+  const { d } = useLocale(); const c = d.end;
+  return (
+    <section aria-labelledby="end-h" className="pb-[var(--section-y)]">
+      <div className="container-x">
+        <div className={`${card} grid-12 items-center gap-y-10 px-6 py-12 sm:px-10 md:py-16 lg:px-16`}>
+          <div className="col-span-12 lg:col-span-5">
+            <H2 id="end-h" className="!mt-0 max-w-[12ch]">{c.h}</H2>
+            <p className="mt-5 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
+            <a href={SITE.demo} className="btn btn-primary mt-8 h-12 px-6 text-[16px]">{c.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          </div>
+          <div className="col-span-12 lg:col-span-7"><CtaDuoLazy /></div>
+        </div>
+      </div>
+    </section>);
+}
+const CtaDuoInner = dynamic(() => import("./CtaDuo").then((x) => x.CtaDuo), { ssr: false, loading: () => <div className="aspect-[2752/1536] w-full" /> });
+function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><CtaDuoInner lang={lang} /></div>; }
+
+/** Everything below the process section, in page order. */
+export default function Below() {
+  return (<><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
+}

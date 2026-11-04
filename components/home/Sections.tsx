@@ -32,8 +32,8 @@ const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ss
 /* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
    official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
 const TILE = "flex h-14 w-full items-center justify-center overflow-hidden rounded-[12px] bg-white px-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5";
-export function TrustStrip({ lang }: { lang: Lang }) {
-  const c = home[lang].trust;
+export function TrustStrip({ lang = "en", label }: { lang?: Lang; label?: string }) {
+  const c = { programs: label ?? home[lang].trust.programs };
   return (
     <section id="main-next" aria-label={c.programs} className="scroll-mt-[var(--header-h)] bg-bg">
       <div className="container-x pt-4 md:pt-6">

@@ -6,6 +6,7 @@ import seo from "@/lib/seo.json";
 import { SITE } from "@/components/config";
 import { robots } from "@/components/seo";
 import { MotionProvider } from "@/components/ui/MotionProvider";
+import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 const title = seo["/"].t;
 const description = seo["/"].d;
 export const metadata: Metadata = {
@@ -27,5 +28,5 @@ const ld = [
     description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={schibsted.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("flx-theme")==="light"){document.documentElement.dataset.theme="light";document.querySelector('meta[name="theme-color"]')?.setAttribute("content","#FAF8F5")}}catch(e){}` }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased"><MotionProvider>{children}</MotionProvider></body></html>);
+  return (<html lang="en" className={schibsted.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("flx-theme")==="light"){document.documentElement.dataset.theme="light";document.querySelector('meta[name="theme-color"]')?.setAttribute("content","#FAF8F5")}}catch(e){}` }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased"><MotionProvider><LocaleProvider>{children}</LocaleProvider></MotionProvider></body></html>);
 }

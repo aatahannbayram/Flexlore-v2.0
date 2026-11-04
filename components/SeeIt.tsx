@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useLocale } from "./i18n/LocaleProvider";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Header } from "./Header";
 import { Footer } from "./Sections";
@@ -12,7 +13,7 @@ import { playOnly } from "./media";
 const ease = [0, 0, 0.2, 1] as const; // ease-out
 
 export default function SeeIt() {
-  const [lang, setLang] = useState<Lang>("en");
+  const { lang } = useLocale();
   const [id, setId] = useState<Ind>("cafe-restaurant");
   const reduce = useReducedMotion();
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
@@ -22,7 +23,7 @@ export default function SeeIt() {
   const o = INDUSTRIES.find((x) => x.id === id)!; const c = o[lang];
   const tx = reduce ? {} : { y: 8 };
   return (<>
-    <Header lang={lang} setLang={setLang} />
+    <Header />
     <main id="main" className="pb-24 pt-32 md:pt-40">
       <div className="container-x">
         <p className="eyebrow">{tr ? "Kendi işinizde görün" : "See it in your business"}</p>

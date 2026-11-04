@@ -46,7 +46,9 @@ export function savePct(p: { monthly: Price | null; yearly: Price | null }): num
   const m = n(p.monthly), y = n(p.yearly);
   return m > 0 && y > 0 && y < m ? Math.floor((1 - y / m) * 100) : null;
 }
-export type Plan = { id: string; name: string; for: string; badge: string | null; badgeTr: string | null; monthly: Price | null; yearly: Price | null; checkout: string | null; featured?: boolean; points: string[] };
+export type Plan = { id: string; name: string; for: string; badge: string | null; badgeTr: string | null; monthly: Price | null; yearly: Price | null;
+  /** Stripe Payment Links (monthly / yearly). Paste the link from the Stripe dashboard; null = fall back to the pricing page. */
+  checkout: string | null; checkoutYearly?: string | null; featured?: boolean; points: string[] };
 /* Plan cards. points[0] of every plan after the first is the "Everything in X" link line; rest are additions. */
 export const PLANS: Plan[] = [
   { id: "free", name: "Free", for: "Try Flexlore with a small team.", badge: null, badgeTr: null, monthly: { now: "$0" }, yearly: { now: "$0" }, checkout: null,

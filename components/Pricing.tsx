@@ -1,92 +1,100 @@
 "use client";
-import { useEffect, useState } from "react";
-import { PLANS, COMPARE, PRICING_FAQ, PRICING_FAQ_TR, SITE, ENTERPRISE_TIERS, PLAN_TR } from "./config";
-import { I, Arr } from "./Icons";
+/* Pricing page. Same plan cards as the home page (PlanCard), yearly selected by default, all copy from the locale
+ * dictionary. Checkout: each plan's `checkout` / `checkoutYearly` in config.ts takes a Stripe Payment Link; until one
+ * is set, the button falls back to this page's app/demo flow. */
+import { useState } from "react";
+import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS } from "./config";
 import { Header } from "./Header";
 import { Footer } from "./Sections";
 import Copq from "./Copq";
-import { PL, BillingToggle, PriceBlock } from "./PriceUI";
-import type { Lang } from "./copy";
-import { StoreCTA } from "./StoreCTA";
-
-const CELL_TR: Record<string, string> = { "Talk to sales": "Satışla görüşün", "Standard": "Standart", "Premium": "Premium", "3 quizzes": "3 quiz", "10 quizzes": "10 quiz", "Unlimited": "Sınırsız", "Coming soon": "Yakında", "By number of users": "Kullanıcı sayısına göre" };
-const Cell = ({ v, tr }: { v: boolean | string; tr?: boolean }) => v === true ? <I.check size={18} className="mx-auto text-white" /> : v === false ? <span className="text-sm text-white/70">{tr ? "Dahil değil" : "Not included"}</span> :
-  <span className={`text-sm ${v.startsWith("Coming") ? "text-white/75" : "text-white"}`}>{tr ? CELL_TR[v] ?? v : v}</span>;
+import { useLocale, fmt } from "./i18n/LocaleProvider";
+import { BillingSwitch, PlanCard } from "./home/home5b";
+import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Tag, Lightning } from "./ui/icons";
 
 export default function Pricing() {
-  const [lang, setLang] = useState<Lang>("en");
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
-  const [yearly, setYearly] = useState(false);
-  const [cmp, setCmp] = useState(false);
-  const t = { ...PL[lang], ...(lang === "tr" ? { eyebrow: "Fiyatlandırma", h1: "İşletmenize uyan fiyatlandırma.", sub: "Tek bir işle başlayın. Her ekibe, vardiyaya ve lokasyona büyüyün.", entK: "30+ kullanıcı", entH: "Enterprise", entP: "30 ve üzeri kullanıcılı ekipler için. Kullanıcı sayısına göre kademeli fiyatlanır, lokasyonlar arası yaygınlaştırma desteğiyle.", sales: "Satış ekibiyle görüşün" } : { eyebrow: "Pricing", h1: "Pricing that fits your floor.", sub: "Start with one job. Grow to every team, shift and site.", entK: "30+ users", entH: "Enterprise", entP: "For teams of 30 or more users. Priced by user count, in tiers, with rollout support across sites.", sales: "Talk to sales" }) };
-  const tr = lang === "tr";
-  const members = PLANS;
-  const pl = (p: typeof PLANS[number]) => tr && PLAN_TR[p.id] ? { ...p, ...PLAN_TR[p.id] } : p;
+  const { d, lang } = useLocale(); const c = d.pricing; const t = d.pricingPage;
+  const [yearly, setYearly] = useState(true); const [cmp, setCmp] = useState(false); const [open, setOpen] = useState<number | null>(0);
+  const cell = (v: boolean | string) => {
+    if (v === true) return <Check size={18} aria-label="✓" className="mx-auto text-ink" />;
+    if (v === false) return <span className="text-ink-faint">–</span>;
+    const map: Record<string, string> = { "By number of users": t.cells.byUsers, Unlimited: t.cells.unlimited, "3 quizzes": t.cells.q3, "10 quizzes": t.cells.q10, "Talk to sales": t.cells.talk, Standard: t.cells.standard, Premium: t.cells.premium };
+    return <span>{map[v] ?? v}</span>;
+  };
+  const tiers = ENTERPRISE_TIERS.map((x) => ({ ...x, pts: t.tiers[x.id as "starter" | "growth" | "scale"], soon: x.id === "scale" ? t.tiers.scaleSoon : [] }));
   return (<>
-    <Header lang={lang} setLang={setLang} />
-    <main id="main" className="pt-36">
-      <div className="container-x">
-        <p className="eyebrow">{t.eyebrow}</p>
-        <h1 className="display mt-4 max-w-[15ch] text-h1">{t.h1}</h1>
-        <p className="mt-4 max-w-xl text-lg leading-[1.4] text-white/65">{t.sub}</p>
-
-        <div className="mt-12"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} /></div>
-        <ul className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4" aria-label="Plans">
-          {members.map((p0, i) => { const p = pl(p0); const prev = i > 0 ? pl(members[i - 1]) : null; const pts = prev ? p.points.slice(1) : p.points; const badge = tr ? p0.badgeTr : p0.badge; return (
-          <li key={p.id} className={`relative flex flex-col rounded-2xl p-7 ${p.featured ? "bg-surface-2" : "bg-surface-1"}`}>
-            {badge && <span className={`absolute -top-3 left-7 rounded-full px-3 py-1 text-xs font-semibold ${p.featured ? "bg-ice-100 text-bg" : "bg-white/10 text-white"}`}>{badge}</span>}
-            <h2 className="text-lg font-semibold tracking-tight">{p.name}</h2>
-            <p className="mt-1.5 text-sm leading-[1.4] text-white/70">{p.for}</p>
-            <div className="mt-6 pt-6">
-              <PriceBlock p={p0} yearly={yearly} lang={lang} />
-              <p className="mt-1 text-sm text-white/70">{p.id === "enterprise" ? t.entB : t.unit(p0.id === "free" ? "3" : p0.id === "pro" ? "10" : "30")}</p>
-            </div>
-            {prev && <p className="mt-6 text-sm font-semibold text-white">{t.plus(prev.name)}</p>}
-            <ul className={`${prev ? "mt-3" : "mt-6"} space-y-2.5 text-sm text-white/80`}>{pts.map((x) => <li key={x} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{x}</li>)}</ul>
-            {p.id === "enterprise"
-              ? <a href={SITE.demo} className={`${p.featured ? "btn-p" : "btn-g"} mt-auto self-start`} style={{ marginTop: "2rem" }}>{t.talk} <Arr className="ml-1" /></a>
-              : <div className="mt-auto flex" style={{ paddingTop: "2rem" }}><StoreCTA label={p.id === "free" ? t.start : t.choose} primary={p.featured} tr={tr} /></div>}
-          </li>); })}
+    <Header />
+    <main id="main" className="home-v3 pt-[calc(var(--header-h)+56px)]">
+      <section className="container-x">
+        <div className="mx-auto max-w-[44rem] text-center">
+          <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><Tag size={16} /></span>{t.k}</p>
+          <h1 className="v3-h1 mt-5">{t.h1}</h1>
+          <p className="mx-auto mt-5 max-w-[32rem] text-[18px] leading-[1.55] text-ink-muted">{t.sub}</p>
+          <div className="mt-9 flex justify-center"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
+        </div>
+        <ul className="mt-12 grid gap-3 md:grid-cols-2 xl:grid-cols-4" aria-label={c.k}>
+          {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} full />)}
         </ul>
+        <p className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">
+          <span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} />{c.cancel}</span><span>{c.appNote}</span>
+        </p>
+      </section>
 
-        <section aria-labelledby="ent-h" className="mt-16 rounded-2xl bg-bg2 p-7 md:p-10">
-          <p className="eyebrow">{t.entK}</p>
-          <h2 id="ent-h" className="display mt-3 text-h2">{t.entH}</h2>
-          <p className="mt-3 max-w-xl text-base leading-[1.45] text-white/70">{t.entP}</p>
-          <ul className="mt-8 grid gap-3 md:grid-cols-3">{ENTERPRISE_TIERS.map((x) => (
-            <li key={x.id} className="flex flex-col rounded-xl bg-black/40 p-5"><p className="text-base font-semibold">Enterprise {x.name}</p>
-              <p className="mt-3 text-lg font-bold">{x.custom ? t.custom : <>{x.price}<span className="text-sm font-normal text-white/70">{t.perMo}</span></>}</p>
-              <p className="mt-1 text-sm text-white/70">{t.users(tr ? x.usersTr : x.users)}</p>
-              <ul className="mt-4 space-y-2 text-sm text-white/80">{(tr ? x.pointsTr : x.points).map((y) => <li key={y} className="flex gap-2.5"><I.check size={16} className="mt-0.5 shrink-0 text-white/70" />{y}</li>)}{((tr ? (x as any).soonTr : (x as any).soon) ?? []).map((y: string) => <li key={y} className="flex flex-wrap items-center gap-2.5"><I.check size={16} className="shrink-0 text-white/40" />{y}<span className="rounded-full px-2 py-0.5 text-xs font-semibold text-white/80">{tr ? "Yakında" : "Coming soon"}</span></li>)}</ul></li>))}</ul>
-          <a href={SITE.demo} className="btn-p mt-8">{t.sales} <Arr className="ml-1" /></a>
-        </section>
-
-<section aria-labelledby="cmp-h" className="mt-28">
-          <h2 id="cmp-h" className="display text-h2">{tr ? "Planları karşılaştırın" : "Compare plans"}</h2>
-          <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mt-6 md:hidden">
-            {cmp ? (tr ? "Karşılaştırmayı gizle" : "Hide comparison") : (tr ? "Karşılaştırmayı göster" : "Show comparison")}</button>
-          <div id="cmp-table" className={`no-sb mt-8 overflow-x-auto ${cmp ? "block" : "hidden"} md:block`}>
-            <table className="w-full min-w-[640px] border-collapse text-left text-sm">
-              <thead><tr className=""><th className="py-3 pr-4 font-normal text-white/70">{tr ? "Özellik" : "Feature"}</th>{PLANS.map((p) => <th key={p.id} className="w-[18%] py-3 text-center font-semibold">{tr ? PLAN_TR[p.id]?.name ?? p.name : p.name}</th>)}</tr></thead>
-              <tbody>{COMPARE.map((r) => <tr key={r.f} className="odd:bg-white/[.03]"><td className="py-3.5 pr-4 text-white/80">{tr ? r.tr : r.f}</td>{r.v.map((v, i) => <td key={i} className="py-3.5 text-center">{<Cell v={v} tr={tr} />}</td>)}</tr>)}</tbody>
-            </table>
+      <section aria-labelledby="ent-h" className="container-x mt-24">
+        <div className="relative overflow-hidden rounded-[32px] bg-[var(--card)] p-6 md:p-12">
+          <div className="grid-12 items-end gap-y-6">
+            <div className="col-span-12 lg:col-span-7">
+              <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card-2)] text-ink"><Buildings size={16} /></span>{t.entK}</p>
+              <h2 id="ent-h" className="v3-h2 mt-5">{t.entH}</h2>
+              <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted">{t.entP}</p>
+            </div>
+            <div className="col-span-12 lg:col-span-5 lg:justify-self-end"><a href={SITE.demo} className="btn btn-primary h-12 px-6 text-[16px]">{t.sales}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a></div>
           </div>
-        </section>
-      </div>
+          <ul className="mt-10 grid gap-3 md:grid-cols-3">
+            {tiers.map((x) => (
+              <li key={x.id} className="flex flex-col rounded-[22px] bg-[var(--card-2)] p-6">
+                <p className="text-[17px] font-semibold">Enterprise {x.name}</p>
+                <p className="mt-4 text-[30px] font-bold leading-none tracking-[-.03em]">{x.custom ? c.custom : <>{x.price}<span className="ms-1 text-[14px] font-normal text-ink-muted">{c.perMo}</span></>}</p>
+                <p className="mt-2 text-[14px] text-ink-muted">{fmt(t.entUsers, { n: x.users })}</p>
+                <ul className="mt-5 space-y-2 text-[14px] text-ink-muted">
+                  {x.pts.map((y) => <li key={y} className="flex items-start gap-2.5"><Check size={15} className="mt-0.5 shrink-0" />{y}</li>)}
+                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-accent-text" />{y}<span className="rounded-full bg-[rgb(236_103_38/0.14)] px-2 py-0.5 text-[11px] font-semibold text-accent-text">{t.soon}</span></li>)}
+                </ul>
+              </li>))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="cmp-h" className="container-x mt-24">
+        <h2 id="cmp-h" className="v3-h2">{t.compareH}</h2>
+        <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mt-6 md:hidden">{cmp ? t.hide : t.show}</button>
+        <div id="cmp-table" className={`no-sb mt-8 overflow-x-auto rounded-[24px] bg-[var(--card)] p-2 ${cmp ? "block" : "hidden"} md:block`}>
+          <table className="w-full min-w-[680px] border-collapse text-start text-[14px]">
+            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${p.featured ? "text-accent-text" : ""}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
+            <tbody>{COMPARE.map((r, k) => <tr key={r.f} className="odd:bg-[var(--card-2)]/60"><td className="rounded-s-xl px-4 py-3.5 text-ink-muted">{t.rows[k] ?? r.f}</td>{r.v.map((v, i) => <td key={i} className={`py-3.5 text-center ${i === 3 ? "rounded-e-xl" : ""}`}>{cell(v)}</td>)}</tr>)}</tbody>
+          </table>
+        </div>
+      </section>
     </main>
-    <div className="mt-12"><Copq lang={lang} /></div>
-    <section aria-labelledby="pfaq-h" className="py-24">
-      <div className="grid container-x gap-10 md:grid-cols-12">
-        <h2 id="pfaq-h" className="display text-h2 md:col-span-4">{tr ? "Fiyatlandırma soruları" : "Pricing questions"}</h2>
-        <div className="md:col-span-8">{(tr ? PRICING_FAQ_TR : PRICING_FAQ).map((f) => (
-          <details key={f.q} className="group mb-2 rounded-xl bg-bg2 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary>
-            <p className="mt-2 max-w-[62ch] text-base leading-[1.45] text-white/65">{f.a}</p></details>))}</div>
+    <div className="mt-24"><Copq lang={lang} /></div>
+    <section aria-labelledby="pfaq-h" className="section-y">
+      <div className="container-x grid-12 gap-y-10">
+        <h2 id="pfaq-h" className="v3-h2 col-span-12 lg:col-span-4">{t.faqH}</h2>
+        <ul className="col-span-12 space-y-2 lg:col-span-7 lg:col-start-6">
+          {t.faq.map(([q, a], i) => { const on = open === i; return (
+            <li key={q} className={`rounded-[20px] transition-colors ${on ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/60"}`}>
+              <button type="button" aria-expanded={on} onClick={() => setOpen(on ? null : i)} className="flex min-h-16 w-full items-center justify-between gap-6 px-5 py-4 text-start text-[17px] font-semibold md:px-6">
+                {q}<span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted transition-transform ${on ? "rotate-45" : ""}`}><Plus size={15} aria-hidden="true" /></span></button>
+              {on && <p className="measure px-5 pb-6 text-[16px] leading-[1.6] text-ink-muted md:px-6">{a}</p>}
+            </li>); })}
+        </ul>
       </div>
     </section>
-    <section className="pb-24"><div className="container-x pt-12">
-      <p className="display max-w-[18ch] text-h2">{tr ? "Hangi plan size uygun, emin değil misiniz?" : "Not sure which plan fits?"}</p>
-      <p className="mt-3 text-base text-white/70">{tr ? "Yirmi dakika, gerçek işlerinizden biriyle." : "Twenty minutes, one of your real jobs."}</p>
-      <a href={SITE.demo} className="btn-p mt-6">{tr ? "Demo ayarlayın" : "Book a demo"} <Arr className="ml-1" /></a></div></section>
+    <section className="pb-[var(--section-y)]"><div className="container-x">
+      <div className="rounded-[32px] bg-[var(--card)] px-6 py-12 text-center md:py-16">
+        <p className="v3-h2 mx-auto max-w-[18ch]">{t.endH}</p>
+        <p className="mt-4 text-[17px] text-ink-muted">{t.endP}</p>
+        <a href={SITE.demo} className="btn btn-primary mt-8 h-12 px-6 text-[16px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+      </div></div></section>
     <Footer />
   </>);
 }

@@ -64,7 +64,7 @@
 }
 
 :root {
-  --bg-rgb: 17 17 17; --band: #161616; --band-card: #1E1E1E; --band-stage: #262626;
+  --bg-rgb: 17 17 17; --band: #161616; --band-card: #1E1E1E; --band-stage: #262626; --card: #181818; --card-2: #222222;
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
@@ -206,7 +206,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
    colour tokens at a warm neutral ground. `.dark` keeps a dark scope inside light mode: app screens, the web dashboard,
    cinematic photo bands and anything that sits on a photograph. White utilities are remapped in theme-light.css. */
 :root[data-theme="light"] {
-  color-scheme: light; --bg-rgb: 250 248 245; --band: #F1EDE7; --band-card: #FFFFFF; --band-stage: #F3F0EB;
+  color-scheme: light; --bg-rgb: 250 248 245; --band: #F1EDE7; --band-card: #FFFFFF; --band-stage: #F3F0EB; --card: #F1EDE7; --card-2: #FFFFFF;
   --color-bg: #FAF8F5; --color-surface-1: #FFFFFF; --color-surface-2: #F1EDE7;
   --color-line: rgb(22 22 22 / 0.08); --color-line-strong: rgb(22 22 22 / 0.16);
   --color-ink: #161616; --color-ink-muted: #55524D; --color-ink-faint: #6E6A64;
@@ -216,7 +216,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
   --color-light-bg: #F1EDE7; --color-light-surface: #E9E4DC;
 }
 :root[data-theme="light"] .dark {
-  --bg-rgb: 17 17 17;
+  --bg-rgb: 17 17 17; --card: #181818; --card-2: #222222;
   --color-bg: #111111; --color-surface-1: #191919; --color-surface-2: #1F1F1F;
   --color-line: rgb(255 255 255 / 0.08); --color-line-strong: rgb(255 255 255 / 0.16);
   --color-ink: #EEF1F1; --color-ink-muted: #B2B2B2; --color-ink-faint: #8A8A8A;
@@ -249,3 +249,8 @@ main:not([lang="tr"]) .l-tr { display: none; }
 /* Footer: halftone dots around the dark card, denser toward the edges. Follows the page ground in both themes. */
 .footer-dots { background-color: var(--color-bg); background-image: radial-gradient(rgb(var(--dot-rgb, 255 255 255) / 0.16) 1.1px, transparent 1.4px); background-size: 9px 9px; }
 :root[data-theme="light"] .footer-dots { --dot-rgb: 22 22 22; }
+/* Process stepper progress and the AI hub's travelling dots. */
+@keyframes procbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.ai-dot { offset-rotate: 0deg; animation: aidot 2.8s ease-in-out infinite; }
+@keyframes aidot { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .ai-dot { animation: none; opacity: 0; } }

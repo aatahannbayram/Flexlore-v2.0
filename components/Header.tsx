@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
+import { FlagPicker } from "./ui/FlagPicker";
+import { useLocale } from "./i18n/LocaleProvider";
 import dynamic from "next/dynamic";
 import { AnimatePresence, m, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
 import { Pause, Play, List, X, CaretDown, MagnifyingGlass } from "./ui/icons";
@@ -20,8 +22,11 @@ const MobileMenuBody = dynamic(() => loadMenus().then((x) => x.MobileMenuBody), 
  *  Desktop: categorised mega menus (Product, Industries, Resources) with an icon, title and one line per item, plus Pricing,
  *  ⌘K search, language and Book a demo. Mobile: a full-screen menu grouped the same way.
  *  Hides on scroll down after 400 px, comes back on scroll up, and stays visible while focus or a menu is inside it. */
-export function Header({ lang = "en", setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
-  const t = copy[lang]; const tr = lang === "tr";
+export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
+  const ctx = useLocale(); const lang: Lang = langProp ?? ctx.lang; const n = ctx.d.nav;
+  // Pages with their own EN/TR switch (the Mikel demo) keep it; everywhere else the 8-language flag picker drives the site.
+  const own = !!setLang; const t = own ? copy[lang] : { ...copy[lang], langLabel: n.language, navP: n.pricing, cta: n.cta, menu: n.menu, close: n.close }; const tr = lang === "tr";
+  const navLabel = (id: string, fb: string) => own ? fb : ({ product: n.product, industries: n.industries, resources: n.resources } as Record<string, string>)[id] ?? fb;
   const reduce = useReducedMotion();
   const { scrollY } = useScroll();
   const [lined, setLined] = useState(false);
@@ -95,7 +100,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
                   onClick={() => setMega(mega === g.id ? null : g.id)}
                   className={`inline-flex h-11 items-center gap-1.5 rounded-full px-3.5 transition-colors ${mega === g.id ? "bg-white/[.07] text-ink" : "text-ink-muted hover:text-ink"}`}>
-                  {g.label[lang]}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
+                  {navLabel(g.id, g.label[lang])}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
                 </button>
                 {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. */}
                 <AnimatePresence>
@@ -103,7 +108,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
                     <m.div key="mega" id={`mega-${g.id}`} onMouseEnter={() => enter(g.id)} onMouseLeave={leave}
                       initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: reduce ? 0 : 0.22, ease: EASE }}
                       className="absolute left-1/2 top-[calc(var(--header-h)-4px)] w-[min(760px,calc(100vw-48px))] -translate-x-1/2">
-                      <MegaPanel id={g.id} lang={lang} home={home} close={() => setMega(null)} reduce={!!reduce} />
+                      <MegaPanel id={g.id} lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setMega(null)} reduce={!!reduce} />
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
@@ -113,9 +118,9 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
           <div className="flex items-center gap-1.5 sm:gap-2">
             <button type="button" onClick={() => setSearch(true)} aria-keyshortcuts="Meta+K Control+K"
               className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:w-auto lg:gap-2 lg:bg-white/[.06] lg:px-3.5 lg:text-sm">
-              <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{tr ? "Ara" : "Search"}</span><span className="sr-only">{tr ? ": sitede" : " the site"}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
+              <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{own ? (tr ? "Ara" : "Search") : n.search}</span><span className="sr-only">{own ? (tr ? ": sitede" : " the site") : ""}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
             </button>
-            <ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div>
+            <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} className="hidden sm:grid" /><div className="hidden sm:block">{own ? LangSwitch : <FlagPicker />}</div>
             <a href={SITE.demo} className="btn btn-primary btn-sm">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -133,10 +138,10 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
               <><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="logo-dark h-6 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={110} height={24} className="logo-light h-6 w-auto" /></>
               <button type="button" onClick={() => setOpen(false)} aria-label={t.close} autoFocus className="grid h-11 w-11 place-items-center rounded-full"><X size={22} aria-hidden="true" /></button>
             </div>
-            <MobileMenuBody lang={lang} home={home} close={() => setOpen(false)} openSearch={() => setSearch(true)} pricing={t.navP} />
+            <MobileMenuBody lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setOpen(false)} openSearch={() => setSearch(true)} pricing={t.navP} />
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
-              {LangSwitch}
-              <ThemeToggle lang={lang} /><a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
+              {own ? LangSwitch : <FlagPicker up />}
+              <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} /><a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
             </div>
           </m.div>)}
       </AnimatePresence>
