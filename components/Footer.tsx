@@ -111,9 +111,6 @@ export function Footer({ lang = "en" }: { lang?: L }) {
                 <li key={n}><a className="inline-flex min-h-9 items-center px-2 text-ink-faint transition-colors duration-200 hover:text-ink" href={h}>{n}</a></li>))}
             </ul>
           </div>
-          <p className="mt-3 max-w-[90ch] text-[12px] leading-[1.5] text-ink-faint">
-            © 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
-          </p>
         </div>
         <div className="h-6 md:h-8" />
       </div>

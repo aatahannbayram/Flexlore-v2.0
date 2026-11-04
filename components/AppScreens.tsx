@@ -160,7 +160,7 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
             <span className="w-8 text-right font-medium text-white/85">{v}/12</span></div>)}
           <div className="mt-3 flex gap-2 text-[12px]">
             <span className="flex-1 rounded-full py-[9px] text-center text-white" style={{ background: S3 }}>{L.eq}</span>
-            <span className="flex-1 rounded-full py-[9px] text-center text-white" style={{ background: O }}>{L.det}</span></div>
+            <span className="flex-1 rounded-full py-[9px] text-center font-semibold text-[#111111]" style={{ background: O }}>{L.det}</span></div>
         </div>
         {/* Operator */}
         <div className="mt-2.5 flex items-center rounded-[16px] px-3.5 py-3 text-[14px] text-white" style={{ background: S1 }}>

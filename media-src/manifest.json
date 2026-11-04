@@ -56,38 +56,6 @@
       "start": 0,
       "duration": 8,
       "grade": "none"
-    },
-    "gen-hands": {
-      "src": "gen-hands.mp4",
-      "role": "card",
-      "start": 0,
-      "duration": 12,
-      "grade": "none",
-      "posterAt": 0.2
-    },
-    "gen-baker": {
-      "src": "gen-baker.mp4",
-      "role": "card",
-      "start": 0,
-      "duration": 12,
-      "grade": "none",
-      "posterAt": 0.2
-    },
-    "hotel2": {
-      "src": "gen-hotel.mp4",
-      "role": "card",
-      "start": 0,
-      "duration": 12,
-      "grade": "none",
-      "posterAt": 0.2
-    },
-    "warehouse2": {
-      "src": "gen-warehouse.mp4",
-      "role": "card",
-      "start": 0,
-      "duration": 12,
-      "grade": "warm",
-      "posterAt": 0.2
     }
   }
 }
