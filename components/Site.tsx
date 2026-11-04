@@ -6,7 +6,8 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
-import { TrustStrip, Problem, WebShowcase, Bento, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
+import { TrustStrip, Problem, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
+import { Capabilities } from "./home/Capabilities";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -33,7 +34,7 @@ export default function Site() {
           <Problem lang={lang} />
           <ScrollStory t={t} lang={lang} />
           <WebShowcase lang={lang} />
-          <Bento lang={lang} />
+          <Capabilities lang={lang} />
           <Industries lang={lang} />
           <Proof />
           <PricingPreview lang={lang} />

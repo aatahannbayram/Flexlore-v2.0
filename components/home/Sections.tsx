@@ -13,6 +13,7 @@ import { INDUSTRIES, type Ind } from "../seeit-data";
 import { Heading } from "../ui/Layout";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { SmartVideo } from "../ui/SmartVideo";
+import { DotGlobe } from "../ui/DotGlobe";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, SopScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
@@ -35,8 +36,10 @@ export function TrustStrip({ lang }: { lang: Lang }) {
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <AppStoreBadge lang={lang} />
             <StoreBadge href={SITE.googlePlay} top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" />
-            {/* TODO(ata): swap for Product Hunt's official embed badge once we have the post id (maker dashboard, Embed). */}
-            <StoreBadge href={SITE.productHunt} top={tr ? "YAYINLANDI" : "LAUNCHED ON"} name="Product Hunt" />
+            {/* Product Hunt's official embed badge (post 1077441), dark theme: monochrome, live upvote count. */}
+            <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-block transition-opacity hover:opacity-85">
+              <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1077441&theme=dark" alt="Flexlore App on Product Hunt" width={204} height={44} style={{ height: 44 }} className="block w-auto" loading="lazy" />
+            </a>
           </div>
         </div>
         <div className="col-span-12 lg:col-span-6 lg:col-start-7">
@@ -125,84 +128,15 @@ export function WebShowcase({ lang }: { lang: Lang }) {
           </div>
           <div aria-hidden="true" className="absolute -bottom-10 right-0 hidden w-[190px] lg:block"><Device label=""><SopScreen active={inView} /></Device></div>
         </div>
-        <ol className="mt-10 grid gap-3 md:grid-cols-3 lg:mr-36">
+        <ol className="mt-12 grid gap-8 md:grid-cols-3 lg:mr-36">
           {c.callouts.map((x, i) => (
-            <li key={x.h} className={`rounded-[20px] p-5 transition-colors duration-500 ${step === i ? "bg-surface-2" : "bg-bg/40"}`}>
+            <li key={x.h} className={`transition-opacity duration-500 ${step >= i ? "opacity-100" : "opacity-45"}`}>
               <div className="flex items-center gap-3"><span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold transition-colors ${step >= i ? "bg-ice-100 text-bg" : "bg-surface-2 text-ink-muted"}`}>{i + 1}</span>
                 <h3 className="text-lg font-semibold tracking-[-.01em]">{x.h}</h3></div>
               <p className="mt-2 text-base text-ink-muted">{x.p}</p>
             </li>))}
         </ol>
         <p className="mt-6 text-caption text-ink-faint">{c.sample}</p>
-      </div>
-    </section>);
-}
-
-/* 7. Capabilities bento: six tiles in three sizes, each with a small live UI fragment (CSS/motion, no video). */
-export function Bento({ lang }: { lang: Lang }) {
-  const c = home[lang].bento; const T = c.tiles; const tr = lang === "tr";
-  const Tile = ({ k, className = "", children }: { k: keyof typeof T; className?: string; children: React.ReactNode }) => (
-    <RevealItem as="li" className={`panel flex flex-col overflow-hidden ${className}`}>
-      <div className="relative flex-1 p-5 pb-0" aria-hidden="true">{children}</div>
-      <div className="p-5"><h3 className="text-lg font-semibold tracking-[-.01em]">{T[k].h}</h3><p className="mt-1.5 text-base text-ink-muted">{T[k].p}</p></div>
-    </RevealItem>);
-  return (
-    <section aria-labelledby="bento-h" className="section-y bg-bg">
-      <div className="container-x">
-        <Heading id="bento-h" eyebrow={c.k} title={c.h} lead={c.lead} />
-        <Reveal as="ul" stagger={0.06} className="mt-14 grid gap-4 md:grid-cols-6">
-          <Tile k="ai" className="md:col-span-4">
-            <div className="max-w-md space-y-2">
-              {(tr ? ["Elleri yıkayın, eldiven takın", "Soğuk oda sıcaklığını kontrol edin", "Kesme tahtalarını ve bıçakları dezenfekte edin", "Hattı istasyonlara göre kurun", "Hazırlıkları etiketleyip tarihleyin"] : ["Wash hands and put on gloves", "Check walk-in temperature", "Sanitise boards and knives", "Set up the line by station", "Label and date prep"]).map((s, i) => (
-                <div key={s} className="flex items-center gap-3 rounded-xl bg-surface-2 px-3.5 py-2.5 text-sm">
-                  <span className="tabular-nums text-ink-faint">{i + 1}</span><span className="flex-1 truncate">{s}</span>
-                  <span className="bento-swap relative h-6 w-[5.5rem] text-xs font-semibold" style={{ animationDelay: `${i * 0.6}s` }}>
-                    <span className="bento-a absolute inset-0 grid place-items-center rounded-full bg-white/[.06] text-ice-300"><span className="flex items-center gap-1"><Sparkle size={12} weight="fill" />{tr ? "Taslak" : "Draft"}</span></span>
-                    <span className="bento-b absolute inset-0 grid place-items-center rounded-full bg-ice-100 text-bg"><span className="flex items-center gap-1"><CheckCircle size={12} weight="fill" />{tr ? "Onaylı" : "Approved"}</span></span>
-                  </span>
-                </div>))}
-            </div>
-          </Tile>
-          <Tile k="ready" className="md:col-span-2">
-            <div className="grid grid-cols-6 gap-1.5">
-              {Array.from({ length: 24 }).map((_, i) => { const g = [2, 2, 1, 2, 0, 2, 1, 2, 2, 2, 1, 0, 2, 0, 1, 2, 2, 1, 2, 2, 0, 1, 2, 2][i];
-                return <span key={i} className="bento-cell aspect-square rounded-md" style={{ animationDelay: `${i * 0.05}s`, background: g === 2 ? "#D2D8D9" : g === 1 ? "rgb(210 216 217 / .32)" : "rgb(255 255 255 / .05)" }} />; })}
-            </div>
-            <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-faint"><span className="inline-flex items-center gap-1.5"><i className="h-2 w-2 rounded-sm bg-ice-200" />{tr ? "Geçti" : "Passed"}</span><span className="inline-flex items-center gap-1.5"><i className="h-2 w-2 rounded-sm bg-ice-200/30" />{tr ? "İzledi" : "Watched"}</span><span>{tr ? "Örnek veri" : "Sample data"}</span></p>
-          </Tile>
-          <Tile k="quiz" className="md:col-span-2">
-            <p className="text-sm font-medium">{tr ? "Çiğ tavuk bir tahtada hazırlandı. Sırada ne var?" : "Raw chicken was prepped on a board. What comes next?"}</p>
-            <ul className="mt-3 space-y-1.5 text-xs">
-              {(tr ? ["Durulayıp salata için kullan", "Temizle, dezenfekte et, doğru renkli tahtaya geç", "Kuru bezle sil"] : ["Rinse and reuse for salad", "Clean, sanitise, switch to the right colour board", "Wipe with a dry cloth"]).map((o, i) => (
-                <li key={o} className={`rounded-lg px-3 py-2 ${i === 1 ? "bento-pick bg-surface-2 text-ink" : "bg-surface-2/60 text-ink-muted"}`}>{o}</li>))}
-            </ul>
-          </Tile>
-          <Tile k="access" className="md:col-span-2">
-            <ul className="space-y-2 text-sm">
-              {(tr ? [["Hat aşçısı", "Kadıköy", true], ["Barista", "Beşiktaş", true], ["Kat görevlisi", "Tüm şubeler", false]] : [["Line cook", "Downtown", true], ["Barista", "Airport", true], ["Housekeeping", "All sites", false]]).map(([r, l, open]) => (
-                <li key={r as string} className="flex items-center gap-3 rounded-xl bg-surface-2 px-3.5 py-2.5">
-                  <span className="flex-1">{r as string}</span><span className="flex items-center gap-1 text-xs text-ink-faint"><MapPin size={12} />{l as string}</span>
-                  {open ? <CheckCircle size={16} weight="fill" className="text-ice-200" /> : <LockSimple size={16} className="text-ink-faint" />}
-                </li>))}
-            </ul>
-          </Tile>
-          <Tile k="devices" className="md:col-span-2">
-            <ul className="space-y-1 py-2">
-              {(tr ? [["iPhone", "Kaydet, izle, quiz çöz"], ["Android", "Aynı uygulama, aynı adımlar"], ["Web", "Ata, takip et, raporla"]] : [["iPhone", "Record, watch, take the quiz"], ["Android", "Same app, same steps"], ["Web", "Assign, track, report"]]).map(([d, l]) => (
-                <li key={d} className="flex items-baseline justify-between gap-3"><span className="text-[26px] font-semibold tracking-[-.03em] text-ice-100">{d}</span><span className="text-xs text-ink-faint">{l}</span></li>))}
-            </ul>
-          </Tile>
-          <Tile k="sites" className="md:col-span-6">
-            <div className="grid gap-3 sm:grid-cols-3">
-              {(tr ? [["Kadıköy", 92], ["Beşiktaş", 78], ["Ankara", 64]] : [["Downtown", 92], ["Airport", 78], ["Harbour", 64]]).map(([n, v]) => (
-                <div key={n as string} className="rounded-xl bg-surface-2 px-4 py-3">
-                  <div className="flex items-baseline justify-between text-sm"><span>{n as string}</span><span className="font-semibold tabular-nums">{v as number}%</span></div>
-                  <span className="mt-2 block h-1.5 overflow-hidden rounded-full bg-surface-2"><span className="bento-bar block h-full rounded-full bg-ice-200" style={{ width: `${v}%` }} /></span>
-                </div>))}
-            </div>
-            <p className="mt-3 text-xs text-ink-faint">{tr ? "Şube bazında hazırlık, örnek veri" : "Readiness by site, sample data"}</p>
-          </Tile>
-        </Reveal>
       </div>
     </section>);
 }
@@ -233,7 +167,7 @@ function MediaCard({ card, lang, cta }: { card: typeof IND_CARDS[number]; lang: 
 
 export function Industries({ lang }: { lang: Lang }) {
   const c = home[lang].ind; const tr = lang === "tr";
-  const featured = IND_CARDS.filter((x) => x.featured), compact = IND_CARDS.filter((x) => !x.featured);
+  const featured = IND_CARDS.filter((x) => x.featured);
   return (
     <section id="industries" aria-labelledby="ind-h" className="section-y bg-bg">
       <div className="container-x">
@@ -241,15 +175,19 @@ export function Industries({ lang }: { lang: Lang }) {
         <Reveal as="ul" stagger={0.08} className="no-sb -mx-[var(--pad-x)] mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
           {featured.map((card) => <RevealItem as="li" key={card.slug} className="w-[78%] shrink-0 snap-start md:w-auto"><MediaCard card={card} lang={lang} cta={c.open} /></RevealItem>)}
         </Reveal>
-        <p className="eyebrow mt-12">{c.more}</p>
-        <ul className="mt-4 grid gap-3 md:grid-cols-3">
-          {compact.map((x) => (
-            <li key={x.slug}><Link href={`/sektor/${x.slug}/`} className="group panel flex min-h-[84px] items-center gap-4 p-3 pr-5 transition-colors hover:bg-surface-2">
-              <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl"><img src={x.still} alt="" loading="lazy" className="h-full w-full object-cover" /></span>
-              <span className="flex-1"><span className="block text-base font-semibold">{tr ? x.tr : x.en}</span><span className="block text-sm text-ink-muted">{tr ? x.lineTr : x.lineEn}</span></span>
-              <ArrowRight size={16} aria-hidden="true" className="text-ink-faint transition-transform group-hover:translate-x-1 group-hover:text-ink" />
-            </Link></li>))}
-        </ul>
+        {/* Where teams use Flexlore: every area as a calm chip; sector pages link through. A dot horizon sits underneath. */}
+        <div className="relative mt-20 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-14 text-center md:pt-16">
+          <p className="eyebrow">{c.more}</p>
+          <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
+            {c.areas.map(([name, slug]) => (
+              <RevealItem as="li" key={name}>
+                {slug
+                  ? <Link href={`/sektor/${slug}/`} className="inline-flex min-h-11 items-center rounded-full bg-white/[.08] px-4 text-[15px] font-medium text-ink transition-colors hover:bg-white/[.14]">{name}</Link>
+                  : <span className="inline-flex min-h-11 items-center rounded-full bg-white/[.04] px-4 text-[15px] text-ice-300">{name}</span>}
+              </RevealItem>))}
+          </Reveal>
+          <div className="relative -mt-2 h-[220px] md:h-[300px]"><DotGlobe /></div>
+        </div>
         <ScenarioPicker lang={lang} />
       </div>
     </section>);

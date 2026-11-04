@@ -8,7 +8,8 @@ export type HomeCopy = {
   story: { k: string; h: string; lead: string; hint: string; chips: [string, string][]; sample: string };
   web: { k: string; h: string; lead: string; callouts: { h: string; p: string }[]; sample: string };
   bento: { k: string; h: string; lead: string; tiles: Record<"ai" | "ready" | "quiz" | "access" | "devices" | "sites", { h: string; p: string }> };
-  ind: { k: string; h: string; lead: string; open: string; more: string; picker: string; pickerLead: string; see: string };
+  ind: { k: string; h: string; lead: string; open: string; more: string; picker: string; pickerLead: string; see: string; areas: [string, string | null][] };
+  caps: { k: string; h: string; lead: string; cards: { h: string; p: string }[]; sample: string };
   pricing: { k: string; h: string; lead: string; all: string; demo: string };
   faq: { k: string; h: string; items: { q: string; a: string }[] };
   end: { h: [string, string]; p: string; cta: string };
@@ -52,7 +53,17 @@ export const home: Record<Lang, HomeCopy> = {
     },
     ind: {
       k: "Industries", h: "Wherever the job is learned by doing.", lead: "Kitchens, production lines, hotels and every place where a new person learns from the one next to them.",
-      open: "See how it works", more: "Also built for", picker: "See Flexlore in your business", pickerLead: "Pick your industry to see one real job, start to finish.", see: "Open the full scenario",
+      open: "See how it works", more: "Where teams use Flexlore", picker: "See Flexlore in your business", pickerLead: "Pick your industry to see one real job, start to finish.", see: "Open the full scenario",
+      areas: [["Restaurants", "restoran"], ["Coffee shops and bakeries", "firin"], ["Manufacturing", "uretim"], ["Hotels", "otel"], ["Franchises", "franchise"], ["Warehouses", "depo"], ["Healthcare and clinics", null], ["Education", null], ["Training providers", null], ["Wellness and sport", null], ["Entertainment", null], ["And more", null]],
+    },
+    caps: {
+      k: "What you get", h: "Built for the floor, run from the office.", lead: "Three things every frontline team gets on day one.",
+      cards: [
+        { h: "AI drafts, you approve", p: "Steps, instructions and the quiz are drafted for you. Nothing goes out until your team approves it." },
+        { h: "Readiness by shift and site", p: "See who is ready for which job, by person, team, shift and location." },
+        { h: "The right job for each role", p: "People see only what their role and site need. Managers decide who sees what." },
+      ],
+      sample: "Sample data",
     },
     pricing: { k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.", all: "See all plans", demo: "Book a demo" },
     faq: {
@@ -110,7 +121,17 @@ export const home: Record<Lang, HomeCopy> = {
     },
     ind: {
       k: "Sektörler", h: "İşin yaparak öğrenildiği her yerde.", lead: "Mutfaklar, üretim hatları, oteller ve yeni gelenin yanındakinden öğrendiği her yer.",
-      open: "Nasıl çalıştığını görün", more: "Ayrıca", picker: "Flexlore'u kendi işinizde görün", pickerLead: "Sektörünüzü seçin, gerçek bir işi baştan sona görün.", see: "Senaryonun tamamını açın",
+      open: "Nasıl çalıştığını görün", more: "Flexlore'un kullanıldığı alanlar", picker: "Flexlore'u kendi işinizde görün", pickerLead: "Sektörünüzü seçin, gerçek bir işi baştan sona görün.", see: "Senaryonun tamamını açın",
+      areas: [["Restoranlar", "restoran"], ["Kafe ve fırınlar", "firin"], ["Üretim", "uretim"], ["Oteller", "otel"], ["Franchise", "franchise"], ["Depolar", "depo"], ["Sağlık ve klinikler", null], ["Eğitim", null], ["Eğitim sağlayıcılar", null], ["Wellness ve spor", null], ["Eğlence", null], ["Ve dahası", null]],
+    },
+    caps: {
+      k: "Neler var", h: "Sahada kullanılır, ofisten yönetilir.", lead: "Her saha ekibinin ilk günden aldığı üç şey.",
+      cards: [
+        { h: "Yapay zekâ hazırlar, siz onaylarsınız", p: "Adımlar, talimatlar ve quiz sizin için hazırlanır. Ekibiniz onaylamadan hiçbir şey yayınlanmaz." },
+        { h: "Vardiya ve şube bazında hazırlık", p: "Kimin hangi işe hazır olduğunu kişi, ekip, vardiya ve şube bazında görün." },
+        { h: "Her role doğru iş", p: "Herkes yalnızca kendi rolü ve şubesi için gerekeni görür. Kimin neyi göreceğini yöneticiler belirler." },
+      ],
+      sample: "Örnek veri",
     },
     pricing: { k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.", all: "Tüm planları görün", demo: "Demo isteyin" },
     faq: {
