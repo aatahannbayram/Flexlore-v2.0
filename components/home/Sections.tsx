@@ -31,26 +31,26 @@ const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ss
 
 /* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
    official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
-const TILE = "flex h-[56px] w-full items-center justify-center rounded-[14px] bg-white px-3 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 sm:h-[60px]";
+const TILE = "flex h-11 w-full items-center justify-center rounded-[12px] bg-white/95 px-3 transition-[transform,background-color] duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5 group-hover:bg-white sm:h-12";
 export function TrustStrip({ lang }: { lang: Lang }) {
   const c = home[lang].trust;
   return (
     <section id="main-next" aria-label={c.programs} className="scroll-mt-[var(--header-h)] bg-bg">
-      <div className="container-x pt-6 md:pt-8">
-        <div className="rounded-[20px] bg-surface-1 p-2 lg:flex lg:items-center lg:gap-6 lg:pl-6">
-          <p className="px-3 pb-2 pt-2 text-[13px] font-medium text-ice-400 lg:shrink-0 lg:p-0">{c.programs}</p>
-          <Reveal as="ul" stagger={0.06} className="grid flex-1 grid-cols-2 gap-2 md:grid-cols-4">
+      <div className="container-x pt-4 md:pt-6">
+        <div className="mx-auto max-w-[1040px] rounded-[18px] bg-white/[.035] p-1.5 ring-1 ring-white/[.08] backdrop-blur-xl lg:flex lg:items-center lg:gap-5 lg:pl-5">
+          <p className="px-3 pb-2 pt-1.5 text-[12px] font-medium uppercase tracking-[.14em] text-ice-500 lg:shrink-0 lg:p-0">{c.programs}</p>
+          <Reveal as="ul" stagger={0.06} className="grid flex-1 grid-cols-2 gap-1.5 md:grid-cols-4">
             {SITE.programs.map((p) => (
               <RevealItem as="li" key={p.name}>
                 <a href={p.href} target="_blank" rel="noopener" className="group block" aria-label={p.name}>
                   {p.badge
                     ? <span className={`${TILE} flex-col`}>
-                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[20px] sm:h-[24px]" : "h-[36px] sm:h-[42px]"}`} />
-                        {p.caption && <span className="mt-0.5 text-[10px] font-medium text-[#5F6368]">{p.caption}</span>}
+                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[16px] sm:h-[18px]" : "h-[28px] sm:h-[32px]"}`} />
+                        {p.caption && <span className="mt-0.5 text-[9px] font-medium text-[#5F6368]">{p.caption}</span>}
                       </span>
                     : <span className={`${TILE} flex-col`}>
-                        <span className="text-[14px] font-semibold leading-tight tracking-[-.02em] text-[#111111] sm:text-[15px]">{p.name}</span>
-                        <span className="text-[11px] text-[#5F6368]">by {p.org}</span>
+                        <span className="text-[13px] font-semibold leading-tight tracking-[-.02em] text-[#111111]">{p.name}</span>
+                        <span className="text-[10px] text-[#5F6368]">by {p.org}</span>
                       </span>}
                 </a>
               </RevealItem>))}
@@ -58,7 +58,7 @@ export function TrustStrip({ lang }: { lang: Lang }) {
               {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                   third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
               <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
-                <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[140px]" loading="lazy" /></span>
+                <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[118px]" loading="lazy" /></span>
               </a>
             </RevealItem>
           </Reveal>

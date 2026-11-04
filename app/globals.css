@@ -181,3 +181,20 @@ main:not([lang="tr"]) .l-tr { display: none; }
 @keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
 .scrollcue { animation: scrollcue 1.8s cubic-bezier(.65,0,.35,1) infinite; }
 @media (prefers-reduced-motion: reduce) { .scrollcue { animation: none; transform: none; } }
+
+/* StandardMap ("one standard, every location"). */
+.smap-flow { animation: smapflow 1.6s linear infinite; }
+@keyframes smapflow { to { stroke-dashoffset: -24; } }
+.smap-pulse { opacity: 0; }
+.smap-on .smap-pulse { animation: smappulse 3s ease-in-out infinite; }
+@keyframes smappulse { 0% { stroke-dashoffset: 6; opacity: 0; } 12% { opacity: 1; } 82% { opacity: 1; } 100% { stroke-dashoffset: -94; opacity: 0; } }
+.smap-bar { width: 0; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+.smap-on .smap-bar { width: var(--w); }
+.smap-step { transition: background-color .45s ease; }
+.smap-on .smap-step { background-color: rgb(231 235 235 / .75); }
+.smap-tick { transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1); transition-delay: inherit; }
+.smap-on .smap-tick { transform: scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .smap-flow, .smap-on .smap-pulse { animation: none; }
+  .smap-bar { width: var(--w); transition: none; } .smap-step { background-color: rgb(231 235 235 / .75); } .smap-tick { transform: scale(1); transition: none; }
+}
