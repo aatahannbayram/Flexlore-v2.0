@@ -40,7 +40,7 @@ export const NAV: NavGroup[] = [
       { href: "/use-cases/installation-training-on-site-orientation/", icon: Wrench, t: { en: "Installation training", tr: "Kurulum eğitimi" }, d: { en: "Hand over machines with the know-how", tr: "Makineyi bilgisiyle teslim edin" } },
       { href: "/pricing/", icon: Tag, t: { en: "Pricing", tr: "Fiyatlar" }, d: { en: "Priced by the size of your team", tr: "Ekip büyüklüğüne göre fiyat" } },
       { href: "/#faq", home: true, icon: Question, t: { en: "Questions", tr: "Sorular" }, d: { en: "AI, devices, languages, access", tr: "Yapay zekâ, cihaz, dil, erişim" } },
-      { href: "mailto:hello@flexlore.com", icon: EnvelopeSimple, t: { en: "Contact", tr: "İletişim" }, d: { en: "hello@flexlore.com", tr: "hello@flexlore.com" } },
+      { href: "mailto:support@flexlore.com", icon: EnvelopeSimple, t: { en: "Contact", tr: "İletişim" }, d: { en: "support@flexlore.com", tr: "support@flexlore.com" } },
     ],
   },
 ];

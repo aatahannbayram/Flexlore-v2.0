@@ -35,8 +35,8 @@ const GROUPS: { en: string; tr: string; items: Item[] }[] = [
   ] },
   { en: "Company", tr: "Şirket", items: [
     { en: "Blog", href: "/blog/" },
-    { en: "Support", tr: "Destek", href: "mailto:hello@flexlore.com", ext: true },
-    { en: "hello@flexlore.com", href: "mailto:hello@flexlore.com", ext: true },
+    { en: "Support", tr: "Destek", href: "mailto:support@flexlore.com", ext: true },
+    { en: "Book a demo", tr: "Demo isteyin", href: SITE.demo, ext: true },
   ] },
 ];
 
@@ -61,6 +61,9 @@ export function Footer({ lang = "en" }: { lang?: L }) {
             <div>
               <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={128} height={28} className="h-7 w-auto" />
               <p className="mt-5 max-w-[30ch] leading-[1.5] text-ink-muted">{f.tag}</p>
+              <a href="mailto:support@flexlore.com" className="group mt-6 inline-flex min-h-11 items-center gap-2.5 rounded-full bg-white/[.05] pl-4 pr-5 text-ink transition-colors duration-200 hover:bg-white/[.1]">
+                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />support@flexlore.com
+              </a>
             </div>
             <div className="mt-8 shrink-0 md:mt-0 lg:mt-9">
               <ul className="flex gap-2" aria-label={f.follow}>
@@ -72,7 +75,8 @@ export function Footer({ lang = "en" }: { lang?: L }) {
                     </a>
                   </li>))}
               </ul>
-              <StoreButtons small lang={lang} className="mt-5" />
+              <p className="mt-7 text-[13px] font-medium text-ice-400">{f.app}</p>
+              <StoreButtons small lang={lang} className="mt-3" />
             </div>
           </div>
 
@@ -99,7 +103,9 @@ export function Footer({ lang = "en" }: { lang?: L }) {
         {/* Bottom bar on a raised surface: copyright and legal on one line, trademark note under it */}
         <div className="mt-16 rounded-2xl bg-surface-1 px-5 py-5 text-caption md:mt-20 md:px-7">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <span className="text-ink-muted">© 2026 Flexlore Inc.</span>
+            <span className="flex items-center gap-4 text-ink-muted">© 2026 Flexlore Inc.
+              <a href="#" className="group inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/[.05] px-3 text-[13px] text-ice-300 transition-colors hover:bg-white/[.1] hover:text-ink">
+                <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:-translate-y-0.5">↑</span>{tr ? "Başa dön" : "Back to top"}</a></span>
             <ul className="-mx-2 flex flex-wrap" aria-label={tr ? "Yasal" : "Legal"}>
               {SITE.legal.map(([n, h]) => (
                 <li key={n}><a className="inline-flex min-h-9 items-center px-2 text-ink-faint transition-colors duration-200 hover:text-ink" href={h}>{n}</a></li>))}

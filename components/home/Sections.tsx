@@ -15,7 +15,6 @@ import { SITE, PLANS, PLAN_TR } from "../config";
 import { Heading } from "../ui/Layout";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { SmartVideo } from "../ui/SmartVideo";
-import { DotGlobe } from "../ui/DotGlobe";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, SopScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
@@ -30,36 +29,41 @@ const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ss
 
 /* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
    official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
-const PLATE = "flex h-[68px] w-[calc(50vw-22px)] max-w-[200px] items-center justify-center bg-white px-3 sm:h-[76px] sm:w-[200px] sm:px-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5";
+const TILE = "flex h-[76px] w-full items-center justify-center rounded-2xl bg-white px-4 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:-translate-y-1 sm:h-[84px]";
 export function TrustStrip({ lang }: { lang: Lang }) {
-  const c = home[lang].trust;
+  const c = home[lang].trust; const tr = lang === "tr";
   return (
     <section aria-label={c.programs} className="bg-bg">
-      <div className="container-x py-16 text-center md:py-20">
-        <p className="eyebrow">{c.programs}</p>
-        <ul className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
-          {SITE.programs.map((p) => (
-            <li key={p.name}>
-              <a href={p.href} target="_blank" rel="noopener" className="group block">
-                {p.badge
-                  ? <span className={`${PLATE} flex-col`}>
-                      <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[28px] sm:h-[34px]" : "h-[44px] sm:h-[52px]"}`} />
-                      {p.caption && <span className="mt-1 text-[11px] font-medium text-[#5F6368]">{p.caption}</span>}
-                    </span>
-                  : <span className={`${PLATE} flex-col`}>
-                      <span className="text-[16px] font-semibold leading-tight tracking-[-.02em] text-[#111111] sm:text-[18px]">{p.name}</span>
-                      <span className="text-[12px] text-[#5F6368]">by {p.org}</span>
-                    </span>}
+      <div className="container-x pt-10 md:pt-14">
+        <div className="rounded-[28px] bg-surface-1 p-5 sm:p-7 lg:flex lg:items-center lg:gap-10 lg:p-8">
+          <div className="shrink-0 lg:w-[13.5rem]">
+            <p className="text-[15px] font-medium text-ink">{c.programs}</p>
+            <p className="mt-1 text-[13px] leading-snug text-ice-400">{tr ? "Desteklendiğimiz programlar ve lansmanımız." : "Programs that back us, and where we launched."}</p>
+          </div>
+          <Reveal as="ul" stagger={0.06} className="mt-5 grid flex-1 grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-4 lg:mt-0">
+            {SITE.programs.map((p) => (
+              <RevealItem as="li" key={p.name}>
+                <a href={p.href} target="_blank" rel="noopener" className="group block" aria-label={p.name}>
+                  {p.badge
+                    ? <span className={`${TILE} flex-col`}>
+                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[26px] sm:h-[32px]" : "h-[42px] sm:h-[48px]"}`} />
+                        {p.caption && <span className="mt-1 text-[11px] font-medium text-[#5F6368]">{p.caption}</span>}
+                      </span>
+                    : <span className={`${TILE} flex-col`}>
+                        <span className="text-[16px] font-semibold leading-tight tracking-[-.02em] text-[#111111] sm:text-[18px]">{p.name}</span>
+                        <span className="text-[12px] text-[#5F6368]">by {p.org}</span>
+                      </span>}
+                </a>
+              </RevealItem>))}
+            <RevealItem as="li">
+              {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
+                  third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
+              <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
+                <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[176px]" loading="lazy" /></span>
               </a>
-            </li>))}
-          <li>
-            {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
-                third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
-            <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
-              <span className={PLATE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-auto w-full max-w-[186px]" loading="lazy" /></span>
-            </a>
-          </li>
-        </ul>
+            </RevealItem>
+          </Reveal>
+        </div>
       </div>
     </section>);
 }
@@ -181,23 +185,26 @@ export function Industries({ lang }: { lang: Lang }) {
             <p className="absolute bottom-6 left-7 text-[15px] font-medium text-ink">{tr ? IND_CARDS[on].tr : IND_CARDS[on].en}</p>
           </div>
         </div>
-        {/* Other areas (no page yet) and languages: one quiet panel with the dot horizon underneath. */}
-        <div className="relative mt-16 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-12 text-center md:mt-20 md:pt-14">
-          <p className="eyebrow">{tr ? "Ayrıca kullanıldığı alanlar" : "Also used in"}</p>
+        {/* Other areas (no page yet) and languages, over a slow, darkened kitchen loop. */}
+        <div className="relative mt-16 overflow-hidden rounded-[28px] bg-surface-1 px-5 py-14 text-center md:mt-20 md:py-20">
+          <div aria-hidden="true" className="absolute inset-0">
+            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-45 blur-[2px]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0.88)_70%,#111111_100%)]" />
+          </div>
+          <p className="eyebrow relative">{tr ? "Ayrıca kullanıldığı alanlar" : "Also used in"}</p>
           <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
             {others.map(([name]) => { const Ic = AREA_ICONS[c.areas.findIndex(([n]) => n === name)] ?? DotsThreeCircle; return (
               <RevealItem as="li" key={name}>
-                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.05] pl-3 pr-4 text-[15px] text-ice-200"><Ic size={17} className="text-ice-400" />{name}</span>
+                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(255_255_255/0.08)] pl-3 pr-4 text-[15px] text-ice-100 ring-1 ring-white/[.06] backdrop-blur-md"><Ic size={17} className="text-ice-300" />{name}</span>
               </RevealItem>); })}
           </Reveal>
           {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}
-          <div className="relative z-10 mt-10">
-            <p className="text-[15px] font-medium text-ink">{copy[lang].lP}</p>
-            <p className="mx-auto mt-3 flex max-w-[44rem] flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ice-400">
+          <div className="relative z-10 mt-12">
+            <p className="text-[clamp(22px,1rem+1.2vw,32px)] font-semibold tracking-[-.03em] text-ink">{copy[lang].lP}</p>
+            <p className="mx-auto mt-4 flex max-w-[44rem] flex-wrap justify-center gap-x-5 gap-y-2 text-[15px] text-ice-300">
               {copy[lang].langs.map((l) => <span key={l} lang={LANG_CODES[l]} dir={l === "العربية" ? "rtl" : undefined}>{l}</span>)}
             </p>
           </div>
-          <div className="relative -mt-6 h-[200px] md:h-[260px]"><DotGlobe /></div>
         </div>
         <div className="mt-8 flex justify-center"><Link href="/see-it/" className="btn btn-secondary">{c.picker}<ArrowRight size={14} aria-hidden="true" /></Link></div>
       </div>
@@ -269,7 +276,7 @@ export function Faq({ lang }: { lang: Lang }) {
             <p className="text-lg font-semibold tracking-[-.01em]">{c.more}</p>
             <p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
             <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
-            <p className="mt-4 text-sm text-ink-faint"><a href="mailto:hello@flexlore.com" className="underline decoration-white/20 underline-offset-4 hover:text-ink">{c.email}</a></p>
+            <p className="mt-4 text-sm text-ink-faint"><a href="mailto:support@flexlore.com" className="underline decoration-white/20 underline-offset-4 hover:text-ink">{c.email}</a></p>
           </div>
         </div>
         <ul className="col-span-12 space-y-1 lg:col-span-7 lg:col-start-6">
@@ -309,7 +316,7 @@ export function FinalCta({ lang }: { lang: Lang }) {
         <div className="relative -mx-[var(--pad-x)] overflow-hidden bg-surface-1 px-[var(--pad-x)] py-16 md:rounded-[32px] md:py-28">
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block [perspective:1600px]">
             <div className="absolute right-[-14%] top-1/2 w-[860px] -translate-y-1/2 [transform:rotateY(-24deg)_rotateX(8deg)_rotateZ(2deg)] [transform-style:preserve-3d]">
-              <picture><source srcSet="/photos/cta-dashboard.avif" type="image/avif" /><img src="/photos/cta-dashboard.webp" alt="" loading="lazy" width={1400} height={901} className="block w-full rounded-[18px] opacity-90" /></picture>
+              <picture><source srcSet="/photos/cta-dashboard.avif" type="image/avif" /><img src="/photos/cta-dashboard.webp" alt="" loading="lazy" width={1600} height={1049} className="block w-full rounded-[18px]" /></picture>
               <picture><source srcSet="/photos/cta-phone.avif" type="image/avif" /><img src="/photos/cta-phone.webp" alt="" loading="lazy" width={560} height={1213} className="absolute -left-20 top-[18%] w-[230px] [transform:translateZ(120px)]" /></picture>
             </div>
             <div className="absolute inset-0 bg-[linear-gradient(90deg,#191919_0%,rgb(25_25_25/0.75)_28%,rgb(25_25_25/0.15)_70%,rgb(25_25_25/0.5)_100%)]" />

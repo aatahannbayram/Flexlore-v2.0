@@ -68,7 +68,7 @@ export const home: Record<Lang, HomeCopy> = {
     pricing: { k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.", all: "Compare all plans", demo: "Book a demo",
       feats: { free: ["Orientation Analysis", "3 AI quizzes", "5 works"], pro: ["10 AI quizzes", "Unlimited works", "5 GB storage"], proplus: ["Unlimited quizzes", "10 GB storage", "Premium support"], enterprise: ["Priority support", "Multi-location dashboard", "Rollout across sites"] } },
     faq: {
-      k: "Questions", h: "Asked, answered.", more: "Still have a question?", moreP: "We answer it on a 20-minute call, with one of your real jobs.", email: "Or write to hello@flexlore.com",
+      k: "Questions", h: "Asked, answered.", more: "Still have a question?", moreP: "We answer it on a 20-minute call, with one of your real jobs.", email: "Or write to support@flexlore.com",
       items: [
         { q: "How does Flexlore use AI?", a: "It splits a recorded video into steps, drafts written instructions and creates a short quiz from the content. Every draft is reviewed and approved by your team before it goes out." },
         { q: "Who is Flexlore for?", a: "Teams where the job is learned by doing: restaurants and café chains, production lines, hotels, franchises, warehouses and bakeries." },
@@ -137,7 +137,7 @@ export const home: Record<Lang, HomeCopy> = {
     pricing: { k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.", all: "Tüm planları karşılaştırın", demo: "Demo isteyin",
       feats: { free: ["Oryantasyon Analizi", "3 yapay zekâ quizi", "5 iş"], pro: ["10 yapay zekâ quizi", "Sınırsız iş", "5 GB depolama"], proplus: ["Sınırsız quiz", "10 GB depolama", "Premium destek"], enterprise: ["Öncelikli destek", "Çoklu lokasyon paneli", "Şubeler arası yaygınlaştırma"] } },
     faq: {
-      k: "Sorular", h: "Soruldu, yanıtlandı.", more: "Başka bir sorunuz mu var?", moreP: "Gerçek işlerinizden biriyle, 20 dakikalık bir görüşmede yanıtlayalım.", email: "Ya da hello@flexlore.com adresine yazın",
+      k: "Sorular", h: "Soruldu, yanıtlandı.", more: "Başka bir sorunuz mu var?", moreP: "Gerçek işlerinizden biriyle, 20 dakikalık bir görüşmede yanıtlayalım.", email: "Ya da support@flexlore.com adresine yazın",
       items: [
         { q: "Flexlore yapay zekâyı nasıl kullanır?", a: "Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır." },
         { q: "Flexlore kimler için?", a: "İşin yaparak öğrenildiği ekipler için: restoran ve kafe zincirleri, üretim hatları, oteller, franchise'lar, depolar ve fırınlar." },

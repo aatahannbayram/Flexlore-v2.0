@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { themeColor: "#111111" };
 const ld = [
-  { "@context": "https://schema.org", "@type": "Organization", "@id": SITE.url + "/#org", name: "Flexlore", legalName: "Flexlore Inc.", url: SITE.url, logo: SITE.url + "/brand/logo.png", email: "hello@flexlore.com",
+  { "@context": "https://schema.org", "@type": "Organization", "@id": SITE.url + "/#org", name: "Flexlore", legalName: "Flexlore Inc.", url: SITE.url, logo: SITE.url + "/brand/logo.png", email: "support@flexlore.com",
     founder: { "@type": "Person", name: "Ata Han Bayram", jobTitle: "Co-founder and CEO" },
     sameAs: [SITE.social.linkedin, SITE.social.instagram, SITE.social.youtube, SITE.appStore, SITE.googlePlay] },
   { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Flexlore", applicationCategory: "BusinessApplication", operatingSystem: "iOS, Android, Web",

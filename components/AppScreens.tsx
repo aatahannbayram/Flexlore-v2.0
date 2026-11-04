@@ -1,11 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { playOnly, stopVideo } from "./media";
-import { ArrowClockwise, ArrowCounterClockwise, ArrowsOut, CaretLeft, CaretRight, CaretUpDown, Check, CheckCircle, DotsThree, Eye, EyeSlash, Info, ListNumbers, Pause, Play, Scissors, Sticker, TextT } from "./ui/icons";
+import { ArrowClockwise, ArrowCounterClockwise, ArrowRight, ArrowsOut, CaretDown, CaretLeft, CaretRight, CaretUpDown, Check, CheckCircle, DotsThree, Eye, EyeSlash, Info, ListNumbers, Pause, Play, Scissors, Sticker, TextT } from "./ui/icons";
 /* Design tokens (phone, 320pt design width) */
 const O = "#EC6726";
-const S0 = "#111111", S1 = "#161618", S2 = "#1f1f22";
+const S0 = "#111111", S1 = "#161616";
 const HL = "rgba(255,255,255,.07)";
 const ease = [0.22, 1, 0.36, 1] as const;
 const ic = { size: 15 } as const;
@@ -70,18 +70,6 @@ function Bar({ v, h = 4 }: { v: number; h?: number }) {
   return (<span className="relative block flex-1 overflow-hidden rounded-full bg-white/[.08]" style={{ height: h }}>
     <m.span className="absolute inset-y-0 left-0 rounded-full shadow-[0_0_0_.5px_rgba(255,255,255,.15)_inset]" style={{ background: `linear-gradient(90deg,#EC6726,${O} 60%,#EC6726)` }} initial={false} animate={{ width: `${v * 100}%` }} transition={{ duration: .8, ease }} /></span>);
 }
-function Ring({ v, size = 34, sw = 3.5, children }: { v: number; size?: number; sw?: number; children?: React.ReactNode }) {
-  const r = (size - sw) / 2, c = 2 * Math.PI * r;
-  return (<span className="relative grid shrink-0 place-items-center" style={{ width: size, height: size }}>
-    <svg width={size} height={size} className="-rotate-90"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#EC6726" /><stop offset="1" stopColor="#EC6726" /></linearGradient></defs>
-      <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="rgba(255,255,255,.08)" strokeWidth={sw} />
-      <m.circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="url(#rg)" strokeWidth={sw} strokeLinecap="round" strokeDasharray={c} initial={false} animate={{ strokeDashoffset: c * (1 - v) }} transition={{ duration: 1, ease }} /></svg>
-    <span className="absolute text-xs font-semibold tabular-nums text-white">{children}</span></span>);
-}
-function Seg({ items, i }: { items: string[]; i: number }) {
-  return (<div className="relative flex rounded-[10px] bg-white/[.06] p-[2px] text-sm font-medium">
-    {items.map((x, k) => <span key={x} className={`relative z-10 flex-1 py-[6px] text-center tracking-[-.01em] ${k === i ? "text-white" : "text-white/55"}`}>{k === i && <m.span layoutId={`seg${items[0]}`} className="absolute inset-0 -z-10 rounded-[8px] bg-[#2c2c30] shadow-[0_1px_0_rgba(255,255,255,.08)_inset,0_2px_6px_rgba(0,0,0,.4)]" />}{x}</span>)}</div>);
-}
 function Picker({ label, value }: { label: string; value: string }) {
   return (<div className={`flex items-center gap-2.5 px-3 py-2.5 ${card}`} style={{ background: S1 }}>
     <span className="grid h-7 w-7 place-items-center rounded-full bg-[#2a2a2d] text-xs font-semibold text-white ring-1 ring-white/10">{value.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase()}</span>
@@ -95,6 +83,20 @@ export function Toast({ show, text, sub }: { show: boolean; text: string; sub?: 
     <span className="leading-tight"><span className="block text-xs font-semibold text-white">{text}</span>{sub && <span className="block text-xs text-white/50">{sub}</span>}</span></m.div>}</AnimatePresence>);
 }
 const mm = (x: number) => `${String(Math.floor(x / 60)).padStart(2, "0")}:${String(x % 60).padStart(2, "0")}`;
+/* Player controls, measured from the real app: played part #E4E4E4 to #949494, rest #545454, ringed thumb */
+function Track({ v }: { v: number }) {
+  const left = `${Math.min(v, 1) * 100}%`, tr = { duration: .9, ease: "linear" } as const;
+  return (<span className="relative h-[3px] flex-1 rounded-full bg-[#545454]">
+    <m.span className="absolute inset-y-0 left-0 rounded-full" style={{ background: "linear-gradient(90deg,#E4E4E4,#949494)" }} initial={false} animate={{ width: left }} transition={tr} />
+    <m.span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#B2B2B2] bg-[#111111]" initial={false} animate={{ left }} transition={tr} /></span>);
+}
+function Player({ t, d = 12, text }: { t: number; d?: number; text?: string }) {
+  return (<div><div className="flex items-center gap-2.5 text-xs tabular-nums text-white">
+    <span className="grid h-[20px] w-[20px] shrink-0 place-items-center rounded-full ring-[1.5px] ring-white"><Play size={9} weight="fill" className="ml-px" /></span>
+    <span>{mm(t)}</span><Track v={t / d} /><span>{mm(d)}</span></div>
+    {text && <p className="mt-2 text-xs leading-[1.45] text-[#B2B2B2]">{text} <span className="font-medium text-white">Read more...</span></p>}</div>);
+}
+const Arrow = ({ up }: { up?: boolean }) => <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" className={up ? "" : "rotate-180"}><path d="M3 2h10M8 14V5M4.5 8.5 8 5l3.5 3.5" /></svg>;
 
 /* Real screen: Video editor */
 export function RecordScreen({ active }: { active: boolean }) {
@@ -109,7 +111,7 @@ export function RecordScreen({ active }: { active: boolean }) {
       <span className="absolute bottom-[44px] right-3 flex flex-col items-end gap-1.5">
         <span className="rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-xs font-medium text-white backdrop-blur">Cancel Step</span>
         <m.span animate={active ? { scale: [1, 1.04, 1] } : {}} transition={{ repeat: Infinity, duration: 1.8 }} className="rounded-full px-3 py-1.5 text-xs font-semibold text-[#111111]" style={{ background: O }}>Complete Step</m.span></span>
-      <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 text-xs tabular-nums text-white/80"><span>{mm(t)}</span><Bar v={t / 600} h={3} /><span className="text-white/50">10:00</span><ArrowsOut {...ic} size={12} /></div>
+      <div className="absolute inset-x-3 bottom-3 flex items-center gap-2 text-xs tabular-nums text-white/80"><span>{mm(t)}</span><Track v={t / 600} /><span className="text-white/50">10:00</span><ArrowsOut {...ic} size={12} /></div>
     </div>
     <div className="flex items-center justify-between px-6 py-2.5 text-white/80" style={{ borderBottom: `1px solid ${HL}` }}>
       <ArrowCounterClockwise {...ic} size={17} /><span className="text-xs font-medium tabular-nums">−1s</span>
@@ -144,7 +146,7 @@ export function SopScreen({ active }: { active: boolean }) {
           <CaretRight {...ic} size={14} className={`text-white/55 transition-transform duration-500 ${open ? "rotate-90 text-white/60" : ""}`} /></div>
         <m.div initial={false} animate={{ height: open ? 150 : 0, opacity: open ? 1 : 0 }} transition={{ duration: .55, ease }} className="overflow-hidden px-3">
           <div className="relative mb-3 h-[138px] overflow-hidden rounded-[10px] ring-1 ring-white/10">{open && <Clip name="plating" active={active} />}
-            <span className="absolute inset-x-0 bottom-0 flex items-center gap-2 bg-gradient-to-t from-black/80 to-transparent px-2.5 pb-2 pt-6 text-xs tabular-nums text-white/85"><Play size={11} weight="fill" />0:0{(n % 9) + 1}<Bar v={((n % 9) + 1) / 12} h={3} />0:12</span></div></m.div>
+            <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent px-2.5 pb-2 pt-6"><Player t={(n % 9) + 3} /></span></div></m.div>
       </div>); })}</div>
     <Toast show={active && n >= SOP.length} text="Checklist complete" sub="6 of 6 steps" /></div>);
 }
@@ -167,20 +169,34 @@ export function QuizScreen({ active, q, a }: { active: boolean; q: string; a: st
     <Toast show={active && n >= 8} text="Quiz passed" sub="Results sent to your lead" /></div>);
 }
 
-/* Real screen: Orientation Analyzer */
-const WORK = [["Opening checklist", "line", 1, 1], ["Allergen handling", "plating", 1, 0], ["Knife safety", "steam", 0, 0], ["Fryer cleaning", "kitchen", 1, 0], ["Closing clean-down", "hotel", 1, 1]] as const;
+/* Real screen: step video player */
+export function PlayerScreen({ active }: { active: boolean }) {
+  const reduce = useReducedMotion(); const s = useTick(active && !reduce, 1000, 13); const t = active && !reduce ? s : 9;
+  return (<div className="absolute inset-0 flex flex-col" style={{ background: S0 }}>
+    <Status /><Nav left={<><ArrowRight size={16} className="rotate-180" /><span className="ml-1.5 text-sm">Back</span></>} title="Plate the chicken salad" />
+    <div className="relative flex-1 overflow-hidden bg-black">
+      <Clip name="plating" active={active} className="scale-[1.02]" />
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black via-black/70 to-transparent" />
+      <span className="absolute bottom-[104px] right-3 flex flex-col items-center gap-2 rounded-full bg-black/35 px-1.5 py-2 text-white backdrop-blur"><Arrow up /><span className="h-px w-3 bg-white/30" /><Arrow /></span>
+      <div className="absolute inset-x-4 bottom-[26px]"><Player t={t} text="Fan the sliced chicken over the greens, add the eggs and wipe the rim before" /></div></div></div>);
+}
+
+/* Real screen: Orientation Analyzer (matches the app; "Standart Work" is the app's own label) */
+const WORK = [["Opening checklist", "line", 1, 1], ["Allergen handling", "plating", 1, 0], ["Knife safety", "steam", 0, 0], ["Fryer cleaning", "kitchen", 1, 0], ["Coffee station", "coffee", 1, 1]] as const;
+const flat = "rounded-[14px] border border-white/[.04]";
 export function ReadyScreen({ active }: { active: boolean }) {
   return (<div className="absolute inset-0 flex flex-col" style={{ background: S0 }}>
-    <Status /><Nav left={<Back />} title="Orientation Analyzer" />
-    <div className="mx-3 mt-1"><Seg items={["Standard Work", "Person"]} i={1} /></div>
-    <div className="mx-3 mt-2.5"><Picker label="Person" value="New starter" /></div>
-    <div className={`mx-3 mt-2.5 px-3.5 py-3 ${card}`} style={{ background: `linear-gradient(180deg,${S2},${S1})` }}>
-      <div className="flex items-center gap-2"><span className="text-sm font-semibold tracking-[-.01em] text-white">Orientation Data</span><Info {...ic} size={13} className="text-white/60" /><span className="ml-auto rounded-full bg-flame/15 px-2 py-0.5 text-xs font-medium text-flame ring-1 ring-flame/25">In progress</span></div>
-      <div className="mt-3 flex items-center gap-4">{([["Viewed", 4], ["Quiz", 2]] as const).map(([k, v]) => <div key={k} className="flex flex-1 items-center gap-2.5"><Ring v={active ? v / 5 : 0}>{v}/5</Ring><span className="leading-tight"><span className="block text-xs text-white/60">{k}</span><span className="block text-sm font-medium tabular-nums text-white">{v * 20}%</span></span></div>)}</div></div>
-    <div className="mx-4 mb-1.5 mt-4 flex text-xs font-medium uppercase tracking-[.06em] text-white/60"><span className="flex-1">Standard Work</span><span className="w-9 text-center">View</span><span className="w-9 text-center">Quiz</span></div>
-    <ul className={`mx-3 overflow-hidden ${card}`} style={{ background: S1 }}>{WORK.map(([t, v, e, q], i) => <m.li key={t} initial={false} animate={{ opacity: active ? 1 : .3, x: active ? 0 : 8 }} transition={{ delay: .3 + i * .08, duration: .5, ease }} className="flex h-[50px] items-center gap-2.5 px-2.5" style={{ borderTop: i ? `1px solid ${HL}` : undefined }}>
-      <span className="h-9 w-9 shrink-0 rounded-[8px] bg-cover bg-center ring-1 ring-white/10" style={{ backgroundImage: `url(/video/${v}.webp)` }} />
-      <span className="min-w-0 flex-1"><span className="block truncate text-sm font-medium tracking-[-.01em] text-white">{t}</span><span className="block text-xs tabular-nums text-white/60">Updated 14.03.2026</span></span>
-      <span className="grid w-9 place-items-center">{e ? <Eye {...ic} size={15} className="text-white/85" /> : <EyeSlash {...ic} size={15} className="text-white/55" />}</span>
-      <span className="grid w-9 place-items-center"><span className={`grid h-[18px] w-[18px] place-items-center rounded-full ${q ? "bg-flame" : "ring-1 ring-white/15"}`}>{q ? <Check size={11} className="text-[#111111]" /> : null}</span></span></m.li>)}</ul></div>);
+    <Status /><Nav left={<ArrowRight size={18} className="rotate-180" />} title="Orientation Analyzer" />
+    <div className="mx-3 mt-1 flex gap-1.5 text-sm tracking-[-.01em]"><span className="rounded-[10px] border border-white/20 px-3 py-[7px] text-white/85">Standart Work</span><span className="flex-1 rounded-[10px] bg-[#252525] py-[7px] text-center text-white">Person</span></div>
+    <div className={`mx-3 mt-2 flex items-center px-4 py-3.5 text-sm text-white ${flat}`} style={{ background: S1 }}><span className="flex-1">Jordan Kim</span><CaretDown size={11} weight="fill" style={{ color: "#D96E39" }} /></div>
+    <div className={`mx-3 mt-2 px-4 py-3 ${flat}`} style={{ background: S1 }}>
+      <div className="flex items-center gap-2 text-sm text-white"><span className="grid h-6 w-6 place-items-center rounded-full bg-white/[.06]"><CaretDown size={12} className="text-white/70" /></span>Orientation Data<Info size={15} className="text-white/50" /></div>
+      {([["View", 4], ["Quiz", 2]] as const).map(([k, v]) => <div key={k} className="mt-3 flex items-center gap-3 text-xs tabular-nums text-white/70"><span className="w-9">{k}</span>
+        <span className="relative h-[3px] flex-1 rounded-full bg-[#252525]"><m.span className="absolute inset-y-0 left-0 rounded-full" style={{ background: "linear-gradient(90deg,#A8562E,#C9632F)" }} initial={false} animate={{ width: `${active ? v * 20 : 0}%` }} transition={{ duration: .9, ease }} /></span><span>{v}/5</span></div>)}</div>
+    <div className="mx-4 mb-1 mt-5 flex text-xs text-white/70"><span className="flex-1">Standart Work With Access</span><span className="w-9 text-center">View</span><span className="w-9 text-center">Quiz</span></div>
+    <ul className="mx-3">{WORK.map(([t, v, e, q], i) => <m.li key={t} initial={false} animate={{ opacity: active ? 1 : .3, x: active ? 0 : 8 }} transition={{ delay: .3 + i * .08, duration: .5, ease }} className="flex h-[56px] items-center gap-2.5 px-1">
+      <span className="h-11 w-11 shrink-0 rounded-[10px] bg-cover bg-center ring-1 ring-white/10" style={{ backgroundImage: `url(/video/${v}.webp)` }} />
+      <span className="min-w-0 flex-1"><span className="block truncate text-sm font-semibold tracking-[-.01em] text-white">{t}</span><span className="block text-xs tabular-nums text-[#666]">Last Updated : 14.03.2026</span></span>
+      <span className="grid w-9 place-items-center">{e ? <Eye size={18} className="text-white" /> : <EyeSlash size={18} className="text-white/30" />}</span>
+      <span className="grid w-9 place-items-center"><Check size={15} className={q ? "text-white" : "text-white/25"} /></span></m.li>)}</ul></div>);
 }

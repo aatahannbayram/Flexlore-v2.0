@@ -8,6 +8,7 @@ import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
 import { TrustStrip, Problem, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
 import { Capabilities } from "./home/Capabilities";
+import { Positioning, UseCases } from "./home/Extras";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -31,11 +32,13 @@ export default function Site() {
         <main id="main" lang={lang}>
           <Hero t={t} lang={lang} />
           <TrustStrip lang={lang} />
+          <Positioning lang={lang} />
           <Problem lang={lang} />
           <ScrollStory t={t} lang={lang} />
           <WebShowcase lang={lang} />
           <Capabilities lang={lang} />
           <Industries lang={lang} />
+          <UseCases lang={lang} />
           <Proof />
           <PricingPreview lang={lang} />
           <Faq lang={lang} />

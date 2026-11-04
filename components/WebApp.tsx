@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { m } from "framer-motion";
-import { ArrowsDownUp, Bell, Books, CaretDown, CaretRight, CaretUpDown, ChartBar, Check, Gear, House, ListChecks, MagnifyingGlass, Play, Plus, ShareNetwork, Users, Warning } from "./ui/icons";
-const O = "#EC6726";
+import { m, useReducedMotion } from "framer-motion";
+import { Bell, Books, CaretDown, CaretUpDown, ChartBar, Gear, House, ListChecks, MagnifyingGlass, Play, Users } from "./ui/icons";
 const ease = [0.22, 1, 0.36, 1] as const;
 const W = 1180, H = 720;
 
@@ -11,86 +10,137 @@ export function Fit({ children }: { children: React.ReactNode }) {
   useEffect(() => { const el = r.current; if (!el) return; const ro = new ResizeObserver(() => setK(el.clientWidth / W)); ro.observe(el); return () => ro.disconnect(); }, []);
   return (<div ref={r} className="relative w-full overflow-hidden" style={{ height: H * k }}><div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${k})` }}>{children}</div></div>);
 }
-const S1 = "#111113", S2 = "#161618", S3 = "#1f1f22";
-const ic = { size: 16 } as const;
-const panel = "rounded-[12px] border border-white/[.07] shadow-[inset_0_1px_0_rgba(255,255,255,.04),0_1px_2px_rgba(0,0,0,.4),0_12px_32px_-16px_rgba(0,0,0,.7)]";
-const NAV: [string, [string, typeof House, string?][]][] = [
-  ["Workspace", [["Home", House], ["Library", Books], ["Notices", Bell, "3"]]],
-  ["Insights", [["Orientation Analyzer", ChartBar], ["Quizzes", ListChecks]]],
-  ["Admin", [["Manage Access", Users]]],
+
+// Palette mirrors the phone app: bg #111111, cards #161616, tracks #252525. Orange appears once: the "needs review" marker.
+const CARD = "#161616", TRACK = "#252525", SIDE = "#0E0E0E";
+const panel = "rounded-[12px] border border-white/[.06] shadow-[inset_0_1px_0_rgba(255,255,255,.03)]";
+const NAV = [["Home", House], ["Library", Books], ["Readiness", ChartBar], ["Quizzes", ListChecks], ["Team", Users]] as const;
+const KPI = [
+  { l: "Ready to work", v: 82, s: "%", d: "+6 pts this month", p: [61, 64, 66, 70, 71, 75, 79, 82] },
+  { l: "Jobs published", v: 24, s: "", d: "+3 this week", p: [12, 14, 15, 17, 18, 20, 21, 24] },
+  { l: "Quizzes passed", v: 91, s: "%", d: "First try 74%", p: [84, 86, 85, 88, 87, 89, 90, 91] },
+  { l: "Needs review", v: 3, s: "", d: "2 quizzes, 1 job", p: [6, 5, 7, 4, 5, 3, 4, 3], flag: true },
 ];
-const LIB = [["Opening checklist", "line", 6, "0:48", "Published"], ["Allergen handling", "plating", 4, "0:36", "Published"], ["Knife safety", "steam", 5, "0:52", "Draft"], ["Fryer cleaning", "kitchen", 7, "1:04", "Published"], ["Room turnover", "hotel", 8, "1:12", "In review"], ["Pallet receiving", "warehouse", 5, "0:44", "Published"]] as const;
-const PEOPLE = [["Line cook 1", "LC", "#EC6726"], ["Line cook 2", "LK", "#666666"], ["Prep cook", "PC", "#8a8a8f"], ["Server", "SV", "#4d4d4d"], ["New starter", "NS", "#3b3b3e"]] as const;
-// 0 none, 1 viewed, 2 viewed + quiz passed  (sample grid)
-const GRID = [[2, 2, 2, 1, 0], [2, 1, 2, 2, 1], [1, 1, 0, 2, 0], [2, 2, 1, 1, 2], [1, 0, 0, 0, 0]];
-const BADGE: Record<string, string> = { Published: "text-flame bg-flame/12 ring-flame/25", Draft: "text-white/70 bg-white/[.06] ring-white/10", "In review": "text-flame bg-flame/12 ring-flame/25" };
-function Av({ i, c, s = 24 }: { i: string; c: string; s?: number }) {
-  return <span className="grid shrink-0 place-items-center rounded-full text-xs font-semibold text-white ring-2 ring-[#0b0b0c]" style={{ width: s, height: s, background: `linear-gradient(180deg,${c},${c}cc)` }}>{i}</span>;
+const LIB = [["Opening checklist", "line", 6, "0:48", "Published"], ["Allergen handling", "plating", 4, "0:36", "Published"], ["Fryer cleaning", "kitchen", 7, "1:04", "In review"], ["Room turnover", "hotel", 8, "1:12", "Draft"]] as const;
+const LOC = [["Downtown", 92, 18], ["Airport", 86, 14], ["Harbor", 79, 11], ["Midtown", 64, 16], ["Riverside", 88, 9]] as const;
+const NEW = [["Maya L.", "ML", "Kitchen", 2, 5], ["Omar S.", "OS", "Front of house", 4, 7], ["Lena K.", "LK", "Housekeeping", 1, 2]] as const;
+const TEAM = [["Theo B.", "TB", "Shift lead", "Ready"], ["Ana R.", "AR", "Line cook", "Ready"], ["Sam T.", "ST", "Prep cook", "Training"], ["Jules P.", "JP", "Server", "Ready"], ["Kai M.", "KM", "Dishwasher", "Training"]] as const;
+const TREND = [61, 64, 66, 70, 71, 75, 79, 82];
+
+function Av({ i, s = 24, t = 0 }: { i: string; s?: number; t?: number }) {
+  const g = ["#3A3A3A", "#2E2E2E", "#444444"][t % 3];
+  return <span className="grid shrink-0 place-items-center rounded-full font-semibold text-ice-200 ring-1 ring-white/10" style={{ width: s, height: s, fontSize: s * 0.4, background: `linear-gradient(180deg,${g},#1E1E1E)` }}>{i}</span>;
 }
-const cellBg = (g: number) => g === 2 ? O : g === 1 ? "rgba(236,103,38,.28)" : "rgba(255,255,255,.04)";
+function useCount(to: number, on: boolean, still: boolean) {
+  const [v, setV] = useState(still ? to : 0);
+  useEffect(() => {
+    if (!on || still) { setV(still ? to : 0); return; }
+    let raf = 0; const t0 = performance.now();
+    const tick = (t: number) => { const p = Math.min(1, (t - t0) / 1200); setV(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick); return () => cancelAnimationFrame(raf);
+  }, [on, still, to]);
+  return v;
+}
+function Spark({ p, on }: { p: readonly number[]; on: boolean }) {
+  const lo = Math.min(...p), hi = Math.max(...p), pts = p.map((v, i) => [i * 10, 22 - ((v - lo) / (hi - lo || 1)) * 18] as const);
+  const [lx, ly] = pts[pts.length - 1];
+  return <svg viewBox="-2 0 76 26" className="h-[26px] w-[76px] text-ice-400">
+    <m.polyline points={pts.map((x) => x.join(",")).join(" ")} fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" initial={false} animate={{ pathLength: on ? 1 : 0 }} transition={{ duration: 1.1, delay: .3, ease }} />
+    <m.circle cx={lx} cy={ly} r="2.2" className="fill-ice-100" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1.3 }} /></svg>;
+}
+function Kpi({ k, i, on, still }: { k: (typeof KPI)[number]; i: number; on: boolean; still: boolean }) {
+  const v = useCount(k.v, on, still);
+  return <m.div initial={false} animate={{ opacity: on ? 1 : 0, y: on ? 0 : 10 }} transition={{ delay: i * .07, duration: .5, ease }} className={`flex flex-col justify-between px-4 py-3.5 ${panel}`} style={{ background: CARD }}>
+    <p className="flex items-center gap-1.5 text-xs text-ice-400">{k.flag && <i className="h-1.5 w-1.5 rounded-full bg-accent" />}{k.l}</p>
+    <div className="flex items-end justify-between">
+      <div><p className="text-[28px] font-semibold leading-none tracking-[-.03em] tabular-nums text-ice-50">{v}<span className="text-lg text-ice-400">{k.s}</span></p><p className="mt-1.5 text-xs text-ice-500">{k.d}</p></div>
+      <Spark p={k.p} on={on} /></div></m.div>;
+}
+function Head({ t, r }: { t: string; r?: React.ReactNode }) {
+  return <div className="flex h-11 items-center justify-between px-4"><p className="text-sm font-medium tracking-[-.01em] text-ice-100">{t}</p>{r}</div>;
+}
 
 export function Dashboard({ on }: { on: boolean }) {
-  const [hover, setHover] = useState(0);
-  useEffect(() => { if (!on) return; const id = setInterval(() => setHover((h) => (h + 1) % 4), 2300); return () => clearInterval(id); }, [on]);
-  const cur = [[478, 200], [628, 520], [300, 382], [1012, 600]][hover];
-  const quiz = [["Q1", 4], ["Q2", 3], ["Q3", 5], ["Q4", 2], ["Q5", 4]] as const;
-  return (<div className="relative flex h-full w-full bg-bg font-sans text-white antialiased [font-feature-settings:'cv11','ss01']">
-    <div className="flex w-[232px] flex-col border-r border-white/[.06] px-3 py-3" style={{ background: S1 }}>
-      <div className="flex items-center gap-2.5 rounded-[10px] px-2 py-2 hover:bg-white/5">
-        <span className="grid h-7 w-7 place-items-center rounded-[8px] text-xs font-bold text-white shadow-[inset_0_1px_0_rgba(255,255,255,.25)]" style={{ background: `linear-gradient(180deg,#EC6726,${O})` }}>SK</span>
-        <span className="flex-1 leading-tight"><span className="block text-sm font-semibold tracking-[-.01em]">Sample Kitchen</span><span className="block text-xs text-white/70">Main · Pro</span></span>
-        <CaretUpDown {...ic} size={14} className="text-white/70" /></div>
-      <div className="mt-2 flex h-8 items-center gap-2 rounded-[8px] border border-white/[.07] bg-white/[.03] px-2.5 text-sm text-white/70"><MagnifyingGlass {...ic} size={14} /><span className="flex-1">Search</span><kbd className="rounded-[4px] border border-white/10 bg-white/[.04] px-1.5 font-sans text-xs text-white/70">⌘K</kbd></div>
-      {NAV.map(([sec, items]) => <div key={sec} className="mt-5"><p className="px-2.5 pb-1.5 text-xs font-medium text-white/70">{sec}</p>
-        {items.map(([n, Icon, b]) => { const act = n === "Library"; return <div key={n} className={`relative flex h-8 items-center gap-2.5 rounded-[8px] px-2.5 text-sm tracking-[-.01em] ${act ? "bg-white/[.07] text-white shadow-[inset_0_1px_0_rgba(255,255,255,.05)]" : "text-white/70"}`}>
-          {act && <span className="absolute -left-3 top-1.5 h-5 w-[2px] rounded-r" style={{ background: O }} />}<Icon {...ic} size={16} style={act ? { color: O } : {}} /><span className="flex-1">{n}</span>{b && <span className="rounded-full bg-white/10 px-1.5 text-xs font-medium tabular-nums text-white/70">{b}</span>}</div>; })}</div>)}
-      <div className="mt-auto flex items-center gap-2.5 rounded-[10px] border border-white/[.06] p-2.5"><Av i="AM" c="#4d4d4d" s={28} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium">Admin</span><span className="block text-xs text-white/70">Sample data only</span></span><Gear {...ic} size={14} className="text-white/70" /></div>
-    </div>
+  const still = !!useReducedMotion();
+  const [hover, setHover] = useState(-1);
+  useEffect(() => { if (!on || still) return; const id = setInterval(() => setHover((h) => (h + 1) % 4), 2400); return () => clearInterval(id); }, [on, still]);
+  const cur = ([[468, 262], [516, 470], [1010, 348], [1112, 28]] as const)[Math.max(0, hover)];
+  const tx = (i: number) => 12 + i * 33.5, ty = (v: number) => 108 - ((v - 55) / 30) * 88;
+  const line = TREND.map((v, i) => `${i ? "L" : "M"}${tx(i)},${ty(v)}`).join("");
+  const last = [tx(7), ty(82)] as const;
+  return (<div className="relative flex h-full w-full bg-bg font-sans text-ice-100 antialiased">
+    <aside className="flex w-[216px] flex-col border-r border-white/[.05] px-3 py-3" style={{ background: SIDE }}>
+      <div className="flex items-center gap-2.5 rounded-[10px] px-2 py-2">
+        <span className="grid h-7 w-7 place-items-center rounded-[8px] bg-ice-100 text-xs font-bold text-bg">SK</span>
+        <span className="flex-1 leading-tight"><span className="block text-sm font-medium tracking-[-.01em]">Sample Kitchen</span><span className="block text-xs text-ice-500">5 locations</span></span>
+        <CaretUpDown size={14} className="text-ice-500" /></div>
+      <nav className="mt-4 space-y-0.5">{NAV.map(([n, Icon], i) => <div key={n} className={`flex h-8 items-center gap-2.5 rounded-[8px] px-2.5 text-sm tracking-[-.01em] ${i ? "text-ice-400" : "bg-white/[.06] text-ice-50"}`}><Icon size={16} className={i ? "text-ice-500" : "text-ice-200"} /><span className="flex-1">{n}</span>{n === "Quizzes" && <span className="text-xs tabular-nums text-ice-500">12</span>}</div>)}</nav>
+      <p className="mt-6 px-2.5 pb-1.5 text-xs text-ice-500">Locations</p>
+      {LOC.slice(0, 4).map(([n]) => <div key={n} className="flex h-7 items-center gap-2.5 px-2.5 text-sm text-ice-400"><i className="h-1.5 w-1.5 rounded-full bg-ice-500" />{n}</div>)}
+      <div className="mt-auto flex items-center gap-2.5 rounded-[10px] border border-white/[.05] p-2.5"><Av i="AM" s={28} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium">Admin</span><span className="block text-xs text-ice-500">Sample data only</span></span><Gear size={14} className="text-ice-500" /></div>
+    </aside>
     <div className="flex min-w-0 flex-1 flex-col">
-      <div className="flex h-[52px] items-center gap-3 border-b border-white/[.06] px-6">
-        <span className="flex items-center gap-1.5 text-sm text-white/70">Sample Kitchen<CaretRight {...ic} size={13} /><span className="font-medium text-white">Library</span></span>
-        <span className="ml-auto flex -space-x-1.5">{PEOPLE.slice(0, 4).map(([n, i, c]) => <Av key={n} i={i} c={c} />)}<span className="grid h-6 w-6 place-items-center rounded-full bg-[#2a2a2e] text-xs font-medium text-white/70 ring-2 ring-[#0b0b0c]">+8</span></span>
-        <span className="h-5 w-px bg-white/10" />
-        <span className="flex h-8 items-center gap-1.5 rounded-[8px] border border-white/10 bg-white/[.03] px-3 text-xs text-white/80"><ShareNetwork {...ic} size={13} />Share</span>
-        <m.span animate={{ scale: hover === 3 ? 0.97 : 1 }} className="flex h-8 items-center gap-1.5 rounded-[8px] px-3 text-xs font-semibold text-white" style={{ background: O }}><Plus size={14} />Record new</m.span>
-      </div>
-      <div className="flex-1 overflow-hidden px-6 py-4">
-        <div className="flex items-center gap-1 text-xs">{[["All", 24], ["Kitchen", 11], ["Front of house", 7], ["Cleaning", 6]].map(([x, c], k) => <span key={x} className={`relative flex h-7 items-center gap-1.5 rounded-full px-3 ${k ? "text-white/70" : "text-white"}`}>{!k && <span className="absolute inset-0 -z-0 rounded-full bg-white/[.08] ring-1 ring-white/10" />}<span className="relative">{x}</span><span className="relative tabular-nums text-white/70">{c}</span></span>)}
-          <span className="ml-auto flex items-center gap-1.5 text-white/70"><ArrowsDownUp {...ic} size={13} />Last updated</span></div>
-        <div className="mt-3 grid grid-cols-6 gap-3">{LIB.map(([t, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <m.div key={t} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -3 : 0) : 14 }} transition={{ delay: on && !hv ? i * .06 : 0, duration: .5, ease }} className={`overflow-hidden ${panel} transition-[border-color] ${hv ? "!border-flame/60" : ""}`} style={{ background: S2 }}>
-          <div className="relative aspect-[4/3] bg-cover bg-center" style={{ backgroundImage: `url(/video/${v}.webp)` }}>
-            <span className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            <span className={`absolute left-1/2 top-1/2 grid h-8 w-8 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-black shadow-lg transition-all duration-300 ${hv ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}><Play size={13} weight="fill" className="ml-0.5" /></span>
-            <span className="absolute bottom-1.5 right-1.5 rounded-[4px] bg-black/70 px-1 text-xs font-medium tabular-nums text-white">{d}</span></div>
-          <div className="px-2.5 py-2"><p className="truncate text-xs font-medium tracking-[-.01em]">{t}</p>
-            <div className="mt-1 flex items-center justify-between"><span className="text-xs tabular-nums text-white/70">{st} steps</span><span className={`rounded-full px-1.5 py-[1px] text-xs font-medium ring-1 ${BADGE[b]}`}>{b}</span></div></div></m.div>; })}</div>
-        <div className="mt-4 grid grid-cols-[1.6fr_1fr] gap-4">
-          <div className={`overflow-hidden ${panel}`} style={{ background: S2 }}>
-            <div className="flex items-center justify-between px-4 py-3"><p className="text-sm font-semibold tracking-[-.01em]">Orientation Data <span className="font-normal text-white/70">· by person</span></p>
-              <span className="flex items-center gap-3 text-xs text-white/70">{[[1, "Viewed"], [2, "Quiz passed"]].map(([g, l]) => <span key={l} className="flex items-center gap-1.5"><i className="h-2.5 w-2.5 rounded-[3px]" style={{ background: cellBg(g as number) }} />{l}</span>)}</span></div>
-            <div className="relative">
-              <div className="sticky top-0 grid grid-cols-[150px_repeat(5,1fr)_70px] gap-1.5 border-y border-white/[.06] bg-card px-4 py-2 text-xs font-medium text-white/70">
-                <span className={`flex items-center gap-1 ${hover === 2 ? "text-white" : ""}`}>Person<CaretDown {...ic} size={12} /></span>{["Opening", "Allergen", "Knives", "Fryer", "Turnover"].map((t) => <span key={t} className="truncate">{t}</span>)}<span className="text-right">Ready</span></div>
-              <div className="space-y-2 px-4 py-3">{PEOPLE.map(([p, ini, c], r) => { const sc = GRID[r].reduce((a, b) => a + b, 0) / 10; return <div key={p} className={`grid grid-cols-[150px_repeat(5,1fr)_70px] items-center gap-1.5 rounded-[6px] ${hover === 2 && r === 0 ? "bg-white/[.03]" : ""}`}>
-                <span className="flex items-center gap-2 text-xs text-white/85"><Av i={ini} c={c} s={22} />{p}</span>
-                {GRID[r].map((g, k) => <m.span key={k} initial={false} animate={{ opacity: on ? 1 : 0, scale: on ? 1 : .6 }} transition={{ delay: .4 + (r * 5 + k) * .025, duration: .35 }} className={`relative h-[36px] rounded-[6px] shadow-[inset_0_1px_0_rgba(255,255,255,.08)] ${hover === 1 && r === 2 && k === 3 ? "ring-2 ring-white/80" : ""}`} style={{ background: cellBg(g) }}>
-                  {hover === 1 && r === 2 && k === 3 && <m.span initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="absolute bottom-[34px] left-1/2 z-10 w-[190px] -translate-x-1/2 rounded-[8px] whitespace-nowrap border border-white/10 bg-[#26262a] px-2.5 py-2 text-left text-xs leading-[1.3] shadow-[0_10px_30px_rgba(0,0,0,.6)]"><span className="block font-semibold">Prep cook · Fryer cleaning</span><span className="mt-0.5 flex items-center gap-1 text-flame"><Check size={11} />Viewed · Quiz passed</span><span className="absolute -bottom-[5px] left-1/2 h-2.5 w-2.5 -translate-x-1/2 rotate-45 border-b border-r border-white/10 bg-[#26262a]" /></m.span>}</m.span>)}
-                <span className="flex items-center justify-end gap-2"><span className="h-1 w-8 overflow-hidden rounded-full bg-white/[.08]"><m.span className="block h-full rounded-full" style={{ background: O }} initial={false} animate={{ width: on ? `${sc * 100}%` : 0 }} transition={{ delay: .8, duration: 1, ease }} /></span><span className="w-7 text-right text-xs tabular-nums text-white/70">{Math.round(sc * 100)}%</span></span></div>; })}</div></div></div>
-          <div className={`flex flex-col p-4 ${panel}`} style={{ background: S2 }}>
-            <div className="flex items-center justify-between"><p className="text-sm font-semibold tracking-[-.01em]">Quiz results</p><span className="flex h-6 items-center gap-1 rounded-[6px] border border-white/10 px-2 text-xs text-white/70">Opening checklist<CaretDown {...ic} size={12} /></span></div>
-            <svg viewBox="0 0 300 170" className="mt-3 w-full">
-              <defs><linearGradient id="qb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#EC6726" /><stop offset="1" stopColor={O} stopOpacity=".7" /></linearGradient></defs>
-              {[0, 1, 2, 3, 4, 5].map((g) => <g key={g}><line x1="22" x2="300" y1={130 - g * 24} y2={130 - g * 24} stroke="rgba(255,255,255,.06)" strokeDasharray={g ? "2 3" : undefined} /><text x="14" y={133 - g * 24} fontSize="9" fill="rgba(255,255,255,.6)" textAnchor="end" className="tabular-nums">{g}</text></g>)}
-              {quiz.map(([q, v], k) => { const x = 40 + k * 54, hgt = v * 24, lo = hover === 3 && k === 3; return <g key={q}>
-                <m.rect x={x} width="30" rx="5" fill={lo ? "#EC6726" : "url(#qb)"} initial={false} animate={{ y: on ? 130 - hgt : 130, height: on ? hgt : 0 }} transition={{ delay: .6 + k * .1, duration: .9, ease }} />
-                <text x={x + 15} y="145" fontSize="12" fill="rgba(255,255,255,.65)" textAnchor="middle">{q}</text>
-                {lo && <text x={x + 15} y={122 - hgt} fontSize="12" fontWeight="600" fill="#fff" textAnchor="middle">{v}/5</text>}</g>; })}
-            </svg>
-            <div className={`mt-auto flex items-start gap-2.5 rounded-[10px] border px-3 py-2.5 text-xs leading-[1.3] transition-colors ${hover === 3 ? "border-flame/40 bg-flame/[.08] text-white" : "border-white/[.06] bg-white/[.03] text-white/70"}`}><Warning {...ic} size={14} className="mt-0.5 shrink-0" style={{ color: O }} />Q4 is missed most. Review the step 3 video with the team.</div></div>
+      <header className="flex h-[52px] items-center gap-3 border-b border-white/[.05] px-6">
+        <span className="text-sm text-ice-500">Sample Kitchen <span className="px-1 text-ice-500/60">/</span><span className="font-medium text-ice-100">Overview</span></span>
+        <span className="ml-6 flex h-8 w-[260px] items-center gap-2 rounded-[8px] border border-white/[.06] bg-white/[.02] px-2.5 text-sm text-ice-500"><MagnifyingGlass size={14} /><span className="flex-1">Search jobs, people</span><kbd className="rounded-[4px] border border-white/[.08] px-1.5 font-sans text-xs">⌘K</kbd></span>
+        <span className="ml-auto flex h-8 items-center gap-1.5 rounded-[8px] border border-white/[.06] px-3 text-xs text-ice-300">This month<CaretDown size={12} /></span>
+        <span className="relative grid h-8 w-8 place-items-center rounded-[8px] border border-white/[.06] text-ice-400"><Bell size={15} /></span>
+        <m.span animate={{ scale: hover === 3 ? 0.96 : 1 }} className="flex h-8 items-center gap-2 rounded-[8px] bg-ice-100 px-3 text-xs font-semibold text-bg"><i className="h-2 w-2 rounded-full bg-bg ring-2 ring-bg/20" />New job</m.span>
+      </header>
+      <main className="flex-1 overflow-hidden px-6 pb-5 pt-5">
+        <div className="grid h-[88px] grid-cols-4 gap-4">{KPI.map((k, i) => <Kpi key={k.l} k={k} i={i} on={on} still={still} />)}</div>
+        <div className="mt-4 grid h-[524px] grid-cols-[1fr_300px] gap-4">
+          <div className="flex min-w-0 flex-col gap-4">
+            <section className={`pb-3.5 ${panel}`} style={{ background: CARD }}>
+              <Head t="Library" r={<span className="flex items-center gap-3 text-xs text-ice-500">{["All 24", "Kitchen 11", "Front of house 7"].map((x, i) => <span key={x} className={i ? "" : "text-ice-100"}>{x}</span>)}</span>} />
+              <div className="grid grid-cols-4 gap-3 px-3.5">{LIB.map(([t, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <m.div key={t} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -2 : 0) : 10 }} transition={{ delay: on && !hv ? .2 + i * .06 : 0, duration: .5, ease }}>
+                <div className={`relative aspect-[16/10] overflow-hidden rounded-[8px] bg-cover bg-center ring-1 transition-[box-shadow] ${hv ? "ring-white/30" : "ring-white/[.06]"}`} style={{ backgroundImage: `url(/video/${v}.webp)` }}>
+                  <span className="absolute inset-0 bg-gradient-to-t from-black/55 to-black/5" />
+                  <span className={`absolute left-1/2 top-1/2 grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-black transition-all duration-300 ${hv ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}><Play size={11} weight="fill" className="ml-0.5" /></span>
+                  <span className="absolute bottom-1.5 right-1.5 rounded-[4px] bg-black/60 px-1 text-xs tabular-nums text-ice-100">{d}</span></div>
+                <p className="mt-2 truncate text-xs font-medium text-ice-100">{t}</p>
+                <p className="mt-0.5 flex items-center gap-1.5 text-xs text-ice-500"><span className="tabular-nums">{st} steps</span><i className="h-[3px] w-[3px] rounded-full bg-ice-500" /><span className={b === "Published" ? "text-ice-300" : ""}>{b}</span></p></m.div>; })}</div>
+            </section>
+            <div className="grid min-h-0 flex-1 grid-cols-2 gap-4">
+              <section className={`flex flex-col ${panel}`} style={{ background: CARD }}>
+                <Head t="Readiness" r={<span className="text-xs text-ice-500">Last 8 weeks</span>} />
+                <p className="px-4 text-xs text-ice-500"><span className="text-xl font-semibold tracking-[-.02em] tabular-nums text-ice-50">82%</span> <span className="ml-1 text-ice-300">+21 pts</span></p>
+                <svg viewBox="0 0 260 128" className="mt-auto w-full px-2 pb-2 text-ice-200">
+                  <defs><linearGradient id="wa-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="currentColor" stopOpacity=".14" /><stop offset="1" stopColor="currentColor" stopOpacity="0" /></linearGradient></defs>
+                  {[0, 1, 2, 3].map((g) => <line key={g} x1="0" x2="260" y1={20 + g * 29} y2={20 + g * 29} stroke="rgb(255 255 255 / .05)" strokeDasharray="2 4" />)}
+                  <m.path d={`${line}L${tx(7)},120L${tx(0)},120Z`} fill="url(#wa-fill)" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1, duration: .8 }} />
+                  <m.path d={line} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" initial={false} animate={{ pathLength: on ? 1 : 0 }} transition={{ delay: .4, duration: 1.3, ease }} />
+                  <line x1={last[0]} x2={last[0]} y1={last[1]} y2="120" stroke="rgb(255 255 255 / .18)" strokeDasharray="2 3" opacity={hover === 1 ? 1 : 0} className="transition-opacity" />
+                  <m.circle cx={last[0]} cy={last[1]} r={hover === 1 ? 4 : 3} className="fill-ice-50" stroke={CARD} strokeWidth="2" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1.6 }} />
+                </svg>
+              </section>
+              <section className={panel} style={{ background: CARD }}>
+                <Head t="Orientation" r={<span className="text-xs text-ice-500">3 new starters</span>} />
+                <div className="space-y-3.5 px-4 pt-1">{NEW.map(([n, i, team, day, done], r) => <div key={n}>
+                  <div className="flex items-center gap-2.5"><Av i={i} s={24} t={r} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium text-ice-100">{n}</span><span className="block text-xs text-ice-500">Day {day} · {team}</span></span><span className="text-xs tabular-nums text-ice-400">{done}/8</span></div>
+                  <div className="mt-2 grid grid-cols-8 gap-1">{Array.from({ length: 8 }, (_, s) => <m.i key={s} className="h-1 origin-left rounded-full" style={{ background: TRACK }} initial={false} animate={{ backgroundColor: on && s < done ? "#B3BCBE" : TRACK }} transition={{ delay: .6 + r * .15 + s * .05, duration: .3 }} />)}</div></div>)}</div>
+              </section>
+            </div>
+          </div>
+          <div className="flex min-h-0 flex-col gap-4">
+            <section className={`pb-2 ${panel}`} style={{ background: CARD }}>
+              <Head t="Readiness by location" r={<span className="text-xs text-ice-500">People</span>} />
+              {LOC.map(([n, p, ppl], i) => <div key={n} className={`mx-2 flex h-9 items-center gap-3 rounded-[8px] px-2 transition-colors ${hover === 2 && i === 3 ? "bg-white/[.04]" : ""}`}>
+                <span className="w-[74px] text-xs text-ice-200">{n}</span>
+                <span className="h-1 flex-1 overflow-hidden rounded-full" style={{ background: TRACK }}><m.span className="block h-full rounded-full bg-ice-300" initial={false} animate={{ width: on ? `${p}%` : 0 }} transition={{ delay: .5 + i * .08, duration: 1, ease }} /></span>
+                <span className="w-8 text-right text-xs tabular-nums text-ice-100">{p}%</span><span className="w-5 text-right text-xs tabular-nums text-ice-500">{ppl}</span></div>)}
+            </section>
+            <section className={`min-h-0 flex-1 ${panel}`} style={{ background: CARD }}>
+              <Head t="On shift now" r={<span className="text-xs tabular-nums text-ice-500">5 of 12</span>} />
+              <div className="space-y-1 px-2">{TEAM.map(([n, i, role, st], r) => <div key={n} className="flex h-[38px] items-center gap-2.5 px-2">
+                <Av i={i} s={26} t={r} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium text-ice-100">{n}</span><span className="block text-xs text-ice-500">{role}</span></span>
+                <span className={`flex items-center gap-1.5 text-xs ${st === "Ready" ? "text-ice-300" : "text-ice-500"}`}><i className={`h-1.5 w-1.5 rounded-full ${st === "Ready" ? "bg-ice-300" : "border border-ice-500"}`} />{st}</span></div>)}</div>
+            </section>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
-    <m.svg className="pointer-events-none absolute z-20 drop-shadow-[0_2px_6px_rgba(0,0,0,.6)]" width="18" height="22" viewBox="0 0 18 22" initial={false} animate={{ left: cur[0], top: cur[1] }} transition={{ duration: 1.1, ease }}><path d="M1 1v17l4.5-4 3 7 3-1.3-3-6.8H15z" fill="#fff" stroke="#000" strokeWidth="1.2" strokeLinejoin="round"/></m.svg>
+    {!still && <m.svg className="pointer-events-none absolute z-20 drop-shadow-[0_2px_6px_rgba(0,0,0,.6)]" width="16" height="20" viewBox="0 0 18 22" initial={false} animate={{ left: cur[0], top: cur[1], opacity: hover < 0 ? 0 : 1 }} transition={{ duration: 1.1, ease }}><path d="M1 1v17l4.5-4 3 7 3-1.3-3-6.8H15z" fill="#fff" stroke="#000" strokeWidth="1.2" strokeLinejoin="round" /></m.svg>}
   </div>);
 }
 
