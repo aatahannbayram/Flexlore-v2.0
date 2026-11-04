@@ -6,10 +6,11 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { Hero } from "./home/Hero";
 import { ScrollStory } from "./home/ScrollStory";
-import { WebShowcase, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
-import { Problem3, IndustryCards } from "./home/Core";
-import { BeforeAfter } from "./home/BeforeAfter";
-import { MiniDemo } from "./home/MiniDemo";
+import { Duo } from "./home/Duo";
+import { TrustStrip, WebShowcase, Industries, Proof, PricingPreview, Faq, FinalCta } from "./home/Sections";
+import { Capabilities } from "./home/Capabilities";
+import { Positioning } from "./home/Extras";
+import { ProblemChapters } from "./home/ProblemChapters";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
 /** Kept for sector, demo and legacy pages: a muted loop driven by SmartVideo (max 2 playing, poster under reduced motion). */
@@ -17,10 +18,9 @@ export function Video({ name, className = "" }: { name: string; eager?: boolean;
   return <SmartVideo name={name} className={className} threshold={0.35} />;
 }
 
-/** Home page, per docs/redesign spec (flexlore-redesign-prompt.md): hero, problem (three parts + before/after),
- *  how it works, try it (interactive sample), product (phone + web), industries, proof (flagged), pricing (light),
- *  FAQ, final CTA, footer. */
-export default function Site() {
+/** Home page, in brief order: header, hero, trust, problem, how it works, Flexlore Web, capabilities, industries,
+ *  proof (flagged), pricing (light), FAQ, final CTA, footer. */
+export default function Site({ useCases }: { useCases?: React.ReactNode }) {
   const [lang, setLang] = useState<Lang>("en");
   const [paused, setPaused] = useState(false);
   const t = copy[lang];
@@ -33,13 +33,15 @@ export default function Site() {
       <VideoPause.Provider value={paused}>
         <main id="main" lang={lang}>
           <Hero t={t} lang={lang} />
-          <div id="main-next" className="scroll-mt-[var(--header-h)]" />
-          <Problem3 lang={lang} />
-          <BeforeAfter lang={lang} />
+          <TrustStrip lang={lang} />
+          <Positioning lang={lang} />
+          <ProblemChapters lang={lang} />
           <ScrollStory t={t} lang={lang} />
-          <MiniDemo lang={lang} />
+          <Duo lang={lang} />
           <WebShowcase lang={lang} />
-          <IndustryCards lang={lang} />
+          <Capabilities lang={lang} />
+          <Industries lang={lang} />
+          {useCases}
           <Proof />
           <PricingPreview lang={lang} />
           <Faq lang={lang} />

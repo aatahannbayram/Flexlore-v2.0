@@ -10,7 +10,7 @@
   --color-line: rgb(255 255 255 / 0.08);
   --color-line-strong: rgb(255 255 255 / 0.16);
   /* ink */
-  --color-ink: #F2F2F0;          /* long-form text, per spec */
+  --color-ink: #EEF1F1;          /* ice-tinted off-white, not pure white */
   --color-ink-muted: #B2B2B2;   /* grey-200 */
   --color-ink-faint: #8A8A8A;
   /* ice grey: the calm lead colour of the site. Saturation stays under 6%, so it reads cool without turning blue. */
@@ -49,11 +49,11 @@
   --text-xs: 12px; --text-xs--line-height: 1.4;
   --text-caption: clamp(13px, 0.78rem + 0.1vw, 14px); --text-caption--line-height: 1.45;
   --text-sm: 14px; --text-sm--line-height: 1.45;
-  --text-base: 16px; --text-base--line-height: 1.55;
-  --text-lg: 20px; --text-lg--line-height: 1.45;
-  --text-h3: clamp(20px, 1rem + 0.6vw, 28px); --text-h3--line-height: 1.2;
-  --text-h2: clamp(28px, 1.2rem + 1.6vw, 40px); --text-h2--line-height: 1.1;
-  --text-h1: clamp(40px, 1.6rem + 3vw, 64px); --text-h1--line-height: 1.04;
+  --text-base: clamp(16px, 0.96rem + 0.15vw, 18px); --text-base--line-height: 1.55;
+  --text-lg: clamp(18px, 1.05rem + 0.3vw, 22px); --text-lg--line-height: 1.45;
+  --text-h3: clamp(22px, 1.25rem + 0.5vw, 28px); --text-h3--line-height: 1.15;
+  --text-h2: clamp(36px, 1.6rem + 2.2vw, 56px); --text-h2--line-height: 1.04;
+  --text-h1: clamp(44px, 1.7rem + 4vw, 96px); --text-h1--line-height: 1.0;
   --text-display: clamp(44px, 1.7rem + 4vw, 96px); --text-display--line-height: 1.0;
 
   --font-sans: var(--font-schibsted), "Schibsted Grotesk", system-ui, sans-serif;
@@ -66,7 +66,7 @@
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
-  --section-y: clamp(80px, 8.9vw, 128px); /* spec: 128 desktop, 80 mobile */
+  --section-y: clamp(72px, 10vh, 136px);
   --header-h: 64px;
 }
 @media (max-width: 767px) { :root { --gutter: 16px; } }
@@ -84,10 +84,10 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 
 /* type roles */
 .display { font-weight: 650; letter-spacing: -0.045em; line-height: 0.98; text-wrap: balance; }
-.h2 { font-size: var(--text-h2); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; text-wrap: balance; }
+.h2 { font-size: var(--text-h2); font-weight: 620; letter-spacing: -0.04em; line-height: 1.02; text-wrap: balance; }
   .muted-2 { color: var(--color-ice-400); }
 .h3 { font-size: var(--text-h3); font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
-.lead { font-size: 18px; line-height: 1.5; color: var(--color-ink-muted); text-wrap: pretty; }
+.lead { font-size: var(--text-lg); line-height: 1.45; color: var(--color-ink-muted); text-wrap: pretty; }
 .eyebrow { font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--color-ice-400); }
 .num { font-weight: 600; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .mono { font-variant-numeric: tabular-nums; }
@@ -122,9 +122,9 @@ details summary::-webkit-details-marker { display:none; }
 
 /* HeroSequence: CSS only, so the hero is readable without JS and LCP is not held by hydration.
    Text moves but never fades: it is painted in the first frame, so LCP is not delayed by the animation. */
-.hs-word { display: inline-block; animation: hs-rise .3s ease-out both; }
-.hs-in { animation: hs-fade .3s ease-out both; }
-.hs-device { animation: hs-settle .3s ease-out both; }
+.hs-word { display: inline-block; animation: hs-rise .7s var(--ease-out-expo) both; }
+.hs-in { animation: hs-fade .6s var(--ease-out-expo) both; }
+.hs-device { animation: hs-settle .9s var(--ease-out-expo) both; }
 @keyframes hs-rise { from { transform: translateY(0.18em); } to { transform: none; } }
 @keyframes hs-fade { from { transform: translateY(10px); } to { transform: none; } }
 @keyframes hs-settle { from { opacity: .001; transform: scale(.96); } to { opacity: 1; transform: none; } }
@@ -172,6 +172,29 @@ details summary::-webkit-details-marker { display:none; }
 main[lang="tr"] .l-en { display: none; }
 main:not([lang="tr"]) .l-tr { display: none; }
 
+/* Very slow push-in for still backgrounds. */
+@keyframes kenburns { from { transform: scale(1.0) translate3d(0,0,0); } to { transform: scale(1.08) translate3d(-1.5%,-1%,0); } }
+.kenburns { animation: kenburns 28s ease-in-out infinite alternate; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }
 
+/* Hero scroll cue. */
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+.scrollcue { animation: scrollcue 1.8s cubic-bezier(.65,0,.35,1) infinite; }
+@media (prefers-reduced-motion: reduce) { .scrollcue { animation: none; transform: none; } }
 
-
+/* StandardMap ("one standard, every location"). */
+.smap-flow { animation: smapflow 1.6s linear infinite; }
+@keyframes smapflow { to { stroke-dashoffset: -24; } }
+.smap-pulse { opacity: 0; }
+.smap-on .smap-pulse { animation: smappulse 3s ease-in-out infinite; }
+@keyframes smappulse { 0% { stroke-dashoffset: 6; opacity: 0; } 12% { opacity: 1; } 82% { opacity: 1; } 100% { stroke-dashoffset: -94; opacity: 0; } }
+.smap-bar { width: 0; transition: width 1.3s cubic-bezier(.22,1,.36,1); }
+.smap-on .smap-bar { width: var(--w); }
+.smap-step { transition: background-color .45s ease; }
+.smap-on .smap-step { background-color: rgb(231 235 235 / .75); }
+.smap-tick { transform: scale(0); transition: transform .4s cubic-bezier(.34,1.56,.64,1); transition-delay: inherit; }
+.smap-on .smap-tick { transform: scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .smap-flow, .smap-on .smap-pulse { animation: none; }
+  .smap-bar { width: var(--w); transition: none; } .smap-step { background-color: rgb(231 235 235 / .75); } .smap-tick { transform: scale(1); transition: none; }
+}
