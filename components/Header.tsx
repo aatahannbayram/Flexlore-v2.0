@@ -110,7 +110,6 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
           </ul>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {PauseBtn}
             <button type="button" onClick={() => setSearch(true)} aria-keyshortcuts="Meta+K Control+K"
               className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:w-auto lg:gap-2 lg:bg-white/[.06] lg:px-3.5 lg:text-sm">
               <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{tr ? "Ara" : "Search"}</span><span className="sr-only">{tr ? ": sitede" : " the site"}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
