@@ -421,30 +421,64 @@ export function Industries5() {
 /* ---------- 13. Use cases, each with a photograph ---------- */
 const CASE_META: [string, Ic, string][] = [["/sektor/uretim/", ShieldCheck, "safety"], ["/use-cases/installation-training-on-site-orientation/", MapPin, "phone-mount"], ["/sektor/restoran/", CookingPot, "chef-plating"], ["/use-cases/master-apprentice-skills-transfer/", GraduationCap, "chef-fire"], ["/see-it/", UserPlus, "brewery"], ["/sektor/franchise/", Storefront, "huddle"]];
 export function Cases5() {
-  const { d } = useLocale(); const c = d.cases;
+  const { d } = useLocale(); const c = d.cases; const [on, setOn] = useState(0); const reduce = useReducedMotion();
+  const Overlay = ({ k, big }: { k: number; big?: boolean }) => { const [tag, h, p] = c.items[k]; const [href, I] = CASE_META[k]; return (
+    <div className="absolute inset-x-0 bottom-0 p-5 text-white md:p-8">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-[rgb(255_255_255/0.14)] py-1.5 pe-3 ps-2 text-[12px] font-medium backdrop-blur"><I size={14} />{tag}</span>
+      <h3 className={`mt-4 max-w-[22ch] font-semibold leading-[1.15] tracking-[-0.02em] ${big ? "text-[clamp(24px,1rem+1.2vw,34px)]" : "text-[22px]"}`}>{h}</h3>
+      <p className={`mt-3 max-w-[40rem] leading-[1.55] text-white/80 ${big ? "text-[16px]" : "text-[15px]"}`}>{p}</p>
+      <Link href={href} className="mt-6 inline-flex h-11 items-center gap-2 rounded-full bg-white pe-2 ps-5 text-[14px] font-semibold text-[#111]">{c.more}<span className="grid h-7 w-7 place-items-center rounded-full bg-[#111] text-white"><ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
+    </div>); };
+  const shade = <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.55)_58%,rgb(17_17_17/0.92)_100%)]" />;
   return (
     <section id="use-cases" aria-labelledby="uc-h" className="section-y pt-0">
       <div className="container-x">
-        <Label icon={BookOpen}>{c.k}</Label>
-        <H2 id="uc-h" className="max-w-[18ch]">{c.h}</H2>
-        <p className="mt-5 max-w-[40rem] text-[17px] leading-[1.55] text-ink-muted">{c.lead}</p>
-        <Reveal as="ul" stagger={0.05} className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid-12 items-end gap-y-5">
+          <div className="col-span-12 lg:col-span-7"><Label icon={BookOpen}>{c.k}</Label><H2 id="uc-h" className="max-w-[18ch]">{c.h}</H2></div>
+          <p className="col-span-12 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted lg:col-span-5">{c.lead}</p>
+        </div>
+
+        {/* Desktop: a list of cases on one side, the chosen one large on the other. */}
+        <div className="mt-12 hidden gap-4 lg:grid lg:grid-cols-12">
+          <ul className="space-y-1.5 lg:col-span-5" role="tablist" aria-label={c.k}>
+            {c.items.map(([tag, h], k) => { const I = CASE_META[k][1]; const act = on === k; return (
+              <li key={h}>
+                <button type="button" role="tab" aria-selected={act} onMouseEnter={() => setOn(k)} onFocus={() => setOn(k)} onClick={() => setOn(k)}
+                  className={`flex w-full items-center gap-4 rounded-[20px] p-3 pe-5 text-start transition-colors duration-300 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
+                  <span className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[14px]"><Pic n={CASE_META[k][2]} sizes="56px" className={`h-full w-full object-cover transition-opacity ${act ? "" : "opacity-70"}`} /></span>
+                  <span className="min-w-0 flex-1">
+                    <span className="flex items-center gap-1.5 text-[12px] text-ink-faint"><I size={13} />{tag}</span>
+                    <span className={`mt-0.5 block text-[16px] font-semibold leading-snug tracking-[-0.01em] ${act ? "text-ink" : "text-ink-muted"}`}>{h}</span>
+                  </span>
+                  <ArrowRight size={15} aria-hidden="true" className={`shrink-0 transition-all duration-300 rtl:-scale-x-100 ${act ? "text-ink" : "-translate-x-1 text-transparent"}`} />
+                </button>
+              </li>); })}
+          </ul>
+          <div className="dark relative min-h-[560px] overflow-hidden rounded-[32px] bg-[#1a1816] lg:col-span-7" role="tabpanel">
+            <AnimatePresence initial={false}>
+              <m.div key={on} className="absolute inset-0" initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}>
+                <Pic n={CASE_META[on][2]} sizes="60vw" className="absolute inset-0 h-full w-full object-cover" />
+                {shade}<Overlay k={on} big />
+              </m.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Phone and tablet: swipeable photo cards. */}
+        <ul className="no-sb -mx-[var(--pad-x)] mt-10 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] pb-1 lg:hidden">
           {c.items.map(([tag, h, p], k) => { const [href, I, img] = CASE_META[k]; return (
-            <RevealItem as="li" key={h}>
-              <Link href={href} className={`group flex h-full flex-col ${card} p-2 transition-colors duration-300 hover:bg-[var(--card-2)]`}>
-                <span className="dark relative block aspect-[16/10] overflow-hidden rounded-[22px] bg-[#1a1816]">
-                  <Pic n={img} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
-                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_45%)]" />
-                  <span className="absolute start-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.65)] py-1.5 pe-3 ps-2 text-[12px] font-medium text-white backdrop-blur"><I size={14} />{tag}</span>
-                </span>
-                <span className="flex flex-1 flex-col px-4 pb-4 pt-5">
-                  <h3 className="text-[19px] font-semibold leading-[1.25] tracking-[-.015em]">{h}</h3>
-                  <p className="mt-2.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
-                  <span className="mt-auto flex items-center gap-2 pt-5 text-[14px] font-medium text-ink-muted transition-colors group-hover:text-ink">{c.more}<ArrowRight size={13} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1 rtl:-scale-x-100" /></span>
-                </span>
-              </Link>
-            </RevealItem>); })}
-        </Reveal>
+            <li key={h} className={`${card} flex w-[84%] shrink-0 snap-start flex-col p-2 sm:w-[58%]`}>
+              <span className="dark relative block aspect-[4/3] overflow-hidden rounded-[20px] bg-[#1a1816]">
+                <Pic n={img} sizes="84vw" className="h-full w-full object-cover" />
+                <span className="absolute start-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.65)] py-1.5 pe-3 ps-2 text-[12px] font-medium text-white backdrop-blur"><I size={14} />{tag}</span>
+              </span>
+              <span className="flex flex-1 flex-col px-3 pb-3 pt-4">
+                <h3 className="text-[19px] font-semibold leading-[1.25] tracking-[-.015em]">{h}</h3>
+                <p className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
+                <Link href={href} className="mt-auto inline-flex items-center gap-2 pt-5 text-[14px] font-semibold">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+              </span>
+            </li>); })}
+        </ul>
       </div>
     </section>);
 }
