@@ -36,9 +36,10 @@ export function TrustStrip({ lang }: { lang: Lang }) {
           <div className="mt-5 flex flex-wrap items-center gap-3">
             <AppStoreBadge lang={lang} />
             <StoreBadge href={SITE.googlePlay} top={tr ? "ŞURADAN ALIN" : "GET IT ON"} name="Google Play" />
-            {/* Product Hunt's official embed badge (post 1077441), dark theme: monochrome, live upvote count. */}
+            {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
+                third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
             <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-block transition-opacity hover:opacity-85">
-              <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1077441&theme=dark" alt="Flexlore App on Product Hunt" width={204} height={44} style={{ height: 44 }} className="block w-auto" loading="lazy" />
+              <img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={204} height={44} style={{ height: 44 }} className="block w-auto" loading="lazy" />
             </a>
           </div>
         </div>
@@ -130,7 +131,7 @@ export function WebShowcase({ lang }: { lang: Lang }) {
         </div>
         <ol className="mt-12 grid gap-8 md:grid-cols-3 lg:mr-36">
           {c.callouts.map((x, i) => (
-            <li key={x.h} className={`transition-opacity duration-500 ${step >= i ? "opacity-100" : "opacity-45"}`}>
+            <li key={x.h} className={`transition-colors duration-500 ${step >= i ? "" : "[&_h3]:text-ink-muted [&_p]:text-ink-faint"}`}>
               <div className="flex items-center gap-3"><span className={`grid h-7 w-7 place-items-center rounded-full text-xs font-bold transition-colors ${step >= i ? "bg-ice-100 text-bg" : "bg-surface-2 text-ink-muted"}`}>{i + 1}</span>
                 <h3 className="text-lg font-semibold tracking-[-.01em]">{x.h}</h3></div>
               <p className="mt-2 text-base text-ink-muted">{x.p}</p>
