@@ -30,7 +30,7 @@ export function VideoModal({ open, onClose, title, youtubeId, closeLabel }: { op
   return (
     <AnimatePresence>
       {open && (
-        <m.div className="fixed inset-0 z-[80] grid place-items-center bg-bg/90 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
+        <m.div className="dark fixed inset-0 z-[80] grid place-items-center bg-bg/90 p-4 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}
           onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
           <m.div ref={box} role="dialog" aria-modal="true" aria-label={title} className="w-full max-w-[1100px]"
             initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.98 }} transition={{ duration: 0.35, ease: EASE }}>

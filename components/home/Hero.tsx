@@ -14,7 +14,7 @@ import { VideoModal } from "../ui/VideoModal";
  *  HeroSequence is CSS-only (globals.css .hs-*): words rise in turn, then the device settles from 0.96 to 1.
  *  It runs without JS, ends fully visible, and is switched off by prefers-reduced-motion. */
 // Decorative back phone (desktop only): its screen comes from the story chunk, fetched after mount on lg screens.
-const LazyReady = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111111]" /> });
+const LazyReady = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[rgb(var(--bg-rgb))]" /> });
 
 export function Hero({ t, lang }: { t: C; lang: Lang }) {
   const [demo, setDemo] = useState(false);
@@ -23,7 +23,7 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
   let w = 0;
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
-      {/* Background: a warm kitchen-line photograph at ~32% with a very slow push-in (CSS, off under reduced motion), faded toward #111111. */}
+      {/* Background: a warm kitchen-line photograph at ~32% with a very slow push-in (CSS, off under reduced motion), faded toward rgb(var(--bg-rgb)). */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <div className="absolute inset-0 opacity-[0.5] md:opacity-[0.62]">
           <picture>
@@ -31,10 +31,10 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
             <img src="/photos/kitchenline-1600.webp" srcSet="/photos/kitchenline-800.webp 800w, /photos/kitchenline-1600.webp 1600w" sizes="100vw" alt="" fetchPriority="low" className="kenburns absolute inset-0 h-full w-full object-cover object-[70%_center]" />
           </picture>
         </div>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#111111_0%,rgb(17_17_17/0.94)_34%,rgb(17_17_17/0.62)_62%,rgb(17_17_17/0.55)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_75%_50%,rgb(17_17_17/0)_0%,rgb(17_17_17/0.55)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-32 bg-[linear-gradient(180deg,#111111,rgb(17_17_17/0))]" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,#111111,rgb(17_17_17/0))]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--bg-rgb))_0%,rgb(var(--bg-rgb)/0.94)_34%,rgb(var(--bg-rgb)/0.62)_62%,rgb(var(--bg-rgb)/0.55)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_75%_50%,rgb(var(--bg-rgb)/0)_0%,rgb(var(--bg-rgb)/0.55)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-[linear-gradient(180deg,rgb(var(--bg-rgb)),rgb(var(--bg-rgb)/0))]" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,rgb(var(--bg-rgb)),rgb(var(--bg-rgb)/0))]" />
       </div>
 
       <div className="container-x">
@@ -69,7 +69,7 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
           <div className="col-span-12 md:col-span-5 lg:col-span-6 lg:col-start-7">
             <div className="relative mx-auto lg:h-[min(calc(100svh-var(--header-h)-64px),780px)] lg:w-full">
               <div aria-hidden="true" className="hs-device absolute left-[4%] top-[9%] hidden w-[clamp(200px,calc((100svh-var(--header-h)-96px)*0.4),262px)] -rotate-[5deg] opacity-80 [filter:brightness(.82)] lg:block" style={{ animationDelay: "520ms" }}>
-                <Device label="">{lg ? <LazyReady active lang={lang} /> : <div className="absolute inset-0 bg-[#111111]" />}</Device>
+                <Device label="">{lg ? <LazyReady active lang={lang} /> : <div className="absolute inset-0 bg-[rgb(var(--bg-rgb))]" />}</Device>
               </div>
               <div className="hs-device relative z-10 mx-auto w-[min(64vw,260px)] md:w-[min(100%,250px)] lg:absolute lg:right-[2%] lg:top-1/2 lg:mx-0 lg:w-[clamp(232px,calc((100svh-var(--header-h)-96px)*0.461),300px)] lg:-translate-y-1/2" style={{ animationDelay: "360ms" }}>
                 <Device label={t.alts[1]}><WorkScreen active lang={lang} /></Device>

@@ -8,7 +8,7 @@ const W = 1180, H = 720;
 export function Fit({ children }: { children: React.ReactNode }) {
   const r = useRef<HTMLDivElement>(null); const [k, setK] = useState(0.5);
   useEffect(() => { const el = r.current; if (!el) return; const ro = new ResizeObserver(() => setK(el.clientWidth / W)); ro.observe(el); return () => ro.disconnect(); }, []);
-  return (<div ref={r} className="relative w-full overflow-hidden" style={{ height: H * k }}><div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${k})` }}>{children}</div></div>);
+  return (<div ref={r} className="dark relative w-full overflow-hidden" style={{ height: H * k }}><div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${k})` }}>{children}</div></div>);
 }
 
 // Palette mirrors the phone app: bg #111111, cards #161616, tracks #252525. Orange appears once: the "needs review" marker.

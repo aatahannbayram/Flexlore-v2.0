@@ -16,7 +16,7 @@ export function CtaDuo({ lang }: { lang: Lang }) {
   const on = useInView(ref, { amount: 0.3 });
   const tr = lang === "tr";
   return (
-    <div ref={ref} className="relative aspect-[2752/1536] w-full overflow-hidden rounded-[24px] [mask-image:radial-gradient(ellipse_75%_80%_at_55%_50%,#000_60%,transparent_100%)]">
+    <div ref={ref} className="dark relative aspect-[2752/1536] w-full overflow-hidden rounded-[24px] [mask-image:radial-gradient(ellipse_75%_80%_at_55%_50%,#000_60%,transparent_100%)]">
       <picture>
         <source srcSet="/photos/device-duo-800.avif 800w, /photos/device-duo-1600.avif 1600w, /photos/device-duo-2400.avif 2400w" sizes="(min-width:1024px) 60vw, 100vw" type="image/avif" />
         <img src="/photos/device-duo-1600.webp" srcSet="/photos/device-duo-800.webp 800w, /photos/device-duo-1600.webp 1600w, /photos/device-duo-2400.webp 2400w" sizes="(min-width:1024px) 60vw, 100vw" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />

@@ -22,7 +22,7 @@ const CHIP_ICON = [() => <span className="block h-2.5 w-2.5 rounded-full bg-dang
 function Chip({ i, chips }: { i: number; chips: [string, string][] }) {
   const Ic = CHIP_ICON[i];
   return (
-    <span className="flex items-center gap-3 whitespace-nowrap rounded-2xl bg-[rgb(31_31_31/0.92)] px-4 py-3 backdrop-blur-md">
+    <span className="dark flex items-center gap-3 whitespace-nowrap rounded-2xl bg-[rgb(31_31_31/0.92)] px-4 py-3 backdrop-blur-md">
       <span className="grid h-8 w-8 place-items-center rounded-xl bg-white/[.08] text-ink"><Ic /></span>
       <span><span className="block text-[14px] font-semibold tracking-[-.01em]">{chips[i][0]}</span><span className="block text-[12px] text-ice-300">{chips[i][1]}</span></span>
       {i === 3 && <CheckCircle size={16} weight="fill" className="text-ice-200" />}
@@ -91,7 +91,7 @@ export function ScrollStory({ t, lang }: { t: C; lang: Lang }) {
 
             {/* Desktop stage: one calm panel with faint footage, an upright phone and a fixed info chip in the corner. */}
             <div className="relative col-span-12 hidden lg:col-span-7 lg:block">
-              <div className="relative h-[min(680px,calc(100svh-120px))] overflow-hidden rounded-[32px] bg-surface-1">
+              <div className="dark relative h-[min(680px,calc(100svh-120px))] overflow-hidden rounded-[32px] bg-surface-1">
                 <picture aria-hidden="true"><source srcSet="/video/kitchen-bg.avif" type="image/avif" /><img src="/video/kitchen-bg.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-[0.16]" /></picture>
                 <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(25_25_25/0.2),rgb(25_25_25/0.85))]" />
                 <AnimatePresence mode="wait" initial={false}>

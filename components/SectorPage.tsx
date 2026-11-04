@@ -25,7 +25,7 @@ export default function SectorPage({ i }: { i: number }) {
     <>
       <Header />
       <main id="main">
-        <section ref={hero} className="relative h-svh overflow-hidden">
+        <section ref={hero} className="dark relative h-svh overflow-hidden">
           <motion.div style={{ scale: vs }} className="absolute inset-0"><Video name={s.v} eager /></motion.div>
           <div className="absolute inset-0 bg-black/45" />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-black via-black/75 to-transparent" />
@@ -56,7 +56,7 @@ export default function SectorPage({ i }: { i: number }) {
                     </button>
                   </li>))}
               </ul>
-              <div className="relative min-h-[22rem] overflow-hidden bg-neutral-950 p-8 md:p-10">
+              <div className="dark relative min-h-[22rem] overflow-hidden bg-neutral-950 p-8 md:p-10">
                 <img src={s.still} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25" />
                 <div className="absolute inset-0 bg-gradient-to-br from-black/90 to-black/50" />
                 <motion.div key={sop} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="relative">
@@ -111,7 +111,7 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
-        <Link href={`/sektor/${next.slug}/`} className="group relative flex h-[80svh] items-end overflow-hidden pb-16">
+        <Link href={`/sektor/${next.slug}/`} className="dark group relative flex h-[80svh] items-end overflow-hidden pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-80"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
           <div className="relative w-full container-x"><p className="mono text-xs uppercase tracking-[.18em] text-ice-400">Next sector · {next.idx}</p>

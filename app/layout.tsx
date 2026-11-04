@@ -27,5 +27,5 @@ const ld = [
     description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en" className={schibsted.variable}><head><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased"><MotionProvider>{children}</MotionProvider></body></html>);
+  return (<html lang="en" className={schibsted.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("flx-theme")==="light"){document.documentElement.dataset.theme="light";document.querySelector('meta[name="theme-color"]')?.setAttribute("content","#FAF8F5")}}catch(e){}` }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased"><MotionProvider>{children}</MotionProvider></body></html>);
 }

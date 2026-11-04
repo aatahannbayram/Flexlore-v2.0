@@ -33,7 +33,7 @@ export function ProblemChapters({ lang }: { lang: Lang }) {
   useEffect(() => scrollYProgress.on("change", (v) => setOn(Math.min(ch.length - 1, Math.max(0, Math.floor(v * ch.length))))), [scrollYProgress, ch.length]);
   const x = ch[on];
   return (
-    <section ref={ref} id="problem" aria-labelledby="problem-h" className="relative bg-bg" style={{ height: `${ch.length * 100}svh` }}>
+    <section ref={ref} id="problem" aria-labelledby="problem-h" className="dark relative bg-bg" style={{ height: `${ch.length * 100}svh` }}>
       <ul className="sr-only">{ch.map((y) => <li key={y.k}><h3>{y.k}: {y.h}</h3><p>{y.p}</p></li>)}</ul>
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Stage: footage crossfades; only the active clip and its neighbours are mounted. */}
@@ -47,9 +47,9 @@ export function ProblemChapters({ lang }: { lang: Lang }) {
                     {Math.abs(i - on) <= 1 && <SmartVideo name={y.v} poster={`/video/${y.v}.webp`} threshold={0.2} play={i === on} />}
                   </>}
             </div>))}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.92)_0%,rgb(17_17_17/0.72)_45%,rgb(17_17_17/0.5)_100%)]" />
-          <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,#111111,rgb(17_17_17/0))]" />
-          <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,#111111,rgb(17_17_17/0))]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(var(--bg-rgb)/0.92)_0%,rgb(var(--bg-rgb)/0.72)_45%,rgb(var(--bg-rgb)/0.5)_100%)]" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgb(var(--bg-rgb)),rgb(var(--bg-rgb)/0))]" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,rgb(var(--bg-rgb)),rgb(var(--bg-rgb)/0))]" />
         </div>
 
         <div className="container-x relative flex h-full flex-col justify-center pb-24 pt-[calc(var(--header-h)+24px)]">
@@ -72,14 +72,14 @@ export function ProblemChapters({ lang }: { lang: Lang }) {
                     className="mt-4 max-w-[16ch] text-[clamp(38px,1rem+4vw,80px)] font-[620] leading-[1.02] tracking-[-0.042em] text-ink [text-wrap:balance]">{x.h}</m.p>
                 </div>
                 <m.p variants={{ hide: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.2, ease: EASE } } }}
-                  className="mt-6 max-w-[30rem] rounded-2xl bg-[rgb(17_17_17/0.55)] p-5 text-[17px] leading-[1.5] text-ice-200 backdrop-blur-md">{x.p}</m.p>
+                  className="mt-6 max-w-[30rem] rounded-2xl bg-[rgb(var(--bg-rgb)/0.55)] p-5 text-[17px] leading-[1.5] text-ice-200 backdrop-blur-md">{x.p}</m.p>
               </m.div>
             </AnimatePresence>
           </div>
         </div>
 
         {/* Progress pill: inside the stage, so it is visible only while this section is. */}
-        <div aria-hidden="true" className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-4 rounded-full bg-[rgb(17_17_17/0.8)] py-2 pl-5 pr-2 ring-1 ring-white/10 backdrop-blur-xl md:bottom-8">
+        <div aria-hidden="true" className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-4 rounded-full bg-[rgb(var(--bg-rgb)/0.8)] py-2 pl-5 pr-2 ring-1 ring-white/10 backdrop-blur-xl md:bottom-8">
           <span className="flex flex-col">
             <span className="text-[10px] uppercase tracking-[.16em] text-ice-500">{lang === "tr" ? "Bölüm" : "Chapter"} {String(on + 1).padStart(2, "0")}</span>
             <span className="min-w-[9rem] text-[13px] font-semibold text-ink">{x.k}</span>

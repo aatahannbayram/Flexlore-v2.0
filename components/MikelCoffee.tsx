@@ -221,8 +221,8 @@ export default function MikelCoffee() {
   useEffect(() => { document.documentElement.lang = l; }, [l]);
   const sec = "relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent";
   return (<>
-    <Header lang={l} setLang={setL} brand={<span className="ml-3 flex items-center gap-3"><span aria-hidden="true" className="text-sm text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-7 w-auto" /></span>} />
-    <main id="main" className="bg-[#0c0a09] text-[#f4efe8]">
+    <div className="dark"><Header lang={l} setLang={setL} brand={<span className="ml-3 flex items-center gap-3"><span aria-hidden="true" className="text-sm text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-7 w-auto" /></span>} /></div>
+    <main id="main" className="dark bg-[#0c0a09] text-[#f4efe8]">
       {/* hero */}
       <section className="relative h-svh overflow-hidden">
         <Video name="coffee" eager /><div className="absolute inset-0 bg-black/50" /><div className="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-[#0c0a09] via-[#0c0a09]/70 to-transparent" />

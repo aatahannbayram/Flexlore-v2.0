@@ -178,7 +178,7 @@ export function ReadyScreen({ active, lang = "en" }: ScreenProps) {
  *  bottom edges. Content renders at a 693pt landscape design width. */
 export function DeviceLandscape({ children, label }: { children: React.ReactNode; label: string }) {
   const btn = "absolute h-[3px] bg-[#3b3b3e]";
-  return (<div role="img" aria-label={label} className="relative aspect-[852/393] w-full">
+  return (<div role="img" aria-label={label} className="dark relative aspect-[852/393] w-full">
     <span className={`${btn} -top-[2px] left-[16%] w-[4%] rounded-t-sm`} /><span className={`${btn} -top-[2px] left-[23%] w-[7.5%] rounded-t-sm`} /><span className={`${btn} -top-[2px] left-[32%] w-[7.5%] rounded-t-sm`} /><span className={`${btn} -bottom-[2px] left-[26%] w-[11%] rounded-b-sm`} />
     <div className="absolute inset-0 rounded-[3.2rem] bg-[#2a2a2d] p-[2.5px] ring-1 ring-white/10">
       <div className="h-full w-full rounded-[3.05rem] bg-[#050506] p-[1px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]">

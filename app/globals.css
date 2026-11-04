@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./theme-light.css";
 
 /* Flexlore Hyper tokens for the marketing site. Source: design system artifact TsCpj6SbKJv5KKHK3YwiUB + redesign brief 3.2.
    Contrast for every pair below is checked by scripts/contrast.mjs (runs before every build). */
@@ -63,6 +64,7 @@
 }
 
 :root {
+  --bg-rgb: 17 17 17;
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
@@ -71,7 +73,7 @@
 }
 @media (max-width: 767px) { :root { --gutter: 16px; } }
 
-html { background: var(--color-bg); color: var(--color-ink); }
+html { background: var(--color-bg); color: var(--color-ink); color-scheme: dark; }
 body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.55; -webkit-font-smoothing: antialiased; }
 ::selection { background: var(--color-accent); color: var(--color-on-accent); }
 
@@ -198,3 +200,40 @@ main:not([lang="tr"]) .l-tr { display: none; }
   .smap-flow, .smap-on .smap-pulse { animation: none; }
   .smap-bar { width: var(--w); transition: none; } .smap-step { background-color: rgb(231 235 235 / .75); } .smap-tick { transform: scale(1); transition: none; }
 }
+
+/* ---------- Light mode ----------
+   The site is dark by default. `data-theme="light"` on <html> (header toggle, remembered per browser) re-points the
+   colour tokens at a warm neutral ground. `.dark` keeps a dark scope inside light mode: app screens, the web dashboard,
+   cinematic photo bands and anything that sits on a photograph. White utilities are remapped in theme-light.css. */
+:root[data-theme="light"] {
+  color-scheme: light; --bg-rgb: 250 248 245;
+  --color-bg: #FAF8F5; --color-surface-1: #FFFFFF; --color-surface-2: #F1EDE7;
+  --color-line: rgb(22 22 22 / 0.08); --color-line-strong: rgb(22 22 22 / 0.16);
+  --color-ink: #161616; --color-ink-muted: #55524D; --color-ink-faint: #6E6A64;
+  --color-ice-50: #161616; --color-ice-100: #1E1E1E; --color-ice-200: #2B2B2B; --color-ice-300: #45423E; --color-ice-400: #5E5A55; --color-ice-500: #6E6A64; --color-ice-900: #F1EDE7;
+  --color-accent-text: #A8491B; --color-calm-aqua: #3B7C6D; --color-calm-lilac: #584993;
+  --color-bg2: #FFFFFF; --color-card: #FFFFFF; --color-ash: #6E6A64;
+  --color-light-bg: #F1EDE7; --color-light-surface: #E9E4DC;
+}
+:root[data-theme="light"] .dark {
+  --bg-rgb: 17 17 17;
+  --color-bg: #111111; --color-surface-1: #191919; --color-surface-2: #1F1F1F;
+  --color-line: rgb(255 255 255 / 0.08); --color-line-strong: rgb(255 255 255 / 0.16);
+  --color-ink: #EEF1F1; --color-ink-muted: #B2B2B2; --color-ink-faint: #8A8A8A;
+  --color-ice-50: #F4F6F6; --color-ice-100: #E7EBEB; --color-ice-200: #D2D8D9; --color-ice-300: #B3BCBE; --color-ice-400: #8C9698; --color-ice-500: #6B7476; --color-ice-900: #1B1E1F;
+  --color-accent-text: #F08551; --color-calm-aqua: #68D2B9; --color-calm-lilac: #B4A7E5;
+  --color-bg2: #191919; --color-card: #1F1F1F; --color-ash: #8A8A8A;
+  color-scheme: dark; color: var(--color-ink);
+}
+:root[data-theme="light"] .btn-primary:not(.dark *), :root[data-theme="light"] .btn-p:not(.dark *) { background: #161616; color: #FAF8F5; }
+:root[data-theme="light"] .btn-primary:not(.dark *):hover, :root[data-theme="light"] .btn-p:not(.dark *):hover { background: #000000; }
+:root[data-theme="light"] .btn-secondary:not(.dark *), :root[data-theme="light"] .btn-g:not(.dark *) { background: rgb(22 22 22 / 0.06); color: #161616; }
+:root[data-theme="light"] .btn-secondary:not(.dark *):hover, :root[data-theme="light"] .btn-g:not(.dark *):hover { background: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] .prose-blog a { text-decoration-color: rgb(22 22 22 / .35); }
+/* Brand wordmark: the dark-ground file by default, the light-ground file in light mode. */
+.logo-light { display: none; }
+:root[data-theme="light"] .logo-dark:not(.dark *) { display: none; }
+:root[data-theme="light"] .logo-light:not(.dark *) { display: block; }
+/* Black fills that only existed to sit on the dark ground become the page's cards in light mode. */
+:root[data-theme="light"] .bg-black:not(.dark, .dark *), :root[data-theme="light"] .bg-neutral-950:not(.dark, .dark *) { background-color: var(--color-surface-1); }
+:root[data-theme="light"] .bg-black\/40:not(.dark, .dark *), :root[data-theme="light"] .bg-black\/30:not(.dark, .dark *), :root[data-theme="light"] .bg-black\/20:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.045); }

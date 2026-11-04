@@ -101,7 +101,7 @@ export function TabletScreen({ active, lang = "en" }: { active: boolean; lang?: 
 /** iPad Pro 11" in landscape: thin black bezel, rounded rim, camera on the top edge. */
 export function DeviceTablet({ children, label }: { children: React.ReactNode; label: string }) {
   return (
-    <div role="img" aria-label={label} className="relative aspect-[1194/834] w-full">
+    <div role="img" aria-label={label} className="dark relative aspect-[1194/834] w-full">
       <div className="absolute inset-0 rounded-[2.4rem] bg-[#2a2a2d] p-[2px] ring-1 ring-white/10">
         <div className="h-full w-full rounded-[2.3rem] bg-black p-[14px]">
           <span className="absolute left-1/2 top-[7px] h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-[#1b1b1d]" />

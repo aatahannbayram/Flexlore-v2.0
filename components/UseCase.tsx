@@ -32,7 +32,7 @@ export default function UseCase({ c }: { c: UC }) {
   return (<>
     <Bar />
     <main id="main">
-      <section className="relative flex min-h-[88svh] items-end overflow-hidden pb-14 pt-36">
+      <section className="dark relative flex min-h-[88svh] items-end overflow-hidden pb-14 pt-36">
         <img src={c.img} alt={c.alt} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         <div className="relative w-full container-x">

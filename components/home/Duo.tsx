@@ -51,7 +51,7 @@ export function Duo({ lang }: { lang: Lang }) {
   const reflect = { WebkitBoxReflect: "below 10px linear-gradient(transparent 72%, rgb(255 255 255 / 0.10))" } as React.CSSProperties;
 
   return (
-    <section ref={ref} id="duo" aria-labelledby="duo-h" onPointerMove={onMove} className="relative isolate overflow-hidden bg-bg py-[var(--section-y)]">
+    <section ref={ref} id="duo" aria-labelledby="duo-h" onPointerMove={onMove} className="dark relative isolate overflow-hidden bg-bg py-[var(--section-y)]">
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <picture><source srcSet="/video/gen-hands.avif" type="image/avif" /><img src="/video/gen-hands.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" /></picture>
         {near && <div className="absolute inset-0 opacity-25"><SmartVideo name="gen-hands" poster="/video/gen-hands.webp" threshold={0.2} /></div>}

@@ -52,7 +52,7 @@ export function Capabilities({ lang }: { lang: Lang }) {
         <Reveal as="ul" stagger={0.1} className="no-sb -mx-[var(--pad-x)] mt-14 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] pb-1 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0">
           {c.cards.map((card, i) => (
             <RevealItem as="li" key={card.h} className="w-[82%] shrink-0 snap-start md:w-auto">
-              <article className="relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-[28px] bg-surface-1 p-4 sm:p-5">
+              <article className="dark relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-[28px] bg-surface-1 p-4 sm:p-5">
                 <picture aria-hidden="true"><source srcSet={`/video/${MEDIA[i]}.avif`} type="image/avif" /><img src={`/video/${MEDIA[i]}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
                 <SmartVideo name={MEDIA[i]} poster={`/video/${MEDIA[i]}.webp`} threshold={0.6} />
                 <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.25)_0%,rgb(17_17_17/0)_35%,rgb(17_17_17/0.9)_100%)]" />

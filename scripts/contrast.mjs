@@ -6,6 +6,7 @@ const T = {
   accent: "#EC6726", "accent-strong": "#D75E23", "accent-text": "#F08551", "on-accent": "#111111",
   "calm-aqua": "#68D2B9", "calm-lilac": "#B4A7E5",
   "ice-100": "#E7EBEB", "ice-300": "#B3BCBE", "ice-400": "#8C9698", "ice-500": "#6B7476",
+  "v3-bg": "#FAF8F5", "v3-band": "#F1EDE7", "v3-ink": "#161616", "v3-muted": "#55524D", "v3-faint": "#6E6A64", "v3-ice-400": "#5E5A55", "v3-aqua": "#3B7C6D", "v3-orange-text": "#A8491B",
   "light-bg": "#F4F6F6", "light-surface": "#E7EBEB", white: "#FFFFFF", "light-ink": "#333333", "light-muted": "#666666", "light-accent-text": "#A8491B",
 };
 const lum = (hex) => { const c = hex.replace("#", "").match(/../g).map((x) => parseInt(x, 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
@@ -22,6 +23,9 @@ const PAIRS = [
   ["ice-300", "bg", 4.5, "labels"], ["ice-400", "bg", 4.5, "eyebrow, muted headline"], ["ice-400", "surface-1", 4.5], ["bg", "ice-100", 4.5, "primary button"], ["ice-100", "bg", 4.5, "inverted card text"],
   ["light-ink", "white", 4.5, "card on light"], ["light-muted", "white", 4.5],
   ["light-ink", "light-bg", 4.5], ["light-ink", "light-surface", 4.5], ["light-muted", "light-bg", 4.5], ["light-muted", "light-surface", 4.5],
+  ["v3-ink", "v3-bg", 4.5, "v3 light page"], ["v3-muted", "v3-bg", 4.5], ["v3-faint", "v3-bg", 4.5], ["v3-ice-400", "v3-bg", 4.5],
+  ["v3-ink", "v3-band", 4.5], ["v3-muted", "v3-band", 4.5], ["v3-faint", "v3-band", 4.5], ["v3-faint", "white", 4.5], ["v3-aqua", "white", 4.5],
+  ["v3-orange-text", "v3-bg", 4.5], ["accent", "v3-bg", 3, "display payoff 40px+"], ["v3-bg", "v3-ink", 4.5, "dark button on light"],
   ["light-accent-text", "light-bg", 4.5], ["light-accent-text", "light-surface", 4.5], ["bg", "light-surface", 4.5, "dark button on light"],
 ];
 let fail = 0;

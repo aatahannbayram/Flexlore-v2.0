@@ -24,7 +24,7 @@ export function StandardMap({ lang }: { lang: Lang }) {
   }, []);
   const ys = [17, 50, 83]; // location card centres, % of height
   return (
-    <div ref={ref} aria-hidden="true" className={`smap relative mx-auto aspect-[3/4] w-full max-w-[560px] sm:aspect-[5/4] ${on ? "smap-on" : ""}`}>
+    <div ref={ref} aria-hidden="true" className={`dark smap relative mx-auto aspect-[3/4] w-full max-w-[560px] sm:aspect-[5/4] ${on ? "smap-on" : ""}`}>
       {/* Light paths from the job card to each location */}
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full overflow-visible">
         {ys.map((y, i) => (

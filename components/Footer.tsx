@@ -59,7 +59,7 @@ export function Footer({ lang = "en" }: { lang?: L }) {
           {/* Brand: stacked on phone, a row on tablet, a column on desktop */}
           <div className="gap-8 md:flex md:items-end md:justify-between lg:col-span-4 lg:block">
             <div>
-              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={128} height={28} className="h-7 w-auto" />
+              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={128} height={28} className="logo-dark h-7 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={128} height={28} className="logo-light h-7 w-auto" />
               <p className="mt-5 max-w-[30ch] leading-[1.5] text-ink-muted">{f.tag}</p>
               <a href="mailto:support@flexlore.com" className="group mt-6 inline-flex min-h-11 items-center gap-2.5 rounded-full bg-white/[.05] pl-4 pr-5 text-ink transition-colors duration-200 hover:bg-white/[.1]">
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />support@flexlore.com

@@ -55,7 +55,7 @@ export function Scaled({ children, base = 320 }: { children: React.ReactNode; ba
 /** iPhone 15 Pro-style frame: titanium rim, inner black bezel, Dynamic Island. */
 export function Device({ children, label }: { children: React.ReactNode; label: string }) {
   const btn = "absolute w-[3px] bg-[#3b3b3e]";
-  return (<div role="img" aria-label={label} className="relative aspect-[393/852] w-full">
+  return (<div role="img" aria-label={label} className="dark relative aspect-[393/852] w-full">
     <span className={`${btn} -left-[2px] top-[16%] h-[4%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[23%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[32%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -right-[2px] top-[26%] h-[11%] rounded-r-sm`} />
     <div className="absolute inset-0 rounded-[3.2rem] bg-[#2a2a2d] p-[2.5px] ring-1 ring-white/10">
       <div className="h-full w-full rounded-[3.05rem] bg-[#050506] p-[1px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]">

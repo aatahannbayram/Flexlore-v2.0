@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { ThemeToggle } from "./ui/ThemeToggle";
 import dynamic from "next/dynamic";
 import { AnimatePresence, m, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
 import { Pause, Play, List, X, CaretDown, MagnifyingGlass } from "./ui/icons";
@@ -80,11 +81,11 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined || mega ? "bg-[rgb(17_17_17/0.86)]" : "bg-[rgb(17_17_17/0.55)]"}`}>
+        className={`fixed inset-x-0 top-0 z-40 backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined || mega ? "bg-[rgb(var(--bg-rgb)/0.86)]" : "bg-[rgb(var(--bg-rgb)/0.55)]"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 items-center" aria-label="Flexlore home">
-              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
+              <><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="logo-dark h-6 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={110} height={24} className="logo-light h-6 w-auto" /></>
             </a>{brand}
           </div>
 
@@ -114,7 +115,7 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
               className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:w-auto lg:gap-2 lg:bg-white/[.06] lg:px-3.5 lg:text-sm">
               <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{tr ? "Ara" : "Search"}</span><span className="sr-only">{tr ? ": sitede" : " the site"}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
             </button>
-            <div className="hidden sm:block">{LangSwitch}</div>
+            <ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div>
             <a href={SITE.demo} className="btn btn-primary btn-sm">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -129,13 +130,13 @@ export function Header({ lang = "en", setLang, paused = false, setPaused, motion
           <m.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
             className="fixed inset-0 z-50 flex flex-col bg-bg">
             <div className="container-x flex h-[var(--header-h)] shrink-0 items-center justify-between">
-              <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="h-6 w-auto" />
+              <><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="logo-dark h-6 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={110} height={24} className="logo-light h-6 w-auto" /></>
               <button type="button" onClick={() => setOpen(false)} aria-label={t.close} autoFocus className="grid h-11 w-11 place-items-center rounded-full"><X size={22} aria-hidden="true" /></button>
             </div>
             <MobileMenuBody lang={lang} home={home} close={() => setOpen(false)} openSearch={() => setSearch(true)} pricing={t.navP} />
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
               {LangSwitch}
-              <a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
+              <ThemeToggle lang={lang} /><a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
             </div>
           </m.div>)}
       </AnimatePresence>

@@ -21,7 +21,7 @@ export function MountShot({ active, lang }: { active: boolean; lang: Lang }) {
     ro.observe(el); return () => ro.disconnect();
   }, []);
   return (
-    <div ref={box} className="absolute inset-0 overflow-hidden">
+    <div ref={box} className="dark absolute inset-0 overflow-hidden">
       <div className="absolute left-0 top-0 origin-top-left" style={{ width: DW, height: DH, transform: `translate(${t.x}px,${t.y}px) scale(${t.k})`, visibility: t.k ? "visible" : "hidden" }}>
         <picture>
           <source srcSet="/photos/phone-mount-1600.avif" type="image/avif" />

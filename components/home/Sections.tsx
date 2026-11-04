@@ -81,7 +81,7 @@ export function Problem({ lang }: { lang: Lang }) {
           <p className="lead mt-6 max-w-[26rem]">{c.p}</p>
         </Reveal>
         <div className="col-span-12 lg:col-span-7">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-1 sm:aspect-[16/12]">
+          <div className="dark relative aspect-[4/5] overflow-hidden rounded-[28px] bg-surface-1 sm:aspect-[16/12]">
             <picture><source srcSet="/video/plating.avif" type="image/avif" /><img src="/video/plating.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
             <SmartVideo name="plating" poster="/video/plating.webp" threshold={0.4} />
             <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
@@ -176,7 +176,7 @@ export function Industries({ lang }: { lang: Lang }) {
                 </Link>
               </RevealItem>))}
           </Reveal>
-          <div aria-hidden="true" className="relative hidden overflow-hidden rounded-[28px] bg-surface-1 lg:col-span-6 lg:block">
+          <div aria-hidden="true" className="dark relative hidden overflow-hidden rounded-[28px] bg-surface-1 lg:col-span-6 lg:block">
             {IND_CARDS.map((x, i) => (
               <div key={x.slug} className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-[var(--ease-out-expo)] ${on === i ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}`}>
                 {x.slug === "uretim" ? <MountShot active={on === i} lang={lang} /> : <>
@@ -190,7 +190,7 @@ export function Industries({ lang }: { lang: Lang }) {
           </div>
         </div>
         {/* Other areas (no page yet) and languages, over a slow, darkened kitchen loop. */}
-        <div className="relative mt-16 overflow-hidden rounded-[28px] bg-surface-1 px-5 py-14 text-center md:mt-20 md:py-20">
+        <div className="dark relative mt-16 overflow-hidden rounded-[28px] bg-surface-1 px-5 py-14 text-center md:mt-20 md:py-20">
           <div aria-hidden="true" className="absolute inset-0">
             <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-45 blur-[2px]" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0.88)_70%,#111111_100%)]" />
