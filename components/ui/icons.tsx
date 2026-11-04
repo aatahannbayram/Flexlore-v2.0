@@ -22,6 +22,7 @@ export { CheckCircle } from "./icons/CheckCircle";
 export { Code } from "./icons/Code";
 export { Coffee } from "./icons/Coffee";
 export { CookingPot } from "./icons/CookingPot";
+export { DeviceMobile } from "./icons/DeviceMobile";
 export { DotsThree } from "./icons/DotsThree";
 export { DotsThreeCircle } from "./icons/DotsThreeCircle";
 export { EnvelopeSimple } from "./icons/EnvelopeSimple";

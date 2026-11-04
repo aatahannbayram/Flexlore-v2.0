@@ -285,3 +285,6 @@ html body { transition: opacity .25s ease; }
 .rot-in { animation: rotIn .45s var(--ease-out-expo) both; }
 @keyframes rotIn { from { transform: translateY(70%); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .rot-in { animation: none; } }
+.int-pulse { animation: intPulse 3s ease-in-out infinite; }
+@keyframes intPulse { 0% { outline: 1px solid rgb(231 235 235 / 0.25); outline-offset: 0; } 70%, 100% { outline: 1px solid rgb(231 235 235 / 0); outline-offset: 14px; } }
+@media (prefers-reduced-motion: reduce) { .int-pulse { animation: none; } }
