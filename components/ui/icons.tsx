@@ -2,6 +2,7 @@
 export { ArrowCounterClockwise } from "./icons/ArrowCounterClockwise";
 export { ArrowRight } from "./icons/ArrowRight";
 export { ArrowsClockwise } from "./icons/ArrowsClockwise";
+export { ArrowsLeftRight } from "./icons/ArrowsLeftRight";
 export { Article } from "./icons/Article";
 export { Barbell } from "./icons/Barbell";
 export { Bed } from "./icons/Bed";

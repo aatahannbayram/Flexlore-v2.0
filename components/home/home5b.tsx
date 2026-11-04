@@ -8,14 +8,14 @@ import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE, PLANS, savePct } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { LOCALES } from "../i18n/locales";
-import { EXTRA, INTEG } from "../i18n/extra";
+import { EXTRA, INTEG, COMPARE5 } from "../i18n/extra";
 import { Device, WorkScreen } from "../AppScreens";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, inner, Corner, Title, type Ic } from "./home5";
 import {
   ArrowRight, Check, CheckCircle, Users, BookOpen, Sparkle, MapPin, LockSimple, FilmSlate, Question, ChartBar,
-  Plus, ShieldCheck, ListChecks, Pause, Play, CookingPot, GraduationCap, UserPlus, Storefront, FirstAid, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle,
+  Plus, ShieldCheck, ListChecks, Pause, Play, X, ArrowsLeftRight, CookingPot, GraduationCap, UserPlus, Storefront, FirstAid, ChalkboardTeacher, Barbell, Ticket, DotsThreeCircle,
   PlugsConnected, ChatCircle, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code, DeviceMobile, Browser,
 } from "../ui/icons";
 
@@ -23,6 +23,34 @@ const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
+
+/* ---------- 3b. Before and after: the usual way vs Flexlore, row by row ---------- */
+export function Compare5() {
+  const { locale } = useLocale(); const c = COMPARE5[locale];
+  return (
+    <section aria-labelledby="cmp5-h" className="section-y pt-0">
+      <div className="container-x">
+        <div className="grid-12 items-end gap-y-5">
+          <div className="col-span-12 lg:col-span-7"><Label icon={ArrowsLeftRight}>{c.k}</Label><H2 id="cmp5-h" className="max-w-[18ch]">{c.h}</H2></div>
+          <p className="col-span-12 max-w-[34rem] text-[17px] leading-[1.6] text-ink-muted lg:col-span-5">{c.lead}</p>
+        </div>
+        <div className={`${card} mt-12 p-2 md:p-3`}>
+          <div className="hidden grid-cols-[1fr_44px_1fr] items-center px-5 pb-3 pt-4 text-[13px] font-medium md:grid">
+            <span className="text-ink-faint">{c.old}</span><span />
+            <span className="flex items-center gap-2 text-ink"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
+          </div>
+          <Reveal as="ul" stagger={0.07} className="space-y-1.5">
+            {c.rows.map(([o, n]) => (
+              <RevealItem as="li" key={o} className="grid items-center gap-2 rounded-[18px] bg-[var(--card-2)] p-4 md:grid-cols-[1fr_44px_1fr] md:gap-0 md:px-5">
+                <span className="flex items-center gap-3 text-[15px] text-ink-faint"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--card)]"><X size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.old}: </span>{o}</span></span>
+                <ArrowRight size={16} aria-hidden="true" className="hidden justify-self-center text-ink-faint md:block rtl:-scale-x-100" />
+                <span className="flex items-center gap-3 text-[15px] font-medium text-ink"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ink text-bg"><Check size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.now}: </span>{n}</span></span>
+              </RevealItem>))}
+          </Reveal>
+        </div>
+      </div>
+    </section>);
+}
 
 /* ---------- 4. Process: one story, four steps, one stage ---------- */
 const STAGE = [{ v: "kitchen", icon: FilmSlate }, { v: "line", icon: Sparkle }, { v: "plating", icon: ListChecks }, { v: "coffee", icon: ChartBar }] as const;
@@ -634,5 +662,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the process section, in page order. */
 export default function Below() {
-  return (<><Process5 /><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
+  return (<><Compare5 /><Process5 /><Caps5 /><Bento5 /><Roles5 /><Workspace5 /><Web5 /><AI5 /><Statement5 /><Industries5 /><Cases5 /><Pricing5 /><Faq5 /><End5 /></>);
 }
