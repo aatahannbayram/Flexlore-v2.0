@@ -8,7 +8,6 @@ import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
 import { Rotator } from "../ui/Rotator";
 import { MagneticButton } from "../ui/MagneticButton";
-import { SmartVideo } from "../ui/SmartVideo";
 import { VideoModal } from "../ui/VideoModal";
 
 /** Hero. Split 12-column layout: copy in columns 1 to 6, the product in a device frame in 7 to 12. Text and media never overlap.
@@ -19,18 +18,18 @@ const LazyReady = dynamic(() => import("../AppScreensStory").then((x) => x.Ready
 
 export function Hero({ t, lang }: { t: C; lang: Lang }) {
   const [demo, setDemo] = useState(false);
-  // The background loop only plays on wider screens; phones keep the still (saves ~0.4 MB on mobile data).
-  const [wide, setWide] = useState(false);
   const [lg, setLg] = useState(false);
-  useEffect(() => { setWide(window.matchMedia("(min-width: 768px)").matches); setLg(window.matchMedia("(min-width: 1024px)").matches); }, []);
+  useEffect(() => { setLg(window.matchMedia("(min-width: 1024px)").matches); }, []);
   let w = 0;
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
-      {/* Background: warm kitchen loop at ~20%, faded toward #111111. Poster only under reduced motion / Save-Data. */}
+      {/* Background: a warm kitchen-line photograph at ~32% with a very slow push-in (CSS, off under reduced motion), faded toward #111111. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 opacity-[0.2]">
-          <picture><source srcSet="/video/kitchen-bg.avif" type="image/avif" /><img src="/video/kitchen-bg.webp" alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
-          {wide && <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} idle />}
+        <div className="absolute inset-0 opacity-[0.32]">
+          <picture>
+            <source srcSet="/photos/kitchenline-800.avif 800w, /photos/kitchenline-1600.avif 1600w" sizes="100vw" type="image/avif" />
+            <img src="/photos/kitchenline-1600.webp" srcSet="/photos/kitchenline-800.webp 800w, /photos/kitchenline-1600.webp 1600w" sizes="100vw" alt="" fetchPriority="low" className="kenburns absolute inset-0 h-full w-full object-cover object-[70%_center]" />
+          </picture>
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#111111_0%,rgb(17_17_17/0.92)_45%,rgb(17_17_17/0.7)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(0deg,#111111,rgb(17_17_17/0))]" />

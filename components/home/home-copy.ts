@@ -158,8 +158,8 @@ export const home: Record<Lang, HomeCopy> = {
 export const IND_CARDS: { slug: string; v?: string; still: string; en: string; tr: string; lineEn: string; lineTr: string; featured: boolean }[] = [
   { slug: "restoran", v: "kitchen", still: "/video/kitchen.webp", en: "Restaurants", tr: "Restoranlar", lineEn: "Same plate, every shift.", lineTr: "Her vardiyada aynı tabak.", featured: true },
   { slug: "uretim", v: "line", still: "/video/line.webp", en: "Manufacturing", tr: "Üretim", lineEn: "Changeover, without the guesswork.", lineTr: "Tahmin yürütmeden kalıp değişimi.", featured: true },
-  { slug: "otel", v: "hotel2", still: "/video/hotel2.webp", en: "Hotels", tr: "Oteller", lineEn: "Every room to your house standard.", lineTr: "Her oda sizin standardınızda.", featured: true },
+  { slug: "otel", still: "/photos/hotel-desk-1600.webp", en: "Hotels", tr: "Oteller", lineEn: "Every room to your house standard.", lineTr: "Her oda sizin standardınızda.", featured: true },
   { slug: "franchise", v: "plating", still: "/video/plating.webp", en: "Franchises", tr: "Franchise", lineEn: "One launch, every branch.", lineTr: "Tek lansman, her şube.", featured: false },
   { slug: "depo", v: "warehouse2", still: "/video/warehouse2.webp", en: "Warehouses", tr: "Depolar", lineEn: "Picking and safety, learned the same way.", lineTr: "Toplama ve güvenlik, herkes aynı şekilde.", featured: false },
-  { slug: "firin", v: "gen-baker", still: "/video/gen-baker.webp", en: "Bakeries & cafés", tr: "Fırın ve kafeler", lineEn: "The recipe, not a guess.", lineTr: "Tahmin değil, tarif.", featured: false },
+  { slug: "firin", still: "/photos/cafe-opening-1600.webp", en: "Bakeries & cafés", tr: "Fırın ve kafeler", lineEn: "The recipe, not a guess.", lineTr: "Tahmin değil, tarif.", featured: false },
 ];

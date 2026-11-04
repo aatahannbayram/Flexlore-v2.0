@@ -171,3 +171,8 @@ details summary::-webkit-details-marker { display:none; }
 /* Server-rendered bilingual copy: show the language of the nearest [lang] block. */
 main[lang="tr"] .l-en { display: none; }
 main:not([lang="tr"]) .l-tr { display: none; }
+
+/* Very slow push-in for still backgrounds. */
+@keyframes kenburns { from { transform: scale(1.0) translate3d(0,0,0); } to { transform: scale(1.08) translate3d(-1.5%,-1%,0); } }
+.kenburns { animation: kenburns 28s ease-in-out infinite alternate; will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }

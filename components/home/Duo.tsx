@@ -14,7 +14,7 @@ import { CheckCircle, Sparkle, UsersThree } from "../ui/icons";
  * reflection grounds them. Three glass notes sit beside the copy.
  * The screens live in the lazy story module, so none of this weighs on the first load. */
 const Tablet = dynamic(() => import("../TabletScreen").then((x) => x.TabletScreen), { ssr: false, loading: () => <div className="h-full w-full bg-bg" /> });
-const DeviceTablet = dynamic(() => import("../TabletScreen").then((x) => x.DeviceTablet), { ssr: false, loading: () => <div className="aspect-[1194/834] w-full rounded-[2.4rem] bg-[#0b0b0b]" /> });
+const ScaledScreen = dynamic(() => import("../AppScreens").then((x) => x.Scaled), { ssr: false });
 
 const COPY = {
   en: { k: "On the floor", h: ["Find the job.", "Follow it step by step."], p: "Every job lives in your library. Open one and each step plays full screen, at the station, as often as it takes.",
@@ -40,7 +40,7 @@ export function Duo({ lang }: { lang: Lang }) {
   // Scroll: the pair turns in toward each other and settles as the stage crosses the viewport.
   const { scrollYProgress: sp } = useScroll({ target: stage, offset: ["start end", "center center"] });
   const backR = useTransform(sp, [0, 1], reduce ? [-8, -8] : [-22, -8]);
-  const frontR = useTransform(sp, [0, 1], reduce ? [-4, -4] : [-12, -4]);
+  const frontR = useTransform(sp, [0, 1], reduce ? [6, 6] : [16, 6]);
   const frontY = useTransform(sp, [0, 1], reduce ? [0, 0] : [80, 0]);
   // Pointer parallax (desktop only).
   const mx = useMotionValue(0), my = useMotionValue(0);
@@ -74,15 +74,24 @@ export function Duo({ lang }: { lang: Lang }) {
         <div ref={stage} className="relative lg:col-span-7">
           {/* Soft light pool under the pair. */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] bottom-[2%] h-[38%] rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgb(255_255_255/0.08),rgb(255_255_255/0)_70%)] blur-2xl" />
-          <div className="relative mx-auto max-w-[760px] pb-[12%] [perspective:1800px] lg:pb-[14%]">
-            {near ? (<>
-              <m.div style={{ rotateY: backR, x: lg ? bx : 0, y: lg ? by : 0 }} className="relative ml-auto w-[86%] [transform-style:preserve-3d]">
-                <div style={reflect}><DeviceTablet label={lang === "tr" ? "iPad'de Flexlore iş ekranı" : "Flexlore job screen on iPad"}><Tablet active={inView} lang={lang} /></DeviceTablet></div>
-              </m.div>
-              <m.div style={{ rotate: frontR, x: lg ? fx : 0, y: frontY, translateY: lg ? fy : 0 }} className="absolute bottom-0 left-0 z-10 w-[25%] max-w-[200px]">
+          {/* A real photograph of hands holding a tablet; the Flexlore tablet screen is fitted into its black display
+              (measured: left 26%, top 23.8%, 48.2% x 49.3% of the frame). The iPhone floats in the empty top-right corner. */}
+          <div className="relative mx-auto max-w-[780px] [perspective:1800px]">
+            <m.div style={{ rotateX: useTransform(sp, [0, 1], reduce ? [0, 0] : [10, 0]), x: lg ? bx : 0, y: lg ? by : 0 }} className="relative aspect-[2400/1792] w-full overflow-hidden rounded-[28px]">
+              <picture>
+                <source srcSet="/photos/hands-tablet-800.avif 800w, /photos/hands-tablet-1600.avif 1600w" sizes="(min-width:1024px) 780px, 100vw" type="image/avif" />
+                <img src="/photos/hands-tablet-1600.webp" srcSet="/photos/hands-tablet-800.webp 800w, /photos/hands-tablet-1600.webp 1600w" sizes="(min-width:1024px) 780px, 100vw" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
+              </picture>
+              <div role="img" aria-label={lang === "tr" ? "Tablette Flexlore iş ekranı" : "Flexlore job screen on a tablet"} className="absolute left-[26%] top-[23.8%] h-[49.3%] w-[48.2%] overflow-hidden rounded-[0.6%] [&>div]:!rounded-[4px]">
+                {near && <ScaledScreen base={1024}><Tablet active={inView} lang={lang} /></ScaledScreen>}
+              </div>
+              {/* Glass sheen over the display so it reads as behind glass. */}
+              <div aria-hidden="true" className="pointer-events-none absolute left-[26%] top-[23.8%] h-[49.3%] w-[48.2%] bg-[linear-gradient(125deg,rgb(255_255_255/0.07)_0%,rgb(255_255_255/0)_38%)]" />
+            </m.div>
+            {near && (
+              <m.div style={{ rotate: frontR, x: lg ? fx : 0, y: frontY, translateY: lg ? fy : 0 }} className="absolute -right-[5%] -top-[12%] z-10 hidden w-[18%] max-w-[150px] sm:block">
                 <div style={reflect}><Device label={lang === "tr" ? "iPhone'da iş adımları" : "Job steps on iPhone"}><WorkScreen active={inView} lang={lang} /></Device></div>
-              </m.div>
-            </>) : <div className="aspect-[1194/834] w-full" />}
+              </m.div>)}
           </div>
           <div className="mt-2 flex flex-wrap justify-center gap-2.5 lg:hidden">
             {c.notes.map((n, i) => <Note key={i} i={i} t={n as [string, string]} className="" />)}

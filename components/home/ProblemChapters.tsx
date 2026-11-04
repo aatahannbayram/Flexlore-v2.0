@@ -14,13 +14,13 @@ import { EASE } from "../ui/Reveal";
 const CH = {
   en: [
     { v: "plating", k: "Scrap and rework", h: "Guesswork comes back as remakes.", p: "When the steps live in someone’s head, every new person improvises. It shows up as rework, waste and returns." },
-    { v: "line", k: "Uneven across shifts", h: "Every shift learns it from someone else.", p: "Shadowing passes on habits, not the standard. A few handovers later, the same job is done three different ways." },
-    { v: "warehouse", k: "Binders nobody reads", h: "Written down. Never opened on the floor.", p: "Procedures sit in a folder. On the floor, people ask whoever is standing next to them." },
+    { v: "line", img: "huddle", k: "Uneven across shifts", h: "Every shift learns it from someone else.", p: "Shadowing passes on habits, not the standard. A few handovers later, the same job is done three different ways." },
+    { v: "warehouse", img: "food-qa", k: "Binders nobody reads", h: "Written down. Never opened on the floor.", p: "Procedures sit in a folder. On the floor, people ask whoever is standing next to them." },
   ],
   tr: [
     { v: "plating", k: "Fire ve yeniden iş", h: "Tahmin, yeniden yapım olarak geri döner.", p: "Adımlar birinin aklında kalınca her yeni kişi doğaçlama yapar. Sonuç yeniden iş, fire ve iadedir." },
-    { v: "line", k: "Vardiyadan vardiyaya farklı", h: "Her vardiya işi başka birinden öğrenir.", p: "Yanında öğrenmek standardı değil alışkanlıkları aktarır. Birkaç devir sonra aynı iş üç farklı şekilde yapılır." },
-    { v: "warehouse", k: "Kimsenin okumadığı klasörler", h: "Yazıldı. Sahada hiç açılmadı.", p: "Prosedürler klasörde durur. Sahada herkes yanındakine sorar." },
+    { v: "line", img: "huddle", k: "Vardiyadan vardiyaya farklı", h: "Her vardiya işi başka birinden öğrenir.", p: "Yanında öğrenmek standardı değil alışkanlıkları aktarır. Birkaç devir sonra aynı iş üç farklı şekilde yapılır." },
+    { v: "warehouse", img: "food-qa", k: "Kimsenin okumadığı klasörler", h: "Yazıldı. Sahada hiç açılmadı.", p: "Prosedürler klasörde durur. Sahada herkes yanındakine sorar." },
   ],
 };
 
@@ -40,8 +40,12 @@ export function ProblemChapters({ lang }: { lang: Lang }) {
         <div aria-hidden="true" className="absolute inset-0 bg-bg">
           {ch.map((y, i) => (
             <div key={y.v} className={`absolute inset-0 transition-opacity duration-[1200ms] ease-in-out ${i === on ? "opacity-100" : "opacity-0"}`}>
-              <picture><source srcSet={`/video/${y.v}.avif`} type="image/avif" /><img src={`/video/${y.v}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
-              {Math.abs(i - on) <= 1 && <SmartVideo name={y.v} poster={`/video/${y.v}.webp`} threshold={0.2} play={i === on} />}
+              {"img" in y && y.img
+                ? <picture><source srcSet={`/photos/${y.img}-1600.avif`} type="image/avif" /><img src={`/photos/${y.img}-1600.webp`} alt="" loading="lazy" className={`absolute inset-0 h-full w-full object-cover ${i === on ? "kenburns" : ""}`} /></picture>
+                : <>
+                    <picture><source srcSet={`/video/${y.v}.avif`} type="image/avif" /><img src={`/video/${y.v}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
+                    {Math.abs(i - on) <= 1 && <SmartVideo name={y.v} poster={`/video/${y.v}.webp`} threshold={0.2} play={i === on} />}
+                  </>}
             </div>))}
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.92)_0%,rgb(17_17_17/0.72)_45%,rgb(17_17_17/0.5)_100%)]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,#111111,rgb(17_17_17/0))]" />
