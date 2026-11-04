@@ -18,6 +18,7 @@ import { SmartVideo } from "../ui/SmartVideo";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, WorkScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
+import { CtaDuo } from "./CtaDuo";
 
 // One icon per area, in the order of home-copy.ts ind.areas.
 const AREA_ICONS = [ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
@@ -313,21 +314,15 @@ export function FinalCta({ lang }: { lang: Lang }) {
   return (
     <section id="demo" aria-labelledby="end-h" className="bg-bg pb-[var(--section-y)]">
       <div className="container-x">
-        <div className="relative -mx-[var(--pad-x)] overflow-hidden bg-surface-1 px-[var(--pad-x)] py-16 md:rounded-[32px] md:py-28">
-          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 hidden w-[62%] md:block [perspective:1600px]">
-            <div className="absolute right-[-14%] top-1/2 w-[860px] -translate-y-1/2 [transform:rotateY(-24deg)_rotateX(8deg)_rotateZ(2deg)] [transform-style:preserve-3d]">
-              <picture><source srcSet="/photos/cta-dashboard.avif" type="image/avif" /><img src="/photos/cta-dashboard.webp" alt="" loading="lazy" width={1600} height={1049} className="block w-full rounded-[18px]" /></picture>
-              <picture><source srcSet="/photos/cta-phone.avif" type="image/avif" /><img src="/photos/cta-phone.webp" alt="" loading="lazy" width={560} height={1213} className="absolute -left-20 top-[18%] w-[230px] [transform:translateZ(120px)]" /></picture>
-            </div>
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,#191919_0%,rgb(25_25_25/0.75)_28%,rgb(25_25_25/0.15)_70%,rgb(25_25_25/0.5)_100%)]" />
-          </div>
-          <div className="relative max-w-[40rem]">
-            <h2 id="end-h" className="text-[clamp(40px,1.2rem+3.4vw,80px)] font-[620] leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
+        <div className="relative -mx-[var(--pad-x)] grid items-center gap-10 overflow-hidden bg-surface-1 px-[var(--pad-x)] py-14 md:rounded-[32px] md:py-20 lg:grid-cols-12 lg:gap-8 lg:py-16 lg:pr-8">
+          <div className="relative lg:col-span-5">
+            <h2 id="end-h" className="text-[clamp(38px,1.1rem+2.8vw,68px)] font-[620] leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
             <p className="lead mt-5">{c.p}</p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <MagneticButton href={SITE.demo}>{c.cta}</MagneticButton>
             </div>
           </div>
+          <div className="lg:col-span-7"><CtaDuo lang={lang} /></div>
         </div>
       </div>
     </section>);

@@ -22,13 +22,22 @@ export function Positioning({ lang }: { lang: Lang }) {
   const words = c.p.split(" ");
   return (
     <section aria-labelledby="pos-h" className="bg-bg">
-      <div className="container-x py-[calc(var(--section-y)*0.8)]">
-        <h2 id="pos-h" className="eyebrow flex items-center gap-3">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-flame" />{c.k}
-        </h2>
-        <p ref={ref} className="mt-6 max-w-[24ch] text-[clamp(30px,1rem+3.2vw,64px)] font-[620] leading-[1.06] tracking-[-0.035em] text-ink [text-wrap:balance]">
-          {reduce ? c.p : words.map((w, i) => <Word key={i} w={w} i={i} n={words.length} p={scrollYProgress} />)}
-        </p>
+      <div className="container-x grid items-center gap-10 py-[calc(var(--section-y)*0.8)] lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-7">
+          <h2 id="pos-h" className="eyebrow flex items-center gap-3">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-flame" />{c.k}
+          </h2>
+          <p ref={ref} className="mt-6 max-w-[22ch] text-[clamp(30px,1rem+3vw,60px)] font-[620] leading-[1.06] tracking-[-0.035em] text-ink [text-wrap:balance]">
+            {reduce ? c.p : words.map((w, i) => <Word key={i} w={w} i={i} n={words.length} p={scrollYProgress} />)}
+          </p>
+        </div>
+        {/* Step by step, as an object: brushed slabs rising, amber seams between them. */}
+        <div aria-hidden="true" className="relative overflow-hidden rounded-[24px] lg:col-span-5">
+          <picture>
+            <source srcSet="/photos/steps-sculpture-800.avif 800w, /photos/steps-sculpture-1600.avif 1600w" sizes="(min-width:1024px) 40vw, 100vw" type="image/avif" />
+            <img src="/photos/steps-sculpture-1600.webp" srcSet="/photos/steps-sculpture-800.webp 800w, /photos/steps-sculpture-1600.webp 1600w" sizes="(min-width:1024px) 40vw, 100vw" alt="" loading="lazy" className="kenburns aspect-[4/3] w-full object-cover object-[35%_60%]" />
+          </picture>
+        </div>
       </div>
     </section>);
 }
