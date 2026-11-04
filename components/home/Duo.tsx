@@ -3,23 +3,24 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { m, useInView, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import type { Lang } from "../copy";
-import { Device } from "../AppScreens";
+import { Device, WorkScreen } from "../AppScreens";
 import { SmartVideo } from "../ui/SmartVideo";
 import { EASE } from "../ui/Reveal";
 import { CheckCircle, Sparkle, UsersThree } from "../ui/icons";
 
-/* "Duo": two iPhones side by side, product-shot style. Behind, the library (find the job); in front, the full-screen
- * step player (follow it). As the section scrolls through, the pair turns in toward each other and settles; a pointer
- * parallax adds depth on desktop; a soft floor reflection grounds them. Three glass notes float around the pair.
+/* "Duo": the same job on two Apple devices. An iPad in landscape (the job's footage full screen, the work on glass
+ * panels: steps, readiness, AI draft, player) with an iPhone in front (the full-screen step player). As the section
+ * scrolls in, the pair turns toward the viewer and settles; pointer parallax adds depth on desktop; a soft floor
+ * reflection grounds them. Three glass notes sit beside the copy.
  * The screens live in the lazy story module, so none of this weighs on the first load. */
-const Library = dynamic(() => import("../AppScreensStory").then((x) => x.LibraryScreen), { ssr: false, loading: () => <div className="h-full w-full bg-bg" /> });
-const Player = dynamic(() => import("../AppScreensStory").then((x) => x.PlayerScreen), { ssr: false, loading: () => <div className="h-full w-full bg-bg" /> });
+const Tablet = dynamic(() => import("../TabletScreen").then((x) => x.TabletScreen), { ssr: false, loading: () => <div className="h-full w-full bg-bg" /> });
+const DeviceTablet = dynamic(() => import("../TabletScreen").then((x) => x.DeviceTablet), { ssr: false, loading: () => <div className="aspect-[1194/834] w-full rounded-[2.4rem] bg-[#0b0b0b]" /> });
 
 const COPY = {
   en: { k: "On the floor", h: ["Find the job.", "Follow it step by step."], p: "Every job lives in your library. Open one and each step plays full screen, at the station, as often as it takes.",
-    notes: [["Step 2 of 5", "Plate the chicken salad"], ["Split into 5 steps", "Drafted from one video"], ["Operator 1", "Ready for this job"]] },
+    notes: [["Step 3 of 6", "Sanitise boards and knives"], ["Split into 6 steps", "Drafted from one video"], ["Operator 1", "Ready for this job"]] },
   tr: { k: "Sahada", h: ["İşi bul.", "Adım adım takip et."], p: "Her iş kütüphanenizde. Birini açın, her adım istasyonda, gerektiği kadar tam ekran oynasın.",
-    notes: [["Adım 2 / 5", "Tavuk salatasını tabakla"], ["5 adıma bölündü", "Tek videodan taslak"], ["Operatör 1", "Bu işe hazır"]] },
+    notes: [["Adım 3 / 6", "Tahta ve bıçakları dezenfekte et"], ["6 adıma bölündü", "Tek videodan taslak"], ["Operatör 1", "Bu işe hazır"]] },
 };
 
 function Note({ i, t, className }: { i: number; t: [string, string]; className: string }) {
@@ -38,8 +39,8 @@ export function Duo({ lang }: { lang: Lang }) {
   useEffect(() => { const q = window.matchMedia("(min-width: 1024px)"); const f = () => setLg(q.matches); f(); q.addEventListener("change", f); return () => q.removeEventListener("change", f); }, []);
   // Scroll: the pair turns in toward each other and settles as the stage crosses the viewport.
   const { scrollYProgress: sp } = useScroll({ target: stage, offset: ["start end", "center center"] });
-  const backR = useTransform(sp, [0, 1], reduce ? [-6, -6] : [-16, -6]);
-  const frontR = useTransform(sp, [0, 1], reduce ? [5, 5] : [14, 5]);
+  const backR = useTransform(sp, [0, 1], reduce ? [-8, -8] : [-22, -8]);
+  const frontR = useTransform(sp, [0, 1], reduce ? [-4, -4] : [-12, -4]);
   const frontY = useTransform(sp, [0, 1], reduce ? [0, 0] : [80, 0]);
   // Pointer parallax (desktop only).
   const mx = useMotionValue(0), my = useMotionValue(0);
@@ -73,15 +74,15 @@ export function Duo({ lang }: { lang: Lang }) {
         <div ref={stage} className="relative lg:col-span-7">
           {/* Soft light pool under the pair. */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-x-[8%] bottom-[2%] h-[38%] rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgb(255_255_255/0.08),rgb(255_255_255/0)_70%)] blur-2xl" />
-          <div className="relative mx-auto flex h-[min(112vw,480px)] max-w-[620px] items-start justify-center [perspective:1600px] sm:h-[600px] lg:h-[660px]">
+          <div className="relative mx-auto max-w-[760px] pb-[12%] [perspective:1800px] lg:pb-[14%]">
             {near ? (<>
-              <m.div style={{ rotate: backR, x: lg ? bx : 0, y: lg ? by : 0 }} className="absolute left-[4%] top-0 w-[46%] max-w-[270px] [filter:brightness(.8)]">
-                <div style={reflect}><Device label={lang === "tr" ? "Flexlore kütüphane ekranı" : "Flexlore library screen"}><Library active={inView} lang={lang} /></Device></div>
+              <m.div style={{ rotateY: backR, x: lg ? bx : 0, y: lg ? by : 0 }} className="relative ml-auto w-[86%] [transform-style:preserve-3d]">
+                <div style={reflect}><DeviceTablet label={lang === "tr" ? "iPad'de Flexlore iş ekranı" : "Flexlore job screen on iPad"}><Tablet active={inView} lang={lang} /></DeviceTablet></div>
               </m.div>
-              <m.div style={{ rotate: frontR, x: lg ? fx : 0, y: frontY, translateY: lg ? fy : 0 }} className="absolute right-[4%] top-[9%] z-10 w-[48%] max-w-[285px]">
-                <div style={reflect}><Device label={lang === "tr" ? "Tam ekran adım oynatıcı" : "Full-screen step player"}><Player active={inView} lang={lang} /></Device></div>
+              <m.div style={{ rotate: frontR, x: lg ? fx : 0, y: frontY, translateY: lg ? fy : 0 }} className="absolute bottom-0 left-0 z-10 w-[25%] max-w-[200px]">
+                <div style={reflect}><Device label={lang === "tr" ? "iPhone'da iş adımları" : "Job steps on iPhone"}><WorkScreen active={inView} lang={lang} /></Device></div>
               </m.div>
-            </>) : <div className="h-full w-full" />}
+            </>) : <div className="aspect-[1194/834] w-full" />}
           </div>
           <div className="mt-2 flex flex-wrap justify-center gap-2.5 lg:hidden">
             {c.notes.map((n, i) => <Note key={i} i={i} t={n as [string, string]} className="" />)}
