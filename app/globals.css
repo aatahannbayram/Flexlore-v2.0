@@ -64,7 +64,7 @@
 }
 
 :root {
-  --bg-rgb: 17 17 17;
+  --bg-rgb: 17 17 17; --band: #161616; --band-card: #1E1E1E; --band-stage: #262626;
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
@@ -206,7 +206,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
    colour tokens at a warm neutral ground. `.dark` keeps a dark scope inside light mode: app screens, the web dashboard,
    cinematic photo bands and anything that sits on a photograph. White utilities are remapped in theme-light.css. */
 :root[data-theme="light"] {
-  color-scheme: light; --bg-rgb: 250 248 245;
+  color-scheme: light; --bg-rgb: 250 248 245; --band: #F1EDE7; --band-card: #FFFFFF; --band-stage: #F3F0EB;
   --color-bg: #FAF8F5; --color-surface-1: #FFFFFF; --color-surface-2: #F1EDE7;
   --color-line: rgb(22 22 22 / 0.08); --color-line-strong: rgb(22 22 22 / 0.16);
   --color-ink: #161616; --color-ink-muted: #55524D; --color-ink-faint: #6E6A64;
@@ -237,3 +237,12 @@ main:not([lang="tr"]) .l-tr { display: none; }
 /* Black fills that only existed to sit on the dark ground become the page's cards in light mode. */
 :root[data-theme="light"] .bg-black:not(.dark, .dark *), :root[data-theme="light"] .bg-neutral-950:not(.dark, .dark *) { background-color: var(--color-surface-1); }
 :root[data-theme="light"] .bg-black\/40:not(.dark, .dark *), :root[data-theme="light"] .bg-black\/30:not(.dark, .dark *), :root[data-theme="light"] .bg-black\/20:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.045); }
+
+/* Reference-style home (components/home/v3.tsx): large tight type, kicker labels, one band tone. */
+.band { background: var(--band); }
+.v3-h1 { font-size: clamp(40px, 1.2rem + 4.2vw, 84px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; text-wrap: balance; }
+.v3-h2 { font-size: clamp(32px, 1.1rem + 2.6vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.02; text-wrap: balance; }
+.v3-kicker { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; font-weight: 500; color: var(--color-ink-muted); }
+.v3-kicker::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); }
+.home-v3 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; color: var(--color-ink-muted); }
+.home-v3 .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); }

@@ -8,8 +8,8 @@ export const CASES: Case[] = [
   { id: "safety", href: "/sektor/uretim/", icon: "safety",
     tag: { en: "Health & safety", tr: "İş sağlığı ve güvenliği" },
     h: { en: "Health and safety training on video", tr: "Video ile iş sağlığı ve güvenliği eğitimi" },
-    p: { en: "Film PPE, lockout and machine checks once. Every worker learns the same steps, passes a short quiz, and you see who is ready before the shift.",
-         tr: "KKD, kilitleme ve makine kontrollerini bir kez çekin. Herkes aynı adımları öğrenir, kısa bir quizi geçer ve vardiyadan önce kimin hazır olduğunu görürsünüz." } },
+    p: { en: "Film PPE, lockout and machine checks once. Every worker learns the same steps, passes a short quiz, and you see who has completed it before the shift.",
+         tr: "KKD, kilitleme ve makine kontrollerini bir kez çekin. Herkes aynı adımları öğrenir, kısa bir quizi geçer ve vardiyadan önce kimin tamamladığını görürsünüz." } },
   { id: "site", href: "/use-cases/installation-training-on-site-orientation/", icon: "site",
     tag: { en: "On-site orientation", tr: "Sahada oryantasyon" },
     h: { en: "Training that stays on site after installation", tr: "Kurulumdan sonra sahada kalan eğitim" },
@@ -28,16 +28,16 @@ export const CASES: Case[] = [
   { id: "onboard", href: "/see-it/", icon: "onboard",
     tag: { en: "New-hire onboarding", tr: "İşe alım oryantasyonu" },
     h: { en: "New-hire onboarding without shadowing", tr: "Yanında dolaştırmadan işe başlatma" },
-    p: { en: "New starters learn each job from video steps on their phone, and you see by person who has watched, passed and is ready.",
-         tr: "Yeni başlayanlar her işi telefonda video adımlarla öğrenir; kimin izlediğini, geçtiğini ve hazır olduğunu kişi bazında görürsünüz." } },
+    p: { en: "New starters learn each job from video steps on their phone, and you see by person who has watched each job and passed its quiz.",
+         tr: "Yeni başlayanlar her işi telefonda video adımlarla öğrenir; kimin izlediğini ve quizini geçtiğini kişi bazında görürsünüz." } },
   { id: "franchise", href: "/sektor/franchise/", icon: "franchise",
     tag: { en: "Multi-location", tr: "Çok lokasyonlu" },
     h: { en: "One standard across every franchise location", tr: "Tüm franchise şubelerinde tek standart" },
-    p: { en: "Launch a process once, roll it out to every branch, and compare readiness by location.",
-         tr: "Bir süreci bir kez hazırlayın, tüm şubelere yayın ve hazır olma durumunu lokasyona göre karşılaştırın." } },
+    p: { en: "Launch a process once, roll it out to every branch, and compare completion by location.",
+         tr: "Bir süreci bir kez hazırlayın, tüm şubelere yayın ve tamamlanma durumunu lokasyona göre karşılaştırın." } },
 ];
 
 export const CASES_HEAD = {
-  en: { k: "Use cases", h: "Video training for every job on the floor.", lead: "From safety checks and recipes to installation handovers: how frontline teams use Flexlore to train staff and know who is ready to work.", more: "See the use case" },
-  tr: { k: "Kullanım alanları", h: "Sahadaki her iş için video eğitim.", lead: "Güvenlik kontrollerinden tariflere, kurulum devirlerine kadar: saha ekipleri Flexlore ile çalışanlarını nasıl eğitiyor ve kimin işe hazır olduğunu nasıl görüyor.", more: "Ayrıntılar" },
+  en: { k: "Use cases", h: "Video training for every job on the floor.", lead: "From safety checks and recipes to installation handovers: how frontline teams use Flexlore to train staff and see who has completed each job.", more: "See the use case" },
+  tr: { k: "Kullanım alanları", h: "Sahadaki her iş için video eğitim.", lead: "Güvenlik kontrollerinden tariflere, kurulum devirlerine kadar: saha ekipleri Flexlore ile çalışanlarını nasıl eğitiyor ve her işi kimin tamamladığını nasıl görüyor.", more: "Ayrıntılar" },
 };
