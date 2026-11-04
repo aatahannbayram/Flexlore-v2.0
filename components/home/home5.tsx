@@ -64,8 +64,7 @@ export function Hero5() {
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary"><Play size={14} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
             <div className="hs-in mt-9 flex flex-wrap items-center gap-x-4 gap-y-3" style={{ animationDelay: "380ms" }}>
-              <span className="text-[13px] text-ink-faint">{h.app}</span>
-              <StoreButtons small lang={lang} className="[&_img]:!h-9 [&_a]:!rounded-[7px]" />
+              <StoreButtons small lang={lang} className="opacity-80 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px]" />
             </div>
           </div>
           {/* One scene: the kitchen, one phone in front of it, one status card. */}
@@ -75,16 +74,8 @@ export function Hero5() {
                 <Pic n="kitchenline" eager sizes="(min-width:1024px) 40vw, 90vw" className="absolute inset-0 h-full w-full object-cover object-[35%_center]" />
                 <SmartVideo name="kitchen" poster="/photos/kitchenline-1600.webp" threshold={0.2} className="absolute inset-0 h-full w-full object-cover" />
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(200deg,rgb(17_17_17/0)_40%,rgb(17_17_17/0.55)_100%)]" />
-                <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1.5 text-[12px] font-medium text-white backdrop-blur"><span className="h-2 w-2 rounded-full bg-[#E54A4A]" />{h.live}</span>
               </div>
-              <div className="absolute bottom-[6%] start-0 w-[46%] max-w-[250px]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
-              <div className="absolute bottom-[10%] end-[6%] w-[44%] max-w-[230px] rounded-[20px] bg-[rgb(var(--bg-rgb)/0.9)] p-4 ring-1 ring-line backdrop-blur-md">
-                <div className="flex items-center justify-between gap-2"><p className="text-[14px] font-semibold">{h.chip.t}</p><span className="grid h-7 w-7 place-items-center rounded-full bg-[rgb(104_210_185/0.16)] text-calm-aqua"><CheckCircle size={15} weight="fill" /></span></div>
-                <p className="text-[12px] text-ink-faint">{h.chip.s}</p>
-                <span className="mt-3 block h-1.5 overflow-hidden rounded-full bg-[var(--card-2)]"><span className="block h-full w-[86%] rounded-full bg-ink" /></span>
-                <p className="mt-2 text-[13px] font-medium tabular-nums">{h.chip.v}</p>
-                <p className="mt-1 text-[11px] text-ink-faint">{h.sample}</p>
-              </div>
+              <div className="absolute bottom-[7%] start-0 w-[44%] max-w-[250px]" dir="ltr"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
             </div>
           </div>
         </div>

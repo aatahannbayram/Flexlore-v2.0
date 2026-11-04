@@ -333,70 +333,40 @@ export function Web5() {
     </section>);
 }
 
-/* ---------- 10. Integrations: Flexlore in the middle of the stack (roadmap labelled; only the apps are live) ---------- */
+/* ---------- 10. Integrations: one calm map, one status line (only the apps are live) ---------- */
 export function AI5() {
   const { d, locale } = useLocale(); const c = INTEG[locale];
-  const soon = <span className="rounded-full bg-[var(--card-2)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{d.ai.soon}</span>;
   const SRC: Ic[] = [Users, BookOpen, Factory]; const DST: Ic[] = [ChartBar, ChatCircle, Code];
-  const Tile = ({ I, t, s }: { I: Ic; t: string; s: string }) => (
-    <div className={`${inner} flex items-center gap-3.5 p-3.5`}>
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-[var(--card)] text-ink"><I size={18} /></span>
-      <span className="min-w-0"><span className="block text-[15px] font-semibold">{t}</span><span className="block text-[13px] text-ink-faint">{s}</span></span>
-    </div>);
+  const Chip = ({ I, t }: { I: Ic; t: string }) => (
+    <div className={`${inner} flex items-center gap-3 px-4 py-3.5`}><span className="grid h-8 w-8 shrink-0 place-items-center rounded-[10px] bg-[var(--card)] text-ink-muted"><I size={16} /></span><span className="text-[15px] font-medium">{t}</span></div>);
   const ys = [16.7, 50, 83.3];
   return (
     <section id="integrations" aria-labelledby="int-h" className="section-y pt-0">
       <div className="container-x">
-        <div className="grid-12 items-end gap-y-5">
-          <div className="col-span-12 lg:col-span-7"><p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><PlugsConnected size={16} /></span>{c.k}</p>
-            <H2 id="int-h" className="max-w-[18ch]">{c.h}</H2></div>
-          <p className="col-span-12 max-w-[34rem] text-[17px] leading-[1.6] text-ink-muted lg:col-span-5">{c.p}</p>
+        <div className="mx-auto max-w-[44rem] text-center">
+          <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><PlugsConnected size={16} /></span>{c.k}</p>
+          <H2 id="int-h" className="mx-auto max-w-[18ch]">{c.h}</H2>
         </div>
-
-        <div className={`${card} mt-12 p-5 md:p-8`}>
-          <div className="relative grid gap-4 lg:grid-cols-[1fr_minmax(220px,0.8fr)_1fr] lg:items-center lg:gap-14">
-            {/* connectors (desktop): three in, three out, a dot travelling each way */}
-            <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 hidden h-full w-full text-ink-faint/35 lg:block">
+        <div className={`${card} mx-auto mt-12 max-w-[1040px] px-5 py-8 md:px-10 md:py-12`}>
+          <div className="relative grid gap-3 lg:grid-cols-[1fr_200px_1fr] lg:items-center lg:gap-16">
+            <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 hidden h-full w-full text-ink-faint/30 lg:block">
               {ys.map((y, k) => <g key={k}>
-                <path d={`M31 ${y} C 37 ${y}, 37 50, 41 50`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
-                <path d={`M59 50 C 63 50, 63 ${y}, 69 ${y}`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
+                <path d={`M33 ${y} C 38 ${y}, 38 50, 41 50`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
+                <path d={`M59 50 C 62 50, 62 ${y}, 67 ${y}`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
               </g>)}
             </svg>
-            <div className="relative space-y-2.5">
-              <p className="mb-1 flex items-center justify-between text-[13px] text-ink-faint"><span>{c.into}</span>{soon}</p>
-              {c.sources.map(([t, x], k) => <Tile key={t} I={SRC[k]} t={t} s={x} />)}
+            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.into}</p>{c.sources.map(([t], k) => <Chip key={t} I={SRC[k]} t={t} />)}</div>
+            <div className="relative flex flex-col items-center py-4 text-center">
+              <span className="int-pulse grid h-20 w-20 place-items-center rounded-[24px] bg-[#111111] ring-1 ring-white/10"><img src="/brand/symbol-main.svg" alt="" className="h-10 w-10" /></span>
+              <p className="mt-4 text-[13px] text-ink-faint">REST API · Webhooks · MCP</p>
             </div>
-            <div className="relative mx-auto flex w-full max-w-[280px] flex-col items-center rounded-[24px] bg-[var(--card-2)] p-6 text-center">
-              <span className="int-pulse grid h-16 w-16 place-items-center rounded-[20px] bg-[#111111] ring-1 ring-white/10"><img src="/brand/symbol-main.svg" alt="" className="h-8 w-8" /></span>
-              <p className="mt-4 text-[17px] font-semibold">Flexlore</p>
-              <ul className="mt-4 flex flex-wrap justify-center gap-1.5">{["REST API", "Webhooks", "MCP"].map((x) => <li key={x} className="rounded-full bg-[var(--card)] px-3 py-1 text-[12px] font-medium text-ink-muted">{x}</li>)}</ul>
-            </div>
-            <div className="relative space-y-2.5">
-              <p className="mb-1 flex items-center justify-between text-[13px] text-ink-faint"><span>{c.out}</span>{soon}</p>
-              {c.dests.map(([t, x], k) => <Tile key={t} I={DST[k]} t={t} s={x} />)}
-            </div>
+            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.out}</p>{c.dests.map(([t], k) => <Chip key={t} I={DST[k]} t={t} />)}</div>
           </div>
         </div>
-
-        <div className="mt-3 grid gap-3 md:grid-cols-[1fr_1.2fr]">
-          <div className={`${card} p-6 md:p-7`}>
-            <p className="flex items-center gap-2 text-[14px] font-semibold"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}</p>
-            <ul className="mt-5 grid grid-cols-3 gap-2">{c.liveItems.map((x, k) => { const I = [DeviceMobile, DeviceMobile, Browser][k]; return (
-              <li key={x} className={`${inner} flex flex-col items-center gap-2 px-2 py-4 text-center text-[13px] font-medium`}><I size={20} />{x}</li>); })}</ul>
-            <p className="mt-5 text-[14px] leading-[1.55] text-ink-muted">{c.note}</p>
-            <Link href="/integrations/" className="btn btn-secondary mt-6">{c.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-          </div>
-          <div className="dark overflow-hidden rounded-[28px] bg-[#0f0f0f] ring-1 ring-white/[.06]" aria-hidden="true">
-            <div className="flex items-center justify-between px-5 py-3.5 text-[13px] text-white/60"><span className="flex items-center gap-2"><Code size={15} />{c.code}</span>{soon}</div>
-            <pre dir="ltr" className="overflow-x-auto px-5 pb-6 font-sans text-[13px] tabular-nums leading-[1.75] text-white/80 [&_code]:font-sans"><code>{`POST https://your-app.example/hooks/flexlore
-{
-  "event":    "quiz.passed",
-  "job":      "Allergen handling",
-  "person":   "Operator 1",
-  "location": "Harbour",
-  "score":    "5/5"
-}`}</code></pre>
-          </div>
+        <div className="mx-auto mt-6 flex max-w-[1040px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[14px] text-ink-muted">
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}: {c.liveItems.join(" · ")}</span>
+          <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-ink-faint" />{d.ai.soon}: REST API · Webhooks · MCP</span>
+          <Link href="/integrations/" className="inline-flex items-center gap-1.5 font-semibold text-ink hover:underline">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
       </div>
     </section>);
