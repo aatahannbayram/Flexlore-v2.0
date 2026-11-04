@@ -227,21 +227,26 @@ export function PricingPreview({ lang }: { lang: Lang }) {
           <div className="col-span-12 lg:col-span-7"><Heading id="pp-h" eyebrow={c.k} title={c.h} lead={c.lead} light /></div>
           <div className="col-span-12 lg:col-span-5 lg:justify-self-end"><BillingToggle yearly={yearly} setYearly={setYearly} lang={lang} light id="pp" /></div>
         </div>
-        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4">
+        {/* Each card reads top to bottom: who it is for, price, action, then what is included on a nested tile.
+            The recommended plan is the only dark card and stands a little taller on wide screens. */}
+        <ul className="no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory items-stretch gap-3 overflow-x-auto px-[var(--pad-x)] py-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 xl:grid-cols-4">
           {PLANS.map((p) => { const rec = !!p.featured; const name = tr ? PLAN_TR[p.id]?.name ?? p.name : p.name; const sub = rec ? "text-ice-300" : "text-light-muted"; return (
-            <li key={p.id} className={`grid w-[80%] shrink-0 snap-start grid-rows-[auto_auto_7.5rem_auto_1fr_auto] rounded-[24px] p-6 sm:w-auto ${rec ? "bg-bg text-ice-100" : "bg-white"}`}>
+            <li key={p.id} className={`flex w-[84%] shrink-0 snap-start flex-col rounded-[24px] p-6 transition-transform duration-500 ease-[var(--ease-out-expo)] sm:w-auto md:p-7 ${rec ? "bg-bg text-ice-100 xl:-my-3 xl:py-10" : "bg-white hover:-translate-y-1"}`}>
               <div className="flex items-center justify-between gap-3"><h3 className="text-lg font-semibold">{name}</h3>
                 {rec && <span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-ice-100">{tr ? p.badgeTr : p.badge}</span>}</div>
               <p className={`mt-1 min-h-[2.6rem] text-sm leading-snug ${sub}`}>{tr ? PLAN_TR[p.id]?.for ?? p.for : p.for}</p>
-              <div className="pt-5"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
-              <p className={`text-sm font-medium ${rec ? "text-ice-100" : "text-light-ink"}`}>{p.id === "enterprise" ? "30+ " + (tr ? "kullanıcı" : "users") : t.unit(users[p.id])}</p>
-              <ul className="mt-4 space-y-2 text-sm">
-                {c.feats[p.id].map((f) => <li key={f} className={`flex items-center gap-2.5 ${sub}`}><Check size={15} aria-hidden="true" className={rec ? "text-ice-200" : "text-light-ink"} />{f}</li>)}
-              </ul>
-              <div className="pt-6">
+              <div className="mt-6 min-h-[4.75rem]"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
+              <div className="mt-5">
                 {p.id === "enterprise"
-                  ? <a href={SITE.demo} className="btn w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}</a>
-                  : <Link href="/pricing/" className={`btn w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}</Link>}
+                  ? <a href={SITE.demo} className="btn group w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></a>
+                  : <Link href="/pricing/" className={`btn group w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></Link>}
+              </div>
+              <div className={`mt-6 flex-1 rounded-2xl p-4 ${rec ? "bg-white/[.06]" : "bg-light-bg"}`}>
+                <p className={`flex items-center gap-2 text-sm font-semibold ${rec ? "text-ice-100" : "text-light-ink"}`}>
+                  <UsersThree size={17} aria-hidden="true" />{p.id === "enterprise" ? "30+ " + (tr ? "kullanıcı" : "users") : t.unit(users[p.id])}</p>
+                <ul className="mt-3 space-y-2 text-sm">
+                  {c.feats[p.id].map((f) => <li key={f} className={`flex items-center gap-2.5 ${sub}`}><Check size={15} aria-hidden="true" className={rec ? "text-ice-200" : "text-light-ink"} />{f}</li>)}
+                </ul>
               </div>
             </li>); })}
         </ul>

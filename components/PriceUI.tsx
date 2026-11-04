@@ -28,7 +28,10 @@ export function BillingToggle({ yearly, setYearly, lang, light = false, id = "bi
 export function PriceBlock({ p, yearly, lang, small, light = false }: { p: typeof PLANS[number]; yearly: boolean; lang: Lang; small?: boolean; light?: boolean }) {
   const t = PL[lang]; const pr = yearly ? p.yearly : p.monthly; const reduce = useReducedMotion();
   const muted = light ? "text-light-muted" : "text-ink-muted";
-  if (!pr) return <p className={`${small ? "text-h3" : "text-h3"} font-bold tracking-[-.03em]`}>{t.contact}</p>;
+  if (!pr) return (<div>
+    <p className={`${small ? "text-[32px]" : "text-[40px]"} font-bold leading-none tracking-[-.03em]`}>{t.contact}</p>
+    <p className={`mt-2 text-sm ${muted}`}>{t.custom}</p>
+  </div>);
   const save = yearly ? savePct(p) : null;
   return (<div>
     <div className="flex flex-wrap items-baseline gap-x-2">
