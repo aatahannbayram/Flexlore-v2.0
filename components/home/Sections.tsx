@@ -2,9 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowCounterClockwise, UsersThree, BookOpen, ArrowRight, Check, Plus,
+  ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle,
 } from "../ui/icons";
 import { copy, type Lang } from "../copy";
 
@@ -18,6 +19,9 @@ import { DotGlobe } from "../ui/DotGlobe";
 import { MagneticButton } from "../ui/MagneticButton";
 import { Device, SopScreen } from "../AppScreens";
 import { BillingToggle, PriceBlock, PL } from "../PriceUI";
+
+// One icon per area, in the order of home-copy.ts ind.areas.
+const AREA_ICONS = [ForkKnife, Coffee, Factory, Bed, Storefront, Package, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
 
 // The dashboard mockup is below the fold: its code loads only when the section nears the viewport.
 // The placeholder keeps the same 1180:720 ratio, so nothing shifts when it arrives.
@@ -95,6 +99,8 @@ export function Problem({ lang }: { lang: Lang }) {
 export function WebShowcase({ lang }: { lang: Lang }) {
   const c = home[lang].web;
   const frame = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: tp } = useScroll({ target: frame, offset: ["start end", "center center"] });
+  const tiltX = useTransform(tp, [0, 1], [22, 0]); const tiltS = useTransform(tp, [0, 1], [0.92, 1]);
   const inView = useInView(frame, { amount: 0.35, once: true });
   const near = useInView(frame, { margin: "600px 0px", once: true });
   const [step, setStep] = useState(-1);
@@ -111,7 +117,7 @@ export function WebShowcase({ lang }: { lang: Lang }) {
       <div className="container-x">
         <Heading id="web-h" eyebrow={c.k} title={c.h} lead={c.lead} />
         <div className="relative mt-14 lg:pr-36">
-          <div ref={frame} role="img" aria-label={`Flexlore Web. ${c.sample}`} className="relative overflow-hidden rounded-[24px] bg-bg">
+          <m.div ref={frame} role="img" aria-label={`Flexlore Web. ${c.sample}`} style={reduce ? undefined : { rotateX: tiltX, scale: tiltS, transformPerspective: 1600, transformOrigin: "50% 0%" }} className="relative overflow-hidden rounded-[24px] bg-bg">
             <div className="flex h-9 items-center gap-2 bg-surface-2 px-4" aria-hidden="true">
               <span className="h-2.5 w-2.5 rounded-full bg-white/15" /><span className="h-2.5 w-2.5 rounded-full bg-white/15" /><span className="h-2.5 w-2.5 rounded-full bg-white/15" />
               <span className="mx-auto hidden h-6 w-[min(60%,360px)] items-center justify-center rounded-md bg-bg text-xs text-ink-faint sm:flex">app.flexlore.com</span>
@@ -120,7 +126,7 @@ export function WebShowcase({ lang }: { lang: Lang }) {
             {pins.map(([x, y], i) => (
               <m.span key={i} aria-hidden="true" initial={false} animate={{ opacity: step >= i ? 1 : 0, scale: step >= i ? 1 : 0.6 }} transition={{ duration: 0.35, ease: EASE }}
                 className="absolute hidden h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-ice-100 text-xs font-bold text-bg md:grid" style={{ left: `${x}%`, top: `${y}%` }}>{i + 1}</m.span>))}
-          </div>
+          </m.div>
           <div aria-hidden="true" className="absolute -bottom-10 right-0 hidden w-[190px] lg:block"><Device label=""><SopScreen active={inView} /></Device></div>
         </div>
         <ol className="mt-12 grid gap-8 md:grid-cols-3 lg:mr-36">
@@ -174,12 +180,12 @@ export function Industries({ lang }: { lang: Lang }) {
         <div className="relative mt-20 overflow-hidden rounded-[28px] bg-surface-1 px-5 pb-0 pt-14 text-center md:pt-16">
           <p className="eyebrow">{c.more}</p>
           <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
-            {c.areas.map(([name, slug]) => (
+            {c.areas.map(([name, slug], i) => { const Ic = AREA_ICONS[i] ?? DotsThreeCircle; return (
               <RevealItem as="li" key={name}>
                 {slug
-                  ? <Link href={`/sektor/${slug}/`} className="inline-flex min-h-11 items-center rounded-full bg-white/[.08] px-4 text-[15px] font-medium text-ink transition-colors hover:bg-white/[.14]">{name}</Link>
-                  : <span className="inline-flex min-h-11 items-center rounded-full bg-white/[.04] px-4 text-[15px] text-ice-300">{name}</span>}
-              </RevealItem>))}
+                  ? <Link href={`/sektor/${slug}/`} className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.08] pl-3 pr-4 text-[15px] font-medium text-ink transition-colors hover:bg-white/[.14]"><Ic size={17} className="text-ice-300 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110" />{name}</Link>
+                  : <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.04] pl-3 pr-4 text-[15px] text-ice-300"><Ic size={17} className="text-ice-400" />{name}</span>}
+              </RevealItem>); })}
           </Reveal>
           {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}
           <div className="relative z-10 mt-12">

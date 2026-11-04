@@ -5,6 +5,7 @@ import type { C, Lang } from "../copy";
 import { SITE } from "../config";
 import { Device, SopScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
+import { Rotator } from "../ui/Rotator";
 import { MagneticButton } from "../ui/MagneticButton";
 import { SmartVideo } from "../ui/SmartVideo";
 import { VideoModal } from "../ui/VideoModal";
@@ -33,7 +34,7 @@ export function Hero({ t, lang }: { t: C; lang: Lang }) {
       <div className="container-x">
         <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),820px)] items-center gap-y-14 pb-16 pt-10 md:pb-20 md:pt-12">
           <div className="col-span-12 lg:col-span-6">
-            <p className="eyebrow hs-in" style={{ animationDelay: "0ms" }}>{t.hero}</p>
+            <p className="eyebrow hs-in" style={{ animationDelay: "0ms" }}>{t.rotPre}<Rotator words={t.rot} />{t.rotPost}</p>
             <h1 id="hero-h" className="mt-5 text-[clamp(40px,1.15rem+3.3vw,76px)] font-[620] leading-[1.02] tracking-[-0.042em] [text-wrap:balance]">
               {t.h1.map((s, i) => (
                 <span key={i} className={s.o ? "text-ice-400" : undefined}>

@@ -113,6 +113,8 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 /* Base outline colour is the accent too, so colour transitions never fade the ring in from the text colour. */
 :where(a, button, input, select, textarea, summary, [tabindex]) { outline-color: var(--color-accent); }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 6px; }
+/* The ⌘K search field sits inside an open dialog with a caret; the dialog itself is the focus cue. */
+.cmdk-input:focus-visible { outline: none; }
 section[id], [id]:target { scroll-margin-top: calc(var(--header-h) + 16px); }
 details summary::-webkit-details-marker { display:none; }
 .no-sb::-webkit-scrollbar{display:none}

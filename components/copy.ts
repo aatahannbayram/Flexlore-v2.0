@@ -1,7 +1,7 @@
 export type Lang = "en" | "tr";
 export type C = {
   skip: string; nav: string[]; navP: string; menu: string; close: string; h1: { t: string; o?: boolean }[]; alts: string[]; faqK: string; faqH: string; faq: { q: string; a: string }[]; cta: string; langLabel: string; login: string;
-  hero: string; heroLine: string; watch: string; watchTitle: string; storeNote: string; chip: { title: string; status: string; note: string };
+  hero: string; rotPre: string; rotPost: string; rot: string[]; heroLine: string; watch: string; watchTitle: string; storeNote: string; chip: { title: string; status: string; note: string };
   st: string[]; stK: string; whereK: string; stSub: string;
   pK: string; pH: string[]; pP: string;
   steps: { h: string; p: string }[];
@@ -25,7 +25,7 @@ export const copy: Record<Lang, C> = {
       { q: "Do I need technical knowledge?", a: "No. If you can film with a phone, you can create a standard work." },
     ], cta: "Book a demo", langLabel: "Language", login: "Log in",
     // TEMPORARY hero eyebrow (decision 2026-11-03).
-    hero: "Video work instructions",
+    hero: "Video work instructions", rotPre: "Video work instructions for ", rotPost: "", rot: ["restaurants", "production lines", "hotels", "franchises", "warehouses", "bakeries"],
     watch: "Watch 2-min demo", watchTitle: "Flexlore in 2 minutes", storeNote: "Live on iOS and Android",
     chip: { title: "Opening checklist", status: "Ready", note: "Line cooks, morning shift. Sample data." },
     stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "It leaves when they do. New people copy whoever is on shift, and a step learned by guessing comes back as scrap, rework, returns, remakes and callbacks. The binder is on a shelf. The job is on the floor. Flexlore puts the job on every phone.",
@@ -64,7 +64,7 @@ export const copy: Record<Lang, C> = {
       { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız standart iş oluşturabilirsiniz." },
     ], cta: "Demo isteyin", langLabel: "Dil", login: "Giriş yap",
     // GEÇİCİ hero üst etiketi (karar 2026-11-03).
-    hero: "Video iş talimatları",
+    hero: "Video iş talimatları", rotPre: "", rotPost: " için video iş talimatları", rot: ["Restoranlar", "Üretim hatları", "Oteller", "Franchise'lar", "Depolar", "Fırınlar"],
     watch: "2 dakikalık demoyu izleyin", watchTitle: "2 dakikada Flexlore", storeNote: "iOS ve Android'de yayında",
     chip: { title: "Açılış kontrol listesi", status: "Hazır", note: "Hat aşçıları, sabah vardiyası. Örnek veri." },
     stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
