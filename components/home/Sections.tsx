@@ -45,7 +45,7 @@ export function TrustStrip({ lang }: { lang: Lang }) {
                 <a href={p.href} target="_blank" rel="noopener" className="group block" aria-label={p.name}>
                   {p.badge
                     ? <span className={`${TILE} flex-col`}>
-                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-full ${p.caption ? "h-[17px]" : "h-[38px]"}`} />
+                        <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none ${p.caption ? "h-[17px]" : "-my-[6px] h-[56px]"}`} />
                         {p.caption && <span className="mt-0.5 text-[9px] font-medium text-[#5F6368]">{p.caption}</span>}
                       </span>
                     : <span className={`${TILE} flex-col`}>
