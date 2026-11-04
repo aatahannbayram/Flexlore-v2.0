@@ -9,6 +9,15 @@ export const fen = {
     endH: "See it with one of your real jobs.", endP: "Twenty minutes. We build one of your jobs with you on the call.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Turn existing PDFs and written procedures into step-by-step instructions and a quiz, then add video where it helps.",
+      k: "PDF to steps", h1: "Your binders, turned into steps.", sub: "You already have procedures in PDFs and documents. Flexlore will read them and draft step-by-step instructions and a quiz, so you can start from what you have and add video where it helps most.",
+      pains: [["Years of documents", "Good procedures exist, but nobody reads twenty pages on shift."], ["Starting from zero is slow", "Filming every job before going live takes time."], ["Text and video drift apart", "The document says one thing, the floor does another."]],
+      steps: [["Upload the PDF", "Add an existing procedure, manual or checklist."], ["Get the steps", "Flexlore drafts numbered steps, instructions and a quiz. Your team edits and approves."], ["Add video where it matters", "Film the tricky steps and keep everything in one job."]],
+      detail: { h: "Start with what you have. Improve it on the floor.", p: "A document becomes a job people can follow on their phone, then grows with clips from the people who do the work.", points: ["Steps and quiz drafted from a PDF", "Approved by your team before publishing", "Video added step by step"] },
+      faq: [["Is PDF import available today?", "It is on our roadmap. Book a demo to see where it stands."], ["Which documents will work?", "Written procedures, manuals and checklists. Tell us on the demo call what you have."], ["Do I still need to film?", "Not to start. Add video to the steps where seeing it makes the difference."]],
+      mock: ["Opening procedure.pdf", "Reading 12 pages", "Unlock the doors and switch on the lights", "Start the coffee machine", "Check the fridge temperatures", "Drafted by AI"],
+    },
     "video-to-sop": {
       meta: "Turn a phone video of real work into step-by-step video SOPs. Flexlore splits the video into steps and drafts the instructions; your team approves.",
       k: "Video to SOP", h1: "Film it. Don't write it.", sub: "Record the job on a phone the way your best person does it. Flexlore splits the video into steps and drafts the written instructions. Your team checks them and publishes.",

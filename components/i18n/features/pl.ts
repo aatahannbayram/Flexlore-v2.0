@@ -9,6 +9,15 @@ export const fpl: FDict = {
     endH: "Zobacz to na jednym z Twoich prawdziwych zadań.", endP: "Dwadzieścia minut. Podczas rozmowy przygotujemy z Tobą jedno z Twoich zadań.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Zamień istniejące pliki PDF i spisane procedury w instrukcje krok po kroku i quiz, a potem dodaj wideo tam, gdzie pomaga.",
+      k: "PDF w kroki", h1: "Twoje segregatory zamienione w kroki.", sub: "Masz już procedury w plikach PDF i dokumentach. Flexlore je przeczyta i przygotuje wersję roboczą instrukcji krok po kroku oraz quiz, więc zaczniesz od tego, co masz, i dodasz wideo tam, gdzie najbardziej pomaga.",
+      pains: [["Lata dokumentów", "Dobre procedury istnieją, ale nikt na zmianie nie czyta dwudziestu stron."], ["Start od zera trwa długo", "Nagranie każdego zadania przed uruchomieniem zajmuje czas."], ["Tekst i wideo się rozjeżdżają", "Dokument mówi jedno, a na stanowisku robi się co innego."]],
+      steps: [["Prześlij PDF", "Dodaj istniejącą procedurę, instrukcję lub listę kontrolną."], ["Otrzymaj kroki", "Flexlore przygotuje ponumerowane kroki, instrukcje i quiz. Twój zespół je edytuje i zatwierdza."], ["Dodaj wideo tam, gdzie ma znaczenie", "Nagraj trudne kroki i trzymaj wszystko w jednym zadaniu."]],
+      detail: { h: "Zacznij od tego, co masz. Ulepszaj na stanowisku.", p: "Dokument stanie się zadaniem, które można wykonywać z telefonem w ręku, a potem będzie rosnąć o klipy od osób, które wykonują tę pracę.", points: ["Kroki i quiz przygotowane na podstawie PDF", "Zatwierdzane przez Twój zespół przed publikacją", "Wideo dodawane krok po kroku"] },
+      faq: [["Czy import PDF jest już dostępny?", "Jest w naszych planach. Umów demo, aby zobaczyć, na jakim jest etapie."], ["Jakie dokumenty się sprawdzą?", "Spisane procedury, instrukcje i listy kontrolne. Powiedz nam podczas demo, co masz."], ["Czy nadal będę musieć nagrywać?", "Na start nie. Dodaj wideo do kroków, w których zobaczenie robi różnicę."]],
+      mock: ["Otwarcie.pdf", "Czytanie 12 stron", "Otwórz drzwi i włącz światła", "Uruchom ekspres do kawy", "Sprawdź temperatury lodówek", "Wersja robocza AI"],
+    },
     "video-to-sop": {
       meta: "Zamień nagranie prawdziwej pracy telefonem w wideoinstrukcje SOP krok po kroku. Flexlore dzieli wideo na kroki i przygotowuje wersję roboczą instrukcji, a Twój zespół ją zatwierdza.",
       k: "Wideo w SOP", h1: "Nagraj to. Nie musisz tego spisywać.", sub: "Nagraj zadanie telefonem tak, jak wykonuje je Twój najlepszy pracownik. Flexlore dzieli wideo na kroki i przygotowuje wersję roboczą instrukcji. Twój zespół je sprawdza i publikuje.",

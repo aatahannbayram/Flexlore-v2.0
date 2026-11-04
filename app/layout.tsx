@@ -29,7 +29,8 @@ const ld = [
     founder: { "@type": "Person", name: "Ata Han Bayram", jobTitle: "Co-founder and CEO" },
     sameAs: [SITE.social.linkedin, SITE.social.instagram, SITE.social.youtube, SITE.appStore, SITE.googlePlay] },
   { "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Flexlore", applicationCategory: "BusinessApplication", operatingSystem: "iOS, Android, Web",
-    description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore, publisher: { "@id": SITE.url + "/#org" } },
+    description, url: SITE.url, downloadUrl: [SITE.appStore, SITE.googlePlay], installUrl: SITE.appStore,
+    featureList: ["Video to step-by-step SOP", "Phone video editor with step markers", "AI-drafted quizzes", "Roles, permissions and workspaces by location", "Completion tracking by person, team and location", "Available in 8 languages"], publisher: { "@id": SITE.url + "/#org" } },
 ];
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (<html lang="en" className={schibsted.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: I18N_BOOT }} /><script dangerouslySetInnerHTML={{ __html: `try{if(localStorage.getItem("flx-theme")==="light"){document.documentElement.dataset.theme="light";document.querySelector('meta[name="theme-color"]')?.setAttribute("content","#FAF8F5")}}catch(e){}` }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} /></head><body className="font-sans antialiased"><MotionProvider><LocaleProvider>{children}</LocaleProvider></MotionProvider></body></html>);

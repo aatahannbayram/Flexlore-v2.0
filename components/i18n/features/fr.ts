@@ -9,6 +9,15 @@ export const ffr: FDict = {
     endH: "Voyez-le avec l'une de vos vraies tâches.", endP: "Vingt minutes. Nous créons l'une de vos tâches avec vous pendant l'appel.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Transformez vos PDF et procédures écrites en instructions étape par étape et en quiz, puis ajoutez de la vidéo là où elle aide.",
+      k: "Du PDF aux étapes", h1: "Vos classeurs, transformés en étapes.", sub: "Vos procédures existent déjà en PDF et en documents. Flexlore les lira et rédigera des instructions étape par étape et un quiz, pour partir de ce que vous avez et ajouter de la vidéo là où elle aide le plus.",
+      pains: [["Des années de documents", "Les bonnes procédures existent, mais personne ne lit vingt pages pendant son service."], ["Partir de zéro prend du temps", "Filmer chaque tâche avant le lancement demande du temps."], ["Le texte et la vidéo divergent", "Le document dit une chose, le terrain en fait une autre."]],
+      steps: [["Importez le PDF", "Ajoutez une procédure, un manuel ou une checklist existants."], ["Obtenez les étapes", "Flexlore rédigera des étapes numérotées, des instructions et un quiz. Votre équipe les modifie et les valide."], ["Ajoutez de la vidéo là où elle compte", "Filmez les étapes délicates et gardez tout dans une seule tâche."]],
+      detail: { h: "Partez de ce que vous avez. Améliorez sur le terrain.", p: "Un document deviendra une tâche que chacun peut suivre sur son téléphone, puis s'enrichira d'extraits filmés par ceux qui font le travail.", points: ["Étapes et quiz rédigés à partir d'un PDF", "Validés par votre équipe avant publication", "Vidéo ajoutée étape par étape"] },
+      faq: [["L'import de PDF est-il disponible aujourd'hui?", "Il est sur notre feuille de route. Demandez une démo pour voir où il en est."], ["Quels documents fonctionneront?", "Procédures écrites, manuels et checklists. Dites-nous pendant la démo ce que vous avez."], ["Faudra-t-il quand même filmer?", "Pas pour commencer. Ajoutez de la vidéo aux étapes où le voir fait la différence."]],
+      mock: ["Ouverture.pdf", "Lecture de 12 pages", "Ouvrir les portes, allumer", "Lancer la machine à café", "Vérifier les températures des frigos", "Rédigé par l'IA"],
+    },
     "video-to-sop": {
       meta: "Transformez une vidéo du travail réel filmée au téléphone en SOP vidéo étape par étape. Flexlore découpe la vidéo en étapes et rédige les instructions; votre équipe valide.",
       k: "De la vidéo au SOP", h1: "Filmez-la. Ne l'écrivez pas.", sub: "Enregistrez la tâche au téléphone, comme la fait votre meilleur collaborateur. Flexlore découpe la vidéo en étapes et rédige les instructions écrites. Votre équipe les vérifie et les publie.",

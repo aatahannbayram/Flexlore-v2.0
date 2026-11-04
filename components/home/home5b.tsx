@@ -26,27 +26,38 @@ const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: f
 
 /* ---------- 3b. Before and after: the usual way vs Flexlore, row by row ---------- */
 export function Compare5() {
-  const { locale } = useLocale(); const c = COMPARE5[locale];
+  const { locale } = useLocale(); const c = COMPARE5[locale]; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
+  const go = useInView(ref, { amount: 0.25, once: true }) || !!reduce;
   return (
     <section aria-labelledby="cmp5-h" className="section-y pt-0">
       <div className="container-x">
         <div className="grid-12 items-end gap-y-5">
-          <div className="col-span-12 lg:col-span-7"><Label icon={ArrowsLeftRight}>{c.k}</Label><H2 id="cmp5-h" className="max-w-[18ch]">{c.h}</H2></div>
+          <div className="col-span-12 lg:col-span-7"><Label icon={ArrowsLeftRight}>{c.k}</Label><H2 id="cmp5-h" className="max-w-[20ch]">{c.h}</H2></div>
           <p className="col-span-12 max-w-[34rem] text-[17px] leading-[1.6] text-ink-muted lg:col-span-5">{c.lead}</p>
         </div>
-        <div className={`${card} mt-12 p-2 md:p-3`}>
-          <div className="hidden grid-cols-[1fr_44px_1fr] items-center px-5 pb-3 pt-4 text-[13px] font-medium md:grid">
-            <span className="text-ink-faint">{c.old}</span><span />
-            <span className="flex items-center gap-2 text-ink"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
+        <div ref={ref} className={`${card} mt-10 p-2 md:p-3 ${go ? "bx-go" : ""}`}>
+          {/* Column heads as pictures: the usual way (an empty training room) and Flexlore (filming at the station). */}
+          <div className="grid gap-2 md:grid-cols-[1fr_44px_1fr]">
+            <div className="dark relative h-28 overflow-hidden rounded-[20px] md:h-36">
+              <picture><source srcSet="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.avif" type="image/avif" /><img src="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.webp" alt="" loading="lazy" className="h-full w-full object-cover opacity-60 grayscale" /></picture>
+              <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.75),rgb(17_17_17/0.1))]" />
+              <span className="absolute bottom-4 start-4 text-[15px] font-medium text-white/80">{c.old}</span>
+            </div>
+            <span aria-hidden="true" className="hidden place-items-center md:grid"><ArrowRight size={18} className="text-ink-faint rtl:-scale-x-100" /></span>
+            <div className="dark relative h-28 overflow-hidden rounded-[20px] md:h-36">
+              <Pic n="food-qa" sizes="50vw" className="h-full w-full object-cover" />
+              <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.7),rgb(17_17_17/0.05))]" />
+              <span className="absolute bottom-4 start-4 flex items-center gap-2 text-[15px] font-semibold text-white"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
+            </div>
           </div>
-          <Reveal as="ul" stagger={0.07} className="space-y-1.5">
-            {c.rows.map(([o, n]) => (
-              <RevealItem as="li" key={o} className="grid items-center gap-2 rounded-[18px] bg-[var(--card-2)] p-4 md:grid-cols-[1fr_44px_1fr] md:gap-0 md:px-5">
-                <span className="flex items-center gap-3 text-[15px] text-ink-faint"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--card)]"><X size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.old}: </span>{o}</span></span>
+          <ul className="mt-2 space-y-1.5">
+            {c.rows.map(([o, n], k) => (
+              <li key={o} className="bx-rise grid items-center gap-2 rounded-[18px] bg-[var(--card-2)] p-4 md:grid-cols-[1fr_44px_1fr] md:gap-0 md:px-5" style={reduce ? undefined : { animationDelay: `${150 + k * 120}ms` }}>
+                <span className="flex items-center gap-3 text-[15px] text-ink-faint"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--card)]"><X size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.old}: </span><span className="line-through decoration-ink-faint/40">{o}</span></span></span>
                 <ArrowRight size={16} aria-hidden="true" className="hidden justify-self-center text-ink-faint md:block rtl:-scale-x-100" />
-                <span className="flex items-center gap-3 text-[15px] font-medium text-ink"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ink text-bg"><Check size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.now}: </span>{n}</span></span>
-              </RevealItem>))}
-          </Reveal>
+                <span className="flex items-center gap-3 text-[15px] font-medium text-ink"><span className="bx-pop grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ink text-bg" style={reduce ? undefined : { animationDelay: `${600 + k * 160}ms` }}><Check size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.now}: </span>{n}</span></span>
+              </li>))}
+          </ul>
         </div>
       </div>
     </section>);
@@ -383,7 +394,7 @@ export function Statement5() {
           <SmartVideo name="gen-baker" poster="/video/gen-baker.webp" threshold={0.3} className="absolute inset-0 h-full w-full object-cover" />
           <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.5),rgb(17_17_17/0.72))]" />
           <div className="relative">
-            <h2 id="st-h" className="mx-auto max-w-[18ch] text-[clamp(32px,1rem+3vw,64px)] font-semibold leading-[1.04] tracking-[-0.035em] text-white">{c.h}</h2>
+            <h2 id="st-h" className="mx-auto max-w-[18ch] text-[clamp(28px,1rem+1.8vw,46px)] font-semibold leading-[1.08] tracking-[-0.035em] text-white">{c.h}</h2>
             <p className="mx-auto mt-5 max-w-[34rem] text-[17px] leading-[1.55] text-white/80">{c.p}</p>
             <a href="#how" className="mt-8 inline-flex h-12 items-center gap-3 rounded-full bg-[rgb(17_17_17/0.75)] pe-2 ps-6 text-[15px] font-semibold text-white backdrop-blur">{c.cta}<span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#111]"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
           </div>

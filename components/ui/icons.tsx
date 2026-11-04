@@ -31,6 +31,7 @@ export { EnvelopeSimple } from "./icons/EnvelopeSimple";
 export { Eye } from "./icons/Eye";
 export { EyeSlash } from "./icons/EyeSlash";
 export { Factory } from "./icons/Factory";
+export { FilePdf } from "./icons/FilePdf";
 export { FilmSlate } from "./icons/FilmSlate";
 export { FirstAid } from "./icons/FirstAid";
 export { ForkKnife } from "./icons/ForkKnife";

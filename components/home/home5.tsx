@@ -55,7 +55,7 @@ export function Hero5() {
               <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-ink-faint" />
               <span>{h.rotPre}<Rotator key={locale} words={h.rot} />{h.rotPost}</span>
             </p>
-            <h1 id="hero-h" className="mt-7 max-w-[15ch] text-[clamp(40px,1rem+3vw,68px)] font-[620] leading-[0.98] tracking-[-0.045em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-7 max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-[620] leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
               <span className="block">{h.h1a}</span><span className="block text-ink-faint">{h.h1b}</span>
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[18px] leading-[1.6] text-ink-muted" style={{ animationDelay: "200ms" }}>{h.sub}</p>
@@ -90,15 +90,20 @@ export function Problem5() {
   return (
     <section aria-labelledby="prob-h" className="section-y">
       <div className="container-x">
-        <H2 id="prob-h" className="max-w-[22ch] !mt-0">{c.h} <span className="text-ink-faint">{c.h2}</span></H2>
-        <Reveal as="ul" stagger={0.08} className="mt-12 grid gap-3 md:grid-cols-3">
-          {c.points.map(([h, p], i) => { const I = icons[i]; return (
-            <RevealItem as="li" key={h} className={`${card} p-6 md:p-7`}>
-              <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink"><I size={21} /></span>
-              <h3 className="mt-8 text-[20px] font-semibold tracking-[-0.02em]">{h}</h3>
-              <p className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{p}</p>
-            </RevealItem>); })}
-        </Reveal>
+        <H2 id="prob-h" className="!mt-0 max-w-[24ch]">{c.h} <span className="text-ink-faint">{c.h2}</span></H2>
+        <div className="dark relative mt-10 overflow-hidden rounded-[32px] bg-[#141414] p-4 text-white md:p-6">
+          <div aria-hidden="true" className="absolute inset-0"><img src="/video/kitchen-bg.webp" alt="" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[5px]" />
+            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[5px]" />
+            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35),rgb(17_17_17/0.75))]" /></div>
+          <Reveal as="ul" stagger={0.1} className="relative grid gap-3 md:grid-cols-3">
+            {c.points.map(([h, p], i) => { const I = icons[i]; return (
+              <RevealItem as="li" key={h} className="rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6 ring-1 ring-white/10 backdrop-blur-md md:p-7">
+                <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-white/10"><I size={20} /></span>
+                <h3 className="mt-14 text-[19px] font-semibold tracking-[-0.02em]">{h}</h3>
+                <p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
+              </RevealItem>); })}
+          </Reveal>
+        </div>
       </div>
     </section>);
 }

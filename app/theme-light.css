@@ -41,6 +41,7 @@
 :root[data-theme="light"] .hover\:text-white\/80:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
 :root[data-theme="light"] .ring-white:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/10:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] .ring-white\/15:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.15); }
 :root[data-theme="light"] .ring-white\/20:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .ring-white\/25:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.25); }
 :root[data-theme="light"] .ring-white\/30:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }

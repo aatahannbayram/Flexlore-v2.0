@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Device, WorkScreen } from "../AppScreens";
 import type { Visual } from "./data";
-import { CheckCircle, Sparkle, MapPin, LockSimple, Eye, PencilSimple, Bell, Check, ChatCircle, Lightning, QrCode, Translate } from "../ui/icons";
+import { FilePdf, ArrowRight, CheckCircle, Sparkle, MapPin, LockSimple, Eye, PencilSimple, Bell, Check, ChatCircle, Lightning, QrCode, Translate } from "../ui/icons";
 
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
@@ -40,6 +40,18 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
       <div key={x} className={`${row} bx-rise`} style={st(300 + i * 250)}><span className="tabular-nums text-white/50">{i + 1}</span><span className="flex-1 truncate">{x}</span>
         <span className="flex items-center gap-1 rounded-full bg-[#E7EBEB] px-2 py-0.5 text-[11px] font-semibold text-[#111]"><CheckCircle size={11} weight="fill" />{mock[4]}</span></div>))}
       <p className="flex items-center gap-1.5 px-2 pt-1 text-[11px] text-white/55"><Sparkle size={11} weight="fill" />{mock[3]}</p></div></div>);
+  if (v === "pdf") body = (<div className="flex w-full items-center justify-center gap-3 sm:gap-5">
+    <div className="relative w-[38%] max-w-[190px] overflow-hidden rounded-[14px] bg-white p-3.5 text-[#111]">
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold"><FilePdf size={14} className="text-[#A03434]" /><span className="truncate">{mock[0]}</span></p>
+      <div className="mt-3 space-y-1.5">{[90, 70, 84, 60, 92, 50, 76, 66, 88, 40].map((w, i) => <span key={i} className="block h-1.5 rounded-full bg-[#111]/12" style={{ width: `${w}%` }} />)}</div>
+      <span aria-hidden="true" className="pdf-scan absolute inset-x-0 top-0 h-10 bg-[linear-gradient(180deg,rgb(236_103_38/0)_0%,rgb(236_103_38/0.22)_70%,rgb(236_103_38/0.6)_100%)]" />
+      <p className="mt-3 text-[10px] text-[#666]">{mock[1]}</p>
+    </div>
+    <ArrowRight size={18} className="shrink-0 text-white/50" />
+    <div className={`${glass} w-[50%] max-w-[250px] space-y-1.5 p-2.5`}>{mock.slice(2, 5).map((x, i) => (
+      <div key={x} className={`${row} bx-rise`} style={st(500 + i * 450)}><span className="tabular-nums text-white/50">{i + 1}</span><span className="truncate">{x}</span></div>))}
+      <p className="flex items-center gap-1.5 px-2 pt-1 text-[11px] text-white/55"><Sparkle size={11} weight="fill" />{mock[5]}</p></div>
+  </div>);
   if (v === "editor") body = phone(<Editor active={on} lang={lang} />);
   if (v === "quiz") body = phone(<Quiz active={on} lang={lang} q={mock[0] ?? ""} a={mock.slice(1, 4)} />);
   if (v === "panel") body = (<div className="w-[92%] overflow-hidden rounded-[14px] ring-1 ring-white/10"><div className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /></div>{near ? <Dash on={on} /> : <div className="aspect-[1180/720] w-full" />}</div>);

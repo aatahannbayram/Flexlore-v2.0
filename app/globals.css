@@ -68,7 +68,7 @@
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
-  --section-y: clamp(72px, 10vh, 136px);
+  --section-y: clamp(64px, 8vh, 108px);
   --header-h: 64px;
 }
 @media (max-width: 767px) { :root { --gutter: 16px; } }
@@ -240,8 +240,8 @@ main:not([lang="tr"]) .l-tr { display: none; }
 
 /* Reference-style home (components/home/v3.tsx): large tight type, kicker labels, one band tone. */
 .band { background: var(--band); }
-.v3-h1 { font-size: clamp(40px, 1.2rem + 4.2vw, 84px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; text-wrap: balance; }
-.v3-h2 { font-size: clamp(32px, 1.1rem + 2.6vw, 60px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.02; text-wrap: balance; }
+.v3-h1 { font-size: clamp(32px, 1rem + 2.2vw, 54px); font-weight: 600; letter-spacing: -0.045em; line-height: 0.98; text-wrap: balance; }
+.v3-h2 { font-size: clamp(26px, 0.9rem + 1.4vw, 42px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; text-wrap: balance; }
 .v3-kicker { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; font-weight: 500; color: var(--color-ink-muted); }
 .v3-kicker::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); }
 .home-v3 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; color: var(--color-ink-muted); }
@@ -288,3 +288,11 @@ html body { transition: opacity .25s ease; }
 .int-pulse { animation: intPulse 3s ease-in-out infinite; }
 @keyframes intPulse { 0% { outline: 1px solid rgb(231 235 235 / 0.25); outline-offset: 0; } 70%, 100% { outline: 1px solid rgb(231 235 235 / 0); outline-offset: 14px; } }
 @media (prefers-reduced-motion: reduce) { .int-pulse { animation: none; } }
+.pdf-scan { animation: pdfScan 2.6s ease-in-out infinite; }
+@keyframes pdfScan { 0% { transform: translateY(-40px); } 100% { transform: translateY(260px); } }
+@media (prefers-reduced-motion: reduce) { .pdf-scan { animation: none; opacity: 0; } }
+.feat-glow { animation: featGlow 9s ease-in-out infinite alternate; }
+@keyframes featGlow { from { transform: translate(-4%, -3%) scale(1); } to { transform: translate(4%, 3%) scale(1.08); } }
+.feat-ring { animation: featRing 2.8s ease-out infinite; }
+@keyframes featRing { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.45); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .feat-glow, .feat-ring { animation: none; } .feat-ring { opacity: 0; } }

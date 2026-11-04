@@ -9,6 +9,15 @@ export const fes: FDict = {
     endH: "Véalo con una de sus tareas reales.", endP: "Veinte minutos. Creamos con usted una de sus tareas durante la llamada.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Convierta sus PDF y procedimientos escritos en instrucciones paso a paso y un cuestionario, y añada video donde ayude.",
+      k: "De PDF a pasos", h1: "Sus manuales, convertidos en pasos.", sub: "Ya tiene procedimientos en PDF y documentos. Flexlore los leerá y redactará instrucciones paso a paso y un cuestionario, para que empiece con lo que ya tiene y añada video donde más ayude.",
+      pains: [["Años de documentos", "Hay buenos procedimientos, pero nadie lee veinte páginas durante el turno."], ["Empezar de cero es lento", "Grabar cada tarea antes de ponerla en marcha lleva tiempo."], ["El texto y el video se desconectan", "El documento dice una cosa y en planta se hace otra."]],
+      steps: [["Suba el PDF", "Añada un procedimiento, manual o checklist que ya tenga."], ["Obtenga los pasos", "Flexlore redactará pasos numerados, instrucciones y un cuestionario. Su equipo los edita y los aprueba."], ["Añada video donde importa", "Grabe los pasos difíciles y mantenga todo en una sola tarea."]],
+      detail: { h: "Empiece con lo que tiene. Mejórelo en planta.", p: "Un documento se convertirá en una tarea que las personas pueden seguir en el móvil, y luego crecerá con clips de quienes hacen el trabajo.", points: ["Pasos y cuestionario redactados a partir de un PDF", "Aprobados por su equipo antes de publicar", "Video añadido paso a paso"] },
+      faq: [["¿Está disponible hoy la importación de PDF?", "Está en nuestra hoja de ruta. Solicite una demo para ver en qué punto está."], ["¿Qué documentos servirán?", "Procedimientos escritos, manuales y checklists. Cuéntenos en la demo qué tiene."], ["¿Tendré que grabar igualmente?", "No para empezar. Añada video a los pasos en los que verlo marca la diferencia."]],
+      mock: ["Apertura.pdf", "Leyendo 12 páginas", "Abrir puertas y encender luces", "Encender la cafetera", "Revisar temperaturas de neveras", "Redactado por IA"],
+    },
     "video-to-sop": {
       meta: "Convierta un video del trabajo real grabado con el móvil en SOP en video paso a paso. Flexlore divide el video en pasos y redacta las instrucciones; su equipo las aprueba.",
       k: "De video a SOP", h1: "Grábelo. No lo escriba.", sub: "Grabe la tarea con el móvil tal como la hace su mejor profesional. Flexlore divide el video en pasos y redacta las instrucciones escritas. Su equipo las revisa y las publica.",

@@ -1,0 +1,33 @@
+# Flexlore
+
+> Flexlore turns your operational know-how into video-based, step-by-step, AI-assisted employee training you can measure, for every shift and location.
+
+Flexlore is a B2B training platform for frontline teams in restaurants and cafés, manufacturing, hotels, franchises and warehouses. A team films a job on a phone; AI drafts the steps, written instructions and a short quiz; the team reviews and approves every draft; managers see who has watched each job and passed its quiz, by person, team and location. Apps for iOS and Android; the app is available in 8 languages (English, Turkish, German, Arabic, Spanish, Russian, French, Polish). A quiz shows who understood the steps; signing someone off on the floor stays with their supervisor.
+
+Pricing is by number of users: Free (3 users), Pro (10), ProPlus (30), Enterprise (30+). Details: https://www.flexlore.com/pricing/
+
+## Features
+
+### Create
+- [Video to SOP](https://www.flexlore.com/features/video-to-sop/) (available now): Turn a phone video of real work into step-by-step video SOPs. Flexlore splits the video into steps and drafts the instructions; your team approves.
+- [PDF to steps](https://www.flexlore.com/features/pdf-to-steps/) (coming soon): Turn existing PDFs and written procedures into step-by-step instructions and a quiz, then add video where it helps.
+- [Video editor](https://www.flexlore.com/features/video-editor/) (available now): A phone-first video editor for frontline training: trim, mark steps, add text and stickers, no editing skills needed.
+- [Screen recording](https://www.flexlore.com/features/screen-recording/) (coming soon): Record a task in the browser and turn it into a step-by-step guide, in the same library as your floor training.
+- [AI quiz](https://www.flexlore.com/features/ai-quiz/) (available now): AI drafts a short quiz from each job, so you see who understood the steps, not just who pressed play.
+
+### Roll out
+- [Automatic translation](https://www.flexlore.com/features/auto-translation/) (coming soon): One video, every worker in their own language. Automatic translation of steps and quizzes for multilingual frontline teams.
+- [QR on the job](https://www.flexlore.com/features/qr-codes/) (coming soon): Put a QR code on a machine or station. Scan it and the right job opens with its steps, no searching.
+- [Notifications](https://www.flexlore.com/features/notifications/) (coming soon): Notify the right people when a job is assigned, due or updated, and track completion after the change.
+
+### Manage
+- [Permissions and workspaces](https://www.flexlore.com/features/permissions-workspaces/) (available now): Roles, permissions and workspaces for multi-location teams. People see only the jobs meant for their role and site.
+- [Web panel](https://www.flexlore.com/features/web-panel/) (coming soon): A web panel for managers: build the library, assign jobs and follow completion by person and location.
+- [AI agents and MCP](https://www.flexlore.com/features/ai-agents-mcp/) (coming soon): AI agents, automations and an MCP server that connects Flexlore to Claude, ChatGPT and your other tools.
+
+## More
+- [How it works](https://www.flexlore.com/#how)
+- [Integrations](https://www.flexlore.com/integrations/): iOS, Android today; REST API, webhooks, MCP server and BI connections on the roadmap
+- [See it in your business](https://www.flexlore.com/see-it/)
+- [Blog](https://www.flexlore.com/blog/)
+- Contact: support@flexlore.com · Book a demo: https://app-eu1.hubspot.com/meetings/alper-kalip

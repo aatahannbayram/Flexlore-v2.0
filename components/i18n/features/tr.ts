@@ -11,6 +11,15 @@ export const ftr: FDict = {
     endH: "Kendi gerçek işlerinizden biriyle görün.", endP: "Yirmi dakika. Görüşmede işlerinizden birini sizinle birlikte hazırlıyoruz.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Mevcut PDF'leri ve yazılı prosedürleri adım adım talimatlara ve bir quize dönüştürün, ardından işe yarayan yerlere video ekleyin.",
+      k: "PDF'ten adımlar", h1: "Klasörleriniz adımlara dönüşsün.", sub: "Prosedürleriniz zaten PDF'lerde ve dokümanlarda duruyor. Flexlore bunları okuyacak, adım adım talimatların ve bir quizin taslağını hazırlayacak. Böylece elinizdekiyle başlayıp videoyu en çok işe yarayacağı yerlere ekleyebileceksiniz.",
+      pains: [["Yılların dokümanları", "İyi prosedürler var, ama vardiyada kimse yirmi sayfa okumuyor."], ["Sıfırdan başlamak yavaş", "Yayına almadan önce her işi çekmek zaman alır."], ["Yazı ve video birbirinden kopar", "Doküman bir şey söyler, sahada başka şey yapılır."]],
+      steps: [["PDF'i yükleyin", "Mevcut bir prosedür, kılavuz veya kontrol listesi ekleyin."], ["Adımları alın", "Flexlore numaralı adımların, talimatların ve bir quizin taslağını hazırlayacak. Ekibiniz düzenleyip onaylayacak."], ["Gereken yere video ekleyin", "Zor adımları çekin, her şeyi tek bir işte tutun."]],
+      detail: { h: "Elinizdekiyle başlayın. Sahada geliştirin.", p: "Bir doküman, insanların telefonlarından takip edebileceği bir işe dönüşecek; sonra işi yapanların klipleriyle büyüyecek.", points: ["PDF'ten hazırlanan adım ve quiz taslakları", "Yayından önce ekibinizin onayı", "Adım adım eklenen video"] },
+      faq: [["PDF aktarımı bugün kullanılabilir mi?", "Yol haritamızda. Ne aşamada olduğunu görmek için demo isteyin."], ["Hangi dokümanlar uygun olacak?", "Yazılı prosedürler, kılavuzlar ve kontrol listeleri. Elinizde ne olduğunu demo görüşmesinde bize anlatın."], ["Yine de video çekmem gerekecek mi?", "Başlamak için gerekmeyecek. Görmenin fark yarattığı adımlara video ekleyin."]],
+      mock: ["Açılış prosedürü.pdf", "12 sayfa okunuyor", "Kapıların kilidini aç, ışıkları yak", "Kahve makinesini çalıştır", "Buzdolabı sıcaklıklarını kontrol et", "Yapay zekâ taslağı"],
+    },
     "video-to-sop": {
       meta: "Gerçek işin telefon videosunu adım adım video SOP'lara dönüştürün. Flexlore videoyu adımlara böler ve talimatların taslağını hazırlar; ekibiniz onaylar.",
       k: "Videodan SOP", h1: "Yazmayın, çekin.", sub: "İşi en iyi çalışanınız nasıl yapıyorsa telefonla öyle kaydedin. Flexlore videoyu adımlara böler ve yazılı talimatların taslağını hazırlar. Ekibiniz kontrol eder ve yayınlar.",

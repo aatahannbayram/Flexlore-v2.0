@@ -9,6 +9,15 @@ export const fde: FDict = {
     endH: "Sehen Sie es mit einer Ihrer echten Aufgaben.", endP: "Zwanzig Minuten. Wir erstellen im Gespräch gemeinsam mit Ihnen eine Ihrer Aufgaben.",
   },
   items: {
+    "pdf-to-steps": {
+      meta: "Machen Sie aus vorhandenen PDFs und schriftlichen Abläufen Schritt-für-Schritt-Anweisungen und ein Quiz und ergänzen Sie Video, wo es hilft.",
+      k: "PDF zu Schritten", h1: "Aus Ihren Ordnern werden Schritte.", sub: "Ihre Abläufe stehen bereits in PDFs und Dokumenten. Flexlore wird sie lesen und Schritt-für-Schritt-Anweisungen und ein Quiz entwerfen. So starten Sie mit dem, was Sie haben, und ergänzen Video dort, wo es am meisten hilft.",
+      pains: [["Jahrelang gesammelte Dokumente", "Gute Abläufe gibt es, aber in der Schicht liest niemand zwanzig Seiten."], ["Bei null anfangen dauert", "Jede Aufgabe vor dem Start zu filmen kostet Zeit."], ["Text und Video laufen auseinander", "Im Dokument steht das eine, im Betrieb passiert das andere."]],
+      steps: [["PDF hochladen", "Einen vorhandenen Ablauf, ein Handbuch oder eine Checkliste hinzufügen."], ["Schritte erhalten", "Flexlore wird nummerierte Schritte, Anweisungen und ein Quiz entwerfen. Ihr Team bearbeitet und gibt frei."], ["Video ergänzen, wo es zählt", "Die schwierigen Schritte filmen und alles in einer Aufgabe behalten."]],
+      detail: { h: "Mit dem Vorhandenen starten. Im Betrieb verbessern.", p: "Aus einem Dokument wird eine Aufgabe, der man auf dem Handy folgen kann. Danach wächst sie mit Clips der Leute, die die Arbeit machen.", points: ["Schritte und Quiz aus einem PDF entworfen", "Vor dem Veröffentlichen von Ihrem Team freigegeben", "Video Schritt für Schritt ergänzt"] },
+      faq: [["Ist der PDF-Import schon verfügbar?", "Er steht auf unserer Roadmap. Buchen Sie eine Demo, um den aktuellen Stand zu sehen."], ["Welche Dokumente werden funktionieren?", "Schriftliche Abläufe, Handbücher und Checklisten. Sagen Sie uns in der Demo, was Sie haben."], ["Muss ich trotzdem filmen?", "Für den Start nicht. Ergänzen Sie Video bei den Schritten, bei denen Sehen den Unterschied macht."]],
+      mock: ["Öffnung.pdf", "12 Seiten werden gelesen", "Türen aufschließen, Licht an", "Kaffeemaschine starten", "Kühlschranktemperaturen prüfen", "Von KI entworfen"],
+    },
     "video-to-sop": {
       meta: "Machen Sie aus einem Handyvideo echter Arbeit Video-Arbeitsanweisungen in Schritten. Flexlore teilt das Video in Schritte und entwirft die Anweisungen, Ihr Team gibt frei.",
       k: "Video zu SOP", h1: "Filmen statt schreiben.", sub: "Filmen Sie die Aufgabe mit dem Handy so, wie Ihre beste Fachkraft sie erledigt. Flexlore teilt das Video in Schritte und entwirft die schriftlichen Anweisungen. Ihr Team prüft und veröffentlicht.",
