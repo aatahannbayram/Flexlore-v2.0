@@ -8,7 +8,6 @@ import { SITE } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
-import { HERO_TAG } from "../i18n/hero-tag";
 import { VideoModal } from "../ui/VideoModal";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem } from "../ui/Reveal";
@@ -28,19 +27,13 @@ export const card = "relative overflow-hidden rounded-[28px] bg-[var(--card)]";
 
 /* ---------- 1. Hero ---------- */
 export function Hero5({ children }: { children?: React.ReactNode }) {
-  const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false);
+  const { d, lang } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false);
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
       <div className="container-x">
         <div className="grid-12 items-center gap-y-6 pb-8 pt-5 sm:gap-y-8 sm:pb-12 lg:min-h-[min(calc(100svh-var(--header-h)),860px)] lg:gap-y-12 lg:py-10">
           <div className="col-span-12 lg:col-span-6">
-            <div className="hs-in flex items-center gap-3">
-              <span aria-hidden="true" className="flex -space-x-2 rtl:space-x-reverse">
-                {["chef-plating", "safety", "hotel-desk", "huddle"].map((n) => <img key={n} src={`/photos/${n}-96.webp`} alt="" width={32} height={32} className="h-8 w-8 rounded-full object-cover ring-2 ring-bg" />)}
-              </span>
-              <p className="text-[14px] text-ink-muted">{HERO_TAG[locale]}</p>
-            </div>
-            <h1 id="hero-h" className="mt-7 max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-semibold leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
+            <h1 id="hero-h" className="max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-semibold leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
               <span className="block">{h.h1a}</span><span className="block text-ink-faint">{h.h1b}</span>
             </h1>
             <p className="hs-in mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted sm:mt-6 sm:text-[18px]" style={{ animationDelay: "200ms" }}>{h.sub}</p>
