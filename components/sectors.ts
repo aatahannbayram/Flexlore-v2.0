@@ -11,7 +11,7 @@ export type Sector = {
 };
 export const sectors: Sector[] = [
   {
-    slug: "restoran", v: "kitchen", still: "/photos/chef-fire.jpg", en: "Restaurants", tr: "Restoranlar", idx: "01",
+    slug: "restoran", v: "kitchen", still: "/media/v3/hero-sef-1600.jpg", en: "Restaurants", tr: "Restoranlar", idx: "01",
     kicker: "Restaurants & kitchens", h: "Same plate. Every shift.",
     lede: "Your head chef knows exactly how the line should open, how the walk-in is checked and how a plate leaves the pass. Flexlore puts that knowledge on every phone in the kitchen.",
     problem: { h: "The recipe card is not the recipe.", p: ["New cooks learn by watching whoever is on shift. Every handover bends the standard a little.", "Hygiene and allergen steps are written down somewhere. Under pressure, nobody checks the binder."] },

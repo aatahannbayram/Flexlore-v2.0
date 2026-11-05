@@ -8,18 +8,12 @@ import Link from "next/link";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE, PLANS, savePct } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
-import { EXTRA, INTEG, COMPARE5 } from "../i18n/extra";
-import { HOME2 } from "../i18n/home2";
-import { Device, WorkScreen } from "../AppScreens";
+import { COMPARE5 } from "../i18n/extra";
 import { StoreButtons } from "../Icons";
 import { SmartVideo } from "../ui/SmartVideo";
 import { EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, type Ic } from "./home5";
-import {
-  ArrowRight, Check, CheckCircle, Users, Sparkle, FilmSlate, Question, ChartBar, Plus, ShieldCheck,
-  X, ArrowsLeftRight, Play, Pause, Storefront, PlugsConnected, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code, Browser,
-  AppleLogo, AndroidLogo, WebhooksLogo, Robot, Books,
-} from "../ui/icons";
+import { ArrowRight, Check, Users, Sparkle, Question, Plus, X, ArrowsLeftRight, Tag, Lightning, Buildings } from "../ui/icons";
 
 
 /* ---------- Before and after: one frame, a handle to drag between the usual way and Flexlore ----------
@@ -93,143 +87,6 @@ export function Compare5({ short = false }: { short?: boolean }) {
     </section>);
 }
 
-/* ---------- How it works: four steps, one stage ----------
- * The approved process stage (blurred loop behind a phone with the real app screen and a status chip) with the four
- * steps of the product. Steps advance every 6 s while in view (pausable; never under reduced motion); hover or focus
- * holds a step. Phones: the stage first, then the steps as a compact list where only the active one shows its text. */
-const STAGE = [{ v: "kitchen", icon: FilmSlate }, { v: "line", icon: Sparkle }, { v: "plating", icon: CheckCircle }, { v: "coffee", icon: ChartBar }] as const;
-const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-export function Steps5() {
-  const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const x = EXTRA[locale]; const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
-  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
-  const run = on && !hold && !paused && !reduce;
-  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 4), 6000); return () => window.clearTimeout(t); }, [run, i]);
-  const screen = i === 0 ? <Editor active={on} lang={lang} /> : i === 1 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} />
-    : i === 2 ? <WorkScreen active={on} lang={lang} /> : <Ready active={on} lang={lang} />;
-  const chips = [x.chips[0], x.chips[1], `${d.caps.frag.ok} · ${d.bento.who[0]}`, x.chips[3]];
-  const ChipIc = STAGE[i].icon;
-  return (
-    <section id="how" aria-labelledby="how-h" className="section-y pt-0">
-      <div className="container-x">
-        <Label icon={Lightning}>{c.k}</Label><H2 id="how-h" className="max-w-[20ch]">{c.h}</H2>
-        <div ref={ref} className="mt-8 grid gap-4 md:mt-12 lg:grid-cols-12 lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <div className="dark relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#141414] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:min-h-[620px] lg:rounded-[32px]">
-            <AnimatePresence initial={false}>
-              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}>
-                <img src={`/video/${STAGE[i].v}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />
-                {near && <SmartVideo name={STAGE[i].v} poster={`/video/${STAGE[i].v}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />}
-              </m.div>
-            </AnimatePresence>
-            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(20_20_20/0)_0%,rgb(20_20_20/0.75)_75%)]" />
-            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(30_30_30/0.85)] text-white/80 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
-            <div className="absolute left-1/2 top-[19%] w-[min(42%,280px)] -translate-x-1/2 lg:top-[17%] lg:w-[min(50%,280px)]" dir="ltr">
-              <Device label={s[i][0]}>{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device>
-            </div>
-            <AnimatePresence mode="wait" initial={false}>
-              <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
-                className="absolute start-4 top-4 flex w-max max-w-[calc(100%-5rem)] items-center gap-2.5 rounded-full bg-[rgb(30_30_30/0.85)] py-1.5 pe-4 ps-1.5 text-[13px] font-medium text-white ring-1 ring-white/10 backdrop-blur-md md:start-5 md:top-5 md:gap-3 md:py-2 md:pe-5 md:ps-2 md:text-[14px]">
-                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white text-[#111] md:h-8 md:w-8"><ChipIc size={15} /></span><span className="truncate">{chips[i]}</span>
-              </m.div>
-            </AnimatePresence>
-          </div>
-          <ol className="flex flex-col gap-1 lg:col-span-5 lg:justify-center" role="tablist" aria-label={c.k}>
-            {s.map(([h, p], k) => { const I = STAGE[k].icon; const act = i === k; return (
-              <li key={h}>
-                <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
-                  className={`relative block w-full rounded-[20px] p-3 text-start transition-colors duration-300 md:rounded-[22px] md:p-5 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
-                  <span className="flex items-center gap-3 md:gap-4">
-                    <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-[12px] transition-colors duration-300 md:h-11 md:w-11 md:rounded-[14px] ${act ? "bg-[var(--card-2)] text-ink" : "text-ink-faint"}`}><I size={19} /></span>
-                    <span className="min-w-0">
-                      <span className="block text-[12px] font-medium uppercase tracking-[.08em] text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
-                      <span className={`block text-[17px] font-semibold leading-snug tracking-[-0.015em] transition-colors md:text-[19px] ${act ? "text-ink" : "text-ink-muted"}`}>{h}</span>
-                    </span>
-                  </span>
-                  <span className={`mt-2 block text-[15px] leading-[1.55] text-ink-muted md:mt-3 md:ps-[3.75rem] ${act ? "" : "hidden"}`}>{k === 0 ? c.steps[0][1] : p}</span>
-                  {act && <span aria-hidden="true" className="mt-3 block h-[2px] overflow-hidden rounded-full bg-[var(--card-2)] md:mt-4 md:ms-[3.75rem]">
-                    <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-ink/70 rtl:origin-right" style={{ animation: run ? "procbar 6s linear forwards" : "none", transform: run ? undefined : "scaleX(1)" }} /></span>}
-                </button>
-              </li>); })}
-          </ol>
-        </div>
-        <div className="mt-5 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-6">
-          <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
-        </div>
-      </div>
-    </section>);
-}
-
-/* ---------- Industries: one tab per industry (picture, role sentence, three examples, a link) ---------- */
-const IND = [["/sektor/restoran/", "chef-plating", ForkKnife], ["/sektor/uretim/", "safety", Factory], ["/sektor/otel/", "hotel-desk", Bed], ["/sektor/franchise/", "huddle", Storefront]] as const;
-export function Sectors5() {
-  const { d, locale } = useLocale(); const c = d.ind; const t = HOME2[locale]; const reduce = useReducedMotion();
-  const [on, setOn] = useState(0); const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const key = (e: React.KeyboardEvent, k: number) => {
-    const n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (!n) return;
-    e.preventDefault(); const rtl = document.documentElement.dir === "rtl"; const next = (k + (rtl ? -n : n) + IND.length) % IND.length; setOn(next); tabs.current[next]?.focus();
-  };
-  const [href, img] = IND[on]; const [role, ex] = t.tabs[on];
-  return (
-    <section id="industries" aria-labelledby="ind-h" className="section-y pt-0">
-      <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div><Label icon={Storefront}>{c.k}</Label><H2 id="ind-h" className="max-w-[16ch]">{c.h}</H2></div>
-          <Link href="/see-it/" className="btn btn-secondary hidden md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        </div>
-        {/* Chips scroll sideways inside their own row on small phones; the page itself never does. */}
-        <div role="tablist" aria-label={c.k} className="no-sb -mx-[var(--pad-x)] mt-8 flex gap-2 overflow-x-auto px-[var(--pad-x)] md:mx-0 md:mt-10 md:flex-wrap md:px-0">
-          {IND.map(([, , I], k) => { const act = on === k; return (
-            <button key={k} ref={(n) => { tabs.current[k] = n; }} type="button" role="tab" id={`ind-t-${k}`} aria-selected={act} aria-controls="ind-panel" tabIndex={act ? 0 : -1}
-              onClick={() => setOn(k)} onKeyDown={(e) => key(e, k)}
-              className={`inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full pe-4 ps-3 text-[15px] font-medium transition-colors ${act ? "bg-ink text-bg" : "bg-[var(--card)] text-ink-muted hover:text-ink"}`}>
-              <I size={17} aria-hidden="true" />{c.cards[k]}</button>); })}
-        </div>
-        <div id="ind-panel" role="tabpanel" aria-labelledby={`ind-t-${on}`} className="mt-3">
-          <AnimatePresence mode="wait" initial={false}>
-            <m.div key={on} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.3, ease: EASE }}
-              className="grid gap-3 md:grid-cols-2">
-              <div className="dark relative aspect-[2/1] overflow-hidden rounded-[24px] bg-[#2a2622] md:aspect-auto md:min-h-[400px]">
-                <Pic n={img} sizes="(min-width:768px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
-              </div>
-              <div className={`${card} flex flex-col p-5 md:p-8`}>
-                <p className="text-[18px] font-semibold leading-[1.3] tracking-[-0.015em] md:text-[24px]">{role}</p>
-                <ul className="mt-4 space-y-2.5 md:mt-6">
-                  {ex.map((e) => <li key={e} className="flex items-start gap-3 text-[15px] leading-snug text-ink-muted md:text-[16px]"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[var(--card-2)] text-ink"><Check size={13} aria-hidden="true" /></span>{e}</li>)}
-                </ul>
-                <Link href={href} className="mt-4 inline-flex min-h-11 items-center gap-2 self-start text-[15px] font-semibold md:mt-auto md:pt-6">{t.go}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-              </div>
-            </m.div>
-          </AnimatePresence>
-        </div>
-        <p className="mt-5 text-[14px] leading-[1.6] text-ink-faint">{c.also}: {c.areas.slice(0, 5).join(" · ")}. {c.langs}</p>
-      </div>
-    </section>);
-}
-
-/* ---------- Integrations: one row of what runs today and what is next ---------- */
-const LIVE: [Ic, string][] = [[AppleLogo, "iOS"], [AndroidLogo, "Android"], [Browser, "Web"]];
-const NEXT: [Ic, string][] = [[Code, "REST API"], [WebhooksLogo, "Webhooks"], [Robot, "MCP"], [ChartBar, "BI"]];
-export function Integrations5() {
-  const { d, locale } = useLocale(); const c = INTEG[locale];
-  const chip = "inline-flex h-8 items-center gap-1.5 rounded-full px-3 text-[13px] md:h-10 md:gap-2 md:px-3.5 md:text-[14px]";
-  return (
-    <section id="integrations" aria-labelledby="int-h" className="section-y pt-0">
-      <div className="container-x">
-        <div className={`${card} flex flex-col gap-3 p-4 md:p-5 lg:flex-row lg:items-center lg:gap-6`}>
-            <h2 id="int-h" className="flex shrink-0 items-center gap-2.5 text-[16px] font-semibold"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card-2)]"><PlugsConnected size={16} aria-hidden="true" /></span>{c.k}</h2>
-          <ul className="flex flex-1 flex-wrap items-center gap-1.5 md:gap-2">
-            {LIVE.map(([I, n], i) => <li key={n} className={`${chip} bg-[var(--card-2)] font-medium`}><I size={15} aria-hidden="true" />{n}<span className="sr-only"> ({c.liveItems[i]}, {c.live})</span><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-calm-aqua" /></li>)}
-            <li className="px-1 text-[13px] text-ink-faint">{d.pricingPage.soon}:</li>
-            {NEXT.map(([I, n]) => <li key={n} className={`${chip} text-ink-muted ring-1 ring-inset ring-[var(--card-2)]`}><I size={15} aria-hidden="true" />{n}</li>)}
-          </ul>
-          <Link href="/integrations/" className="inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start text-[14px] font-semibold hover:underline lg:self-auto">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        </div>
-      </div>
-    </section>);
-}
-
 /* ---------- Pricing preview (yearly by default) ---------- */
 export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setYearly: (v: boolean) => void; id: string }) {
   const { d } = useLocale(); const c = d.pricing; const best = Math.max(...PLANS.map((p) => savePct(p) ?? 0));
@@ -290,37 +147,6 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
       </div>
     </li>);
 }
-/* ---------- Web panel: the manager side, a live sample dashboard in a browser frame ----------
- * Phone: text, three short points, then the frame. From 1024 px: text left, frame right.
- * The dashboard mounts near the viewport and animates only while on screen. */
-const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
-export function Web5() {
-  const { locale, lang } = useLocale(); const t = HOME2[locale].web; const icons: Ic[] = [Books, Users, ChartBar];
-  const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.3 });
-  return (
-    <section id="web" aria-labelledby="web-h" className="section-y pt-0">
-      <div className="container-x grid-12 items-center gap-y-8">
-        <div className="col-span-12 lg:col-span-5">
-          <div className="flex flex-wrap items-center gap-3"><Label icon={Browser}>{t.k}</Label><span className="rounded-full bg-[var(--card-2)] px-2.5 py-1 text-[12px] font-medium text-ink-muted">{t.soon}</span></div>
-          <H2 id="web-h" className="max-w-[18ch]">{t.h} <span className="text-ink-faint">{t.h2}</span></H2>
-          <p className="mt-4 max-w-[30rem] text-[16px] leading-[1.55] text-ink-muted md:text-[17px]">{t.p}</p>
-          <ul className="mt-6 space-y-2">
-            {t.points.map((x, i) => { const I = icons[i]; return (
-              <li key={x} className="flex items-center gap-3 text-[15px] font-medium"><span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><I size={16} /></span>{x}</li>); })}
-          </ul>
-          <Link href="/features/web-panel/" className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold underline-offset-4 hover:underline">{t.go}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        </div>
-        <div ref={ref} className="col-span-12 lg:col-span-7">
-          <div className="overflow-hidden rounded-[16px] bg-[#161616] ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.8)] md:rounded-[20px]" dir="ltr">
-            <div aria-hidden="true" className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3 md:h-9"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" />
-              <span className="mx-auto rounded-full bg-[#111] px-4 py-0.5 text-[10px] text-white/50 md:text-[11px]">app.flexlore.com</span><span className="w-8" /></div>
-            <div role="img" aria-label={`${t.k}: ${t.points.join(", ")}`}>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>
-          </div>
-        </div>
-      </div>
-    </section>);
-}
-
 /* FAQ: heading and contact on the left (sticky on desktop), numbered questions in one card on the right.
  * The open question gets an orange number and icon; its answer lines up under the question text. */
 export function Faq5({ children, openFirst = true }: { children?: React.ReactNode; openFirst?: boolean }) {
@@ -355,25 +181,4 @@ export function Faq5({ children, openFirst = true }: { children?: React.ReactNod
         {children && <div className="col-span-12 mt-4 md:mt-6">{children}</div>}
       </div>
     </section>);
-}
-
-/* ---------- Closing call to action (rendered inside the FAQ section on the home page) ---------- */
-export function End5() {
-  const { d } = useLocale(); const c = d.end;
-  return (
-    <div className={`${card} grid-12 items-center gap-y-7 px-5 py-8 sm:px-10 md:py-16 lg:px-16`}>
-      <div className="col-span-12 lg:col-span-5">
-        <h2 id="end-h" className="v3-h2 max-w-[12ch]">{c.h}</h2>
-        <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
-        <a href={SITE.demo} className="btn btn-primary mt-7 h-12 px-6 text-[16px]">{c.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-      </div>
-      <div className="col-span-12 mx-auto w-[80%] sm:w-full lg:col-span-7"><CtaDuoLazy /></div>
-    </div>);
-}
-const CtaDuoInner = dynamic(() => import("./CtaDuo").then((x) => x.CtaDuo), { ssr: false, loading: () => <div className="aspect-[2752/1536] w-full" /> });
-function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><CtaDuoInner lang={lang} /></div>; }
-
-/** Everything below the problem section, in page order. */
-export default function Below() {
-  return (<><Steps5 /><Sectors5 /><Compare5 short /><Integrations5 /><Web5 /><Faq5 openFirst={false}><End5 /></Faq5></>);
 }
