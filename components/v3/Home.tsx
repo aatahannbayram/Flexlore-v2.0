@@ -91,7 +91,7 @@ function StepRow({ i, title, line, note, act, setAct }: { i: number; title: stri
   useEffect(() => { if (mid) setAct(i); }, [mid, i, setAct]);
   const on = act === i;
   return (
-    <li ref={ref} className="relative ps-14 lg:flex lg:min-h-[min(68vh,560px)] lg:flex-col lg:justify-center">
+    <li ref={ref} className="relative ps-14 lg:flex lg:min-h-[min(54vh,460px)] lg:flex-col lg:justify-center">
       <span aria-hidden="true" className={`absolute start-0 top-0 grid h-10 w-10 place-items-center rounded-full border text-[13px] font-semibold tabular-nums transition-colors duration-300 lg:top-1/2 lg:-translate-y-1/2 ${on ? "border-accent bg-accent text-[#111111]" : "border-line bg-[var(--card-2)] text-ink-muted"}`}>{String(i + 1).padStart(2, "0")}</span>
       <h3 className={`text-[22px] font-semibold leading-tight tracking-[-0.025em] transition-colors md:text-[28px] lg:text-[34px] ${on ? "text-ink" : "lg:text-ink-faint"}`}>{title}</h3>
       <p className={`mt-2 max-w-[30rem] text-[16px] leading-[1.55] transition-colors md:text-[17px] ${on ? "text-ink-muted" : "text-ink-muted lg:text-ink-faint"}`}>{line}</p>
@@ -308,7 +308,7 @@ export function EndV3() {
   return (
     <section aria-labelledby="end-h" className="dark relative isolate overflow-hidden bg-[#111111]">
       <div aria-hidden="true" className="absolute inset-0"><Photo n="saha-cati-siluet" portrait sizes="100vw" className="h-full w-full object-cover" /></div>
-      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(17_17_17/0.85)_0%,rgb(17_17_17/0.2)_55%,rgb(17_17_17/0)_100%)] md:bg-[linear-gradient(90deg,rgb(17_17_17/0.7)_0%,rgb(17_17_17/0.15)_50%,rgb(17_17_17/0)_70%)] md:rtl:bg-[linear-gradient(270deg,rgb(17_17_17/0.7)_0%,rgb(17_17_17/0.15)_50%,rgb(17_17_17/0)_70%)]" />
+      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(17_17_17/0.92)_0%,rgb(17_17_17/0.7)_40%,rgb(17_17_17/0.1)_75%)] md:bg-[linear-gradient(90deg,rgb(17_17_17/0.7)_0%,rgb(17_17_17/0.15)_50%,rgb(17_17_17/0)_70%)] md:rtl:bg-[linear-gradient(270deg,rgb(17_17_17/0.7)_0%,rgb(17_17_17/0.15)_50%,rgb(17_17_17/0)_70%)]" />
       <div className="container-x relative flex aspect-[4/5] max-h-[720px] flex-col justify-end pb-12 md:aspect-[16/8] md:justify-center md:pb-0">
         <h2 id="end-h" className="max-w-[12ch] text-[clamp(36px,1rem+3vw,72px)] font-semibold leading-[1.0] tracking-[-0.045em] text-white">{c.h}</h2>
         <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-[#E6E6E6]">{c.p}</p>

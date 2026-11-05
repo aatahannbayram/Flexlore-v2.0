@@ -75,7 +75,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           </div>
         </div>
       </div>
-      {children}
+      <div className="relative pb-6 md:pb-8">{children}</div>
       <VideoModal open={demo} onClose={() => setDemo(false)} title={h.watchTitle} youtubeId="4CLIlnp0L28" closeLabel={d.nav.close} />
     </section>);
 }
