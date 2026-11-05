@@ -5,7 +5,7 @@ import { NAV, navHref } from "./nav";
 import type { Lang } from "./copy";
 import type { Dict } from "./i18n/home/en";
 const tt = (d: Dict | undefined, k: string, i: 0 | 1, fb: string) => (d ? (d.nav.items as Record<string, string[]>)[k]?.[i] ?? fb : fb);
-import { MagnifyingGlass, ArrowRight } from "./ui/icons";
+import { MagnifyingGlass, ArrowRight, Plus } from "./ui/icons";
 import { EASE } from "./ui/Reveal";
 import { useLocale } from "./i18n/LocaleProvider";
 import { FEATURES, GROUPS, FEAT_NAV } from "./features/data";
@@ -79,22 +79,28 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
 
 
 export function MobileMenuBody({ lang, d, home, close, openSearch, pricing }: { lang: Lang; d?: Dict; home: boolean; close: () => void; openSearch: () => void; pricing: string }) {
-  const tr = lang === "tr";
+  const tr = lang === "tr"; const [grp, setGrp] = useState<string | null>(null);
   return (
             <div className="container-x flex-1 overflow-y-auto pb-6">
               <button type="button" onClick={() => { close(); openSearch(); }} className="mt-2 flex h-12 w-full items-center gap-3 rounded-2xl bg-surface-1 px-4 text-ink-muted">
                 <MagnifyingGlass size={18} aria-hidden="true" />{d ? d.nav.searchSite : tr ? "Sitede ara" : "Search the site"}
               </button>
-              {NAV.map((g, gi) => (
-                <m.section key={g.id} aria-label={d ? (d.nav as Record<string, unknown>)[g.id] as string ?? g.label[lang] : g.label[lang]} className="mt-7" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 + gi * 0.06, duration: 0.4, ease: EASE }}>
-                  <p className="px-1 text-[13px] font-medium text-ice-400">{d ? (d.nav as Record<string, unknown>)[g.id] as string ?? g.label[lang] : g.label[lang]}</p>
-                  {g.id === "product" ? <MobileFeatures close={close} /> : <ul className="mt-2">
+              {/* Accordion: one group open at a time, headings are 48 px rows. */}
+              <div className="mt-4 divide-y divide-line border-y border-line">
+              {NAV.map((g, gi) => { const label = d ? (d.nav as Record<string, unknown>)[g.id] as string ?? g.label[lang] : g.label[lang]; const on = grp === g.id; return (
+                <m.section key={g.id} aria-label={label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 + gi * 0.06, duration: 0.4, ease: EASE }}>
+                  <button type="button" aria-expanded={on} aria-controls={`mm-${g.id}`} onClick={() => setGrp(on ? null : g.id)} className="flex min-h-14 w-full items-center justify-between px-1 text-start text-[18px] font-semibold text-ink">
+                    {label}<Plus size={16} aria-hidden="true" className={`text-ink-muted transition-transform duration-300 ${on ? "rotate-45" : ""}`} /></button>
+                  <div id={`mm-${g.id}`} hidden={!on} className="pb-3">
+                  {g.id === "product" ? <MobileFeatures close={close} /> : <ul>
                     {g.items.map((it) => { const Ic = it.icon; return (
                       <li key={it.href}><a href={navHref(it, home)} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
                         <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/[.06]"><Ic size={18} /></span>{tt(d, it.k, 0, it.t[lang])}</a></li>); })}
                   </ul>}
-                </m.section>))}
-              <a href="/pricing/" onClick={close} className="mt-6 flex min-h-12 items-center px-1 text-[17px] font-semibold">{pricing}</a>
+                  </div>
+                </m.section>); })}
+              </div>
+              <a href="/pricing/" onClick={close} className="flex min-h-14 items-center border-b border-line px-1 text-[18px] font-semibold">{pricing}</a>
             </div>
   );
 }

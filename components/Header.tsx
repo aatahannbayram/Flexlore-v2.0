@@ -57,6 +57,14 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
     document.documentElement.style.overflow = open ? "hidden" : "";
     const k = (e: KeyboardEvent) => {
       if (e.key === "Escape") { setOpen(false); if (mega) { triggers.current[mega]?.focus(); setMega(null); } }
+      // Focus trap: Tab and Shift+Tab cycle inside the open mobile menu.
+      if (open && e.key === "Tab") {
+        const box = document.getElementById("menu"); if (!box) return;
+        const f = [...box.querySelectorAll<HTMLElement>("a[href], button:not([disabled]), input, [tabindex]:not([tabindex='-1'])")].filter((x) => x.offsetParent !== null);
+        if (!f.length) return; const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); setSearch(true); }
     };
     window.addEventListener("keydown", k); return () => window.removeEventListener("keydown", k);
