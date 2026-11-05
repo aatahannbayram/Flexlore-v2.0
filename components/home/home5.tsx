@@ -89,23 +89,28 @@ export function Hero5() {
 /* ---------- 3. Problem ---------- */
 export function Problem5() {
   const { d } = useLocale(); const c = d.problem; const icons: Ic[] = [Recycle, ArrowsClockwise, Books];
+  // Each problem gets its own picture: a kitchen under pressure, a shift handover, a desk of binders.
+  const media = [{ src: "/photos/chef-fire-1600", big: true }, { src: "/photos/huddle-1600" }, { src: "/blog/u4tKa64TvA30VsBSRquOU6Vjk-1600" }];
+  const Tile = ({ i }: { i: number }) => { const [h, p] = c.points[i]; const I = icons[i]; const m = media[i]; return (
+    <RevealItem as="li" className={`dark group relative overflow-hidden rounded-[28px] bg-[#1a1816] text-white ${m.big ? "min-h-[420px] lg:row-span-2 lg:min-h-0" : "min-h-[260px]"}`}>
+      <picture><source srcSet={`${m.src}.avif`} type="image/avif" /><img src={`${m.src}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]" /></picture>
+      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.1)_20%,rgb(17_17_17/0.55)_55%,rgb(17_17_17/0.92)_100%)]" />
+      <span className="absolute start-5 top-5 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.55)] py-1.5 pe-3.5 ps-1.5 text-[12px] font-medium text-white/85 ring-1 ring-white/10 backdrop-blur-md">
+        <span className="grid h-6 w-6 place-items-center rounded-full bg-white/15"><I size={13} /></span>{String(i + 1).padStart(2, "0")}</span>
+      <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+        <h3 className={`font-semibold tracking-[-0.02em] ${m.big ? "text-[clamp(22px,1rem+1vw,30px)]" : "text-[20px]"}`}>{h}</h3>
+        <p className="mt-2 max-w-[30rem] text-[15px] leading-[1.55] text-white/75">{p}</p>
+      </div>
+    </RevealItem>); };
   return (
     <section aria-labelledby="prob-h" className="section-y">
       <div className="container-x">
-        <H2 id="prob-h" className="!mt-0 max-w-[24ch]">{c.h} <span className="text-ink-faint">{c.h2}</span></H2>
-        <div className="dark relative mt-10 overflow-hidden rounded-[32px] bg-[#141414] p-4 text-white md:p-6">
-          <div aria-hidden="true" className="absolute inset-0"><img src="/video/kitchen-bg.webp" alt="" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[5px]" />
-            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[5px]" />
-            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35),rgb(17_17_17/0.75))]" /></div>
-          <Reveal as="ul" stagger={0.1} className="relative grid gap-3 md:grid-cols-3">
-            {c.points.map(([h, p], i) => { const I = icons[i]; return (
-              <RevealItem as="li" key={h} className="rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6 ring-1 ring-white/10 backdrop-blur-md md:p-7">
-                <span className="grid h-11 w-11 place-items-center rounded-[14px] bg-white/10"><I size={20} /></span>
-                <h3 className="mt-14 text-[19px] font-semibold tracking-[-0.02em]">{h}</h3>
-                <p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
-              </RevealItem>); })}
-          </Reveal>
+        <div className="grid-12 items-end gap-y-4">
+          <div className="col-span-12 lg:col-span-8"><Label icon={Books}>{c.k}</Label><H2 id="prob-h" className="max-w-[22ch]">{c.h} <span className="text-ink-faint">{c.h2}</span></H2></div>
         </div>
+        <Reveal as="ul" stagger={0.1} className="mt-10 grid gap-3 lg:grid-cols-[1.25fr_1fr] lg:grid-rows-2 lg:h-[560px]">
+          <Tile i={0} /><Tile i={1} /><Tile i={2} />
+        </Reveal>
       </div>
     </section>);
 }
