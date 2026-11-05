@@ -32,7 +32,7 @@ export default function CasePage({ slug }: { slug: string }) {
             <p className="mt-3 text-[15px] text-[#B2B2B2]">{v(c.name)}, {v(c.title)}</p>
           </div>
         </section>
-        <section aria-label={t.k} className="band-light section-y">
+        <section aria-label={t.k} className="section-y">
           <div className="container-x grid gap-10 md:grid-cols-3">
             {([[t.p, c.story.problem], [t.s, c.story.solution], [t.r, c.story.result]] as const).map(([h, x]) => (
               <div key={h}><h2 className="flex items-center gap-2 text-[14px] font-semibold text-ink-muted"><Chev className="h-2.5 w-4 text-accent" />{h}</h2>

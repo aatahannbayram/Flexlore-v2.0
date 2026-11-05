@@ -312,16 +312,7 @@ html body { transition: opacity .25s ease; }
 @keyframes cmpPulse { 0% { box-shadow: 0 0 0 0 rgb(255 255 255 / 0.45), 0 8px 30px rgb(0 0 0 / 0.45); } 70%, 100% { box-shadow: 0 0 0 16px rgb(255 255 255 / 0), 0 8px 30px rgb(0 0 0 / 0.45); } }
 @media (prefers-reduced-motion: reduce) { .cmp-pulse { animation: none; } }
 
-/* ---------- v3: light bands, accent button, chevron hover ---------- */
-/* Light bands re-point the ink and surface tokens, so components written for the dark ground read on white. */
-.band-light, .band-grey {
-  --color-ink: #111111; --color-ink-muted: #4D4D4D; --color-ink-faint: #666666;
-  --color-line: rgb(17 17 17 / 0.1); --color-line-strong: rgb(17 17 17 / 0.2);
-  --color-accent-text: #A8491B; --card: #F4F4F4; --card-2: #FFFFFF;
-  background: #FFFFFF; color: var(--color-ink); color-scheme: light;
-}
-.band-grey { background: #F4F4F4; --card: #FFFFFF; --card-2: #FFFFFF; }
-.band-light .btn-secondary, .band-grey .btn-secondary { background: rgb(17 17 17 / 0.06); color: #111111; }
+/* ---------- v3: accent button, chevron hover, heading ---------- */
 .btn-accent { background: var(--color-accent); color: #111111; }
 .btn-accent:hover { background: var(--color-accent-strong); }
 .chev-go { transition: translate .3s var(--ease-out-expo); }

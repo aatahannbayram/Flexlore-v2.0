@@ -33,7 +33,7 @@ export const Kicker = ({ children, light = false }: { children: React.ReactNode;
   <p className={`inline-flex items-center gap-2 text-[14px] font-semibold tracking-[-0.005em] ${light ? "text-white/80" : "text-ink-muted"}`}><Chev className="h-2.5 w-4 text-accent" />{children}</p>);
 /** Two-tone heading: the set-up in ink, the result in orange. */
 export const H2 = ({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) => (
-  <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-accent">{b}</span></>}</h2>);
+  <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>);
 export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.6, ease: EASE, delay: i * 0.07 } };
 
 /* ---------- B1. Hero (dark) ---------- */
@@ -85,13 +85,13 @@ export function ProblemV3() {
   const { d, locale } = useLocale(); const c = d.problem; const t = HOME3[locale]; const reduce = useReducedMotion();
   const cards: [Media, number][] = [["problem-vardiya", 1], ["problem-kagitlar", 2]];
   return (
-    <section aria-labelledby="prob-h" className="band-light section-y">
+    <section aria-labelledby="prob-h" className="section-y pb-0">
       <div className="container-x">
         <Kicker>{c.k}</Kicker>
         <H2 id="prob-h" a={c.h} b={c.h2} className="max-w-[20ch]" />
         <ul className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
           {cards.map(([n, i], k) => { const [h, p] = c.points[i]; return (
-            <m.li key={n} {...rise(reduce, k)} className="flex items-center gap-4 rounded-[16px] border border-line bg-[var(--card-2)] p-2.5 pe-4 md:flex-col md:items-stretch md:gap-0 md:p-2">
+            <m.li key={n} {...rise(reduce, k)} className="flex items-center gap-4 rounded-[20px] bg-[var(--card)] p-2.5 pe-4 ring-1 ring-white/[.06] md:flex-col md:items-stretch md:gap-0 md:p-2">
               <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-[12px] md:aspect-[4/3] md:h-auto md:w-full">
                 <Photo n={n} sizes="(min-width:768px) 33vw, 96px" className="absolute inset-0 h-full w-full object-cover" />
               </div>
@@ -100,11 +100,11 @@ export function ProblemV3() {
                 <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted md:mt-1.5 md:text-[16px]">{p}</p>
               </div>
             </m.li>); })}
-          <m.li {...rise(reduce, 2)} className="relative flex flex-col justify-between overflow-hidden rounded-[16px] bg-[#111111] p-6 text-white md:p-7">
+          <m.li {...rise(reduce, 2)} className="relative flex flex-col justify-between overflow-hidden rounded-[20px] bg-[var(--card)] p-6 ring-1 ring-white/[.06] md:p-7">
             <ChevPair aria-hidden="true" className="h-9 w-9 opacity-90" />
             <div className="mt-10">
               <h3 className="text-[clamp(26px,1rem+1.4vw,36px)] font-semibold leading-[1.08] tracking-[-0.035em]">{t.big}</h3>
-              <p className="mt-3 text-[16px] leading-[1.5] text-[#B2B2B2]">{t.bigP}</p>
+              <p className="mt-3 text-[16px] leading-[1.5] text-ink-muted">{t.bigP}</p>
             </div>
           </m.li>
         </ul>
