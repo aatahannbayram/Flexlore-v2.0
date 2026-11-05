@@ -28,6 +28,9 @@ out += `
 - [Integrations](${site}/integrations/): iOS, Android today; REST API, webhooks, MCP server and BI connections on the roadmap
 - [See it in your business](${site}/see-it/)
 - [Blog](${site}/blog/)
+- [About Flexlore](${site}/company/): Flexlore Inc., based in Delaware, United States
+- [Support](${site}/support/)
+- [Legal](${site}/legal/): terms, privacy, acceptable use, data processing, sub-processors, security, billing, cookies
 - Contact: support@flexlore.com · Book a demo: https://app-eu1.hubspot.com/meetings/alper-kalip
 `;
 writeFileSync(ROOT + "public/llms.txt", out);

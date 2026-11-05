@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   robots, // driven by SITE.noindex in components/config.ts
   openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 1200, height: 630, alt: "Film the job once. Know who is ready to do it. Flexlore video work instructions." }] },
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
-  icons: { icon: [{ url: "/brand/icon-32.png", sizes: "32x32" }, { url: "/brand/symbol-main.svg", type: "image/svg+xml" }], apple: "/brand/icon-180.png" },
+  icons: { icon: [{ url: "/brand/icon-32.png", sizes: "32x32" }, { url: "/icon.svg", type: "image/svg+xml" }], apple: "/brand/icon-180.png" },
 };
 export const viewport: Viewport = { themeColor: "#111111" };
 const ld = [

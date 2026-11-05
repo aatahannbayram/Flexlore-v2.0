@@ -288,6 +288,15 @@ html body { transition: opacity .25s ease; }
 .int-pulse { animation: intPulse 3s ease-in-out infinite; }
 @keyframes intPulse { 0% { outline: 1px solid rgb(231 235 235 / 0.25); outline-offset: 0; } 70%, 100% { outline: 1px solid rgb(231 235 235 / 0); outline-offset: 14px; } }
 @media (prefers-reduced-motion: reduce) { .int-pulse { animation: none; } }
+/* integrations flow: a dot travels along a measured path, the hub answers, the path draws */
+.int-dot { position: absolute; left: 0; top: 0; width: 9px; height: 9px; border-radius: 999px; background: var(--color-ink, #fff); offset-rotate: 0deg; offset-distance: 0%; opacity: 0; animation: intTravel 1.1s cubic-bezier(.45,0,.25,1) both; }
+@keyframes intTravel { 0% { offset-distance: 0%; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
+.int-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: intLine 1.1s cubic-bezier(.45,0,.25,1) both, intFade 3.2s linear both; }
+@keyframes intLine { to { stroke-dashoffset: 0; } }
+@keyframes intFade { 0%, 75% { opacity: 1; } 100% { opacity: 0; } }
+.int-hit { animation: intHit 1.2s ease-out 1s both; }
+@keyframes intHit { 0% { outline: 1px solid rgb(236 103 38 / 0.7); outline-offset: 0; } 100% { outline: 1px solid rgb(236 103 38 / 0); outline-offset: 16px; } }
+@media (prefers-reduced-motion: reduce) { .int-dot, .int-line, .int-hit { animation: none; display: none; } }
 .pdf-scan { animation: pdfScan 2.6s ease-in-out infinite; }
 @keyframes pdfScan { 0% { transform: translateY(-40px); } 100% { transform: translateY(260px); } }
 @media (prefers-reduced-motion: reduce) { .pdf-scan { animation: none; opacity: 0; } }

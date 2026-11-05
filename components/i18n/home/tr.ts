@@ -8,6 +8,7 @@ export const tr: Dict = {
     product: "Ürün", industries: "Sektörler", resources: "Kaynaklar", pricing: "Fiyatlar", cta: "Demo isteyin", search: "Ara", searchSite: "Sitede ara",
     menu: "Menü", close: "Kapat", language: "Dil", skip: "İçeriğe geç", lightMode: "Açık temaya geç", darkMode: "Koyu temaya geç",
     items: {
+      company: ["Hakkımızda", "Hikâyemiz ve misyonumuz"],
       how: ["Nasıl çalışır", "İşi çekin, adımlar ve quiz hazır"], web: ["Flexlore Web", "Kütüphane ve tamamlanma masaüstünde"], ai: ["Yapay zekâ", "Ekibinizin onayladığı taslaklar"],
       integrations: ["Entegrasyonlar", "Bugün uygulamalar, sırada yapay zekâ asistanları"], seeit: ["Kendi işinizde görün", "Gerçek bir iş, baştan sona"],
       restaurants: ["Restoranlar", "Her vardiyada aynı tabak"], manufacturing: ["Üretim", "Tahminsiz kalıp değişimi"], hotels: ["Oteller", "Her oda sizin standardınızda"],
@@ -149,7 +150,7 @@ export const tr: Dict = {
     tag: "Her iş, adım adım. İşi yapan kişinin gözünden.", ai: "Yapay zekâ ile özetleyin", aiQ: "Flexlore'un (https://flexlore.com) ne yaptığını, kimler için olduğunu ve nasıl çalıştığını özetle.",
     follow: "Flexlore'u takip edin", app: "Uygulamayı indirin", rights: "Tüm hakları saklıdır.", top: "Başa dön", legal: "Yasal",
     groups: { product: "Ürün", cases: "Kullanım alanları", industries: "Sektörler", company: "Şirket" },
-    links: { how: "Nasıl çalışır", web: "Flexlore Web", ai: "Yapay zekâ", integrations: "Entegrasyonlar", pricing: "Fiyatlar", business: "Sizin işiniz", apprentice: "Ustadan çırağa", installation: "Kurulum eğitimi",
+    links: { company: "Hakkımızda", how: "Nasıl çalışır", web: "Flexlore Web", ai: "Yapay zekâ", integrations: "Entegrasyonlar", pricing: "Fiyatlar", business: "Sizin işiniz", apprentice: "Ustadan çırağa", installation: "Kurulum eğitimi",
       restaurants: "Restoranlar", manufacturing: "Üretim", hotels: "Oteller", franchises: "Franchise", warehouses: "Depolar", bakeries: "Fırın ve kafeler", blog: "Blog", support: "Destek", demo: "Demo isteyin" },
   },
 };

@@ -29,10 +29,10 @@ export const SITE = {
     youtube: "https://www.youtube.com/@FlexloreInc",
   },
   legal: [
-    ["Privacy", "https://www.flexlore.com/legal/privacy"], ["Terms", "https://www.flexlore.com/legal/terms"],
-    ["Cookies", "https://www.flexlore.com/legal/cookies"], ["Security", "https://www.flexlore.com/legal/security"],
-    ["DPA", "https://www.flexlore.com/legal/dpa"], ["Subprocessors", "https://www.flexlore.com/legal/subprocessors"],
-    ["Acceptable use", "https://www.flexlore.com/legal/acceptable-use"], ["Billing", "https://www.flexlore.com/legal/billing"],
+    ["Privacy", "/legal/privacy/"], ["Terms", "/legal/terms/"],
+    ["Cookies", "/legal/cookies/"], ["Security", "/legal/security/"],
+    ["DPA", "/legal/dpa/"], ["Subprocessors", "/legal/subprocessors/"],
+    ["Acceptable use", "/legal/acceptable-use/"], ["Billing", "/legal/billing/"],
   ] as [string, string][],
 };
 

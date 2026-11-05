@@ -6,6 +6,7 @@ export const es: Dict = {
     product: "Producto", industries: "Sectores", resources: "Recursos", pricing: "Precios", cta: "Solicitar una demo", search: "Buscar", searchSite: "Buscar en el sitio",
     menu: "Menú", close: "Cerrar", language: "Idioma", skip: "Ir al contenido", lightMode: "Cambiar a modo claro", darkMode: "Cambiar a modo oscuro",
     items: {
+      company: ["Sobre nosotros", "Nuestra historia y misión"],
       how: ["Cómo funciona", "Grabe una tarea y obtenga pasos y un cuestionario"], web: ["Flexlore Web", "Biblioteca y seguimiento desde el ordenador"], ai: ["IA", "Borradores que su equipo aprueba"],
       integrations: ["Integraciones", "Apps hoy, asistentes de IA después"], seeit: ["Véalo en su negocio", "Una tarea real, de principio a fin"],
       restaurants: ["Restaurantes", "El mismo plato en cada turno"], manufacturing: ["Fabricación", "Cambios de formato sin improvisar"], hotels: ["Hoteles", "Cada habitación según su estándar"],
@@ -147,7 +148,7 @@ export const es: Dict = {
     tag: "Cada tarea, paso a paso. A través de los ojos de quien la realiza.", ai: "Obtener un resumen con IA", aiQ: "Resume qué hace Flexlore (https://flexlore.com), para quién es y cómo funciona.",
     follow: "Siga a Flexlore", app: "Descargar la app", rights: "Todos los derechos reservados.", top: "Volver arriba", legal: "Legal",
     groups: { product: "Producto", cases: "Casos de uso", industries: "Sectores", company: "Empresa" },
-    links: { how: "Cómo funciona", web: "Flexlore Web", ai: "IA", integrations: "Integraciones", pricing: "Precios", business: "Su negocio", apprentice: "De maestro a aprendiz", installation: "Formación en la instalación",
+    links: { company: "Sobre nosotros", how: "Cómo funciona", web: "Flexlore Web", ai: "IA", integrations: "Integraciones", pricing: "Precios", business: "Su negocio", apprentice: "De maestro a aprendiz", installation: "Formación en la instalación",
       restaurants: "Restaurantes", manufacturing: "Fabricación", hotels: "Hoteles", franchises: "Franquicias", warehouses: "Almacenes", bakeries: "Panaderías y cafeterías", blog: "Blog", support: "Soporte", demo: "Solicitar una demo" },
   },
 };

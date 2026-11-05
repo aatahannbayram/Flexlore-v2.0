@@ -6,6 +6,7 @@ export const de: Dict = {
     product: "Produkt", industries: "Branchen", resources: "Ressourcen", pricing: "Preise", cta: "Demo buchen", search: "Suche", searchSite: "Website durchsuchen",
     menu: "Menü", close: "Schließen", language: "Sprache", skip: "Zum Inhalt springen", lightMode: "Zum hellen Modus wechseln", darkMode: "Zum dunklen Modus wechseln",
     items: {
+      company: ["Über uns", "Unsere Geschichte und Mission"],
       how: ["So funktioniert es", "Arbeit filmen, Schritte und Quiz erhalten"], web: ["Flexlore Web", "Bibliothek und Abschlüsse am Desktop"], ai: ["KI", "Entwürfe, die Ihr Team freigibt"],
       integrations: ["Integrationen", "Heute Apps, bald KI-Assistenten"], seeit: ["Flexlore in Ihrem Betrieb", "Eine echte Aufgabe, von Anfang bis Ende"],
       restaurants: ["Restaurants", "Derselbe Teller in jeder Schicht"], manufacturing: ["Fertigung", "Rüsten ohne Rätselraten"], hotels: ["Hotels", "Jedes Zimmer nach Ihrem Standard"],
@@ -147,7 +148,7 @@ export const de: Dict = {
     tag: "Jede Aufgabe, Schritt für Schritt. Mit den Augen der Person, die sie macht.", ai: "KI-Zusammenfassung erhalten", aiQ: "Fasse zusammen, was Flexlore (https://flexlore.com) macht, für wen es gedacht ist und wie es funktioniert.",
     follow: "Flexlore folgen", app: "App laden", rights: "Alle Rechte vorbehalten.", top: "Nach oben", legal: "Rechtliches",
     groups: { product: "Produkt", cases: "Anwendungsfälle", industries: "Branchen", company: "Unternehmen" },
-    links: { how: "So funktioniert es", web: "Flexlore Web", ai: "KI", integrations: "Integrationen", pricing: "Preise", business: "Ihr Betrieb", apprentice: "Vom Meister zum Lehrling", installation: "Inbetriebnahme-Schulung",
+    links: { company: "Über uns", how: "So funktioniert es", web: "Flexlore Web", ai: "KI", integrations: "Integrationen", pricing: "Preise", business: "Ihr Betrieb", apprentice: "Vom Meister zum Lehrling", installation: "Inbetriebnahme-Schulung",
       restaurants: "Restaurants", manufacturing: "Fertigung", hotels: "Hotels", franchises: "Franchise", warehouses: "Lager", bakeries: "Bäckereien und Cafés", blog: "Blog", support: "Support", demo: "Demo buchen" },
   },
 };

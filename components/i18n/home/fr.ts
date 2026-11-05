@@ -6,6 +6,7 @@ export const fr: Dict = {
     product: "Produit", industries: "Secteurs", resources: "Ressources", pricing: "Tarifs", cta: "Demander une démo", search: "Rechercher", searchSite: "Rechercher sur le site",
     menu: "Menu", close: "Fermer", language: "Langue", skip: "Aller au contenu", lightMode: "Passer en mode clair", darkMode: "Passer en mode sombre",
     items: {
+      company: ["À propos", "Notre histoire et notre mission"],
       how: ["Comment ça marche", "Filmez une tâche, obtenez les étapes et un quiz"], web: ["Flexlore Web", "Bibliothèque et suivi sur ordinateur"], ai: ["IA", "Des brouillons validés par votre équipe"],
       integrations: ["Intégrations", "Les applications aujourd'hui, les assistants IA ensuite"], seeit: ["Flexlore dans votre activité", "Une vraie tâche, du début à la fin"],
       restaurants: ["Restaurants", "La même assiette, à chaque service"], manufacturing: ["Industrie", "Des changements de série sans approximation"], hotels: ["Hôtels", "Chaque chambre selon vos standards"],
@@ -147,7 +148,7 @@ export const fr: Dict = {
     tag: "Chaque tâche, étape par étape. Vue par la personne qui la réalise.", ai: "Obtenir un résumé IA", aiQ: "Résume ce que fait Flexlore (https://flexlore.com), à qui il s'adresse et comment il fonctionne.",
     follow: "Suivre Flexlore", app: "Télécharger l'application", rights: "Tous droits réservés.", top: "Retour en haut", legal: "Mentions légales",
     groups: { product: "Produit", cases: "Cas d'usage", industries: "Secteurs", company: "Entreprise" },
-    links: { how: "Comment ça marche", web: "Flexlore Web", ai: "IA", integrations: "Intégrations", pricing: "Tarifs", business: "Votre activité", apprentice: "Du maître à l'apprenti", installation: "Formation à l'installation",
+    links: { company: "À propos", how: "Comment ça marche", web: "Flexlore Web", ai: "IA", integrations: "Intégrations", pricing: "Tarifs", business: "Votre activité", apprentice: "Du maître à l'apprenti", installation: "Formation à l'installation",
       restaurants: "Restaurants", manufacturing: "Industrie", hotels: "Hôtels", franchises: "Franchises", warehouses: "Entrepôts", bakeries: "Boulangeries et cafés", blog: "Blog", support: "Support", demo: "Demander une démo" },
   },
 };

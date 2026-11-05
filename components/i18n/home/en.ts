@@ -7,6 +7,7 @@ export const en = {
     product: "Product", industries: "Industries", resources: "Resources", pricing: "Pricing", cta: "Book a demo", search: "Search", searchSite: "Search the site",
     menu: "Menu", close: "Close", language: "Language", skip: "Skip to content", lightMode: "Switch to light mode", darkMode: "Switch to dark mode",
     items: {
+      company: ["About us", "Our story and mission"],
       how: ["How it works", "Film a job, get steps and a quiz"], web: ["Flexlore Web", "Library and completion on the desktop"], ai: ["AI", "Drafts that your team approves"],
       integrations: ["Integrations", "Apps today, AI assistants next"], seeit: ["See it in your business", "One real job, start to finish"],
       restaurants: ["Restaurants", "Same plate, every shift"], manufacturing: ["Manufacturing", "Changeover without guesswork"], hotels: ["Hotels", "Every room to your standard"],
@@ -148,7 +149,7 @@ export const en = {
     tag: "Every job, step by step. Through the eyes of the person who does it.", ai: "Get an AI summary", aiQ: "Summarise what Flexlore (https://flexlore.com) does, who it is for and how it works.",
     follow: "Follow Flexlore", app: "Get the app", rights: "All rights reserved.", top: "Back to top", legal: "Legal",
     groups: { product: "Product", cases: "Use cases", industries: "Industries", company: "Company" },
-    links: { how: "How it works", web: "Flexlore Web", ai: "AI", integrations: "Integrations", pricing: "Pricing", business: "Your business", apprentice: "Master to apprentice", installation: "Installation training",
+    links: { company: "About us", how: "How it works", web: "Flexlore Web", ai: "AI", integrations: "Integrations", pricing: "Pricing", business: "Your business", apprentice: "Master to apprentice", installation: "Installation training",
       restaurants: "Restaurants", manufacturing: "Manufacturing", hotels: "Hotels", franchises: "Franchises", warehouses: "Warehouses", bakeries: "Bakeries & cafés", blog: "Blog", support: "Support", demo: "Book a demo" },
   },
 };

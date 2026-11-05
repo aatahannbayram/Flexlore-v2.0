@@ -6,6 +6,7 @@ export const ar: Dict = {
     product: "المنتج", industries: "القطاعات", resources: "الموارد", pricing: "الأسعار", cta: "احجز عرضًا توضيحيًا", search: "بحث", searchSite: "ابحث في الموقع",
     menu: "القائمة", close: "إغلاق", language: "اللغة", skip: "انتقل إلى المحتوى", lightMode: "التبديل إلى الوضع الفاتح", darkMode: "التبديل إلى الوضع الداكن",
     items: {
+      company: ["من نحن", "قصتنا ورسالتنا"],
       how: ["كيف يعمل", "صوّر المهمة، واحصل على الخطوات واختبار قصير"], web: ["Flexlore Web", "المكتبة ونسب الإنجاز على الكمبيوتر"], ai: ["الذكاء الاصطناعي", "مسودات يعتمدها فريقك"],
       integrations: ["التكاملات", "التطبيقات اليوم، ومساعدات الذكاء الاصطناعي لاحقًا"], seeit: ["شاهده في منشأتك", "مهمة حقيقية واحدة، من البداية إلى النهاية"],
       restaurants: ["المطاعم", "الطبق نفسه في كل وردية"], manufacturing: ["التصنيع", "تبديل خطوط الإنتاج دون تخمين"], hotels: ["الفنادق", "كل غرفة وفق معاييرك"],
@@ -147,7 +148,7 @@ export const ar: Dict = {
     tag: "كل مهمة، خطوة بخطوة، بعين من يؤديها.", ai: "احصل على ملخص بالذكاء الاصطناعي", aiQ: "لخّص ما يقدمه Flexlore (https://flexlore.com)، ولمن صُمم، وكيف يعمل.",
     follow: "تابع Flexlore", app: "حمّل التطبيق", rights: "جميع الحقوق محفوظة.", top: "العودة إلى الأعلى", legal: "الشؤون القانونية",
     groups: { product: "المنتج", cases: "حالات الاستخدام", industries: "القطاعات", company: "الشركة" },
-    links: { how: "كيف يعمل", web: "Flexlore Web", ai: "الذكاء الاصطناعي", integrations: "التكاملات", pricing: "الأسعار", business: "منشأتك", apprentice: "من الخبير إلى المتدرب", installation: "التدريب عند التركيب",
+    links: { company: "من نحن", how: "كيف يعمل", web: "Flexlore Web", ai: "الذكاء الاصطناعي", integrations: "التكاملات", pricing: "الأسعار", business: "منشأتك", apprentice: "من الخبير إلى المتدرب", installation: "التدريب عند التركيب",
       restaurants: "المطاعم", manufacturing: "التصنيع", hotels: "الفنادق", franchises: "سلاسل الامتياز", warehouses: "المستودعات", bakeries: "المخابز والمقاهي", blog: "المدونة", support: "الدعم", demo: "احجز عرضًا توضيحيًا" },
   },
 };

@@ -38,7 +38,8 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
   ] },
   { g: "company", en: "Company", tr: "Şirket", items: [
     { k: "blog", en: "Blog", href: "/blog/" },
-    { k: "support", en: "Support", tr: "Destek", href: "mailto:support@flexlore.com", ext: true },
+    { k: "company", en: "About us", tr: "Hakkımızda", href: "/company/" },
+    { k: "support", en: "Support", tr: "Destek", href: "/support/" },
     { k: "demo", en: "Book a demo", tr: "Demo isteyin", href: SITE.demo, ext: true },
   ] },
 ];

@@ -6,6 +6,7 @@ export const pl: Dict = {
     product: "Produkt", industries: "Branże", resources: "Zasoby", pricing: "Cennik", cta: "Umów demo", search: "Szukaj", searchSite: "Przeszukaj stronę",
     menu: "Menu", close: "Zamknij", language: "Język", skip: "Przejdź do treści", lightMode: "Włącz tryb jasny", darkMode: "Włącz tryb ciemny",
     items: {
+      company: ["O nas", "Nasza historia i misja"],
       how: ["Jak to działa", "Nagraj zadanie, otrzymaj kroki i quiz"], web: ["Flexlore Web", "Biblioteka i postępy na komputerze"], ai: ["AI", "Wersje robocze zatwierdzane przez zespół"],
       integrations: ["Integracje", "Dziś aplikacje, wkrótce asystenci AI"], seeit: ["Zobacz to w swojej firmie", "Jedno prawdziwe zadanie od początku do końca"],
       restaurants: ["Restauracje", "To samo danie na każdej zmianie"], manufacturing: ["Produkcja", "Przezbrojenia bez zgadywania"], hotels: ["Hotele", "Każdy pokój według Twojego standardu"],
@@ -147,7 +148,7 @@ export const pl: Dict = {
     tag: "Każde zadanie krok po kroku. Oczami osoby, która je wykonuje.", ai: "Podsumowanie od AI", aiQ: "Podsumuj, czym zajmuje się Flexlore (https://flexlore.com), dla kogo jest i jak działa.",
     follow: "Obserwuj Flexlore", app: "Pobierz aplikację", rights: "Wszelkie prawa zastrzeżone.", top: "Do góry", legal: "Informacje prawne",
     groups: { product: "Produkt", cases: "Zastosowania", industries: "Branże", company: "Firma" },
-    links: { how: "Jak to działa", web: "Flexlore Web", ai: "AI", integrations: "Integracje", pricing: "Cennik", business: "Twoja firma", apprentice: "Od mistrza do ucznia", installation: "Szkolenie przy instalacji",
+    links: { company: "O nas", how: "Jak to działa", web: "Flexlore Web", ai: "AI", integrations: "Integracje", pricing: "Cennik", business: "Twoja firma", apprentice: "Od mistrza do ucznia", installation: "Szkolenie przy instalacji",
       restaurants: "Restauracje", manufacturing: "Produkcja", hotels: "Hotele", franchises: "Franczyzy", warehouses: "Magazyny", bakeries: "Piekarnie i kawiarnie", blog: "Blog", support: "Wsparcie", demo: "Umów demo" },
   },
 };

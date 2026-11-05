@@ -6,9 +6,9 @@ import dynamic from "next/dynamic";
 import { useInView, useReducedMotion } from "framer-motion";
 import { Device, WorkScreen } from "../AppScreens";
 import type { Visual } from "./data";
+import { EditorPanel } from "../ui/EditorPanel";
 import { FilePdf, ArrowRight, CheckCircle, Sparkle, MapPin, LockSimple, Eye, PencilSimple, Bell, Check, ChatCircle, Lightning, QrCode, Translate } from "../ui/icons";
 
-const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
@@ -52,7 +52,7 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
       <div key={x} className={`${row} bx-rise`} style={st(500 + i * 450)}><span className="tabular-nums text-white/50">{i + 1}</span><span className="truncate">{x}</span></div>))}
       <p className="flex items-center gap-1.5 px-2 pt-1 text-[11px] text-white/55"><Sparkle size={11} weight="fill" />{mock[5]}</p></div>
   </div>);
-  if (v === "editor") body = phone(<Editor active={on} lang={lang} />);
+  if (v === "editor") body = <div className="bx-rise w-[88%] max-w-[440px]" style={st(150)}><EditorPanel /></div>;
   if (v === "quiz") body = phone(<Quiz active={on} lang={lang} q={mock[0] ?? ""} a={mock.slice(1, 4)} />);
   if (v === "panel") body = (<div className="w-[92%] overflow-hidden rounded-[14px] ring-1 ring-white/10"><div className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /></div>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>);
   if (v === "screen") body = (<div className="w-[92%] overflow-hidden rounded-[14px] bg-[#181818] ring-1 ring-white/10">

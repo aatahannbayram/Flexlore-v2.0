@@ -11,6 +11,7 @@ import { LOCALES } from "../i18n/locales";
 import { EXTRA, INTEG, COMPARE5 } from "../i18n/extra";
 import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
+import { EditorPanel } from "../ui/EditorPanel";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, inner, Corner, Title, type Ic } from "./home5";
@@ -183,7 +184,7 @@ export function Bento5() {
   const { d, lang, locale } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
   const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.2 }); const seen = useInView(ref, { amount: 0.25, once: true });
   const go = seen || !!reduce;
-  const thumbs = ["kitchenline", "chef-plating", "chef-fire"];
+  const thumbs = ["bakery", "chef-plating", "chef-fire"];
   const st = (delay: number) => (reduce ? {} : { animationDelay: `${delay}ms` });
   return (
     <section id="product" aria-labelledby="bento-h" className="section-y pt-0">
@@ -213,9 +214,11 @@ export function Bento5() {
             </div>
           </article>
           {/* B: the phone, the standard on every shift */}
-          <article className={`${card} min-h-[500px] p-6 md:p-8`}>
-            <Title a={c.b[0]} b={c.b[1]} /><Corner href="/#how" label={c.b[0]} />
-            <div className="absolute left-1/2 top-[170px] w-[240px] -translate-x-1/2 md:w-[256px]" dir="ltr"><Device label={c.b[0]}>{near ? <Editor active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device></div>
+          <article className="dark relative min-h-[500px] overflow-hidden rounded-[28px] bg-[#111] p-6 text-white md:p-8">
+            {near && <SmartVideo name="coffee" poster="/video/coffee.webp" className="absolute inset-0 h-full w-full object-cover opacity-80" play={on} />}
+            <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.85)_0%,rgb(17_17_17/0.15)_40%,rgb(17_17_17/0.9)_100%)]" />
+            <div className="relative"><Title a={c.b[0]} b={c.b[1]} /></div><Corner href="/features/video-editor/" label={c.b[0]} />
+            <div className="bx-rise absolute inset-x-5 bottom-5 mx-auto max-w-[400px] md:inset-x-8 md:bottom-8" style={st(200)} dir="ltr"><EditorPanel /></div>
           </article>
         </div>
         <div className={`mt-3 grid gap-3 md:grid-cols-3 ${go ? "bx-go" : ""}`}>
@@ -265,7 +268,7 @@ export function Bento5() {
 
 /* ---------- 7. Roles ---------- */
 export function Roles5() {
-  const { d } = useLocale(); const c = d.roles; const [on, setOn] = useState(1); const imgs = ["restaurant", "food-qa", "office"]; const icons: Ic[] = [Users, FilmSlate, Buildings];
+  const { d } = useLocale(); const c = d.roles; const [on, setOn] = useState(1); const imgs = ["restaurant", "warehouse", "office"]; const icons: Ic[] = [Users, FilmSlate, Buildings];
   return (
     <section aria-labelledby="roles-h" className="section-y pt-0">
       <div className="container-x">
@@ -291,7 +294,7 @@ export function Roles5() {
 /* ---------- 8. Workspaces ---------- */
 export function Workspace5() {
   const { d } = useLocale(); const c = d.ws;
-  const nodes: [string, string, number, number, number][] = [[c.nodes[0], "office", 7, 48, 0], [c.nodes[1], "chef-fire", 12, 64, 5], [c.nodes[2], "cafe-opening", 9, 41, 3], [c.nodes[3], "safety", 13, 93, 8]];
+  const nodes: [string, string, number, number, number][] = [[c.nodes[0], "office", 7, 48, 0], [c.nodes[1], "chef-fire", 12, 64, 5], [c.nodes[2], "cafe-opening", 9, 41, 3], [c.nodes[3], "qr-scan", 13, 93, 8]];
   const Node = ({ n }: { n: [string, string, number, number, number] }) => (
     <div className="overflow-hidden rounded-[18px] bg-[var(--card-2)]">
       <div className="relative h-20 md:h-24"><Pic n={n[1]} sizes="220px" className="h-full w-full object-cover" />{n[4] > 0 && <span className="absolute end-2 top-2 rounded-full bg-[rgb(255_255_255/0.92)] px-2 py-0.5 text-[11px] font-semibold text-[#A8491B]">{fmt(c.due, { n: n[4] })}</span>}</div>
@@ -349,35 +352,70 @@ export function Web5() {
 
 /* ---------- 10. Integrations: one calm map, one status line (only the apps are live) ---------- */
 export function AI5() {
-  const { d, locale } = useLocale(); const c = INTEG[locale];
+  const { d, locale } = useLocale(); const c = INTEG[locale]; const reduce = useReducedMotion();
   const SRC: Ic[] = [Users, BookOpen, Factory]; const DST: Ic[] = [ChartBar, ChatCircle, Code];
-  const Chip = ({ I, t }: { I: Ic; t: string }) => (
-    <div className={`${inner} flex items-center gap-3 px-4 py-3.5`}><span className="grid h-8 w-8 shrink-0 place-items-center rounded-[10px] bg-[var(--card)] text-ink-muted"><I size={16} /></span><span className="text-[15px] font-medium">{t}</span></div>);
-  const ys = [16.7, 50, 83.3];
+  const box = useRef<HTMLDivElement>(null); const hub = useRef<HTMLSpanElement>(null);
+  const src = useRef<(HTMLDivElement | null)[]>([]); const dst = useRef<(HTMLDivElement | null)[]>([]);
+  const on = useInView(box, { amount: 0.35 });
+  const [t, setT] = useState(0); const k = t % 3;
+  const [paths, setPaths] = useState<{ a: string[]; b: string[] }>({ a: [], b: [] });
+  useEffect(() => {
+    const el = box.current; if (!el) return;
+    const measure = () => {
+      const o = el.getBoundingClientRect(); const h = hub.current?.getBoundingClientRect(); if (!h || window.innerWidth < 1024) { setPaths({ a: [], b: [] }); return; }
+      const hc = h.left + h.width / 2 - o.left, hy = h.top + h.height / 2 - o.top;
+      const edge = (r: DOMRect) => { const cx = r.left + r.width / 2 - o.left; return [cx < hc ? r.right - o.left : r.left - o.left, r.top + r.height / 2 - o.top]; };
+      const curve = (x1: number, y1: number, x2: number, y2: number) => { const mx = (x1 + x2) / 2; return `M ${x1} ${y1} C ${mx} ${y1}, ${mx} ${y2}, ${x2} ${y2}`; };
+      const hx = (x: number) => (x < hc ? h.left - o.left - 6 : h.right - o.left + 6);
+      const a = src.current.map((n) => { if (!n) return ""; const [x, y] = edge(n.getBoundingClientRect()); return curve(x + (x < hc ? 6 : -6), y, hx(x), hy); });
+      const b = dst.current.map((n) => { if (!n) return ""; const [x, y] = edge(n.getBoundingClientRect()); return curve(hx(x), hy, x + (x < hc ? 6 : -6), y); });
+      setPaths({ a, b });
+    };
+    measure(); const ro = new ResizeObserver(measure); ro.observe(el); return () => ro.disconnect();
+  }, [locale]);
+  useEffect(() => { if (!on || reduce) return; const id = window.setInterval(() => setT((x) => x + 1), 3200); return () => window.clearInterval(id); }, [on, reduce]);
+  const live = on && !reduce;
+  const Chip = ({ I, t: label, sub, active, delay, refFn }: { I: Ic; t: string; sub: string; active: boolean; delay: number; refFn: (n: HTMLDivElement | null) => void }) => (
+    <div ref={refFn} className={`flex items-center gap-3 rounded-[18px] px-4 py-3.5 transition-[background-color,box-shadow] duration-500 ${active ? "bg-[var(--card-2)] ring-1 ring-ink/25" : "bg-[var(--card-2)]/50 ring-1 ring-transparent"}`} style={{ transitionDelay: active ? `${delay}ms` : "0ms" }}>
+      <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-[11px] transition-colors duration-500 ${active ? "bg-ink text-bg" : "bg-[var(--card)] text-ink-muted"}`} style={{ transitionDelay: active ? `${delay}ms` : "0ms" }}><I size={17} /></span>
+      <span className="min-w-0"><span className="block text-[15px] font-medium">{label}</span><span className="block truncate text-[13px] text-ink-faint">{sub}</span></span>
+    </div>);
   return (
     <section id="integrations" aria-labelledby="int-h" className="section-y pt-0">
       <div className="container-x">
         <div className="mx-auto max-w-[44rem] text-center">
-          <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><PlugsConnected size={16} /></span>{c.k}</p>
+          <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><PlugsConnected size={16} /></span>{c.k}
+            <span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-semibold text-ink-muted">{d.ai.soon}</span></p>
           <H2 id="int-h" className="mx-auto max-w-[18ch]">{c.h}</H2>
         </div>
-        <div className={`${card} mx-auto mt-12 max-w-[1040px] px-5 py-8 md:px-10 md:py-12`}>
-          <div className="relative grid gap-3 lg:grid-cols-[1fr_200px_1fr] lg:items-center lg:gap-16">
-            <svg aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none" className="pointer-events-none absolute inset-0 hidden h-full w-full text-ink-faint/30 lg:block">
-              {ys.map((y, k) => <g key={k}>
-                <path d={`M33 ${y} C 38 ${y}, 38 50, 41 50`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
-                <path d={`M59 50 C 62 50, 62 ${y}, 67 ${y}`} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 5" vectorEffect="non-scaling-stroke" />
-              </g>)}
+        <div className={`${card} mx-auto mt-12 max-w-[1080px] px-5 py-8 md:px-10 md:py-12`}>
+          <div ref={box} className="relative grid gap-3 lg:grid-cols-[1fr_220px_1fr] lg:items-center lg:gap-14">
+            <svg aria-hidden="true" className="pointer-events-none absolute inset-0 hidden h-full w-full overflow-visible lg:block">
+              {[...paths.a, ...paths.b].map((p, i) => { const act = live && i % 3 === k; return p && <g key={i}>
+                <path d={p} fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="3 6" className="text-ink-faint/40" />
+                {act && <path d={p} fill="none" stroke="currentColor" strokeWidth="1.5" className="int-line text-ink/55" pathLength={1} style={{ animationDelay: i >= 3 ? "1.1s" : "0s" }} key={`l${t}`} />}
+              </g>; })}
             </svg>
-            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.into}</p>{c.sources.map(([t], k) => <Chip key={t} I={SRC[k]} t={t} />)}</div>
-            <div className="relative flex flex-col items-center py-4 text-center">
-              <span className="int-pulse grid h-20 w-20 place-items-center rounded-[24px] bg-[#111111] ring-1 ring-white/10"><img src="/brand/symbol-main.svg" alt="" className="h-10 w-10" /></span>
+            {live && paths.a[k] && <span key={`a${t}`} aria-hidden="true" className="int-dot hidden lg:block" style={{ offsetPath: `path("${paths.a[k]}")` }} />}
+            {live && paths.b[k] && <span key={`b${t}`} aria-hidden="true" className="int-dot hidden lg:block" style={{ offsetPath: `path("${paths.b[k]}")`, animationDelay: "1.1s" }} />}
+            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.into}</p>
+              {c.sources.map(([a, b], i) => <Chip key={a} I={SRC[i]} t={a} sub={b} active={live && i === k} delay={0} refFn={(n) => { src.current[i] = n; }} />)}</div>
+            <div className="relative flex flex-col items-center py-6 text-center">
+              <span ref={hub} className="relative grid h-24 w-24 place-items-center rounded-[28px] bg-[#111111] ring-1 ring-white/10">
+                {live && <span key={`h${t}`} aria-hidden="true" className="int-hit absolute inset-0 rounded-[28px]" />}
+                <img src="/brand/symbol-main.svg" alt="" className="h-11 w-11" /></span>
               <p className="mt-4 text-[13px] text-ink-faint">REST API · Webhooks · MCP</p>
+              <div className="mt-5 w-full max-w-[16rem] rounded-[14px] bg-[var(--card-2)] px-3 py-2.5 text-start lg:absolute lg:top-full lg:mt-2 lg:w-[16rem]" aria-live="off">
+                <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[.08em] text-ink-faint"><span className={`h-1.5 w-1.5 rounded-full ${live ? "bg-calm-aqua" : "bg-ink-faint"}`} />{c.flow}</p>
+                <p className="mt-1 h-[2.6em] overflow-hidden text-[13px] leading-[1.3] text-ink"><span key={t} className="rot-in block">{c.events[k]}</span></p>
+              </div>
             </div>
-            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.out}</p>{c.dests.map(([t], k) => <Chip key={t} I={DST[k]} t={t} />)}</div>
+            <div className="relative space-y-2"><p className="mb-2 text-[13px] text-ink-faint">{c.out}</p>
+              {c.dests.map(([a, b], i) => <Chip key={a} I={DST[i]} t={a} sub={b} active={live && i === k} delay={1700} refFn={(n) => { dst.current[i] = n; }} />)}</div>
           </div>
+          <div className="h-0 lg:h-20" />
         </div>
-        <div className="mx-auto mt-6 flex max-w-[1040px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[14px] text-ink-muted">
+        <div className="mx-auto mt-6 flex max-w-[1080px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[14px] text-ink-muted">
           <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}: {c.liveItems.slice(0, 2).join(" · ")}</span>
           <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-ink-faint" />{d.ai.soon}: {c.liveItems[2]} · REST API · Webhooks · MCP</span>
           <Link href="/integrations/" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink hover:underline">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
