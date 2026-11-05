@@ -14,7 +14,7 @@ export const NAV: NavGroup[] = [
     id: "product", label: { en: "Product", tr: "Ürün" },
     items: [
       { k: "how", href: "/#how", home: true, icon: PlayCircle, t: { en: "How it works", tr: "Nasıl çalışır" }, d: { en: "Film a job, get steps and a quiz", tr: "İşi çekin, adımlar ve quiz hazır" } },
-      { k: "web", href: "/#web", home: true, icon: Browser, t: { en: "Flexlore Web", tr: "Flexlore Web" }, d: { en: "Library and readiness on the desktop", tr: "Kütüphane ve hazırlık masaüstünde" } },
+      { k: "web", href: "/features/web-panel/", home: false, icon: Browser, t: { en: "Flexlore Web", tr: "Flexlore Web" }, d: { en: "Library and readiness on the desktop", tr: "Kütüphane ve hazırlık masaüstünde" } },
       { k: "ai", href: "/ai/", icon: Sparkle, t: { en: "AI", tr: "Yapay zekâ" }, d: { en: "Drafts that your team approves", tr: "Ekibinizin onayladığı taslaklar" } },
       { k: "integrations", href: "/integrations/", icon: PlugsConnected, t: { en: "Integrations", tr: "Entegrasyonlar" }, d: { en: "Apps today, API and more next", tr: "Bugün uygulamalar, sırada API" } },
       { k: "seeit", href: "/see-it/", icon: Eye, t: { en: "See it in your business", tr: "Kendi işinizde görün" }, d: { en: "One real job, start to finish", tr: "Gerçek bir iş, baştan sona" } },

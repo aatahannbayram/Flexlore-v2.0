@@ -54,43 +54,11 @@ export const tr: Dict = {
     d: ["Tek standart,", "aynı anda her şubeye."], sent: "12 şubeye gönderildi", today: "Bugün, 07:30", branch: "Kadıköy", branchP: "14 kişiden 12'si tamamladı",
     e: ["Tamamlanma.", "Hangi şubenin size ihtiyacı olduğunu bilin."], locs: ["Merkez", "Havalimanı", "Liman"], sample: "Örnek veri",
   },
-  roles: {
-    k: "Kimler için", h: "Her şubeyi ayakta tutan insanlar için yapıldı.",
-    items: [["Yöneticiler ve bölge sorumluları", "İşleri rol ve şubeye göre atayın, vardiya başlamadan kimin tamamladığını görün."], ["Saha ekipleri", "Kendi telefonlarında kısa video adımlar. İstasyonda istedikleri adımı istedikleri kadar tekrar izlerler. Uygulama 8 dilde kullanılabilir."], ["Merkez ofis", "Her şube için tek kütüphane ve tek standart, tamamlanma yan yana."]],
-  },
-  ws: {
-    k: "Çalışma alanları", h: "İşletmeniz nasıl çalışıyorsa öyle düzenlenir.", p: "Her şube veya ekip için bir çalışma alanı kurun. İşleri doğru rollere atayın ve kimseyi kovalamadan neyin beklediğini görün.",
-    pts: ["Şube, ekip veya departman başına çalışma alanı", "Rol ve lokasyona göre atanan işler", "Ekip başına bekleyen işler tek bakışta"],
-    nodes: ["Merkez ofis", "Mutfak", "Salon", "Üretim"], due: "{n} bekliyor", jobs: "iş", people: "kişi", sample: "Örnek veri",
-  },
-  web: { k: "Flexlore Web", h: "Eğitimi masadan yönetin ve takip edin.", p: "Aynı kütüphane ve tamamlanma verisi büyük ekranda. Her işi ekipler ve şubeler genelinde oluşturun, atayın ve takip edin.", cta: "Demo isteyin", sample: "Örnek veriler, gösterim amaçlı" },
-  ai: {
-    k: "Yapay zekâ ve bağlantılar", soon: "Yakında", h: "Eğitiminizle ilgili soruları zaten kullandığınız yapay zekâ araçlarından sorun.",
-    p: "Flexlore'un MCP sunucusu kütüphanenizi ve tamamlanma verinizi Claude ve ChatGPT gibi yapay zekâ asistanlarına bağlayacak. Yönetici sorusunu sade bir dille sorar, yanıtı kendi verinizden alır.",
-    ask: "Bu hafta hangi şubeler alerjen yönetimini bitirmedi?",
-    answer: "Alerjen yönetiminde iki şube geride: Liman (14 kişiden 9'u) ve Havalimanı (14 kişiden 11'i). Merkez tamamladı.",
-    from: "Flexlore verinizden", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Bugün", todayList: ["Yapay zekâ bir videodan adımların, talimatların ve quizlerin taslağını hazırlar", "Ekibiniz her taslağı inceler ve onaylar"],
-    next: "Yol haritasında", nextList: ["Yapay zekâ asistanları için MCP sunucusu", "API ve BI bağlantıları"],
-    cta: "Flexlore'da yapay zekâ hakkında okuyun", sample: "Planlanan bir özelliğin gösterimi, örnek veri",
-  },
-  statement: { h: "En iyi çalışanınızın iş yapış şekli, her telefonda.", p: "Bir kez çekin. Her yeni gelen, hangi vardiyada ve şubede olursa olsun işi aynı şekilde öğrenir.", cta: "Nasıl çalıştığını görün" },
   ind: {
     k: "Sektörler", h: "İşi yaparak öğrenen ekipler için.", more: "Flexlore'u kendi işinizde görün",
     cards: ["Restoran ve kafeler", "Üretim", "Oteller", "Franchise'lar"],
     also: "Ayrıca kullanıldığı alanlar", areas: ["Sağlık ve klinikler", "Eğitim", "Eğitim sağlayıcılar", "Wellness ve spor", "Eğlence", "Ve dahası"],
     langs: "8 dilde kullanılabilir.",
-  },
-  cases: {
-    k: "Kullanım alanları", h: "Sahadaki her iş için video eğitim.", lead: "Güvenlik kontrollerinden tariflere, kurulum devirlerine kadar: saha ekipleri Flexlore ile çalışanlarını nasıl eğitiyor ve her işi kimin tamamladığını nasıl görüyor.", more: "Ayrıntılar",
-    items: [
-      ["İş sağlığı ve güvenliği", "Video ile iş sağlığı ve güvenliği eğitimi", "KKD, kilitleme ve makine kontrollerini bir kez çekin. Herkes aynı adımları öğrenir, kısa bir quizi geçer ve vardiyadan önce kimin tamamladığını görürsünüz."],
-      ["Sahada oryantasyon", "Kurulumdan sonra sahada kalan eğitim", "Kurulum ekibi çalıştırma, temizlik ve günlük kontrolleri makinenin üzerinde çeker; aylar sonraki vardiya da aynı şekilde öğrenir."],
-      ["Tarifler ve sunum", "Her şubede aynı tarif, aynı sunum", "Şef tarifi bir kez kaydeder. Her aşçı aynı adımları ve porsiyonları izler, kısa bir quiz öğrenildiğini doğrular."],
-      ["Beceri aktarımı", "Ustadan çırağa beceri aktarımı", "Ustanın yöntemi tezgâhta çekilir ve adım adım tekrar izlenir; usta işinden alıkonmaz."],
-      ["İşe alım oryantasyonu", "Yanında dolaştırmadan işe başlatma", "Yeni başlayanlar her işi telefonda video adımlarla öğrenir; kimin izlediğini ve quizini geçtiğini kişi bazında görürsünüz."],
-      ["Çok lokasyonlu", "Tüm franchise şubelerinde tek standart", "Bir süreci bir kez hazırlayın, tüm şubelere yayın ve tamamlanma durumunu lokasyona göre karşılaştırın."],
-    ],
   },
   pricing: {
     k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.",

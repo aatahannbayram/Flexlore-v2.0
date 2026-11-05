@@ -52,43 +52,11 @@ export const de: Dict = {
     d: ["Ein Standard", "für alle Standorte zugleich."], sent: "An 12 Standorte gesendet", today: "Heute, 07:30", branch: "Kadıköy", branchP: "12 von 14 abgeschlossen",
     e: ["Abschlüsse.", "Sehen, welche Standorte Sie als Nächstes brauchen."], locs: ["Innenstadt", "Flughafen", "Hafen"], sample: "Beispieldaten",
   },
-  roles: {
-    k: "Für wen", h: "Für die Menschen, die jeden Standort am Laufen halten.",
-    items: [["Führungskräfte und Gebietsleitung", "Aufgaben nach Rolle und Standort zuweisen und vor Schichtbeginn sehen, wer was abgeschlossen hat."], ["Teams vor Ort", "Kurze Videoschritte auf dem eigenen Handy. Jeden Schritt am Arbeitsplatz wiederholen, so oft wie nötig. Die App gibt es in 8 Sprachen."], ["Zentrale", "Eine Bibliothek und ein Standard für alle Standorte, mit Abschlüssen im direkten Vergleich."]],
-  },
-  ws: {
-    k: "Workspaces", h: "Organisiert wie Ihr Betrieb.", p: "Richten Sie für jeden Standort oder jedes Team einen Workspace ein. Weisen Sie Aufgaben den richtigen Rollen zu und sehen Sie, was noch offen ist, ohne jemandem hinterherzulaufen.",
-    pts: ["Ein Workspace pro Standort, Team oder Abteilung", "Aufgaben nach Rolle und Standort zugewiesen", "Offene Aufgaben pro Team auf einen Blick"],
-    nodes: ["Zentrale", "Küche", "Service", "Produktion"], due: "{n} offen", jobs: "Aufgaben", people: "Personen", sample: "Beispieldaten",
-  },
-  web: { k: "Flexlore Web", h: "Schulungen vom Schreibtisch aus steuern.", p: "Dieselbe Bibliothek und dieselben Abschlussdaten auf dem großen Bildschirm. Erstellen, zuweisen und verfolgen Sie jede Aufgabe über Teams und Standorte hinweg.", cta: "Demo buchen", sample: "Beispieldaten zur Veranschaulichung" },
-  ai: {
-    k: "KI und Konnektoren", soon: "Demnächst", h: "Fragen Sie Ihre Schulungsdaten in den KI-Tools, die Sie schon nutzen.",
-    p: "Der MCP-Server von Flexlore wird Ihre Bibliothek und Abschlussdaten mit KI-Assistenten wie Claude und ChatGPT verbinden. So können Führungskräfte in normalen Worten fragen und erhalten eine Antwort aus Ihren eigenen Daten.",
-    ask: "Welche Standorte haben den Umgang mit Allergenen diese Woche noch nicht abgeschlossen?",
-    answer: "Zwei Standorte liegen beim Umgang mit Allergenen zurück: Hafen (9 von 14) und Flughafen (11 von 14). Innenstadt ist vollständig.",
-    from: "Aus Ihren Flexlore-Daten", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Heute", todayList: ["KI entwirft Schritte, Anweisungen und Quiz aus einem Video", "Ihr Team prüft und gibt jeden Entwurf frei"],
-    next: "Auf der Roadmap", nextList: ["MCP-Server für KI-Assistenten", "API- und BI-Anbindungen"],
-    cta: "Mehr über KI in Flexlore", sample: "Darstellung einer geplanten Funktion, Beispieldaten",
-  },
-  statement: { h: "Die Arbeitsweise Ihrer besten Fachkraft, auf jedem Handy.", p: "Einmal filmen. Alle Neuen lernen es gleich, in jeder Schicht, an jedem Standort.", cta: "So funktioniert es" },
   ind: {
     k: "Branchen", h: "Für Teams, die durch Tun lernen.", more: "Flexlore in Ihrem Betrieb ansehen",
     cards: ["Restaurants und Cafés", "Fertigung", "Hotels", "Franchise"],
     also: "Auch im Einsatz in", areas: ["Gesundheitswesen und Kliniken", "Bildung", "Schulungsanbieter", "Wellness und Sport", "Unterhaltung", "Und mehr"],
     langs: "Verfügbar in 8 Sprachen.",
-  },
-  cases: {
-    k: "Anwendungsfälle", h: "Videoschulung für jede Aufgabe im Betrieb.", lead: "Von Sicherheitschecks und Rezepten bis zur Maschinenübergabe: So schulen Teams vor Ort mit Flexlore und sehen, wer welche Aufgabe abgeschlossen hat.", more: "Zum Anwendungsfall",
-    items: [
-      ["Arbeitsschutz", "Arbeitsschutz-Schulung per Video", "PSA, Lockout und Maschinenprüfungen einmal filmen. Alle lernen dieselben Schritte, bestehen ein kurzes Quiz, und Sie sehen vor der Schicht, wer abgeschlossen hat."],
-      ["Einweisung vor Ort", "Schulung, die nach der Installation vor Ort bleibt", "Monteure filmen Inbetriebnahme, Reinigung und tägliche Prüfungen direkt an der Maschine, damit die nächste Schicht sie auch Monate später lernen kann."],
-      ["Rezepte und Anrichten", "Rezepte und Anrichten, gleich in jeder Filiale", "Die Küchenleitung filmt ein Rezept einmal. Alle Köche folgen denselben Schritten und Portionen, und ein kurzes Quiz zeigt, ob es sitzt."],
-      ["Wissenstransfer", "Wissenstransfer vom Meister zum Lehrling", "Die Arbeitsweise des Meisters, am Arbeitsplatz gefilmt und Schritt für Schritt abrufbar, ohne den Meister von der Arbeit abzuziehen."],
-      ["Einarbeitung", "Einarbeitung ohne ständiges Danebenstehen", "Neue lernen jede Aufgabe mit Videoschritten auf dem Handy, und Sie sehen pro Person, wer welche Aufgabe angesehen und das Quiz bestanden hat."],
-      ["Mehrere Standorte", "Ein Standard für alle Franchise-Standorte", "Einen Ablauf einmal starten, an jede Filiale ausrollen und Abschlüsse nach Standort vergleichen."],
-    ],
   },
   pricing: {
     k: "Preise", h: "Nach der Größe Ihres Teams.", lead: "Kostenlos starten mit bis zu 3 Nutzern. Enterprise ab 30 Nutzern.",

@@ -52,43 +52,11 @@ export const fr: Dict = {
     d: ["Un seul standard", "pour tous les sites en même temps."], sent: "Envoyé à 12 sites", today: "Aujourd'hui, 07:30", branch: "Kadıköy", branchP: "12 sur 14 terminés",
     e: ["Suivi.", "Sachez quels sites ont besoin de vous."], locs: ["Centre-ville", "Aéroport", "Port"], sample: "Données d'exemple",
   },
-  roles: {
-    k: "Pour qui", h: "Conçu pour celles et ceux qui font tourner chaque site.",
-    items: [["Managers et responsables de secteur", "Attribuez les tâches par rôle et par site, et voyez qui les a terminées avant le début du service."], ["Équipes terrain", "De courtes étapes vidéo sur leur propre téléphone. Revoir une étape au poste, autant de fois que nécessaire. L'application est disponible en 8 langues."], ["Siège", "Une bibliothèque et un standard pour tous les sites, avec le suivi côte à côte."]],
-  },
-  ws: {
-    k: "Espaces de travail", h: "Organisé comme votre entreprise.", p: "Créez un espace de travail pour chaque site ou équipe. Attribuez les tâches aux bons rôles et voyez ce qui reste à faire, sans relancer personne.",
-    pts: ["Un espace de travail par site, équipe ou service", "Des tâches attribuées par rôle et par site", "Ce qui reste à faire, par équipe, en un coup d'œil"],
-    nodes: ["Siège", "Cuisine", "Salle", "Production"], due: "{n} à faire", jobs: "tâches", people: "personnes", sample: "Données d'exemple",
-  },
-  web: { k: "Flexlore Web", h: "Gérez et suivez la formation depuis le bureau.", p: "La même bibliothèque et les mêmes données de suivi sur grand écran. Créez, attribuez et suivez chaque tâche dans toutes les équipes et tous les sites.", cta: "Demander une démo", sample: "Données d'exemple, à titre d'illustration" },
-  ai: {
-    k: "IA et connecteurs", soon: "Bientôt disponible", h: "Interrogez votre formation depuis les outils d'IA que vous utilisez déjà.",
-    p: "Le serveur MCP de Flexlore reliera votre bibliothèque et vos données de suivi à des assistants IA comme Claude et ChatGPT. Un manager pourra poser sa question simplement et obtenir une réponse tirée de vos propres données.",
-    ask: "Quels sites n'ont pas terminé la gestion des allergènes cette semaine?",
-    answer: "Deux sites sont en retard sur la gestion des allergènes: Port (9 sur 14) et Aéroport (11 sur 14). Centre-ville a terminé.",
-    from: "D'après vos données Flexlore", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Aujourd'hui", todayList: ["L'IA rédige étapes, instructions et quiz à partir d'une vidéo", "Votre équipe relit et valide chaque brouillon"],
-    next: "Sur la feuille de route", nextList: ["Serveur MCP pour les assistants IA", "Connexions API et BI"],
-    cta: "En savoir plus sur l'IA dans Flexlore", sample: "Illustration d'une fonctionnalité prévue, données d'exemple",
-  },
-  statement: { h: "La méthode de votre meilleur collaborateur, sur chaque téléphone.", p: "Filmez-la une fois. Chaque nouvel arrivant l'apprend de la même façon, quel que soit l'horaire ou le site.", cta: "Voir comment ça marche" },
   ind: {
     k: "Secteurs", h: "Pour les équipes qui apprennent en faisant.", more: "Voir Flexlore dans votre activité",
     cards: ["Restaurants et cafés", "Industrie", "Hôtels", "Franchises"],
     also: "Également utilisé dans", areas: ["Santé et cliniques", "Éducation", "Organismes de formation", "Bien-être et sport", "Divertissement", "Et plus encore"],
     langs: "Disponible en 8 langues.",
-  },
-  cases: {
-    k: "Cas d'usage", h: "La formation vidéo pour chaque tâche sur le terrain.", lead: "Des contrôles de sécurité aux recettes en passant par la mise en service des machines: comment les équipes terrain utilisent Flexlore pour former leurs collaborateurs et voir qui a terminé chaque tâche.", more: "Voir le cas d'usage",
-    items: [
-      ["Santé et sécurité", "La formation santé et sécurité en vidéo", "Filmez une fois les EPI, la consignation et les contrôles machine. Chaque opérateur apprend les mêmes étapes, réussit un court quiz, et vous voyez qui l'a terminé avant la prise de poste."],
-      ["Formation sur site", "Une formation qui reste sur site après l'installation", "Les installateurs filment la mise en route, le nettoyage et les contrôles quotidiens sur la machine elle-même, pour que l'équipe suivante puisse les apprendre des mois plus tard."],
-      ["Recettes et dressage", "Recettes et dressage, identiques dans chaque établissement", "Le chef enregistre une recette une fois. Chaque cuisinier suit les mêmes étapes et les mêmes portions, et un quiz rapide confirme que c'est acquis."],
-      ["Transmission des savoir-faire", "Transmission des savoir-faire du maître à l'apprenti", "La méthode du maître, filmée au poste et revue étape par étape, sans le retirer de son travail."],
-      ["Intégration des nouveaux", "Intégrer les nouveaux sans binôme permanent", "Les nouveaux apprennent chaque tâche grâce aux étapes vidéo sur leur téléphone, et vous voyez par personne qui a regardé chaque tâche et réussi son quiz."],
-      ["Multi-sites", "Un seul standard dans tout le réseau de franchise", "Lancez un processus une fois, déployez-le dans chaque point de vente et comparez le suivi par site."],
-    ],
   },
   pricing: {
     k: "Tarifs", h: "Selon la taille de votre équipe.", lead: "Commencez gratuitement jusqu'à 3 utilisateurs. Enterprise à partir de 30 utilisateurs.",

@@ -32,10 +32,11 @@ const LazyDash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ss
 /* 3. Trust band: one family only. Four equal white plates, each carrying the owner's official artwork (or plain text where no
    official mark exists), each linking to its source. Store badges live in the hero, where download intent is. */
 const TILE = "flex h-11 w-full items-center justify-center overflow-hidden rounded-[12px] bg-white px-4 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:-translate-y-0.5";
-export function TrustStrip({ lang = "en", label }: { lang?: Lang; label?: string }) {
+/** Programs and launch badges. `as="div"` renders it inside another section (the home hero). */
+export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: Lang; label?: string; as?: "section" | "div" }) {
   const c = { programs: label ?? home[lang].trust.programs };
   return (
-    <section id="main-next" aria-label={c.programs} className="scroll-mt-[var(--header-h)] bg-bg">
+    <T id="main-next" aria-label={c.programs} {...(T === "div" ? { role: "region" } : {})} className="scroll-mt-[var(--header-h)] bg-bg">
       <div className="container-x pt-4 md:pt-6">
         <div className="mx-auto max-w-[820px] rounded-[16px] bg-[var(--card)] p-1 lg:flex lg:items-center lg:gap-4 lg:pl-4">
           <p className="px-3 pb-2 pt-1.5 text-center text-[12px] text-ink-faint lg:w-[6.5rem] lg:shrink-0 lg:p-0 lg:text-start lg:leading-snug">{c.programs}</p>
@@ -64,7 +65,7 @@ export function TrustStrip({ lang = "en", label }: { lang?: Lang; label?: string
           </Reveal>
         </div>
       </div>
-    </section>);
+    </T>);
 }
 
 /* 4. Problem: short statement left; right, a real kitchen loop with the three consequences rising over it in turn.

@@ -52,43 +52,11 @@ export const es: Dict = {
     d: ["Un mismo estándar", "en todas las ubicaciones a la vez."], sent: "Enviado a 12 ubicaciones", today: "Hoy, 07:30", branch: "Kadıköy", branchP: "12 de 14 completados",
     e: ["Seguimiento.", "Sepa qué ubicaciones necesitan su atención."], locs: ["Centro", "Aeropuerto", "Puerto"], sample: "Datos de ejemplo",
   },
-  roles: {
-    k: "Para quién es", h: "Pensado para las personas que mantienen cada ubicación en marcha.",
-    items: [["Responsables y jefes de zona", "Asignan tareas por puesto y centro, y ven quién ha completado cada una antes de que empiece el turno."], ["Equipos de primera línea", "Pasos cortos en video en su propio móvil. Pueden repetir cualquier paso en el puesto tantas veces como necesiten. La app está disponible en 8 idiomas."], ["Oficina central", "Una biblioteca y un estándar para todas las ubicaciones, con el seguimiento de cada una en paralelo."]],
-  },
-  ws: {
-    k: "Espacios de trabajo", h: "Organizado como funciona su negocio.", p: "Cree un espacio de trabajo para cada centro o equipo. Asigne tareas a los puestos adecuados y vea qué queda pendiente, sin tener que perseguir a nadie.",
-    pts: ["Un espacio de trabajo por centro, equipo o departamento", "Tareas asignadas por puesto y ubicación", "Lo pendiente de cada equipo, de un vistazo"],
-    nodes: ["Oficina central", "Cocina", "Sala", "Producción"], due: "{n} pendientes", jobs: "tareas", people: "personas", sample: "Datos de ejemplo",
-  },
-  web: { k: "Flexlore Web", h: "Gestione y siga la formación desde la oficina.", p: "La misma biblioteca y los mismos datos de seguimiento en una pantalla grande. Cree, asigne y siga cada tarea en todos los equipos y ubicaciones.", cta: "Solicitar una demo", sample: "Datos de ejemplo, con fines ilustrativos" },
-  ai: {
-    k: "IA y conectores", soon: "Próximamente", h: "Consulte su formación desde las herramientas de IA que ya utiliza.",
-    p: "El servidor MCP de Flexlore conectará su biblioteca y sus datos de seguimiento con asistentes de IA como Claude y ChatGPT, para que un responsable pueda preguntar con sus propias palabras y obtener una respuesta basada en sus datos.",
-    ask: "¿Qué ubicaciones no han terminado la gestión de alérgenos esta semana?",
-    answer: "Dos ubicaciones van con retraso en Gestión de alérgenos: Puerto (9 de 14) y Aeropuerto (11 de 14). Centro está completo.",
-    from: "A partir de sus datos de Flexlore", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Hoy", todayList: ["La IA redacta pasos, instrucciones y cuestionarios a partir de un video", "Su equipo revisa y aprueba cada borrador"],
-    next: "En la hoja de ruta", nextList: ["Servidor MCP para asistentes de IA", "Conexiones con API y BI"],
-    cta: "Más información sobre la IA en Flexlore", sample: "Ilustración de una función prevista, datos de ejemplo",
-  },
-  statement: { h: "La forma de trabajar de su mejor profesional, en cada móvil.", p: "Grábelo una vez. Cada nueva incorporación lo aprende de la misma forma, en cualquier turno y en cualquier centro.", cta: "Ver cómo funciona" },
   ind: {
     k: "Sectores", h: "Para equipos que aprenden haciendo.", more: "Vea Flexlore en su negocio",
     cards: ["Restaurantes y cafeterías", "Fabricación", "Hoteles", "Franquicias"],
     also: "También se utiliza en", areas: ["Salud y clínicas", "Educación", "Centros de formación", "Bienestar y deporte", "Ocio y entretenimiento", "Y más"],
     langs: "Disponible en 8 idiomas.",
-  },
-  cases: {
-    k: "Casos de uso", h: "Formación en video para cada tarea en planta.", lead: "Desde controles de seguridad y recetas hasta la entrega de instalaciones: cómo los equipos de primera línea utilizan Flexlore para formar al personal y ver quién ha completado cada tarea.", more: "Ver el caso de uso",
-    items: [
-      ["Seguridad y salud", "Formación en seguridad y salud en video", "Grabe una vez el uso de EPI, el bloqueo y etiquetado y las comprobaciones de las máquinas. Cada trabajador aprende los mismos pasos, aprueba un cuestionario breve y usted ve quién lo ha completado antes del turno."],
-      ["Formación in situ", "Formación que permanece en el centro tras la instalación", "Los instaladores graban la puesta en marcha, la limpieza y las comprobaciones diarias en la propia máquina, para que el siguiente turno pueda aprenderlas meses después."],
-      ["Recetas y emplatado", "Recetas y emplatado iguales en todas las sucursales", "El chef graba una receta una vez. Cada cocinero sigue los mismos pasos y raciones, y un cuestionario rápido confirma que lo ha asimilado."],
-      ["Transferencia de conocimiento", "Transferencia de conocimiento de maestro a aprendiz", "La forma de trabajar del maestro, grabada en el puesto y reproducida paso a paso, sin apartarlo de su trabajo."],
-      ["Incorporación de personal", "Incorporación de personal sin acompañamiento constante", "Las nuevas incorporaciones aprenden cada tarea con pasos en video en su móvil, y usted ve por persona quién ha visto cada tarea y ha aprobado su cuestionario."],
-      ["Varias ubicaciones", "Un mismo estándar en todas las franquicias", "Lance un proceso una vez, despliéguelo en todas las sucursales y compare el seguimiento por ubicación."],
-    ],
   },
   pricing: {
     k: "Precios", h: "Según el tamaño de su equipo.", lead: "Empiece gratis con hasta 3 usuarios. Enterprise empieza a partir de 30 usuarios.",

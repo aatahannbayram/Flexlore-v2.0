@@ -1,5 +1,7 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
+import { Plus } from "./ui/icons";
 import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
 import { useLocale } from "./i18n/LocaleProvider";
@@ -18,7 +20,7 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
   { g: "product", en: "Product", tr: "Ürün", items: [
     { k: "features", en: "All features", href: "/features/" },
     { k: "how", en: "How it works", tr: "Nasıl çalışır", href: "/#how" },
-    { k: "web", en: "Flexlore Web", href: "/#web" },
+    { k: "web", en: "Flexlore Web", href: "/features/web-panel/" },
     { k: "ai", en: "AI", href: "/ai/" },
     { k: "integrations", en: "Integrations", tr: "Entegrasyonlar", href: "/integrations/" },
     { k: "pricing", en: "Pricing", tr: "Fiyatlar", href: "/pricing/" },
@@ -51,7 +53,7 @@ const SOCIAL: [string, string, string][] = [
   ["Product Hunt", "producthunt", SITE.productHunt],
 ];
 
-const link = "group inline-flex min-h-9 items-center text-[16px] text-white/70 transition-colors duration-200 hover:text-white";
+const link = "group inline-flex min-h-11 sm:min-h-9 items-center text-[16px] text-white/70 transition-colors duration-200 hover:text-white";
 
 /* "Get an AI summary": opens the assistant with a ready prompt about Flexlore (plain text labels, no third-party logos). */
 const AI: [string, (q: string) => string][] = [
@@ -61,24 +63,24 @@ const AI: [string, (q: string) => string][] = [
 ];
 
 export function Footer({ lang: _l }: { lang?: L } = {}) {
-  const { d, lang, locale } = useLocale(); const f = d.footer;
+  const { d, lang, locale } = useLocale(); const f = d.footer; const [open, setOpen] = useState<string | null>(null);
   return (
     <footer aria-labelledby="footer-h" className="footer-dots px-3 pb-3 pt-10 md:px-5 md:pb-5 md:pt-16">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
       <div className="dark overflow-hidden rounded-[32px] bg-[linear-gradient(160deg,#121212_0%,#1a1a19_55%,#141414_100%)] ring-1 ring-white/[.06] text-[15px] text-white">
-        <div className="mx-auto max-w-[calc(var(--container)+2*var(--pad-x))] px-6 pb-8 pt-14 md:px-12 md:pt-20">
-          <div className="grid gap-y-14 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
+        <div className="mx-auto max-w-[calc(var(--container)+2*var(--pad-x))] px-6 pb-8 pt-10 md:px-12 md:pt-20">
+          <div className="grid gap-y-8 sm:gap-y-14 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
             <div className="lg:col-span-5">
               <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={240} height={52} className="h-11 w-auto md:h-14" />
               <p className="mt-6 max-w-[32ch] text-[16px] leading-[1.5] text-white/70">{f.tag}</p>
 
-              <p className="mt-10 text-[17px] font-medium">{f.ai}</p>
+              <p className="mt-8 text-[17px] font-medium md:mt-10">{f.ai}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {AI.map(([n, u]) => (
                   <li key={n}><a href={u(f.aiQ)} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center rounded-full bg-white/[.08] px-4 text-[14px] font-medium text-white/85 transition-colors hover:bg-white/[.14] hover:text-white">{n}</a></li>))}
               </ul>
 
-              <ul className="mt-10 flex gap-2" aria-label={f.follow}>
+              <ul className="mt-6 flex gap-2 md:mt-10" aria-label={f.follow}>
                 {SOCIAL.map(([n, k, h]) => (
                   <li key={k}>
                     <a href={h} target="_blank" rel="noopener" aria-label={n} title={n}
@@ -89,11 +91,15 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               </ul>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 lg:col-span-7">
-              {GROUPS.map((g) => (
+            {/* Phones: each group opens under its own heading (44 px rows). From 640 px: four open columns. */}
+            <div className="grid gap-x-6 sm:grid-cols-4 sm:gap-y-10 lg:col-span-7">
+              {GROUPS.map((g) => { const on = open === g.g; return (
                 <nav key={g.en} aria-label={f.groups[g.g]}>
-                  <p className="mb-4 text-[17px] font-medium text-white">{f.groups[g.g]}</p>
-                  <ul className="space-y-1">
+                  <p className="mb-4 hidden text-[17px] font-medium text-white sm:block">{f.groups[g.g]}</p>
+                  <button type="button" aria-expanded={on} aria-controls={`ft-${g.g}`} onClick={() => setOpen(on ? null : g.g)}
+                    className="flex min-h-12 w-full items-center justify-between text-start text-[17px] font-medium text-white sm:hidden">
+                    {f.groups[g.g]}<Plus size={16} aria-hidden="true" className={`text-white/60 transition-transform duration-300 ${on ? "rotate-45" : ""}`} /></button>
+                  <ul id={`ft-${g.g}`} className={`space-y-0 pb-3 sm:block sm:space-y-1 sm:pb-0 ${on ? "block" : "hidden"}`}>
                     {g.items.map((x) => {
                       const label = x.k === "features" ? ALL_FEATURES[locale] : (f.links as Record<string, string>)[x.k] ?? x.en;
                       return (
@@ -104,11 +110,11 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                         </li>);
                     })}
                   </ul>
-                </nav>))}
+                </nav>); })}
             </div>
           </div>
 
-          <div className="mt-16 flex flex-col gap-6 md:mt-20 md:flex-row md:items-end md:justify-between">
+          <div className="mt-10 flex flex-col gap-6 md:mt-20 md:flex-row md:items-end md:justify-between">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
               <a href="mailto:support@flexlore.com" className="inline-flex min-h-11 items-center gap-2.5 rounded-full bg-white/[.08] pl-4 pr-5 text-white transition-colors hover:bg-white/[.14]">
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />support@flexlore.com</a>

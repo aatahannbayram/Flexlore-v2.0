@@ -52,43 +52,11 @@ export const pl: Dict = {
     d: ["Jeden standard", "we wszystkich lokalizacjach jednocześnie."], sent: "Wysłano do 12 lokalizacji", today: "Dziś, 07:30", branch: "Kadıköy", branchP: "Ukończyło 12 z 14",
     e: ["Postępy.", "Zobacz, które lokalizacje wymagają uwagi."], locs: ["Centrum", "Lotnisko", "Port"], sample: "Przykładowe dane",
   },
-  roles: {
-    k: "Dla kogo", h: "Dla osób, dzięki którym każda lokalizacja działa.",
-    items: [["Kierownicy i kierownicy regionalni", "Przypisuj zadania według roli i lokalizacji i sprawdzaj, kto je ukończył, zanim zacznie się zmiana."], ["Zespoły pierwszej linii", "Krótkie kroki wideo na własnym telefonie. Każdy krok można odtworzyć przy stanowisku tyle razy, ile trzeba. Aplikacja działa w 8 językach."], ["Centrala", "Jedna biblioteka i jeden standard dla wszystkich lokalizacji, z porównaniem postępów."]],
-  },
-  ws: {
-    k: "Przestrzenie robocze", h: "Zorganizowane tak, jak działa Twoja firma.", p: "Utwórz przestrzeń roboczą dla każdej lokalizacji lub zespołu. Przypisuj zadania właściwym rolom i sprawdzaj, co jeszcze zostało, bez ponaglania kogokolwiek.",
-    pts: ["Przestrzeń robocza dla każdej lokalizacji, zespołu lub działu", "Zadania przypisane według roli i lokalizacji", "Zaległości każdego zespołu w jednym miejscu"],
-    nodes: ["Centrala", "Kuchnia", "Sala", "Produkcja"], due: "Do zrobienia: {n}", jobs: "zadań", people: "osób", sample: "Przykładowe dane",
-  },
-  web: { k: "Flexlore Web", h: "Zarządzaj szkoleniami i śledź je przy biurku.", p: "Ta sama biblioteka i dane o postępach na dużym ekranie. Twórz, przypisuj i śledź każde zadanie we wszystkich zespołach i lokalizacjach.", cta: "Umów demo", sample: "Przykładowe dane, poglądowo" },
-  ai: {
-    k: "AI i konektory", soon: "Wkrótce", h: "Pytaj o szkolenia w narzędziach AI, z których już korzystasz.",
-    p: "Serwer MCP Flexlore połączy Twoją bibliotekę i dane o postępach z asystentami AI, takimi jak Claude i ChatGPT, dzięki czemu kierownik zada pytanie zwykłymi słowami i dostanie odpowiedź opartą na Waszych danych.",
-    ask: "Które lokalizacje nie ukończyły w tym tygodniu szkolenia z postępowania z alergenami?",
-    answer: "Dwie lokalizacje mają zaległości w zadaniu Postępowanie z alergenami: Port (9 z 14) i Lotnisko (11 z 14). Centrum ukończyło wszystko.",
-    from: "Na podstawie Twoich danych we Flexlore", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Dziś", todayList: ["AI przygotowuje kroki, instrukcje i quizy na podstawie wideo", "Twój zespół sprawdza i zatwierdza każdą wersję roboczą"],
-    next: "W planach", nextList: ["Serwer MCP dla asystentów AI", "Połączenia przez API i z narzędziami BI"],
-    cta: "Przeczytaj o AI we Flexlore", sample: "Ilustracja planowanej funkcji, przykładowe dane",
-  },
-  statement: { h: "Sposób pracy Twojego najlepszego pracownika na każdym telefonie.", p: "Nagraj raz. Każda nowa osoba uczy się tego tak samo, na każdej zmianie, w każdej lokalizacji.", cta: "Zobacz, jak to działa" },
   ind: {
     k: "Branże", h: "Dla zespołów, które uczą się w praktyce.", more: "Zobacz Flexlore w swojej firmie",
     cards: ["Restauracje i kawiarnie", "Produkcja", "Hotele", "Franczyzy"],
     also: "Stosowany także w", areas: ["Opieka zdrowotna i kliniki", "Edukacja", "Firmy szkoleniowe", "Wellness i sport", "Rozrywka", "I nie tylko"],
     langs: "Dostępny w 8 językach.",
-  },
-  cases: {
-    k: "Zastosowania", h: "Szkolenia wideo dla każdego zadania na stanowisku.", lead: "Od kontroli bezpieczeństwa i receptur po przekazanie instalacji: jak zespoły pierwszej linii korzystają z Flexlore, aby szkolić pracowników i sprawdzać, kto ukończył każde zadanie.", more: "Zobacz zastosowanie",
-    items: [
-      ["BHP", "Szkolenia BHP na wideo", "Nagraj raz zasady stosowania środków ochrony indywidualnej, blokady maszyn i kontroli urządzeń. Każdy pracownik uczy się tych samych kroków, zalicza krótki quiz, a Ty widzisz przed zmianą, kto je ukończył."],
-      ["Szkolenie na miejscu", "Szkolenie, które zostaje na miejscu po instalacji", "Instalatorzy nagrywają uruchomienie, czyszczenie i codzienne kontrole na samej maszynie, aby kolejna zmiana mogła się ich nauczyć nawet po kilku miesiącach."],
-      ["Receptury i podanie", "Receptury i podanie takie same w każdym oddziale", "Szef kuchni nagrywa recepturę raz. Każdy kucharz stosuje te same kroki i porcje, a krótki quiz potwierdza, że wiedza została przyswojona."],
-      ["Transfer umiejętności", "Przekazywanie umiejętności od mistrza do ucznia", "Metoda mistrza nagrana przy stanowisku i odtwarzana krok po kroku, bez odrywania mistrza od pracy."],
-      ["Wdrożenie nowych pracowników", "Wdrożenie nowych pracowników bez szkolenia przy boku innych", "Nowe osoby uczą się każdego zadania z kroków wideo na telefonie, a Ty widzisz dla każdej osoby, kto obejrzał każde zadanie i zaliczył quiz."],
-      ["Wiele lokalizacji", "Jeden standard we wszystkich lokalizacjach franczyzy", "Wdróż proces raz, udostępnij go we wszystkich oddziałach i porównuj postępy między lokalizacjami."],
-    ],
   },
   pricing: {
     k: "Cennik", h: "Cena zależy od wielkości zespołu.", lead: "Zacznij za darmo z maksymalnie 3 użytkownikami. Plan Enterprise od 30 użytkowników.",

@@ -15,8 +15,8 @@ export function Video({ name, className = "" }: { name: string; eager?: boolean;
   return <SmartVideo name={name} className={className} threshold={0.35} />;
 }
 
-/** Home page, in brief order: header, hero, trust, problem, how it works, Flexlore Web, capabilities, industries,
- *  proof (flagged), pricing (light), FAQ, final CTA, footer. */
+/** Home page, 8 sections: hero (with the programs strip), problem, how it works, industries, before and after,
+ *  integrations, pricing, FAQ with the closing call to action. Header and footer sit outside <main>. */
 export default function Site() {
   const { d, locale } = useLocale();
   const [paused, setPaused] = useState(false);
@@ -27,8 +27,7 @@ export default function Site() {
       <Header home paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
         <main id="main" lang={locale} className="home-v3">
-          <Hero5 />
-          <TrustStrip label={d.trust.programs} />
+          <Hero5><TrustStrip as="div" label={d.trust.programs} /></Hero5>
           <Problem5 />
           <Below />
         </main>

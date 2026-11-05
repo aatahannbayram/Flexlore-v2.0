@@ -53,43 +53,11 @@ export const en = {
     d: ["One standard", "to every location at once."], sent: "Sent to 12 locations", today: "Today, 07:30", branch: "Kadıköy", branchP: "12 of 14 completed",
     e: ["Completion.", "Know which locations need you next."], locs: ["Downtown", "Airport", "Harbour"], sample: "Sample data",
   },
-  roles: {
-    k: "Who it is for", h: "Built for the people who keep every location running.",
-    items: [["Managers and area leads", "Assign jobs by role and site, and see who has completed each one before the shift starts."], ["Frontline teams", "Short video steps on their own phone. Replay any step at the station, as often as it takes. The app works in 8 languages."], ["Head office", "One library and one standard for every location, with completion side by side."]],
-  },
-  ws: {
-    k: "Workspaces", h: "Organised the way your business runs.", p: "Set up a workspace for each site or team. Assign jobs to the right roles and see what is still due, without chasing anyone.",
-    pts: ["A workspace per site, team or department", "Jobs assigned by role and location", "What is due, per team, at a glance"],
-    nodes: ["Head office", "Kitchen", "Front of house", "Production"], due: "{n} due", jobs: "jobs", people: "people", sample: "Sample data",
-  },
-  web: { k: "Flexlore Web", h: "Manage and track training from the desk.", p: "The same library and completion data on a big screen. Create, assign and follow every job across teams and locations.", cta: "Book a demo", sample: "Sample data, for illustration" },
-  ai: {
-    k: "AI and connectors", soon: "Coming soon", h: "Ask about your training from the AI tools you already use.",
-    p: "Flexlore's MCP server will connect your library and completion data to AI assistants like Claude and ChatGPT, so a manager can ask in plain words and get an answer from your own data.",
-    ask: "Which locations have not finished allergen handling this week?",
-    answer: "Two locations are behind on Allergen handling: Harbour (9 of 14) and Airport (11 of 14). Downtown is complete.",
-    from: "From your Flexlore data", tools: ["Claude", "ChatGPT", "Gemini", "Copilot"],
-    today: "Today", todayList: ["AI drafts steps, instructions and quizzes from a video", "Your team reviews and approves every draft"],
-    next: "On the roadmap", nextList: ["MCP server for AI assistants", "API and BI connections"],
-    cta: "Read about AI in Flexlore", sample: "Illustration of a planned feature, sample data",
-  },
-  statement: { h: "Your best person's way of working, on every phone.", p: "Film it once. Every new starter learns it the same way, on any shift, at any site.", cta: "See how it works" },
   ind: {
     k: "Industries", h: "For teams that learn by doing.", more: "See Flexlore in your business",
     cards: ["Restaurants and cafés", "Manufacturing", "Hotels", "Franchises"],
     also: "Also used in", areas: ["Healthcare and clinics", "Education", "Training providers", "Wellness and sport", "Entertainment", "And more"],
     langs: "Available in 8 languages.",
-  },
-  cases: {
-    k: "Use cases", h: "Video training for every job on the floor.", lead: "From safety checks and recipes to installation handovers: how frontline teams use Flexlore to train staff and see who has completed each job.", more: "See the use case",
-    items: [
-      ["Health & safety", "Health and safety training on video", "Film PPE, lockout and machine checks once. Every worker learns the same steps, passes a short quiz, and you see who has completed it before the shift."],
-      ["On-site orientation", "Training that stays on site after installation", "Installers film start-up, cleaning and daily checks on the machine itself, so the next shift can learn them months later."],
-      ["Recipes & plating", "Recipes and plating, the same in every branch", "The chef records a recipe once. Every cook follows the same steps and portions, and a quick quiz confirms it stuck."],
-      ["Skills transfer", "Master to apprentice skills transfer", "The master's way, filmed at the workstation and replayed step by step, without pulling the master off the job."],
-      ["New-hire onboarding", "New-hire onboarding without shadowing", "New starters learn each job from video steps on their phone, and you see by person who has watched each job and passed its quiz."],
-      ["Multi-location", "One standard across every franchise location", "Launch a process once, roll it out to every branch, and compare completion by location."],
-    ],
   },
   pricing: {
     k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.",

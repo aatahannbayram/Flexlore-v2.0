@@ -244,6 +244,8 @@ main:not([lang="tr"]) .l-tr { display: none; }
 .v3-h2 { font-size: clamp(26px, 0.9rem + 1.4vw, 42px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.08; text-wrap: balance; }
 .v3-kicker { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; font-weight: 500; color: var(--color-ink-muted); }
 .v3-kicker::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); }
+/* Home on phones: tighter rhythm between sections (8 sections, about 9 screens). */
+@media (max-width: 767px) { .home-v3 { --section-y: 48px; } }
 .home-v3 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; font-size: 14px; color: var(--color-ink-muted); }
 .home-v3 .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 999px; background: var(--color-accent); }
 /* Footer: halftone dots around the dark card, denser toward the edges. Follows the page ground in both themes. */
