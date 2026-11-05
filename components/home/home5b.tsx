@@ -10,18 +10,17 @@ import { SITE, PLANS, savePct } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { EXTRA, INTEG, COMPARE5 } from "../i18n/extra";
 import { HOME2 } from "../i18n/home2";
+import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
 import { SmartVideo } from "../ui/SmartVideo";
 import { EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, type Ic } from "./home5";
 import {
-  ArrowRight, Check, CheckCircle, Users, Sparkle, MapPin, LockSimple, FilmSlate, Question, ChartBar, Plus, ShieldCheck, ListChecks,
-  X, ArrowsLeftRight, Storefront, PlugsConnected, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code, Browser,
+  ArrowRight, Check, CheckCircle, Users, Sparkle, LockSimple, FilmSlate, Question, ChartBar, Plus, ShieldCheck,
+  X, ArrowsLeftRight, Play, Pause, Storefront, PlugsConnected, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code, Browser,
   AppleLogo, AndroidLogo, WebhooksLogo, Robot,
 } from "../ui/icons";
 
-/** Percent in the visitor's locale ("%92" in Turkish, "92 %" in German). */
-const pct = (v: number, l: string) => { try { return new Intl.NumberFormat(l, { style: "percent", maximumFractionDigits: 0 }).format(v / 100); } catch { return `${v}%`; } };
 
 /* ---------- Before and after: the usual way vs Flexlore, row by row. `short` keeps four rows (home). ---------- */
 export function Compare5({ short = false }: { short?: boolean }) {
@@ -64,103 +63,69 @@ export function Compare5({ short = false }: { short?: boolean }) {
     </section>);
 }
 
-/* ---------- How it works: four steps, one picture each ----------
- * Phone: a vertical stepper, each step with its own small mock under the text.
- * Desktop: the steps scroll on the left while one sticky stage on the right shows the mock of the step in view.
- * The mocks are drawn in HTML with sample content and are decorative (aria-hidden). */
-const STEP_V = ["kitchen", "line", "plating", "coffee"] as const;
-const STEP_IC: Ic[] = [FilmSlate, Sparkle, CheckCircle, ChartBar];
-const glass = "rounded-[18px] bg-[rgb(17_17_17/0.72)] ring-1 ring-white/10 backdrop-blur-md";
-
-function StepMock({ i, big = false }: { i: number; big?: boolean }) {
-  const { d, locale } = useLocale(); const b = d.bento; const f = d.caps.frag; const x = EXTRA[locale]; const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.4, once: true }); const go = seen || !!reduce;
-  // One small entrance per piece, played once when the mock is in view (final state at once under reduced motion).
-  const rise = (k: number) => (reduce ? {} : { initial: { opacity: 0, y: 10 }, animate: go ? { opacity: 1, y: 0 } : undefined, transition: { duration: 0.5, ease: EASE, delay: 0.1 + k * 0.12 } });
-  const row = "flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.07)] px-3 py-2 text-[13px]";
-  const ok = <span className="flex items-center gap-1 rounded-full bg-[#E7EBEB] px-2 py-0.5 text-[11px] font-semibold text-[#111]"><CheckCircle size={12} weight="fill" />{f.ok}</span>;
-  const body = i === 0 ? (
-    <m.div {...rise(0)} className={`${glass} flex items-center gap-3 p-2.5 pe-4`}>
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white text-[#111]"><FilmSlate size={16} /></span>
-      <span className="min-w-0 flex-1"><span className="block truncate text-[14px] font-semibold">{b.jobs[0]}</span><span className="block truncate text-[12px] text-white/65">{x.chips[0]}</span></span>
-      <span className="flex items-center gap-1.5 text-[12px] font-semibold tabular-nums"><span className="h-2 w-2 rounded-full bg-[#EC6726]" />REC</span>
-    </m.div>
-  ) : i === 1 ? (
-    <div className={`${glass} space-y-1.5 p-2.5`}>
-      {(big ? [f.s1, f.s2] : [f.s1]).map((s, k) => (
-        <m.div key={s} {...rise(k)} className={row}><span className="tabular-nums text-white/55">{k + 1}</span><span className="flex-1 truncate">{s}</span>
-          <span className="flex items-center gap-1 rounded-full bg-[rgb(255_255_255/0.1)] px-2 py-0.5 text-[11px] font-semibold text-white/75"><Sparkle size={12} weight="fill" />{f.draft}</span></m.div>))}
-      <m.div {...rise(2)} className="rounded-xl bg-[rgb(255_255_255/0.07)] px-3 py-2.5 text-[13px]">
-        <p className="flex items-start gap-2 font-medium leading-snug"><Question size={15} className="mt-px shrink-0 text-white/60" />{b.q}</p>
-        <p className="mt-2 flex items-center justify-between gap-2 rounded-lg bg-[#E7EBEB] px-2.5 py-1.5 text-[12px] font-semibold text-[#111]"><span className="truncate">{b.qa[1]}</span><Check size={13} className="shrink-0" /></p>
-      </m.div>
-    </div>
-  ) : i === 2 ? (
-    <div className={`${glass} space-y-1.5 p-2.5`}>
-      {b.jobs.slice(0, big ? 2 : 1).map((j, k) => (
-        <m.div key={j} {...rise(k)} className={row}><ListChecks size={15} className="shrink-0 text-white/60" />
-          <span className="min-w-0 flex-1"><span className="block truncate">{j}</span><span className="block truncate text-[11px] text-white/55">{b.assigned} · {b.who[k]}</span></span>{ok}</m.div>))}
-      <m.div {...rise(2)} className={`flex items-center gap-3 px-1 pt-1.5 ${big ? "justify-between" : "justify-end"}`}>
-        {big && <span className="flex min-w-0 items-center gap-1.5 truncate text-[12px] text-white/65"><LockSimple size={13} className="shrink-0" />{f.roles[2][0]} · {f.roles[2][1]}</span>}
-        <span className="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 text-[12px] font-semibold text-[#111]"><CheckCircle size={13} weight="fill" />{b.approve}</span>
-      </m.div>
-    </div>
-  ) : (
-    <div className={`${glass} px-4 py-3`}>
-      <p className="flex items-center justify-between gap-3 text-[12px] text-white/65"><span className="truncate">{b.jobs[1]}</span><span className="shrink-0">{b.today}</span></p>
-      <ul className="mt-2.5 space-y-2.5">{b.locs.map((n, k) => { const v = [88, 71, 52][k]; return (
-        <li key={n}><p className="flex justify-between text-[13px]"><span className="flex items-center gap-1.5"><MapPin size={12} className="text-white/60" />{n}</span><span className="tabular-nums text-white/75">{pct(v, locale)}</span></p>
-          <span className="mt-1 block h-1 overflow-hidden rounded-full bg-[rgb(255_255_255/0.12)]">
-            <m.span className="block h-full origin-left rounded-full bg-[#E7EBEB] rtl:origin-right" style={{ width: `${v}%` }}
-              initial={reduce ? false : { scaleX: 0 }} animate={go ? { scaleX: 1 } : undefined} transition={{ duration: 1, ease: EASE, delay: 0.2 + k * 0.15 }} /></span></li>); })}</ul>
-    </div>);
-  return (
-    <div ref={ref} aria-hidden="true" className={`dark relative overflow-hidden bg-[#141414] text-white ${big ? "h-full rounded-[32px]" : "rounded-[22px]"}`}>
-      <picture><source srcSet={`/video/${STEP_V[i]}.avif`} type="image/avif" /><img src={`/video/${STEP_V[i]}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>
-      {big && <SmartVideo name={STEP_V[i]} poster={`/video/${STEP_V[i]}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full object-cover" />}
-      <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.05)_0%,rgb(17_17_17/0.35)_45%,rgb(17_17_17/0.85)_100%)]" />
-      <div className={`relative flex flex-col justify-end ${big ? "h-full p-10" : `p-2 ${i === 0 ? "min-h-[120px]" : ""}`}`}><div className={big ? "mx-auto w-full max-w-[400px]" : ""}>{body}</div></div>
-    </div>);
-}
-
+/* ---------- How it works: four steps, one stage ----------
+ * The approved process stage (blurred loop behind a phone with the real app screen and a status chip) with the four
+ * steps of the product. Steps advance every 6 s while in view (pausable; never under reduced motion); hover or focus
+ * holds a step. Phones: the stage first, then the steps as a compact list where only the active one shows its text. */
+const STAGE = [{ v: "kitchen", icon: FilmSlate }, { v: "line", icon: Sparkle }, { v: "plating", icon: CheckCircle }, { v: "coffee", icon: ChartBar }] as const;
+const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
+const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
+const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 export function Steps5() {
-  const { d, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const reduce = useReducedMotion();
-  const [on, setOn] = useState(0); const items = useRef<(HTMLLIElement | null)[]>([]);
-  // The sticky stage (and its video) only exists on wide screens; phones never download it.
-  const [wide, setWide] = useState(false);
-  useEffect(() => { const q = window.matchMedia("(min-width: 1024px)"); const f = () => setWide(q.matches); f(); q.addEventListener("change", f); return () => q.removeEventListener("change", f); }, []);
-  // The step crossing the middle of the viewport drives the sticky stage (desktop) and the highlighted number.
-  useEffect(() => {
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setOn(Number((e.target as HTMLElement).dataset.i)); }), { rootMargin: "-45% 0px -45% 0px" });
-    items.current.forEach((n) => n && io.observe(n)); return () => io.disconnect();
-  }, []);
+  const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const x = EXTRA[locale]; const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
+  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
+  const run = on && !hold && !paused && !reduce;
+  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 4), 6000); return () => window.clearTimeout(t); }, [run, i]);
+  const screen = i === 0 ? <Editor active={on} lang={lang} /> : i === 1 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} />
+    : i === 2 ? <WorkScreen active={on} lang={lang} /> : <Ready active={on} lang={lang} />;
+  const chips = [x.chips[0], x.chips[1], `${d.caps.frag.ok} · ${d.bento.who[0]}`, x.chips[3]];
+  const ChipIc = STAGE[i].icon;
   return (
     <section id="how" aria-labelledby="how-h" className="section-y pt-0">
       <div className="container-x">
         <Label icon={Lightning}>{c.k}</Label><H2 id="how-h" className="max-w-[20ch]">{c.h}</H2>
-        <div className="mt-7 lg:mt-4 lg:grid lg:grid-cols-12 lg:gap-12">
-          <ol className="lg:col-span-5">
-            {s.map(([h, p], k) => { const I = STEP_IC[k]; const act = on === k; return (
-              <li key={h} ref={(n) => { items.current[k] = n; }} data-i={k} className="relative pb-6 ps-14 last:pb-0 lg:flex lg:min-h-[64vh] lg:flex-col lg:justify-center lg:pb-0 lg:ps-0">
-                {k < s.length - 1 && <span aria-hidden="true" className="absolute bottom-0 start-5 top-12 w-[2px] -translate-x-1/2 rounded-full bg-[var(--card-2)] rtl:translate-x-1/2 lg:hidden" />}
-                <span aria-hidden="true" className={`absolute start-0 top-0 flex h-10 w-10 items-center justify-center gap-1.5 rounded-full text-[15px] font-semibold tabular-nums transition-colors duration-300 lg:static lg:mb-5 lg:w-auto lg:self-start lg:px-3.5 ${act ? "bg-ink text-bg" : "bg-[var(--card)] text-ink-muted"}`}><I size={16} className="hidden lg:block" />{k + 1}</span>
-                <h3 className="mt-1.5 text-[20px] font-semibold leading-tight tracking-[-0.02em] md:text-[24px]">{h}</h3>
-                <p className="mt-1.5 max-w-[30rem] text-[15px] leading-[1.5] text-ink-muted md:mt-2 md:text-[16px] md:leading-[1.6]">{k === 0 ? c.steps[0][1] : p}</p>
-                <div className="mt-3 lg:hidden"><StepMock i={k} /></div>
+        <div ref={ref} className="mt-8 grid gap-4 md:mt-12 lg:grid-cols-12 lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+          <div className="dark relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#141414] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:min-h-[620px] lg:rounded-[32px]">
+            <AnimatePresence initial={false}>
+              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.6, ease: EASE }}>
+                <img src={`/video/${STAGE[i].v}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />
+                {near && <SmartVideo name={STAGE[i].v} poster={`/video/${STAGE[i].v}.webp`} threshold={0.3} className="absolute inset-0 h-full w-full scale-110 object-cover opacity-45 blur-[6px]" />}
+              </m.div>
+            </AnimatePresence>
+            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(20_20_20/0)_0%,rgb(20_20_20/0.75)_75%)]" />
+            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(30_30_30/0.85)] text-white/80 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
+            <div className="absolute left-1/2 top-[19%] w-[min(42%,280px)] -translate-x-1/2 lg:top-[17%] lg:w-[min(50%,280px)]" dir="ltr">
+              <Device label={s[i][0]}>{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device>
+            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
+                className="absolute start-4 top-4 flex w-max max-w-[calc(100%-5rem)] items-center gap-2.5 rounded-full bg-[rgb(30_30_30/0.85)] py-1.5 pe-4 ps-1.5 text-[13px] font-medium text-white ring-1 ring-white/10 backdrop-blur-md md:start-5 md:top-5 md:gap-3 md:py-2 md:pe-5 md:ps-2 md:text-[14px]">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-white text-[#111] md:h-8 md:w-8"><ChipIc size={15} /></span><span className="truncate">{chips[i]}</span>
+              </m.div>
+            </AnimatePresence>
+          </div>
+          <ol className="flex flex-col gap-1 lg:col-span-5 lg:justify-center" role="tablist" aria-label={c.k}>
+            {s.map(([h, p], k) => { const I = STAGE[k].icon; const act = i === k; return (
+              <li key={h}>
+                <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
+                  className={`relative block w-full rounded-[20px] p-3 text-start transition-colors duration-300 md:rounded-[22px] md:p-5 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
+                  <span className="flex items-center gap-3 md:gap-4">
+                    <span className={`grid h-10 w-10 shrink-0 place-items-center rounded-[12px] transition-colors duration-300 md:h-11 md:w-11 md:rounded-[14px] ${act ? "bg-[var(--card-2)] text-ink" : "text-ink-faint"}`}><I size={19} /></span>
+                    <span className="min-w-0">
+                      <span className="block text-[12px] font-medium uppercase tracking-[.08em] text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
+                      <span className={`block text-[17px] font-semibold leading-snug tracking-[-0.015em] transition-colors md:text-[19px] ${act ? "text-ink" : "text-ink-muted"}`}>{h}</span>
+                    </span>
+                  </span>
+                  <span className={`mt-2 block text-[15px] leading-[1.55] text-ink-muted md:mt-3 md:ps-[3.75rem] ${act ? "" : "hidden"}`}>{k === 0 ? c.steps[0][1] : p}</span>
+                  {act && <span aria-hidden="true" className="mt-3 block h-[2px] overflow-hidden rounded-full bg-[var(--card-2)] md:mt-4 md:ms-[3.75rem]">
+                    <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-ink/70 rtl:origin-right" style={{ animation: run ? "procbar 6s linear forwards" : "none", transform: run ? undefined : "scaleX(1)" }} /></span>}
+                </button>
               </li>); })}
           </ol>
-          <div className="hidden lg:col-span-7 lg:block">
-            <div className="sticky top-[calc(var(--header-h)+24px)] h-[min(78vh,720px)]">
-              {wide && <AnimatePresence initial={false}>
-                <m.div key={on} className="absolute inset-0" initial={reduce ? false : { opacity: 0, scale: 1.02 }} animate={{ opacity: 1, scale: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5, ease: EASE }}>
-                  <StepMock i={on} big />
-                </m.div>
-              </AnimatePresence>}
-            </div>
-          </div>
         </div>
-        <div className="mt-8 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between">
-          <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{d.bento.sample}</p>
+        <div className="mt-5 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-6">
+          <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
         </div>
       </div>
     </section>);
@@ -223,15 +188,13 @@ export function Integrations5() {
     <section id="integrations" aria-labelledby="int-h" className="section-y pt-0">
       <div className="container-x">
         <div className={`${card} flex flex-col gap-3 p-4 md:p-5 lg:flex-row lg:items-center lg:gap-6`}>
-          <div className="flex items-center justify-between gap-3 lg:contents">
             <h2 id="int-h" className="flex shrink-0 items-center gap-2.5 text-[16px] font-semibold"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card-2)]"><PlugsConnected size={16} aria-hidden="true" /></span>{c.k}</h2>
-            <Link href="/integrations/" className="inline-flex min-h-11 shrink-0 items-center gap-1.5 text-[14px] font-semibold hover:underline lg:order-last">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-          </div>
           <ul className="flex flex-1 flex-wrap items-center gap-1.5 md:gap-2">
             {LIVE.map(([I, n], i) => <li key={n} className={`${chip} bg-[var(--card-2)] font-medium`}><I size={15} aria-hidden="true" />{n}<span className="sr-only"> ({c.liveItems[i]}, {c.live})</span><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-calm-aqua" /></li>)}
             <li className="px-1 text-[13px] text-ink-faint">{d.pricingPage.soon}:</li>
             {NEXT.map(([I, n]) => <li key={n} className={`${chip} text-ink-muted ring-1 ring-inset ring-[var(--card-2)]`}><I size={15} aria-hidden="true" />{n}</li>)}
           </ul>
+          <Link href="/integrations/" className="inline-flex min-h-11 shrink-0 items-center gap-1.5 self-start text-[14px] font-semibold hover:underline lg:self-auto">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
       </div>
     </section>);
@@ -313,7 +276,7 @@ export function Pricing5() {
             <button key={p.id} type="button" aria-pressed={act} aria-controls={`plan-${p.id}`} onClick={() => setSel(p.id)}
               className={`flex min-h-14 flex-col items-center justify-center rounded-[16px] px-1 text-center transition-colors ${act ? "bg-ink text-bg" : "text-ink-muted"}`}>
               <span className="text-[13px] font-semibold leading-tight">{c.plans[p.id as keyof typeof c.plans][0]}</span>
-              <span className={`mt-0.5 text-[12px] tabular-nums ${act ? "text-bg/75" : "text-ink-faint"}`}>{pr ? pr.now : "30+"}</span>
+              <span className={`mt-0.5 text-[12px] ${act ? "text-bg/75" : "text-ink-faint"}`}>{pr ? pr.now : "30+"}</span>
             </button>); })}
         </div>
         <ul className="mt-3 grid items-stretch gap-3 sm:mt-12 sm:grid-cols-2 xl:grid-cols-4">

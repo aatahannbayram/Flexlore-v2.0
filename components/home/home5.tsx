@@ -54,13 +54,13 @@ export function Hero5({ children }: { children?: React.ReactNode }) {
           </div>
           {/* One scene: the kitchen, one phone in front of it, one status card. */}
           <div className="col-span-12 lg:col-span-6">
-            <div className="hs-device relative mx-auto aspect-[16/9] max-w-[560px] sm:aspect-[4/5] lg:me-0" style={{ animationDelay: "250ms" }}>
+            <div className="hs-device relative mx-auto aspect-[4/3] max-w-[560px] sm:aspect-[4/5] lg:me-0" style={{ animationDelay: "250ms" }}>
               <div className="dark absolute inset-y-0 end-0 w-full overflow-hidden rounded-[24px] bg-[#2a2622] sm:w-[86%] sm:rounded-[32px]">
                 <Pic n="kitchenline" eager sizes="(min-width:1024px) 40vw, 90vw" className="absolute inset-0 h-full w-full object-cover object-[35%_center]" />
                 <SmartVideo name="kitchen" underlay threshold={0.2} className="absolute inset-0 h-full w-full object-cover" />
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(200deg,rgb(17_17_17/0)_40%,rgb(17_17_17/0.55)_100%)]" />
               </div>
-              <div className="absolute bottom-[6%] start-[4%] w-[23%] max-w-[250px] sm:bottom-[7%] sm:start-0 sm:w-[44%]" dir="ltr"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
+              <div className="absolute bottom-[6%] start-[4%] w-[30%] max-w-[250px] sm:bottom-[7%] sm:start-0 sm:w-[44%]" dir="ltr"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
             </div>
           </div>
         </div>
