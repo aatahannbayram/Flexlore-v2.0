@@ -8,20 +8,20 @@
   --color-bg: #111111;          /* bg-dark */
   --color-surface-1: #191919;   /* grey-800, raised */
   --color-surface-2: #1F1F1F;   /* hover, nested */
-  --color-line: rgb(255 255 255 / 0.08);
-  --color-line-strong: rgb(255 255 255 / 0.16);
+  --color-line: rgb(255 240 225 / 0.08);
+  --color-line-strong: rgb(255 240 225 / 0.16);
   /* ink */
-  --color-ink: #EEF1F1;          /* ice-tinted off-white, not pure white */
-  --color-ink-muted: #B2B2B2;   /* grey-200 */
-  --color-ink-faint: #8A8A8A;
-  /* ice grey: the calm lead colour of the site. Saturation stays under 6%, so it reads cool without turning blue. */
-  --color-ice-50: #F4F6F6;
-  --color-ice-100: #E7EBEB;
-  --color-ice-200: #D2D8D9;
-  --color-ice-300: #B3BCBE;
-  --color-ice-400: #8C9698;
-  --color-ice-500: #858E90;
-  --color-ice-900: #1B1E1F;
+  --color-ink: #F4F0EB;          /* warm off-white (v3: warm, premium) */
+  --color-ink-muted: #BAB3AB;   /* grey-200, warmed */
+  --color-ink-faint: #8E8780;
+  /* warm grey (named ice for history): the calm lead colour of the site, warm and low in saturation. */
+  --color-ice-50: #F6F3EF;
+  --color-ice-100: #EAE5DF;
+  --color-ice-200: #D6D0C9;
+  --color-ice-300: #BAB3AB;
+  --color-ice-400: #968F87;
+  --color-ice-500: #8E8780;
+  --color-ice-900: #1F1C19;
   /* accent: brand orange, kept for the logo, focus ring and rare brand moments only */
   --color-accent: #EC6726;      /* orange-500 */
   --color-accent-strong: #D75E23; /* orange-600 */
@@ -64,7 +64,7 @@
 }
 
 :root {
-  --bg-rgb: 17 17 17; --band: #161616; --band-card: #1E1E1E; --band-stage: #262626; --card: #181818; --card-2: #222222;
+  --bg-rgb: 17 17 17; --band: #161412; --band-card: #1F1C19; --band-stage: #27231F; --card: #1A1714; --card-2: #24201C;
   --container: 1240px;
   --gutter: 24px;
   --pad-x: clamp(16px, 4vw, 48px);
@@ -96,7 +96,7 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 
 /* buttons: 44px minimum target */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; border-radius: 999px; padding: 0 1.25rem; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s; }
-.btn-primary { background: var(--color-ice-100); color: #111111; }
+.btn-primary { background: #F4F0EB; color: #111111; }
 .btn-primary:hover { background: #FFFFFF; }
 .btn-secondary { background: rgb(255 255 255 / 0.07); color: var(--color-ink); }
 .btn-secondary:hover { background: rgb(255 255 255 / 0.12); }
@@ -216,11 +216,11 @@ main:not([lang="tr"]) .l-tr { display: none; }
   --color-light-bg: #F1EDE7; --color-light-surface: #E9E4DC;
 }
 :root[data-theme="light"] .dark {
-  --bg-rgb: 17 17 17; --card: #181818; --card-2: #222222;
+  --bg-rgb: 17 17 17; --card: #1A1714; --card-2: #24201C;
   --color-bg: #111111; --color-surface-1: #191919; --color-surface-2: #1F1F1F;
-  --color-line: rgb(255 255 255 / 0.08); --color-line-strong: rgb(255 255 255 / 0.16);
-  --color-ink: #EEF1F1; --color-ink-muted: #B2B2B2; --color-ink-faint: #8A8A8A;
-  --color-ice-50: #F4F6F6; --color-ice-100: #E7EBEB; --color-ice-200: #D2D8D9; --color-ice-300: #B3BCBE; --color-ice-400: #8C9698; --color-ice-500: #858E90; --color-ice-900: #1B1E1F;
+  --color-line: rgb(255 240 225 / 0.08); --color-line-strong: rgb(255 240 225 / 0.16);
+  --color-ink: #F4F0EB; --color-ink-muted: #BAB3AB; --color-ink-faint: #8E8780;
+  --color-ice-50: #F6F3EF; --color-ice-100: #EAE5DF; --color-ice-200: #D6D0C9; --color-ice-300: #BAB3AB; --color-ice-400: #968F87; --color-ice-500: #8E8780; --color-ice-900: #1F1C19;
   --color-accent-text: #F08551; --color-calm-aqua: #68D2B9; --color-calm-lilac: #B4A7E5;
   --color-bg2: #191919; --color-card: #1F1F1F; --color-ash: #8A8A8A;
   color-scheme: dark; color: var(--color-ink);

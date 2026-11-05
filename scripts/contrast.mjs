@@ -2,10 +2,10 @@
 // Values mirror app/globals.css @theme. Alpha colours are composited over their ground first.
 const T = {
   bg: "#111111", "surface-1": "#191919", "surface-2": "#1F1F1F",
-  ink: "#EEF1F1", "ink-muted": "#B2B2B2", "ink-faint": "#8A8A8A",
+  ink: "#F4F0EB", "ink-muted": "#BAB3AB", "ink-faint": "#8E8780",
   accent: "#EC6726", "accent-strong": "#D75E23", "accent-text": "#F08551", "on-accent": "#111111",
   "calm-aqua": "#68D2B9", "calm-lilac": "#B4A7E5",
-  "ice-100": "#E7EBEB", "ice-300": "#B3BCBE", "ice-400": "#8C9698", "ice-500": "#858E90",
+  "ice-100": "#EAE5DF", "ice-300": "#BAB3AB", "ice-400": "#968F87", "ice-500": "#8E8780",
   "v3-bg": "#FAF8F5", "v3-band": "#F1EDE7", "v3-ink": "#161616", "v3-muted": "#55524D", "v3-faint": "#6E6A64", "v3-ice-400": "#5E5A55", "v3-aqua": "#3B7C6D", "v3-orange-text": "#A8491B",
   "light-bg": "#F4F6F6", "light-surface": "#E7EBEB", white: "#FFFFFF", "light-ink": "#333333", "light-muted": "#666666", "light-accent-text": "#A8491B",
 };

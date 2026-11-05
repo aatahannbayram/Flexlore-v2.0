@@ -5,7 +5,7 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { TrustStrip } from "./home/Sections";
 import dynamic from "next/dynamic";
-import { HeroV3, ProblemV3 } from "./v3/Top";
+import { HeroV3 } from "./v3/Top";
 const Below = dynamic(() => import("./v3/Home"));
 import { useLocale } from "./i18n/LocaleProvider";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
@@ -15,8 +15,8 @@ export function Video({ name, className = "" }: { name: string; eager?: boolean;
   return <SmartVideo name={name} className={className} threshold={0.35} />;
 }
 
-/** Home page (v3 narrative): hero with the programs strip, problem, how it works, full-bleed band, industries,
- *  customer stories (only when approved), web panel, FAQ, closing call to action. Header and footer sit outside <main>. */
+/** Home page: hero with the programs strip, how it works, standards, workspaces, web (desk to field),
+ *  customers, closing call to action (sections chosen by Flexlore, 2026-11-05). Header and footer sit outside <main>. */
 export default function Site() {
   const { d, locale } = useLocale();
   const [paused, setPaused] = useState(false);
@@ -28,7 +28,6 @@ export default function Site() {
       <VideoPause.Provider value={paused}>
         <main id="main" lang={locale} className="home-v3">
           <HeroV3><TrustStrip as="div" label={d.trust.programs} /></HeroV3>
-          <ProblemV3 />
           <Below />
         </main>
       </VideoPause.Provider>

@@ -1,17 +1,15 @@
 "use client";
-/* v3 home page, first screen: hero (B1) and problem (B3), plus the shared photo, kicker and heading helpers.
+/* v3 home page, first screen: hero (B1), plus the shared photo, kicker and heading helpers.
  * The rest of the page is in ./Home.tsx and loads after this. */
 import { useState } from "react";
-import { m, useReducedMotion } from "framer-motion";
 import { SITE } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
-import { HOME3 } from "../i18n/home3";
 import { Device, WorkScreen } from "../AppScreens";
 import { StoreButtons } from "../Icons";
 import { VideoModal } from "../ui/VideoModal";
 import { EASE } from "../ui/Reveal";
 import { Play } from "../ui/icons";
-import { Chev, ChevPair } from "./Chevron";
+import { Chev } from "./Chevron";
 import M from "./media.json";
 
 export type Media = keyof typeof M;
@@ -30,7 +28,7 @@ export function Photo({ n, sizes = "100vw", className = "", priority = false, po
 }
 
 export const Kicker = ({ children, light = false }: { children: React.ReactNode; light?: boolean }) => (
-  <p className={`inline-flex items-center gap-2 text-[14px] font-semibold tracking-[-0.005em] ${light ? "text-white/80" : "text-ink-muted"}`}><Chev className="h-2.5 w-4 text-accent" />{children}</p>);
+  <p className={`text-[13px] font-semibold uppercase tracking-[0.14em] ${light ? "text-white/70" : "text-ink-faint"}`}>{children}</p>);
 /** Two-tone heading: the set-up in ink, the result in orange. */
 export const H2 = ({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) => (
   <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>);
@@ -79,36 +77,3 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
       <VideoModal open={demo} onClose={() => setDemo(false)} title={h.watchTitle} youtubeId="4CLIlnp0L28" closeLabel={d.nav.close} />
     </section>);
 }
-
-/* ---------- B3. Problem (white): two photo cards and one card of type ---------- */
-export function ProblemV3() {
-  const { d, locale } = useLocale(); const c = d.problem; const t = HOME3[locale]; const reduce = useReducedMotion();
-  const cards: [Media, number][] = [["problem-vardiya", 1], ["problem-kagitlar", 2]];
-  return (
-    <section aria-labelledby="prob-h" className="section-y pb-0">
-      <div className="container-x">
-        <Kicker>{c.k}</Kicker>
-        <H2 id="prob-h" a={c.h} b={c.h2} className="max-w-[20ch]" />
-        <ul className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
-          {cards.map(([n, i], k) => { const [h, p] = c.points[i]; return (
-            <m.li key={n} {...rise(reduce, k)} className="flex items-center gap-4 rounded-[20px] bg-[var(--card)] p-2.5 pe-4 ring-1 ring-white/[.06] md:flex-col md:items-stretch md:gap-0 md:p-2">
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-[12px] md:aspect-[4/3] md:h-auto md:w-full">
-                <Photo n={n} sizes="(min-width:768px) 33vw, 96px" className="absolute inset-0 h-full w-full object-cover" />
-              </div>
-              <div className="min-w-0 md:px-3 md:py-4">
-                <h3 className="text-[17px] font-semibold leading-snug tracking-[-0.02em] md:text-[20px]">{h}</h3>
-                <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted md:mt-1.5 md:text-[16px]">{p}</p>
-              </div>
-            </m.li>); })}
-          <m.li {...rise(reduce, 2)} className="relative flex flex-col justify-between overflow-hidden rounded-[20px] bg-[var(--card)] p-6 ring-1 ring-white/[.06] md:p-7">
-            <ChevPair aria-hidden="true" className="h-9 w-9 opacity-90" />
-            <div className="mt-10">
-              <h3 className="text-[clamp(26px,1rem+1.4vw,36px)] font-semibold leading-[1.08] tracking-[-0.035em]">{t.big}</h3>
-              <p className="mt-3 text-[16px] leading-[1.5] text-ink-muted">{t.bigP}</p>
-            </div>
-          </m.li>
-        </ul>
-      </div>
-    </section>);
-}
-
