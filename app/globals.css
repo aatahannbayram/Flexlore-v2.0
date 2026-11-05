@@ -20,7 +20,7 @@
   --color-ice-200: #D2D8D9;
   --color-ice-300: #B3BCBE;
   --color-ice-400: #8C9698;
-  --color-ice-500: #6B7476;
+  --color-ice-500: #858E90;
   --color-ice-900: #1B1E1F;
   /* accent: brand orange, kept for the logo, focus ring and rare brand moments only */
   --color-accent: #EC6726;      /* orange-500 */
@@ -220,7 +220,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
   --color-bg: #111111; --color-surface-1: #191919; --color-surface-2: #1F1F1F;
   --color-line: rgb(255 255 255 / 0.08); --color-line-strong: rgb(255 255 255 / 0.16);
   --color-ink: #EEF1F1; --color-ink-muted: #B2B2B2; --color-ink-faint: #8A8A8A;
-  --color-ice-50: #F4F6F6; --color-ice-100: #E7EBEB; --color-ice-200: #D2D8D9; --color-ice-300: #B3BCBE; --color-ice-400: #8C9698; --color-ice-500: #6B7476; --color-ice-900: #1B1E1F;
+  --color-ice-50: #F4F6F6; --color-ice-100: #E7EBEB; --color-ice-200: #D2D8D9; --color-ice-300: #B3BCBE; --color-ice-400: #8C9698; --color-ice-500: #858E90; --color-ice-900: #1B1E1F;
   --color-accent-text: #F08551; --color-calm-aqua: #68D2B9; --color-calm-lilac: #B4A7E5;
   --color-bg2: #191919; --color-card: #1F1F1F; --color-ash: #8A8A8A;
   color-scheme: dark; color: var(--color-ink);

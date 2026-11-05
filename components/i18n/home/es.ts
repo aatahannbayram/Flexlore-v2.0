@@ -91,7 +91,7 @@ export const es: Dict = {
   },
   pricing: {
     k: "Precios", h: "Según el tamaño de su equipo.", lead: "Empiece gratis con hasta 3 usuarios. Enterprise empieza a partir de 30 usuarios.",
-    monthly: "Mensual", yearly: "Anual", billing: "Periodo de facturación", perMo: "/mes", yrNote: "al mes, facturado anualmente", moNote: "al mes, facturado mensualmente", free: "Gratis para siempre",
+    monthly: "Mensual", yearly: "Anual", billing: "Periodo de facturación", perMo: "/mes", yrNote: "Facturación anual, {total}", moNote: "Facturación mensual", free: "Gratis para siempre",
     save: "Ahorre un {pct}%", upTo: "Ahorre hasta un {pct}%", users: "Hasta {n} usuarios", enterpriseUsers: "Más de 30 usuarios", contact: "Contáctenos", custom: "Precio personalizado",
     start: "Empezar gratis", choose: "Elegir plan", talk: "Hablar con ventas", recommended: "Recomendado", all: "Comparar todos los planes", plus: "Todo lo incluido en {plan}, más:",
     secure: "Pago seguro", cancel: "Cancele cuando quiera", appNote: "También disponible en la app para iOS y Android.",

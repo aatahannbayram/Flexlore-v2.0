@@ -164,7 +164,7 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
         </div>
         {/* Operator */}
         <div className="mt-2.5 flex items-center rounded-[16px] px-3.5 py-3 text-[14px] text-white" style={{ background: S1 }}>
-          <span className="flex-1">Operator 1</span><CaretDown size={11} weight="fill" className="text-white/85" /></div>
+          <span className="flex-1">{lang === "tr" ? "Operatör 1" : "Operator 1"}</span><CaretDown size={11} weight="fill" className="text-white/85" /></div>
         {/* Steps */}
         <div className="mt-3 flex items-center justify-between"><span className="pl-0.5 text-[14px]" style={{ color: "#BDBDBD" }}>{L.steps}</span>
           <span className="rounded-full px-3.5 py-[7px] text-[12px] text-white" style={{ background: S3 }}>{L.es}</span></div>

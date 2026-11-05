@@ -44,7 +44,7 @@ export type Price = { now: string };
 export function savePct(p: { monthly: Price | null; yearly: Price | null }): number | null {
   const n = (x: Price | null) => (x ? parseFloat(x.now.replace(/[^0-9.]/g, "")) : 0);
   const m = n(p.monthly), y = n(p.yearly);
-  return m > 0 && y > 0 && y < m ? Math.floor((1 - y / m) * 100) : null;
+  return m > 0 && y > 0 && y < m ? Math.round((1 - y / m) * 100) : null;
 }
 export type Plan = { id: string; name: string; for: string; badge: string | null; badgeTr: string | null; monthly: Price | null; yearly: Price | null;
   /** Stripe Payment Links (monthly / yearly). Paste the link from the Stripe dashboard; null = fall back to the pricing page. */

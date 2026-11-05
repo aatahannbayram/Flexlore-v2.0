@@ -10,6 +10,7 @@ import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { LOCALES } from "../i18n/locales";
 import { EXTRA, INTEG, COMPARE5 } from "../i18n/extra";
 import { Device, WorkScreen } from "../AppScreens";
+import { StoreButtons } from "../Icons";
 import { SmartVideo } from "../ui/SmartVideo";
 import { Reveal, RevealItem, EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, inner, Corner, Title, type Ic } from "./home5";
@@ -21,6 +22,8 @@ import {
 
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
+/** Percent in the visitor's locale ("%92" in Turkish, "92 %" in German). */
+const pct = (v: number, l: string) => { try { return new Intl.NumberFormat(l, { style: "percent", maximumFractionDigits: 0 }).format(v / 100); } catch { return `${v}%`; } };
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
@@ -130,7 +133,7 @@ export function Process5() {
 const CAP_MEDIA = ["steam", "warehouse", "hotel"];
 const glass = "rounded-2xl bg-[rgb(17_17_17/0.74)] p-3 backdrop-blur-md";
 export function Caps5() {
-  const { d } = useLocale(); const c = d.caps; const f = c.frag;
+  const { d, locale } = useLocale(); const c = d.caps; const f = c.frag;
   const frag = (i: number) => i === 0 ? (
     <div className={`${glass} space-y-1.5`}>{[f.s1, f.s2].map((s, k) => (
       <div key={s} className="flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.06)] px-3 py-2 text-[13px] text-white">
@@ -142,7 +145,7 @@ export function Caps5() {
       </div>))}</div>
   ) : i === 1 ? (
     <div className={`${glass} space-y-2.5 px-4 py-3.5 text-white`}>{f.sites.map((n, k) => { const v = [92, 78, 64][k]; return (
-      <div key={n}><div className="flex items-baseline justify-between text-[13px]"><span>{n}</span><span className="font-semibold tabular-nums">{v}%</span></div>
+      <div key={n}><div className="flex items-baseline justify-between text-[13px]"><span>{n}</span><span className="font-semibold tabular-nums">{pct(v, locale)}</span></div>
         <span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-[rgb(255_255_255/0.1)]"><span className="bento-bar block h-full rounded-full bg-[#D2D8D9]" style={{ width: `${v}%` }} /></span></div>); })}</div>
   ) : (
     <div className={`${glass} space-y-1.5`}>{f.roles.map(([r, l], k) => (
@@ -177,7 +180,7 @@ export function Caps5() {
 const BLOG = (id: string) => <picture><source srcSet={`/blog/${id}-800.avif`} type="image/avif" /><img src={`/blog/${id}-800.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover" /></picture>;
 const gl = "rounded-[18px] bg-[rgb(20_20_20/0.72)] ring-1 ring-white/10 backdrop-blur-md";
 export function Bento5() {
-  const { d, lang } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
+  const { d, lang, locale } = useLocale(); const c = d.bento; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
   const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.2 }); const seen = useInView(ref, { amount: 0.25, once: true });
   const go = seen || !!reduce;
   const thumbs = ["kitchenline", "chef-plating", "chef-fire"];
@@ -249,8 +252,8 @@ export function Bento5() {
             <Corner href="/#web" label={c.e[0]} />
             <div aria-hidden="true" className={`${gl} absolute inset-x-6 bottom-6 p-4 md:inset-x-7`}>
               <p className="flex items-center justify-between text-[12px] text-white/70"><span>{c.jobs[1]}</span><span>{c.sample}</span></p>
-              <ul className="mt-3.5 space-y-3">{c.locs.map((n, k) => { const v = [92, 78, 64][k]; return (
-                <li key={n}><p className="flex justify-between text-[13px]"><span className="flex items-center gap-1.5"><MapPin size={12} className="text-white/60" />{n}</span><span className="tabular-nums text-white/70">{v}%</span></p>
+              <ul className="mt-3.5 space-y-3">{c.locs.map((n, k) => { const v = [88, 71, 52][k]; return (
+                <li key={n}><p className="flex justify-between text-[13px]"><span className="flex items-center gap-1.5"><MapPin size={12} className="text-white/60" />{n}</span><span className="tabular-nums text-white/70">{pct(v, locale)}</span></p>
                   <span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-[rgb(255_255_255/0.12)]"><span className="bx-bar block h-full origin-left rounded-full bg-[#E7EBEB] rtl:origin-right" style={{ width: `${v}%`, ...st(500 + k * 250) }} /></span></li>); })}</ul>
             </div>
           </article>
@@ -321,7 +324,7 @@ export function Workspace5() {
 
 /* ---------- 9. Web ---------- */
 export function Web5() {
-  const { d } = useLocale(); const c = d.web; const ref = useRef<HTMLDivElement>(null);
+  const { d, lang } = useLocale(); const c = d.web; const ref = useRef<HTMLDivElement>(null);
   const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
   return (
     <section id="web" aria-labelledby="web-h" className="section-y pt-0">
@@ -334,8 +337,8 @@ export function Web5() {
         </div>
         <div ref={ref} className="col-span-12 lg:col-span-7">
           <div className={`${card} ps-6 pt-8 md:ps-12 md:pt-14`} dir="ltr">
-            <div className="dark w-[130%] overflow-hidden rounded-tl-[22px] border-l-[10px] border-t-[10px] border-[#0b0b0b] md:w-[120%]">
-              <div role="img" aria-label={c.sample}>{near ? <Dash on={on} /> : <div className="aspect-[1180/720] w-full" />}</div>
+            <div className="dark w-[230%] overflow-hidden rounded-tl-[22px] border-l-[10px] border-t-[10px] border-[#0b0b0b] sm:w-[160%] md:w-[120%]">
+              <div role="img" aria-label={c.sample}>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>
             </div>
           </div>
           <p className="mt-3 text-[13px] text-ink-faint">{c.sample}</p>
@@ -377,7 +380,7 @@ export function AI5() {
         <div className="mx-auto mt-6 flex max-w-[1040px] flex-wrap items-center justify-center gap-x-6 gap-y-3 text-[14px] text-ink-muted">
           <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-calm-aqua" />{c.live}: {c.liveItems.slice(0, 2).join(" · ")}</span>
           <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-ink-faint" />{d.ai.soon}: {c.liveItems[2]} · REST API · Webhooks · MCP</span>
-          <Link href="/integrations/" className="inline-flex items-center gap-1.5 font-semibold text-ink hover:underline">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+          <Link href="/integrations/" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink hover:underline">{c.cta}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
       </div>
     </section>);
@@ -534,6 +537,16 @@ export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setY
     </div>);
 }
 const PLAN_IC: Record<string, Ic> = { free: Sparkle, pro: Lightning, proplus: Users, enterprise: Buildings };
+/* Plans are bought in the app (or through a Stripe link once set). Phones go straight to their store; on a desktop the
+   button opens a small panel with both store badges, so nobody lands on the same price cards again. */
+function GetApp({ checkout, label, cls }: { checkout: string | null; label: string; cls: string }) {
+  const { lang } = useLocale(); const [open, setOpen] = useState(false); const box = useRef<HTMLDivElement>(null);
+  useEffect(() => { if (!open) return; const off = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); }; document.addEventListener("mousedown", off); return () => document.removeEventListener("mousedown", off); }, [open]);
+  const go = (e: React.MouseEvent) => { if (checkout) return; e.preventDefault(); const ua = navigator.userAgent;
+    if (/iPhone|iPad|iPod/i.test(ua)) window.location.href = SITE.appStore; else if (/Android/i.test(ua)) window.location.href = SITE.googlePlay; else setOpen((o) => !o); };
+  return (<div ref={box} className="relative"><a href={checkout ?? SITE.appStore} onClick={go} aria-expanded={checkout ? undefined : open} className={cls}>{label}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+    {open && <div className="absolute inset-x-0 top-full z-20 mt-2 flex flex-col items-center gap-2 rounded-[18px] bg-surface-1 p-3 ring-1 ring-line"><StoreButtons small lang={lang} /></div>}</div>);
+}
 export function PlanCard({ id, yearly, full = false }: { id: string; yearly: boolean; full?: boolean }) {
   const { d } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];
   const [name, forWho] = c.plans[id as keyof typeof c.plans]; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
@@ -557,15 +570,15 @@ export function PlanCard({ id, yearly, full = false }: { id: string; yearly: boo
             <span className={`text-[14px] ${rec ? "text-bg/70" : "text-ink-muted"}`}>{c.perMo}</span>
             {save && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${rec ? "bg-bg/10" : "bg-[var(--card-2)] text-ink-muted"}`}>{fmt(c.save, { pct: save })}</span>}
           </div>
-          <p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{id === "free" ? c.free : yearly ? c.yrNote : c.moNote}</p>
+          <p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{id === "free" ? c.free : yearly ? fmt(c.yrNote, { total: `$${(parseFloat(pr.now.replace(/[^0-9.]/g, "")) * 12).toFixed(2)}` }) : c.moNote}</p>
         </> : <><p className="text-[34px] font-bold leading-none tracking-[-.03em]">{c.contact}</p><p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{c.custom}</p></>}
       </div>
       {id === "enterprise"
         ? <a href={SITE.demo} className={`btn mt-6 w-full ${rec ? "bg-bg text-ink" : "btn-secondary"}`}>{c.talk}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-        : <a href={checkout ?? "/pricing/"} className={`btn mt-6 w-full ${rec ? "bg-bg text-ink hover:opacity-90" : "btn-secondary"}`}>{id === "free" ? c.start : c.choose}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>}
+        : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-6 w-full ${rec ? "bg-bg text-ink hover:opacity-90" : "btn-secondary"}`} />}
       <div className={`mt-6 flex-1 rounded-[20px] p-4 ${rec ? "bg-bg/[.08]" : "bg-[var(--card-2)]"}`}>
         <p className="flex items-center gap-2 text-[14px] font-semibold"><Users size={16} aria-hidden="true" />{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
-        {full && prev && <p className={`mt-3 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
+        {prev && <p className={`mt-3 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
         <ul className="mt-3 space-y-2 text-[14px]">{pts.map((f) => <li key={f} className={`flex items-start gap-2.5 ${rec ? "text-bg/85" : "text-ink-muted"}`}><Check size={15} aria-hidden="true" className="mt-0.5 shrink-0" />{f}</li>)}</ul>
       </div>
     </li>);
@@ -584,7 +597,7 @@ export function Pricing5() {
         </ul>
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4 text-[14px] text-ink-faint">
           <span className="flex flex-wrap items-center gap-x-5 gap-y-2"><span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} />{c.cancel}</span><span>{c.appNote}</span></span>
-          <Link href="/pricing/" className="inline-flex items-center gap-1.5 font-semibold text-ink underline-offset-4 hover:underline">{c.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+          <Link href="/pricing/" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink underline-offset-4 hover:underline">{c.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
       </div>
     </section>);
@@ -643,5 +656,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the process section, in page order. */
 export default function Below() {
-  return (<><Process5 /><Bento5 /><Caps5 /><Web5 /><Workspace5 /><AI5 /><Roles5 /><Industries5 /><Cases5 /><Statement5 /><Compare5 /><Pricing5 /><Faq5 /><End5 /></>);
+  return (<><Process5 /><Bento5 /><Caps5 /><Web5 /><Workspace5 /><AI5 /><Roles5 /><Industries5 /><Cases5 /><Compare5 /><Pricing5 /><Faq5 /><End5 /></>);
 }

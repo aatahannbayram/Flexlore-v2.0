@@ -91,7 +91,7 @@ export const pl: Dict = {
   },
   pricing: {
     k: "Cennik", h: "Cena zależy od wielkości zespołu.", lead: "Zacznij za darmo z maksymalnie 3 użytkownikami. Plan Enterprise od 30 użytkowników.",
-    monthly: "Miesięcznie", yearly: "Rocznie", billing: "Okres rozliczeniowy", perMo: "/mies.", yrNote: "miesięcznie, płatne rocznie", moNote: "miesięcznie, płatne co miesiąc", free: "Zawsze za darmo",
+    monthly: "Miesięcznie", yearly: "Rocznie", billing: "Okres rozliczeniowy", perMo: "/mies.", yrNote: "Płatność roczna, {total}", moNote: "Płatność miesięczna", free: "Zawsze za darmo",
     save: "Oszczędzasz {pct}%", upTo: "Oszczędzasz do {pct}%", users: "Do {n} użytkowników", enterpriseUsers: "30+ użytkowników", contact: "Skontaktuj się z nami", custom: "Indywidualna wycena",
     start: "Zacznij za darmo", choose: "Wybierz plan", talk: "Porozmawiaj z działem sprzedaży", recommended: "Polecany", all: "Porównaj wszystkie plany", plus: "Wszystko z planu {plan}, a także:",
     secure: "Bezpieczna płatność", cancel: "Rezygnacja w dowolnym momencie", appNote: "Dostępne także w aplikacji na iOS i Android.",

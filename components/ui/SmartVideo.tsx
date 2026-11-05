@@ -29,13 +29,14 @@ export function SmartVideo({ name, className = "", threshold = 0.5, decorative =
   const [userPlay, setUserPlay] = useState(false);
   const [near, setNear] = useState(false);
   const still = poster ?? `/video/${name}.jpg`;
-  useEffect(() => { setMounted(true); setLite(saveData()); }, []);
+  // Phones on mobile data: decorative loops stay as their poster (the page reads the same, without the megabytes).
+  useEffect(() => { setMounted(true); setLite(saveData() || (decorative && window.matchMedia("(max-width: 767px)").matches)); }, [decorative]);
   const auto = mounted && !reduce && !lite;
   const active = (auto || userPlay) && !paused && play !== false;
 
   useEffect(() => { const el = ref.current; if (!el || !mounted) return;
     let io: IntersectionObserver | undefined; let t: number | undefined;
-    const watch = () => { io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setNear(true); io?.disconnect(); } }, { rootMargin: "50% 0px" }); io.observe(el); };
+    const watch = () => { io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setNear(true); io?.disconnect(); } }, { rootMargin: "20% 0px" }); io.observe(el); };
     if (!idle) watch();
     else { const go = () => { t = window.setTimeout(watch, 800); }; document.readyState === "complete" ? go() : window.addEventListener("load", go, { once: true }); }
     return () => { io?.disconnect(); if (t) clearTimeout(t); }; }, [mounted, idle]);
@@ -46,7 +47,7 @@ export function SmartVideo({ name, className = "", threshold = 0.5, decorative =
 
   const cls = `absolute inset-0 h-full w-full object-cover ${className}`;
   return (<>
-    <video ref={ref} className={cls} poster={near ? still : undefined} muted loop playsInline preload="none"
+    <video ref={ref} className={cls} poster={near || lite ? still : undefined} muted loop playsInline preload="none"
       aria-hidden={decorative || undefined} aria-label={decorative ? undefined : alt} {...(decorative ? { tabIndex: -1 } : {})}>
       {near && (active || userPlay) && <><source src={`/video/${name}.webm`} type={'video/webm; codecs="av01.0.05M.08"'} /><source src={`/video/${name}.mp4`} type="video/mp4" /></>}
     </video>

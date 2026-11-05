@@ -92,7 +92,7 @@ export const en = {
   },
   pricing: {
     k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.",
-    monthly: "Monthly", yearly: "Yearly", billing: "Billing period", perMo: "/mo", yrNote: "per month, billed yearly", moNote: "per month, billed monthly", free: "Free forever",
+    monthly: "Monthly", yearly: "Yearly", billing: "Billing period", perMo: "/mo", yrNote: "Billed yearly, {total}", moNote: "Billed monthly", free: "Free forever",
     save: "Save {pct}%", upTo: "Save up to {pct}%", users: "Up to {n} users", enterpriseUsers: "30+ users", contact: "Contact us", custom: "Custom pricing",
     start: "Start free", choose: "Choose plan", talk: "Talk to sales", recommended: "Recommended", all: "Compare all plans", plus: "Everything in {plan}, plus:",
     secure: "Secure checkout", cancel: "Cancel anytime", appNote: "Also available in the iOS and Android app.",

@@ -5,7 +5,7 @@ const T = {
   ink: "#EEF1F1", "ink-muted": "#B2B2B2", "ink-faint": "#8A8A8A",
   accent: "#EC6726", "accent-strong": "#D75E23", "accent-text": "#F08551", "on-accent": "#111111",
   "calm-aqua": "#68D2B9", "calm-lilac": "#B4A7E5",
-  "ice-100": "#E7EBEB", "ice-300": "#B3BCBE", "ice-400": "#8C9698", "ice-500": "#6B7476",
+  "ice-100": "#E7EBEB", "ice-300": "#B3BCBE", "ice-400": "#8C9698", "ice-500": "#858E90",
   "v3-bg": "#FAF8F5", "v3-band": "#F1EDE7", "v3-ink": "#161616", "v3-muted": "#55524D", "v3-faint": "#6E6A64", "v3-ice-400": "#5E5A55", "v3-aqua": "#3B7C6D", "v3-orange-text": "#A8491B",
   "light-bg": "#F4F6F6", "light-surface": "#E7EBEB", white: "#FFFFFF", "light-ink": "#333333", "light-muted": "#666666", "light-accent-text": "#A8491B",
 };
@@ -20,7 +20,7 @@ const PAIRS = [
   ["accent-text", "bg", 4.5], ["accent-text", "surface-1", 4.5], ["accent-text", "surface-2", 4.5],
   ["accent", "bg", 3, "display text 24px+"], ["on-accent", "accent", 4.5, "button label"], ["on-accent", "accent-strong", 4.5, "button hover"],
   ["calm-aqua", "surface-1", 4.5, "status chip"], ["calm-lilac", "surface-1", 4.5, "status chip"],
-  ["ice-300", "bg", 4.5, "labels"], ["ice-400", "bg", 4.5, "eyebrow, muted headline"], ["ice-400", "surface-1", 4.5], ["bg", "ice-100", 4.5, "primary button"], ["ice-100", "bg", 4.5, "inverted card text"],
+  ["ice-300", "bg", 4.5, "labels"], ["ice-500", "bg", 4.5, "small captions"], ["ice-500", "surface-1", 4.5], ["ice-400", "bg", 4.5, "eyebrow, muted headline"], ["ice-400", "surface-1", 4.5], ["bg", "ice-100", 4.5, "primary button"], ["ice-100", "bg", 4.5, "inverted card text"],
   ["light-ink", "white", 4.5, "card on light"], ["light-muted", "white", 4.5],
   ["light-ink", "light-bg", 4.5], ["light-ink", "light-surface", 4.5], ["light-muted", "light-bg", 4.5], ["light-muted", "light-surface", 4.5],
   ["v3-ink", "v3-bg", 4.5, "v3 light page"], ["v3-muted", "v3-bg", 4.5], ["v3-faint", "v3-bg", 4.5], ["v3-ice-400", "v3-bg", 4.5],

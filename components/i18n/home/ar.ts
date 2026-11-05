@@ -91,7 +91,7 @@ export const ar: Dict = {
   },
   pricing: {
     k: "الأسعار", h: "تسعير حسب حجم فريقك.", lead: "ابدأ مجانًا مع ما يصل إلى 3 مستخدمين. تبدأ باقة Enterprise من 30 مستخدمًا فأكثر.",
-    monthly: "شهري", yearly: "سنوي", billing: "دورة الفوترة", perMo: "/شهر", yrNote: "شهريًا، يُدفع سنويًا", moNote: "شهريًا، يُدفع شهريًا", free: "مجاني دائمًا",
+    monthly: "شهري", yearly: "سنوي", billing: "دورة الفوترة", perMo: "/شهر", yrNote: "يُفوتر سنويًا، {total}", moNote: "يُفوتر شهريًا", free: "مجاني دائمًا",
     save: "وفّر {pct}%", upTo: "وفّر حتى {pct}%", users: "حتى {n} مستخدمين", enterpriseUsers: "30+ مستخدمًا", contact: "تواصل معنا", custom: "تسعير مخصص",
     start: "ابدأ مجانًا", choose: "اختر الباقة", talk: "تحدث مع فريق المبيعات", recommended: "موصى بها", all: "قارن جميع الباقات", plus: "كل ما في {plan}، بالإضافة إلى:",
     secure: "دفع آمن", cancel: "إلغاء في أي وقت", appNote: "متاح أيضًا في تطبيق iOS وAndroid.",

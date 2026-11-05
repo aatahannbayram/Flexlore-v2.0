@@ -93,7 +93,7 @@ export const tr: Dict = {
   },
   pricing: {
     k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.",
-    monthly: "Aylık", yearly: "Yıllık", billing: "Faturalama dönemi", perMo: "/ay", yrNote: "aylık, yıllık faturalanır", moNote: "aylık, aylık faturalanır", free: "Süresiz ücretsiz",
+    monthly: "Aylık", yearly: "Yıllık", billing: "Faturalama dönemi", perMo: "/ay", yrNote: "Yıllık faturalanır, {total}", moNote: "Aylık faturalanır", free: "Süresiz ücretsiz",
     save: "%{pct} tasarruf", upTo: "En fazla %{pct} tasarruf", users: "{n} kullanıcıya kadar", enterpriseUsers: "30+ kullanıcı", contact: "Bize ulaşın", custom: "Özel fiyat",
     start: "Ücretsiz başlayın", choose: "Planı seçin", talk: "Satışla görüşün", recommended: "Önerilen", all: "Tüm planları karşılaştırın", plus: "{plan} planındaki her şey, ayrıca:",
     secure: "Güvenli ödeme", cancel: "İstediğiniz zaman iptal edin", appNote: "iOS ve Android uygulamasında da kullanılabilir.",

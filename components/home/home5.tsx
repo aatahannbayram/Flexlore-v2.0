@@ -49,7 +49,7 @@ export function Hero5() {
   return (
     <section aria-labelledby="hero-h" className="relative isolate overflow-hidden pt-[var(--header-h)]">
       <div className="container-x">
-        <div className="grid-12 min-h-[min(calc(100svh-var(--header-h)),860px)] items-center gap-y-12 pb-14 pt-8 lg:py-10">
+        <div className="grid-12 items-center gap-y-8 pb-12 pt-5 lg:min-h-[min(calc(100svh-var(--header-h)),860px)] lg:gap-y-12 lg:py-10">
           <div className="col-span-12 lg:col-span-6">
             <div className="hs-in flex items-center gap-3">
               <span aria-hidden="true" className="flex -space-x-2 rtl:space-x-reverse">
@@ -57,7 +57,7 @@ export function Hero5() {
               </span>
               <p className="text-[14px] text-ink-muted">{HERO_TAG[locale]}</p>
             </div>
-            <h1 id="hero-h" className="mt-7 max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-[620] leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-7 max-w-[16ch] text-[clamp(34px,1rem+2.2vw,56px)] font-semibold leading-[1.02] tracking-[-0.04em] [text-wrap:balance]">
               <span className="block">{h.h1a}</span><span className="block text-ink-faint">{h.h1b}</span>
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[18px] leading-[1.6] text-ink-muted" style={{ animationDelay: "200ms" }}>{h.sub}</p>
@@ -65,7 +65,7 @@ export function Hero5() {
               <MagneticButton href={SITE.demo}>{d.nav.cta}</MagneticButton>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary"><Play size={14} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
-            <div className="hs-in mt-9 flex flex-wrap items-center gap-x-4 gap-y-3" style={{ animationDelay: "380ms" }}>
+            <div className="hs-in mt-9 hidden flex-wrap items-center gap-x-4 gap-y-3 sm:flex" style={{ animationDelay: "380ms" }}>
               <StoreButtons small lang={lang} className="opacity-80 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px]" />
             </div>
           </div>

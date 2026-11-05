@@ -54,7 +54,7 @@ export function FeaturePage({ slug }: { slug: string }) {
               <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-9 w-9 place-items-center rounded-[11px] bg-[var(--card)] text-ink"><Ic size={18} /></span>{it.k}</p>
               <Status f={f} c={c} />
             </div>
-            <h1 className="mt-6 max-w-[16ch] text-[clamp(32px,1rem+2vw,52px)] font-[620] leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">{it.h1}</h1>
+            <h1 className="mt-6 max-w-[16ch] text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">{it.h1}</h1>
             <p className="mt-6 max-w-[32rem] text-[18px] leading-[1.6] text-ink-muted">{it.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={SITE.demo} className="btn btn-primary h-12 px-6 text-[16px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
@@ -216,7 +216,7 @@ export function FeaturesIndex() {
     <main id="main" className="home-v3 overflow-x-clip pt-[var(--header-h)]">
       <section className="container-x pb-10 pt-12 text-center md:pt-20">
         <p className="inline-flex items-center gap-2 text-[15px] font-medium text-ink-muted"><CheckCircle size={16} />{c.indexK}</p>
-        <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(32px,1rem+2vw,52px)] font-[620] leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">{c.indexH}</h1>
+        <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">{c.indexH}</h1>
         <p className="mx-auto mt-5 max-w-[38rem] text-[18px] leading-[1.6] text-ink-muted">{c.indexP}</p>
       </section>
       {GROUPS.map((g) => (

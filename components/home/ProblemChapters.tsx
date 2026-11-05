@@ -69,7 +69,7 @@ export function ProblemChapters({ lang }: { lang: Lang }) {
                 </m.p>
                 <div className="overflow-hidden py-1">
                   <m.p variants={{ hide: { y: "105%" }, show: { y: "0%", transition: { duration: 0.8, ease: EASE } } }}
-                    className="mt-4 max-w-[16ch] text-[clamp(38px,1rem+4vw,80px)] font-[620] leading-[1.02] tracking-[-0.042em] text-ink [text-wrap:balance]">{x.h}</m.p>
+                    className="mt-4 max-w-[16ch] text-[clamp(38px,1rem+4vw,80px)] font-semibold leading-[1.02] tracking-[-0.042em] text-ink [text-wrap:balance]">{x.h}</m.p>
                 </div>
                 <m.p variants={{ hide: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, delay: 0.2, ease: EASE } } }}
                   className="mt-6 max-w-[30rem] rounded-2xl bg-[rgb(var(--bg-rgb)/0.55)] p-5 text-[17px] leading-[1.5] text-ice-200 backdrop-blur-md">{x.p}</m.p>

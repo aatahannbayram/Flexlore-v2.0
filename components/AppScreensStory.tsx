@@ -42,7 +42,7 @@ export function LibraryScreen({ active, lang = "en" }: ScreenProps) {
 const ED = {
   en: { done: "Done", tools: ["Stickers", "Text", "Steps"], start: "Start step", stop: "Stop step", vd: "Video Duration", ss: "Start Step", st: "Stop Step", sd: "Step Duration",
     modal: "Step details (Step - 1)", ft: "Standard work step title", fd: "Description", cancel: "Cancel", save: "Save changes", title: "Switch on the main power", saved: "Step 1 saved" },
-  tr: { done: "Tamam", tools: ["Çıkartmalar", "Metin", "Adımlar"], start: "Adımı Başlat", stop: "Adımı Durdur", vd: "Video Duration", ss: "Start Step", st: "Stop Step", sd: "Step Duration",
+  tr: { done: "Tamam", tools: ["Çıkartmalar", "Metin", "Adımlar"], start: "Adımı Başlat", stop: "Adımı Durdur", vd: "Video süresi", ss: "Başlangıç", st: "Bitiş", sd: "Adım süresi",
     modal: "İş Adımı Detayları (Step - 1)", ft: "Standart İş Adımı Başlığı", fd: "Açıklama", cancel: "İptal", save: "Değişiklikleri Kaydet", title: "Ana şalteri aç", saved: "Adım 1 kaydedildi" },
 } as const;
 /* Timeline in quarter seconds (64 = 16 s loop):

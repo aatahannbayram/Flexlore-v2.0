@@ -322,7 +322,7 @@ export function FinalCta({ lang }: { lang: Lang }) {
       <div className="container-x">
         <div className="relative -mx-[var(--pad-x)] grid items-center gap-10 overflow-hidden bg-surface-1 px-[var(--pad-x)] py-14 md:rounded-[32px] md:py-20 lg:grid-cols-12 lg:gap-8 lg:py-16 lg:pr-8">
           <div className="relative lg:col-span-5">
-            <h2 id="end-h" className="text-[clamp(38px,1.1rem+2.8vw,68px)] font-[620] leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
+            <h2 id="end-h" className="text-[clamp(38px,1.1rem+2.8vw,68px)] font-semibold leading-[1.0] tracking-[-0.045em]">{c.h[0]} <span className="text-ice-400">{c.h[1]}</span></h2>
             <p className="lead mt-5">{c.p}</p>
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <MagneticButton href={SITE.demo}>{c.cta}</MagneticButton>

@@ -91,7 +91,7 @@ export const de: Dict = {
   },
   pricing: {
     k: "Preise", h: "Nach der Größe Ihres Teams.", lead: "Kostenlos starten mit bis zu 3 Nutzern. Enterprise ab 30 Nutzern.",
-    monthly: "Monatlich", yearly: "Jährlich", billing: "Abrechnungszeitraum", perMo: "/Monat", yrNote: "pro Monat, jährliche Abrechnung", moNote: "pro Monat, monatliche Abrechnung", free: "Dauerhaft kostenlos",
+    monthly: "Monatlich", yearly: "Jährlich", billing: "Abrechnungszeitraum", perMo: "/Monat", yrNote: "Jährliche Abrechnung, {total}", moNote: "Monatliche Abrechnung", free: "Dauerhaft kostenlos",
     save: "{pct} % sparen", upTo: "Bis zu {pct} % sparen", users: "Bis zu {n} Nutzer", enterpriseUsers: "Ab 30 Nutzern", contact: "Kontakt", custom: "Individueller Preis",
     start: "Kostenlos starten", choose: "Plan wählen", talk: "Vertrieb kontaktieren", recommended: "Empfohlen", all: "Alle Pläne vergleichen", plus: "Alles aus {plan}, plus:",
     secure: "Sicherer Checkout", cancel: "Jederzeit kündbar", appNote: "Auch in der iOS- und Android-App verfügbar.",
