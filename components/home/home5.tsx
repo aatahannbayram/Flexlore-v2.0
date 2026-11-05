@@ -67,18 +67,18 @@ export function Hero5({ children }: { children?: React.ReactNode }) {
 export function Problem5() {
   const { d } = useLocale(); const c = d.problem; const icons: Ic[] = [Recycle, ArrowsClockwise, Books];
   // Each problem gets its own picture: a kitchen under pressure, a shift handover, a desk of binders.
-  const media = [{ src: "/photos/chef-fire-1600", big: true }, { src: "/photos/huddle-1600" }, { src: "/blog/u4tKa64TvA30VsBSRquOU6Vjk-1600" }];
-  // Phone: a compact list (icon and two lines). From 768 px: the photo tiles, white text over each picture.
+  const media = [{ src: "/photos/chef-fire-1600" }, { src: "/photos/huddle-1600" }, { src: "/blog/u4tKa64TvA30VsBSRquOU6Vjk-1600" }];
+  // Three equal cards. Phone: a compact row (thumbnail + two lines). From 768 px: three columns, photo on top, text below on the card.
   const Tile = ({ i }: { i: number }) => { const [h, p] = c.points[i]; const I = icons[i]; const m = media[i]; return (
-    <RevealItem as="li" className={`group relative flex items-start gap-4 overflow-hidden rounded-[20px] bg-[var(--card)] p-4 md:block md:min-h-[300px] md:rounded-[28px] md:bg-[#1a1816] md:p-0 md:text-white ${m.big ? "lg:row-span-2 lg:min-h-0" : "lg:min-h-0"}`}>
-      <picture><source srcSet={`${m.src}.avif`} type="image/avif" /><img src={`${m.src}.webp`} alt="" loading="lazy" className="absolute inset-0 hidden h-full w-full object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05] md:block" /></picture>
-      <span aria-hidden="true" className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgb(17_17_17/0.1)_20%,rgb(17_17_17/0.55)_55%,rgb(17_17_17/0.92)_100%)] md:block" />
-      <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink md:hidden"><I size={18} /></span>
-      <span aria-hidden="true" className="absolute start-5 top-5 hidden items-center gap-2 rounded-full bg-[rgb(17_17_17/0.55)] py-1.5 pe-3.5 ps-1.5 text-[12px] font-medium text-white/85 ring-1 ring-white/10 backdrop-blur-md md:inline-flex">
-        <span className="grid h-6 w-6 place-items-center rounded-full bg-white/15"><I size={13} /></span>{String(i + 1).padStart(2, "0")}</span>
-      <div className="min-w-0 md:absolute md:inset-x-0 md:bottom-0 md:p-7">
-        <h3 className={`text-[17px] font-semibold leading-snug tracking-[-0.02em] ${m.big ? "md:text-[clamp(22px,1rem+1vw,30px)]" : "md:text-[20px]"}`}>{h}</h3>
-        <p className="mt-1 max-w-[30rem] text-[14px] leading-[1.5] text-ink-muted md:mt-2 md:text-[15px] md:leading-[1.55] md:text-white/75">{p}</p>
+    <RevealItem as="li" className="group flex items-center gap-4 rounded-[20px] bg-[var(--card)] p-2.5 pe-4 md:flex-col md:items-stretch md:gap-0 md:rounded-[24px] md:p-2">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[14px] bg-[#1a1816] md:aspect-[16/10] md:h-auto md:w-full md:rounded-[18px]">
+        <picture><source srcSet={`${m.src}.avif`} type="image/avif" /><img src={`${m.src}.webp`} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" /></picture>
+        <span aria-hidden="true" className="absolute start-3 top-3 hidden items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.6)] py-1 pe-3 ps-1 text-[12px] font-medium text-white/90 ring-1 ring-white/10 backdrop-blur-md md:inline-flex">
+          <span className="grid h-6 w-6 place-items-center rounded-full bg-white/15"><I size={13} /></span>{String(i + 1).padStart(2, "0")}</span>
+      </div>
+      <div className="min-w-0 md:px-3 md:pb-4 md:pt-4">
+        <h3 className="text-[16px] font-semibold leading-snug tracking-[-0.02em] md:text-[19px]">{h}</h3>
+        <p className="mt-1 text-[14px] leading-[1.45] text-ink-muted md:mt-1.5 md:text-[15px] md:leading-[1.55]">{p}</p>
       </div>
     </RevealItem>); };
   return (
@@ -87,7 +87,7 @@ export function Problem5() {
         <div className="grid-12 items-end gap-y-4">
           <div className="col-span-12 lg:col-span-8"><Label icon={Books}>{c.k}</Label><H2 id="prob-h" className="max-w-[22ch]">{c.h} <span className="text-ink-faint">{c.h2}</span></H2></div>
         </div>
-        <Reveal as="ul" stagger={0.1} className="mt-6 grid gap-2 md:mt-10 md:grid-cols-3 md:gap-3 lg:h-[560px] lg:grid-cols-[1.25fr_1fr] lg:grid-rows-2">
+        <Reveal as="ul" stagger={0.1} className="mt-6 grid gap-2 md:mt-10 md:grid-cols-3 md:gap-3">
           <Tile i={0} /><Tile i={1} /><Tile i={2} />
         </Reveal>
       </div>

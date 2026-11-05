@@ -1,10 +1,12 @@
 // Strings for the restructured home page (8 sections). Same 8 locales as the main dictionaries.
 // steps: the four moves of the product, each [title, text]. Step 3 carries what used to be "Keep your standard",
 // "Workspaces" and "Who it is for"; step 4 carries "Completion" and "Flexlore Web".
+// web: the manager web panel block (status "soon" in components/features/data.ts; drop the chip when it ships).
 // sectors: one tab per industry, [role sentence, three examples]. Only capabilities the product has today.
 import type { Locale } from "./locales";
 type Tab = [string, [string, string, string]];
-type H = { steps: [string, string][]; tabs: [Tab, Tab, Tab, Tab]; go: string; plans: string };
+type H = { steps: [string, string][]; tabs: [Tab, Tab, Tab, Tab]; go: string;
+  web: { k: string; h: string; h2: string; p: string; points: [string, string, string]; go: string; soon: string } };
 export const HOME2: Record<Locale, H> = {
   en: {
     steps: [
@@ -19,7 +21,7 @@ export const HOME2: Record<Locale, H> = {
       ["Housekeeping and front desk work to your house standard in every room.", ["Housekeeping room turn", "Front desk check-in", "New-hire onboarding without shadowing"]],
       ["Head office launches a process once and compares completion by location.", ["One standard across every location", "New menu and product launches", "Store opening checklist"]],
     ],
-    go: "Explore the industry", plans: "Plans",
+    go: "Explore the industry", web: { k: "Web panel", h: "Your team learns on the phone.", h2: "You run it from the desk.", p: "Build the library, assign jobs and see who is ready, by person, team and site.", points: ["Library and assignments in one place", "Readiness by person, team and site", "The question people miss most"], go: "See the web panel", soon: "Coming soon" },
   },
   tr: {
     steps: [
@@ -34,7 +36,7 @@ export const HOME2: Record<Locale, H> = {
       ["Kat hizmetleri ve ön büro her odada sizin standardınızla çalışır.", ["Oda hazırlığı", "Ön büroda giriş işlemi", "Yanında dolaştırmadan işe başlatma"]],
       ["Merkez bir süreci bir kez hazırlar, tamamlanmayı şube bazında karşılaştırır.", ["Tüm şubelerde tek standart", "Yeni menü ve ürün lansmanı", "Mağaza açılış kontrolü"]],
     ],
-    go: "Sektör sayfasını inceleyin", plans: "Planlar",
+    go: "Sektör sayfasını inceleyin", web: { k: "Web paneli", h: "Ekip telefonda öğrenir.", h2: "Siz masadan yönetirsiniz.", p: "Kütüphaneyi kurun, işleri atayın, kimin hazır olduğunu kişi, ekip ve şube bazında görün.", points: ["Kütüphane ve atamalar tek yerde", "Kişi, ekip ve şube bazında hazırlık", "En çok kaçırılan soru"], go: "Web panelini inceleyin", soon: "Yakında" },
   },
   de: {
     steps: [
@@ -49,7 +51,7 @@ export const HOME2: Record<Locale, H> = {
       ["Housekeeping und Rezeption arbeiten in jedem Zimmer nach Ihrem Hausstandard.", ["Zimmerreinigung", "Check-in an der Rezeption", "Einarbeitung ohne Mitlaufen"]],
       ["Die Zentrale startet einen Ablauf einmal und vergleicht Abschlüsse nach Standort.", ["Ein Standard für alle Standorte", "Neue Menüs und Produkte einführen", "Checkliste zur Filialöffnung"]],
     ],
-    go: "Zur Branchenseite", plans: "Pläne",
+    go: "Zur Branchenseite", web: { k: "Web-Panel", h: "Ihr Team lernt am Handy.", h2: "Sie steuern vom Schreibtisch.", p: "Bauen Sie die Bibliothek auf, weisen Sie Aufgaben zu und sehen Sie, wer bereit ist: nach Person, Team und Standort.", points: ["Bibliothek und Zuweisungen an einem Ort", "Einsatzbereitschaft nach Person, Team und Standort", "Die am häufigsten verpasste Frage"], go: "Web-Panel ansehen", soon: "Bald" },
   },
   ar: {
     steps: [
@@ -64,7 +66,7 @@ export const HOME2: Record<Locale, H> = {
       ["يعمل فريق الإشراف الداخلي والاستقبال وفق معيارك في كل غرفة.", ["تجهيز الغرفة", "تسجيل الوصول في الاستقبال", "تأهيل الموظف الجديد دون مرافقة"]],
       ["يطلق المقر الرئيسي العملية مرة واحدة ويقارن الإكمال حسب الموقع.", ["معيار واحد في كل المواقع", "إطلاق قائمة أو منتج جديد", "قائمة فحص افتتاح الفرع"]],
     ],
-    go: "استكشف صفحة القطاع", plans: "الخطط",
+    go: "استكشف صفحة القطاع", web: { k: "لوحة الويب", h: "فريقك يتعلم على الهاتف.", h2: "وأنت تدير من المكتب.", p: "أنشئ المكتبة، ووزّع المهام، واعرف من هو جاهز حسب الشخص والفريق والموقع.", points: ["المكتبة والمهام في مكان واحد", "الجاهزية حسب الشخص والفريق والموقع", "السؤال الذي يُخطئ فيه الفريق أكثر"], go: "تعرّف على لوحة الويب", soon: "قريبًا" },
   },
   es: {
     steps: [
@@ -79,7 +81,7 @@ export const HOME2: Record<Locale, H> = {
       ["Pisos y recepción trabajan con su estándar en cada habitación.", ["Preparación de habitaciones", "Check-in en recepción", "Incorporación sin acompañamiento constante"]],
       ["La central lanza un proceso una vez y compara la finalización por ubicación.", ["Un estándar en todas las ubicaciones", "Lanzamiento de menús y productos", "Lista de apertura de tienda"]],
     ],
-    go: "Ver la página del sector", plans: "Planes",
+    go: "Ver la página del sector", web: { k: "Panel web", h: "Su equipo aprende en el móvil.", h2: "Usted lo gestiona desde la oficina.", p: "Cree la biblioteca, asigne tareas y vea quién está listo, por persona, equipo y sede.", points: ["Biblioteca y asignaciones en un solo lugar", "Preparación por persona, equipo y sede", "La pregunta que más se falla"], go: "Ver el panel web", soon: "Pronto" },
   },
   ru: {
     steps: [
@@ -94,7 +96,7 @@ export const HOME2: Record<Locale, H> = {
       ["Хаускипинг и ресепшен работают по вашему стандарту в каждом номере.", ["Уборка номера", "Заселение на ресепшене", "Адаптация новичков без постоянного сопровождения"]],
       ["Головной офис запускает процесс один раз и сравнивает прохождение по точкам.", ["Один стандарт во всех точках", "Запуск нового меню и продуктов", "Чек-лист открытия точки"]],
     ],
-    go: "Страница отрасли", plans: "Тарифы",
+    go: "Страница отрасли", web: { k: "Веб-панель", h: "Команда учится в телефоне.", h2: "Вы управляете с рабочего места.", p: "Создавайте библиотеку, назначайте задачи и смотрите, кто готов, по сотрудникам, командам и точкам.", points: ["Библиотека и назначения в одном месте", "Готовность по сотрудникам, командам и точкам", "Вопрос, в котором ошибаются чаще всего"], go: "Подробнее о веб-панели", soon: "Скоро" },
   },
   fr: {
     steps: [
@@ -109,7 +111,7 @@ export const HOME2: Record<Locale, H> = {
       ["L'étage et la réception travaillent selon votre standard dans chaque chambre.", ["Préparation des chambres", "Check-in à la réception", "Intégration sans accompagnement permanent"]],
       ["Le siège lance un processus une fois et compare la complétion par site.", ["Un standard pour tous les sites", "Lancement de menus et de produits", "Checklist d'ouverture de magasin"]],
     ],
-    go: "Voir la page du secteur", plans: "Offres",
+    go: "Voir la page du secteur", web: { k: "Panneau web", h: "Votre équipe apprend sur le téléphone.", h2: "Vous pilotez depuis le bureau.", p: "Créez la bibliothèque, attribuez les tâches et voyez qui est prêt, par personne, équipe et site.", points: ["Bibliothèque et attributions au même endroit", "Préparation par personne, équipe et site", "La question la plus souvent ratée"], go: "Découvrir le panneau web", soon: "Bientôt" },
   },
   pl: {
     steps: [
@@ -124,6 +126,6 @@ export const HOME2: Record<Locale, H> = {
       ["Housekeeping i recepcja pracują według Twojego standardu w każdym pokoju.", ["Przygotowanie pokoju", "Zameldowanie w recepcji", "Wdrożenie bez ciągłego towarzyszenia"]],
       ["Centrala uruchamia proces raz i porównuje ukończenie według lokalizacji.", ["Jeden standard we wszystkich lokalizacjach", "Wprowadzenie nowego menu i produktów", "Lista kontrolna otwarcia sklepu"]],
     ],
-    go: "Zobacz stronę branży", plans: "Plany",
+    go: "Zobacz stronę branży", web: { k: "Panel webowy", h: "Zespół uczy się na telefonie.", h2: "Ty zarządzasz zza biurka.", p: "Twórz bibliotekę, przydzielaj zadania i sprawdzaj, kto jest gotowy: według osoby, zespołu i lokalizacji.", points: ["Biblioteka i przydziały w jednym miejscu", "Gotowość według osoby, zespołu i lokalizacji", "Pytanie, na którym ludzie mylą się najczęściej"], go: "Zobacz panel webowy", soon: "Wkrótce" },
   },
 };

@@ -16,9 +16,9 @@ import { SmartVideo } from "../ui/SmartVideo";
 import { EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, type Ic } from "./home5";
 import {
-  ArrowRight, Check, CheckCircle, Users, Sparkle, LockSimple, FilmSlate, Question, ChartBar, Plus, ShieldCheck,
+  ArrowRight, Check, CheckCircle, Users, Sparkle, FilmSlate, Question, ChartBar, Plus, ShieldCheck,
   X, ArrowsLeftRight, Play, Pause, Storefront, PlugsConnected, Tag, Lightning, Buildings, ForkKnife, Factory, Bed, Code, Browser,
-  AppleLogo, AndroidLogo, WebhooksLogo, Robot,
+  AppleLogo, AndroidLogo, WebhooksLogo, Robot, Books,
 } from "../ui/icons";
 
 
@@ -290,64 +290,69 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
       </div>
     </li>);
 }
-/* Phones: a plan switcher (every plan and its price in one row of buttons) above one card, no sideways scrolling.
-   From 640 px: all cards in a grid. */
-export function Pricing5() {
-  const { d, locale } = useLocale(); const c = d.pricing; const [yearly, setYearly] = useState(true); const [sel, setSel] = useState(PLANS.find((p) => p.featured)?.id ?? PLANS[0].id);
+/* ---------- Web panel: the manager side, a live sample dashboard in a browser frame ----------
+ * Phone: text, three short points, then the frame. From 1024 px: text left, frame right.
+ * The dashboard mounts near the viewport and animates only while on screen. */
+const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
+export function Web5() {
+  const { locale, lang } = useLocale(); const t = HOME2[locale].web; const icons: Ic[] = [Books, Users, ChartBar];
+  const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.3 });
   return (
-    <section id="pricing" aria-labelledby="pp-h" className="section-y pt-0">
-      <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div><Label icon={Tag}>{c.k}</Label><H2 id="pp-h" className="md:max-w-[16ch]">{c.h}</H2><p className="mt-4 text-[17px] text-ink-muted">{c.lead}</p></div>
-          <BillingSwitch yearly={yearly} setYearly={setYearly} id="pp" />
+    <section id="web" aria-labelledby="web-h" className="section-y pt-0">
+      <div className="container-x grid-12 items-center gap-y-8">
+        <div className="col-span-12 lg:col-span-5">
+          <div className="flex flex-wrap items-center gap-3"><Label icon={Browser}>{t.k}</Label><span className="rounded-full bg-[var(--card-2)] px-2.5 py-1 text-[12px] font-medium text-ink-muted">{t.soon}</span></div>
+          <H2 id="web-h" className="max-w-[18ch]">{t.h} <span className="text-ink-faint">{t.h2}</span></H2>
+          <p className="mt-4 max-w-[30rem] text-[16px] leading-[1.55] text-ink-muted md:text-[17px]">{t.p}</p>
+          <ul className="mt-6 space-y-2">
+            {t.points.map((x, i) => { const I = icons[i]; return (
+              <li key={x} className="flex items-center gap-3 text-[15px] font-medium"><span aria-hidden="true" className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><I size={16} /></span>{x}</li>); })}
+          </ul>
+          <Link href="/features/web-panel/" className="mt-6 inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold underline-offset-4 hover:underline">{t.go}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
-        <div role="group" aria-label={HOME2[locale].plans} className="mt-8 grid grid-cols-4 gap-1 rounded-[20px] bg-[var(--card)] p-1 sm:hidden">
-          {PLANS.map((p) => { const act = sel === p.id; const pr = yearly ? p.yearly : p.monthly; return (
-            <button key={p.id} type="button" aria-pressed={act} aria-controls={`plan-${p.id}`} onClick={() => setSel(p.id)}
-              className={`flex min-h-14 flex-col items-center justify-center rounded-[16px] px-1 text-center transition-colors ${act ? "bg-ink text-bg" : "text-ink-muted"}`}>
-              <span className="text-[13px] font-semibold leading-tight">{c.plans[p.id as keyof typeof c.plans][0]}</span>
-              <span className={`mt-0.5 text-[12px] ${act ? "text-bg/75" : "text-ink-faint"}`}>{pr ? pr.now : "30+"}</span>
-            </button>); })}
-        </div>
-        <ul className="mt-3 grid items-stretch gap-3 sm:mt-12 sm:grid-cols-2 xl:grid-cols-4">
-          {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} className={sel === p.id ? "flex" : "hidden sm:flex"} />)}
-        </ul>
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-[14px] text-ink-faint md:mt-8">
-          <span className="flex flex-wrap items-center gap-x-5 gap-y-2"><span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} />{c.cancel}</span><span>{c.appNote}</span></span>
-          <Link href="/pricing/" className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink underline-offset-4 hover:underline">{c.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        <div ref={ref} className="col-span-12 lg:col-span-7">
+          <div className="overflow-hidden rounded-[16px] bg-[#161616] ring-1 ring-white/10 shadow-[0_30px_80px_-30px_rgb(0_0_0/0.8)] md:rounded-[20px]" dir="ltr">
+            <div aria-hidden="true" className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3 md:h-9"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" />
+              <span className="mx-auto rounded-full bg-[#111] px-4 py-0.5 text-[10px] text-white/50 md:text-[11px]">app.flexlore.com</span><span className="w-8" /></div>
+            <div role="img" aria-label={`${t.k}: ${t.points.join(", ")}`}>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>
+          </div>
         </div>
       </div>
     </section>);
 }
 
-/* ---------- FAQ (children: the closing call to action on the home page, inside the same section) ---------- */
+/* FAQ: heading and contact on the left (sticky on desktop), numbered questions in one card on the right.
+ * The open question gets an orange number and icon; its answer lines up under the question text. */
 export function Faq5({ children, openFirst = true }: { children?: React.ReactNode; openFirst?: boolean }) {
   const { d } = useLocale(); const c = d.faq; const [open, setOpen] = useState<number | null>(openFirst ? 0 : null); const reduce = useReducedMotion();
   return (
     <section id="faq" aria-labelledby="faq-h" className="section-y pt-0">
-      <div className="container-x grid-12 gap-y-6 md:gap-y-12">
+      <div className="container-x grid-12 gap-y-6 md:gap-y-10">
         <div className="col-span-12 lg:col-span-4">
-          <Label icon={Question}>{c.k}</Label><H2 id="faq-h">{c.h}</H2>
-          <div className={`${card} mt-10 hidden max-w-[22rem] p-6 lg:block`}>
-            <p className="text-[18px] font-semibold tracking-[-.01em]">{c.more}</p><p className="mt-2 text-[15px] text-ink-muted">{c.moreP}</p>
-            <a href={SITE.demo} className="btn btn-primary mt-5">{d.end.cta}</a>
-            <p className="mt-4 text-[13px] text-ink-faint"><a href="mailto:support@flexlore.com" className="hover:text-ink">{c.email}</a></p>
+          <div className="lg:sticky lg:top-28">
+            <Label icon={Question}>{c.k}</Label><H2 id="faq-h">{c.h}</H2>
+            <p className="mt-4 max-w-[24rem] text-[16px] leading-[1.55] text-ink-muted">{c.moreP}</p>
+            <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1">
+              <Link href="/pricing/" className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-[var(--card)] px-4 text-[14px] font-semibold hover:bg-[var(--card-2)]"><Tag size={14} aria-hidden="true" />{d.pricing.all}</Link>
+              <a href="mailto:support@flexlore.com" className="inline-flex min-h-11 items-center px-2 text-[14px] text-ink-muted underline-offset-4 hover:text-ink hover:underline">support@flexlore.com</a>
+            </div>
           </div>
         </div>
-        <ul className="col-span-12 space-y-2 lg:col-span-7 lg:col-start-6">
+        <ul className="col-span-12 overflow-hidden rounded-[24px] bg-[var(--card)] lg:col-span-8">
           {c.items.map(([q, a], i) => { const on = open === i; return (
-            <li key={q} className={`rounded-[20px] transition-colors duration-300 ${on ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/60"}`}>
+            <li key={q} className={`border-line transition-colors duration-300 [&:not(:first-child)]:border-t ${on ? "bg-[var(--card-2)]" : ""}`}>
               <h3><button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)}
-                className="flex min-h-12 w-full items-center justify-between gap-6 px-5 py-3 text-start text-[16px] font-semibold tracking-[-.01em] md:min-h-16 md:px-6 md:py-4 md:text-[18px]">
-                <span className={on ? "text-ink" : "text-ink/85"}>{q}</span>
-                <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted"><Plus size={15} aria-hidden="true" /></m.span>
+                className="group grid min-h-14 w-full grid-cols-[2rem_1fr_auto] items-center gap-3 px-4 py-4 text-start md:min-h-[72px] md:grid-cols-[2.75rem_1fr_auto] md:px-7">
+                <span aria-hidden="true" className={`text-[13px] font-semibold tabular-nums transition-colors md:text-[14px] ${on ? "text-accent" : "text-ink-faint"}`}>{String(i + 1).padStart(2, "0")}</span>
+                <span className={`text-[16px] font-semibold leading-snug tracking-[-.01em] transition-colors md:text-[18px] ${on ? "text-ink" : "text-ink/85 group-hover:text-ink"}`}>{q}</span>
+                <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors ${on ? "bg-accent text-white" : "bg-[var(--card-2)] text-ink-muted group-hover:text-ink"}`}><Plus size={15} aria-hidden="true" /></m.span>
               </button></h3>
               <AnimatePresence initial={false}>{on && (
                 <m.div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35, ease: EASE }} className="overflow-hidden">
-                  <p className="measure px-5 pb-6 text-[16px] leading-[1.6] text-ink-muted md:px-6">{a}</p></m.div>)}</AnimatePresence>
+                  <p className="max-w-[40rem] pb-6 pe-14 ps-[3.75rem] text-[15px] leading-[1.6] text-ink-muted md:pe-20 md:ps-[5.25rem] md:text-[16px]">{a}</p></m.div>)}</AnimatePresence>
             </li>); })}
         </ul>
-        {children && <div className="col-span-12 mt-4 md:mt-10">{children}</div>}
+        {children && <div className="col-span-12 mt-4 md:mt-6">{children}</div>}
       </div>
     </section>);
 }
@@ -370,5 +375,5 @@ function CtaDuoLazy() { const { lang } = useLocale(); return <div dir="ltr"><Cta
 
 /** Everything below the problem section, in page order. */
 export default function Below() {
-  return (<><Steps5 /><Sectors5 /><Compare5 short /><Integrations5 /><Pricing5 /><Faq5 openFirst={false}><End5 /></Faq5></>);
+  return (<><Steps5 /><Sectors5 /><Compare5 short /><Integrations5 /><Web5 /><Faq5 openFirst={false}><End5 /></Faq5></>);
 }
