@@ -35,13 +35,15 @@ const TILE = "flex h-11 w-full items-center justify-center overflow-hidden round
 /** Programs and launch badges. `as="div"` renders it inside another section (the home hero). */
 export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: Lang; label?: string; as?: "section" | "div" }) {
   const c = { programs: label ?? home[lang].trust.programs };
+  const list = SITE.programs.filter((p) => !p.flag || SITE.flags[p.flag]); const ph = SITE.flags.productHunt;
+  const cols = ["", "grid-cols-1", "grid-cols-2", "grid-cols-2 md:grid-cols-3", "grid-cols-2 md:grid-cols-4"][list.length + (ph ? 1 : 0)];
   return (
     <T id="main-next" aria-label={c.programs} {...(T === "div" ? { role: "region" } : {})} className="scroll-mt-[var(--header-h)] bg-bg">
       <div className="container-x pt-4 md:pt-6">
-        <div className="mx-auto max-w-[820px] rounded-[16px] bg-[var(--card)] p-1 lg:flex lg:items-center lg:gap-4 lg:pl-4">
+        <div className={`mx-auto ${cols.startsWith("grid-cols-2 md") ? "max-w-[820px]" : "max-w-[560px]"} rounded-[16px] bg-[var(--card)] p-1 lg:flex lg:items-center lg:gap-4 lg:pl-4`}>
           <p className="px-3 pb-2 pt-1.5 text-center text-[12px] text-ink-faint lg:w-[6.5rem] lg:shrink-0 lg:p-0 lg:text-start lg:leading-snug">{c.programs}</p>
-          <Reveal as="ul" stagger={0.06} className="grid flex-1 grid-cols-2 gap-1 md:grid-cols-4">
-            {SITE.programs.map((p) => (
+          <Reveal as="ul" stagger={0.06} className={`grid flex-1 gap-1 ${cols}`}>
+            {list.map((p) => (
               <RevealItem as="li" key={p.name}>
                 <a href={p.href} target="_blank" rel="noopener" className="group block" aria-label={p.name}>
                   {p.badge
@@ -55,13 +57,13 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
                       </span>}
                 </a>
               </RevealItem>))}
-            <RevealItem as="li">
+            {ph && <RevealItem as="li">
               {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                   third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
               <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="group block">
                 <span className={TILE}><img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-[24px] w-auto" loading="lazy" /></span>
               </a>
-            </RevealItem>
+            </RevealItem>}
           </Reveal>
         </div>
       </div>

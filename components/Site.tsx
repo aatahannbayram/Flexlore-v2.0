@@ -5,8 +5,8 @@ import { Footer } from "./Sections";
 import { Header } from "./Header";
 import { TrustStrip } from "./home/Sections";
 import dynamic from "next/dynamic";
-import { Hero5, Problem5 } from "./home/home5";
-const Below = dynamic(() => import("./home/home5b"));
+import { HeroV3, ProblemV3 } from "./v3/Top";
+const Below = dynamic(() => import("./v3/Home"));
 import { useLocale } from "./i18n/LocaleProvider";
 import { SmartVideo, VideoPause } from "./ui/SmartVideo";
 
@@ -15,8 +15,8 @@ export function Video({ name, className = "" }: { name: string; eager?: boolean;
   return <SmartVideo name={name} className={className} threshold={0.35} />;
 }
 
-/** Home page, 8 sections: hero (with the programs strip), problem, how it works, industries, before and after,
- *  integrations, pricing, FAQ with the closing call to action. Header and footer sit outside <main>. */
+/** Home page (v3 narrative): hero with the programs strip, problem, how it works, full-bleed band, industries,
+ *  customer stories (only when approved), web panel, FAQ, closing call to action. Header and footer sit outside <main>. */
 export default function Site() {
   const { d, locale } = useLocale();
   const [paused, setPaused] = useState(false);
@@ -27,8 +27,8 @@ export default function Site() {
       <Header home paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
         <main id="main" lang={locale} className="home-v3">
-          <Hero5><TrustStrip as="div" label={d.trust.programs} /></Hero5>
-          <Problem5 />
+          <HeroV3><TrustStrip as="div" label={d.trust.programs} /></HeroV3>
+          <ProblemV3 />
           <Below />
         </main>
       </VideoPause.Provider>

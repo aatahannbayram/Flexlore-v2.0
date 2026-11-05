@@ -39,6 +39,7 @@ export { ForkKnife } from "./icons/ForkKnife";
 export { Gear } from "./icons/Gear";
 export { GraduationCap } from "./icons/GraduationCap";
 export { Handshake } from "./icons/Handshake";
+export { HardHat } from "./icons/HardHat";
 export { House } from "./icons/House";
 export { Info } from "./icons/Info";
 export { Lifebuoy } from "./icons/Lifebuoy";

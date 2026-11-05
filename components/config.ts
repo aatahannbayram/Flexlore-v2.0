@@ -11,15 +11,17 @@ export const SITE = {
   programs: [
     // NVIDIA: official member badge from design.nvidia.com/partners/inception (Download Badge). Full colour, unaltered, on white
     // as in NVIDIA's own JPG export, clear space kept, trademark line in the footer.
-    { name: "NVIDIA Inception", org: "NVIDIA", href: "https://www.nvidia.com/en-us/startups/", badge: "/brand/programs/nvidia-inception-badge.svg" as string | null, badgeW: 130, badgeH: 56, caption: null as string | null },
+    { name: "NVIDIA Inception", org: "NVIDIA", href: "https://www.nvidia.com/en-us/startups/", badge: "/brand/programs/nvidia-inception-badge.svg" as string | null, badgeW: 130, badgeH: 56, caption: null as string | null, flag: null as string | null },
     // Google: official "Cloud Program" identifier from startup.google.com/cloud (green + grey only, no blue). The full
     // Google for Startups lockup uses the multicolour Google wordmark (blue), so the program name is set as a caption instead.
-    { name: "Google for Startups Cloud Program", org: "Google", href: "https://startup.google.com/cloud/", badge: "/brand/programs/google-for-startups-cloud.svg" as string | null, badgeW: 163, badgeH: 40, caption: "Google for Startups" as string | null },
+    { name: "Google for Startups Cloud Program", org: "Google", href: "https://startup.google.com/cloud/", badge: "/brand/programs/google-for-startups-cloud.svg" as string | null, badgeW: 163, badgeH: 40, caption: "Google for Startups" as string | null, flag: "googleProgram" as string | null },
     // Anthropic publishes no member badge for Claude Startups (membership confirmed in Claude Console), so it stays text.
-    { name: "Claude Startups", org: "Anthropic", href: "https://claude.com/programs/startups", badge: null as string | null, badgeW: 0, badgeH: 0, caption: null as string | null },
+    { name: "Claude Startups", org: "Anthropic", href: "https://claude.com/programs/startups", badge: null as string | null, badgeW: 0, badgeH: 0, caption: null as string | null, flag: null as string | null },
   ],
   // Sections that need real content. Off = not rendered, so placeholders never ship.
-  flags: { proof: false },
+  // googleProgram / productHunt: badges hidden until approved. construction: the "İnşaat ve saha" tab and /sektor/insaat/.
+  // cases: customer stories also need each case's own `approved: true` (components/v3/cases.ts).
+  flags: { proof: false, googleProgram: false, productHunt: false, construction: false, cases: true } as Record<string, boolean>,
   appStore: "https://apps.apple.com/tr/app/flexlore/id6751126206?l",
   googlePlay: "https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en",
   productHunt: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app",
