@@ -22,12 +22,28 @@ import {
 } from "../ui/icons";
 
 
-/* ---------- Before and after: the usual way vs Flexlore, row by row. `short` keeps four rows (home). ---------- */
+/* ---------- Before and after: one frame, a handle to drag between the usual way and Flexlore ----------
+ * The usual way (an empty training room, greyscale) lies over Flexlore (filming at the station, in colour) and is
+ * clipped at the handle. When the frame first comes into view the handle sweeps across once; after that the visitor
+ * drags it (pointer, touch or arrow keys through a native range input). The glass card lists the side that covers
+ * more of the frame. Reduced motion: no sweep, the Flexlore side shows. `short` keeps four rows (home). */
 export function Compare5({ short = false }: { short?: boolean }) {
-  const { locale } = useLocale(); const c = COMPARE5[locale]; const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
-  const go = useInView(ref, { amount: 0.25, once: true }) || !!reduce;
-  // Home: rows the "How it works" steps do not already say (word of mouth, scattered files, tracking by hand, branches).
+  const { locale } = useLocale(); const c = COMPARE5[locale]; const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.5, once: true });
   const rows = short ? [0, 1, 4, 5].map((i) => c.rows[i]) : c.rows;
+  const [pos, setPos] = useState(88); const [touched, setTouched] = useState(false); const raf = useRef(0);
+  useEffect(() => {
+    if (!seen || touched) return;
+    if (reduce) { setPos(12); return; }
+    const from = 88, to = 12, dur = 1800; let t0 = 0;
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+    const tick = (t: number) => { if (!t0) t0 = t; const k = Math.min(1, (t - t0) / dur); setPos(from + (to - from) * ease(k)); if (k < 1) raf.current = requestAnimationFrame(tick); };
+    const start = window.setTimeout(() => { raf.current = requestAnimationFrame(tick); }, 400);
+    return () => { window.clearTimeout(start); cancelAnimationFrame(raf.current); };
+  }, [seen, touched, reduce]);
+  const old = pos > 50; const rtl = locale === "ar";
+  // Physical clip: the usual way always sits on the left of the handle (also in Arabic, where the arrow keys follow the input).
+  const clip = { clipPath: `inset(0 ${100 - pos}% 0 0)` };
   return (
     <section aria-labelledby="cmp5-h" className="section-y pt-0">
       <div className="container-x">
@@ -35,30 +51,44 @@ export function Compare5({ short = false }: { short?: boolean }) {
           <div className="col-span-12 lg:col-span-7"><Label icon={ArrowsLeftRight}>{c.k}</Label><H2 id="cmp5-h" className="max-w-[20ch]">{c.h}</H2></div>
           <p className="col-span-12 max-w-[34rem] text-[16px] leading-[1.6] text-ink-muted md:text-[17px] lg:col-span-5">{c.lead}</p>
         </div>
-        <div ref={ref} className={`${card} mt-8 p-2 md:mt-10 md:p-3 ${go ? "bx-go" : ""}`}>
-          {/* Column heads as pictures: the usual way (an empty training room) and Flexlore (filming at the station). */}
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-[1fr_44px_1fr]">
-            <div className="dark relative h-16 overflow-hidden rounded-[20px] md:h-36">
-              <picture><source srcSet="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.avif" type="image/avif" /><img src="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.webp" alt="" loading="lazy" className="h-full w-full object-cover opacity-60 grayscale" /></picture>
-              <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.75),rgb(17_17_17/0.1))]" />
-              <span className="absolute bottom-3 start-3 text-[14px] font-medium text-white/80 md:bottom-4 md:start-4 md:text-[15px]">{c.old}</span>
-            </div>
-            <span aria-hidden="true" className="hidden place-items-center md:grid"><ArrowRight size={18} className="text-ink-faint rtl:-scale-x-100" /></span>
-            <div className="dark relative h-16 overflow-hidden rounded-[20px] md:h-36">
-              <Pic n="food-qa" sizes="50vw" className="h-full w-full object-cover" />
-              <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.7),rgb(17_17_17/0.05))]" />
-              <span className="absolute bottom-3 start-3 flex items-center gap-2 text-[14px] font-semibold text-white md:bottom-4 md:start-4 md:text-[15px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
-            </div>
+        <div ref={ref} dir="ltr" className="dark relative mt-8 aspect-[4/5] select-none outline-offset-4 has-[input:focus-visible]:outline has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-ink overflow-hidden rounded-[28px] bg-[#141414] text-white sm:aspect-[16/10] md:mt-10 lg:aspect-[16/8] lg:rounded-[32px]">
+          {/* Flexlore, underneath */}
+          <div aria-hidden="true" className="absolute inset-0">
+            <Pic n="food-qa" sizes="(min-width:1024px) 80vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
+            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_30%,rgb(17_17_17/0.15)_55%,rgb(17_17_17/0.85)_100%)]" />
+            <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2 text-[13px] font-semibold ring-1 ring-white/10 backdrop-blur-md md:end-6 md:top-6 md:text-[14px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
           </div>
-          <ul className="mt-2 space-y-1.5">
-            {rows.map(([o, n], k) => (
-              <li key={o} className="bx-rise grid items-center gap-2 rounded-[18px] bg-[var(--card-2)] px-3 py-2.5 md:grid-cols-[1fr_44px_1fr] md:gap-0 md:px-5" style={reduce ? undefined : { animationDelay: `${150 + k * 120}ms` }}>
-                <span className="flex items-center gap-3 text-[15px] text-ink-faint"><span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[var(--card)]"><X size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.old}: </span><span className="line-through decoration-ink-faint/40">{o}</span></span></span>
-                <ArrowRight size={16} aria-hidden="true" className="hidden justify-self-center text-ink-faint md:block rtl:-scale-x-100" />
-                <span className="flex items-center gap-3 text-[15px] font-medium text-ink"><span className="bx-pop grid h-7 w-7 shrink-0 place-items-center rounded-full bg-ink text-bg" style={reduce ? undefined : { animationDelay: `${600 + k * 160}ms` }}><Check size={13} aria-hidden="true" /></span><span><span className="sr-only">{c.now}: </span>{n}</span></span>
-              </li>))}
-          </ul>
+          {/* The usual way, on top, clipped at the handle */}
+          <div aria-hidden="true" className="absolute inset-0" style={clip}>
+            <picture><source srcSet="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.avif 800w, /blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.avif 1600w" sizes="(min-width:1024px) 80vw, 100vw" type="image/avif" />
+              <img src="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale" /></picture>
+            <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.45)_0%,rgb(17_17_17/0.25)_40%,rgb(17_17_17/0.9)_100%)]" />
+            <span className="absolute start-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 ring-1 ring-white/10 backdrop-blur-md md:start-6 md:top-6 md:text-[14px]"><X size={13} />{c.old}</span>
+          </div>
+          {/* Handle */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 z-10 w-0" style={{ left: `${pos}%` }}>
+            <span className="absolute inset-y-0 -left-px w-[2px] bg-white/85 shadow-[0_0_24px_rgb(0_0_0/0.5)]" />
+            <span className={`absolute left-0 top-[30%] grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white md:top-[40%] text-[#111] shadow-[0_8px_30px_rgb(0_0_0/0.45)] ${touched || reduce ? "" : "cmp-pulse"}`}><ArrowsLeftRight size={20} /></span>
+          </div>
+          {/* The list of the side that covers more of the frame */}
+          <div className="pointer-events-none absolute inset-x-3 bottom-3 z-10 md:inset-x-auto md:bottom-6 md:start-6 md:w-[25rem]" dir={rtl ? "rtl" : "ltr"}>
+            <AnimatePresence mode="wait" initial={false}>
+              <m.ul key={old ? "old" : "now"} aria-live="polite" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -4 }} transition={{ duration: 0.25, ease: EASE }}
+                className="space-y-1 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-2 ring-1 ring-white/10 backdrop-blur-md">
+                <li className="px-2.5 pb-1 pt-1 text-[12px] font-medium uppercase tracking-[.08em] text-white/55">{old ? c.old : c.now}</li>
+                {rows.map(([o, n]) => (
+                  <li key={o} className={`flex items-center gap-3 rounded-[14px] px-2.5 py-2 text-[14px] md:text-[15px] ${old ? "text-white/60" : "bg-[rgb(255_255_255/0.06)] font-medium text-white"}`}>
+                    <span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full ${old ? "bg-[rgb(255_255_255/0.08)] text-white/55" : "bg-white text-[#111]"}`}>{old ? <X size={12} aria-hidden="true" /> : <Check size={12} aria-hidden="true" />}</span>
+                    {old ? o : n}</li>))}
+              </m.ul>
+            </AnimatePresence>
+          </div>
+          <input type="range" min={0} max={100} step={1} value={Math.round(pos)} aria-label={`${c.old} / ${c.now}`} aria-valuetext={old ? c.old : c.now}
+            onChange={(e) => { setTouched(true); cancelAnimationFrame(raf.current); setPos(Number(e.target.value)); }}
+            className="cmp-range absolute inset-0 z-20 h-full w-full cursor-ew-resize opacity-0 [touch-action:pan-y]" />
         </div>
+        {/* Screen readers get both columns as one plain list. */}
+        <ul className="sr-only">{rows.map(([o, n]) => <li key={o}>{c.old}: {o}. {c.now}: {n}.</li>)}</ul>
       </div>
     </section>);
 }

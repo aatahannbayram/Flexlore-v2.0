@@ -307,3 +307,8 @@ html body { transition: opacity .25s ease; }
 .feat-ring { animation: featRing 2.8s ease-out infinite; }
 @keyframes featRing { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.45); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .feat-glow, .feat-ring { animation: none; } .feat-ring { opacity: 0; } }
+/* Before/after handle (components/home/home5b.tsx): a soft ring until the visitor first drags. */
+.cmp-pulse { animation: cmpPulse 2.2s ease-out infinite; }
+@keyframes cmpPulse { 0% { box-shadow: 0 0 0 0 rgb(255 255 255 / 0.45), 0 8px 30px rgb(0 0 0 / 0.45); } 70%, 100% { box-shadow: 0 0 0 16px rgb(255 255 255 / 0), 0 8px 30px rgb(0 0 0 / 0.45); } }
+@media (prefers-reduced-motion: reduce) { .cmp-pulse { animation: none; } }
+
