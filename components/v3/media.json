@@ -1,0 +1,119 @@
+{
+ "hero-sef": {
+  "src": "new-flexlore6.jpeg",
+  "fx": 0.78,
+  "pos": "72% 40%"
+ },
+ "problem-vardiya": {
+  "src": "new-flexlore7.jpeg",
+  "fx": 0.45,
+  "pos": "45% 50%"
+ },
+ "problem-kagitlar": {
+  "src": "new-flexlore5.jpeg",
+  "fx": 0.5,
+  "pos": "50% 40%"
+ },
+ "saha-iskele-pov": {
+  "src": "Flexlore-Sivil4.jpeg",
+  "fx": 0.42,
+  "pos": "42% 50%"
+ },
+ "saha-eldiven-makro": {
+  "src": "new-flexlore2.jpeg",
+  "fx": 0.74,
+  "pos": "70% 45%"
+ },
+ "saha-drone-cember": {
+  "src": "Flexlore-Sivil.jpeg",
+  "fx": 0.58,
+  "pos": "58% 50%"
+ },
+ "case-eatwell": {
+  "src": "Flexlore_Eat Well.jpeg",
+  "fx": 0.68,
+  "pos": "65% 50%"
+ },
+ "case-gastrofab": {
+  "src": "Flexlore-Gastrofab.jpeg",
+  "fx": 0.4,
+  "pos": "40% 45%"
+ },
+ "case-sistemteknik": {
+  "src": "Flexlore-SistemTeknik.jpeg",
+  "fx": 0.76,
+  "pos": "74% 45%"
+ },
+ "case-bambu": {
+  "src": "Flexlore-Bambu-Smoothie.jpeg",
+  "fx": 0.22,
+  "pos": "25% 45%"
+ },
+ "case-istinye": {
+  "src": "Flexlore-Sivil-operator.jpeg",
+  "fx": 0.64,
+  "pos": "62% 40%"
+ },
+ "saha-liman": {
+  "src": "new-flexlore4.jpeg",
+  "fx": 0.55,
+  "pos": "55% 60%"
+ },
+ "saha-santiye-havadan": {
+  "src": "Flexlore-Sivil3.jpeg",
+  "fx": 0.5,
+  "pos": "50% 50%"
+ },
+ "saha-cati-siluet": {
+  "src": "Flexlore-Sivil2.jpeg",
+  "fx": 0.66,
+  "pos": "65% 50%"
+ },
+ "web-toplanti": {
+  "src": "new-flexlore1.jpeg",
+  "fx": 0.6,
+  "pos": "50% 50%",
+  "screens": [
+   [
+    [
+     266,
+     124
+    ],
+    [
+     584,
+     172
+    ],
+    [
+     584,
+     366
+    ],
+    [
+     266,
+     373
+    ]
+   ],
+   [
+    [
+     791,
+     188
+    ],
+    [
+     1117,
+     172
+    ],
+    [
+     1117,
+     369
+    ],
+    [
+     791,
+     369
+    ]
+   ]
+  ],
+  "size": [
+   1408,
+   768
+  ]
+ }
+}
