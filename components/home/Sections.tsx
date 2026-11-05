@@ -49,11 +49,11 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
                   {p.badge
                     ? <span className={`${TILE} flex-col`}>
                         <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none ${p.caption ? "h-[15px]" : "h-[40px]"}`} />
-                        {p.caption && <span className="mt-0.5 text-[8px] font-medium text-[#5F6368]">{p.caption}</span>}
+                        {p.caption && <span className="mt-0.5 text-[12px] font-medium text-[#5F6368]">{p.caption}</span>}
                       </span>
                     : <span className={`${TILE} flex-col`}>
-                        <span className="text-[11.5px] font-semibold leading-tight tracking-[-.01em] text-[#111111]">{p.name}</span>
-                        <span className="text-[9px] text-[#5F6368]">by {p.org}</span>
+                        <span className="text-[13px] font-semibold leading-tight tracking-[-.01em] text-[#111111]">{p.name}</span>
+                        <span className="text-[12px] text-[#5F6368]">by {p.org}</span>
                       </span>}
                 </a>
               </RevealItem>))}

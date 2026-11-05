@@ -26,8 +26,8 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
         {doc.draft && <p className="mt-5 rounded-[14px] bg-[var(--card)] px-4 py-3 text-[14px] text-ink-muted">Draft under legal review. Until it is final, your agreement with Flexlore and our Terms &amp; Conditions apply. Questions: <a href="mailto:support@flexlore.com" className="underline">support@flexlore.com</a></p>}
         <p className="lead mt-6">{doc.intro}</p>
         {doc.sections.length > 3 && (
-          <details className="mt-8 rounded-[18px] bg-[var(--card)] px-5 py-4 lg:hidden"><summary className="cursor-pointer text-[15px] font-semibold">On this page</summary>
-            <ol className="mt-3 space-y-1.5 text-[15px] text-ink-muted">{doc.sections.map(([h]) => <li key={h}><a href={`#${id(h)}`} className="hover:text-ink">{h}</a></li>)}</ol></details>)}
+          <details className="mt-8 rounded-[18px] bg-[var(--card)] px-5 py-4 lg:hidden"><summary className="flex min-h-11 cursor-pointer items-center text-[15px] font-semibold">On this page</summary>
+            <ol className="mt-1 text-[15px] text-ink-muted">{doc.sections.map(([h]) => <li key={h}><a href={`#${id(h)}`} className="flex min-h-11 items-center hover:text-ink">{h}</a></li>)}</ol></details>)}
         <div className="mt-10 space-y-10">
           {doc.sections.map(([h, ps]) => (
             <section key={h} aria-labelledby={id(h)} className="scroll-mt-[calc(var(--header-h)+24px)]">

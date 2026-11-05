@@ -102,9 +102,9 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .btn-secondary:hover { background: rgb(255 255 255 / 0.12); }
 .btn-sm { min-height: 36px; padding: 0 1rem; font-size: 14px; }
 /* legacy button names used by other pages */
-.btn-p { display:inline-flex; align-items:center; min-height: 40px; border-radius:999px; background:var(--color-ink); color:#111111; font-size:14px; font-weight:600; padding:0 1rem; white-space:nowrap; transition: background .25s; }
+.btn-p { display:inline-flex; align-items:center; min-height: 44px; border-radius:999px; background:var(--color-ink); color:#111111; font-size:14px; font-weight:600; padding:0 1rem; white-space:nowrap; transition: background .25s; }
 .btn-p:hover { background:#fff; }
-.btn-g { display:inline-flex; align-items:center; min-height: 40px; border-radius:999px; background: rgb(255 255 255 / .07); color:var(--color-ink); font-size:14px; font-weight:500; padding:0 1rem; transition: background .25s; }
+.btn-g { display:inline-flex; align-items:center; min-height: 44px; border-radius:999px; background: rgb(255 255 255 / .07); color:var(--color-ink); font-size:14px; font-weight:500; padding:0 1rem; transition: background .25s; }
 .btn-g:hover { background: rgb(255 255 255 / .12); }
 
 /* surfaces */

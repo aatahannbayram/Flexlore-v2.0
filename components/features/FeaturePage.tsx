@@ -49,7 +49,7 @@ export function FeaturePage({ slug }: { slug: string }) {
       <section className="container-x pb-16 pt-10 md:pt-16">
         <div className="grid-12 items-center gap-y-10">
           <div className="col-span-12 lg:col-span-6">
-            <Link href="/features/" className="inline-flex items-center gap-1.5 text-[13px] text-ink-faint hover:text-ink"><ArrowRight size={12} aria-hidden="true" className="rotate-180 rtl:rotate-0" />{c.all}</Link>
+            <Link href="/features/" className="inline-flex min-h-11 items-center gap-1.5 text-[13px] text-ink-faint hover:text-ink"><ArrowRight size={12} aria-hidden="true" className="rotate-180 rtl:rotate-0" />{c.all}</Link>
             <div className="mt-6 flex flex-wrap items-center gap-3">
               <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-9 w-9 place-items-center rounded-[11px] bg-[var(--card)] text-ink"><Ic size={18} /></span>{it.k}</p>
               <Status f={f} c={c} />
@@ -69,7 +69,7 @@ export function FeaturePage({ slug }: { slug: string }) {
               <Pic n={f.photo} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-45 blur-[3px]" />
               <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.25),rgb(17_17_17/0.8))]" />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5"><FeatureVisual v={f.visual} mock={it.mock} lang={lang} /></div>
-              <span className="absolute bottom-4 start-4 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1 text-[11px] text-white/70 backdrop-blur">{c.sample}</span>
+              <span className="absolute bottom-4 start-4 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1 text-[12px] text-white/70 backdrop-blur">{c.sample}</span>
             </div>
             </Tilt>
           </div>
@@ -149,7 +149,7 @@ function FeatureCard({ f }: { f: Feature }) {
       <span className="dark relative block aspect-[16/9] overflow-hidden rounded-[18px] bg-[#1a1a1a]">
         <Pic n={f.photo} className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105" />
         <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.65)] text-white backdrop-blur"><Ic size={17} /></span>
-        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.65)] px-2.5 py-1 text-[11px] text-white/80 backdrop-blur">{t.soon}</span>}
+        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.65)] px-2.5 py-1 text-[12px] text-white/80 backdrop-blur">{t.soon}</span>}
       </span>
       <span className="flex flex-1 flex-col px-3 pb-3 pt-4"><span className="text-[17px] font-semibold">{h}</span><span className="mt-1 text-[14px] leading-[1.5] text-ink-muted">{line}</span>
         <ArrowRight size={15} aria-hidden="true" className="mt-4 text-ink-faint transition-transform group-hover:translate-x-1 rtl:-scale-x-100" /></span>

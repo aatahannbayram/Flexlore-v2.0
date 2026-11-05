@@ -112,7 +112,7 @@ function MobileFeatures({ close }: { close: () => void }) {
       <ul className="mt-1">{FEATURES.filter((f) => f.group === g).map((f) => { const Ic = FICON[f.icon]; return (
         <li key={f.slug}><a href={`/features/${f.slug}/`} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--card)]"><Ic size={18} /></span>{t.items[f.slug][0]}
-          {f.status === "soon" && <span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[11px] text-ink-faint">{t.soon}</span>}</a></li>); })}</ul></div>))}
+          {f.status === "soon" && <span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[12px] text-ink-faint">{t.soon}</span>}</a></li>); })}</ul></div>))}
     <a href="/features/" onClick={close} className="flex min-h-12 items-center px-1 text-[15px] font-semibold">{t.all}</a>
   </div>);
 }

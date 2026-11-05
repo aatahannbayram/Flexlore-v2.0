@@ -57,7 +57,7 @@ export default function Pricing() {
                 <p className="mt-2 text-[14px] text-ink-muted">{fmt(t.entUsers, { n: x.users })}</p>
                 <ul className="mt-5 space-y-2 text-[14px] text-ink-muted">
                   {x.pts.map((y) => <li key={y} className="flex items-start gap-2.5"><Check size={15} className="mt-0.5 shrink-0" />{y}</li>)}
-                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-ink-faint" />{y}<span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[11px] font-semibold text-ink-muted">{t.soon}</span></li>)}
+                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-ink-faint" />{y}<span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[12px] font-semibold text-ink-muted">{t.soon}</span></li>)}
                 </ul>
               </li>))}
           </ul>

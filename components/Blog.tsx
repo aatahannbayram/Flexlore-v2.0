@@ -50,7 +50,7 @@ export function Article({ p }: { p: Post }) {
       <Bar />
       <main id="main" className="pt-36">
         <article className="mx-auto max-w-[calc(760px+2*var(--pad-x))] px-[var(--pad-x)]">
-          <Link href="/blog/" className="mono text-xs uppercase tracking-[.18em] text-white/70 hover:text-white"><Arr dir="l" className="mr-1.5" />Articles</Link>
+          <Link href="/blog/" className="mono inline-flex min-h-11 items-center text-xs uppercase tracking-[.18em] text-white/70 hover:text-white"><Arr dir="l" className="mr-1.5" />Articles</Link>
           {p.title && <h1 className="display mt-6 text-h2 leading-[1]">{p.title}</h1>}
           <p className="mono mt-6 flex gap-4 text-xs uppercase tracking-[.18em] text-white/70"><span>{p.date}</span>{p.author && <span className="text-white/70">{p.author}</span>}</p>
         </article>

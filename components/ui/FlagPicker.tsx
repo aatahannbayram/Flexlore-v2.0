@@ -18,7 +18,7 @@ export function FlagPicker({ up = false, className = "" }: { up?: boolean; class
   return (
     <div ref={box} className={`relative ${className}`}>
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open} aria-label={`${d.nav.language}: ${cur.name}`}
-        className="flex h-9 items-center gap-1 rounded-full pe-2 ps-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
+        className="flex h-11 min-w-11 items-center gap-1 rounded-full pe-2 ps-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
         <img src={`/flags/${cur.flag}.svg`} alt="" width={16} height={16} className="h-4 w-4 rounded-full" />
         <CaretDown size={10} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>

@@ -53,7 +53,7 @@ const SOCIAL: [string, string, string][] = [
   ["Product Hunt", "producthunt", SITE.productHunt],
 ];
 
-const link = "group inline-flex min-h-11 sm:min-h-9 items-center text-[15px] text-white/70 transition-colors duration-200 hover:text-white";
+const link = "group inline-flex min-h-11 min-w-11 items-center text-[15px] text-white/70 transition-colors duration-200 hover:text-white";
 
 /* "Get an AI summary": opens the assistant with a ready prompt about Flexlore (plain text labels, no third-party logos). */
 const AI: [string, (q: string) => string][] = [
@@ -70,7 +70,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
       <div className="container-x pb-6 pt-10 md:pt-14">
         <div className="grid gap-y-6 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
           <div className="lg:col-span-4">
-            <div className="flex items-center justify-between gap-4 lg:block">
+            <div className="flex flex-wrap items-center justify-between gap-4 lg:block">
             <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={240} height={52} className="h-8 w-auto md:h-10" />
             <p className="mt-4 hidden max-w-[30ch] text-[16px] leading-[1.5] text-white/70 lg:block">{f.tag}</p>
             <ul className="flex gap-1 lg:mt-5 lg:gap-2" aria-label={f.follow}>
@@ -116,7 +116,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <a href="mailto:support@flexlore.com" className="inline-flex min-h-11 items-center text-[15px] text-white/80 underline-offset-4 hover:text-white hover:underline">support@flexlore.com</a>
-            <StoreButtons small lang={lang} />
+            <div className="[&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center"><StoreButtons small lang={lang} /></div>
           </div>
         </div>
 
@@ -127,7 +127,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                 <span aria-hidden="true">↑</span>{f.top}</a></span>
             <ul className="-mx-2 flex flex-wrap" aria-label={f.legal}>
               {SITE.legal.map(([n, h]) => (
-                <li key={n}><a className="inline-flex min-h-11 items-center px-2 text-white/65 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
+                <li key={n}><a className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/65 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
             </ul>
           </div>
           <p className="mt-2 max-w-[90ch] text-[12px] leading-[1.5] text-white/55">

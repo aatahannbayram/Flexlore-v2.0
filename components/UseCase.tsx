@@ -36,7 +36,7 @@ export default function UseCase({ c }: { c: UC }) {
         <img src={c.img} alt={c.alt} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
         <div className="relative w-full container-x">
-          <nav aria-label="Breadcrumb" className="mono text-xs uppercase tracking-[.18em] text-white/70"><Link href="/" className="hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
+          <nav aria-label="Breadcrumb" className="mono text-xs uppercase tracking-[.18em] text-white/70"><Link href="/" className="inline-flex min-h-11 items-center hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
           <p className="mono mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-ice-100" />{c.k}</p>
           <h1 className="display mt-4 max-w-[17ch] text-h1">{c.h1}</h1>
           <p className="mt-5 max-w-[58ch] text-lg leading-[1.4] text-white/80">{c.lede}</p>
@@ -62,11 +62,11 @@ export default function UseCase({ c }: { c: UC }) {
       </section>
       <section className="pb-24" aria-labelledby="uc-f">
         <div className="grid container-x gap-10 md:grid-cols-12"><h2 id="uc-f" className="display text-h2 md:col-span-4">Questions</h2>
-          <div className="md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group mb-2 rounded-xl bg-bg2 py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] text-base leading-[1.45] text-white/65">{f.a}</p></details>)}</div></div>
+          <div className="md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group mb-2 rounded-xl bg-bg2 py-5"><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] text-base leading-[1.45] text-white/65">{f.a}</p></details>)}</div></div>
       </section>
       <section className="pb-24"><div className="container-x pt-10">
         <p className="mono text-xs uppercase tracking-[.2em] text-white/70">Related use case</p>
-        <Link href={`/use-cases/${r.slug}/`} className="mt-3 inline-block text-h3 font-semibold tracking-tight">{r.crumb} <Arr className="ml-1" /></Link></div></section>
+        <Link href={`/use-cases/${r.slug}/`} className="mt-3 inline-flex min-h-11 items-center text-h3 font-semibold tracking-tight">{r.crumb} <Arr className="ml-1" /></Link></div></section>
     </main>
     <Footer />
   </>);

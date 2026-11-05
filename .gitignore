@@ -8,3 +8,7 @@ out/
 media-src/*
 !media-src/manifest.json
 !media-src/README.md
+
+# test output
+test-results/
+playwright-report/
