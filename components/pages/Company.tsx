@@ -23,7 +23,7 @@ export function CompanyPage() {
             <div key={k} className="rounded-full bg-[var(--card)] px-4 py-2 text-[14px]"><dt className="sr-only">{k}</dt><dd>{v.includes("@") ? <a href={`mailto:${v}`} className="hover:underline">{v}</a> : v}</dd></div>))}</dl>
         </div>
         <Reveal stagger={0.08} className="grid h-[420px] grid-cols-[1.25fr_1fr] gap-3 md:h-[500px]">
-          <RevealItem className="relative overflow-hidden rounded-[28px]"><Pic n="problem-vardiya" eager sizes="(min-width:1024px) 30vw, 55vw" className="absolute inset-0 h-full w-full object-cover" /></RevealItem>
+          <RevealItem className="relative overflow-hidden rounded-[28px]"><Pic n="hands-tablet" eager sizes="(min-width:1024px) 30vw, 55vw" className="absolute inset-0 h-full w-full object-cover" /></RevealItem>
           <div className="grid gap-3">
             <RevealItem className="relative overflow-hidden rounded-[28px]"><Pic n="bakery" sizes="(min-width:1024px) 22vw, 45vw" className="absolute inset-0 h-full w-full object-cover" /></RevealItem>
             <RevealItem className="relative overflow-hidden rounded-[28px]"><Pic n="qr-scan" sizes="(min-width:1024px) 22vw, 45vw" className="absolute inset-0 h-full w-full object-cover" /></RevealItem>

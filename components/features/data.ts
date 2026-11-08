@@ -5,12 +5,12 @@ export type Group = "create" | "spread" | "manage";
 export type Visual = "pdf" | "sop" | "editor" | "screen" | "quiz" | "translate" | "qr" | "notify" | "roles" | "panel" | "agents";
 export type Feature = { slug: string; icon: string; group: Group; status: "live" | "soon"; visual: Visual; photo: string };
 export const FEATURES: Feature[] = [
-  { slug: "video-to-sop", icon: "FilmSlate", group: "create", status: "live", visual: "sop", photo: "hero-sef" },
+  { slug: "video-to-sop", icon: "FilmSlate", group: "create", status: "live", visual: "sop", photo: "brewery" },
   { slug: "pdf-to-steps", icon: "FilePdf", group: "create", status: "soon", visual: "pdf", photo: "factory" },
   { slug: "video-editor", icon: "Scissors", group: "create", status: "live", visual: "editor", photo: "bakery" },
   { slug: "screen-recording", icon: "Browser", group: "create", status: "soon", visual: "screen", photo: "office" },
   { slug: "ai-quiz", icon: "Question", group: "create", status: "live", visual: "quiz", photo: "food-qa" },
-  { slug: "auto-translation", icon: "Translate", group: "spread", status: "soon", visual: "translate", photo: "problem-vardiya" },
+  { slug: "auto-translation", icon: "Translate", group: "spread", status: "soon", visual: "translate", photo: "field" },
   { slug: "qr-codes", icon: "QrCode", group: "spread", status: "soon", visual: "qr", photo: "qr-scan" },
   { slug: "notifications", icon: "Bell", group: "spread", status: "soon", visual: "notify", photo: "cafe-opening" },
   { slug: "permissions-workspaces", icon: "LockSimple", group: "manage", status: "live", visual: "roles", photo: "hotel-desk" },

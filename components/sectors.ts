@@ -11,7 +11,7 @@ export type Sector = {
 };
 export const sectors: Sector[] = [
   {
-    slug: "restoran", v: "kitchen", still: "/media/v3/hero-sef-1600.jpg", en: "Restaurants", tr: "Restoranlar", idx: "01",
+    slug: "restoran", v: "kitchen", still: "/photos/restaurant-1600.webp", en: "Restaurants", tr: "Restoranlar", idx: "01",
     kicker: "Restaurants & kitchens", h: "Same plate. Every shift.",
     lede: "Your head chef knows exactly how the line should open, how the walk-in is checked and how a plate leaves the pass. Flexlore puts that knowledge on every phone in the kitchen.",
     problem: { h: "The recipe card is not the recipe.", p: ["New cooks learn by watching whoever is on shift. Every handover bends the standard a little.", "Hygiene and allergen steps are written down somewhere. Under pressure, nobody checks the binder."] },
@@ -91,7 +91,7 @@ export const sectors: Sector[] = [
     ready: "Ready branches: compared side by side.",
   },
   {
-    slug: "depo", v: "warehouse", still: "/photos/factory.jpg", en: "Warehouses & logistics", tr: "Depo ve lojistik", idx: "05",
+    slug: "depo", v: "warehouse", still: "/photos/warehouse-1600.webp", en: "Warehouses & logistics", tr: "Depo ve lojistik", idx: "05",
     kicker: "Warehouses & logistics", h: "Pick it right the first time.",
     lede: "Peak season brings new hands to the dock. Flexlore gets them picking, packing and moving safely, the way your site does it.",
     problem: { h: "Peak season, every year.", p: ["Temporary staff need to be productive in days, not weeks.", "Safety and handling steps get skipped when induction is a quick walk around."] },
@@ -111,7 +111,7 @@ export const sectors: Sector[] = [
     ready: "Ready for: receiving, zone C picking.",
   },
   {
-    slug: "firin", v: "steam", still: "/photos/chef-plating.jpg", en: "Bakeries & cafés", tr: "Fırın ve kafeler", idx: "06",
+    slug: "firin", v: "steam", still: "/photos/bakery-1600.webp", en: "Bakeries & cafés", tr: "Fırın ve kafeler", idx: "06",
     kicker: "Bakeries & coffee", h: "The morning bake, taught by hand.",
     lede: "Dough, milk, timing. The craft is in the hands, so the training should be too.",
     problem: { h: "Craft is hard to write down.", p: ["How the dough should feel or how milk should sound is learned by watching.", "Early shifts often have no one experienced on hand to show."] },
