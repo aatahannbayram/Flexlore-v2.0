@@ -11,6 +11,7 @@ import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { COMPARE5 } from "../i18n/extra";
 import { StoreButtons } from "../Icons";
 import { SmartVideo } from "../ui/SmartVideo";
+import { QUOTE } from "../pages/copy-quote";
 import { EASE } from "../ui/Reveal";
 import { Pic, Label, H2, card, type Ic } from "./home5";
 import { ArrowRight, Check, Users, Sparkle, Question, Plus, X, ArrowsLeftRight, Tag, Lightning, Buildings } from "../ui/icons";
@@ -111,39 +112,41 @@ function GetApp({ checkout, label, cls }: { checkout: string | null; label: stri
     {open && <div className="absolute inset-x-0 top-full z-20 mt-2 flex flex-col items-center gap-2 rounded-[18px] bg-surface-1 p-3 ring-1 ring-line"><StoreButtons small lang={lang} /></div>}</div>);
 }
 export function PlanCard({ id, yearly, full = false, className = "" }: { id: string; yearly: boolean; full?: boolean; className?: string }) {
-  const { d } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];
+  const { d, locale } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];
   const [name, forWho] = c.plans[id as keyof typeof c.plans]; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
   const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
   const pts = full ? d.pricingPage.points[id as keyof typeof d.pricingPage.points] : c.feats[id as keyof typeof c.feats];
   const prev = { pro: "free", proplus: "pro", enterprise: "proplus" }[id as "pro"] as keyof typeof c.plans | undefined;
   const checkout = (yearly ? (p as { checkoutYearly?: string | null }).checkoutYearly : p.checkout) ?? null;
   const reduce = useReducedMotion();
+  const q = QUOTE[locale];
   return (
-    <li id={`plan-${id}`} className={`relative flex-col rounded-[28px] p-5 md:p-7 ${rec ? "bg-ink text-bg" : "bg-[var(--card)]"} ${className || "flex"}`}>
-      {/* Phones: no icon row (only the "recommended" badge), so the price sits higher. */}
+    <li id={`plan-${id}`} className={`relative isolate flex-col overflow-hidden rounded-[28px] bg-[var(--card)] p-5 md:p-7 ${rec ? "ring-1 ring-inset ring-white/25 shadow-[0_40px_90px_-50px_rgb(244_240_235/0.35)]" : ""} ${className || "flex"}`}>
+      {/* The recommended plan: a soft light from the top edge and a brighter hairline, no solid fill. */}
+      {rec && <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-[radial-gradient(ellipse_at_50%_0%,rgb(244_240_235/0.16)_0%,rgb(244_240_235/0)_70%)]" />}
       <div className={`${rec ? "flex" : "hidden md:flex"} items-center justify-between gap-3`}>
-        <span aria-hidden="true" className={`hidden h-11 w-11 place-items-center rounded-[14px] md:grid ${rec ? "bg-bg/10" : "bg-[var(--card-2)]"}`}><I size={20} /></span>
-        {rec && <span className="rounded-full bg-bg/10 px-3 py-1 text-[12px] font-semibold">{c.recommended}</span>}
+        <span aria-hidden="true" className="hidden h-11 w-11 place-items-center rounded-[14px] bg-white/[.07] ring-1 ring-inset ring-white/10 md:grid"><I size={20} /></span>
+        {rec && <span className="rounded-full bg-ink px-3 py-1 text-[12px] font-semibold text-bg">{c.recommended}</span>}
       </div>
       <h3 className={`text-[20px] font-semibold md:mt-6 ${rec ? "mt-3" : ""}`}>{name}</h3>
-      <p className={`mt-1 text-[14px] md:min-h-[2.6rem] leading-snug ${rec ? "text-bg/70" : "text-ink-muted"}`}>{forWho}</p>
+      <p className="mt-1 text-[14px] leading-snug text-ink-muted md:min-h-[2.6rem]">{forWho}</p>
       <div className="mt-4 md:mt-6 md:min-h-[5.5rem]">
         {pr ? <>
           <div className="flex flex-wrap items-baseline gap-x-2">
-            <AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[40px] font-bold leading-none tracking-[-.03em]" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span></AnimatePresence>
-            <span className={`text-[14px] ${rec ? "text-bg/70" : "text-ink-muted"}`}>{c.perMo}</span>
-            {save && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${rec ? "bg-bg/10" : "bg-[var(--card-2)] text-ink-muted"}`}>{fmt(c.save, { pct: save })}</span>}
+            <AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[40px] font-semibold leading-none tracking-[-.04em]" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span></AnimatePresence>
+            <span className="text-[14px] text-ink-muted">{c.perMo}</span>
+            {save && <span className="rounded-full bg-white/[.08] px-2 py-0.5 text-[12px] font-semibold text-ink">{fmt(c.save, { pct: save })}</span>}
           </div>
-          <p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{id === "free" ? c.free : yearly ? fmt(c.yrNote, { total: `$${(parseFloat(pr.now.replace(/[^0-9.]/g, "")) * 12).toFixed(2)}` }) : c.moNote}</p>
-        </> : <><p className="text-[34px] font-bold leading-none tracking-[-.03em]">{c.contact}</p><p className={`mt-2 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{c.custom}</p></>}
+          <p className="mt-2 text-[13px] text-ink-faint">{id === "free" ? c.free : yearly ? fmt(c.yrNote, { total: `$${(parseFloat(pr.now.replace(/[^0-9.]/g, "")) * 12).toFixed(2)}` }) : c.moNote}</p>
+        </> : <><p className="text-[34px] font-semibold leading-none tracking-[-.04em]">{c.custom}</p><p className="mt-2 text-[13px] text-ink-faint">{c.enterpriseUsers}</p></>}
       </div>
       {id === "enterprise"
-        ? <a href={SITE.demo} className={`btn mt-5 w-full md:mt-6 ${rec ? "bg-bg text-ink" : "btn-secondary"}`}>{c.talk}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-        : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-5 w-full md:mt-6 ${rec ? "bg-bg text-ink hover:opacity-90" : "btn-secondary"}`} />}
-      <div className={`mt-5 flex-1 rounded-[20px] p-4 md:mt-6 ${rec ? "bg-bg/[.08]" : "bg-[var(--card-2)]"}`}>
+        ? <a href="/pricing/#quote" className="btn btn-secondary mt-5 w-full md:mt-6">{q.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+        : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-5 w-full md:mt-6 ${rec ? "btn-primary" : "btn-secondary"}`} />}
+      <div className="mt-5 flex-1 rounded-[20px] bg-white/[.035] p-4 ring-1 ring-inset ring-white/[.05] md:mt-6">
         <p className="flex items-center gap-2 text-[14px] font-semibold"><Users size={16} aria-hidden="true" />{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
-        {prev && <p className={`mt-3 text-[13px] ${rec ? "text-bg/70" : "text-ink-faint"}`}>{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
-        <ul className="mt-3 space-y-2 text-[14px]">{pts.map((f) => <li key={f} className={`flex items-start gap-2.5 ${rec ? "text-bg/85" : "text-ink-muted"}`}><Check size={15} aria-hidden="true" className="mt-0.5 shrink-0" />{f}</li>)}</ul>
+        {prev && <p className="mt-3 text-[13px] text-ink-faint">{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
+        <ul className="mt-3 space-y-2 text-[14px]">{pts.map((f) => <li key={f} className="flex items-start gap-2.5 text-ink-muted"><Check size={15} aria-hidden="true" className="tick mt-0.5 shrink-0" />{f}</li>)}</ul>
       </div>
     </li>);
 }

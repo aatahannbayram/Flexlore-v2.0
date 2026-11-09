@@ -74,7 +74,13 @@ const T: Record<string, { all: string; faq: string; aiP: string; talk: string; t
 };
 
 const link = "inline-flex min-h-11 min-w-11 items-center text-[15px] text-white/65 transition-colors duration-200 hover:text-white";
-const card = "rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] ring-1 ring-[rgb(255_255_255/0.08)] backdrop-blur-xl md:p-7";
+/* A dim, softly blurred photo behind each footer card; the glass and a dark wash on top keep the text readable. */
+const CardBg = ({ src, pos = "50% 50%" }: { src: string; pos?: string }) => (
+  <span aria-hidden="true" className="absolute inset-0 -z-10">
+    <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="h-full w-full scale-105 object-cover opacity-55 blur-[2px] saturate-[0.7]" />
+    <span className="absolute inset-0 bg-[linear-gradient(110deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)] rtl:bg-[linear-gradient(250deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)]" />
+  </span>);
+const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] ring-1 ring-[rgb(255_255_255/0.08)] backdrop-blur-xl md:p-7";
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
@@ -124,6 +130,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
 
         <div className="mt-10 grid gap-3 md:mt-16 md:grid-cols-2 md:gap-4">
           <section aria-labelledby="ft-ai" className={`${card} flex flex-col`}>
+            <CardBg src="/media/v3/web-toplanti-800.webp" pos="60% 40%" />
             <h3 id="ft-ai" className="text-[17px] font-semibold text-white md:text-[19px]">{f.ai}</h3>
             <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.aiP}</p>
             <ul className="mt-auto grid grid-cols-1 gap-2 pt-5 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3">
@@ -140,6 +147,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </section>
 
           <section aria-labelledby="ft-talk" className={card}>
+            <CardBg src="/photos/hotel-desk-800.webp" pos="50% 45%" />
             <h3 id="ft-talk" className="text-[17px] font-semibold text-white md:text-[19px]">{t.talk}</h3>
             <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.talkP}</p>
             <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 ring-1 ring-[rgb(255_255_255/0.08)] transition-colors hover:bg-white/[.1]">
