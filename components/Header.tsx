@@ -131,7 +131,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
                   <FlagPicker />
                 </div>}
-            {SITE.login && <a href={SITE.login} className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            {SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -153,7 +153,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
               {own ? LangSwitch : <FlagPicker up />}
               <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} />
-              <span className="flex items-center gap-2">{SITE.login && <a href={SITE.login} className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a></span>
+              <span className="flex items-center gap-2">{SITE.login && <a href="/login/" className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a></span>
             </div>
           </m.div>)}
       </AnimatePresence>

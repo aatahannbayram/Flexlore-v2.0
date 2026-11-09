@@ -30,6 +30,8 @@ out += `
 - [Blog](${site}/blog/)
 - [About Flexlore](${site}/company/): Flexlore Inc., based in Delaware, United States
 - [Support](${site}/support/)
+- [FAQ](${site}/faq/): AI, devices, languages, pricing and billing
+- Log in: https://app.flexlore.com (web app); the team uses the iOS and Android apps
 - [Legal](${site}/legal/): terms, privacy, acceptable use, data processing, sub-processors, security, billing, cookies
 - Contact: support@flexlore.com · Book a demo: https://app-eu1.hubspot.com/meetings/alper-kalip
 `;

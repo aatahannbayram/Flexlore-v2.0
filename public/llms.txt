@@ -32,5 +32,7 @@ Pricing is by number of users: Free (3 users), Pro (10), ProPlus (30), Enterpris
 - [Blog](https://www.flexlore.com/blog/)
 - [About Flexlore](https://www.flexlore.com/company/): Flexlore Inc., based in Delaware, United States
 - [Support](https://www.flexlore.com/support/)
+- [FAQ](https://www.flexlore.com/faq/): AI, devices, languages, pricing and billing
+- Log in: https://app.flexlore.com (web app); the team uses the iOS and Android apps
 - [Legal](https://www.flexlore.com/legal/): terms, privacy, acceptable use, data processing, sub-processors, security, billing, cookies
 - Contact: support@flexlore.com · Book a demo: https://app-eu1.hubspot.com/meetings/alper-kalip

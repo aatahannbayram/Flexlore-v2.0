@@ -42,6 +42,7 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
     { k: "blog", en: "Blog", href: "/blog/" },
     { k: "company", en: "About us", tr: "Hakkımızda", href: "/company/" },
     { k: "support", en: "Support", tr: "Destek", href: "/support/" },
+    { k: "faq", en: "FAQ", tr: "SSS", href: "/faq/" },
     { k: "demo", en: "Book a demo", tr: "Demo isteyin", href: SITE.demo, ext: true },
   ] },
 ];
@@ -61,15 +62,15 @@ const AI: [string, string, (q: string) => string][] = [
 ];
 
 /* Footer-only lines, kept here so the shared dictionaries do not change shape. */
-const T: Record<string, { all: string; aiP: string; talk: string; talkP: string; mail: string; open: string }> = {
-  en: { all: "All features", aiP: "Open your assistant with a ready question about what Flexlore does and who it is for.", talk: "Talk to us", talkP: "Questions about a rollout, a pilot or your account? Write to us.", mail: "Email", open: "opens in a new tab" },
-  tr: { all: "Tüm özellikler", aiP: "Asistanınızı Flexlore'un ne yaptığı ve kimin için olduğu hakkında hazır bir soruyla açın.", talk: "Bize yazın", talkP: "Kurulum, pilot ya da hesabınızla ilgili sorularınız için bize yazın.", mail: "E-posta", open: "yeni sekmede açılır" },
-  de: { all: "Alle Funktionen", aiP: "Öffnen Sie Ihren Assistenten mit einer fertigen Frage dazu, was Flexlore macht und für wen.", talk: "Schreiben Sie uns", talkP: "Fragen zu Einführung, Pilot oder Konto? Schreiben Sie uns.", mail: "E-Mail", open: "öffnet in neuem Tab" },
-  ar: { all: "جميع الميزات", aiP: "افتح مساعدك بسؤال جاهز عمّا تفعله Flexlore ولمن هي.", talk: "تواصل معنا", talkP: "لديك أسئلة حول الإطلاق أو التجربة أو حسابك؟ راسلنا.", mail: "البريد الإلكتروني", open: "يفتح في علامة تبويب جديدة" },
-  es: { all: "Todas las funciones", aiP: "Abre tu asistente con una pregunta lista sobre qué hace Flexlore y para quién es.", talk: "Escríbenos", talkP: "¿Preguntas sobre la implantación, un piloto o tu cuenta? Escríbenos.", mail: "Correo", open: "se abre en una pestaña nueva" },
-  ru: { all: "Все функции", aiP: "Откройте ассистента с готовым вопросом о том, что делает Flexlore и для кого он.", talk: "Напишите нам", talkP: "Вопросы о внедрении, пилоте или аккаунте? Напишите нам.", mail: "Почта", open: "откроется в новой вкладке" },
-  fr: { all: "Toutes les fonctionnalités", aiP: "Ouvrez votre assistant avec une question prête sur ce que fait Flexlore et pour qui.", talk: "Écrivez-nous", talkP: "Une question sur le déploiement, un pilote ou votre compte ? Écrivez-nous.", mail: "E-mail", open: "s'ouvre dans un nouvel onglet" },
-  pl: { all: "Wszystkie funkcje", aiP: "Otwórz asystenta z gotowym pytaniem o to, co robi Flexlore i dla kogo jest.", talk: "Napisz do nas", talkP: "Pytania o wdrożenie, pilotaż lub konto? Napisz do nas.", mail: "E-mail", open: "otwiera się w nowej karcie" },
+const T: Record<string, { all: string; faq: string; aiP: string; talk: string; talkP: string; mail: string; open: string }> = {
+  en: { faq: "FAQ", all: "All features", aiP: "Open your assistant with a ready question about what Flexlore does and who it is for.", talk: "Talk to us", talkP: "Questions about a rollout, a pilot or your account? Write to us.", mail: "Email", open: "opens in a new tab" },
+  tr: { faq: "SSS", all: "Tüm özellikler", aiP: "Asistanınızı Flexlore'un ne yaptığı ve kimin için olduğu hakkında hazır bir soruyla açın.", talk: "Bize yazın", talkP: "Kurulum, pilot ya da hesabınızla ilgili sorularınız için bize yazın.", mail: "E-posta", open: "yeni sekmede açılır" },
+  de: { faq: "FAQ", all: "Alle Funktionen", aiP: "Öffnen Sie Ihren Assistenten mit einer fertigen Frage dazu, was Flexlore macht und für wen.", talk: "Schreiben Sie uns", talkP: "Fragen zu Einführung, Pilot oder Konto? Schreiben Sie uns.", mail: "E-Mail", open: "öffnet in neuem Tab" },
+  ar: { faq: "الأسئلة الشائعة", all: "جميع الميزات", aiP: "افتح مساعدك بسؤال جاهز عمّا تفعله Flexlore ولمن هي.", talk: "تواصل معنا", talkP: "لديك أسئلة حول الإطلاق أو التجربة أو حسابك؟ راسلنا.", mail: "البريد الإلكتروني", open: "يفتح في علامة تبويب جديدة" },
+  es: { faq: "Preguntas frecuentes", all: "Todas las funciones", aiP: "Abre tu asistente con una pregunta lista sobre qué hace Flexlore y para quién es.", talk: "Escríbenos", talkP: "¿Preguntas sobre la implantación, un piloto o tu cuenta? Escríbenos.", mail: "Correo", open: "se abre en una pestaña nueva" },
+  ru: { faq: "Частые вопросы", all: "Все функции", aiP: "Откройте ассистента с готовым вопросом о том, что делает Flexlore и для кого он.", talk: "Напишите нам", talkP: "Вопросы о внедрении, пилоте или аккаунте? Напишите нам.", mail: "Почта", open: "откроется в новой вкладке" },
+  fr: { faq: "FAQ", all: "Toutes les fonctionnalités", aiP: "Ouvrez votre assistant avec une question prête sur ce que fait Flexlore et pour qui.", talk: "Écrivez-nous", talkP: "Une question sur le déploiement, un pilote ou votre compte ? Écrivez-nous.", mail: "E-mail", open: "s'ouvre dans un nouvel onglet" },
+  pl: { faq: "FAQ", all: "Wszystkie funkcje", aiP: "Otwórz asystenta z gotowym pytaniem o to, co robi Flexlore i dla kogo jest.", talk: "Napisz do nas", talkP: "Pytania o wdrożenie, pilotaż lub konto? Napisz do nas.", mail: "E-mail", open: "otwiera się w nowej karcie" },
 };
 
 const link = "inline-flex min-h-11 min-w-11 items-center text-[15px] text-white/65 transition-colors duration-200 hover:text-white";
@@ -108,7 +109,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                   {f.groups[g.g]}<Plus size={16} aria-hidden="true" className={`text-white/55 transition-transform duration-300 ${on ? "rotate-45" : ""}`} /></button>
                 <ul id={`ft-${g.g}`} className={`pb-3 sm:block sm:pb-0 ${on ? "block" : "hidden"}`}>
                   {g.items.map((x) => {
-                    const label = x.k === "features" ? t.all : (f.links as Record<string, string>)[x.k] ?? x.en;
+                    const label = x.k === "features" ? t.all : x.k === "faq" ? t.faq : (f.links as Record<string, string>)[x.k] ?? x.en;
                     return (
                       <li key={x.href + x.en}>
                         {x.ext || x.href.startsWith("/#")
