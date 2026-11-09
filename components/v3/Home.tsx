@@ -132,7 +132,7 @@ export function StepsV3() {
             <AnimatePresence mode="wait" initial={false}>
               <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
                 className={`${glass} absolute start-4 top-4 flex w-max max-w-[calc(100%-5rem)] items-center gap-2 !rounded-full py-2 pe-4 ps-3 text-[13px] font-medium text-white md:start-5 md:top-5 md:text-[14px]`}>
-                <span className="shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em]">{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
+                <span className="shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[12px] font-semibold uppercase tracking-[0.08em]">{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
               </m.div>
             </AnimatePresence>
           </div>
@@ -154,7 +154,7 @@ export function StepsV3() {
                       : <span className={`text-[13px] font-semibold tabular-nums transition-colors ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{String(k + 1).padStart(2, "0")}</span>}
                   </span>
                   <span className="min-w-0">
-                    <span className={`block text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${act ? (ROLE[k] ? "text-accent-text" : "text-ink-muted") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
+                    <span className={`block text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors duration-300 ${act ? (ROLE[k] ? "text-accent-text" : "text-ink-muted") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
                     <span className={`mt-0.5 block text-[19px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[23px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
                   </span>
                 </button>
