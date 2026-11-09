@@ -107,7 +107,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
               <li key={g.id} onMouseEnter={() => enter(g.id)}>
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
                   onClick={() => setMega(mega === g.id ? null : g.id)}
-                  className={`inline-flex h-11 items-center gap-1.5 rounded-[10px] px-3.5 transition-colors ${mega === g.id ? "bg-white/[.07] text-ink" : "text-ink-muted hover:text-ink"}`}>
+                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-3.5 transition-colors ${mega === g.id ? "bg-white/[.07] text-ink" : "text-ink-muted hover:text-ink"}`}>
                   {navLabel(g.id, g.label[lang])}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
                 </button>
                 {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. */}
@@ -120,18 +120,18 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-[10px] px-3.5 text-ink-muted transition-colors hover:text-ink">{t.navP}</a></li>
+            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-3.5 text-ink-muted transition-colors hover:text-ink">{t.navP}</a></li>
           </ul>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Theme and language share one quiet capsule: sun or moon, a hairline, then the flag with its language code. */}
             {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
-              : <div className="hidden items-center rounded-[13px] bg-[var(--card)] p-0.5 sm:flex">
+              : <div className="hidden items-center rounded-full bg-[var(--card)] p-0.5 sm:flex">
                   <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
                   <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
                   <FlagPicker />
                 </div>}
-            {SITE.login && <a href={SITE.login} className="hidden h-11 items-center rounded-[12px] px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            {SITE.login && <a href={SITE.login} className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>

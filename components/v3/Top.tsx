@@ -47,8 +47,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
       <div className="container-x relative">
         <div className="grid-12 items-center gap-y-8 pb-6 pt-6 lg:min-h-[min(calc(100svh-var(--header-h)-88px),780px)] lg:py-12">
           <div className="col-span-12 lg:col-span-6">
-            <h1 id="hero-h" className="max-w-[14ch] text-[clamp(36px,0.8rem+2.8vw,66px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">
-              <span className="hs-word block">{h.h1a}</span>
+            <h1 id="hero-h" className="max-w-[17ch] text-[clamp(36px,0.8rem+2.8vw,66px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">
+              <span className="hs-word block"><span className="t-ink">{h.h1a}</span></span>
               <span className="hs-word block pb-[0.06em]" style={{ animationDelay: "90ms" }}><span className="hero-grad">{h.h1b}</span></span>
             </h1>
             <p className="hs-in mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted sm:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>

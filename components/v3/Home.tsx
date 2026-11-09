@@ -29,13 +29,13 @@ import M from "./media.json";
 function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) {
   const reduce = useReducedMotion(); const aw = a.split(" "); const nA = b ? aw.length : aw.length - Math.ceil(aw.length / 3);
   const words = [...aw.map((w, k) => [w, k >= nA] as const), ...(b ? b.split(" ").map((w) => [w, true] as const) : [])];
-  if (reduce) return <h2 id={id} className={`v4-h2 mt-3 ${className}`}>{aw.slice(0, nA).join(" ")} <span className="t-accent">{[...aw.slice(nA), ...(b ? [b] : [])].join(" ")}</span></h2>;
+  if (reduce) return <h2 id={id} className={`v4-h2 mt-3 ${className}`}><span className="t-ink">{aw.slice(0, nA).join(" ")}</span> <span className="t-accent">{[...aw.slice(nA), ...(b ? [b] : [])].join(" ")}</span></h2>;
   return (
     <m.h2 id={id} aria-label={b ? `${a} ${b}` : a} className={`v4-h2 mt-3 ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }}
       transition={{ staggerChildren: 0.045 }}>
       {words.map(([w, pay], k) => (
         <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom">
-          <m.span className={`inline-block ${pay ? "t-accent" : ""}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease: EASE }}>{w}</m.span>
+          <m.span className={`inline-block ${pay ? "t-accent" : "t-ink"}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease: EASE }}>{w}</m.span>
         </span>)).flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
 }
@@ -43,7 +43,7 @@ function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; c
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
   <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-line-strong" /><Kicker>{children}</Kicker></div>);
 /** Chapter head: number and heading on the left, the lead on the right (03 and 04 share it, so they read as a pair). */
-const Head = ({ n, k, id, h, h2, p, w = "max-w-[18ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
+const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
     <div className="col-span-12 lg:col-span-7"><div className="flex flex-wrap items-center gap-3"><Ch n={n}>{k}</Ch>{extra}</div><H2 id={id} a={h} b={h2} className={w} /></div>
     <p className="col-span-12 max-w-[30rem] text-[15px] leading-[1.55] text-ink-muted md:text-[16px] lg:col-span-5 lg:justify-self-end">{p}</p>
@@ -144,8 +144,8 @@ export function StepsV3() {
   return (
     <section id="how" aria-labelledby="how-h" className="section-y">
       <div className="container-x">
-        <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[20ch]" />
-        <div ref={ref} className="mt-7 grid gap-5 md:mt-10 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[30ch]" />
+        <div ref={ref} className="mt-9 grid gap-5 md:mt-14 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           <div className="dark relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
@@ -153,7 +153,7 @@ export function StepsV3() {
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(16_16_16/0.3)_0%,rgb(16_16_16/0.85)_78%)]" />
-            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-[12px] bg-[rgb(24_24_24/0.7)] text-white/80 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
+            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             {/* The phone is sized by the stage height, so it always stands whole inside the frame. */}
             <div className="absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
               <Device label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
@@ -174,7 +174,7 @@ export function StepsV3() {
                     className={`group relative w-full overflow-hidden rounded-[18px] px-4 py-3 text-start transition-colors duration-300 md:px-5 md:py-3.5 ${act ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
                     <span className="flex items-center gap-3">
                       <span className={`grid w-6 shrink-0 text-[13px] font-semibold tabular-nums transition-colors duration-300 ${act ? "text-ink" : "text-ink-faint"}`}>
-                        {done ? <Check size={15} aria-hidden="true" className="text-ink-muted" /> : String(k + 1).padStart(2, "0")}</span>
+                        {done ? <Check size={15} aria-hidden="true" className="tick" /> : String(k + 1).padStart(2, "0")}</span>
                       <span className={`min-w-0 flex-1 text-[18px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[19px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
                       <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 ${act ? (team ? "bg-ink text-bg" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
                     </span>
@@ -207,7 +207,7 @@ export function WhyV3() {
     <div key="a" className={`${glass} p-2`}>
       <div className={`${row} text-white/70`}><Users size={14} aria-hidden="true" className="shrink-0" /><span className="truncate">{c.a[0]}</span></div>
       <div className="flex justify-center py-1 text-white/45"><ArrowRight size={13} aria-hidden="true" className="rotate-90" /></div>
-      <div className={`${row} bx-rise`} style={{ animationDelay: "650ms" }}><CheckCircle size={14} weight="fill" aria-hidden="true" className="shrink-0 text-white" /><span className="truncate font-semibold">{c.a[1]}</span></div>
+      <div className={`${row} bx-rise`} style={{ animationDelay: "650ms" }}><CheckCircle size={14} weight="fill" aria-hidden="true" className="tick shrink-0" /><span className="truncate font-semibold">{c.a[1]}</span></div>
     </div>,
     <div key="b" className={`${glass} space-y-1.5 p-2`}>
       <div className={`${row} text-white/50`}><Article size={14} aria-hidden="true" className="shrink-0" /><span className="truncate line-through decoration-white/40">{c.b[0]}</span></div>
@@ -222,7 +222,7 @@ export function WhyV3() {
     <section aria-labelledby="why-h" className="section-y pt-0">
       <div className="container-x">
         <Head n="02" k={c.k} id="why-h" h={c.h} h2={c.h2} p={c.lead} w="max-w-[20ch]" />
-        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-10 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
+        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
             <m.li key={h} {...rise(reduce, k)} className="dark group relative aspect-[4/5] w-[82%] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[440px] md:w-auto">
               <Photo n={imgs[k]} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]" />
@@ -251,6 +251,7 @@ function useCount(to: number, run: boolean) {
  * screens each level is named in a rail on the start side; on phones the name sits above its row. The site picks itself
  * every few seconds while the panel is on screen (paused on hover); the numbers count up. Sample numbers, labelled. */
 const WS_X = [50, 150, 250];
+const wsImg = (n: string) => (n in M ? `/media/v3/${n}-800.webp` : `/photos/${n}-800.webp`);
 const WS_PATHS = ["M150 0 V12 H62 Q50 12 50 22 V32", "M150 0 V32", "M150 0 V12 H238 Q250 12 250 22 V32"];
 const wsDown = (x: number) => WS_X.map((t) => (t === x ? `M${x} 0 V32` : `M${x} 0 V12 H${t + (t > x ? -12 : 12)} Q${t} 12 ${t} 22 V32`));
 function WsLines({ paths, act, seen, reduce, k }: { paths: string[]; act: number[]; seen: boolean; reduce: boolean | null; k: string }) {
@@ -273,10 +274,10 @@ function WsLevel({ n, name, hint }: { n: number; name: string; hint: string }) {
 export function WorkspaceV3() {
   const { d, locale } = useLocale(); const c = HOME4[locale].ws; const L = WS_LEVELS[locale]; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.3, once: true }); const on = useInView(ref, { amount: 0.3 });
-  const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; people: number; due: number; done: [number, number][] }[] = [
-    { n: c.nodes[1], Ic: ForkKnife, img: "cafe-opening", pos: "55% 50%", jobs: d.bento.jobs, people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
-    { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
-    { n: c.nodes[3], Ic: HardHat, img: "safety", pos: "50% 40%", jobs: c.siteJobs[1], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
+  const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; pics: string[]; people: number; due: number; done: [number, number][] }[] = [
+    { n: c.nodes[1], Ic: ForkKnife, img: "cafe-opening", pos: "55% 50%", jobs: d.bento.jobs, pics: ["restaurant", "chef-plating", "hero-sef"], people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
+    { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], pics: ["factory", "field", "safety"], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
+    { n: c.nodes[3], Ic: HardHat, img: "saha-santiye-havadan", pos: "50% 50%", jobs: c.siteJobs[1], pics: ["saha-cati-siluet", "saha-liman", "saha-drone-cember"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const auto = on && !hold && !reduce;
   useEffect(() => { if (!auto) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 3), 5000); return () => window.clearTimeout(t); }, [auto, i]);
@@ -288,10 +289,10 @@ export function WorkspaceV3() {
     <section aria-labelledby="ws-h" className="section-y pt-0">
       <div className="container-x">
         <Head n="03" k={c.k} id="ws-h" h={c.h} p={c.p} />
-        <div ref={ref} className="relative mt-8 overflow-hidden rounded-[28px] bg-[var(--card)] p-3 md:mt-12 md:p-6" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        <div ref={ref} className="relative mt-9 overflow-hidden rounded-[28px] bg-[var(--card)] p-3 md:mt-14 md:p-6" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           {seen && <AnimatePresence initial={false}>
             <m.span key={cur.img} aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }} className="pointer-events-none absolute inset-0">
-              <img src={`/photos/${cur.img}-800.webp`} alt="" decoding="async" loading="lazy" className="h-full w-full scale-110 object-cover opacity-[0.1] blur-2xl saturate-0" />
+              <img src={wsImg(cur.img)} alt="" decoding="async" loading="lazy" className="h-full w-full scale-110 object-cover opacity-[0.1] blur-2xl saturate-0" />
             </m.span></AnimatePresence>}
           <div className="relative grid lg:grid-cols-[180px_1fr] lg:gap-x-6">
             {/* 01 Workspace: the head office, one card wide, centred over the sites. */}
@@ -315,7 +316,7 @@ export function WorkspaceV3() {
               {sites.map((s, k) => { const act = k === i; const Ic = s.Ic; return (
                 <button key={s.n} type="button" role="tab" aria-selected={act} aria-controls="ws-panel" onClick={() => setI(k)}
                   className={`group dark relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-start text-white ring-1 transition-all duration-500 md:p-3 ${cardH} ${act ? "ring-[rgb(255_255_255/0.45)]" : "ring-transparent hover:ring-[rgb(255_255_255/0.2)]"}`}>
-                  {seen && <img src={`/photos/${s.img}-800.webp`} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
+                  {seen && <img src={wsImg(s.img)} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
                     className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-55 saturate-[0.35] group-hover:opacity-75"}`} />}
                   <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.2)_40%,rgb(16_16_16/0.88)_100%)]" />
                   <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] backdrop-blur-md transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(16_16_16/0.45)] text-white/85 ring-1 ring-white/15"}`}><Ic size={17} aria-hidden="true" /></span>
@@ -334,14 +335,16 @@ export function WorkspaceV3() {
                 <m.ul key={i} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.3, ease: EASE }}
                   className="grid grid-cols-3 gap-2 md:gap-3">
                   {cur.jobs.map((j, k) => { const [a, b] = cur.done[k]; const full = a === b; return (
-                    <li key={j} className={`flex flex-col justify-between rounded-[18px] bg-[var(--card-2)] p-2.5 md:p-3 ${cardH}`}>
-                      <span className="flex items-start justify-between gap-2">
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-white/[.06] text-ink"><FilmSlate size={16} aria-hidden="true" /></span>
-                        <span className={`text-[12px] tabular-nums md:text-[13px] ${full ? "text-ink" : "text-ink-muted"}`}>{full ? <CheckCircle size={16} weight="fill" aria-hidden="true" /> : `${a}/${b}`}</span>
+                    <li key={j} className={`dark relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white ring-1 ring-white/[.08] md:p-3 ${cardH}`}>
+                      {seen && <img src={wsImg(cur.pics[k])} alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-80" />}
+                      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.35)_0%,rgb(16_16_16/0.25)_35%,rgb(16_16_16/0.92)_100%)]" />
+                      <span className="relative flex items-start justify-between gap-2">
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[rgb(16_16_16/0.5)] text-white ring-1 ring-white/15 backdrop-blur-md"><Play size={13} weight="fill" aria-hidden="true" /></span>
+                        <span className={`rounded-full bg-[rgb(16_16_16/0.55)] px-2 py-0.5 text-[12px] tabular-nums backdrop-blur-md md:text-[13px] ${full ? "text-white" : "text-white/80"}`}>{full ? <span className="flex items-center gap-1"><Check size={13} aria-hidden="true" className="tick" /><span className="hidden sm:inline">{a}/{b}</span></span> : `${a}/${b}`}</span>
                       </span>
-                      <span className="block">
-                        <span className="line-clamp-2 block text-[13px] font-semibold leading-snug text-ink md:text-[14px]">{j}</span>
-                        <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/[.08]"><m.span initial={{ width: 0 }} animate={{ width: seen ? `${(100 * a) / b}%` : 0 }} transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : 0.15 + k * 0.07, ease: EASE }} className="block h-full rounded-full bg-ink/80" /></span>
+                      <span className="relative block">
+                        <span className="line-clamp-2 block text-[13px] font-semibold leading-snug md:text-[14px]">{j}</span>
+                        <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/[.15]"><m.span initial={{ width: 0 }} animate={{ width: seen ? `${(100 * a) / b}%` : 0 }} transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : 0.15 + k * 0.07, ease: EASE }} className="block h-full rounded-full bg-white/90" /></span>
                       </span>
                     </li>); })}
                 </m.ul>
@@ -367,6 +370,20 @@ function quadMatrix(w: number, h: number, q: Q) {
   const a = x1 - x0 + g * x1, b = x3 - x0 + k * x3, c = x0, d = y1 - y0 + g * y1, e = y3 - y0 + k * y3, f = y0;
   return `matrix3d(${a / w},${d / w},0,${g / w},${b / h},${e / h},0,${k / h},0,0,1,0,${c},${f},0,1)`;
 }
+/* Left wall screen: a readiness board per site (the same sample numbers as chapter 03), so the two screens differ:
+   the board on the left, the live library on the right. Drawn at 1180 x 720 and mapped onto the screen. */
+function BoardScreen() {
+  const { locale } = useLocale(); const c = HOME4[locale].ws; const rows: [string, number][] = [[c.nodes[1], 74], [c.nodes[2], 73], [c.nodes[3], 83]];
+  return (
+    <div className="flex h-full w-full flex-col bg-[#101010] p-14 text-white">
+      <div className="flex items-end justify-between"><span className="text-[44px] font-semibold tracking-[-0.03em]">{c.nodes[0]}</span><span className="text-[30px] text-white/50">{c.done}</span></div>
+      <div className="mt-12 flex flex-1 flex-col justify-between">
+        {rows.map(([n, v]) => (
+          <div key={n}><div className="flex items-end justify-between text-[38px]"><span className="font-semibold">{n}</span><span className="tabular-nums text-white/80">%{v}</span></div>
+            <div className="mt-4 h-5 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-white/85" style={{ width: `${v}%` }} /></div></div>))}
+      </div>
+    </div>);
+}
 function DeskScene({ on, near }: { on: boolean; near: boolean }) {
   const { lang } = useLocale(); const box = useRef<HTMLDivElement>(null); const [W, setW] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(() => setW(el.clientWidth)); ro.observe(el); return () => ro.disconnect(); }, []);
@@ -377,7 +394,7 @@ function DeskScene({ on, near }: { on: boolean; near: boolean }) {
       {W > 0 && near && (
         <div aria-hidden="true" className="absolute inset-0" style={{ maskImage: "url(/media/v3/web-toplanti-mask.png)", WebkitMaskImage: "url(/media/v3/web-toplanti-mask.png)", maskSize: "100% 100%", WebkitMaskSize: "100% 100%" }}>
           <div className="absolute left-0 top-0 origin-top-left" style={{ width: 1180, height: 720, transform: quadMatrix(1180, 720, R) }}><div className="h-full w-full overflow-hidden bg-[#111]"><Dash on={on} lang={lang} /></div></div>
-          <img src="/photos/cta-dashboard.webp" alt="" className="absolute left-0 top-0 origin-top-left" style={{ width: 1600, height: 1049, transform: quadMatrix(1600, 1049, L), maxWidth: "none" }} />
+          <div className="absolute left-0 top-0 origin-top-left" style={{ width: 1180, height: 720, transform: quadMatrix(1180, 720, L) }}><BoardScreen /></div>
         </div>)}
     </div>);
 }
@@ -387,7 +404,7 @@ export function WebV3() {
   const [beat, setBeat] = useState(0); // 0: the job goes out, 1: completion comes back
   useEffect(() => { if (!on || reduce) return; const id = window.setInterval(() => setBeat((x) => 1 - x), 3200); return () => window.clearInterval(id); }, [on, reduce]);
   const chip = (txt: string, sub: string) => (
-    <div className={`${glass} flex items-center gap-3 px-3.5 py-2.5 text-white`}><CheckCircle size={16} weight="fill" className="shrink-0 text-white/85" aria-hidden="true" />
+    <div className={`${glass} flex items-center gap-3 px-3.5 py-2.5 text-white`}><CheckCircle size={16} weight="fill" className="tick shrink-0" aria-hidden="true" />
       <span className="min-w-0"><span className="block truncate text-[13px] font-semibold">{txt}</span><span className="block truncate text-[12px] text-white/65">{sub}</span></span></div>);
   return (
     <section id="web" aria-labelledby="web-h" className="section-y pt-0">
@@ -395,7 +412,7 @@ export function WebV3() {
         <Head n="04" k={t.k} id="web-h" h={t.h} h2={t.h2} p={t.p}
           extra={<span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{w2.soon}</span>} />
         {/* Same frame and the same 7 / 5 split as chapter 03: desk on the left, field on the right. */}
-        <div ref={ref} className="mt-7 grid gap-3 rounded-[28px] bg-[var(--card)] p-3 md:mt-10 md:p-4 lg:grid-cols-12 lg:gap-4">
+        <div ref={ref} className="mt-9 grid gap-3 rounded-[28px] bg-[var(--card)] p-3 md:mt-14 md:p-4 lg:grid-cols-12 lg:gap-4">
           <figure className="dark relative overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-7">
             <DeskScene on={on} near={near} />
             <span aria-hidden="true" className={`absolute inset-0 hidden md:block ${fade}`} />
@@ -404,21 +421,21 @@ export function WebV3() {
               <span className="mt-1 block max-w-[24rem] text-[14px] text-white/70">{t.flow[0][1]}</span>
             </figcaption>
             <AnimatePresence>{beat === 0 && (
-              <m.div key="out" initial={reduce ? false : { opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: 24 }} transition={{ duration: 0.45, ease: EASE }}
-                className="absolute end-3 top-3 w-[min(70%,270px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.jobs[0], `${b.sent} · ${b.today}`)}</m.div>)}</AnimatePresence>
+              <m.div key="out" initial={reduce ? false : { opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -10 }} transition={{ duration: 0.45, ease: EASE }}
+                className="absolute end-3 top-3 w-[min(62%,250px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.jobs[0], `${b.sent} · ${b.today}`)}</m.div>)}</AnimatePresence>
           </figure>
           <figure className="dark relative min-h-[420px] overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-5 lg:min-h-0">
             <Photo n="saha-cati-siluet" sizes="(min-width:1024px) 38vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
             <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
-            <div className="float-y absolute end-[7%] top-[7%] w-[min(36%,140px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.5)]" dir="ltr" aria-hidden="true">
+            <div className="float-y absolute start-[7%] top-[7%] w-[min(36%,140px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.5)]" dir="ltr" aria-hidden="true">
               <Device label={d.hero.chip.t}>{near ? <WorkScreen active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device>
             </div>
             <AnimatePresence>{beat === 1 && (
               <m.div key="back" initial={reduce ? false : { opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: -24 }} transition={{ duration: 0.45, ease: EASE }}
-                className="absolute start-3 top-3 w-[min(54%,230px)] md:start-5 md:top-5" aria-hidden="true">{chip(b.branch, b.branchP)}</m.div>)}</AnimatePresence>
-            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white md:p-6">
-              <span className="block max-w-[60%] text-[19px] font-semibold tracking-[-0.02em] md:text-[22px]">{t.flow[1][0]} <span className="text-white/45">·</span> {t.flow[2][0]}</span>
-              <span className="mt-1 block max-w-[58%] text-[14px] text-white/70">{t.flow[2][1]}</span>
+                className="absolute end-3 top-3 w-[min(54%,230px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.branch, b.branchP)}</m.div>)}</AnimatePresence>
+            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col items-end p-4 text-end text-white md:p-6">
+              <span className="block max-w-[56%] text-[19px] font-semibold tracking-[-0.02em] md:text-[22px]">{t.flow[1][0]} <span className="text-white/45">·</span> {t.flow[2][0]}</span>
+              <span className="mt-1 block max-w-[56%] text-[14px] text-white/70">{t.flow[2][1]}</span>
             </figcaption>
           </figure>
         </div>
@@ -473,8 +490,8 @@ function CaseTabs({ t, secs, cur, go, list }: { t: CaseT; secs: (typeof CASES)[n
 }
 const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void }) => (
   <div className="hidden shrink-0 gap-2 pb-2 md:flex">
-    <button type="button" onClick={() => go(i - 1)} disabled={i === 0} aria-label="Previous" className="grid h-11 w-11 place-items-center rounded-[12px] bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="start" className="h-2.5 w-3.5" /></button>
-    <button type="button" onClick={() => go(i + 1)} disabled={i === n - 1} aria-label="Next" className="grid h-11 w-11 place-items-center rounded-[12px] bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="end" className="h-2.5 w-3.5" /></button>
+    <button type="button" onClick={() => go(i - 1)} disabled={i === 0} aria-label="Previous" className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="start" className="h-2.5 w-3.5" /></button>
+    <button type="button" onClick={() => go(i + 1)} disabled={i === n - 1} aria-label="Next" className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="end" className="h-2.5 w-3.5" /></button>
   </div>);
 
 function CasesPinned() {
@@ -494,7 +511,7 @@ function CasesPinned() {
     <section ref={wrap} id="customers" aria-labelledby="cases-h" className="relative" style={{ height: `calc(100vh + ${dist}px)` }}>
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-[var(--header-h)]">
         <div className="container-x">
-          <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[24ch]" />
+          <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
           <div className="relative mt-5 flex items-center justify-between gap-4 border-b border-line">
             <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
             <Arrows i={i} n={list.length} go={go} />
@@ -525,7 +542,7 @@ function CasesCarousel() {
   return (
     <section id="customers" aria-labelledby="cases-h" className="section-y overflow-hidden pt-0">
       <div className="container-x">
-        <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[22ch]" />
+        <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
         <div className="mt-6 flex items-center justify-between gap-4 border-b border-line">
           <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
           <Arrows i={i} n={list.length} go={go} />
@@ -577,10 +594,10 @@ export function SectorsV3() {
     <section aria-labelledby="ind-h" className="section-y pt-0">
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[16ch]" /></div>
+          <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[26ch]" /></div>
           <Link href="/see-it/" className="btn btn-secondary hidden h-12 md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
-        <ul className="no-sb -mx-[var(--pad-x)] mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] md:mx-0 md:mt-10 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0">
+        <ul className="no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0">
           {IND.map(([href, img, Ic, pos], k) => (
             <m.li key={href} className="w-[78%] shrink-0 snap-start sm:w-[44%] md:w-auto"
               initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
@@ -603,7 +620,7 @@ export function SectorsV3() {
                   {/* On hover-capable screens the three uses open under the line. */}
                   <span className="hidden transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] [@media(hover:hover)]:grid [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:grid-rows-[1fr] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:grid-rows-[1fr] [@media(hover:hover)]:group-focus-visible:opacity-100">
                     <span className="overflow-hidden"><span className="mt-3 block space-y-1.5 border-t border-white/15 pt-3">
-                      {tabs[k][1].map((u) => <span key={u} className="flex items-start gap-2 text-[13px] leading-snug text-white/90"><Check size={13} aria-hidden="true" className="mt-[3px] shrink-0 text-white/70" /><span className="line-clamp-1">{u}</span></span>)}
+                      {tabs[k][1].map((u) => <span key={u} className="flex items-start gap-2 text-[13px] leading-snug text-white/90"><Check size={13} aria-hidden="true" className="tick mt-[3px] shrink-0" /><span className="line-clamp-1">{u}</span></span>)}
                     </span></span>
                   </span>
                 </span>
@@ -625,7 +642,7 @@ export function SectorsV3() {
             <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {LOCALES.map((l) => { const on = l.code === locale; return (
                 <li key={l.code}><button type="button" aria-pressed={on} onClick={() => setLocale(l.code)}
-                  className={`flex h-11 w-full items-center gap-2 rounded-[12px] pe-3 ps-2 text-[14px] ring-1 transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.06] text-white/90 ring-white/[.06] hover:bg-white/[.12]"}`}>
+                  className={`flex h-11 w-full items-center gap-2 rounded-full pe-3 ps-1.5 text-[14px] ring-1 transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.06] text-white/90 ring-white/[.06] hover:bg-white/[.12]"}`}>
                   <img src={`/flags/${l.flag}.svg`} alt="" width={26} height={26} className="h-[26px] w-[26px] shrink-0 rounded-full object-cover" /><span lang={l.code} dir={l.dir} className="truncate">{l.name}</span></button></li>); })}
             </ul>
           </div>

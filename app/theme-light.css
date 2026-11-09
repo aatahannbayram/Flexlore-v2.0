@@ -20,6 +20,7 @@
 :root[data-theme="light"] .bg-white\/\[\.10\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/\[\.12\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
 :root[data-theme="light"] .bg-white\/\[\.14\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }
+:root[data-theme="light"] .bg-white\/\[\.15\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.128); }
 :root[data-theme="light"] .bg-white\/\[\.1\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/\[\.22\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.187); }
 :root[data-theme="light"] .border-white:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.3); }
@@ -58,6 +59,7 @@
 :root[data-theme="light"] .ring-white\/90:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/\[\.04\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.06\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
+:root[data-theme="light"] .ring-white\/\[\.08\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.09\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .text-white\/25:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
