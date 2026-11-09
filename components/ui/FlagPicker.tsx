@@ -19,12 +19,12 @@ export function FlagPicker({ up = false, className = "" }: { up?: boolean; class
     <div ref={box} className={`relative ${className}`}>
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open} aria-label={`${d.nav.language}: ${cur.name}`}
         className="flex h-11 min-w-11 items-center gap-2 rounded-full pe-3 ps-2.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
-        <img src={`/flags/${cur.flag}.svg`} alt="" width={20} height={20} className="h-5 w-5 rounded-full object-cover ring-1 ring-white/15" />
+        <img src={`/flags/${cur.flag}.svg`} alt="" width={20} height={20} className="h-5 w-5 rounded-full object-cover" />
         <span className="text-[13px] font-semibold uppercase tracking-[0.04em] text-ink">{cur.code}</span>
         <CaretDown size={10} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <ul role="listbox" aria-label={d.nav.language} className={`absolute z-50 w-52 rounded-2xl bg-surface-1 p-1.5 ring-1 ring-line ${up ? "bottom-full mb-2" : "top-full mt-2"} end-0`}>
+        <ul role="listbox" aria-label={d.nav.language} className={`absolute z-50 w-52 rounded-2xl bg-surface-1 p-1.5 ${up ? "bottom-full mb-2" : "top-full mt-2"} end-0`}>
           {LOCALES.map((l) => (
             <li key={l.code} role="option" aria-selected={l.code === locale}>
               <button type="button" lang={l.code} dir={l.dir} onClick={() => { setLocale(l.code); setOpen(false); }}

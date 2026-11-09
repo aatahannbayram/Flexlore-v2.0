@@ -18,7 +18,7 @@ function Split({ text }: { text: string }) {
   const w = text.split(" "); const n = w.length - Math.max(1, Math.ceil(w.length / 3));
   return <><span className="t-ink">{w.slice(0, n).join(" ")}</span> <span className="t-accent">{w.slice(n).join(" ")}</span></>;
 }
-const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink ring-1 ring-inset ring-white/10 outline-none transition-shadow placeholder:text-ink-faint";
+const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
 const glassCard = "rounded-[28px] bg-[var(--card)]";
 
 function QuoteForm() {
@@ -85,7 +85,7 @@ export default function Pricing() {
           <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(14_14_14/0.95)_0%,rgb(14_14_14/0.8)_50%,rgb(14_14_14/0.55)_100%)] rtl:bg-[linear-gradient(260deg,rgb(14_14_14/0.95)_0%,rgb(14_14_14/0.8)_50%,rgb(14_14_14/0.55)_100%)]" />
           <div className="grid-12 items-end gap-y-8">
             <div className="col-span-12 lg:col-span-7">
-              <p className="inline-flex items-center gap-2.5 text-[14px] font-medium text-white/70"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/10 ring-1 ring-inset ring-white/15"><Buildings size={16} /></span>{t.entK}</p>
+              <p className="inline-flex items-center gap-2.5 text-[14px] font-medium text-white/70"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/10"><Buildings size={16} /></span>{t.entK}</p>
               <h2 id="ent-h" className="v4-h2 mt-5 max-w-[20ch]"><Split text={t.entH} /></h2>
               <p className="mt-5 max-w-[34rem] text-[16px] leading-[1.6] text-white/70 md:text-[17px]">{t.entP}</p>
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-white/85">{q.bullets.map((b) => <li key={b} className="flex items-center gap-2"><Check size={16} aria-hidden="true" className="tick" />{b}</li>)}</ul>
@@ -97,7 +97,7 @@ export default function Pricing() {
           </div>
           <ul className="mt-10 grid gap-3 md:grid-cols-3">
             {tiers.map((x) => (
-              <li key={x.id} className="flex flex-col rounded-[22px] bg-white/[.06] p-6 ring-1 ring-inset ring-white/10 backdrop-blur-xl">
+              <li key={x.id} className="flex flex-col rounded-[22px] bg-white/[.06] p-6 backdrop-blur-xl">
                 <p className="text-[16px] font-semibold text-white/85">Enterprise {x.name}</p>
                 <p className="mt-4 text-[32px] font-semibold leading-none tracking-[-.04em]">{x.custom ? c.custom : <>{x.price}<span className="ms-1 text-[14px] font-normal text-white/60">{c.perMo}</span></>}</p>
                 <p className="mt-2 text-[14px] text-white/60">{fmt(t.entUsers, { n: x.users })}</p>

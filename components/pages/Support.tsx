@@ -10,16 +10,16 @@ import { StoreButtons } from "../Icons";
 import { Lifebuoy, ArrowRight, ArrowUpRight, EnvelopeSimple, CalendarBlank, CheckCircle, Question, Check } from "../ui/icons";
 
 /* Shared look for the help pages: glass cards on the page ground, pill buttons, big headings with one payoff word. */
-export const glass = "rounded-[28px] bg-[var(--card)] ring-1 ring-line";
+export const glass = "rounded-[28px] bg-[var(--card)]";
 export const h1 = "text-[clamp(40px,1rem+3.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]";
 export const pill = "btn !rounded-full";
 /** Bright orange tick: the one orange mark on these pages besides the heading word. */
 export const Tick = () => <Check size={16} aria-hidden="true" className="mt-[3px] shrink-0 text-[#FF8A4C]" />;
 export const Kicker = ({ icon: I, children }: { icon: typeof Lifebuoy; children: React.ReactNode }) => (
   <p className="inline-flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
-    <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink ring-1 ring-line"><I size={15} aria-hidden="true" /></span>{children}</p>);
+    <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><I size={15} aria-hidden="true" /></span>{children}</p>);
 
-const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink ring-1 ring-line outline-none transition-shadow placeholder:text-ink-faint";
+const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
 
 /* Support: a big heading, three quick routes (email, FAQ, demo), then the message form beside a photo card listing what
  * we help with, the app and the legal pages; a band into the FAQ closes it. The site is static, so the form composes an
@@ -42,7 +42,7 @@ export function SupportPage() {
         <p className="lead mt-5 max-w-[34rem]">{h.lead}</p>
         <ul className="mt-10 grid gap-3 sm:grid-cols-3 md:mt-14">
           {h.quick.map(([t, line], k) => { const [href, I, ext] = quick[k]; const inner = (<>
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink ring-1 ring-line"><I size={18} aria-hidden="true" /></span>
+            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink"><I size={18} aria-hidden="true" /></span>
             <span className="min-w-0 flex-1"><span className="block text-[16px] font-semibold text-ink">{t}</span><span className="block truncate text-[14px] text-ink-muted">{line}</span></span>
             <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-ink-faint transition-colors group-hover:text-ink rtl:-scale-x-100" /></>);
             const cls = `group flex min-h-[88px] items-center gap-4 ${glass} !rounded-[22px] px-5 transition-colors hover:bg-[var(--card-2)]`;
@@ -90,7 +90,7 @@ export function SupportPage() {
             <div className="mt-6 border-t border-line pt-5">
               <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-ink-faint">{h.legalH}</p>
               <ul className="mt-3 flex flex-wrap gap-2">{h.legal.map(([href, t]) => (
-                <li key={href}><Link href={href} className="inline-flex min-h-11 items-center rounded-full bg-[var(--card-2)] px-4 text-[14px] text-ink-muted ring-1 ring-line transition-colors hover:text-ink">{t}</Link></li>))}</ul>
+                <li key={href}><Link href={href} className="inline-flex min-h-11 items-center rounded-full bg-[var(--card-2)] px-4 text-[14px] text-ink-muted transition-colors hover:text-ink">{t}</Link></li>))}</ul>
             </div>
           </div>
         </div>

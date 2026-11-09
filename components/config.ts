@@ -21,7 +21,7 @@ export const SITE = {
   // Sections that need real content. Off = not rendered, so placeholders never ship.
   // googleProgram / productHunt: badges hidden until approved. construction: the "İnşaat ve saha" tab and /sektor/insaat/.
   // cases: customer stories also need each case's own `approved: true` (components/v3/cases.ts).
-  flags: { proof: false, googleProgram: false, productHunt: false, construction: false, cases: true } as Record<string, boolean>,
+  flags: { proof: false, googleProgram: true, productHunt: true, construction: false, cases: true } as Record<string, boolean>,
   appStore: "https://apps.apple.com/tr/app/flexlore/id6751126206?l",
   googlePlay: "https://play.google.com/store/apps/details?id=com.flexlore.app&hl=en",
   productHunt: "https://www.producthunt.com/products/flexlore-app/launches/flexlore-app",

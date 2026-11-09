@@ -126,12 +126,12 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
           <div className="flex items-center gap-1.5 sm:gap-2">
             {/* Theme and language share one quiet capsule: sun or moon, a hairline, then the flag with its language code. */}
             {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
-              : <div className="hidden items-center rounded-full bg-[var(--card)] p-0.5 sm:flex">
+              : <div className="hidden items-center sm:flex">
                   <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
                   <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
                   <FlagPicker />
                 </div>}
-            {SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            {SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full bg-white/[.07] px-4 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.12] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>

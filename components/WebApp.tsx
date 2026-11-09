@@ -38,7 +38,7 @@ const TRM: Record<string, string> = { Home: "Ana sayfa", Library: "Kütüphane",
 
 function Av({ i, s = 24, t = 0 }: { i: string; s?: number; t?: number }) {
   const g = ["#3A3A3A", "#2E2E2E", "#444444"][t % 3];
-  return <span className="grid shrink-0 place-items-center rounded-full font-semibold text-ice-200 ring-1 ring-white/10" style={{ width: s, height: s, fontSize: s * 0.4, background: `linear-gradient(180deg,${g},#1E1E1E)` }}>{i}</span>;
+  return <span className="grid shrink-0 place-items-center rounded-full font-semibold text-ice-200" style={{ width: s, height: s, fontSize: s * 0.4, background: `linear-gradient(180deg,${g},#1E1E1E)` }}>{i}</span>;
 }
 function useCount(to: number, on: boolean, still: boolean) {
   const [v, setV] = useState(still ? to : 0);

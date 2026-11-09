@@ -45,18 +45,20 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
           <Reveal as="ul" stagger={0.06} className="flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
             {list.map((p) => (
               <RevealItem as="li" key={p.name}>
-                <a href={p.href} target="_blank" rel="noopener" aria-label={p.name} className="group inline-flex min-h-11 items-center opacity-80 transition-opacity duration-300 hover:opacity-100">
+                <a href={p.href} target="_blank" rel="noopener" aria-label={p.name} className="group inline-flex min-h-11 items-center transition-transform duration-300 hover:-translate-y-0.5">
                   {p.badge
-                    ? <span className="flex flex-col items-center"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none rounded-[4px] ${p.caption ? "h-[14px]" : "h-[36px]"}`} />
-                        {p.caption && <span className="mt-1 text-[12px] font-medium text-white/60">{p.caption}</span>}</span>
+                    ? p.caption
+                      ? <span className="flex h-11 flex-col items-center justify-center rounded-[4px] bg-[#EDEDED] px-3"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[13px] w-auto max-w-none" />
+                          <span className="mt-1 text-[12px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
+                      : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-9 w-auto max-w-none rounded-[4px]" />
                     : <span className="flex flex-col leading-tight"><span className="text-[16px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[12px] text-white/55">by {p.org}</span></span>}
                 </a>
               </RevealItem>))}
             {ph && <RevealItem as="li">
               {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                   third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
-              <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center opacity-80 transition-opacity hover:opacity-100">
-                <img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-[30px] w-auto" loading="lazy" /></a>
+              <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center transition-transform duration-300 hover:-translate-y-0.5">
+                <img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-9 w-auto rounded-[4px]" loading="lazy" /></a>
             </RevealItem>}
           </Reveal>
         </div>
@@ -196,7 +198,7 @@ export function Industries({ lang }: { lang: Lang }) {
           <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
             {others.map(([name]) => { const Ic = AREA_ICONS[c.areas.findIndex(([n]) => n === name)] ?? DotsThreeCircle; return (
               <RevealItem as="li" key={name}>
-                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(255_255_255/0.08)] pl-3 pr-4 text-[15px] text-ice-100 ring-1 ring-white/[.06] backdrop-blur-md"><Ic size={17} className="text-ice-300" />{name}</span>
+                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(255_255_255/0.08)] pl-3 pr-4 text-[15px] text-ice-100 backdrop-blur-md"><Ic size={17} className="text-ice-300" />{name}</span>
               </RevealItem>); })}
           </Reveal>
           {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}

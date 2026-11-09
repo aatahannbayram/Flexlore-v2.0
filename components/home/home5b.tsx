@@ -51,14 +51,14 @@ export function Compare5({ short = false }: { short?: boolean }) {
           <div aria-hidden="true" className="absolute inset-0">
             <Pic n="food-qa" sizes="(min-width:1024px) 80vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
             <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_30%,rgb(17_17_17/0.15)_55%,rgb(17_17_17/0.85)_100%)]" />
-            <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2 text-[13px] font-semibold ring-1 ring-white/10 backdrop-blur-md md:end-6 md:top-6 md:text-[14px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
+            <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2 text-[13px] font-semibold backdrop-blur-md md:end-6 md:top-6 md:text-[14px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
           </div>
           {/* The usual way, on top, clipped at the handle */}
           <div aria-hidden="true" className="absolute inset-0" style={clip}>
             <picture><source srcSet="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.avif 800w, /blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.avif 1600w" sizes="(min-width:1024px) 80vw, 100vw" type="image/avif" />
               <img src="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale" /></picture>
             <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.45)_0%,rgb(17_17_17/0.25)_40%,rgb(17_17_17/0.9)_100%)]" />
-            <span className="absolute start-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 ring-1 ring-white/10 backdrop-blur-md md:start-6 md:top-6 md:text-[14px]"><X size={13} />{c.old}</span>
+            <span className="absolute start-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 backdrop-blur-md md:start-6 md:top-6 md:text-[14px]"><X size={13} />{c.old}</span>
           </div>
           {/* Handle */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 z-10 w-0" style={{ left: `${pos}%` }}>
@@ -69,7 +69,7 @@ export function Compare5({ short = false }: { short?: boolean }) {
           <div className="pointer-events-none absolute inset-x-3 bottom-3 z-10 md:inset-x-auto md:bottom-6 md:start-6 md:w-[25rem]" dir={rtl ? "rtl" : "ltr"}>
             <AnimatePresence mode="wait" initial={false}>
               <m.ul key={old ? "old" : "now"} aria-live="polite" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -4 }} transition={{ duration: 0.25, ease: EASE }}
-                className="space-y-1 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-2 ring-1 ring-white/10 backdrop-blur-md">
+                className="space-y-1 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-2 backdrop-blur-md">
                 <li className="px-2.5 pb-1 pt-1 text-[12px] font-medium uppercase tracking-[.08em] text-white/55">{old ? c.old : c.now}</li>
                 {rows.map(([o, n]) => (
                   <li key={o} className={`flex items-center gap-3 rounded-[14px] px-2.5 py-2 text-[14px] md:text-[15px] ${old ? "text-white/60" : "bg-[rgb(255_255_255/0.06)] font-medium text-white"}`}>
@@ -94,7 +94,7 @@ export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setY
   const b = (on: boolean) => `relative z-10 inline-flex h-11 items-center gap-2 rounded-full px-5 text-[15px] font-semibold transition-colors ${on ? "text-bg" : "text-ink-muted hover:text-ink"}`;
   const pill = <m.span layoutId={`${id}-pill`} className="absolute inset-0 -z-10 rounded-full bg-ink" transition={{ type: "spring", stiffness: 260, damping: 30 }} />;
   return (
-    <div role="group" aria-label={c.billing} className="inline-flex rounded-full bg-[var(--card)] p-1 ring-1 ring-line">
+    <div role="group" aria-label={c.billing} className="inline-flex rounded-full bg-[var(--card)] p-1">
       <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={b(!yearly)}>{!yearly && pill}{c.monthly}</button>
       <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={b(yearly)}>{yearly && pill}{c.yearly}
         {best > 0 && <span className={`rounded-full px-2 py-0.5 text-[12px] font-semibold ${yearly ? "bg-bg/15 text-bg" : "bg-[var(--card-2)] text-ink-muted"}`}>{fmt(c.upTo, { pct: best })}</span>}</button>
@@ -109,7 +109,7 @@ function GetApp({ checkout, label, cls }: { checkout: string | null; label: stri
   const go = (e: React.MouseEvent) => { if (checkout) return; e.preventDefault(); const ua = navigator.userAgent;
     if (/iPhone|iPad|iPod/i.test(ua)) window.location.href = SITE.appStore; else if (/Android/i.test(ua)) window.location.href = SITE.googlePlay; else setOpen((o) => !o); };
   return (<div ref={box} className="relative"><a href={checkout ?? SITE.appStore} onClick={go} aria-expanded={checkout ? undefined : open} className={cls}>{label}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-    {open && <div className="absolute inset-x-0 top-full z-20 mt-2 flex flex-col items-center gap-2 rounded-[18px] bg-surface-1 p-3 ring-1 ring-line"><StoreButtons small lang={lang} /></div>}</div>);
+    {open && <div className="absolute inset-x-0 top-full z-20 mt-2 flex flex-col items-center gap-2 rounded-[18px] bg-surface-1 p-3"><StoreButtons small lang={lang} /></div>}</div>);
 }
 export function PlanCard({ id, yearly, full = false, className = "" }: { id: string; yearly: boolean; full?: boolean; className?: string }) {
   const { d, locale } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];

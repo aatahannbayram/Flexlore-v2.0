@@ -25,7 +25,7 @@ const ANIM = `.as-in{animation:as-in .45s cubic-bezier(.22,1,.36,1) both}@keyfra
 export function Greeting({ onOpen, onDismiss }: { onOpen: () => void; onDismiss: () => void }) {
   const { locale } = useLocale(); const [hi, dismiss] = GREET[locale] ?? GREET.en;
   return (
-    <div role="status" className="as-in relative flex max-w-[min(300px,calc(100vw-96px))] items-start gap-1 self-end rounded-[18px] bg-[rgb(22_22_22/0.86)] py-1.5 pe-1.5 ps-4 text-[14px] leading-snug text-white shadow-[0_18px_40px_-18px_rgb(0_0_0/0.8)] ring-1 ring-white/10 backdrop-blur-xl">
+    <div role="status" className="as-in relative flex max-w-[min(300px,calc(100vw-96px))] items-start gap-1 self-end rounded-[18px] bg-[rgb(22_22_22/0.86)] py-1.5 pe-1.5 ps-4 text-[14px] leading-snug text-white shadow-[0_18px_40px_-18px_rgb(0_0_0/0.8)] backdrop-blur-xl">
       <button type="button" onClick={onOpen} className="min-h-11 flex-1 py-1.5 text-start">{hi}</button>
       <button type="button" onClick={onDismiss} aria-label={dismiss} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"><X /></button>
       <style>{ANIM}</style>
@@ -107,9 +107,9 @@ export default function Panel({ open, onClose }: { open: boolean; onClose: () =>
 
   return (
     <div ref={box} id="flx-assistant" role="dialog" aria-modal="true" aria-labelledby="flx-as-h" hidden={!open} dir={dir} lang={locale}
-      className="as-in fixed inset-x-3 bottom-[88px] top-auto flex max-h-[min(640px,calc(100dvh-112px))] flex-col overflow-hidden rounded-[24px] bg-[rgb(20_20_20/0.88)] text-white shadow-[0_30px_70px_-24px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.08)] ring-1 ring-white/10 backdrop-blur-2xl sm:inset-x-auto sm:end-6 sm:bottom-[96px] sm:w-[400px]">
+      className="as-in fixed inset-x-3 bottom-[88px] top-auto flex max-h-[min(640px,calc(100dvh-112px))] flex-col overflow-hidden rounded-[24px] bg-[rgb(20_20_20/0.88)] text-white shadow-[0_30px_70px_-24px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.08)] backdrop-blur-2xl sm:inset-x-auto sm:end-6 sm:bottom-[96px] sm:w-[400px]">
       <div className="flex items-center gap-3 border-b border-white/[.08] px-4 py-3">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.07] text-[#F4F0EB] ring-1 ring-white/10"><Mark className="h-5 w-5" /></span>
+        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/[.07] text-[#F4F0EB]"><Mark className="h-5 w-5" /></span>
         <div className="min-w-0 flex-1"><h2 id="flx-as-h" className="text-[15px] font-semibold tracking-[-0.01em]">{t.title}</h2>
           <p className="flex items-center gap-1.5 text-[12px] text-white/55"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white/70" />{ENDPOINT ? "Claude" : "flexlore.com"}</p></div>
         <button type="button" onClick={onClose} aria-label={t.close} className="grid h-11 w-11 place-items-center rounded-full text-white/65 transition-colors hover:bg-white/10 hover:text-white">
@@ -122,19 +122,19 @@ export default function Panel({ open, onClose }: { open: boolean; onClose: () =>
           : <div key={i} className="max-w-[92%] space-y-2">
               <p className="whitespace-pre-wrap rounded-[16px] rounded-ss-[6px] bg-white/[.06] px-3.5 py-2.5 text-white/90"><Rich text={m.text} />{m.note && <span className="mt-1.5 block text-[12px] text-white/50">{m.note}</span>}</p>
               {!!m.links?.length && <ul className="flex flex-wrap gap-1.5">{m.links.map((l, k) => (
-                <li key={l.url + k}><a href={short(l.url)} className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/[.06] px-3 text-[12.5px] text-white/85 ring-1 ring-white/10 transition-colors hover:bg-white/[.12]">
+                <li key={l.url + k}><a href={short(l.url)} className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-white/[.06] px-3 text-[12.5px] text-white/85 transition-colors hover:bg-white/[.12]">
                   <span className="text-white/45">{k === 0 ? t.source : t.related}</span><span className="max-w-[200px] truncate">{l.title}</span></a></li>))}</ul>}
               {m.handoff && i === msgs.length - 1 && !busy && <div className="flex flex-wrap gap-1.5">
                 <a href={SITE.demo} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center rounded-full bg-[#F4F0EB] px-3.5 text-[12.5px] font-semibold text-[#111] transition-colors hover:bg-white">{t.demo}</a>
-                <a href="/support/" className="inline-flex min-h-9 items-center rounded-full bg-white/[.06] px-3.5 text-[12.5px] text-white/85 ring-1 ring-white/10 hover:bg-white/[.12]">{t.support}</a></div>}
+                <a href="/support/" className="inline-flex min-h-9 items-center rounded-full bg-white/[.06] px-3.5 text-[12.5px] text-white/85 hover:bg-white/[.12]">{t.support}</a></div>}
             </div>)}
         {busy && (msgs[msgs.length - 1]?.role !== "assistant") && <p className="flex w-fit items-center gap-1 rounded-[16px] bg-white/[.06] px-3.5 py-3" aria-label={t.typing}>
           {[0, 1, 2].map((d) => <span key={d} className="as-dot h-1.5 w-1.5 rounded-full bg-white/70" style={{ animationDelay: `${d * 140}ms` }} />)}</p>}
         {!msgs.length && <ul className="flex flex-wrap gap-2 pt-1" aria-label={t.related}>{t.chips.map((c) => (
-          <li key={c}><button type="button" onClick={() => ask(c)} className="min-h-11 rounded-full bg-white/[.05] px-3.5 text-start text-[13px] text-white/85 ring-1 ring-white/10 transition-colors hover:bg-white/[.1]">{c}</button></li>))}</ul>}
+          <li key={c}><button type="button" onClick={() => ask(c)} className="min-h-11 rounded-full bg-white/[.05] px-3.5 text-start text-[13px] text-white/85 transition-colors hover:bg-white/[.1]">{c}</button></li>))}</ul>}
       </div>
       <form onSubmit={(e) => { e.preventDefault(); ask(q); }} className="border-t border-white/[.08] p-3">
-        <div className="flex items-end gap-2 rounded-[22px] bg-white/[.06] p-1.5 ring-1 ring-white/10 focus-within:ring-white/30">
+        <div className="flex items-end gap-2 rounded-[22px] bg-white/[.06] p-1.5 focus-within:ring-white/30">
           <label htmlFor="flx-as-q" className="sr-only">{t.ph}</label>
           <textarea ref={input} id="flx-as-q" rows={1} value={q} maxLength={600} placeholder={t.ph} onChange={(e) => setQ(e.target.value)}
             onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); ask(q); } }}

@@ -21,7 +21,7 @@ export function LoginPage() {
         <div className="dark relative min-h-[300px] overflow-hidden rounded-[32px] bg-[#171717] text-white sm:min-h-[380px] lg:order-first lg:min-h-0">
           <Pic n="hero-sef" eager sizes="(min-width:1024px) 55vw, 100vw" className="absolute inset-0 h-full w-full object-cover object-[70%_40%]" />
           <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.05)_30%,rgb(16_16_16/0.88)_100%)]" />
-          <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-[rgb(20_20_20/0.55)] p-5 ring-1 ring-white/10 backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-6">
+          <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-[rgb(20_20_20/0.55)] p-5 backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-6">
             <p className="text-[clamp(22px,1rem+1.2vw,32px)] font-semibold leading-tight tracking-[-0.03em]">{c.cap1}</p>
             <p className="mt-1.5 text-[15px] text-white/75">{c.cap2}</p>
           </div>
@@ -71,7 +71,7 @@ export function FaqPage() {
             <span className="sr-only">{c.search}</span>
             <MagnifyingGlass size={18} aria-hidden="true" className="pointer-events-none absolute start-5 top-1/2 z-10 -translate-y-1/2 text-ink-faint" />
             <input type="search" value={term} onChange={(e) => setTerm(e.target.value)} placeholder={c.search}
-              className="h-14 w-full rounded-full bg-[var(--card)] pe-12 ps-12 text-[16px] text-ink ring-1 ring-line outline-none placeholder:text-ink-faint [&::-webkit-search-cancel-button]:hidden" />
+              className="h-14 w-full rounded-full bg-[var(--card)] pe-12 ps-12 text-[16px] text-ink outline-none placeholder:text-ink-faint [&::-webkit-search-cancel-button]:hidden" />
             {term && <button type="button" onClick={() => setTerm("")} aria-label={c.clear} className="absolute end-1.5 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full text-ink-muted hover:text-ink"><X size={16} aria-hidden="true" /></button>}
           </label>
           {groups.length > 1 && <div role="group" aria-label={c.k} className="flex flex-wrap gap-2">

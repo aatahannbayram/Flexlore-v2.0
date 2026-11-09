@@ -66,7 +66,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           <div className="col-span-12 lg:col-span-6">
             <Tilt>
             <span aria-hidden="true" className="feat-glow pointer-events-none absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(circle,rgb(231_235_235/0.10),transparent_60%)]" />
-            <div className="dark relative aspect-[4/5] overflow-hidden rounded-[32px] bg-[#161616] text-white ring-1 ring-white/[.06] sm:aspect-[5/4] lg:aspect-[4/4.2]">
+            <div className="dark relative aspect-[4/5] overflow-hidden rounded-[32px] bg-[#161616] text-white sm:aspect-[5/4] lg:aspect-[4/4.2]">
               <Pic n={f.photo} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-45 blur-[3px]" />
               <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.25),rgb(17_17_17/0.8))]" />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5"><FeatureVisual v={f.visual} mock={it.mock} lang={lang} /></div>
@@ -86,7 +86,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           <h2 id="why-h" className="relative px-2 pt-2 text-[15px] font-medium text-white/70">{c.why}</h2>
           <Reveal as="ul" stagger={0.1} className="relative mt-5 grid gap-3 md:grid-cols-3">
             {it.pains.map(([h, p], k) => { const I = PAIN_IC[k]; return (
-              <RevealItem as="li" key={h}><m.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }} className="h-full rounded-[22px] bg-[rgb(24_24_24/0.62)] p-6 ring-1 ring-white/10 backdrop-blur-md md:p-7">
+              <RevealItem as="li" key={h}><m.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }} className="h-full rounded-[22px] bg-[rgb(24_24_24/0.62)] p-6 backdrop-blur-md md:p-7">
                 <span className="relative grid h-11 w-11 place-items-center rounded-[14px] bg-white/10"><span aria-hidden="true" className="feat-ring absolute inset-0 rounded-[14px] ring-1 ring-white/30" /><I size={20} /></span>
                 <h3 className="mt-7 text-[19px] font-semibold tracking-[-0.02em]">{h}</h3><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
               </m.div></RevealItem>); })}
@@ -103,7 +103,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           <div className="dark relative col-span-12 aspect-[4/3] overflow-hidden rounded-[32px] bg-[#161616] lg:col-span-6">
             <Pic n={f.photo} className="absolute inset-0 h-full w-full object-cover" />
             <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_45%,rgb(17_17_17/0.7)_100%)]" />
-            <div className="absolute inset-x-5 bottom-5 rounded-[18px] bg-[rgb(20_20_20/0.78)] p-4 text-white ring-1 ring-white/10 backdrop-blur-md">
+            <div className="absolute inset-x-5 bottom-5 rounded-[18px] bg-[rgb(20_20_20/0.78)] p-4 text-white backdrop-blur-md">
               <p className="flex items-center gap-2 text-[14px] font-semibold"><Ic size={16} />{it.k}</p>
               <p className="mt-1 text-[13px] text-white/70">{t.items[slug][1]}</p>
             </div>
@@ -164,8 +164,8 @@ function End({ c }: { c: FDict["common"] }) {
   const { lang } = useLocale();
   return (
     <section className="container-x pb-[var(--section-y)] pt-10">
-      <div className="dark relative grid items-center gap-6 overflow-hidden rounded-[32px] bg-[#111] p-4 text-white ring-1 ring-white/[.06] md:p-6 lg:grid-cols-12 lg:gap-8">
-        <div className="order-last rounded-[24px] bg-white/[.04] p-6 ring-1 ring-inset ring-white/10 backdrop-blur-md md:p-8 lg:order-first lg:col-span-5">
+      <div className="dark relative grid items-center gap-6 overflow-hidden rounded-[32px] bg-[#111] p-4 text-white md:p-6 lg:grid-cols-12 lg:gap-8">
+        <div className="order-last rounded-[24px] bg-white/[.04] p-6 backdrop-blur-md md:p-8 lg:order-first lg:col-span-5">
           <p className="text-[clamp(26px,1rem+1.5vw,40px)] font-semibold leading-[1.06] tracking-[-0.04em]"><span className="t-ink">{c.endH}</span></p><p className="mt-4 text-[16px] leading-[1.55] text-white/70">{c.endP}</p>
           <a href={SITE.demo} className="btn btn-primary mt-7 h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
@@ -202,7 +202,7 @@ function Steps({ steps, title, photo }: { steps: string[][]; title: string; phot
             {steps.map(([h, p], k) => (
               <li key={h} className="md:pe-4">
                 <span className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-[15px] font-semibold tabular-nums ring-1 transition-colors duration-500 ${lit > k ? "bg-[#E7EBEB] text-[#111] ring-transparent" : "bg-[#1c1c1c] text-white/70 ring-white/15"}`}>{k + 1}</span>
-                <div className="mt-5 rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6 ring-1 ring-white/10 backdrop-blur-md">
+                <div className="mt-5 rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6 backdrop-blur-md">
                   <h3 className="text-[19px] font-semibold tracking-[-0.02em]">{h}</h3><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
                 </div>
               </li>))}

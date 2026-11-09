@@ -53,7 +53,7 @@ export function AssistantLauncher() {
       {ever && mod && <mod.default open={open} onClose={close} />}
       {hi && !open && mod && <mod.Greeting onOpen={toggle} onDismiss={dismiss} />}
       <button ref={btn} type="button" onClick={toggle} onPointerEnter={() => { void loadPanel().catch(() => {}); }} aria-expanded={open} aria-controls="flx-assistant" aria-label={open ? t[1] : t[0]}
-        className="grid h-14 w-14 place-items-center rounded-full bg-[rgb(22_22_22/0.78)] text-[#F4F0EB] shadow-[0_16px_36px_-14px_rgb(0_0_0/0.85),inset_0_1px_0_rgb(255_255_255/0.12)] ring-1 ring-white/15 backdrop-blur-xl transition-transform duration-300 hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100">
+        className="grid h-14 w-14 place-items-center rounded-full bg-[rgb(22_22_22/0.78)] text-[#F4F0EB] shadow-[0_16px_36px_-14px_rgb(0_0_0/0.85),inset_0_1px_0_rgb(255_255_255/0.12)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.04] motion-reduce:transition-none motion-reduce:hover:scale-100">
         {open
           ? <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
           : <Mark className="h-6 w-6" />}

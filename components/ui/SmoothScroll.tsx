@@ -24,7 +24,7 @@ export function SmoothScroll() {
       return false;
     };
     const step = () => {
-      cur += (target - cur) * 0.11;
+      cur += (target - cur) * 0.24;
       if (Math.abs(target - cur) < 0.5) { cur = target; running = false; }
       window.scrollTo({ top: cur, behavior: "instant" as ScrollBehavior });
       if (running) raf = requestAnimationFrame(step);

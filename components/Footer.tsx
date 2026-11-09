@@ -80,7 +80,7 @@ const CardBg = ({ src, pos = "50% 50%" }: { src: string; pos?: string }) => (
     <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="h-full w-full scale-105 object-cover opacity-55 blur-[2px] saturate-[0.7]" />
     <span className="absolute inset-0 bg-[linear-gradient(110deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)] rtl:bg-[linear-gradient(250deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)]" />
   </span>);
-const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] ring-1 ring-[rgb(255_255_255/0.08)] backdrop-blur-xl md:p-7";
+const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] backdrop-blur-xl md:p-7";
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
@@ -98,7 +98,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {SOCIAL.map(([n, k, h]) => (
                 <li key={k}>
                   <a href={h} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`} title={n}
-                    className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-[rgb(255_255_255/0.12)] text-white/75 transition-colors duration-200 hover:bg-white/[.08] hover:text-white">
+                    className="grid h-11 w-11 place-items-center rounded-full text-white/75 transition-colors duration-200 hover:bg-white/[.08] hover:text-white">
                     <Mark k={k} dir="social" cls="h-[17px] w-[17px]" />
                   </a>
                 </li>))}
@@ -137,7 +137,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {AI.map(([n, k, u]) => (
                 <li key={n}>
                   <a href={u(f.aiQ)} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`}
-                    className="group flex min-h-12 items-center gap-2.5 rounded-[14px] bg-white/[.05] px-3.5 text-[14px] font-medium text-white/85 ring-1 ring-[rgb(255_255_255/0.08)] transition-colors hover:bg-white/[.1] hover:text-white">
+                    className="group flex min-h-12 items-center gap-2.5 rounded-[14px] bg-white/[.05] px-3.5 text-[14px] font-medium text-white/85 transition-colors hover:bg-white/[.1] hover:text-white">
                     <Mark k={k} dir="ai" cls="h-[18px] w-[18px]" />
                     <span className="min-w-0 flex-1 truncate">{n}</span>
                     <ArrowUpRight size={13} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
@@ -150,7 +150,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
             <CardBg src="/photos/hotel-desk-800.webp" pos="50% 45%" />
             <h3 id="ft-talk" className="text-[17px] font-semibold text-white md:text-[19px]">{t.talk}</h3>
             <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.talkP}</p>
-            <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 ring-1 ring-[rgb(255_255_255/0.08)] transition-colors hover:bg-white/[.1]">
+            <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 transition-colors hover:bg-white/[.1]">
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[.08] text-white"><EnvelopeSimple size={18} aria-hidden="true" /></span>
               <span className="min-w-0 flex-1"><span className="block text-[12px] text-white/55">{t.mail}</span><span className="block truncate text-[15px] font-medium text-white">support@flexlore.com</span></span>
               <ArrowUpRight size={14} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />

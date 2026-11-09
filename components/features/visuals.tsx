@@ -12,7 +12,7 @@ import { FilePdf, ArrowRight, CheckCircle, Sparkle, MapPin, LockSimple, Eye, Pen
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
-const glass = "rounded-[18px] bg-[rgb(20_20_20/0.78)] ring-1 ring-white/10 backdrop-blur-md";
+const glass = "rounded-[18px] bg-[rgb(20_20_20/0.78)] backdrop-blur-md";
 const row = "flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.07)] px-3 py-2.5 text-[13px]";
 const st = (ms: number) => ({ animationDelay: `${ms}ms` });
 
@@ -54,8 +54,8 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
   </div>);
   if (v === "editor") body = <div className="bx-rise w-[88%] max-w-[440px]" style={st(150)}><EditorPanel /></div>;
   if (v === "quiz") body = phone(<Quiz active={on} lang={lang} q={mock[0] ?? ""} a={mock.slice(1, 4)} />);
-  if (v === "panel") body = (<div className="w-[92%] overflow-hidden rounded-[14px] ring-1 ring-white/10"><div className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /></div>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>);
-  if (v === "screen") body = (<div className="w-[92%] overflow-hidden rounded-[14px] bg-[#181818] ring-1 ring-white/10">
+  if (v === "panel") body = (<div className="w-[92%] overflow-hidden rounded-[14px]"><div className="flex h-7 items-center gap-1.5 bg-[#1b1b1b] px-3"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /></div>{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full" />}</div>);
+  if (v === "screen") body = (<div className="w-[92%] overflow-hidden rounded-[14px] bg-[#181818]">
     <div className="flex h-8 items-center justify-between bg-[#1f1f1f] px-3"><span className="flex gap-1.5"><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /><span className="h-2 w-2 rounded-full bg-white/20" /></span>
       <span className="flex items-center gap-1.5 rounded-full bg-[rgb(229_74_74/0.16)] px-2.5 py-0.5 text-[11px] font-medium text-[#F3A3A3]"><span className="h-1.5 w-1.5 rounded-full bg-[#E54A4A]" />{mock[0]}</span></div>
     <div className="grid grid-cols-[1.2fr_1fr] gap-3 p-4">
