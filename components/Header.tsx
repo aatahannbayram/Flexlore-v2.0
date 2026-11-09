@@ -97,7 +97,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
         className={`fixed inset-x-0 top-0 z-40 backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined || mega ? "bg-[rgb(var(--bg-rgb)/0.86)]" : "bg-[rgb(var(--bg-rgb)/0.55)]"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <a href={home ? "#main" : "/"} className="flex h-11 items-center" aria-label="Flexlore home">
+            <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore home">
               <><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="logo-dark h-6 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={110} height={24} className="logo-light h-6 w-auto" /></>
             </a>{brand}
           </div>

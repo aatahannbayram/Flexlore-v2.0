@@ -202,7 +202,7 @@ function Roi({ l }: { l: L }) {
         {rows.map(([a, b, c]) => <div key={a} className="flex items-baseline justify-between gap-6 border-b border-[#e9dcc6]/[.06] py-5"><div><p className="text-sm text-[#f4efe8]/75">{a}</p><p className="mt-1 text-xs text-[#f4efe8]/35">{c}</p></div><p className="shrink-0 tabular-nums text-lg font-medium tracking-[-.02em] text-[#f4efe8]">{b}</p></div>)}
         <div className="border-b border-[#e9dcc6]/[.14] py-8"><p className="text-sm text-flame">{t2(l, "Toplam örnek tahmin / yıl", "Total example estimate / year")}</p><p className="mt-3 tabular-nums text-h2 font-medium leading-none tracking-[-.045em] text-[#f4efe8]">{fmt(lab + waste)} ₺</p></div>
         <p className="mt-6 text-xs leading-[1.6] text-[#f4efe8]/35">{t2(l, `İşçilik bazı: 2026 asgari ücreti, brüt ${fmt(MW.gross)} ₺/ay, işverene maliyet (indirimsiz) ${fmt(MW.employer)} ₺/ay; 225 saat/ay ile ${fmt(MW.employer / MW.hours)} ₺/saat. Kaynak: T.C. Çalışma ve Sosyal Güvenlik Bakanlığı, Resmî Gazete 26.12.2025/33119. Kamuya açık referanstır, Mikel Coffee ücret verisi değildir. Eğitim saati, eğiten ve eğitilen için iki kez sayılır.`, `Labour basis: Turkey's 2026 minimum wage, gross ${fmt(MW.gross)} ₺/month, employer cost (no incentives) ${fmt(MW.employer)} ₺/month; at 225 h/month that is ${fmt(MW.employer / MW.hours)} ₺/h. Source: Turkish Ministry of Labour and Social Security, Official Gazette 26.12.2025/33119. A public reference, not Mikel Coffee wage data. Training hours count twice: trainer and trainee.`)}</p>
-        <a href={SITE.demo} className="mt-8 inline-flex items-center gap-2 border-b border-[#e9dcc6]/40 pb-1 text-sm text-[#f4efe8] transition hover:border-[#f4efe8]">{t2(l, "Bu çerçeveyi kendi verinizle doğrulayalım", "Validate this with your own data")} <Arr /></a>
+        <a href={SITE.demo} className="mt-8 inline-flex min-h-11 items-center gap-2 border-b border-[#e9dcc6]/40 text-sm text-[#f4efe8] transition hover:border-[#f4efe8]">{t2(l, "Bu çerçeveyi kendi verinizle doğrulayalım", "Validate this with your own data")} <Arr /></a>
       </div></div>
     </div>
     <p className="mt-24 border-t border-[#e9dcc6]/[.08] pt-6 text-xs text-[#f4efe8]/30">{t2(l, "Bu sayfa Mikel Coffee ekibi için Flexlore Inc. tarafından hazırlanmış bir demodur. Mikel Coffee'nin resmi bir yayını değildir; reçete adımları, ekran içerikleri ve hesaplamalar örnektir.", "This page is a demo prepared by Flexlore Inc. for the Mikel Coffee team. It is not an official Mikel Coffee publication; recipe steps, screen contents and calculations are examples.")}</p>
@@ -221,7 +221,7 @@ export default function MikelCoffee() {
   useEffect(() => { document.documentElement.lang = l; }, [l]);
   const sec = "relative px-6 py-20 md:px-10 md:py-28 before:absolute before:inset-x-6 md:before:inset-x-10 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-[#e9dcc6]/[.16] before:to-transparent";
   return (<>
-    <div className="dark"><Header lang={l} setLang={setL} brand={<span className="ml-3 flex items-center gap-3"><span aria-hidden="true" className="text-sm text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-7 w-auto" /></span>} /></div>
+    <div className="dark"><Header lang={l} setLang={setL} brand={<span className="ml-3 hidden items-center gap-3 min-[360px]:flex"><span aria-hidden="true" className="text-sm text-white/35">×</span><img src="/brand/mikel/mikel-mark.svg" alt="Mikel Coffee" className="h-7 w-auto" /></span>} /></div>
     <main id="main" className="dark bg-[#0c0a09] text-[#f4efe8]">
       {/* hero */}
       <section className="relative h-svh overflow-hidden">
@@ -251,12 +251,12 @@ export default function MikelCoffee() {
           <p className="mono text-xs uppercase tracking-[.22em] text-flame">01 · {t2(l, "İçecek reçeteleri, video adımlar", "Drink recipes as video steps")}</p>
           <h2 className="display mt-4 text-h2">{t2(l, "Barista gözünden, adım adım.", "Through the barista's eyes, step by step.")}</h2>
           <p className="mt-5 max-w-[46ch] text-base leading-[1.5] text-white/60">{t2(l, "Bir içecek seçin. Telefon, yeni bir baristanın tezgâhta gördüğünü gösterir. Adımlar örnektir; gerçek demoda sizin reçeteniz ve ölçüleriniz kullanılır.", "Pick a drink. The phone shows what a new barista sees at the counter. Steps are examples; in a real demo we use your recipe and measures.")}</p>
-          <div className="mt-8 flex flex-wrap gap-2">{DRINKS.map((x, k) => <button key={x.k} onClick={() => { setD(k); setI(0); setPlay(true); }} aria-pressed={d === k} className={`rounded-full px-4 py-2 text-sm font-medium ring-1 transition ${d === k ? "bg-white text-black ring-white" : "text-white/75 ring-white/20 hover:ring-white/50"}`}>{t2(l, x.tr, x.en)}</button>)}</div>
+          <div className="mt-8 flex flex-wrap gap-2">{DRINKS.map((x, k) => <button key={x.k} onClick={() => { setD(k); setI(0); setPlay(true); }} aria-pressed={d === k} className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium ring-1 transition ${d === k ? "bg-white text-black ring-white" : "text-white/75 ring-white/20 hover:ring-white/50"}`}>{t2(l, x.tr, x.en)}</button>)}</div>
           <ol className="mt-8 ">{drink.steps.map((s, k) => <li key={k}><button onClick={() => { setI(k); setPlay(false); }} className={`grid w-full grid-cols-[2.5rem_1fr] items-baseline border-b border-[#e9dcc6]/[.08] py-3 text-left transition ${k === i ? "text-white" : "text-white/45 hover:text-white/80"}`}>
             <span className="mono text-xs tabular-nums" style={k === i ? { color: O } : {}}>{String(k + 1).padStart(2, "0")}</span><span className="text-base font-medium tracking-tight">{t2(l, s[0], s[1])}</span></button></li>)}</ol>
-          <button onClick={() => setPlay((p) => !p)} className="mono mt-4 text-xs uppercase tracking-[.18em] text-white/50 hover:text-white">{play ? t2(l, "Duraklat", "Pause") : t2(l, "Otomatik oynat", "Autoplay")}</button>
+          <button onClick={() => setPlay((p) => !p)} className="mono mt-2 inline-flex min-h-11 items-center text-xs uppercase tracking-[.18em] text-white/50 hover:text-white">{play ? t2(l, "Duraklat", "Pause") : t2(l, "Otomatik oynat", "Autoplay")}</button>
         </div>
-        <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8"><Device label={t2(l, "Flexlore uygulamasında içecek reçetesi", "Drink recipe in the Flexlore app")}><RecipeScreen d={drink} i={i} l={l} /></Device></div>
+        <div className="mx-auto w-[min(78vw,330px)] min-w-0 md:w-full md:max-w-[330px] md:col-span-5 md:col-start-8"><Device label={t2(l, "Flexlore uygulamasında içecek reçetesi", "Drink recipe in the Flexlore app")}><RecipeScreen d={drink} i={i} l={l} /></Device></div>
       </div></section>
 
       {/* editor */}
@@ -267,12 +267,12 @@ export default function MikelCoffee() {
           <p className="mt-5 max-w-[46ch] text-base leading-[1.5] text-white/60">{t2(l,"Usta baristanız istasyonu bir kez çeker; Flexlore editöründe başlangıç ve bitişi işaretleyip uzun videoyu adım adım izlenen bir akışa böler. Metin ve çıkartma ekler, yayınlar.","Your lead films the station once; in the Flexlore editor they mark start and stop and cut the long video into a step-by-step flow, add text and stickers, and publish.")}</p>
           <div className="mt-10 hidden max-w-[520px] rounded-2xl bg-white/[.04] ring-1 ring-white/10 backdrop-blur md:block"><EdTools l={l} big /></div>
         </div>
-        <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8"><Device label={t2(l,"Flexlore video editörü","Flexlore video editor")}><EditorScreen l={l} /></Device></div>
+        <div className="mx-auto w-[min(78vw,330px)] min-w-0 md:w-full md:max-w-[330px] md:col-span-5 md:col-start-8"><Device label={t2(l,"Flexlore video editörü","Flexlore video editor")}><EditorScreen l={l} /></Device></div>
       </div></section>
 
       {/* shift opening */}
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto grid max-w-[1400px] gap-14 md:grid-cols-12 md:items-center">
-        <div className="order-2 mx-auto w-[min(78vw,330px)] md:order-1 md:col-span-5"><Device label={t2(l, "Kahve istasyonu açılış listesi", "Coffee station opening checklist")}><OpenScreen n={n} l={l} /></Device></div>
+        <div className="order-2 mx-auto w-[min(78vw,330px)] min-w-0 md:w-full md:max-w-[330px] md:order-1 md:col-span-5"><Device label={t2(l, "Kahve istasyonu açılış listesi", "Coffee station opening checklist")}><OpenScreen n={n} l={l} /></Device></div>
         <div className="order-1 md:order-2 md:col-span-6 md:col-start-7">
           <p className="mono text-xs uppercase tracking-[.22em] text-flame">02 · {t2(l, "Açılış, kapanış ve poli", "Opening, closing and clean")}</p>
           <h2 className="display mt-4 text-h2">{t2(l, "Kepenk açılmadan istasyon hazır.", "The station is ready before the shutters open.")}</h2>
@@ -289,7 +289,7 @@ export default function MikelCoffee() {
           <div className="mt-10 ">{ALLERGEN.map(([a, b, c, e], k) => <Rev key={a} d={k * .05} className="grid grid-cols-[2.5rem_1fr] gap-2 border-b border-[#e9dcc6]/[.08] py-5"><span className="mono pt-1 text-xs text-white/35">0{k + 1}</span><div><h3 className="text-lg font-semibold tracking-tight">{t2(l, a, b)}</h3><p className="mt-1 text-base leading-[1.45] text-white/60">{t2(l, c, e)}</p></div></Rev>)}</div>
           <p className="mt-5 text-sm text-white/40">{t2(l, "İçerik ve alerjen bilgisi sizin onaylı listenizden gelir; Flexlore onu tezgâhta gösterilebilir hale getirir.", "Ingredient and allergen facts come from your approved list; Flexlore makes them showable at the counter.")}</p>
         </div>
-        <div className="mx-auto w-[min(78vw,330px)] md:col-span-5 md:col-start-8 md:sticky md:top-24"><Device label={t2(l, "Alerjen quiz ekranı", "Allergen quiz screen")}><QuizScreen pick={pick} setPick={setPick} l={l} /></Device>
+        <div className="mx-auto w-[min(78vw,330px)] min-w-0 md:w-full md:max-w-[330px] md:col-span-5 md:col-start-8 md:sticky md:top-24"><Device label={t2(l, "Alerjen quiz ekranı", "Allergen quiz screen")}><QuizScreen pick={pick} setPick={setPick} l={l} /></Device>
           <p className="mt-4 text-center text-xs text-white/40">{t2(l, "Dokunun: bir cevap seçin.", "Tap: pick an answer.")}</p></div>
       </div></section>
 
@@ -306,10 +306,10 @@ export default function MikelCoffee() {
         <div className="md:col-span-5"><p className="mono text-xs uppercase tracking-[.22em] text-flame">05 · {t2(l, "Bölge ve şube sorumlusu", "Area and branch leads")}</p>
           <h2 className="display mt-4 text-h2">{t2(l, "Kim hangi içeceğe hazır, tek ekranda.", "Who is ready for which drink, on one screen.")}</h2>
           <p className="mt-5 max-w-[44ch] text-base leading-[1.5] text-white/60">{t2(l, "Web panelinde reçeteleri şubelere atayın, quiz sonuçlarını görün, yeni reçeteyi tek seferde tüm kahve noktalarına gönderin.", "In the web panel, assign recipes to branches, see quiz results and send a new recipe to every coffee point at once.")}</p></div>
-        <div className="md:col-span-7"><Rev className="overflow-hidden rounded-[6px] bg-[#120e0c]/80 ring-[.5px] ring-[#e9dcc6]/[.12]">
+        <div className="min-w-0 md:col-span-7"><Rev className="overflow-hidden rounded-[6px] bg-[#120e0c]/80 ring-[.5px] ring-[#e9dcc6]/[.12]">
           <div className="flex items-center justify-between border-b border-[#e9dcc6]/[.07] px-5 py-3 text-xs text-white/50"><span>{t2(l, "Hazırlık · Kahve istasyonu", "Readiness · Coffee station")}</span><span className="mono text-xs uppercase tracking-[.16em] text-white/35">{t2(l, "Örnek görünüm", "Sample view")}</span></div>
-          <table className="w-full text-left text-sm"><thead className="text-xs uppercase tracking-[.12em] text-white/35"><tr><th className="px-5 py-3 font-medium">{t2(l, "Barista", "Barista")}</th>{DRINKS.map((x) => <th key={x.k} className="px-3 py-3 font-medium">{t2(l, x.tr, x.en)}</th>)}</tr></thead>
-            <tbody>{[["Ayşe K.", [2, 2, 1, 2, 2, 2]], ["Mehmet Y.", [2, 1, 0, 2, 1, 2]], ["Elif D.", [1, 0, 0, 1, 2, 1]], ["Can A.", [2, 2, 2, 1, 0, 2]], ["Zeynep S.", [1, 1, 0, 0, 1, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-[#e9dcc6]/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-xs ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-flame" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table>
+          <div className="overflow-x-auto overscroll-x-contain"><table className="w-full min-w-[640px] whitespace-nowrap text-left text-sm"><thead className="text-xs uppercase tracking-[.12em] text-white/35"><tr><th className="px-5 py-3 font-medium">{t2(l, "Barista", "Barista")}</th>{DRINKS.map((x) => <th key={x.k} className="px-3 py-3 font-medium">{t2(l, x.tr, x.en)}</th>)}</tr></thead>
+            <tbody>{[["Ayşe K.", [2, 2, 1, 2, 2, 2]], ["Mehmet Y.", [2, 1, 0, 2, 1, 2]], ["Elif D.", [1, 0, 0, 1, 2, 1]], ["Can A.", [2, 2, 2, 1, 0, 2]], ["Zeynep S.", [1, 1, 0, 0, 1, 1]]].map(([nm, v]) => <tr key={nm as string} className="border-t border-[#e9dcc6]/[.06]"><td className="px-5 py-3 text-white/85">{nm as string}</td>{(v as number[]).map((x, k) => <td key={k} className="px-3 py-3"><span className={`inline-flex items-center gap-1.5 text-xs ${x === 2 ? "text-white" : x === 1 ? "text-white/60" : "text-white/35"}`}><span className={`h-1.5 w-1.5 rounded-full ${x === 2 ? "bg-flame" : x === 1 ? "" : "ring-1 ring-white/30"}`} style={x === 1 ? { background: O } : {}} />{x === 2 ? t2(l, "Hazır", "Ready") : x === 1 ? t2(l, "Eğitimde", "In training") : t2(l, "Atanmadı", "Not assigned")}</span></td>)}</tr>)}</tbody></table></div>
         </Rev></div>
       </div></section>
 
