@@ -20,6 +20,7 @@ import { Play, Pause, Check, CheckCircle, ShieldCheck, MapPin, BookOpen, Users, 
 import { LOCALES } from "../i18n/locales";
 import { Chev } from "./Chevron";
 import { CASES } from "./cases";
+import { LOGOS, CaseLogo } from "./logos";
 import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
 
@@ -427,7 +428,7 @@ export function WebV3() {
 
 /* ---------- Customers ----------
  * Tablets and up (motion allowed): the chapter pins to the screen and the cards slide sideways as the page scrolls down,
- * every card at full strength; the sector tabs and an orange progress line follow, a tab click scrolls to its card.
+ * every card at full strength; the sector tabs follow, a tab click scrolls to its card. Logos where we have them.
  * Phones and reduced motion: the swipe carousel (snap, the next card peeks), with arrows and arrow keys. */
 const SEC_IC = { food: ForkKnife, franchise: Storefront, mfg: Factory, build: HardHat } as const;
 function useMedia(q: string) {
@@ -446,7 +447,9 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
       <div className="relative flex h-full flex-col items-center justify-between p-6 text-center md:p-8">
         <span className={`${glass} inline-flex items-center gap-2 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90`}><I size={14} aria-hidden="true" />{t.sec[c.sec]}</span>
         <div className="max-w-[92%] md:max-w-[80%]">
-          <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>
+          {LOGOS[c.slug]
+            ? <h3 className="flex justify-center drop-shadow-[0_2px_18px_rgb(17_14_12/0.45)]"><CaseLogo slug={c.slug} name={c.company} /></h3>
+            : <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>}
           <p className="mt-3 text-[15px] text-white/80 md:text-[17px]">{t.desc[c.desc]}</p>
         </div>
         <span className={`${glass} inline-flex min-h-11 items-center gap-2 !rounded-full px-5 text-[14px] font-medium text-white/85`}>{t.soon}</span>
@@ -491,7 +494,6 @@ function CasesPinned() {
           <div className="relative mt-5 flex items-center justify-between gap-4 border-b border-line">
             <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
             <Arrows i={i} n={list.length} go={go} />
-            <m.span aria-hidden="true" style={{ scaleX: scrollYProgress }} className="absolute inset-x-0 -bottom-px h-px origin-left bg-accent rtl:origin-right" />
           </div>
         </div>
         <div ref={view} className="mt-6 w-full" role="region" aria-roledescription="carousel" aria-label={t.k}>
