@@ -20,7 +20,7 @@ const Rise = ({ children, d = 0, className = "" }: { children: React.ReactNode; 
   return <m.div initial={reduce ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.8, delay: d, ease }} className={className}>{children}</m.div>;
 };
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-[rgb(255_240_225/0.2)]" />
+  <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-[rgb(255_255_255/0.2)]" />
     <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{children}</p></div>);
 function H2({ text, className = "" }: { text: string; className?: string }) {
   const reduce = useReducedMotion(); const w = text.split(" ");
@@ -31,7 +31,7 @@ function H2({ text, className = "" }: { text: string; className?: string }) {
         .flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
 }
-const card = "rounded-[24px] bg-[var(--card)] ring-1 ring-[rgb(255_240_225/0.06)]";
+const card = "rounded-[24px] bg-[var(--card)] ring-1 ring-[rgb(255_255_255/0.06)]";
 
 export default function SectorPage({ i }: { i: number }) {
   const s = sectors[i]; const next = sectors[(i + 1) % sectors.length];
@@ -56,8 +56,8 @@ export default function SectorPage({ i }: { i: number }) {
       <main id="main" lang="en">
         <section ref={hero} className="dark relative h-svh min-h-[560px] overflow-hidden">
           <m.div style={{ scale: reduce ? 1 : vs }} className="absolute inset-0"><Video name={s.v} eager /></m.div>
-          <div className="absolute inset-0 bg-[rgb(17_14_12/0.4)]" />
-          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-[linear-gradient(0deg,#111111_0%,rgb(17_14_12/0.75)_45%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[rgb(16_16_16/0.4)]" />
+          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.75)_45%,transparent_100%)]" />
           <m.div style={{ y: reduce ? 0 : ty }} className="container-x relative flex h-full flex-col justify-end pb-[9vh]">
             <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
               <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</m.p>
@@ -98,21 +98,21 @@ export default function SectorPage({ i }: { i: number }) {
                     className={`group relative flex min-h-14 shrink-0 items-center gap-4 overflow-hidden rounded-[16px] px-4 py-3 text-start transition-colors duration-300 lg:w-full ${act ? "bg-[var(--card-2)] text-ink" : "text-ink-muted hover:bg-[var(--card)] hover:text-ink"}`}>
                     <span className="text-[13px] font-semibold tabular-nums">{String(k + 1).padStart(2, "0")}</span>
                     <span className="whitespace-nowrap text-[16px] font-semibold tracking-[-0.01em] lg:whitespace-normal lg:text-[19px]">{o.t}</span>
-                    {act && <m.span layoutId="sop-bar" aria-hidden="true" className="absolute inset-y-3 start-0 hidden w-[3px] rounded-full bg-accent lg:block" />}
+                    {act && <m.span layoutId="sop-bar" aria-hidden="true" className="absolute inset-y-3 start-0 hidden w-[3px] rounded-full bg-ink lg:block" />}
                   </button>); })}
               </div>
-              <div ref={stage} className="dark relative min-h-[420px] overflow-hidden rounded-[28px] bg-[#1A1714] lg:col-span-8 lg:min-h-[520px]">
+              <div ref={stage} className="dark relative min-h-[420px] overflow-hidden rounded-[28px] bg-[#171717] lg:col-span-8 lg:min-h-[520px]">
                 <img src={s.still} alt="" loading="lazy" className={`absolute inset-0 h-full w-full object-cover ${reduce ? "" : "kenburns-slow"}`} />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgb(17_14_12/0.15),rgb(17_14_12/0.85)_75%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgb(16_16_16/0.15),rgb(16_16_16/0.85)_75%)]" />
                 <AnimatePresence mode="wait" initial={false}>
                   <m.div key={sop} initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.4, ease }}
-                    className="absolute inset-x-4 bottom-4 rounded-[20px] bg-[rgb(26_22_19/0.7)] p-4 text-white ring-1 ring-[rgb(255_240_225/0.14)] backdrop-blur-xl md:inset-x-auto md:bottom-6 md:end-6 md:w-[min(420px,60%)] md:p-5">
+                    className="absolute inset-x-4 bottom-4 rounded-[20px] bg-[rgb(24_24_24/0.7)] p-4 text-white ring-1 ring-[rgb(255_255_255/0.14)] backdrop-blur-xl md:inset-x-auto md:bottom-6 md:end-6 md:w-[min(420px,60%)] md:p-5">
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">Video SOP · {s.sops[sop].steps.length} steps</p>
                       <p className="text-[12px] tabular-nums text-white/60">{Math.min(done, s.sops[sop].steps.length)}/{s.sops[sop].steps.length}</p>
                     </div>
                     <h3 className="mt-1.5 text-[20px] font-semibold tracking-[-0.02em]">{s.sops[sop].t}</h3>
-                    <span className="mt-3 block h-1 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-accent transition-[width] duration-700" style={{ width: `${(100 * Math.min(done, s.sops[sop].steps.length)) / s.sops[sop].steps.length}%` }} /></span>
+                    <span className="mt-3 block h-1 overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-ink transition-[width] duration-700" style={{ width: `${(100 * Math.min(done, s.sops[sop].steps.length)) / s.sops[sop].steps.length}%` }} /></span>
                     <ol className="mt-3 space-y-1.5">
                       {s.sops[sop].steps.map((st, k) => { const ok = k < done; return (
                         <li key={st} className={`flex items-center gap-3 rounded-[12px] px-3 py-2.5 text-[14px] transition-colors duration-500 ${ok ? "bg-white/[.1]" : "bg-white/[.04]"}`}>
@@ -142,7 +142,7 @@ export default function SectorPage({ i }: { i: number }) {
                   <p className="mt-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{h.k}</p>
                   <h3 className="mt-2 text-[22px] font-semibold leading-[1.15] tracking-[-0.025em]">{h.h}</h3>
                   <p className="mt-3 text-[15px] leading-[1.55] text-ink-muted">{h.p}</p>
-                  <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-accent transition-transform duration-700 group-hover:scale-x-100 rtl:origin-right" />
+                  <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-ink transition-transform duration-700 group-hover:scale-x-100 rtl:origin-right" />
                 </Rise>); })}
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="container-x">
             <Ch n="05">A sample rollout</Ch><H2 text="From one phone to every shift." className="max-w-[18ch]" />
             <ol ref={tl} className="relative mt-10 grid gap-6 md:mt-14 md:grid-cols-4 md:gap-4">
-              <span aria-hidden="true" className="absolute start-[7px] top-2 h-[calc(100%-16px)] w-px bg-[rgb(255_240_225/0.12)] md:start-0 md:top-[7px] md:h-px md:w-full" />
+              <span aria-hidden="true" className="absolute start-[7px] top-2 h-[calc(100%-16px)] w-px bg-[rgb(255_255_255/0.12)] md:start-0 md:top-[7px] md:h-px md:w-full" />
               <span aria-hidden="true" className="tl-line absolute start-[7px] top-2 h-[calc(100%-16px)] w-px origin-top bg-ink transition-transform duration-[1600ms] ease-out md:start-0 md:top-[7px] md:h-px md:w-full md:origin-left rtl:md:origin-right"
                 style={{ transform: tlOn || reduce ? "none" : "var(--tl-off)" }} />
               {s.flow.map((f, k) => (
@@ -204,7 +204,7 @@ export default function SectorPage({ i }: { i: number }) {
 
         <Link href={`/sektor/${next.slug}/`} className="dark group relative flex h-[56svh] min-h-[380px] items-end overflow-hidden pb-12 md:pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-75"><Video name={next.v} /></div>
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(17_14_12/0.55)_55%,transparent_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.55)_55%,transparent_100%)]" />
           <div className="container-x relative w-full">
             <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70"><span className="tabular-nums text-white">{next.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />Next sector</p>
             <p className="mt-4 flex items-center gap-4 text-[clamp(40px,6vw,84px)] font-semibold leading-none tracking-[-0.04em] text-white transition-transform duration-500 group-hover:translate-x-3 rtl:group-hover:-translate-x-3">{next.en}

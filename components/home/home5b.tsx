@@ -169,9 +169,9 @@ export function Faq5({ children, openFirst = true }: { children?: React.ReactNod
             <li key={q} className={`border-line transition-colors duration-300 [&:not(:first-child)]:border-t ${on ? "bg-[var(--card-2)]" : ""}`}>
               <h3><button type="button" id={`faq-q-${i}`} aria-expanded={on} aria-controls={`faq-a-${i}`} onClick={() => setOpen(on ? null : i)}
                 className="group grid min-h-14 w-full grid-cols-[2rem_1fr_auto] items-center gap-3 px-4 py-4 text-start md:min-h-[72px] md:grid-cols-[2.75rem_1fr_auto] md:px-7">
-                <span aria-hidden="true" className={`text-[13px] font-semibold tabular-nums transition-colors md:text-[14px] ${on ? "text-accent" : "text-ink-faint"}`}>{String(i + 1).padStart(2, "0")}</span>
+                <span aria-hidden="true" className={`text-[13px] font-semibold tabular-nums transition-colors md:text-[14px] ${on ? "text-ink" : "text-ink-faint"}`}>{String(i + 1).padStart(2, "0")}</span>
                 <span className={`text-[16px] font-semibold leading-snug tracking-[-.01em] transition-colors md:text-[18px] ${on ? "text-ink" : "text-ink/85 group-hover:text-ink"}`}>{q}</span>
-                <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors ${on ? "bg-accent text-white" : "bg-[var(--card-2)] text-ink-muted group-hover:text-ink"}`}><Plus size={15} aria-hidden="true" /></m.span>
+                <m.span animate={{ rotate: on ? 45 : 0 }} transition={{ duration: reduce ? 0 : 0.3, ease: EASE }} className={`grid h-8 w-8 shrink-0 place-items-center rounded-full transition-colors ${on ? "bg-ink text-bg" : "bg-[var(--card-2)] text-ink-muted group-hover:text-ink"}`}><Plus size={15} aria-hidden="true" /></m.span>
               </button></h3>
               <AnimatePresence initial={false}>{on && (
                 <m.div id={`faq-a-${i}`} role="region" aria-labelledby={`faq-q-${i}`} initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35, ease: EASE }} className="overflow-hidden">

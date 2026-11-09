@@ -44,7 +44,7 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
     <div className="relative w-[38%] max-w-[190px] overflow-hidden rounded-[14px] bg-white p-3.5 text-[#111]">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold"><FilePdf size={14} className="text-[#A03434]" /><span className="truncate">{mock[0]}</span></p>
       <div className="mt-3 space-y-1.5">{[90, 70, 84, 60, 92, 50, 76, 66, 88, 40].map((w, i) => <span key={i} className="block h-1.5 rounded-full bg-[#111]/12" style={{ width: `${w}%` }} />)}</div>
-      <span aria-hidden="true" className="pdf-scan absolute inset-x-0 top-0 h-10 bg-[linear-gradient(180deg,rgb(236_103_38/0)_0%,rgb(236_103_38/0.22)_70%,rgb(236_103_38/0.6)_100%)]" />
+      <span aria-hidden="true" className="pdf-scan absolute inset-x-0 top-0 h-10 bg-[linear-gradient(180deg,rgb(244_240_235/0)_0%,rgb(244_240_235/0.22)_70%,rgb(244_240_235/0.6)_100%)]" />
       <p className="mt-3 text-[10px] text-[#666]">{mock[1]}</p>
     </div>
     <ArrowRight size={18} className="shrink-0 text-white/50" />

@@ -60,7 +60,7 @@ function Spark({ p, on }: { p: readonly number[]; on: boolean }) {
 function Kpi({ k, i, on, still, t }: { k: (typeof KPI)[number]; i: number; on: boolean; still: boolean; t: (s: string) => string }) {
   const v = useCount(k.v, on, still);
   return <m.div initial={false} animate={{ opacity: on ? 1 : 0, y: on ? 0 : 10 }} transition={{ delay: i * .07, duration: .5, ease }} className={`flex flex-col justify-between px-4 py-3.5 ${panel}`} style={{ background: CARD }}>
-    <p className="flex items-center gap-1.5 text-xs text-ice-400">{k.flag && <i className="h-1.5 w-1.5 rounded-full bg-accent" />}{t(k.l)}</p>
+    <p className="flex items-center gap-1.5 text-xs text-ice-400">{k.flag && <i className="h-1.5 w-1.5 rounded-full bg-ink" />}{t(k.l)}</p>
     <div className="flex items-end justify-between">
       <div><p className="text-[28px] font-semibold leading-none tracking-[-.03em] tabular-nums text-ice-50">{v}<span className="text-lg text-ice-400">{k.s}</span></p><p className="mt-1.5 text-xs text-ice-500">{t(k.d)}</p></div>
       <Spark p={k.p} on={on} /></div></m.div>;

@@ -53,7 +53,7 @@ export function CompanyPage() {
           <Reveal as="ol" stagger={0.25} className="grid gap-8 md:grid-cols-4 md:gap-6">
             {c.timeline.map(([y, h, p], i) => (
               <RevealItem as="li" key={h} className="relative ps-7 md:ps-0 md:pt-10">
-                <span aria-hidden="true" className={`absolute start-0 top-1 h-[15px] w-[15px] rounded-full ring-4 ring-bg md:top-0 ${i === c.timeline.length - 1 ? "bg-flame" : "bg-ink"}`} />
+                <span aria-hidden="true" className={`absolute start-0 top-1 h-[15px] w-[15px] rounded-full ring-4 ring-bg md:top-0 ${i === c.timeline.length - 1 ? "bg-ink ring-ink/40" : "bg-ink-faint"}`} />
                 <p className="text-[14px] font-semibold tabular-nums text-ink-faint">{y}</p>
                 <h3 className="mt-2 text-[19px] font-semibold tracking-[-.015em]">{h}</h3>
                 <p className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{p}</p>

@@ -73,14 +73,14 @@ const T: Record<string, { all: string; aiP: string; talk: string; talkP: string;
 };
 
 const link = "inline-flex min-h-11 min-w-11 items-center text-[15px] text-white/65 transition-colors duration-200 hover:text-white";
-const card = "rounded-[24px] bg-[#1A1714] p-5 ring-1 ring-[rgb(255_240_225/0.08)] md:p-7";
+const card = "rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] ring-1 ring-[rgb(255_255_255/0.08)] backdrop-blur-xl md:p-7";
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
 export function Footer({ lang: _l }: { lang?: L } = {}) {
   const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null);
   return (
-    <footer aria-labelledby="footer-h" className="dark relative overflow-hidden border-t border-[rgb(255_240_225/0.08)] bg-[#111111] text-[15px] text-white">
+    <footer aria-labelledby="footer-h" className="dark relative overflow-hidden border-t border-[rgb(255_255_255/0.08)] bg-[#111111] text-[15px] text-white">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
       <div className="container-x relative pt-12 md:pt-20">
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
@@ -91,7 +91,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {SOCIAL.map(([n, k, h]) => (
                 <li key={k}>
                   <a href={h} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`} title={n}
-                    className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-[rgb(255_240_225/0.12)] text-white/75 transition-colors duration-200 hover:bg-white/[.08] hover:text-white">
+                    className="grid h-11 w-11 place-items-center rounded-full ring-1 ring-[rgb(255_255_255/0.12)] text-white/75 transition-colors duration-200 hover:bg-white/[.08] hover:text-white">
                     <Mark k={k} dir="social" cls="h-[17px] w-[17px]" />
                   </a>
                 </li>))}
@@ -99,9 +99,9 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </div>
 
           {/* Phones: each group opens under its own heading. From 640 px: four open columns. */}
-          <div className="grid gap-x-6 border-y border-[rgb(255_240_225/0.08)] sm:grid-cols-4 sm:border-0 lg:col-span-8">
+          <div className="grid gap-x-6 border-y border-[rgb(255_255_255/0.08)] sm:grid-cols-4 sm:border-0 lg:col-span-8">
             {GROUPS.map((g) => { const on = open === g.g; return (
-              <nav key={g.en} aria-label={f.groups[g.g]} className="border-[rgb(255_240_225/0.08)] [&:not(:first-child)]:border-t sm:!border-0">
+              <nav key={g.en} aria-label={f.groups[g.g]} className="border-[rgb(255_255_255/0.08)] [&:not(:first-child)]:border-t sm:!border-0">
                 <p className="mb-3 hidden text-[13px] font-semibold uppercase tracking-[0.12em] text-white/55 sm:block">{f.groups[g.g]}</p>
                 <button type="button" aria-expanded={on} aria-controls={`ft-${g.g}`} onClick={() => setOpen(on ? null : g.g)}
                   className="flex min-h-14 w-full items-center justify-between text-start text-[16px] font-medium text-white sm:hidden">
@@ -129,7 +129,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {AI.map(([n, k, u]) => (
                 <li key={n}>
                   <a href={u(f.aiQ)} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`}
-                    className="group flex min-h-12 items-center gap-2.5 rounded-[14px] bg-white/[.05] px-3.5 text-[14px] font-medium text-white/85 ring-1 ring-[rgb(255_240_225/0.08)] transition-colors hover:bg-white/[.1] hover:text-white">
+                    className="group flex min-h-12 items-center gap-2.5 rounded-[14px] bg-white/[.05] px-3.5 text-[14px] font-medium text-white/85 ring-1 ring-[rgb(255_255_255/0.08)] transition-colors hover:bg-white/[.1] hover:text-white">
                     <Mark k={k} dir="ai" cls="h-[18px] w-[18px]" />
                     <span className="min-w-0 flex-1 truncate">{n}</span>
                     <ArrowUpRight size={13} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
@@ -141,19 +141,19 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           <section aria-labelledby="ft-talk" className={card}>
             <h3 id="ft-talk" className="text-[17px] font-semibold text-white md:text-[19px]">{t.talk}</h3>
             <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.talkP}</p>
-            <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 ring-1 ring-[rgb(255_240_225/0.08)] transition-colors hover:bg-white/[.1]">
+            <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 ring-1 ring-[rgb(255_255_255/0.08)] transition-colors hover:bg-white/[.1]">
               <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[.08] text-white"><EnvelopeSimple size={18} aria-hidden="true" /></span>
               <span className="min-w-0 flex-1"><span className="block text-[12px] text-white/55">{t.mail}</span><span className="block truncate text-[15px] font-medium text-white">support@flexlore.com</span></span>
               <ArrowUpRight size={14} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
             </a>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[rgb(255_240_225/0.08)] pt-4">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[rgb(255_255_255/0.08)] pt-4">
               <span className="text-[14px] text-white/60">{f.app}</span>
               <div className="[&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center"><StoreButtons small lang={lang} /></div>
             </div>
           </section>
         </div>
 
-        <div className="mt-10 border-t border-[rgb(255_240_225/0.08)] pt-4 text-[13px] md:mt-14">
+        <div className="mt-10 border-t border-[rgb(255_255_255/0.08)] pt-4 text-[13px] md:mt-14">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
             <span className="flex flex-wrap items-center gap-x-5 gap-y-1 text-white/60">© 2026 Flexlore Inc. {f.rights}
               <a href="#" className="group inline-flex min-h-11 items-center gap-1.5 text-white/75 transition-colors hover:text-white">
@@ -170,7 +170,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
       </div>
       {/* Closing wordmark: decorative, fades into the ground, cropped by the page edge. */}
       <div aria-hidden="true" className="container-x pointer-events-none mt-4 select-none overflow-hidden md:mt-6">
-        <p dir="ltr" className="translate-y-[22%] bg-[linear-gradient(180deg,rgb(255_240_225/0.12)_0%,rgb(255_240_225/0)_85%)] bg-clip-text text-center text-[clamp(84px,21vw,300px)] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent">Flexlore</p>
+        <p dir="ltr" className="translate-y-[22%] bg-[linear-gradient(180deg,rgb(255_255_255/0.12)_0%,rgb(255_255_255/0)_85%)] bg-clip-text text-center text-[clamp(84px,21vw,300px)] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent">Flexlore</p>
       </div>
     </footer>
   );

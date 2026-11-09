@@ -47,7 +47,7 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
         </div>
       </div>
       <a href="/see-it/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
-        <picture><source srcSet="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.avif" type="image/avif" /><img src="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.webp" alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></picture>
+        <picture className="absolute inset-0"><source srcSet="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.avif" type="image/avif" /><img src="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.webp" alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
         <span className="relative text-[12px] text-white/70">{tt(d, "seeit", 1, "One real job, start to finish")}</span>
         <span className="relative mt-1 flex items-end justify-between gap-2 text-[15px] font-semibold leading-snug text-white">{tt(d, "seeit", 0, "See it in your business")}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
@@ -73,7 +73,7 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
           </li>); })}
       </ul>
       <a href={href} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
-        <picture><source srcSet={`/blog/${f.img}-800.avif`} type="image/avif" /><img src={`/blog/${f.img}-800.webp`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></picture>
+        <picture className="absolute inset-0"><source srcSet={`/blog/${f.img}-800.avif`} type="image/avif" /><img src={`/blog/${f.img}-800.webp`} alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.85)_100%)]" />
         <span className="relative text-[12px] text-white/70">{f.k(d, locale)}</span>
         <span className="relative mt-1 flex items-end justify-between gap-2 text-[14px] font-semibold leading-snug text-white">{f.t(d, lang, locale)}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>

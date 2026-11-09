@@ -7,7 +7,7 @@ import { Pic, Label, card } from "../home/home5";
 import { Faq5 } from "../home/home5b";
 import { Lifebuoy, ArrowRight, ShieldCheck, EnvelopeSimple, CalendarBlank, CheckCircle } from "../ui/icons";
 
-const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink ring-1 ring-line outline-none transition-shadow placeholder:text-ink-faint focus-visible:ring-2 focus-visible:ring-flame";
+const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink ring-1 ring-line outline-none transition-shadow placeholder:text-ink-faint focus-visible:ring-2 focus-visible:ring-ink";
 
 /* The site is static, so the form composes an email to support@flexlore.com instead of posting to a server. */
 export function SupportPage() {
