@@ -2,6 +2,7 @@
 :root[data-theme="light"] .bg-white\/10:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/15:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.128); }
 :root[data-theme="light"] .bg-white\/20:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.17); }
+:root[data-theme="light"] .bg-white\/25:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.212); }
 :root[data-theme="light"] .bg-white\/30:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.255); }
 :root[data-theme="light"] .bg-white\/40:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/45:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
@@ -23,6 +24,7 @@
 :root[data-theme="light"] .bg-white\/\[\.22\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.187); }
 :root[data-theme="light"] .border-white:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .border-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] .border-white\/15:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.15); }
 :root[data-theme="light"] .border-white\/20:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .border-white\/\[\.04\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.05\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
@@ -36,7 +38,6 @@
 :root[data-theme="light"] .hover\:bg-white\/\[\.04\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.08\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.068); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.12\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
-:root[data-theme="light"] .hover\:bg-white\/\[\.14\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.1\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .hover\:ring-white\/50:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .hover\:text-white:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
@@ -54,7 +55,6 @@
 :root[data-theme="light"] .ring-white\/90:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/\[\.04\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.06\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
-:root[data-theme="light"] .ring-white\/\[\.07\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.09\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .text-white\/25:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }

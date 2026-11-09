@@ -17,7 +17,6 @@ import { EXTRA } from "../i18n/extra";
 import { Device, WorkScreen, Status, Nav, Player, Clip, CheckRing } from "../AppScreens";
 import { EASE } from "../ui/Reveal";
 import { Play, Pause, Check, CheckCircle, ShieldCheck, MapPin, BookOpen, Users, ForkKnife, Storefront, Factory, HardHat, Buildings, Bed, ArrowRight, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle, Lightning, ArrowCounterClockwise, Article, Translate } from "../ui/icons";
-import { SmartVideo } from "../ui/SmartVideo";
 import { LOCALES } from "../i18n/locales";
 import { Chev } from "./Chevron";
 import { CASES } from "./cases";
@@ -560,9 +559,9 @@ export function EndV3() {
 
 
 /* ---------- Industries: who it is for ----------
- * Four photo cards into the sector pages, each with its one-line use (HOME2 tabs), the line opening up on hover; then one
- * compact dark box over a slow, darkened kitchen loop: other areas as chips on one side, the 8 languages as round-flag
- * pills that switch the site language on the other. Phones: the cards scroll sideways (snap, the next card peeks). */
+ * Four photo cards into the sector pages: icon and number on a glass chip, the name and its one-line use always shown,
+ * the three uses opening on hover. Under them two twin panels: other areas as chips, and the 8 languages as round-flag
+ * pills that switch the site language. Phones: the cards scroll sideways (snap, the next card peeks). */
 const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "chef-plating", ForkKnife, "50% 30%"], ["/sektor/uretim/", "field", Factory, "40% 40%"],
   ["/sektor/otel/", "hotel-desk", Bed, "50% 45%"], ["/sektor/franchise/", "huddle", Storefront, "50% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
@@ -577,52 +576,52 @@ export function SectorsV3() {
         </div>
         <ul className="no-sb -mx-[var(--pad-x)] mt-7 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] md:mx-0 md:mt-10 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0">
           {IND.map(([href, img, Ic, pos], k) => (
-            <m.li key={href} className="w-[74%] shrink-0 snap-start sm:w-[44%] md:w-auto"
-              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
-              <Link href={href} className="group dark relative block aspect-[4/5] overflow-hidden rounded-[22px] bg-[#1A1714] text-white">
-                <picture><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:768px) 25vw, 74vw" />
-                  <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:768px) 25vw, 74vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }}
+            <m.li key={href} className="w-[78%] shrink-0 snap-start sm:w-[44%] md:w-auto"
+              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
+              <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#1A1714] p-3.5 text-white ring-1 ring-white/[.06] md:p-4">
+                <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:768px) 25vw, 78vw" />
+                  <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:768px) 25vw, 78vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]" /></picture>
-                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_14_12/0)_35%,rgb(17_14_12/0.9)_100%)] transition-opacity duration-500" />
-                <span aria-hidden="true" className="absolute inset-0 bg-[rgb(17_14_12/0.35)] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <span className="absolute start-3.5 top-3.5 grid h-10 w-10 place-items-center rounded-[13px] bg-[rgb(17_14_12/0.45)] ring-1 ring-white/15 backdrop-blur-md"><Ic size={18} aria-hidden="true" /></span>
-                <span aria-hidden="true" className="absolute end-4 top-4 text-[13px] font-semibold tabular-nums text-white/70">0{k + 1}</span>
-                <span className="absolute inset-x-4 bottom-4">
-                  <span className="flex items-end justify-between gap-3">
-                    <span className="text-[18px] font-semibold leading-tight tracking-[-0.02em] md:text-[19px]">{c.cards[k]}</span>
-                    <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur-md transition-colors duration-300 group-hover:bg-accent"><ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
-                  </span>
-                  {/* The use line: always on phones; on hover-capable screens it opens under the name. */}
-                  <span className="grid transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:grid-rows-[1fr] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:grid-rows-[1fr] [@media(hover:hover)]:group-focus-visible:opacity-100">
-                    <span className="overflow-hidden"><span className="block pt-2 text-[13px] leading-[1.45] text-white/80">{tabs[k][0]}</span></span>
+                {/* Shade top and bottom so the chips and text read on any photo; a little deeper on hover for the use list. */}
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_14_12/0.55)_0%,rgb(17_14_12/0)_24%,rgb(17_14_12/0)_40%,rgb(17_14_12/0.94)_100%)]" />
+                <span aria-hidden="true" className="absolute inset-0 bg-[rgb(17_14_12/0.4)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+                <span className="relative flex items-center justify-between">
+                  <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(17_14_12/0.5)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums ring-1 ring-white/15 backdrop-blur-md">
+                    <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span aria-hidden="true" className="text-white/80">0{k + 1}</span></span>
+                  <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-[rgb(17_14_12/0.5)] ring-1 ring-white/15 backdrop-blur-md transition-[background-color,transform] duration-300 group-hover:bg-accent group-hover:ring-accent">
+                    <ArrowRight size={15} className="-rotate-45 transition-transform duration-300 group-hover:rotate-0 rtl:-scale-x-100" /></span>
+                </span>
+                <span className="relative block">
+                  <span className="block text-[19px] font-semibold leading-tight tracking-[-0.02em] md:text-[20px]">{c.cards[k]}</span>
+                  <span className="mt-1.5 line-clamp-2 block text-[13px] leading-[1.45] text-white/75">{tabs[k][0]}</span>
+                  {/* On hover-capable screens the three uses open under the line. */}
+                  <span className="hidden transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] [@media(hover:hover)]:grid [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:grid-rows-[1fr] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:grid-rows-[1fr] [@media(hover:hover)]:group-focus-visible:opacity-100">
+                    <span className="overflow-hidden"><span className="mt-3 block space-y-1.5 border-t border-white/15 pt-3">
+                      {tabs[k][1].map((u) => <span key={u} className="flex items-start gap-2 text-[13px] leading-snug text-white/90"><Check size={13} aria-hidden="true" className="mt-[3px] shrink-0 text-accent" /><span className="line-clamp-1">{u}</span></span>)}
+                    </span></span>
                   </span>
                 </span>
               </Link>
             </m.li>))}
         </ul>
         <Link href="/see-it/" className="btn btn-secondary mt-5 h-12 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        <div className="dark relative mt-3 overflow-hidden rounded-[24px] bg-[#1A1714] px-5 py-7 text-white md:p-8 lg:px-10">
-          <div aria-hidden="true" className="absolute inset-0">
-            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-35 blur-[3px]" />
-            <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_14_12/0.92)_0%,rgb(17_14_12/0.7)_100%)]" />
+        {/* Two calm twin panels: other areas, and the languages (a pick switches the site language). */}
+        <div className="mt-3 grid gap-3 lg:grid-cols-2">
+          <div className="dark rounded-[22px] bg-[#1A1714] p-5 text-white ring-1 ring-white/[.06] md:p-7">
+            <p className="flex items-center gap-2.5 text-[19px] font-semibold tracking-[-0.02em] md:text-[20px]"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-accent/15 text-accent"><DotsThreeCircle size={17} aria-hidden="true" /></span>{c.also}</p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {c.areas.map((a, k) => { const I = AREA_IC[k] ?? DotsThreeCircle; return (
+                <li key={a} className="inline-flex h-10 items-center gap-2 rounded-full bg-white/[.06] pe-4 ps-3 text-[14px] text-white/90 ring-1 ring-white/[.06]"><I size={16} aria-hidden="true" className="text-accent" />{a}</li>); })}
+            </ul>
           </div>
-          <div className="relative grid gap-7 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{c.also}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {c.areas.map((a, k) => { const I = AREA_IC[k] ?? DotsThreeCircle; return (
-                  <li key={a} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.08] pe-4 ps-3 text-[14px] text-white/90 ring-1 ring-white/[.07] backdrop-blur-md"><I size={16} aria-hidden="true" className="text-white/70" />{a}</li>); })}
-              </ul>
-            </div>
-            <div>
-              <p className="text-[22px] font-semibold leading-tight tracking-[-0.03em] md:text-[26px]">{c.langs}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {LOCALES.map((l) => { const on = l.code === locale; return (
-                  <li key={l.code}><button type="button" lang={l.code} dir={l.dir} aria-pressed={on} onClick={() => setLocale(l.code)}
-                    className={`inline-flex min-h-11 items-center gap-2 rounded-full py-1.5 pe-3.5 ps-1.5 text-[14px] ring-1 backdrop-blur-md transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.08] text-white/90 ring-white/[.07] hover:bg-white/[.14]"}`}>
-                    <img src={`/flags/${l.flag}.svg`} alt="" width={26} height={26} className="h-[26px] w-[26px] rounded-full object-cover" />{l.name}</button></li>); })}
-              </ul>
-            </div>
+          <div className="dark rounded-[22px] bg-[#1A1714] p-5 text-white ring-1 ring-white/[.06] md:p-7">
+            <p className="flex items-center gap-2.5 text-[19px] font-semibold tracking-[-0.02em] md:text-[20px]"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-accent/15 text-accent"><Translate size={17} aria-hidden="true" /></span>{c.langs}</p>
+            <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+              {LOCALES.map((l) => { const on = l.code === locale; return (
+                <li key={l.code}><button type="button" aria-pressed={on} onClick={() => setLocale(l.code)}
+                  className={`flex h-11 w-full items-center gap-2 rounded-full pe-3 ps-1.5 text-[14px] ring-1 transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.06] text-white/90 ring-white/[.06] hover:bg-white/[.12]"}`}>
+                  <img src={`/flags/${l.flag}.svg`} alt="" width={26} height={26} className="h-[26px] w-[26px] shrink-0 rounded-full object-cover" /><span lang={l.code} dir={l.dir} className="truncate">{l.name}</span></button></li>); })}
+            </ul>
           </div>
         </div>
       </div>
