@@ -253,6 +253,9 @@ main:not([lang="tr"]) .l-tr { display: none; }
 :root[data-theme="light"] .footer-dots { --dot-rgb: 22 22 22; }
 /* Process stepper progress and the AI hub's travelling dots. */
 @keyframes procbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes recDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.rec-dot { animation: recDot 1.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .rec-dot { animation: none; } }
 @keyframes ringfill { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 .ai-dot { offset-rotate: 0deg; animation: aidot 2.8s ease-in-out infinite; }
 @keyframes aidot { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
@@ -314,19 +317,17 @@ html body { transition: opacity .25s ease; }
 @media (prefers-reduced-motion: reduce) { .cmp-pulse { animation: none; } }
 
 /* ---------- v3: accent button, chevron hover, heading ---------- */
-/* Accent button: brand orange at the top deepening to a burnt orange under the label, so the white label reads (4.6:1 on the
-   deep stop); a hairline top highlight and a soft warm glow instead of a flat fill. */
-.btn-accent { position: relative; color: #FFFFFF; font-weight: 600; text-shadow: 0 1px 1px rgb(80 28 6 / 0.25);
-  background: linear-gradient(180deg, #EC6726 0%, #D45A1F 55%, #C04E19 100%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 10px 28px -10px rgb(236 103 38 / 0.65);
-  transition: box-shadow .3s var(--ease-out-expo), filter .3s var(--ease-out-expo), translate .3s var(--ease-out-expo); }
-.btn-accent:hover { filter: brightness(1.06); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 14px 34px -10px rgb(236 103 38 / 0.8); }
-.btn-accent:active { translate: 0 1px; }
+/* Accent button: flat brand orange, white bold label at 19px (WCAG large text, 3.2:1), no bevel. On hover a soft light
+   sweep crosses the face and the arrow slides; nothing raised or shaded. */
+.btn-accent { position: relative; isolation: isolate; overflow: hidden; background: var(--color-accent); color: #FFFFFF; font-weight: 700; letter-spacing: -0.01em; }
+.btn-accent::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.32) 50%, transparent 65%); translate: -110% 0; transition: translate .8s var(--ease-out-expo); }
+.btn-accent:hover::after, .btn-accent:focus-visible::after { translate: 110% 0; }
+@media (prefers-reduced-motion: reduce) { .btn-accent::after { display: none; } }
 .hero-grad { background: linear-gradient(100deg, #F4F0EB 0%, #F1D9C8 38%, #F0A47C 70%, #EC6726 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: slice; }
 .chev-go { transition: translate .3s var(--ease-out-expo); }
 .group:hover .chev-go, .group:focus-visible .chev-go { translate: 3px 0; }
 [dir="rtl"] .group:hover .chev-go, [dir="rtl"] .group:focus-visible .chev-go { translate: -3px 0; }
-.v4-h2 { font-size: clamp(30px, 1rem + 2vw, 52px); font-weight: 600; letter-spacing: -0.04em; line-height: 1.04; text-wrap: balance; }
+.v4-h2 { font-size: clamp(32px, 1rem + 2.5vw, 60px); font-weight: 600; letter-spacing: -0.045em; line-height: 1.0; text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .chev-go { transition: none; } }
 
 /* Workspaces network: a pulse runs from the office to the picked site; the active tab's timer fills over 5 s. */

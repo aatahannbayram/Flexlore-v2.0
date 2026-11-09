@@ -6,55 +6,108 @@
  * Copy: d.process / d.caps / d.bento / d.end (main dictionary), HOME2 (steps, web chip), HOME4 (workspaces, web, customers). */
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
 import { HOME4 } from "../i18n/home4";
 import { EXTRA } from "../i18n/extra";
-import { Device, WorkScreen } from "../AppScreens";
+import { Device, WorkScreen, Status, Nav, Player, Clip, CheckRing } from "../AppScreens";
 import { EASE } from "../ui/Reveal";
-import { Play, Pause, Check, Sparkle, ShieldCheck, CheckCircle, MapPin, LockSimple, BookOpen, Users, ForkKnife, Storefront, Factory, HardHat, Buildings } from "../ui/icons";
+import { Play, Pause, Check, Sparkle, ShieldCheck, CheckCircle, MapPin, LockSimple, BookOpen, Users, ForkKnife, Storefront, Factory, HardHat, Buildings, Bed, ArrowRight, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle } from "../ui/icons";
+import { SmartVideo } from "../ui/SmartVideo";
+import { LOCALES } from "../i18n/locales";
 import { Chev } from "./Chevron";
 import { CASES } from "./cases";
 import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
 
 /** Section heading: words rise in one after another when the heading enters view (static under reduced motion). */
+/** Payoff words in a heading: muted ink warming toward the accent, word by word (at most 45% accent, so it stays calm). */
+const warm = (k: number, n: number) => `color-mix(in oklab, var(--color-ink-muted) ${100 - Math.round(((k + 1) / Math.max(n, 1)) * 45)}%, var(--color-accent))`;
 function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) {
-  const reduce = useReducedMotion(); const words = [...a.split(" ").map((w) => [w, false] as const), ...(b ? b.split(" ").map((w) => [w, true] as const) : [])];
-  if (reduce) return <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>;
+  const reduce = useReducedMotion(); const aw = a.split(" "); const nA = b ? aw.length : aw.length - Math.ceil(aw.length / 3); /* no payoff given: the last third carries it */
+  const words = [...aw.map((w, k) => [w, k >= nA] as const), ...(b ? b.split(" ").map((w) => [w, true] as const) : [])];
+  if (reduce) return <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{aw.slice(0, nA).join(" ")} <span style={{ color: warm(0, 1) }}>{[...aw.slice(nA), ...(b ? [b] : [])].join(" ")}</span></h2>;
   return (
     <m.h2 id={id} aria-label={b ? `${a} ${b}` : a} className={`v4-h2 mt-4 ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }}
       transition={{ staggerChildren: 0.045 }}>
       {words.map(([w, faint], k) => (
         <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom">
-          <m.span className={`inline-block ${faint ? "text-ink-faint" : ""}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease: EASE }}>{w}</m.span>
+          <m.span className="inline-block" style={faint ? { color: warm(k - nA, words.length - nA) } : undefined} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease: EASE }}>{w}</m.span>
         </span>)).flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
 }
-/** Chapter marker: the home page reads as one story, numbered 01 to 05 (how, standard, sites, desk to field, customers). */
+/** Chapter marker: the home page reads as one story, numbered 01 to 06 (how, standard, sites, desk to field, industries, customers). */
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
   <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-[rgb(255_240_225/0.2)]" /><Kicker>{children}</Kicker></div>);
 const glass = "rounded-[16px] bg-[rgb(26_22_19/0.62)] ring-1 ring-[rgb(255_240_225/0.14)] backdrop-blur-xl";
 /** Warm fade from the photo into the ground. */
 const fade = "bg-[linear-gradient(180deg,rgb(17_14_12/0)_30%,rgb(17_14_12/0.55)_62%,rgb(17_14_12/0.94)_100%)]";
 
-/* ---------- How it works: four steps, one stage ----------
+/* ---------- How it works: five steps, one stage ----------
  * Steps advance every 6 s while in view (pausable, never under reduced motion); hover holds, click or focus picks.
  * The stage is the step's own field photo behind the phone with the real screen and a status chip. */
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const STAGE: Media[] = ["saha-iskele-pov", "problem-kagitlar", "saha-eldiven-makro", "saha-santiye-havadan"];
+const STAGE: (Media | "phone-mount")[] = ["saha-iskele-pov", "phone-mount", "problem-kagitlar", "saha-eldiven-makro", "saha-santiye-havadan"];
+/* Stage photo: the v3 set, plus the phone-on-a-mount still (public/photos) for the edit step. */
+function StageImg({ n }: { n: Media | "phone-mount" }) {
+  if (n !== "phone-mount") return <Photo n={n} sizes="(min-width:1024px) 55vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />;
+  return (<picture><source type="image/avif" srcSet="/photos/phone-mount-800.avif 800w, /photos/phone-mount-1600.avif 1600w" sizes="(min-width:1024px) 55vw, 100vw" />
+    <img src="/photos/phone-mount-1600.webp" srcSet="/photos/phone-mount-800.webp 800w, /photos/phone-mount-1600.webp 1600w" sizes="(min-width:1024px) 55vw, 100vw" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[30%_50%] saturate-[0.85]" /></picture>);
+}
+/* Step 1 screen: the phone's own camera filming the job (the stage photo in the viewfinder), REC timer counting up. */
+function CameraScreen({ active, n }: { active: boolean; n: Media }) {
+  const [t, setT] = useState(0);
+  useEffect(() => { if (!active) return; setT(0); const id = window.setInterval(() => setT((v) => Math.min(13, v + 1)), 420); return () => window.clearInterval(id); }, [active]);
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-black text-white">
+      <div className="absolute inset-y-[-12%] end-[-4%] w-[300%]"><Photo n={n} sizes="900px" className="absolute inset-0 h-full w-full object-cover" /></div>
+      <span className="absolute inset-x-0 top-[10%] flex justify-center"><span className="flex items-center gap-[5px] rounded-full bg-black/55 px-[11px] py-[4px] text-[13px] font-semibold tabular-nums backdrop-blur-md">
+        <span className="rec-dot h-[7px] w-[7px] rounded-full bg-accent" />00:{String(t).padStart(2, "0")}</span></span>
+      <span aria-hidden="true" className="absolute left-1/2 top-1/2 h-[64px] w-[64px] -translate-x-1/2 -translate-y-1/2 rounded-[6px] border border-white/60" />
+      <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-[10px] bg-[linear-gradient(0deg,rgb(0_0_0/0.8)_40%,transparent)] pb-[30%] pt-[40px]">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">Video</span>
+        <span className="grid h-[56px] w-[56px] place-items-center rounded-full ring-[3px] ring-white"><span className="h-[21px] w-[21px] rounded-[5px] bg-accent" /></span>
+      </div>
+    </div>);
+}
+/* Step 4 screen: one step played full screen the way a learner sees it, timeline running to the end, then the step's
+   complete mark and the next step. */
+const SP = { en: { t: "Opening routine", s: "Step 3 of 6", h: "Open the air valve", p: "Turn the valve a slow quarter turn until the line holds pressure.", more: "Read more...", done: "Step complete", next: "Next step" },
+  tr: { t: "Açılış rutini", s: "Adım 3 / 6", h: "Hava vanasını aç", p: "Hat basıncı tutana kadar vanayı yavaşça çeyrek tur çevir.", more: "Devamı...", done: "Adım tamamlandı", next: "Sonraki adım" } } as const;
+function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) {
+  const L = SP[lang]; const reduce = useReducedMotion(); const D = 12; const [t, setT] = useState(reduce ? D : 0);
+  useEffect(() => { if (!active || reduce) { setT(D); return; } setT(0); const id = window.setInterval(() => setT((v) => Math.min(D, v + 1)), 360); return () => window.clearInterval(id); }, [active, reduce]);
+  const done = t >= D;
+  return (<div className="absolute inset-0 flex flex-col bg-[#111]">
+    <Status /><Nav title={L.t} right={<span className="text-[13px] tabular-nums text-white/60">3/6</span>} />
+    <span className="mx-3.5 mt-2 block h-[3px] overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: done ? "50%" : "33.4%" }} /></span>
+    <div className="relative mt-3 flex-1 overflow-hidden bg-black">
+      <Clip name="steam" active={active} className="scale-[1.02]" />
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/75 to-transparent" />
+      <span className="absolute start-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">{L.s}</span>
+      <div className="absolute inset-x-4 bottom-[26px]">
+        <p className="mb-2 text-[17px] font-semibold tracking-[-.01em] text-white">{L.h}</p>
+        <Player t={t} d={D} text={L.p} more={L.more} />
+      </div>
+      <div className={`absolute inset-x-5 top-[30%] flex flex-col items-center gap-3 rounded-[18px] bg-black/55 px-4 py-5 text-center backdrop-blur-md transition-all duration-500 ${done ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}>
+        <span className="scale-[1.6]"><CheckRing on={done} reduce={reduce} /></span>
+        <span className="mt-1 text-[16px] font-semibold text-white">{L.done}</span>
+        <span className="rounded-full bg-accent px-4 py-2 text-[13px] font-semibold text-white">{L.next}</span></div>
+    </div></div>);
+}
 export function StepsV3() {
   const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const x = EXTRA[locale]; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
   const run = on && !hold && !paused && !reduce;
-  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 4), 6000); return () => window.clearTimeout(t); }, [run, i]);
-  const screen = i === 0 ? <Editor active={on} lang={lang} /> : i === 1 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} />
-    : i === 2 ? <WorkScreen active={on} lang={lang} /> : <Ready active={on} lang={lang} />;
+  useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
+  const screen = i === 0 ? <CameraScreen active={on && !reduce} n="saha-iskele-pov" /> : i === 1 ? <Editor active={on} lang={lang} />
+    : i === 2 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : i === 3 ? <StepPlayerScreen active={on} lang={lang} /> : <Ready active={on} lang={lang} />;
   return (
     <section id="how" aria-labelledby="how-h" className="section-y">
       <div className="container-x">
@@ -63,7 +116,7 @@ export function StepsV3() {
           <div className="dark relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#1A1714] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:min-h-[620px]">
             <AnimatePresence initial={false}>
               <m.div key={i} className="absolute inset-0" initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }}>
-                {near && <Photo n={STAGE[i]} sizes="(min-width:1024px) 55vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />}
+                {near && <StageImg n={STAGE[i]} />}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(17_14_12/0.25)_0%,rgb(17_14_12/0.82)_78%)]" />
@@ -78,7 +131,8 @@ export function StepsV3() {
               </m.div>
             </AnimatePresence>
           </div>
-          <ol className="flex flex-col lg:col-span-5 lg:justify-center" role="tablist" aria-label={c.k}>
+          <div className="flex flex-col lg:col-span-5 lg:justify-center">
+          <ol className="flex flex-col" role="tablist" aria-label={c.k}>
             {s.map(([h, p], k) => { const act = i === k; const done = k < i; return (
               <li key={h} className="relative">
                 {k < s.length - 1 && <span aria-hidden="true" className="absolute start-[21px] top-[64px] -bottom-[8px] w-px overflow-hidden bg-line">
@@ -96,13 +150,18 @@ export function StepsV3() {
                   </span>
                   <span className="min-w-0 pt-[7px]">
                     <span className={`block text-[19px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[23px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
-                    <span className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                      <span className="overflow-hidden"><span className="block pt-2 text-[15px] leading-[1.55] text-ink-muted">{k === 0 ? c.steps[0][1] : p}</span></span>
-                    </span>
                   </span>
                 </button>
               </li>); })}
           </ol>
+          {/* One fixed slot for the picked step's text: every description sits in the same grid cell, so the slot is as
+              tall as the longest one and nothing above or below moves when the step changes. */}
+          <div className="mt-4 grid ps-[60px] md:mt-5 md:ps-[64px]" aria-live="polite">
+            {s.map(([h, p], k) => (
+              <p key={h} aria-hidden={k !== i} className={`[grid-area:1/1] text-[15px] leading-[1.55] text-ink-muted transition-[opacity,transform] duration-500 ease-out md:text-[16px] ${k === i ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-1.5 opacity-0"}`}>
+                {k === 0 ? c.steps[0][1] : p}</p>))}
+          </div>
+          </div>
         </div>
         <div className="mt-5 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-6">
           <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
@@ -175,7 +234,7 @@ export function WorkspaceV3() {
   const { d, locale } = useLocale(); const c = HOME4[locale].ws; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.35, once: true }); const on = useInView(ref, { amount: 0.35 });
   const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; people: number; due: number; done: [number, number][] }[] = [
-    { n: c.nodes[1], Ic: ForkKnife, img: "chef-plating", pos: "50% 35%", jobs: d.bento.jobs, people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
+    { n: c.nodes[1], Ic: ForkKnife, img: "cafe-opening", pos: "55% 50%", jobs: d.bento.jobs, people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
     { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
     { n: c.nodes[3], Ic: HardHat, img: "safety", pos: "50% 40%", jobs: c.siteJobs[1], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
@@ -355,7 +414,7 @@ export function CasesV3() {
   return (
     <section id="customers" aria-labelledby="cases-h" className="section-y overflow-hidden pt-0">
       <div className="container-x">
-        <Ch n="05">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[22ch]" />
+        <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[22ch]" />
         <div className="mt-8 flex items-center justify-between gap-4 border-b border-line">
           <div role="tablist" aria-label={t.k} className="no-sb -mx-[var(--pad-x)] flex gap-6 overflow-x-auto px-[var(--pad-x)] md:mx-0 md:gap-8 md:px-0">
             {secs.map((sc) => { const act = list[i]?.sec === sc; return (
@@ -404,7 +463,7 @@ export function EndV3() {
           <div className="col-span-12 lg:col-span-5">
             <h2 id="end-h" className="v4-h2 max-w-[12ch]">{c.h}</h2>
             <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
-            <a href={SITE.demo} className="btn btn-accent group mt-7 h-12 px-6 text-[16px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <a href={SITE.demo} className="btn btn-accent group mt-7 h-[52px] px-7 text-[19px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
           </div>
           <div className="col-span-12 mx-auto w-[86%] sm:w-full lg:col-span-7"><div dir="ltr"><CtaDuoInner lang={lang} /></div></div>
         </div>
@@ -413,6 +472,63 @@ export function EndV3() {
 }
 
 /** Everything below the hero, in page order. */
+
+/* ---------- Industries: who it is for ----------
+ * Four photo cards into the sector pages (photos used nowhere else on the home page), then one dark box over a slow,
+ * darkened kitchen loop: other areas as chips, and the 8 languages as round-flag pills that switch the site language.
+ * Phones: the cards scroll sideways (snap, the next card peeks). */
+const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "chef-plating", ForkKnife, "50% 30%"], ["/sektor/uretim/", "field", Factory, "40% 40%"],
+  ["/sektor/otel/", "hotel-desk", Bed, "50% 45%"], ["/sektor/franchise/", "huddle", Storefront, "50% 40%"]];
+const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
+export function SectorsV3() {
+  const { d, locale, setLocale } = useLocale(); const c = d.ind; const reduce = useReducedMotion();
+  return (
+    <section aria-labelledby="ind-h" className="section-y pt-0">
+      <div className="container-x">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[16ch]" /></div>
+          <Link href="/see-it/" className="btn btn-secondary hidden h-12 md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        </div>
+        <ul className="no-sb -mx-[var(--pad-x)] mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] md:mx-0 md:mt-12 md:grid md:grid-cols-4 md:gap-4 md:overflow-visible md:px-0">
+          {IND.map(([href, img, Ic, pos], k) => (
+            <m.li key={href} className="w-[72%] shrink-0 snap-start sm:w-[44%] md:w-auto"
+              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
+              <Link href={href} className="group dark relative block aspect-[3/4] overflow-hidden rounded-[24px] bg-[#1A1714] text-white md:aspect-[4/5] lg:aspect-[3/4]">
+                <picture><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:768px) 25vw, 72vw" />
+                  <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:768px) 25vw, 72vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]" /></picture>
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_14_12/0)_45%,rgb(17_14_12/0.85)_100%)]" />
+                <span className="absolute start-4 top-4 grid h-11 w-11 place-items-center rounded-[14px] bg-[rgb(17_14_12/0.45)] ring-1 ring-white/15 backdrop-blur-md"><Ic size={19} aria-hidden="true" /></span>
+                <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3 md:inset-x-5 md:bottom-5">
+                  <span className="text-[19px] font-semibold leading-tight tracking-[-0.02em] md:text-[21px]">{c.cards[k]}</span>
+                  <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white/15 backdrop-blur-md transition-colors duration-300 group-hover:bg-white group-hover:text-[#111]"><ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
+                </span>
+              </Link>
+            </m.li>))}
+        </ul>
+        <Link href="/see-it/" className="btn btn-secondary mt-5 h-12 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        <div className="dark relative mt-4 overflow-hidden rounded-[28px] bg-[#1A1714] px-5 py-12 text-center text-white md:mt-5 md:py-20">
+          <div aria-hidden="true" className="absolute inset-0">
+            <SmartVideo name="kitchen-bg" poster="/video/kitchen-bg.webp" threshold={0.2} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-40 blur-[3px]" />
+            <span className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_14_12/0.5)_0%,rgb(17_14_12/0.85)_70%,#141110_100%)]" />
+          </div>
+          <p className="relative text-[15px] text-white/70">{c.also}</p>
+          <ul className="relative mx-auto mt-5 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
+            {c.areas.map((a, k) => { const I = AREA_IC[k] ?? DotsThreeCircle; return (
+              <li key={a} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/[.08] pe-4 ps-3 text-[15px] text-white/90 ring-1 ring-white/[.07] backdrop-blur-md"><I size={17} aria-hidden="true" className="text-white/70" />{a}</li>); })}
+          </ul>
+          <p className="relative mt-12 text-[clamp(28px,1rem+2vw,48px)] font-semibold tracking-[-0.04em] md:mt-16">{c.langs}</p>
+          <ul className="relative mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
+            {LOCALES.map((l) => { const on = l.code === locale; return (
+              <li key={l.code}><button type="button" lang={l.code} dir={l.dir} aria-pressed={on} onClick={() => setLocale(l.code)}
+                className={`inline-flex min-h-11 items-center gap-2.5 rounded-full py-1.5 pe-4 ps-1.5 text-[15px] ring-1 backdrop-blur-md transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.08] text-white/90 ring-white/[.07] hover:bg-white/[.14]"}`}>
+                <img src={`/flags/${l.flag}.svg`} alt="" width={28} height={28} className="h-7 w-7 rounded-full object-cover" />{l.name}</button></li>); })}
+          </ul>
+        </div>
+      </div>
+    </section>);
+}
+
 export default function BelowV3() {
-  return (<><StepsV3 /><StandardV3 /><WorkspaceV3 /><WebV3 /><CasesV3 /><EndV3 /></>);
+  return (<><StepsV3 /><StandardV3 /><WorkspaceV3 /><WebV3 /><SectorsV3 /><CasesV3 /><EndV3 /></>);
 }

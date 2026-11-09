@@ -53,7 +53,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             </h1>
             <p className="hs-in mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted sm:text-[18px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
-              <a href={SITE.demo} className="btn btn-accent group h-12 px-6 text-[16px]">{d.nav.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+              <a href={SITE.demo} className="btn btn-accent group h-[52px] px-7 text-[19px]">{d.nav.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-secondary h-12"><Play size={14} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
             <div className="hs-in mt-8 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>

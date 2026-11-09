@@ -1,6 +1,6 @@
 // Strings for the restructured home page (8 sections). Same 8 locales as the main dictionaries.
-// steps: the four moves of the product, each [title, text]. Step 3 carries what used to be "Keep your standard",
-// "Workspaces" and "Who it is for"; step 4 carries "Completion" and "Flexlore Web".
+// steps: the five moves of the product, each [title, text]: film, edit and split, AI draft, approve and publish, track. Step 4 carries what used to be "Keep your standard",
+// "Workspaces" and "Who it is for"; step 5 carries "Completion" and "Flexlore Web".
 // web: the manager web panel block (status "soon" in components/features/data.ts; drop the chip when it ships).
 // sectors: one tab per industry, [role sentence, three examples]. Only capabilities the product has today.
 import type { Locale } from "./locales";
@@ -11,6 +11,7 @@ export const HOME2: Record<Locale, H> = {
   en: {
     steps: [
       ["Film the job", "Your best person records the job on a phone, where it happens. No studio, no script."],
+      ["Edit and split into steps", "Trim the video in the Flexlore editor, mark where each step starts and ends, add text and stickers."],
       ["AI drafts steps and a quiz", "Flexlore splits the video into steps and drafts the written instructions and a short quiz from the job itself."],
       ["Approve and publish", "Nothing goes out until your team approves it. Assign each job by role and location; people learn it on their own phone, in 8 languages, and replay any step."],
       ["Track who is ready", "See who watched each job and passed its quiz, by person, shift and location, and which locations need you next."],
@@ -26,6 +27,7 @@ export const HOME2: Record<Locale, H> = {
   tr: {
     steps: [
       ["İşi çekin", "En iyi çalışanınız işi, yapıldığı yerde telefonla kaydeder. Stüdyo yok, senaryo yok."],
+      ["Editleyin ve adımlarına bölün", "Videoyu Flexlore editöründe kırpın, her adımın başını ve sonunu işaretleyin; metin ve çıkartma ekleyin."],
       ["Yapay zekâ adımları ve quizi hazırlar", "Flexlore videoyu adımlara böler; yazılı talimatları ve işin kendisinden kısa bir quizi taslak olarak hazırlar."],
       ["Onaylayın ve yayınlayın", "Ekibiniz onaylamadan hiçbir şey yayınlanmaz. İşi rol ve şubeye göre atayın; ekip kendi telefonunda, 8 dilde öğrenir ve istediği adımı tekrar açar."],
       ["Kimin hazır olduğunu takip edin", "Her işi kimin izlediğini ve quizini geçtiğini kişi, vardiya ve şube bazında görün; hangi şubenin size ihtiyacı olduğunu bilin."],
@@ -41,6 +43,7 @@ export const HOME2: Record<Locale, H> = {
   de: {
     steps: [
       ["Aufgabe filmen", "Ihre beste Fachkraft filmt die Aufgabe mit dem Handy, direkt vor Ort. Kein Studio, kein Skript."],
+      ["Schneiden und in Schritte teilen", "Kürzen Sie das Video im Flexlore-Editor, markieren Sie Anfang und Ende jedes Schritts, fügen Sie Text und Sticker hinzu."],
       ["KI entwirft Schritte und Quiz", "Flexlore teilt das Video in Schritte und entwirft die Anweisungen und ein kurzes Quiz aus der Aufgabe selbst."],
       ["Freigeben und veröffentlichen", "Nichts geht raus, bevor Ihr Team es freigibt. Weisen Sie jede Aufgabe nach Rolle und Standort zu; alle lernen auf dem eigenen Handy, in 8 Sprachen, und wiederholen jeden Schritt."],
       ["Sehen, wer bereit ist", "Sehen Sie, wer jede Aufgabe angesehen und ihr Quiz bestanden hat, nach Person, Schicht und Standort, und welcher Standort Sie als Nächstes braucht."],
@@ -56,6 +59,7 @@ export const HOME2: Record<Locale, H> = {
   ar: {
     steps: [
       ["صوّر المهمة", "يسجّل أفضل موظفيك المهمة بالهاتف في مكان أدائها. لا حاجة إلى استوديو أو نص مكتوب."],
+      ["حرّر الفيديو وقسّمه إلى خطوات", "قصّ الفيديو في محرر Flexlore، وحدّد بداية كل خطوة ونهايتها، وأضف نصًا وملصقات."],
       ["الذكاء الاصطناعي يصيغ الخطوات والاختبار", "يقسّم Flexlore الفيديو إلى خطوات، ويصيغ مسودة التعليمات المكتوبة واختبارًا قصيرًا من المهمة نفسها."],
       ["اعتمد وانشر", "لا يُنشر شيء قبل أن يعتمده فريقك. أسند كل مهمة حسب الدور والموقع؛ يتعلّمها الموظفون على هواتفهم بثماني لغات ويعيدون أي خطوة."],
       ["تابع من أصبح جاهزًا", "اعرف من شاهد كل مهمة واجتاز اختبارها حسب الشخص والمناوبة والموقع، وأي المواقع تحتاجك أولًا."],
@@ -71,6 +75,7 @@ export const HOME2: Record<Locale, H> = {
   es: {
     steps: [
       ["Grabe la tarea", "Su mejor profesional graba la tarea con el móvil, en el lugar donde se realiza. Sin estudio ni guion."],
+      ["Edítelo y divídalo en pasos", "Recorte el vídeo en el editor de Flexlore, marque dónde empieza y termina cada paso, y añada texto y stickers."],
       ["La IA redacta pasos y cuestionario", "Flexlore divide el video en pasos y redacta las instrucciones escritas y un cuestionario breve a partir de la propia tarea."],
       ["Apruebe y publique", "Nada se publica hasta que su equipo lo aprueba. Asigne cada tarea por rol y ubicación; cada persona la aprende en su móvil, en 8 idiomas, y repite cualquier paso."],
       ["Vea quién está listo", "Vea quién vio cada tarea y aprobó su cuestionario, por persona, turno y ubicación, y qué ubicación le necesita primero."],
@@ -86,6 +91,7 @@ export const HOME2: Record<Locale, H> = {
   ru: {
     steps: [
       ["Снимите работу", "Ваш лучший сотрудник записывает работу на телефон прямо на месте. Без студии и сценария."],
+      ["Отредактируйте и разбейте на шаги", "Обрежьте видео в редакторе Flexlore, отметьте начало и конец каждого шага, добавьте текст и стикеры."],
       ["ИИ готовит шаги и тест", "Flexlore делит видео на шаги и готовит черновики письменных инструкций и короткого теста по самой работе."],
       ["Утвердите и опубликуйте", "Ничего не публикуется без утверждения вашей командой. Назначайте работу по ролям и точкам; сотрудники учатся на своём телефоне, на 8 языках, и пересматривают любой шаг."],
       ["Следите, кто готов", "Смотрите, кто посмотрел каждую работу и сдал тест, по сотрудникам, сменам и точкам, и какой точке вы нужны в первую очередь."],
@@ -101,6 +107,7 @@ export const HOME2: Record<Locale, H> = {
   fr: {
     steps: [
       ["Filmez la tâche", "Votre meilleur collaborateur filme la tâche au téléphone, sur place. Pas de studio, pas de script."],
+      ["Montez et découpez en étapes", "Coupez la vidéo dans l'éditeur Flexlore, marquez le début et la fin de chaque étape, ajoutez texte et stickers."],
       ["L'IA rédige étapes et quiz", "Flexlore découpe la vidéo en étapes et rédige les instructions écrites et un court quiz à partir de la tâche elle-même."],
       ["Validez et publiez", "Rien ne part avant la validation de votre équipe. Attribuez chaque tâche par rôle et par site ; chacun l'apprend sur son téléphone, en 8 langues, et revoit n'importe quelle étape."],
       ["Suivez qui est prêt", "Voyez qui a regardé chaque tâche et réussi son quiz, par personne, équipe et site, et quel site a besoin de vous en premier."],
@@ -116,6 +123,7 @@ export const HOME2: Record<Locale, H> = {
   pl: {
     steps: [
       ["Nagraj zadanie", "Najlepszy pracownik nagrywa zadanie telefonem tam, gdzie je wykonuje. Bez studia i bez scenariusza."],
+      ["Edytuj i podziel na kroki", "Przytnij wideo w edytorze Flexlore, zaznacz początek i koniec każdego kroku, dodaj tekst i naklejki."],
       ["AI przygotowuje kroki i quiz", "Flexlore dzieli nagranie na kroki i przygotowuje wersję roboczą instrukcji oraz krótki quiz na podstawie samego zadania."],
       ["Zatwierdź i opublikuj", "Nic nie zostanie opublikowane bez zatwierdzenia przez zespół. Przypisz zadanie według roli i lokalizacji; każdy uczy się na swoim telefonie, w 8 językach, i powtarza dowolny krok."],
       ["Sprawdzaj, kto jest gotowy", "Zobacz, kto obejrzał każde zadanie i zdał quiz, według osoby, zmiany i lokalizacji, oraz która lokalizacja potrzebuje Cię najpierw."],
