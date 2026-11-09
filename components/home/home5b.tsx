@@ -125,7 +125,7 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
       {/* The recommended plan: a soft light from the top edge and a brighter hairline, no solid fill. */}
       {rec && <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-56 bg-[radial-gradient(ellipse_at_50%_0%,rgb(244_240_235/0.16)_0%,rgb(244_240_235/0)_70%)]" />}
       <div className={`${rec ? "flex" : "hidden md:flex"} items-center justify-between gap-3`}>
-        <span aria-hidden="true" className="hidden h-11 w-11 place-items-center rounded-[14px] bg-white/[.07] ring-1 ring-inset ring-white/10 md:grid"><I size={20} /></span>
+        <span aria-hidden="true" className="hidden text-ink-muted md:block"><I size={22} /></span>
         {rec && <span className="rounded-full bg-ink px-3 py-1 text-[12px] font-semibold text-bg">{c.recommended}</span>}
       </div>
       <h3 className={`text-[20px] font-semibold md:mt-6 ${rec ? "mt-3" : ""}`}>{name}</h3>
@@ -143,7 +143,7 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
       {id === "enterprise"
         ? <a href="/pricing/#quote" className="btn btn-secondary mt-5 w-full md:mt-6">{q.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-5 w-full md:mt-6 ${rec ? "btn-primary" : "btn-secondary"}`} />}
-      <div className="mt-5 flex-1 rounded-[20px] bg-white/[.035] p-4 ring-1 ring-inset ring-white/[.05] md:mt-6">
+      <div className="mt-6 flex-1 border-t border-line pt-5 md:mt-7">
         <p className="flex items-center gap-2 text-[14px] font-semibold"><Users size={16} aria-hidden="true" />{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
         {prev && <p className="mt-3 text-[13px] text-ink-faint">{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
         <ul className="mt-3 space-y-2 text-[14px]">{pts.map((f) => <li key={f} className="flex items-start gap-2.5 text-ink-muted"><Check size={15} aria-hidden="true" className="tick mt-0.5 shrink-0" />{f}</li>)}</ul>

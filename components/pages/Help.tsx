@@ -71,7 +71,7 @@ export function FaqPage() {
             <span className="sr-only">{c.search}</span>
             <MagnifyingGlass size={18} aria-hidden="true" className="pointer-events-none absolute start-5 top-1/2 z-10 -translate-y-1/2 text-ink-faint" />
             <input type="search" value={term} onChange={(e) => setTerm(e.target.value)} placeholder={c.search}
-              className="h-14 w-full rounded-full bg-[var(--card)] pe-12 ps-12 text-[16px] text-ink ring-1 ring-line outline-none placeholder:text-ink-faint focus-visible:ring-2 focus-visible:ring-ink [&::-webkit-search-cancel-button]:hidden" />
+              className="h-14 w-full rounded-full bg-[var(--card)] pe-12 ps-12 text-[16px] text-ink ring-1 ring-line outline-none placeholder:text-ink-faint [&::-webkit-search-cancel-button]:hidden" />
             {term && <button type="button" onClick={() => setTerm("")} aria-label={c.clear} className="absolute end-1.5 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full text-ink-muted hover:text-ink"><X size={16} aria-hidden="true" /></button>}
           </label>
           {groups.length > 1 && <div role="group" aria-label={c.k} className="flex flex-wrap gap-2">

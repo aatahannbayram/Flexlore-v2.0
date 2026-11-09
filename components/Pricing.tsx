@@ -18,7 +18,7 @@ function Split({ text }: { text: string }) {
   const w = text.split(" "); const n = w.length - Math.max(1, Math.ceil(w.length / 3));
   return <><span className="t-ink">{w.slice(0, n).join(" ")}</span> <span className="t-accent">{w.slice(n).join(" ")}</span></>;
 }
-const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink ring-1 ring-inset ring-white/10 outline-none transition-shadow placeholder:text-ink-faint focus-visible:ring-2 focus-visible:ring-ink";
+const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink ring-1 ring-inset ring-white/10 outline-none transition-shadow placeholder:text-ink-faint";
 const glassCard = "rounded-[28px] bg-[var(--card)]";
 
 function QuoteForm() {

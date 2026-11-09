@@ -53,21 +53,24 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false);
   return (
     <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111111] pt-[var(--header-h)] text-ink">
-      {/* Desktop: the photo fills the right side and fades into the ground under the text. */}
-      <div aria-hidden="true" className="absolute inset-y-0 end-0 hidden w-[64%] lg:block">
-        <div className="hero-par absolute inset-0"><Photo n="hero-sef" priority sizes="64vw" className="absolute inset-0 h-full w-full object-cover" /></div>
-        <span className="absolute inset-0 bg-[linear-gradient(90deg,#111111_0%,rgb(17_17_17/0.55)_28%,rgb(17_17_17/0)_60%),linear-gradient(0deg,#111111_0%,rgb(17_17_17/0)_22%)] rtl:bg-[linear-gradient(270deg,#111111_0%,rgb(17_17_17/0.55)_28%,rgb(17_17_17/0)_60%),linear-gradient(0deg,#111111_0%,rgb(17_17_17/0)_22%)]" />
+      {/* Full-bleed photo: a site crew on a rooftop at sunset. The sky on the start side carries the headline; the crew stays
+          clear on the end side, with the phone standing below their heads. Shades keep the text and the header readable. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10">
+        <div className="hero-par absolute inset-0"><Photo n="saha-cati-siluet" priority sizes="100vw" className="absolute inset-0 h-full w-full object-cover object-[72%_50%] lg:object-[82%_45%] xl:object-[60%_45%]" /></div>
+        <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.92)_0%,rgb(17_17_17/0.72)_32%,rgb(17_17_17/0.18)_62%,rgb(17_17_17/0.05)_100%)] rtl:bg-[linear-gradient(270deg,rgb(17_17_17/0.92)_0%,rgb(17_17_17/0.72)_32%,rgb(17_17_17/0.18)_62%,rgb(17_17_17/0.05)_100%)] max-lg:bg-[linear-gradient(180deg,rgb(17_17_17/0.75)_0%,rgb(17_17_17/0.55)_45%,rgb(17_17_17/0.85)_100%)]" />
+        <span className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgb(17_17_17/0.7)_0%,rgb(17_17_17/0)_100%)]" />
+        <span className="absolute inset-x-0 bottom-0 h-48 bg-[linear-gradient(0deg,#111111_0%,rgb(17_17_17/0)_100%)]" />
       </div>
       <div className="container-x relative">
-        <div className="grid-12 items-center gap-y-8 pb-6 pt-6 lg:min-h-[min(calc(100svh-var(--header-h)-88px),780px)] lg:py-12">
-          <div className="col-span-12 lg:col-span-6">
+        <div className="relative flex flex-col justify-center pb-10 pt-10 lg:min-h-[min(calc(100svh-var(--header-h)-40px),840px)] lg:pb-24 lg:pt-16">
+          <div className="max-w-[46rem]">
             <Eyebrow />
-            <h1 id="hero-h" className="mt-5 max-w-[17ch] text-[clamp(36px,0.8rem+2.8vw,66px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-6 text-[clamp(40px,1rem+3.6vw,82px)] font-semibold leading-[0.96] tracking-[-0.055em] [text-wrap:balance]">
               <span className="hs-word block"><span className="t-ink">{h.h1a}</span></span>
               <span className="hs-word block pb-[0.06em]" style={{ animationDelay: "90ms" }}><span className="hero-grad">{h.h1b}</span></span>
             </h1>
-            <p className="hs-in mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted sm:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
-            <div className="hs-in mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
+            <p className="hs-in mt-6 max-w-[34rem] text-[16px] leading-[1.6] text-white/75 sm:text-[18px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
+            <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="btn btn-glass group h-11 px-5 text-[15px]">{d.nav.cta}<span aria-hidden="true" className="go"><Chev dir="end" className="chev-go h-2 w-3" /></span></a>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-11 px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
@@ -75,22 +78,14 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
               <StoreButtons small lang={lang} className="opacity-80 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
             </div>
           </div>
-          <div className="col-span-12 lg:col-span-6">
-            {/* Phones and tablets: the photo is cropped behind the phone, under the headline and CTA. */}
-            <div className="hs-device relative mx-auto aspect-[5/4] max-w-[560px] sm:aspect-[4/3] lg:aspect-[4/5] lg:max-w-[420px] lg:me-[4%]" style={{ animationDelay: "200ms" }}>
-              <div className="absolute inset-0 overflow-hidden rounded-[16px] lg:hidden">
-                <Photo n="hero-sef" sizes="100vw" className="absolute inset-0 h-full w-full object-cover" />
-                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0)_45%)]" />
-              </div>
-              <span aria-hidden="true" className="absolute -inset-[12%] hidden rounded-full bg-[radial-gradient(closest-side,rgb(244_240_235/0.14),rgb(244_240_235/0))] lg:block" />
-              <div className="absolute bottom-[6%] start-[5%] w-[34%] max-w-[230px] lg:bottom-auto lg:start-auto lg:end-0 lg:top-1/2 lg:w-[62%] lg:max-w-none lg:-translate-y-1/2" dir="ltr">
-                <div className="hero-lift"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
-              </div>
-            </div>
+          {/* The phone: under the crew's heads on large screens; on smaller ones it sits below the text. */}
+          <div className="hs-device relative mx-auto mt-10 w-[min(62%,250px)] lg:absolute lg:bottom-8 lg:end-[2%] lg:mt-0 lg:w-[clamp(180px,14.5vw,220px)]" style={{ animationDelay: "200ms" }} dir="ltr">
+            <span aria-hidden="true" className="absolute -inset-[30%] -z-10 rounded-full bg-[radial-gradient(closest-side,rgb(17_17_17/0.55),rgb(17_17_17/0))]" />
+            <div className="hero-lift drop-shadow-[0_40px_60px_rgba(0,0,0,0.6)]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
           </div>
         </div>
       </div>
-      <div className="relative pb-6 md:pb-8">{children}</div>
+      <div className="relative pb-6 md:pb-10">{children}</div>
       <VideoModal open={demo} onClose={() => setDemo(false)} title={h.watchTitle} youtubeId="4CLIlnp0L28" closeLabel={d.nav.close} />
     </section>);
 }

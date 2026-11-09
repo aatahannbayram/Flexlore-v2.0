@@ -114,7 +114,8 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 
 /* Base outline colour is the accent too, so colour transitions never fade the ring in from the text colour. */
 :where(a, button, input, select, textarea, summary, [tabindex]) { outline-color: var(--color-ink); }
-:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 2px; border-radius: 6px; }
+:focus-visible { outline: 2px solid rgb(244 240 235 / 0.7); outline-offset: 3px; }
+:root[data-theme="light"] :focus-visible { outline-color: rgb(22 22 22 / 0.6); }
 /* The ⌘K search field sits inside an open dialog with a caret; the dialog itself is the focus cue. */
 .cmdk-input:focus-visible { outline: none; }
 section[id], [id]:target { scroll-margin-top: calc(var(--header-h) + 16px); }
@@ -419,3 +420,8 @@ html.splash-on .hs-word, html.splash-on .hs-in, html.splash-on .hs-device { anim
 }
 @keyframes heroPar { to { transform: translateY(14%) scale(1.06); } }
 @keyframes heroLift { to { transform: translateY(-8%); } }
+
+/* Fields never get a frame on click: no outline and no ring, just a slightly brighter fill and edge while typing. */
+input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: none !important; }
+:where(input, textarea, select):focus { box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22) !important; background-color: rgb(255 255 255 / 0.08); }
+:root[data-theme="light"] :where(input, textarea, select):not(.dark *):focus { box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.25) !important; background-color: rgb(22 22 22 / 0.04); }

@@ -19,7 +19,7 @@ export const Kicker = ({ icon: I, children }: { icon: typeof Lifebuoy; children:
   <p className="inline-flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
     <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink ring-1 ring-line"><I size={15} aria-hidden="true" /></span>{children}</p>);
 
-const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink ring-1 ring-line outline-none transition-shadow placeholder:text-ink-faint focus-visible:ring-2 focus-visible:ring-ink";
+const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink ring-1 ring-line outline-none transition-shadow placeholder:text-ink-faint";
 
 /* Support: a big heading, three quick routes (email, FAQ, demo), then the message form beside a photo card listing what
  * we help with, the app and the legal pages; a band into the FAQ closes it. The site is static, so the form composes an

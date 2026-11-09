@@ -277,7 +277,7 @@ export function WorkspaceV3() {
   const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; pics: string[]; people: number; due: number; done: [number, number][] }[] = [
     { n: c.nodes[1], Ic: ForkKnife, img: "cafe-opening", pos: "55% 50%", jobs: d.bento.jobs, pics: ["restaurant", "chef-plating", "hero-sef"], people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
     { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], pics: ["factory", "field", "safety"], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
-    { n: c.nodes[3], Ic: HardHat, img: "saha-santiye-havadan", pos: "50% 50%", jobs: c.siteJobs[1], pics: ["saha-cati-siluet", "saha-liman", "saha-drone-cember"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
+    { n: c.nodes[3], Ic: HardHat, img: "saha-santiye-havadan", pos: "50% 50%", jobs: c.siteJobs[1], pics: ["saha-iskele-pov", "saha-liman", "saha-drone-cember"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const auto = on && !hold && !reduce;
   useEffect(() => { if (!auto) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 3), 5000); return () => window.clearTimeout(t); }, [auto, i]);
@@ -425,15 +425,16 @@ export function WebV3() {
                 className="absolute end-3 top-3 w-[min(62%,250px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.jobs[0], `${b.sent} · ${b.today}`)}</m.div>)}</AnimatePresence>
           </figure>
           <figure className="dark relative min-h-[420px] overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-5 lg:min-h-0">
-            <Photo n="saha-cati-siluet" sizes="(min-width:1024px) 38vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
+            <picture className="absolute inset-0"><source type="image/avif" srcSet="/photos/factory-800.avif 800w, /photos/factory-1600.avif 1600w" sizes="(min-width:1024px) 38vw, 100vw" />
+              <img src="/photos/factory-800.webp" srcSet="/photos/factory-800.webp 800w, /photos/factory-1600.webp 1600w" sizes="(min-width:1024px) 38vw, 100vw" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-[20%_50%]" /></picture>
             <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
-            <div className="float-y absolute start-[7%] top-[7%] w-[min(36%,140px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.5)]" dir="ltr" aria-hidden="true">
+            <div className="float-y absolute end-[7%] top-[7%] w-[min(36%,140px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.5)]" dir="ltr" aria-hidden="true">
               <Device label={d.hero.chip.t}>{near ? <WorkScreen active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device>
             </div>
             <AnimatePresence>{beat === 1 && (
               <m.div key="back" initial={reduce ? false : { opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: -24 }} transition={{ duration: 0.45, ease: EASE }}
-                className="absolute end-3 top-3 w-[min(54%,230px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.branch, b.branchP)}</m.div>)}</AnimatePresence>
-            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col items-end p-4 text-end text-white md:p-6">
+                className="absolute start-3 top-3 w-[min(54%,230px)] md:start-5 md:top-5" aria-hidden="true">{chip(b.branch, b.branchP)}</m.div>)}</AnimatePresence>
+            <figcaption className="absolute inset-x-0 bottom-0 flex flex-col items-start p-4 text-start text-white md:p-6">
               <span className="block max-w-[56%] text-[19px] font-semibold tracking-[-0.02em] md:text-[22px]">{t.flow[1][0]} <span className="text-white/45">·</span> {t.flow[2][0]}</span>
               <span className="mt-1 block max-w-[56%] text-[14px] text-white/70">{t.flow[2][1]}</span>
             </figcaption>
@@ -614,8 +615,6 @@ export function SectorsV3() {
                 <span className="relative flex items-center justify-between">
                   <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.5)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums ring-1 ring-white/15 backdrop-blur-md">
                     <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span className="text-white/80">0{k + 1}</span></span>
-                  <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-full ring-1 backdrop-blur-md transition-all duration-500 ${on ? "bg-white text-[#111] ring-white" : "bg-[rgb(16_16_16/0.5)] ring-white/15"}`}>
-                    <ArrowRight size={15} className={`transition-transform duration-500 rtl:-scale-x-100 ${on ? "" : "-rotate-45"}`} /></span>
                 </span>
                 <span className="relative block">
                   <span className={`block font-semibold leading-tight tracking-[-0.03em] transition-[font-size] duration-500 ${on ? "text-[30px]" : "truncate text-[19px]"}`}>{c.cards[k]}</span>
