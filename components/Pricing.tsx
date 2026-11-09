@@ -43,7 +43,7 @@ function QuoteForm() {
       <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={4} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={`${field} h-auto py-3`} /></L></div>
       <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
         <p className="flex items-center gap-2 text-[13px] text-ink-faint"><EnvelopeSimple size={15} aria-hidden="true" />{q.note}</p>
-        <button type="submit" className="btn btn-primary h-12 px-6 text-[15px]">{q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
+        <button type="submit" className="btn btn-primary h-11 px-5 text-[15px]">{q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
       </div>
     </form>);
 }
@@ -91,8 +91,8 @@ export default function Pricing() {
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-white/85">{q.bullets.map((b) => <li key={b} className="flex items-center gap-2"><Check size={16} aria-hidden="true" className="tick" />{b}</li>)}</ul>
             </div>
             <div className="col-span-12 flex flex-wrap gap-3 lg:col-span-5 lg:justify-self-end">
-              <a href="#quote" className="btn btn-primary h-12 px-6 text-[15px]">{q.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-              <a href={SITE.demo} className="btn btn-glass-2 h-12 px-5 text-[15px]">{q.alt}</a>
+              <a href="#quote" className="btn btn-primary h-11 px-5 text-[15px]">{q.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+              <a href={SITE.demo} className="btn btn-glass-2 h-11 px-5 text-[15px]">{q.alt}</a>
             </div>
           </div>
           <ul className="mt-10 grid gap-3 md:grid-cols-3">
@@ -153,8 +153,8 @@ export default function Pricing() {
         <p className="v4-h2 mx-auto max-w-[22ch]"><Split text={t.endH} /></p>
         <p className="mt-4 text-[17px] text-ink-muted">{t.endP}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={SITE.demo} className="btn btn-primary h-12 px-6 text-[16px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-          <a href="#quote" className="btn btn-secondary h-12 px-6 text-[16px]">{q.cta}</a>
+          <a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          <a href="#quote" className="btn btn-secondary h-11 px-5 text-[15px]">{q.cta}</a>
         </div>
       </div></div></section>
     <Footer />

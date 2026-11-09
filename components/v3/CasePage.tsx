@@ -39,8 +39,8 @@ export default function CasePage({ slug }: { slug: string }) {
                 <p className="mt-4 text-[18px] leading-[1.55]">{v(x)}</p></div>))}
           </div>
           <div className="container-x mt-12 flex flex-wrap gap-3">
-            <a href={SITE.demo} className="btn btn-accent group h-[52px] px-7 text-[19px]">{t.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
-            <Link href="/" className="btn btn-secondary h-12">{t.back}</Link>
+            <a href={SITE.demo} className="btn btn-accent group h-11 px-5 text-[15px]">{t.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <Link href="/" className="btn btn-secondary h-11">{t.back}</Link>
           </div>
         </section>
       </main>

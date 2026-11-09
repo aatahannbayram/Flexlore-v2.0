@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { m, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { SmartVideo } from "../ui/SmartVideo";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
@@ -57,8 +58,8 @@ export function FeaturePage({ slug }: { slug: string }) {
             <h1 className="mt-6 max-w-[16ch] text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">{it.h1}</h1>
             <p className="mt-6 max-w-[32rem] text-[18px] leading-[1.6] text-ink-muted">{it.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href={SITE.demo} className="btn btn-primary h-12 px-6 text-[16px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-              <a href="#how" className="btn btn-secondary h-12 px-6 text-[16px]">{c.how}</a>
+              <a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+              <a href="#how" className="btn btn-secondary h-11 px-5 text-[15px]">{c.how}</a>
             </div>
             {f.status === "soon" && <p className="mt-6 flex max-w-[32rem] items-start gap-2 text-[14px] text-ink-faint"><Lightning size={15} aria-hidden="true" className="mt-0.5 shrink-0" />{c.soonNote}</p>}
           </div>
@@ -156,17 +157,19 @@ function FeatureCard({ f }: { f: Feature }) {
     </Link></li>);
 }
 
+/* Closing card: the text on glass beside the iPhone and iPad on one stand with the live Flexlore screens in them (the same
+   CtaDuo as the home page), so the devices are never shown switched off. */
+const Duo = dynamic(() => import("../home/CtaDuo").then((x) => x.CtaDuo), { ssr: false, loading: () => <div className="aspect-[2752/1536] w-full" /> });
 function End({ c }: { c: FDict["common"] }) {
+  const { lang } = useLocale();
   return (
     <section className="container-x pb-[var(--section-y)] pt-10">
-      <div className="dark relative overflow-hidden rounded-[32px] bg-[#111] text-white ring-1 ring-white/[.06]">
-        <picture aria-hidden="true"><source srcSet="/photos/device-duo-1600.avif" type="image/avif" /><img src="/photos/device-duo-1600.webp" alt="" loading="lazy" className="absolute inset-y-0 end-0 h-full w-full object-cover opacity-70 md:w-[65%] [mask-image:linear-gradient(90deg,transparent,#000_40%)] rtl:[mask-image:linear-gradient(270deg,transparent,#000_40%)]" /></picture>
-        <div className="relative max-w-[30rem] p-6 py-14 md:p-14">
-          <div className="rounded-[24px] bg-[rgb(20_20_20/0.55)] p-6 ring-1 ring-white/10 backdrop-blur-md md:p-8">
-            <p className="text-[clamp(24px,1rem+1.4vw,36px)] font-semibold leading-[1.1] tracking-[-0.03em]">{c.endH}</p><p className="mt-3 text-[16px] text-white/70">{c.endP}</p>
-            <a href={SITE.demo} className="mt-7 inline-flex h-12 items-center gap-2 rounded-full bg-[#E7EBEB] px-6 text-[15px] font-semibold text-[#111]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-          </div>
+      <div className="dark relative grid items-center gap-6 overflow-hidden rounded-[32px] bg-[#111] p-4 text-white ring-1 ring-white/[.06] md:p-6 lg:grid-cols-12 lg:gap-8">
+        <div className="order-last rounded-[24px] bg-white/[.04] p-6 ring-1 ring-inset ring-white/10 backdrop-blur-md md:p-8 lg:order-first lg:col-span-5">
+          <p className="text-[clamp(26px,1rem+1.5vw,40px)] font-semibold leading-[1.06] tracking-[-0.04em]"><span className="t-ink">{c.endH}</span></p><p className="mt-4 text-[16px] leading-[1.55] text-white/70">{c.endP}</p>
+          <a href={SITE.demo} className="btn btn-primary mt-7 h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
+        <div className="lg:col-span-7"><Duo lang={lang} /></div>
       </div>
     </section>);
 }

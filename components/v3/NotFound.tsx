@@ -17,8 +17,8 @@ export default function NotFoundPage() {
         <h1 id="nf-h" className="v4-h2 mt-4 max-w-[18ch]">{t.h}</h1>
         <p className="mt-4 text-[17px] text-ink-muted">{t.p}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/" className="btn btn-primary group h-12 px-6">{t.home}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></Link>
-          <Link href="/support/" className="btn btn-secondary h-12">{t.help}</Link>
+          <Link href="/" className="btn btn-primary group h-11 px-5">{t.home}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></Link>
+          <Link href="/support/" className="btn btn-secondary h-11">{t.help}</Link>
         </div>
       </section>
     </main>

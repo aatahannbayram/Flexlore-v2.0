@@ -95,7 +95,7 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .mono { font-variant-numeric: tabular-nums; }
 
 /* buttons: 44px minimum target */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 44px; border-radius: 999px; padding: 0 1.25rem; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.15rem; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s; }
 .btn-primary { background: #F4F0EB; color: #111111; }
 .btn-primary:hover { background: #FFFFFF; }
 .btn-secondary { background: rgb(255 255 255 / 0.07); color: var(--color-ink); }
@@ -341,7 +341,7 @@ html body { transition: opacity .25s ease; }
 .btn-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(17 17 17 / 0.06) 50%, transparent 65%); translate: -110% 0; transition: translate .9s var(--ease-out-expo); }
 .btn-glass:hover { translate: 0 -1px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), inset 0 0 0 1px rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.14), 0 18px 38px -16px rgb(0 0 0 / 0.8); }
 .btn-glass:hover::after, .btn-glass:focus-visible::after { translate: 110% 0; }
-.btn-glass .go { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px; background: #111111; color: #F4F0EB; margin-inline-end: -10px; transition: background-color .3s; }
+.btn-glass .go { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: #111111; color: #F4F0EB; margin-inline-end: -8px; transition: background-color .3s, transform .3s var(--ease-out-expo); }
 .btn-glass:hover .go { background: #2A2A2A; color: #FFFFFF; }
 .btn-glass-2 { color: #F4F0EB; background: rgb(255 255 255 / 0.07); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 0 0 1px rgb(255 255 255 / 0.1); transition: background-color .3s, box-shadow .3s; }
@@ -402,3 +402,20 @@ html.splash-on .hs-word, html.splash-on .hs-in, html.splash-on .hs-device { anim
    crisp and dimensional next to the orange payoff words. Light mode: near black to graphite. */
 .t-ink { background: linear-gradient(180deg, #FFFFFF 0%, #F1EEEA 45%, #B9B4AE 120%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 :root[data-theme="light"] .t-ink:not(.dark *) { background-image: linear-gradient(180deg, #111111 0%, #2A2A2A 60%, #555049 120%); }
+
+/* App feel: buttons give a little under the finger, and lift a hair on hover where a mouse is present. */
+.btn { transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s, transform .2s var(--ease-out-expo), box-shadow .25s; }
+.btn:active { transform: scale(.97); }
+@media (hover: hover) { .btn-primary:hover, .btn-secondary:hover, .btn-accent:hover { transform: translateY(-1px); } .btn-glass:hover .go { transform: translateX(2px); } }
+@media (prefers-reduced-motion: reduce) { .btn, .btn:active, .btn:hover { transform: none !important; } }
+
+/* Hero depth on scroll, with no script: the photo drifts down a little slower than the page and the phone rises a touch.
+   Browsers without scroll timelines, and reduced motion, simply keep them still. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-par { animation: heroPar linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    .hero-lift { animation: heroLift linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+  }
+}
+@keyframes heroPar { to { transform: translateY(14%) scale(1.06); } }
+@keyframes heroLift { to { transform: translateY(-8%); } }

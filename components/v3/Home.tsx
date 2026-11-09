@@ -572,7 +572,7 @@ export function EndV3() {
           <div className="col-span-12 lg:col-span-5">
             <h2 id="end-h" className="v4-h2 max-w-[12ch]">{c.h}</h2>
             <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
-            <a href={SITE.demo} className="btn btn-accent group mt-7 h-[52px] px-7 text-[19px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <a href={SITE.demo} className="btn btn-accent group mt-7 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
           </div>
           <div className="col-span-12 mx-auto w-[86%] sm:w-full lg:col-span-7"><div dir="ltr"><CtaDuoInner lang={lang} /></div></div>
         </div>
@@ -582,68 +582,86 @@ export function EndV3() {
 
 
 /* ---------- Industries: who it is for ----------
- * Four photo cards into the sector pages: icon and number on a glass chip, the name and its one-line use always shown,
- * the three uses opening on hover. Under them two twin panels: other areas as chips, and the 8 languages as round-flag
- * pills that switch the site language. Phones: the cards scroll sideways (snap, the next card peeks). */
+ * Large screens: four photo panels in a row into the sector pages; the one under the pointer or focus opens wide with
+ * its line and three uses, the others narrow. Phones and tablets: cards that scroll sideways. Under them one glass strip:
+ * other areas as chips, and the 8 languages as round flags that switch the site language. */
 const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "chef-plating", ForkKnife, "50% 30%"], ["/sektor/uretim/", "field", Factory, "40% 40%"],
   ["/sektor/otel/", "hotel-desk", Bed, "50% 45%"], ["/sektor/franchise/", "huddle", Storefront, "50% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
 export function SectorsV3() {
   const { d, locale, setLocale } = useLocale(); const c = d.ind; const tabs = HOME2[locale].tabs; const reduce = useReducedMotion();
+  const [act, setAct] = useState(0);
+  const pic = (img: string, sizes: string, cls: string, pos: string) => (
+    <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes={sizes} />
+      <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes={sizes} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className={cls} /></picture>);
   return (
     <section aria-labelledby="ind-h" className="section-y pt-0">
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[26ch]" /></div>
-          <Link href="/see-it/" className="btn btn-secondary hidden h-12 md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+          <Link href="/see-it/" className="btn btn-secondary hidden md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         </div>
-        <ul className="no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0">
-          {IND.map(([href, img, Ic, pos], k) => (
-            <m.li key={href} className="w-[78%] shrink-0 snap-start sm:w-[44%] md:w-auto"
-              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
-              <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#171717] p-3.5 text-white ring-1 ring-white/[.06] md:p-4">
-                <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:768px) 25vw, 78vw" />
-                  <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:768px) 25vw, 78vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.06]" /></picture>
-                {/* Shade top and bottom so the chips and text read on any photo; a little deeper on hover for the use list. */}
-                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.55)_0%,rgb(16_16_16/0)_24%,rgb(16_16_16/0)_40%,rgb(16_16_16/0.94)_100%)]" />
-                <span aria-hidden="true" className="absolute inset-0 bg-[rgb(16_16_16/0.4)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+        {/* Large screens: four panels in a row; the one under the pointer (or keyboard focus) opens wide and tells its story,
+            the others narrow to a photo strip with their number and name. */}
+        <ul className="mt-9 hidden h-[clamp(440px,58vh,560px)] gap-3 md:mt-14 lg:flex">
+          {IND.map(([href, img, Ic, pos], k) => { const on = act === k; return (
+            <li key={href} className="min-w-0 transition-[flex-grow] duration-700 ease-[var(--ease-out-expo)]" style={{ flexGrow: on ? 2.7 : 1, flexBasis: 0 }}
+              onMouseEnter={() => setAct(k)}>
+              <Link href={href} onFocus={() => setAct(k)} aria-label={c.cards[k]}
+                className="group dark relative flex h-full flex-col justify-between overflow-hidden rounded-[24px] bg-[#171717] p-5 text-white ring-1 ring-white/[.06]">
+                {pic(img, "(min-width:1024px) 50vw, 100vw", `absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-[1.2s] ease-[var(--ease-out-expo)] ${on ? "scale-100 saturate-100" : "scale-110 saturate-[0.4]"}`, pos)}
+                <span aria-hidden="true" className={`absolute inset-0 transition-opacity duration-700 ${on ? "bg-[linear-gradient(180deg,rgb(16_16_16/0.45)_0%,rgb(16_16_16/0)_28%,rgb(16_16_16/0.15)_50%,rgb(16_16_16/0.92)_100%)]" : "bg-[rgb(16_16_16/0.55)]"}`} />
                 <span className="relative flex items-center justify-between">
                   <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.5)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums ring-1 ring-white/15 backdrop-blur-md">
-                    <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span aria-hidden="true" className="text-white/80">0{k + 1}</span></span>
-                  <span aria-hidden="true" className="grid h-9 w-9 place-items-center rounded-full bg-[rgb(16_16_16/0.5)] ring-1 ring-white/15 backdrop-blur-md transition-[background-color,transform] duration-300 group-hover:bg-white group-hover:text-[#111] group-hover:ring-white">
-                    <ArrowRight size={15} className="-rotate-45 transition-transform duration-300 group-hover:rotate-0 rtl:-scale-x-100" /></span>
+                    <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span className="text-white/80">0{k + 1}</span></span>
+                  <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-full ring-1 backdrop-blur-md transition-all duration-500 ${on ? "bg-white text-[#111] ring-white" : "bg-[rgb(16_16_16/0.5)] ring-white/15"}`}>
+                    <ArrowRight size={15} className={`transition-transform duration-500 rtl:-scale-x-100 ${on ? "" : "-rotate-45"}`} /></span>
                 </span>
                 <span className="relative block">
-                  <span className="block text-[19px] font-semibold leading-tight tracking-[-0.02em] md:text-[20px]">{c.cards[k]}</span>
-                  <span className="mt-1.5 line-clamp-2 block text-[13px] leading-[1.45] text-white/75">{tabs[k][0]}</span>
-                  {/* On hover-capable screens the three uses open under the line. */}
-                  <span className="hidden transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] [@media(hover:hover)]:grid [@media(hover:hover)]:grid-rows-[0fr] [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:grid-rows-[1fr] [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:grid-rows-[1fr] [@media(hover:hover)]:group-focus-visible:opacity-100">
-                    <span className="overflow-hidden"><span className="mt-3 block space-y-1.5 border-t border-white/15 pt-3">
-                      {tabs[k][1].map((u) => <span key={u} className="flex items-start gap-2 text-[13px] leading-snug text-white/90"><Check size={13} aria-hidden="true" className="tick mt-[3px] shrink-0" /><span className="line-clamp-1">{u}</span></span>)}
-                    </span></span>
+                  <span className={`block font-semibold leading-tight tracking-[-0.03em] transition-[font-size] duration-500 ${on ? "text-[30px]" : "truncate text-[19px]"}`}>{c.cards[k]}</span>
+                  <span className={`grid transition-[grid-template-rows,opacity] duration-700 ease-[var(--ease-out-expo)] ${on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                    <span className="overflow-hidden">
+                      <span className="block max-w-[34rem] pt-2.5 text-[15px] leading-[1.5] text-white/80">{tabs[k][0]}</span>
+                      <span className="mt-4 flex flex-wrap gap-2">
+                        {tabs[k][1].map((u) => <span key={u} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[13px] text-white/90 ring-1 ring-inset ring-white/10 backdrop-blur-md"><Check size={13} aria-hidden="true" className="tick" />{u}</span>)}
+                      </span>
+                    </span>
                   </span>
                 </span>
               </Link>
+            </li>); })}
+        </ul>
+        {/* Phones and tablets: cards in a sideways row (snap, the next card peeks), each with its line and uses. */}
+        <ul className="no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] lg:hidden">
+          {IND.map(([href, img, Ic, pos], k) => (
+            <m.li key={href} className="w-[80%] shrink-0 snap-start sm:w-[46%]"
+              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
+              <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#171717] p-4 text-white ring-1 ring-white/[.06]">
+                {pic(img, "80vw", "absolute inset-0 h-full w-full object-cover", pos)}
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.5)_0%,rgb(16_16_16/0)_26%,rgb(16_16_16/0)_42%,rgb(16_16_16/0.94)_100%)]" />
+                <span className="relative inline-flex h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.5)] pe-3 ps-2.5 text-[13px] font-semibold ring-1 ring-white/15 backdrop-blur-md"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
+                <span className="relative block"><span className="block text-[20px] font-semibold leading-tight tracking-[-0.02em]">{c.cards[k]}</span>
+                  <span className="mt-1.5 line-clamp-3 block text-[13px] leading-[1.45] text-white/75">{tabs[k][0]}</span></span>
+              </Link>
             </m.li>))}
         </ul>
-        <Link href="/see-it/" className="btn btn-secondary mt-5 h-12 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        {/* Two calm twin panels: other areas, and the languages (a pick switches the site language). */}
-        <div className="mt-3 grid gap-3 lg:grid-cols-2">
-          <div className="dark rounded-[22px] bg-[#171717] p-5 text-white ring-1 ring-white/[.06] md:p-7">
-            <p className="flex items-center gap-2.5 text-[19px] font-semibold tracking-[-0.02em] md:text-[20px]"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/[.08] text-white ring-1 ring-inset ring-white/10"><DotsThreeCircle size={17} aria-hidden="true" /></span>{c.also}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
+        <Link href="/see-it/" className="btn btn-secondary mt-5 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        {/* One slim glass strip: the other areas on one side, the 8 languages as round flags (a tap switches the site) on the other. */}
+        <div className="mt-3 grid gap-5 rounded-[24px] bg-[var(--card)] p-5 md:p-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+          <div className="min-w-0">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.also}</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
               {c.areas.map((a, k) => { const I = AREA_IC[k] ?? DotsThreeCircle; return (
-                <li key={a} className="inline-flex h-10 items-center gap-2 rounded-full bg-white/[.06] pe-4 ps-3 text-[14px] text-white/90 ring-1 ring-white/[.06]"><I size={16} aria-hidden="true" className="text-white/60" />{a}</li>); })}
+                <li key={a} className="inline-flex h-9 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[14px] text-ink ring-1 ring-inset ring-white/[.06]"><I size={15} aria-hidden="true" className="text-ink-muted" />{a}</li>); })}
             </ul>
           </div>
-          <div className="dark rounded-[22px] bg-[#171717] p-5 text-white ring-1 ring-white/[.06] md:p-7">
-            <p className="flex items-center gap-2.5 text-[19px] font-semibold tracking-[-0.02em] md:text-[20px]"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/[.08] text-white ring-1 ring-inset ring-white/10"><Translate size={17} aria-hidden="true" /></span>{c.langs}</p>
-            <ul className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+          <div className="lg:border-s lg:border-line lg:ps-10">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.langs}</p>
+            <ul className="mt-3 flex flex-wrap gap-1">
               {LOCALES.map((l) => { const on = l.code === locale; return (
-                <li key={l.code}><button type="button" aria-pressed={on} onClick={() => setLocale(l.code)}
-                  className={`flex h-11 w-full items-center gap-2 rounded-full pe-3 ps-1.5 text-[14px] ring-1 transition-colors duration-300 ${on ? "bg-white text-[#111] ring-white" : "bg-white/[.06] text-white/90 ring-white/[.06] hover:bg-white/[.12]"}`}>
-                  <img src={`/flags/${l.flag}.svg`} alt="" width={26} height={26} className="h-[26px] w-[26px] shrink-0 rounded-full object-cover" /><span lang={l.code} dir={l.dir} className="truncate">{l.name}</span></button></li>); })}
+                <li key={l.code}><button type="button" aria-pressed={on} aria-label={l.name} title={l.name} onClick={() => setLocale(l.code)}
+                  className={`grid h-11 w-11 place-items-center rounded-full transition-all duration-300 ${on ? "bg-white/[.12] ring-2 ring-ink" : "hover:bg-white/[.06]"}`}>
+                  <img src={`/flags/${l.flag}.svg`} alt="" width={28} height={28} className={`h-7 w-7 rounded-full object-cover ring-1 ring-white/15 transition-transform duration-300 ${on ? "scale-105" : "opacity-85"}`} /></button></li>); })}
             </ul>
           </div>
         </div>
