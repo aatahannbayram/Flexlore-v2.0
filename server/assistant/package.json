@@ -1,0 +1,9 @@
+{
+  "name": "flexlore-assistant",
+  "private": true,
+  "type": "module",
+  "description": "Claude-backed answers for the flexlore.com site assistant, grounded in the site's knowledge base.",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node index.mjs" },
+  "dependencies": { "@anthropic-ai/sdk": "^1.7.0" }
+}
