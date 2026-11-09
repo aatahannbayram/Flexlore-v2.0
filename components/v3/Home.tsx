@@ -14,7 +14,7 @@ import { HOME4 } from "../i18n/home4";
 import { EXTRA } from "../i18n/extra";
 import { Device, WorkScreen } from "../AppScreens";
 import { EASE } from "../ui/Reveal";
-import { Play, Pause, Sparkle, ShieldCheck, CheckCircle, MapPin, LockSimple, BookOpen, Users, ForkKnife, Storefront, Factory, HardHat, Buildings } from "../ui/icons";
+import { Play, Pause, Check, Sparkle, ShieldCheck, CheckCircle, MapPin, LockSimple, BookOpen, Users, ForkKnife, Storefront, Factory, HardHat, Buildings } from "../ui/icons";
 import { Chev } from "./Chevron";
 import { CASES } from "./cases";
 import { Photo, Kicker, rise, type Media } from "./Top";
@@ -78,18 +78,26 @@ export function StepsV3() {
               </m.div>
             </AnimatePresence>
           </div>
-          <ol className="flex flex-col gap-1 lg:col-span-5 lg:justify-center" role="tablist" aria-label={c.k}>
-            {s.map(([h, p], k) => { const act = i === k; return (
-              <li key={h}>
+          <ol className="flex flex-col lg:col-span-5 lg:justify-center" role="tablist" aria-label={c.k}>
+            {s.map(([h, p], k) => { const act = i === k; const done = k < i; return (
+              <li key={h} className="relative">
+                {k < s.length - 1 && <span aria-hidden="true" className="absolute start-[21px] top-[64px] -bottom-[8px] w-px overflow-hidden bg-line">
+                  <span className="block h-full w-full origin-top bg-ink-faint transition-transform duration-700 ease-out" style={{ transform: done ? "scaleY(1)" : "scaleY(0)" }} /></span>}
                 <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
-                  className={`relative block w-full rounded-[22px] px-4 py-4 text-start transition-colors duration-300 md:px-6 md:py-5 ${act ? "bg-[var(--card)]" : "hover:bg-[var(--card)]/50"}`}>
-                  <span className="flex items-baseline gap-4">
-                    <span className={`w-7 shrink-0 text-[14px] font-semibold tabular-nums transition-colors ${act ? "text-ink" : "text-ink-faint"}`}>{String(k + 1).padStart(2, "0")}</span>
-                    <span className="min-w-0 flex-1">
-                      <span className={`block text-[18px] font-semibold leading-snug tracking-[-0.02em] transition-colors md:text-[21px] ${act ? "text-ink" : "text-ink-faint"}`}>{h}</span>
-                      <span className={`mt-2 block text-[15px] leading-[1.55] text-ink-muted ${act ? "" : "hidden"}`}>{k === 0 ? c.steps[0][1] : p}</span>
-                      {act && <span aria-hidden="true" className="mt-4 block h-[2px] overflow-hidden rounded-full bg-[var(--card-2)]">
-                        <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-accent rtl:origin-right" style={{ animation: run ? "procbar 6s linear forwards" : "none", transform: run ? undefined : "scaleX(1)" }} /></span>}
+                  className="group grid w-full grid-cols-[44px_1fr] gap-4 py-3 text-start md:gap-5 md:py-4">
+                  <span className="relative grid h-11 w-11 place-items-center">
+                    <svg aria-hidden="true" viewBox="0 0 44 44" className="absolute inset-0 -rotate-90 rtl:scale-x-[-1]">
+                      <circle cx="22" cy="22" r="21" fill="none" strokeWidth="1" className={`transition-colors duration-300 ${act || done ? "stroke-line-strong" : "stroke-line group-hover:stroke-line-strong"}`} />
+                      {act && <circle key={`${i}-${run}`} cx="22" cy="22" r="21" fill="none" strokeWidth="1.5" strokeLinecap="round" pathLength={100} className="stroke-accent"
+                        style={{ strokeDasharray: 100, strokeDashoffset: run ? 100 : 0, animation: run ? "ringfill 6s linear forwards" : "none" }} />}
+                    </svg>
+                    {done ? <Check size={16} aria-hidden="true" className="text-ink" />
+                      : <span className={`text-[13px] font-semibold tabular-nums transition-colors ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{String(k + 1).padStart(2, "0")}</span>}
+                  </span>
+                  <span className="min-w-0 pt-[7px]">
+                    <span className={`block text-[19px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[23px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
+                    <span className={`grid transition-[grid-template-rows,opacity] duration-500 ease-out ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                      <span className="overflow-hidden"><span className="block pt-2 text-[15px] leading-[1.55] text-ink-muted">{k === 0 ? c.steps[0][1] : p}</span></span>
                     </span>
                   </span>
                 </button>
@@ -153,8 +161,8 @@ export function StandardV3() {
 
 /* ---------- Workspaces: one network of sites ----------
  * Head office over three sites (kitchen, production, building site), drawn as a live network: a pulse runs from the
- * office to the picked site, the tab underlines fill while it waits its turn, and the panel counts up. No photographs
- * here, so the customer photos stay unique to the customers section. Sample numbers, labelled. */
+ * office to the picked site, the tab underlines fill while it waits its turn, and the panel counts up. Each site is a photo
+ * card (photos used nowhere else on the home page); the picked one also tints the stage behind. Sample numbers, labelled. */
 function useCount(to: number, run: boolean) {
   const [v, setV] = useState(to); const from = useRef(to);
   useEffect(() => { if (!run) { setV(to); from.current = to; return; } const a = from.current, t0 = performance.now(); let raf = 0;
@@ -166,10 +174,10 @@ const WS_PATHS = ["M150 0 V16 H52 Q40 16 40 28 V40", "M150 0 V40", "M150 0 V16 H
 export function WorkspaceV3() {
   const { d, locale } = useLocale(); const c = HOME4[locale].ws; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.35, once: true }); const on = useInView(ref, { amount: 0.35 });
-  const sites: { n: string; Ic: typeof Factory; jobs: string[]; people: number; due: number; done: [number, number][] }[] = [
-    { n: c.nodes[1], Ic: ForkKnife, jobs: d.bento.jobs, people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
-    { n: c.nodes[2], Ic: Factory, jobs: c.siteJobs[0], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
-    { n: c.nodes[3], Ic: HardHat, jobs: c.siteJobs[1], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
+  const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; people: number; due: number; done: [number, number][] }[] = [
+    { n: c.nodes[1], Ic: ForkKnife, img: "chef-plating", pos: "50% 35%", jobs: d.bento.jobs, people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
+    { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
+    { n: c.nodes[3], Ic: HardHat, img: "safety", pos: "50% 40%", jobs: c.siteJobs[1], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const auto = on && !hold && !reduce;
   useEffect(() => { if (!auto) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 3), 5000); return () => window.clearTimeout(t); }, [auto, i]);
@@ -184,6 +192,10 @@ export function WorkspaceV3() {
         </div>
         <div ref={ref} className="col-span-12 lg:col-span-8 lg:ps-8" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           <div className="relative overflow-hidden rounded-[28px] bg-[var(--card)] p-3 md:p-6">
+            {seen && <AnimatePresence initial={false}>
+              <m.span key={cur.img} aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }} className="pointer-events-none absolute inset-0">
+                <img src={`/photos/${cur.img}-800.webp`} alt="" decoding="async" loading="lazy" className="h-full w-full scale-110 object-cover opacity-[0.16] blur-2xl saturate-[0.8]" />
+              </m.span></AnimatePresence>}
             <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_0%,rgb(255_240_225/0.06),transparent_70%)]" />
             <div className="relative mx-auto flex w-max items-center gap-3 rounded-full bg-[var(--card-2)] py-1.5 pe-5 ps-1.5 ring-1 ring-line">
               <span className="relative grid h-9 w-9 place-items-center rounded-full bg-[#F4F0EB] text-[#111]"><Buildings size={17} aria-hidden="true" />
@@ -199,11 +211,16 @@ export function WorkspaceV3() {
             <div role="tablist" aria-label={c.k} className="relative grid grid-cols-3 gap-2 md:gap-3">
               {sites.map((s, k) => { const act = k === i; const Ic = s.Ic; return (
                 <button key={s.n} type="button" role="tab" aria-selected={act} aria-controls="ws-panel" onClick={() => setI(k)}
-                  className={`group relative overflow-hidden rounded-[18px] p-3 text-start ring-1 transition-all duration-300 md:p-4 ${act ? "bg-[var(--card-2)] ring-[rgb(255_240_225/0.28)]" : "bg-[var(--card-2)]/60 ring-transparent hover:ring-line-strong"}`}>
-                  <span className={`grid h-10 w-10 place-items-center rounded-[12px] transition-colors duration-300 md:h-11 md:w-11 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-white/[.06] text-ink-muted group-hover:text-ink"}`}><Ic size={19} aria-hidden="true" /></span>
-                  <span className="mt-3 block truncate text-[14px] font-semibold md:text-[15px]">{s.n}</span>
-                  <span className="mt-0.5 flex items-center gap-1.5 text-[12px] text-ink-muted"><span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${act ? "bg-accent" : "bg-white/25"}`} />{fmt(c.due, { n: s.due })}</span>
-                  {act && auto && <span key={`t${i}`} aria-hidden="true" className="ws-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[rgb(244_240_235/0.6)] rtl:origin-right" />}
+                  className={`group relative flex h-[132px] flex-col justify-between overflow-hidden rounded-[18px] bg-[#1A1714] p-2.5 text-start text-white ring-1 transition-all duration-500 sm:h-[150px] md:h-[172px] md:p-3.5 ${act ? "ring-[rgb(255_240_225/0.45)]" : "ring-transparent hover:ring-[rgb(255_240_225/0.2)]"}`}>
+                  {seen && <img src={`/photos/${s.img}-800.webp`} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
+                    className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-55 saturate-[0.35] group-hover:opacity-75"}`} />}
+                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_14_12/0.15)_0%,rgb(17_14_12/0.2)_40%,rgb(17_14_12/0.88)_100%)]" />
+                  <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] backdrop-blur-md transition-colors duration-300 md:h-10 md:w-10 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(17_14_12/0.45)] text-white/85 ring-1 ring-white/15"}`}><Ic size={18} aria-hidden="true" /></span>
+                  <span className="relative block">
+                    <span className="block truncate text-[14px] font-semibold md:text-[16px]">{s.n}</span>
+                    <span className="mt-0.5 flex items-center gap-1.5 text-[12px] text-white/75"><span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${act ? "bg-accent" : "bg-white/40"}`} /><span className="truncate">{fmt(c.due, { n: s.due })}</span></span>
+                  </span>
+                  {act && auto && <span key={`t${i}`} aria-hidden="true" className="ws-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[rgb(244_240_235/0.8)] rtl:origin-right" />}
                 </button>); })}
             </div>
             <div id="ws-panel" role="tabpanel" className="relative mt-3 overflow-hidden rounded-[20px] bg-[var(--card-2)] md:mt-4">

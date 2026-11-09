@@ -3,7 +3,7 @@
 const T = {
   bg: "#111111", "surface-1": "#191919", "surface-2": "#1F1F1F",
   ink: "#F4F0EB", "ink-muted": "#BAB3AB", "ink-faint": "#8E8780",
-  accent: "#EC6726", "accent-strong": "#D75E23", "accent-text": "#F08551", "on-accent": "#111111",
+  accent: "#EC6726", "accent-strong": "#D75E23", "accent-text": "#F08551", "on-accent": "#FFFFFF", "accent-deep": "#C04E19", "accent-mid": "#D45A1F",
   "calm-aqua": "#68D2B9", "calm-lilac": "#B4A7E5",
   "ice-100": "#EAE5DF", "ice-300": "#BAB3AB", "ice-400": "#968F87", "ice-500": "#8E8780",
   "v3-bg": "#FAF8F5", "v3-band": "#F1EDE7", "v3-ink": "#161616", "v3-muted": "#55524D", "v3-faint": "#6E6A64", "v3-ice-400": "#5E5A55", "v3-aqua": "#3B7C6D", "v3-orange-text": "#A8491B",
@@ -18,7 +18,7 @@ const PAIRS = [
   ["ink-muted", "bg", 4.5], ["ink-muted", "surface-1", 4.5], ["ink-muted", "surface-2", 4.5],
   ["ink-faint", "bg", 4.5], ["ink-faint", "surface-1", 4.5], ["ink-faint", "surface-2", 4.5, "captions only"],
   ["accent-text", "bg", 4.5], ["accent-text", "surface-1", 4.5], ["accent-text", "surface-2", 4.5],
-  ["accent", "bg", 3, "display text 24px+"], ["on-accent", "accent", 4.5, "button label"], ["on-accent", "accent-strong", 4.5, "button hover"],
+  ["accent", "bg", 3, "display text 24px+"], ["on-accent", "accent-deep", 4.5, "button label, gradient bottom stop"], ["on-accent", "accent-mid", 3, "button label, gradient middle (bold 16px+)"],
   ["calm-aqua", "surface-1", 4.5, "status chip"], ["calm-lilac", "surface-1", 4.5, "status chip"],
   ["ice-300", "bg", 4.5, "labels"], ["ice-500", "bg", 4.5, "small captions"], ["ice-500", "surface-1", 4.5], ["ice-400", "bg", 4.5, "eyebrow, muted headline"], ["ice-400", "surface-1", 4.5], ["bg", "ice-100", 4.5, "primary button"], ["ice-100", "bg", 4.5, "inverted card text"],
   ["light-ink", "white", 4.5, "card on light"], ["light-muted", "white", 4.5],

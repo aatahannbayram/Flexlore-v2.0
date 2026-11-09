@@ -253,6 +253,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
 :root[data-theme="light"] .footer-dots { --dot-rgb: 22 22 22; }
 /* Process stepper progress and the AI hub's travelling dots. */
 @keyframes procbar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes ringfill { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 .ai-dot { offset-rotate: 0deg; animation: aidot 2.8s ease-in-out infinite; }
 @keyframes aidot { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ai-dot { animation: none; opacity: 0; } }
@@ -313,8 +314,15 @@ html body { transition: opacity .25s ease; }
 @media (prefers-reduced-motion: reduce) { .cmp-pulse { animation: none; } }
 
 /* ---------- v3: accent button, chevron hover, heading ---------- */
-.btn-accent { background: var(--color-accent); color: #111111; }
-.btn-accent:hover { background: var(--color-accent-strong); }
+/* Accent button: brand orange at the top deepening to a burnt orange under the label, so the white label reads (4.6:1 on the
+   deep stop); a hairline top highlight and a soft warm glow instead of a flat fill. */
+.btn-accent { position: relative; color: #FFFFFF; font-weight: 600; text-shadow: 0 1px 1px rgb(80 28 6 / 0.25);
+  background: linear-gradient(180deg, #EC6726 0%, #D45A1F 55%, #C04E19 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.28), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 10px 28px -10px rgb(236 103 38 / 0.65);
+  transition: box-shadow .3s var(--ease-out-expo), filter .3s var(--ease-out-expo), translate .3s var(--ease-out-expo); }
+.btn-accent:hover { filter: brightness(1.06); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.32), inset 0 -1px 0 rgb(0 0 0 / 0.12), 0 14px 34px -10px rgb(236 103 38 / 0.8); }
+.btn-accent:active { translate: 0 1px; }
+.hero-grad { background: linear-gradient(100deg, #F4F0EB 0%, #F1D9C8 38%, #F0A47C 70%, #EC6726 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: slice; }
 .chev-go { transition: translate .3s var(--ease-out-expo); }
 .group:hover .chev-go, .group:focus-visible .chev-go { translate: 3px 0; }
 [dir="rtl"] .group:hover .chev-go, [dir="rtl"] .group:focus-visible .chev-go { translate: -3px 0; }
