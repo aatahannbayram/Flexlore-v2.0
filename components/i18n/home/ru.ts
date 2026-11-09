@@ -2,7 +2,7 @@ import type { Dict } from "./en";
 export const ru: Dict = {
   meta: { dir: "ltr" },
   nav: {
-    product: "Продукт", industries: "Отрасли", resources: "Ресурсы", pricing: "Цены", cta: "Заказать демо", search: "Поиск", searchSite: "Поиск по сайту",
+    product: "Продукт", industries: "Отрасли", resources: "Ресурсы", pricing: "Цены", cta: "Заказать демо", login: "Войти", search: "Поиск", searchSite: "Поиск по сайту",
     menu: "Меню", close: "Закрыть", language: "Язык", skip: "Перейти к содержимому", lightMode: "Включить светлую тему", darkMode: "Включить тёмную тему",
     items: {
       company: ["О нас", "Наша история и миссия"],

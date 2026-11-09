@@ -257,6 +257,7 @@ main:not([lang="tr"]) .l-tr { display: none; }
 .rec-dot { animation: recDot 1.2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .rec-dot { animation: none; } }
 @keyframes ringfill { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+@keyframes barfill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .ai-dot { offset-rotate: 0deg; animation: aidot 2.8s ease-in-out infinite; }
 @keyframes aidot { 0% { offset-distance: 0%; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { offset-distance: 100%; opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .ai-dot { animation: none; opacity: 0; } }
@@ -328,15 +329,18 @@ html body { transition: opacity .25s ease; }
    orange so the words keep their weight on the pale ground. */
 :root[data-theme="light"] .t-accent:not(.dark *), :root[data-theme="light"] .hero-grad:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #D2581C 100%); }
 /* Glass buttons (hero): frosted orange for the main action, frosted light for the second one. White label, bold 19px. */
-.btn-glass { position: relative; isolation: isolate; overflow: hidden; color: #FFFFFF; font-weight: 700; letter-spacing: -0.01em;
-  background: linear-gradient(180deg, rgb(255 140 78 / 0.82) 0%, rgb(236 103 38 / 0.78) 100%);
-  -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.42), inset 0 0 0 1px rgb(255 255 255 / 0.16), 0 14px 34px -14px rgb(236 103 38 / 0.8);
-  transition: box-shadow .35s var(--ease-out-expo), translate .35s var(--ease-out-expo); }
-.btn-glass::before { content: ""; position: absolute; inset: 1px 1px 52% 1px; z-index: -1; border-radius: 999px 999px 18px 18px; background: linear-gradient(180deg, rgb(255 255 255 / 0.26), rgb(255 255 255 / 0)); pointer-events: none; }
-.btn-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.3) 50%, transparent 65%); translate: -110% 0; transition: translate .9s var(--ease-out-expo); }
-.btn-glass:hover { translate: 0 -1px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.5), inset 0 0 0 1px rgb(255 255 255 / 0.22), 0 18px 40px -14px rgb(236 103 38 / 0.95); }
+/* Hero buttons. Primary: a plain frosted white pill with dark text and a small dark arrow disc; a soft sheen passes on
+   hover. Secondary: clear glass. */
+.btn-glass { position: relative; isolation: isolate; overflow: hidden; color: #111111; font-weight: 600; letter-spacing: -0.01em;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.97) 0%, rgb(244 240 235 / 0.9) 100%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), inset 0 0 0 1px rgb(255 255 255 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.08), 0 14px 32px -16px rgb(0 0 0 / 0.7);
+  transition: box-shadow .35s var(--ease-out-expo), translate .35s var(--ease-out-expo), background-color .35s; }
+.btn-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(236 103 38 / 0.12) 50%, transparent 65%); translate: -110% 0; transition: translate .9s var(--ease-out-expo); }
+.btn-glass:hover { translate: 0 -1px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), inset 0 0 0 1px rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.14), 0 18px 38px -16px rgb(0 0 0 / 0.8); }
 .btn-glass:hover::after, .btn-glass:focus-visible::after { translate: 110% 0; }
+.btn-glass .go { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 999px; background: #111111; color: #F4F0EB; margin-inline-end: -10px; transition: background-color .3s; }
+.btn-glass:hover .go { background: #EC6726; color: #FFFFFF; }
 .btn-glass-2 { color: #F4F0EB; background: rgb(255 255 255 / 0.07); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 0 0 1px rgb(255 255 255 / 0.1); transition: background-color .3s, box-shadow .3s; }
 .btn-glass-2:hover { background: rgb(255 255 255 / 0.12); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 0 0 1px rgb(255 255 255 / 0.16); }

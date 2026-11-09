@@ -4,7 +4,7 @@
 export const en = {
   meta: { dir: "ltr" },
   nav: {
-    product: "Product", industries: "Industries", resources: "Resources", pricing: "Pricing", cta: "Book a demo", search: "Search", searchSite: "Search the site",
+    product: "Product", industries: "Industries", resources: "Resources", pricing: "Pricing", cta: "Book a demo", login: "Log in", search: "Search", searchSite: "Search the site",
     menu: "Menu", close: "Close", language: "Language", skip: "Skip to content", lightMode: "Switch to light mode", darkMode: "Switch to dark mode",
     items: {
       company: ["About us", "Our story and mission"],

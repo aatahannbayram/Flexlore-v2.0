@@ -2,7 +2,7 @@
 // Every item has an icon, a title and one plain line, in EN and TR.
 import {
   PlayCircle, Browser, Sparkle, PlugsConnected, Eye, ForkKnife, Factory, Bed, Storefront, Package, Coffee,
-  Article, Handshake, Wrench, Tag, Question, EnvelopeSimple, Buildings,
+  Article, Handshake, Wrench, Question, EnvelopeSimple, Buildings,
 } from "./ui/icons";
 
 type L = { en: string; tr: string };
@@ -38,7 +38,6 @@ export const NAV: NavGroup[] = [
       { k: "blog", href: "/blog/", icon: Article, t: { en: "Blog", tr: "Blog" }, d: { en: "Training on the floor, in practice", tr: "Sahada eğitim, pratikte" } },
       { k: "apprentice", href: "/use-cases/master-apprentice-skills-transfer/", icon: Handshake, t: { en: "Master to apprentice", tr: "Ustadan çırağa" }, d: { en: "Pass on skills before people leave", tr: "Bilgiyi insanlar gitmeden aktarın" } },
       { k: "installation", href: "/use-cases/installation-training-on-site-orientation/", icon: Wrench, t: { en: "Installation training", tr: "Kurulum eğitimi" }, d: { en: "Hand over machines with the know-how", tr: "Makineyi bilgisiyle teslim edin" } },
-      { k: "pricingItem", href: "/pricing/", icon: Tag, t: { en: "Pricing", tr: "Fiyatlar" }, d: { en: "Priced by the size of your team", tr: "Ekip büyüklüğüne göre fiyat" } },
       { k: "questions", href: "/#faq", home: true, icon: Question, t: { en: "Questions", tr: "Sorular" }, d: { en: "AI, devices, languages, access", tr: "Yapay zekâ, cihaz, dil, erişim" } },
       { k: "company", href: "/company/", icon: Buildings, t: { en: "About us", tr: "Hakkımızda" }, d: { en: "Our story and mission", tr: "Hikâyemiz ve misyonumuz" } },
       { k: "contact", href: "/support/", icon: EnvelopeSimple, t: { en: "Contact", tr: "İletişim" }, d: { en: "support@flexlore.com", tr: "support@flexlore.com" } },

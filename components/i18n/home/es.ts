@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 export const es: Dict = {
   meta: { dir: "ltr" },
   nav: {
-    product: "Producto", industries: "Sectores", resources: "Recursos", pricing: "Precios", cta: "Solicitar una demo", search: "Buscar", searchSite: "Buscar en el sitio",
+    product: "Producto", industries: "Sectores", resources: "Recursos", pricing: "Precios", cta: "Solicitar una demo", login: "Iniciar sesión", search: "Buscar", searchSite: "Buscar en el sitio",
     menu: "Menú", close: "Cerrar", language: "Idioma", skip: "Ir al contenido", lightMode: "Cambiar a modo claro", darkMode: "Cambiar a modo oscuro",
     items: {
       company: ["Sobre nosotros", "Nuestra historia y misión"],

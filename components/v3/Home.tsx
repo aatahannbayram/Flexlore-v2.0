@@ -61,12 +61,12 @@ const THIRDS = (() => { const l = "rgb(255 255 255 / 0.18)"; const g = (dir: str
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const STAGE = ["bakery", "phone-mount", "saha-eldiven-makro", "saha-drone-cember", "saha-santiye-havadan"] as const;
-const STAGE_POS: Record<string, string> = { bakery: "30% 50%", "phone-mount": "30% 50%" };
+const STAGE = ["bakery", "bakery", "saha-liman", "saha-drone-cember", "saha-santiye-havadan"] as const;
+const STAGE_POS: Record<string, string> = { bakery: "30% 50%" };
 /* Who holds the phone at each step: 0 you (the owner or manager), 1 your team. */
 const ROLE = [0, 0, 1, 1, 0] as const;
-/* Stage photo: the v3 set, or a /photos still (bakery, phone on a mount). `soft` blurs it a little so the phone's own
-   camera view, which shows the same scene sharp, reads as the thing in focus. */
+/* Stage photo: the v3 set, or a /photos still. None of them shows a phone or tablet, so the mockup is the only device on
+   the stage; all are softened a little so the phone reads as the thing in focus. */
 function StageImg({ n, soft = false }: { n: string; soft?: boolean }) {
   const cls = `absolute inset-0 h-full w-full object-cover ${soft ? "scale-105 blur-[3px]" : ""}`;
   if (n in M) return <Photo n={n as Media} sizes="(min-width:1024px) 55vw, 100vw" className={cls} />;
@@ -148,8 +148,8 @@ export function StepsV3() {
         <div ref={ref} className="mt-7 grid gap-5 md:mt-10 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           <div className="dark relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#1A1714] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
             <AnimatePresence initial={false}>
-              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
-                {near && <StageImg n={STAGE[i]} soft={i === 0} />}
+              <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
+                {near && <StageImg n={STAGE[i]} soft />}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(17_14_12/0.3)_0%,rgb(17_14_12/0.85)_78%)]" />
@@ -165,37 +165,27 @@ export function StepsV3() {
               </m.div>
             </AnimatePresence>
           </div>
-          <div className="flex flex-col lg:col-span-5">
-            <ol className="flex flex-col" role="tablist" aria-label={c.k}>
-              {s.map(([h], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
-                <li key={h} className="relative">
-                  {k < s.length - 1 && <span aria-hidden="true" className="absolute start-[21px] top-[58px] -bottom-[8px] w-px overflow-hidden bg-line">
-                    <span className="block h-full w-full origin-top bg-ink-faint transition-transform duration-700 ease-out" style={{ transform: done ? "scaleY(1)" : "scaleY(0)" }} /></span>}
+          <div className="flex min-w-0 flex-col lg:col-span-5">
+            {/* Steps as quiet rows: the picked one lifts onto a card, opens its line and fills an orange bar while it plays. */}
+            <ol className="flex flex-col gap-1" role="tablist" aria-label={c.k}>
+              {s.map(([h, p], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
+                <li key={h}>
                   <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
-                    className="group grid w-full grid-cols-[44px_1fr] items-center gap-4 py-[7px] text-start">
-                    <span className="relative grid h-11 w-11 place-items-center">
-                      <svg aria-hidden="true" viewBox="0 0 44 44" className="absolute inset-0 -rotate-90 rtl:scale-x-[-1]">
-                        <circle cx="22" cy="22" r="21" fill="none" strokeWidth="1" className={`transition-colors duration-300 ${act || done ? "stroke-line-strong" : "stroke-line group-hover:stroke-line-strong"}`} />
-                        {act && <circle key={`${i}-${run}`} cx="22" cy="22" r="21" fill="none" strokeWidth="1.5" strokeLinecap="round" pathLength={100} className="stroke-accent"
-                          style={{ strokeDasharray: 100, strokeDashoffset: run ? 100 : 0, animation: run ? "ringfill 6s linear forwards" : "none" }} />}
-                      </svg>
-                      {done ? <Check size={16} aria-hidden="true" className="text-ink" />
-                        : <span className={`text-[13px] font-semibold tabular-nums transition-colors ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{String(k + 1).padStart(2, "0")}</span>}
+                    className={`group relative w-full overflow-hidden rounded-[18px] px-4 py-3 text-start transition-colors duration-300 md:px-5 md:py-3.5 ${act ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
+                    <span className="flex items-center gap-3">
+                      <span className={`grid w-6 shrink-0 text-[13px] font-semibold tabular-nums transition-colors duration-300 ${act ? "text-accent-text" : "text-ink-faint"}`}>
+                        {done ? <Check size={15} aria-hidden="true" className="text-ink-muted" /> : String(k + 1).padStart(2, "0")}</span>
+                      <span className={`min-w-0 flex-1 text-[18px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[19px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
+                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 ${act ? (team ? "bg-accent text-white" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
                     </span>
-                    <span className="min-w-0">
-                      <span className={`block text-[12px] font-semibold uppercase tracking-[0.12em] transition-colors duration-300 ${act ? (team ? "text-accent-text" : "text-ink-muted") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
-                      <span className={`block text-[18px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[20px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
+                    <span aria-hidden={!act} className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                      <span className="overflow-hidden"><span className="block ps-9 pt-1.5 text-[15px] leading-[1.55] text-ink-muted">{p}</span></span>
                     </span>
+                    {act && <span aria-hidden="true" className="absolute inset-x-4 bottom-0 h-[2px] overflow-hidden rounded-full bg-line md:inset-x-5">
+                      <span key={`${i}-${run}`} className="block h-full origin-left bg-accent rtl:origin-right" style={run ? { animation: "barfill 6s linear both" } : { transform: "scaleX(0)" }} /></span>}
                   </button>
                 </li>); })}
             </ol>
-            {/* One fixed slot for the picked step's text: every description sits in the same grid cell, so the slot is as
-                tall as the longest one and nothing above or below moves when the step changes. */}
-            <div className="mt-3 grid ps-[60px]" aria-live="polite">
-              {s.map(([h, p], k) => (
-                <p key={h} aria-hidden={k !== i} className={`[grid-area:1/1] text-[15px] leading-[1.55] text-ink-muted transition-[opacity,transform] duration-500 ease-out ${k === i ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-1.5 opacity-0"}`}>
-                  {p}</p>))}
-            </div>
           </div>
         </div>
         <div className="mt-4 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-5">

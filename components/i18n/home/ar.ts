@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 export const ar: Dict = {
   meta: { dir: "rtl" },
   nav: {
-    product: "المنتج", industries: "القطاعات", resources: "الموارد", pricing: "الأسعار", cta: "احجز عرضًا توضيحيًا", search: "بحث", searchSite: "ابحث في الموقع",
+    product: "المنتج", industries: "القطاعات", resources: "الموارد", pricing: "الأسعار", cta: "احجز عرضًا توضيحيًا", login: "تسجيل الدخول", search: "بحث", searchSite: "ابحث في الموقع",
     menu: "القائمة", close: "إغلاق", language: "اللغة", skip: "انتقل إلى المحتوى", lightMode: "التبديل إلى الوضع الفاتح", darkMode: "التبديل إلى الوضع الداكن",
     items: {
       company: ["من نحن", "قصتنا ورسالتنا"],

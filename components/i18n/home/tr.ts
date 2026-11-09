@@ -5,7 +5,7 @@ import type { Dict } from "./en";
 export const tr: Dict = {
   meta: { dir: "ltr" },
   nav: {
-    product: "Ürün", industries: "Sektörler", resources: "Kaynaklar", pricing: "Fiyatlar", cta: "Demo isteyin", search: "Ara", searchSite: "Sitede ara",
+    product: "Ürün", industries: "Sektörler", resources: "Kaynaklar", pricing: "Fiyatlar", cta: "Demo isteyin", login: "Giriş yap", search: "Ara", searchSite: "Sitede ara",
     menu: "Menü", close: "Kapat", language: "Dil", skip: "İçeriğe geç", lightMode: "Açık temaya geç", darkMode: "Koyu temaya geç",
     items: {
       company: ["Hakkımızda", "Hikâyemiz ve misyonumuz"],

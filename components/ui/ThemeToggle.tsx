@@ -16,7 +16,7 @@ export function ThemeToggle({ lang = "en", className = "", labels }: { lang?: "e
   const label = labels ? (light ? labels[1] : labels[0]) : light ? (tr ? "Koyu moda geç" : "Switch to dark mode") : (tr ? "Açık moda geç" : "Switch to light mode");
   return (
     <button type="button" onClick={flip} aria-label={label} title={label}
-      className={`grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink ${className}`}>
+      className={`grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink ${className}`}>
       {light ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}
     </button>);
 }

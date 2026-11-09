@@ -53,8 +53,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             </h1>
             <p className="hs-in mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted sm:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
-              <a href={SITE.demo} className="btn btn-glass group h-[52px] px-7 text-[19px]">{d.nav.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
-              <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-12"><Play size={14} weight="fill" aria-hidden="true" />{h.watch}</button>
+              <a href={SITE.demo} className="btn btn-glass group h-[52px] px-6 text-[16px]">{d.nav.cta}<span aria-hidden="true" className="go"><Chev dir="end" className="chev-go h-2 w-3" /></span></a>
+              <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-[52px] px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
             <div className="hs-in mt-8 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-80 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />

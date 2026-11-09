@@ -5,7 +5,7 @@ import { FlagPicker } from "./ui/FlagPicker";
 import { useLocale } from "./i18n/LocaleProvider";
 import dynamic from "next/dynamic";
 import { AnimatePresence, m, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
-import { Pause, Play, List, X, CaretDown, MagnifyingGlass } from "./ui/icons";
+import { Pause, Play, List, X, CaretDown } from "./ui/icons";
 import { copy, Lang } from "./copy";
 import { SITE } from "./config";
 import { NAV_LABELS } from "./navLabels";
@@ -19,8 +19,8 @@ const MegaPanel = dynamic(() => loadMenus().then((x) => x.MegaPanel), { ssr: fal
 const MobileMenuBody = dynamic(() => loadMenus().then((x) => x.MobileMenuBody), { ssr: false, loading: () => <div className="flex-1" /> });
 
 /** One header for every page. Full container width, 64 px, translucent #111111 with blur that deepens after 8 px of scroll.
- *  Desktop: categorised mega menus (Product, Industries, Resources) with an icon, title and one line per item, plus Pricing,
- *  ⌘K search, language and Book a demo. Mobile: a full-screen menu grouped the same way.
+ *  Desktop: categorised mega menus (Product, Industries, Resources) with an icon, title and one line per item, plus Pricing;
+ *  on the right one capsule for theme and language, Log in and Book a demo (⌘K still opens search). Mobile: a full-screen menu grouped the same way.
  *  Hides on scroll down after 400 px, comes back on scroll up, and stays visible while focus or a menu is inside it. */
 export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
   const ctx = useLocale(); const lang: Lang = langProp ?? ctx.lang; const n = ctx.d.nav;
@@ -124,11 +124,14 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
           </ul>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <button type="button" onClick={() => setSearch(true)} aria-keyshortcuts="Meta+K Control+K"
-              className="grid h-11 w-11 place-items-center rounded-full text-ink-muted transition-colors hover:text-ink lg:flex lg:h-11 lg:w-auto lg:gap-2 lg:bg-[var(--card)] lg:px-3.5 lg:text-sm">
-              <MagnifyingGlass size={16} aria-hidden="true" /><span className="sr-only lg:not-sr-only">{own ? (tr ? "Ara" : "Search") : n.search}</span><span className="sr-only">{own ? (tr ? ": sitede" : " the site") : ""}</span><kbd aria-hidden="true" className="hidden rounded bg-white/[.08] px-1.5 text-[11px] text-ice-400 lg:inline">⌘K</kbd>
-            </button>
-            {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></> : <div className="hidden items-center rounded-full bg-[var(--card)] p-0.5 sm:flex"><ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" /><FlagPicker /></div>}
+            {/* Theme and language share one quiet capsule: sun or moon, a hairline, then the flag with its language code. */}
+            {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
+              : <div className="hidden items-center rounded-full bg-[var(--card)] p-0.5 ring-1 ring-inset ring-white/[.05] sm:flex">
+                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
+                  <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
+                  <FlagPicker />
+                </div>}
+            {SITE.login && <a href={SITE.login} className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-white/[.06] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -149,7 +152,8 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <MobileMenuBody lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setOpen(false)} openSearch={() => setSearch(true)} pricing={t.navP} />
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
               {own ? LangSwitch : <FlagPicker up />}
-              <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} /><a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a>
+              <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} />
+              <span className="flex items-center gap-2">{SITE.login && <a href={SITE.login} className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a></span>
             </div>
           </m.div>)}
       </AnimatePresence>

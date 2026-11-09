@@ -4,7 +4,7 @@ import { CaretDown, Check } from "./icons";
 import { LOCALES } from "../i18n/locales";
 import { useLocale } from "../i18n/LocaleProvider";
 
-/* Language picker: the current language as a round flag; a small menu lists all 8 with their native names. */
+/* Language picker: the current language as a round flag and its code; a small menu lists all 8 with their native names. */
 export function FlagPicker({ up = false, className = "" }: { up?: boolean; className?: string }) {
   const { locale, setLocale, d } = useLocale(); const [open, setOpen] = useState(false); const box = useRef<HTMLDivElement>(null);
   const cur = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
@@ -18,8 +18,9 @@ export function FlagPicker({ up = false, className = "" }: { up?: boolean; class
   return (
     <div ref={box} className={`relative ${className}`}>
       <button type="button" onClick={() => setOpen(!open)} aria-haspopup="listbox" aria-expanded={open} aria-label={`${d.nav.language}: ${cur.name}`}
-        className="flex h-11 min-w-11 items-center gap-1 rounded-full pe-2 ps-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
-        <img src={`/flags/${cur.flag}.svg`} alt="" width={16} height={16} className="h-4 w-4 rounded-full" />
+        className="flex h-11 min-w-11 items-center gap-2 rounded-full pe-3 ps-2.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">
+        <img src={`/flags/${cur.flag}.svg`} alt="" width={20} height={20} className="h-5 w-5 rounded-full object-cover ring-1 ring-white/15" />
+        <span className="text-[13px] font-semibold uppercase tracking-[0.04em] text-ink">{cur.code}</span>
         <CaretDown size={10} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (

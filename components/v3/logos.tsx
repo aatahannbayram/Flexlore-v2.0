@@ -17,6 +17,7 @@ function BambuMark({ className }: { className?: string }) {
 
 type Logo = { src: string; w: number; h: number } | { node: (cls: string) => ReactNode; w: number; h: number };
 export const LOGOS: Partial<Record<string, Logo>> = {
+  "eat-well-drink-joy": { src: "/logos/eatwell.webp", w: 900, h: 635 },
   "istinye-insaat": { src: "/logos/istinye.svg", w: 396, h: 140 },
   "sistem-teknik": { src: "/logos/sistemteknik.webp", w: 1024, h: 280 },
   "bambu-smoothie-bar": { node: (cls) => <BambuMark className={cls} />, w: 252, h: 80 },
@@ -26,7 +27,8 @@ export const LOGOS: Partial<Record<string, Logo>> = {
 export function CaseLogo({ slug, name }: { slug: string; name: string }) {
   const l = LOGOS[slug];
   if (!l) return null;
-  const ratio = l.w / l.h; const h = ratio > 3.3 ? "h-[clamp(50px,0.9rem+4.6vw,104px)]" : "h-[clamp(64px,1.1rem+6vw,136px)]";
+  const ratio = l.w / l.h;
+  const h = ratio > 3.3 ? "h-[clamp(50px,0.9rem+4.6vw,104px)]" : ratio > 2 ? "h-[clamp(64px,1.1rem+6vw,136px)]" : "h-[clamp(96px,1.6rem+8vw,190px)]";
   const cls = `${h} w-auto max-w-full`;
   return "src" in l
     ? <img src={l.src} alt={name} width={l.w} height={l.h} decoding="async" loading="lazy" draggable={false} className={`${cls} object-contain`} />

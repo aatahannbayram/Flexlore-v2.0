@@ -8,15 +8,18 @@ const tt = (d: Dict | undefined, k: string, i: 0 | 1, fb: string) => (d ? (d.nav
 import { MagnifyingGlass, ArrowRight, Plus } from "./ui/icons";
 import { EASE } from "./ui/Reveal";
 import { useLocale } from "./i18n/LocaleProvider";
+import { HOME4 } from "./i18n/home4";
+import type { Locale } from "./i18n/locales";
 import { FEATURES, GROUPS, FEAT_NAV } from "./features/data";
 import { FICON } from "./features/ficons";
 
 /* Menu content (icons, descriptions) for the header. Loaded on first interaction, so it is not part of the first page load. */
 
-/* One featured card per menu, with a blog photograph: a calm visual anchor next to the links. */
-const FEATURE: Record<string, { img: string; href: string; t: (d?: Dict, lang?: Lang) => string; k: (d?: Dict) => string }> = {
+/* One featured card per menu, with a photograph, pointing somewhere its list does not: Product to the walk-through,
+   Industries to the customers on the home page, Resources to the latest data story. */
+const FEATURE: Record<string, { img: string; href: string; t: (d: Dict | undefined, lang: Lang, loc: Locale) => string; k: (d: Dict | undefined, loc: Locale) => string }> = {
   product: { img: "vvyMkqyAHHEpN8ItawEya0MuNM", href: "/see-it/", t: (d, l) => tt(d, "seeit", 0, l === "tr" ? "Kendi işinizde görün" : "See it in your business"), k: (d) => tt(d, "seeit", 1, "One real job, start to finish") },
-  industries: { img: "KaY79DZIn2DIGC4EcRjC6onFOk", href: "/see-it/", t: (d, l) => d ? d.nav.seeAll : l === "tr" ? "Flexlore'u kendi işinizde görün" : "See Flexlore in your business", k: (d) => tt(d, "seeit", 1, "One real job, start to finish") },
+  industries: { img: "KaY79DZIn2DIGC4EcRjC6onFOk", href: "/#customers", t: (_d, _l, loc) => `${HOME4[loc].cases.h} ${HOME4[loc].cases.h2}`, k: (_d, loc) => HOME4[loc].cases.k },
   resources: { img: "exrv3Azw8JV3f2UvuRcEXLveb9Q", href: "/blog/training-gaps-and-quality-defects-what-the-data-shows/", t: () => "Training Gaps and Quality Defects: What the Data Shows", k: (d) => tt(d, "blog", 0, "Blog") },
 };
 /* Product menu: features in three groups (create, roll out, manage), quick links under them, one picture card. */
@@ -38,23 +41,24 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
             </div>))}
         </div>
         <div className="mt-2 flex flex-wrap items-center gap-1 border-t border-line px-1 pt-2 text-[13px]">
-          {[[home ? "#how" : "/#how", t.how], ["/integrations/", tt(d, "integrations", 0, "Integrations")], ["/see-it/", tt(d, "seeit", 0, "See it in your business")]].map(([h, l]) => (
+          {[[home ? "#how" : "/#how", t.how], ["/integrations/", tt(d, "integrations", 0, "Integrations")]].map(([h, l]) => (
             <a key={h} href={h} onClick={close} className="rounded-full px-3 py-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">{l}</a>))}
           <a href="/features/" onClick={close} className="ms-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold text-ink hover:bg-[var(--card-2)]">{t.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
       </div>
-      <a href="/features/video-to-sop/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
+      <a href="/see-it/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
         <picture><source srcSet="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.avif" type="image/avif" /><img src="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.webp" alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
-        <span className="relative text-[12px] text-white/70">{t.items["video-to-sop"][1]}</span>
-        <span className="relative mt-1 flex items-end justify-between gap-2 text-[15px] font-semibold leading-snug text-white">{t.items["video-to-sop"][0]}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 rtl:-scale-x-100" /></span>
+        <span className="relative text-[12px] text-white/70">{tt(d, "seeit", 1, "One real job, start to finish")}</span>
+        <span className="relative mt-1 flex items-end justify-between gap-2 text-[15px] font-semibold leading-snug text-white">{tt(d, "seeit", 0, "See it in your business")}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
       </a>
     </div>);
 }
 
 export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; lang: Lang; d?: Dict; home: boolean; close: () => void; reduce: boolean }) {
   if (id === "product") return <ProductPanel close={close} home={home} />;
-  const g = NAV.find((x) => x.id === id)!; const f = FEATURE[id];
+  const { locale } = useLocale(); const g = NAV.find((x) => x.id === id)!; const f = FEATURE[id];
+  const href = f.href.startsWith("/#") && home ? f.href.slice(1) : f.href;
   const [hover, setHover] = useState<number | null>(null);
   return (
     <div className="grid grid-cols-[1fr_230px] gap-2 rounded-[24px] bg-surface-1 p-2 ring-1 ring-line">
@@ -68,11 +72,11 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
             </a>
           </li>); })}
       </ul>
-      <a href={f.href} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
+      <a href={href} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
         <picture><source srcSet={`/blog/${f.img}-800.avif`} type="image/avif" /><img src={`/blog/${f.img}-800.webp`} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.85)_100%)]" />
-        <span className="relative text-[12px] text-white/70">{f.k(d)}</span>
-        <span className="relative mt-1 flex items-end justify-between gap-2 text-[14px] font-semibold leading-snug text-white">{f.t(d, lang)}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
+        <span className="relative text-[12px] text-white/70">{f.k(d, locale)}</span>
+        <span className="relative mt-1 flex items-end justify-between gap-2 text-[14px] font-semibold leading-snug text-white">{f.t(d, lang, locale)}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
       </a>
     </div>);
 }

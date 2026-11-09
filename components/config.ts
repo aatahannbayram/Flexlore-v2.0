@@ -3,8 +3,8 @@ export const SITE = {
   url: "https://www.flexlore.com",
   // DEMO: keep true. Flip to false at launch: robots, sitemap and every page's meta follow this flag.
   noindex: true,
-  // Log in link in the header. Empty = hidden. Paste the app login URL here when it is decided.
-  login: "",
+  // Log in link in the header (desktop and the mobile menu). Empty = hidden. Set by Flexlore, 2026-11-10.
+  login: "https://app.flexlore.com",
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
   // Programs Flexlore is accepted into (confirmed by Ata, 2026-11-04). Shown in the home trust strip.
   // badge: path to the OFFICIAL badge file from each program's member kit, used unaltered under its usage rules.
