@@ -52,7 +52,9 @@ const fade = "bg-[linear-gradient(180deg,rgb(17_14_12/0)_30%,rgb(17_14_12/0.55)_
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const STAGE: (Media | "phone-mount")[] = ["saha-iskele-pov", "phone-mount", "problem-kagitlar", "saha-eldiven-makro", "saha-santiye-havadan"];
+const STAGE: (Media | "phone-mount")[] = ["saha-iskele-pov", "phone-mount", "saha-eldiven-makro", "problem-kagitlar", "saha-santiye-havadan"];
+/* Who is holding the phone at each step: 0 manager, 1 team member. */
+const ROLE = [0, 0, 1, 1, 0] as const;
 /* Stage photo: the v3 set, plus the phone-on-a-mount still (public/photos) for the edit step. */
 function StageImg({ n }: { n: Media | "phone-mount" }) {
   if (n !== "phone-mount") return <Photo n={n} sizes="(min-width:1024px) 55vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />;
@@ -75,17 +77,17 @@ function CameraScreen({ active, n }: { active: boolean; n: Media }) {
       </div>
     </div>);
 }
-/* Step 4 screen: one step played full screen the way a learner sees it, timeline running to the end, then the step's
-   complete mark and the next step. */
-const SP = { en: { t: "Opening routine", s: "Step 3 of 6", h: "Open the air valve", p: "Turn the valve a slow quarter turn until the line holds pressure.", more: "Read more...", done: "Step complete", next: "Next step" },
-  tr: { t: "Açılış rutini", s: "Adım 3 / 6", h: "Hava vanasını aç", p: "Hat basıncı tutana kadar vanayı yavaşça çeyrek tur çevir.", more: "Devamı...", done: "Adım tamamlandı", next: "Sonraki adım" } } as const;
+/* Step 3 screen: the team member on the last step, played full screen; when it ends every step is watched and the quiz
+   opens next (step 4). */
+const SP = { en: { t: "Opening routine", s: "Step 6 of 6", h: "Open the air valve", p: "Turn the valve a slow quarter turn until the line holds pressure.", more: "Read more...", done: "All steps watched", next: "Start the quiz" },
+  tr: { t: "Açılış rutini", s: "Adım 6 / 6", h: "Hava vanasını aç", p: "Hat basıncı tutana kadar vanayı yavaşça çeyrek tur çevir.", more: "Devamı...", done: "Tüm adımlar izlendi", next: "Quize başla" } } as const;
 function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) {
   const L = SP[lang]; const reduce = useReducedMotion(); const D = 12; const [t, setT] = useState(reduce ? D : 0);
   useEffect(() => { if (!active || reduce) { setT(D); return; } setT(0); const id = window.setInterval(() => setT((v) => Math.min(D, v + 1)), 360); return () => window.clearInterval(id); }, [active, reduce]);
   const done = t >= D;
   return (<div className="absolute inset-0 flex flex-col bg-[#111]">
-    <Status /><Nav title={L.t} right={<span className="text-[13px] tabular-nums text-white/60">3/6</span>} />
-    <span className="mx-3.5 mt-2 block h-[3px] overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: done ? "50%" : "33.4%" }} /></span>
+    <Status /><Nav title={L.t} right={<span className="text-[13px] tabular-nums text-white/60">6/6</span>} />
+    <span className="mx-3.5 mt-2 block h-[3px] overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-accent transition-[width] duration-500" style={{ width: done ? "100%" : "83.4%" }} /></span>
     <div className="relative mt-3 flex-1 overflow-hidden bg-black">
       <Clip name="steam" active={active} className="scale-[1.02]" />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/75 to-transparent" />
@@ -107,7 +109,10 @@ export function StepsV3() {
   const run = on && !hold && !paused && !reduce;
   useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
   const screen = i === 0 ? <CameraScreen active={on && !reduce} n="saha-iskele-pov" /> : i === 1 ? <Editor active={on} lang={lang} />
-    : i === 2 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : i === 3 ? <StepPlayerScreen active={on} lang={lang} /> : <Ready active={on} lang={lang} />;
+    : i === 2 ? <StepPlayerScreen active={on} lang={lang} /> : i === 3 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
+  const roles = HOME2[locale].roles;
+  /* Load the story screens as soon as the section is near, so switching steps never waits on code (no pop-in). */
+  useEffect(() => { if (near) void import("../AppScreensStory"); }, [near]);
   return (
     <section id="how" aria-labelledby="how-h" className="section-y">
       <div className="container-x">
@@ -115,19 +120,19 @@ export function StepsV3() {
         <div ref={ref} className="mt-8 grid gap-4 md:mt-12 lg:grid-cols-12 lg:gap-12" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           <div className="dark relative aspect-[4/3] overflow-hidden rounded-[28px] bg-[#1A1714] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:min-h-[620px]">
             <AnimatePresence initial={false}>
-              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }}>
+              <m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
                 {near && <StageImg n={STAGE[i]} />}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(17_14_12/0.25)_0%,rgb(17_14_12/0.82)_78%)]" />
             {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(26_22_19/0.7)] text-white/80 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             <div className="absolute left-1/2 top-[17%] w-[min(42%,270px)] -translate-x-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.45)] lg:top-[14%] lg:w-[min(46%,280px)]" dir="ltr">
-              <Device label={s[i][0]}>{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device>
+              <Device label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
             </div>
             <AnimatePresence mode="wait" initial={false}>
               <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
                 className={`${glass} absolute start-4 top-4 flex w-max max-w-[calc(100%-5rem)] items-center gap-2 !rounded-full py-2 pe-4 ps-3 text-[13px] font-medium text-white md:start-5 md:top-5 md:text-[14px]`}>
-                <Sparkle size={14} weight="fill" aria-hidden="true" className="shrink-0 text-white/80" /><span className="truncate">{x.chips[i]}</span>
+                <span className="shrink-0 rounded-full bg-white/15 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em]">{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
               </m.div>
             </AnimatePresence>
           </div>
@@ -148,8 +153,9 @@ export function StepsV3() {
                     {done ? <Check size={16} aria-hidden="true" className="text-ink" />
                       : <span className={`text-[13px] font-semibold tabular-nums transition-colors ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{String(k + 1).padStart(2, "0")}</span>}
                   </span>
-                  <span className="min-w-0 pt-[7px]">
-                    <span className={`block text-[19px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[23px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
+                  <span className="min-w-0">
+                    <span className={`block text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-300 ${act ? (ROLE[k] ? "text-accent-text" : "text-ink-muted") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
+                    <span className={`mt-0.5 block text-[19px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[23px] ${act ? "text-ink" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
                   </span>
                 </button>
               </li>); })}
@@ -159,7 +165,7 @@ export function StepsV3() {
           <div className="mt-4 grid ps-[60px] md:mt-5 md:ps-[64px]" aria-live="polite">
             {s.map(([h, p], k) => (
               <p key={h} aria-hidden={k !== i} className={`[grid-area:1/1] text-[15px] leading-[1.55] text-ink-muted transition-[opacity,transform] duration-500 ease-out md:text-[16px] ${k === i ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-1.5 opacity-0"}`}>
-                {k === 0 ? c.steps[0][1] : p}</p>))}
+                {p}</p>))}
           </div>
           </div>
         </div>

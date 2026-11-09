@@ -1,21 +1,22 @@
 // Strings for the restructured home page (8 sections). Same 8 locales as the main dictionaries.
-// steps: the five moves of the product, each [title, text]: film, edit and split, AI draft, approve and publish, track. Step 4 carries what used to be "Keep your standard",
+// steps: one timeline in five moves, each [title, text]: manager films, splits and publishes; the team watches, then takes the quiz; the manager sees who is ready. roles: [manager, team member]. Step 4 carries what used to be "Keep your standard",
 // "Workspaces" and "Who it is for"; step 5 carries "Completion" and "Flexlore Web".
 // web: the manager web panel block (status "soon" in components/features/data.ts; drop the chip when it ships).
 // sectors: one tab per industry, [role sentence, three examples]. Only capabilities the product has today.
 import type { Locale } from "./locales";
 type Tab = [string, [string, string, string]];
-type H = { steps: [string, string][]; tabs: [Tab, Tab, Tab, Tab]; go: string;
+type H = { steps: [string, string][]; roles: [string, string]; tabs: [Tab, Tab, Tab, Tab]; go: string;
   web: { k: string; h: string; h2: string; p: string; points: [string, string, string]; go: string; soon: string } };
 export const HOME2: Record<Locale, H> = {
   en: {
     steps: [
       ["Film the job", "Your best person records the job on a phone, where it happens. No studio, no script."],
-      ["Edit and split into steps", "Trim the video in the Flexlore editor, mark where each step starts and ends, add text and stickers."],
-      ["AI drafts steps and a quiz", "Flexlore splits the video into steps and drafts the written instructions and a short quiz from the job itself."],
-      ["Approve and publish", "Nothing goes out until your team approves it. Assign each job by role and location; people learn it on their own phone, in 8 languages, and replay any step."],
+      ["Split it and publish", "Cut the video into steps in the editor. AI drafts the instructions and a quiz; you approve and assign by role and location."],
+      ["Watches step by step", "Your team watches on their own phone, in their own language, and replays any step."],
+      ["Takes the quiz", "Once every step is watched, a short quiz opens. The result goes straight to the manager."],
       ["Track who is ready", "See who watched each job and passed its quiz, by person, shift and location, and which locations need you next."],
     ],
+    roles: ["Manager", "Team member"],
     tabs: [
       ["The chef films it once. Every cook follows the same steps at the station.", ["Recipes and plating, the same in every branch", "Opening and closing routines", "Hygiene and allergen steps"]],
       ["Your best operator's way of working becomes the standard on every shift.", ["Health and safety on video: PPE, lockout, machine checks", "Machine changeover and daily start-up", "Master to apprentice skills transfer"]],
@@ -27,11 +28,12 @@ export const HOME2: Record<Locale, H> = {
   tr: {
     steps: [
       ["İşi çekin", "En iyi çalışanınız işi, yapıldığı yerde telefonla kaydeder. Stüdyo yok, senaryo yok."],
-      ["Editleyin ve adımlarına bölün", "Videoyu Flexlore editöründe kırpın, her adımın başını ve sonunu işaretleyin; metin ve çıkartma ekleyin."],
-      ["Yapay zekâ adımları ve quizi hazırlar", "Flexlore videoyu adımlara böler; yazılı talimatları ve işin kendisinden kısa bir quizi taslak olarak hazırlar."],
-      ["Onaylayın ve yayınlayın", "Ekibiniz onaylamadan hiçbir şey yayınlanmaz. İşi rol ve şubeye göre atayın; ekip kendi telefonunda, 8 dilde öğrenir ve istediği adımı tekrar açar."],
+      ["Adımlara bölün, yayınlayın", "Editörde videoyu adımlara bölün. Yapay zekâ talimatları ve quizi taslak olarak hazırlar; siz onaylayıp role ve şubeye atarsınız."],
+      ["Adım adım izler", "Personel işi kendi telefonunda, kendi dilinde adım adım izler; istediği adımı tekrar açar."],
+      ["Quizi çözer", "Tüm adımlar izlendikten sonra kısa quiz açılır. Sonuç doğrudan yöneticiye gider."],
       ["Kimin hazır olduğunu takip edin", "Her işi kimin izlediğini ve quizini geçtiğini kişi, vardiya ve şube bazında görün; hangi şubenin size ihtiyacı olduğunu bilin."],
     ],
+    roles: ["Yönetici", "Personel"],
     tabs: [
       ["Şef işi bir kez çeker. Her aşçı istasyonda aynı adımları izler.", ["Her şubede aynı tarif ve sunum", "Açılış ve kapanış rutinleri", "Hijyen ve alerjen adımları"]],
       ["En iyi operatörünüzün yöntemi her vardiyanın standardı olur.", ["Video ile iş sağlığı ve güvenliği: KKD, kilitleme, makine kontrolleri", "Kalıp değişimi ve günlük devreye alma", "Ustadan çırağa beceri aktarımı"]],
@@ -43,11 +45,12 @@ export const HOME2: Record<Locale, H> = {
   de: {
     steps: [
       ["Aufgabe filmen", "Ihre beste Fachkraft filmt die Aufgabe mit dem Handy, direkt vor Ort. Kein Studio, kein Skript."],
-      ["Schneiden und in Schritte teilen", "Kürzen Sie das Video im Flexlore-Editor, markieren Sie Anfang und Ende jedes Schritts, fügen Sie Text und Sticker hinzu."],
-      ["KI entwirft Schritte und Quiz", "Flexlore teilt das Video in Schritte und entwirft die Anweisungen und ein kurzes Quiz aus der Aufgabe selbst."],
-      ["Freigeben und veröffentlichen", "Nichts geht raus, bevor Ihr Team es freigibt. Weisen Sie jede Aufgabe nach Rolle und Standort zu; alle lernen auf dem eigenen Handy, in 8 Sprachen, und wiederholen jeden Schritt."],
+      ["Teilen und veröffentlichen", "Teilen Sie das Video im Editor in Schritte. Die KI entwirft Anleitungen und ein Quiz; Sie geben frei und weisen nach Rolle und Standort zu."],
+      ["Schaut Schritt für Schritt", "Ihr Team schaut auf dem eigenen Handy, in der eigenen Sprache, und wiederholt jeden Schritt nach Bedarf."],
+      ["Macht das Quiz", "Sind alle Schritte angesehen, öffnet sich ein kurzes Quiz. Das Ergebnis geht direkt an die Führungskraft."],
       ["Sehen, wer bereit ist", "Sehen Sie, wer jede Aufgabe angesehen und ihr Quiz bestanden hat, nach Person, Schicht und Standort, und welcher Standort Sie als Nächstes braucht."],
     ],
+    roles: ["Führungskraft", "Mitarbeitende"],
     tabs: [
       ["Die Küchenchefin filmt es einmal. Jede Köchin, jeder Koch folgt am Posten denselben Schritten.", ["Rezepte und Anrichten, in jeder Filiale gleich", "Öffnungs- und Schließroutinen", "Hygiene- und Allergenschritte"]],
       ["Die Arbeitsweise Ihrer besten Fachkraft wird zum Standard jeder Schicht.", ["Arbeitsschutz per Video: PSA, Lockout, Maschinenchecks", "Rüsten und täglicher Anlauf", "Wissenstransfer vom Meister zum Lehrling"]],
@@ -59,11 +62,12 @@ export const HOME2: Record<Locale, H> = {
   ar: {
     steps: [
       ["صوّر المهمة", "يسجّل أفضل موظفيك المهمة بالهاتف في مكان أدائها. لا حاجة إلى استوديو أو نص مكتوب."],
-      ["حرّر الفيديو وقسّمه إلى خطوات", "قصّ الفيديو في محرر Flexlore، وحدّد بداية كل خطوة ونهايتها، وأضف نصًا وملصقات."],
-      ["الذكاء الاصطناعي يصيغ الخطوات والاختبار", "يقسّم Flexlore الفيديو إلى خطوات، ويصيغ مسودة التعليمات المكتوبة واختبارًا قصيرًا من المهمة نفسها."],
-      ["اعتمد وانشر", "لا يُنشر شيء قبل أن يعتمده فريقك. أسند كل مهمة حسب الدور والموقع؛ يتعلّمها الموظفون على هواتفهم بثماني لغات ويعيدون أي خطوة."],
+      ["قسّمه وانشره", "قسّم الفيديو إلى خطوات في المحرر. يصوغ الذكاء الاصطناعي التعليمات واختبارًا قصيرًا، ثم تعتمدها وتسندها حسب الدور والموقع."],
+      ["يشاهد خطوة بخطوة", "يشاهد فريقك على هاتفه وبلغته، ويعيد أي خطوة متى شاء."],
+      ["يجيب عن الاختبار", "بعد مشاهدة جميع الخطوات يُفتح اختبار قصير، وتصل النتيجة مباشرة إلى المدير."],
       ["تابع من أصبح جاهزًا", "اعرف من شاهد كل مهمة واجتاز اختبارها حسب الشخص والمناوبة والموقع، وأي المواقع تحتاجك أولًا."],
     ],
+    roles: ["المدير", "الموظف"],
     tabs: [
       ["يصوّر الطاهي المهمة مرة واحدة، ويتبع كل طاهٍ الخطوات نفسها في محطته.", ["الوصفة والتقديم نفسهما في كل فرع", "روتين الافتتاح والإغلاق", "خطوات النظافة ومسببات الحساسية"]],
       ["تصبح طريقة عمل أفضل مشغّل لديك معيار كل مناوبة.", ["الصحة والسلامة بالفيديو: معدات الوقاية والعزل وفحص الآلات", "تغيير القوالب والتشغيل اليومي", "نقل المهارة من المعلّم إلى المتدرّب"]],
@@ -75,11 +79,12 @@ export const HOME2: Record<Locale, H> = {
   es: {
     steps: [
       ["Grabe la tarea", "Su mejor profesional graba la tarea con el móvil, en el lugar donde se realiza. Sin estudio ni guion."],
-      ["Edítelo y divídalo en pasos", "Recorte el vídeo en el editor de Flexlore, marque dónde empieza y termina cada paso, y añada texto y stickers."],
-      ["La IA redacta pasos y cuestionario", "Flexlore divide el video en pasos y redacta las instrucciones escritas y un cuestionario breve a partir de la propia tarea."],
-      ["Apruebe y publique", "Nada se publica hasta que su equipo lo aprueba. Asigne cada tarea por rol y ubicación; cada persona la aprende en su móvil, en 8 idiomas, y repite cualquier paso."],
+      ["Divídalo y publíquelo", "Divida el vídeo en pasos en el editor. La IA redacta las instrucciones y un cuestionario; usted aprueba y asigna por puesto y ubicación."],
+      ["Lo ve paso a paso", "Su equipo lo ve en su propio móvil, en su idioma, y repite cualquier paso."],
+      ["Responde el cuestionario", "Cuando ha visto todos los pasos, se abre un cuestionario corto. El resultado llega directamente al responsable."],
       ["Vea quién está listo", "Vea quién vio cada tarea y aprobó su cuestionario, por persona, turno y ubicación, y qué ubicación le necesita primero."],
     ],
+    roles: ["Responsable", "Empleado"],
     tabs: [
       ["El chef la graba una vez. Cada cocinero sigue los mismos pasos en su puesto.", ["Recetas y emplatado, iguales en cada local", "Rutinas de apertura y cierre", "Pasos de higiene y alérgenos"]],
       ["La forma de trabajar de su mejor operario se convierte en el estándar de cada turno.", ["Seguridad y salud en video: EPI, bloqueo, revisión de máquinas", "Cambio de formato y arranque diario", "Transmisión de oficio de maestro a aprendiz"]],
@@ -91,11 +96,12 @@ export const HOME2: Record<Locale, H> = {
   ru: {
     steps: [
       ["Снимите работу", "Ваш лучший сотрудник записывает работу на телефон прямо на месте. Без студии и сценария."],
-      ["Отредактируйте и разбейте на шаги", "Обрежьте видео в редакторе Flexlore, отметьте начало и конец каждого шага, добавьте текст и стикеры."],
-      ["ИИ готовит шаги и тест", "Flexlore делит видео на шаги и готовит черновики письменных инструкций и короткого теста по самой работе."],
-      ["Утвердите и опубликуйте", "Ничего не публикуется без утверждения вашей командой. Назначайте работу по ролям и точкам; сотрудники учатся на своём телефоне, на 8 языках, и пересматривают любой шаг."],
+      ["Разбейте и опубликуйте", "Разбейте видео на шаги в редакторе. ИИ готовит черновик инструкций и теста; вы утверждаете и назначаете по роли и локации."],
+      ["Смотрит шаг за шагом", "Сотрудник смотрит на своём телефоне, на своём языке, и повторяет любой шаг."],
+      ["Проходит тест", "Когда все шаги просмотрены, открывается короткий тест. Результат сразу уходит руководителю."],
       ["Следите, кто готов", "Смотрите, кто посмотрел каждую работу и сдал тест, по сотрудникам, сменам и точкам, и какой точке вы нужны в первую очередь."],
     ],
+    roles: ["Руководитель", "Сотрудник"],
     tabs: [
       ["Шеф снимает один раз. Каждый повар выполняет те же шаги на своей станции.", ["Рецепты и подача, одинаковые в каждом заведении", "Открытие и закрытие смены", "Гигиена и аллергены"]],
       ["Метод вашего лучшего оператора становится стандартом каждой смены.", ["Охрана труда на видео: СИЗ, блокировка, проверка станков", "Переналадка и ежедневный пуск", "Передача навыков от мастера ученику"]],
@@ -107,11 +113,12 @@ export const HOME2: Record<Locale, H> = {
   fr: {
     steps: [
       ["Filmez la tâche", "Votre meilleur collaborateur filme la tâche au téléphone, sur place. Pas de studio, pas de script."],
-      ["Montez et découpez en étapes", "Coupez la vidéo dans l'éditeur Flexlore, marquez le début et la fin de chaque étape, ajoutez texte et stickers."],
-      ["L'IA rédige étapes et quiz", "Flexlore découpe la vidéo en étapes et rédige les instructions écrites et un court quiz à partir de la tâche elle-même."],
-      ["Validez et publiez", "Rien ne part avant la validation de votre équipe. Attribuez chaque tâche par rôle et par site ; chacun l'apprend sur son téléphone, en 8 langues, et revoit n'importe quelle étape."],
+      ["Découpez et publiez", "Découpez la vidéo en étapes dans l'éditeur. L'IA rédige les consignes et un quiz ; vous validez et attribuez par rôle et par site."],
+      ["Regarde étape par étape", "Votre équipe regarde sur son propre téléphone, dans sa langue, et revoit n'importe quelle étape."],
+      ["Répond au quiz", "Une fois toutes les étapes vues, un court quiz s'ouvre. Le résultat part directement au responsable."],
       ["Suivez qui est prêt", "Voyez qui a regardé chaque tâche et réussi son quiz, par personne, équipe et site, et quel site a besoin de vous en premier."],
     ],
+    roles: ["Responsable", "Employé"],
     tabs: [
       ["Le chef la filme une fois. Chaque cuisinier suit les mêmes étapes à son poste.", ["Recettes et dressage, identiques dans chaque établissement", "Routines d'ouverture et de fermeture", "Étapes d'hygiène et allergènes"]],
       ["La méthode de votre meilleur opérateur devient le standard de chaque équipe.", ["Santé et sécurité en vidéo : EPI, consignation, contrôles machine", "Changement de série et démarrage quotidien", "Transmission du savoir-faire du maître à l'apprenti"]],
@@ -123,11 +130,12 @@ export const HOME2: Record<Locale, H> = {
   pl: {
     steps: [
       ["Nagraj zadanie", "Najlepszy pracownik nagrywa zadanie telefonem tam, gdzie je wykonuje. Bez studia i bez scenariusza."],
-      ["Edytuj i podziel na kroki", "Przytnij wideo w edytorze Flexlore, zaznacz początek i koniec każdego kroku, dodaj tekst i naklejki."],
-      ["AI przygotowuje kroki i quiz", "Flexlore dzieli nagranie na kroki i przygotowuje wersję roboczą instrukcji oraz krótki quiz na podstawie samego zadania."],
-      ["Zatwierdź i opublikuj", "Nic nie zostanie opublikowane bez zatwierdzenia przez zespół. Przypisz zadanie według roli i lokalizacji; każdy uczy się na swoim telefonie, w 8 językach, i powtarza dowolny krok."],
+      ["Podziel i opublikuj", "Podziel wideo na kroki w edytorze. AI przygotowuje szkic instrukcji i quizu; Ty zatwierdzasz i przypisujesz według roli i lokalizacji."],
+      ["Ogląda krok po kroku", "Pracownik ogląda na własnym telefonie, we własnym języku, i powtarza dowolny krok."],
+      ["Rozwiązuje quiz", "Po obejrzeniu wszystkich kroków otwiera się krótki quiz. Wynik trafia prosto do kierownika."],
       ["Sprawdzaj, kto jest gotowy", "Zobacz, kto obejrzał każde zadanie i zdał quiz, według osoby, zmiany i lokalizacji, oraz która lokalizacja potrzebuje Cię najpierw."],
     ],
+    roles: ["Kierownik", "Pracownik"],
     tabs: [
       ["Szef kuchni nagrywa raz. Każdy kucharz wykonuje te same kroki na stanowisku.", ["Te same receptury i podanie w każdym lokalu", "Rutyny otwarcia i zamknięcia", "Kroki higieny i alergenów"]],
       ["Sposób pracy najlepszego operatora staje się standardem każdej zmiany.", ["BHP na wideo: ŚOI, blokada, kontrola maszyn", "Przezbrojenie i codzienny rozruch", "Przekazywanie umiejętności od mistrza do ucznia"]],
