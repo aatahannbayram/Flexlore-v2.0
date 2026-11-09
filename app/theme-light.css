@@ -2,7 +2,6 @@
 :root[data-theme="light"] .bg-white\/10:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/15:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.128); }
 :root[data-theme="light"] .bg-white\/20:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.17); }
-:root[data-theme="light"] .bg-white\/25:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.212); }
 :root[data-theme="light"] .bg-white\/30:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.255); }
 :root[data-theme="light"] .bg-white\/40:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/45:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
