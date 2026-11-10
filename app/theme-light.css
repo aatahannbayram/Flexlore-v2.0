@@ -6,6 +6,7 @@
 :root[data-theme="light"] .bg-white\/30:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.255); }
 :root[data-theme="light"] .bg-white\/40:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/5:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.043); }
+:root[data-theme="light"] .bg-white\/70:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/75:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/\[\.025\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.021); }
 :root[data-theme="light"] .bg-white\/\[\.02\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.017); }
@@ -23,12 +24,12 @@
 :root[data-theme="light"] .border-white:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .border-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .border-white\/20:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.2); }
-:root[data-theme="light"] .border-white\/25:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.25); }
 :root[data-theme="light"] .border-white\/\[\.04\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.05\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.06\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.07\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.08\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
+:root[data-theme="light"] .border-white\/\[\.12\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.12); }
 :root[data-theme="light"] .decoration-white\/20:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .decoration-white\/40:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.4); }
 :root[data-theme="light"] .divide-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
@@ -42,6 +43,7 @@
 :root[data-theme="light"] .hover\:bg-white\/\[\.08\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.068); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.12\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.1\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
+:root[data-theme="light"] .hover\:decoration-white:hover:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .hover\:ring-white\/50:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .hover\:text-white:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .hover\:text-white\/80:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
@@ -51,6 +53,7 @@
 :root[data-theme="light"] .ring-white\/20:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .ring-white\/25:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.25); }
 :root[data-theme="light"] .ring-white\/30:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
+:root[data-theme="light"] .ring-white\/40:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/45:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/50:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/80:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
