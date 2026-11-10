@@ -5,13 +5,10 @@
 :root[data-theme="light"] .bg-white\/25:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.212); }
 :root[data-theme="light"] .bg-white\/30:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.255); }
 :root[data-theme="light"] .bg-white\/40:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
-:root[data-theme="light"] .bg-white\/45:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/5:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.043); }
-:root[data-theme="light"] .bg-white\/55:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/75:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/\[\.025\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.021); }
 :root[data-theme="light"] .bg-white\/\[\.02\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.017); }
-:root[data-theme="light"] .bg-white\/\[\.03\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.025); }
 :root[data-theme="light"] .bg-white\/\[\.04\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
 :root[data-theme="light"] .bg-white\/\[\.05\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.043); }
 :root[data-theme="light"] .bg-white\/\[\.06\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.051); }

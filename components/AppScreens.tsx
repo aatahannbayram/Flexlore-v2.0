@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { Lang } from "./copy";
 import { playOnly, stopVideo } from "./media";
-import { ArrowRight, CaretDown, Check, DotsThree, Info, Play } from "./ui/icons";
+import { ArrowRight, CaretDown, Check, DotsThree, Play } from "./ui/icons";
 
 /* Shared phone primitives + the screens the first paint needs (WorkScreen: hero front phone, Web section).
    Story-only screens (EditorScreen, LibraryScreen, QuizScreen, ReadyScreen) live in AppScreensStory.tsx and are
@@ -118,18 +118,16 @@ export function CheckRing({ on, reduce }: { on: boolean; reduce?: boolean | null
 
 /* ---------- Real screen: Work detail (standard work viewer) ---------- */
 const WS = {
-  en: { title: "Opening routine", od: "Orientation data", hint: "Who on the team has watched this work and passed its quiz.", watched: "Watched", quiz: "Quiz", eq: "Edit quiz", det: "Orientation details",
-    steps: "Standard work steps", es: "Edit steps", desc: "Description",
+  en: { back: "Back", title: "Opening routine", op: "Operator 1", steps: "Standard Work Steps", desc: "Description",
     list: [["Switch on the main power", "Turn the main switch on the control panel to ON and wait for the green light.", "line"],
       ["Check the pressure gauge", "The needle should sit in the green band before you go on.", "warehouse"],
       ["Open the air valve", "Turn the valve a slow quarter turn until the line holds pressure.", "steam"]],
-    more: ["Start the compressor", "Log the start time"] },
-  tr: { title: "Açılış rutini", od: "Oryantasyon Verisi", hint: "Bu işi izleyen ve quizini geçen ekip üyeleri.", watched: "İzledi", quiz: "Quiz", eq: "Quizi Düzenle", det: "Oryantasyon Detayları",
-    steps: "Standart İş Adımları", es: "Adımları Düzenle", desc: "Açıklama",
+    more: ["Start the compressor", "Log the start time", "Hand over to the next shift"] },
+  tr: { back: "Geri", title: "Açılış rutini", op: "Operatör 1", steps: "Standart İş Adımları", desc: "Açıklama",
     list: [["Ana şalteri aç", "Kontrol panelindeki ana şalteri AÇIK konumuna getir ve yeşil ışığı bekle.", "line"],
       ["Basınç göstergesini kontrol et", "Devam etmeden önce ibre yeşil bölgede olmalı.", "warehouse"],
       ["Hava vanasını aç", "Hat basıncı tutana kadar vanayı yavaşça çeyrek tur çevir.", "steam"]],
-    more: ["Kompresörü çalıştır", "Başlangıç saatini kaydet"] },
+    more: ["Kompresörü çalıştır", "Başlangıç saatini kaydet", "Sonraki vardiyaya devret"] },
 } as const;
 /* Film: each step opens in turn (its clip plays, the scrubber runs), its check ticks, then the next opens.
    One loop = 15 ticks of 1 s. Reduced motion or inactive: a still of step 1 open. */
@@ -141,39 +139,28 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
   const within = run ? n - k * STEP_T : 0;                           // seconds into the open step
   const end = run && n >= STEP_T * 3;                                // all done: scroll back to the top
   const done = (i: number) => run ? (i < k || (i === k && within >= 3) || end) : !!reduce;
-  const watched = run ? 7 + [0, 1, 2, 3].filter((i) => i < 3 && done(i)).length : reduce ? 10 : 7;
+  const count = [0, 1, 2].filter((i) => done(i)).length;          // steps watched, of 6
   // Scroll so the open step sits near the top: steps above it are collapsed cards of 50pt + 10pt gap.
   const first = useRef<HTMLDivElement>(null); const [top0, setTop0] = useState(300);
   useEffect(() => { if (first.current) setTop0(first.current.offsetTop); }, [lang]);
-  const y = !run || end || k === 0 ? 0 : -Math.max(0, top0 + k * 60 - 40);
+  const y = !run || end || k === 0 ? 0 : -Math.max(0, top0 + (k - 1) * 60 - 8);
   return (<div className="absolute inset-0 flex flex-col overflow-hidden" style={{ background: S0 }}>
-    <Status /><Nav title={L.title} />
+    <Status /><Nav left={<><BackArrow /><span className="text-[15px] text-white/90">{L.back}</span></>} title={L.title} right={<Kebab />} />
+    {/* Progress (steps watched): fixed under the header, as in the app */}
+    <div className="relative z-10 px-3 pb-1 pt-3" style={{ background: S0 }}><div className="flex items-center gap-4 rounded-[16px] px-4 py-3" style={{ background: S1 }}><Bar v={Math.min(count + 1, 6) / 6} h={3} /><span className="text-[12.5px] tabular-nums text-white/60">{Math.min(count + 1, 6)}/6</span></div></div>
     <div className="relative flex-1 overflow-hidden">
-      <m.div className="relative px-3 pb-10 pt-3" initial={false} animate={{ y }} transition={{ duration: reduce ? 0 : 1.1, ease }}>
-        {/* Orientation data */}
-        <div className="rounded-[16px] px-3.5 pb-3.5 pt-3" style={{ background: S1 }}>
-          <div className="flex items-center gap-2.5 text-[15px] text-white"><Chev />{L.od}<Info size={15} className="text-white/45" /></div>
-          <p className="mt-2 text-[11.5px] leading-[1.4]" style={{ color: G1 }}>{L.hint}</p>
-          {([[L.watched, watched], [L.quiz, Math.max(watched - 2, 0)]] as const).map(([lab, v]) => <div key={lab} className="mt-2.5 flex items-center gap-3 text-[11.5px] tabular-nums" style={{ color: G1 }}>
-            <span className="w-11">{lab}</span>
-            <span className="relative h-[3px] flex-1 rounded-full" style={{ background: S3 }}><m.span className="absolute inset-y-0 left-0 rounded-full bg-white/55" initial={false} animate={{ width: `${(v / 12) * 100}%` }} transition={{ duration: reduce ? 0 : .8, ease }} /></span>
-            <span className="w-8 text-right font-medium text-white/85">{v}/12</span></div>)}
-          <div className="mt-3 flex gap-2 text-[12px]">
-            <span className="min-w-0 flex-1 truncate whitespace-nowrap rounded-full px-1.5 py-[9px] text-center text-[11px] text-white" style={{ background: S3 }}>{L.eq}</span>
-            <span className="min-w-0 flex-1 truncate whitespace-nowrap rounded-full px-1.5 py-[9px] text-center text-[11px] font-medium text-white" style={{ background: O }}>{L.det}</span></div>
-        </div>
+      <m.div className="relative px-3 pb-10 pt-2" initial={false} animate={{ y }} transition={{ duration: reduce ? 0 : 1.1, ease }}>
         {/* Operator */}
-        <div className="mt-2.5 flex items-center rounded-[16px] px-3.5 py-3 text-[14px] text-white" style={{ background: S1 }}>
-          <span className="flex-1">{lang === "tr" ? "Operatör 1" : "Operator 1"}</span><CaretDown size={11} weight="fill" className="text-white/85" /></div>
+        <div className="flex items-center rounded-[16px] px-4 py-3.5 text-[14px] text-white" style={{ background: S1 }}>
+          <span className="flex-1">{L.op}</span><CaretDown size={11} weight="fill" className="text-white/85" /></div>
         {/* Steps */}
-        <div className="mt-3 flex items-center justify-between"><span className="pl-0.5 text-[14px]" style={{ color: "#BDBDBD" }}>{L.steps}</span>
-          <span className="rounded-full px-3.5 py-[7px] text-[12px] text-white" style={{ background: S3 }}>{L.es}</span></div>
+        <p className="mt-4 pl-1 text-[13.5px]" style={{ color: "#BDBDBD" }}>{L.steps}</p>
         {L.list.map(([title, desc, clip], i) => { const open = i === k; return (
           <div key={i} ref={i === 0 ? first : undefined} className="mt-2.5 rounded-[16px] px-3 py-3" style={{ background: S1 }}>
             <div className="flex items-center gap-2.5"><Chev open={open} />
-              <span className="flex-1 text-[13.5px] leading-[1.3] tracking-[-.005em] text-white">{i + 1} - {title}</span><CheckRing on={done(i)} reduce={reduce} /></div>
+              <span className={`flex-1 text-[13.5px] leading-[1.3] tracking-[-.005em] text-white ${open ? "" : "truncate"}`}>{i + 1} <span className="text-white/50">•</span> {title}</span><CheckRing on={done(i)} reduce={reduce} /></div>
             <m.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} transition={{ duration: reduce ? 0 : .6, ease }} className="overflow-hidden">
-              <div className="relative mt-3 h-[168px] overflow-hidden rounded-[14px] bg-black">
+              <div className="relative mt-3 h-[188px] overflow-hidden rounded-[14px] bg-black">
                 {open ? <Clip name={clip} active={run} /> : <span className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(/video/${clip}.webp)` }} />}
                 <AnimatePresence initial={false}>{!(run && open && within >= 1 && within < 3) &&
                   <m.span key="ring" initial={{ opacity: 0, scale: .85 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.1 }} transition={{ duration: .35 }} className="absolute inset-0 grid place-items-center bg-black/10"><PlayRing /></m.span>}</AnimatePresence>
@@ -184,7 +171,7 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
             </m.div>
           </div>); })}
         {L.more.map((title, j) => <div key={title} className="mt-2.5 flex items-center gap-2.5 rounded-[16px] px-3 py-3" style={{ background: S1 }}><Chev open={false} />
-          <span className="flex-1 text-[13.5px] leading-[1.3] text-white">{j + 4} - {title}</span><CheckRing on={false} /></div>)}
+          <span className="flex-1 truncate text-[13.5px] leading-[1.3] text-white">{j + 4} <span className="text-white/50">•</span> {title}</span><CheckRing on={false} /></div>)}
       </m.div>
     </div></div>);
 }

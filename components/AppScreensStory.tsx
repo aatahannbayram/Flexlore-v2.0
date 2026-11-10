@@ -1,7 +1,7 @@
 "use client";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import type { Lang } from "./copy";
-import { Article, CaretDown, CaretLeft, CaretRight, Check, CheckCircle, Eye, EyeSlash, GraduationCap, Info, List, MagnifyingGlass, Pause, Play, Plus, Sticker, TextT, Users, X } from "./ui/icons";
+import { ArrowUUpLeft, ArrowUUpRight, GraduationCap, CaretDown, CaretLeft, CaretRight, Check, CheckCircle, Eye, EyeSlash, Info, List, MagnifyingGlass, Pause, Play, Plus, Sticker, TextT, Users, X, XCircle } from "./ui/icons";
 import { BackArrow, Bar, CheckRing, Clip, G1, G2, HL, Kebab, Nav, O, Player, Scaled, S0, S1, S2, Status, Toast, WorkScreen, card, ease, ic, mm, useTick, type ScreenProps } from "./AppScreens";
 
 /* Story-only phone screens. Loaded with next/dynamic (ssr: false) from ScrollStory and the hero's decorative back phone,
@@ -40,9 +40,9 @@ export function LibraryScreen({ active, lang = "en" }: ScreenProps) {
 
 /* ---------- Real screen: Step editor (mark a step on the recorded clip, then name it) ---------- */
 const ED = {
-  en: { done: "Done", tools: ["Stickers", "Text", "Steps"], start: "Start step", stop: "Stop step", vd: "Video Duration", ss: "Start Step", st: "Stop Step", sd: "Step Duration",
+  en: { done: "Done", tools: ["Stickers", "Text", "Steps", "Cancel"], start: "Start Step", stop: "Stop Step", vd: "Video Duration", ss: "Start Step", st: "Stop Step", sd: "Step Duration",
     modal: "Step details (Step - 1)", ft: "Standard work step title", fd: "Description", cancel: "Cancel", save: "Save changes", title: "Switch on the main power", saved: "Step 1 saved" },
-  tr: { done: "Tamam", tools: ["Çıkartmalar", "Metin", "Adımlar"], start: "Adımı Başlat", stop: "Adımı Durdur", vd: "Video süresi", ss: "Başlangıç", st: "Bitiş", sd: "Adım süresi",
+  tr: { done: "Tamam", tools: ["Çıkartmalar", "Metin", "Adımlar", "İptal"], start: "Adımı Başlat", stop: "Adımı Durdur", vd: "Video süresi", ss: "Başlangıç", st: "Bitiş", sd: "Adım süresi",
     modal: "İş Adımı Detayları (Step - 1)", ft: "Standart İş Adımı Başlığı", fd: "Açıklama", cancel: "İptal", save: "Değişiklikleri Kaydet", title: "Ana şalteri aç", saved: "Adım 1 kaydedildi" },
 } as const;
 /* Timeline in quarter seconds (64 = 16 s loop):
@@ -60,9 +60,8 @@ export function EditorScreen({ active, lang = "en" }: ScreenProps) {
   const start = run ? (q >= 7 ? 1 : 0) : 1, stop = marked ? 5 : marking ? v : 0, dur = marking || marked ? Math.max(stop - start, 0) : 0;
   const modal = run && q >= 26 && q < 49; const typed = run ? Math.round(Math.min(Math.max(q - 28, 0) / 14, 1) * L.title.length) : 0;
   const pressed = run && q >= 46 && q < 48; const press = (a: number) => run && q >= a && q < a + 2;
-  const frames = ["kitchen", "kitchen", "kitchen", "kitchen", "kitchen"];
   return (<div className="absolute inset-0 flex flex-col overflow-hidden" style={{ background: S0 }}>
-    <Status /><Nav left={<><BackArrow /><span className="text-[16px] text-white/90">{L.done}</span></>} right={<><GraduationCap size={19} /><List size={19} /><Kebab /></>} />
+    <Status /><Nav left={<span className="text-[15px] text-white/75">{L.done}</span>} title={`1 • ${L.title}`} right={<Kebab />} />
     {/* Clip: vertical video, black pillar boxes */}
     <div className="relative h-[292px] shrink-0 bg-black">
       <div className="absolute inset-y-0 left-1/2 w-[62%] -translate-x-1/2 overflow-hidden"><Clip name="kitchen" active={playing} /></div>
@@ -70,15 +69,15 @@ export function EditorScreen({ active, lang = "en" }: ScreenProps) {
       <span className="absolute bottom-2.5 left-2 rounded-[10px] bg-black/70 px-2.5 py-[6px] text-[11.5px] tabular-nums text-white backdrop-blur">{L.vd}: <span style={{ color: O }}>{mm(v)}</span> / {mm(DUR)}</span>
     </div>
     {/* Controls */}
-    <div className="flex h-[48px] shrink-0 items-center justify-between px-3 text-[14px] text-white" style={{ borderBottom: `1px solid ${HL}` }}>
-      <span className="flex items-center"><CaretLeft size={18} />1s</span>
-      <span className="grid h-[30px] w-[30px] place-items-center rounded-full ring-2 ring-white/90">{playing ? <Pause size={13} weight="fill" /> : <Play size={13} weight="fill" className="ml-0.5" />}</span>
-      <span className="flex items-center">1s<CaretRight size={18} /></span></div>
-    <div className="mt-3 flex justify-between px-3 text-[10px] tabular-nums" style={{ color: G1 }}>
+    <div className="grid h-[48px] shrink-0 grid-cols-5 items-center px-2 text-[13px] text-white" style={{ borderTop: `1px solid ${HL}`, borderBottom: `1px solid ${HL}` }}>
+      <span className="justify-self-center"><ArrowUUpLeft size={19} /></span><span className="justify-self-center"><ArrowUUpRight size={19} /></span>
+      <span className="grid h-[28px] w-[28px] place-items-center justify-self-center rounded-full ring-2 ring-white/90">{playing ? <Pause size={12} weight="fill" /> : <Play size={12} weight="fill" className="ml-0.5" />}</span>
+      <span className="flex items-center justify-self-center"><CaretLeft size={16} />1s</span><span className="flex items-center justify-self-center">1s<CaretRight size={16} /></span></div>
+    <div className="mt-3 flex justify-between px-3 text-[10px] tabular-nums text-white/70">
       <span>{L.ss}: {mm(start)}</span><span>{L.st}: {mm(stop)}</span><span>{L.sd}: {mm(dur)}</span></div>
     {/* Filmstrip + playhead */}
     <div className="relative mx-3 mt-4 h-[48px] shrink-0">
-      <div className="absolute inset-0 flex overflow-hidden rounded-[12px] ring-1 ring-white/10">{frames.map((f, i) => <span key={i} className="h-full flex-1 bg-cover" style={{ backgroundImage: `url(/video/${f}.webp)`, backgroundPosition: `${i * 25}% 50%` }} />)}</div>
+      <div className="absolute inset-0 rounded-[14px] ring-[1.5px] ring-white/30" style={{ background: S1 }} />
       {(marking || marked) && <m.span className="absolute inset-y-0 rounded-[4px] bg-white/[.22] ring-1 ring-white/50" initial={false} animate={{ left: `${(start / DUR) * 100}%`, width: `${(dur / DUR) * 100}%` }} transition={{ duration: .25, ease: "linear" }} />}
       <m.span className="absolute -inset-y-[9px] w-0" initial={false} animate={{ left: `${(v / DUR) * 100}%` }} transition={{ duration: .25, ease: "linear" }}>
         <span className="absolute -left-[5px] top-0 h-0 w-0 border-x-[5px] border-t-[6px] border-x-transparent border-t-white" />
@@ -87,11 +86,11 @@ export function EditorScreen({ active, lang = "en" }: ScreenProps) {
     </div>
     {/* Toolbar + Start/Stop step */}
     <div className="mx-3 mb-[26px] mt-auto flex gap-2">
-      <div className="flex flex-[2.8] rounded-[14px] py-2.5" style={{ background: S2 }}>{([[Sticker, L.tools[0]], [TextT, L.tools[1]], [Article, L.tools[2]]] as const).map(([Icon, l]) => <span key={l} className="flex flex-1 flex-col items-center gap-1 text-[10.5px]" style={{ color: G1 }}><Icon size={20} />{l}</span>)}</div>
-      <m.div animate={{ scale: press(7) || press(23) ? .94 : 1 }} transition={{ duration: .15 }} className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[14px] py-2 ${marking ? "ring-[1.5px] ring-white/80" : ""}`} style={{ background: S2 }}>
+      <div className="flex flex-[2.8] rounded-[14px] py-2.5" style={{ background: S2 }}>{([[Sticker, L.tools[0]], [TextT, L.tools[1]], [List, L.tools[2]], [XCircle, L.tools[3]]] as const).map(([Icon, l], i) => <span key={l} className={`flex flex-1 flex-col items-center gap-1 text-[10px] ${i === 3 ? "text-danger" : "text-white/75"}`}><Icon size={19} />{l}</span>)}</div>
+      <m.div animate={{ scale: press(7) || press(23) ? .94 : 1 }} transition={{ duration: .15 }} className={`flex flex-1 flex-col items-center justify-center gap-1 rounded-[14px] py-2 ring-[1.5px] ${marking ? "ring-white/80" : "ring-white/25"}`} style={{ background: S2 }}>
         <span className={`grid h-[20px] w-[20px] place-items-center rounded-full ring-[1.6px] ${marking ? "ring-white/85" : "ring-white/45"}`}>
-          <span className={`h-[11px] w-[11px] rounded-full transition-colors duration-300 ${marking ? "bg-danger" : "bg-white/45"}`} /></span>
-        <span className={`whitespace-nowrap text-[10.5px] ${marking ? "font-semibold text-white" : ""}`} style={marking ? undefined : { color: G1 }}>{marking ? L.stop : L.start}</span></m.div>
+          <span className="h-[11px] w-[11px] rounded-full bg-danger" /></span>
+        <span className={`whitespace-nowrap text-[10.5px] ${marking ? "font-semibold text-white" : "text-white/80"}`}>{marking ? L.stop : L.start}</span></m.div>
     </div>
     {/* Step details modal */}
     <AnimatePresence>{modal && <m.div key="dim" className="absolute inset-0 z-20 bg-black/65" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: .3 }} />}</AnimatePresence>
@@ -110,26 +109,30 @@ export function EditorScreen({ active, lang = "en" }: ScreenProps) {
   </div>);
 }
 
-/* ---------- Real screen: Standard Work Quiz ---------- */
+/* ---------- Real screen: Standard Work Quiz ----------
+   Matches the app: Back + title, a rounded progress strip with the count, the "Standard Work Quiz" label, then one card
+   per question ("1. Question", the text, round radio options "A • ..."; the picked one is an orange ring with a dot). */
 const QZ = {
-  en: { title: "Opening routine", q: "Question", single: "Single choice", extra: "Leave it for the next shift", q2: "Which order is right when starting the line?", o2: ["Valve → Power → Gauge", "Power → Gauge → Valve", "Gauge → Valve → Power"], ok: "Correct", okS: "Answer saved", pass: "Quiz passed", passS: "Results sent to your lead" },
-  tr: { title: "Açılış rutini", q: "Soru", single: "Tek seçim", extra: "Sonraki vardiyaya bırak", q2: "Hattı başlatırken doğru sıra hangisi?", o2: ["Vana → Şalter → Gösterge", "Şalter → Gösterge → Vana", "Gösterge → Vana → Şalter"], ok: "Doğru", okS: "Cevap kaydedildi", pass: "Quiz geçildi", passS: "Sonuçlar yöneticine gönderildi" },
+  en: { back: "Back", title: "Opening routine", label: "Standard Work Quiz", q: "Question", extra: "Leave it for the next shift", q2: "Which order is right when starting the line?", o2: ["Valve → Power → Gauge", "Power → Gauge → Valve", "Gauge → Valve → Power"], pass: "Quiz passed", passS: "Results sent to your lead" },
+  tr: { back: "Geri", title: "Açılış rutini", label: "Standart İş Quizi", q: "Soru", extra: "Sonraki vardiyaya bırak", q2: "Hattı başlatırken doğru sıra hangisi?", o2: ["Vana → Şalter → Gösterge", "Şalter → Gösterge → Vana", "Gösterge → Vana → Şalter"], pass: "Quiz geçildi", passS: "Sonuçlar yöneticine gönderildi" },
 } as const;
+const Radio = ({ on }: { on: boolean }) => (<span className="grid h-[19px] w-[19px] shrink-0 place-items-center rounded-full transition-colors duration-300" style={{ boxShadow: `inset 0 0 0 1.6px ${on ? O : "rgba(255,255,255,.42)"}` }}>
+  <m.span className="h-[9px] w-[9px] rounded-full" style={{ background: O }} initial={false} animate={{ scale: on ? 1 : 0, opacity: on ? 1 : 0 }} transition={{ duration: .25, ease }} /></span>);
 export function QuizScreen({ active, q, a, lang = "en" }: ScreenProps & { q: string; a: readonly string[]; ok?: number }) {
   const L = QZ[lang]; const reduce = useReducedMotion(); const run = active && !reduce;
-  const t = useTick(run, 900, 10); const n = run ? t : 9; const pick = n < 2 ? -1 : n < 4 ? 0 : 1;
-  const opts = [...a, L.extra].slice(0, 4);
+  const t = useTick(run, 900, 10); const n = run ? t : 9; const pick = n < 2 ? -1 : n < 4 ? 0 : 1; const pick2 = n >= 6 ? 1 : -1;
+  const opts = [...a, L.extra].slice(0, 4); const step = n >= 6 ? 2 : 1;
   const Qc = ({ k, t, o, sel }: { k: number; t: string; o: readonly string[]; sel: number }) => (
-    <div className={`px-3.5 py-3 ${card}`} style={{ background: S1 }}><div className="flex items-center justify-between"><span className="rounded-full bg-white/[.06] px-2 py-0.5 text-xs font-medium tabular-nums text-white/60">{L.q} {k}</span><span className="text-xs text-white/60">{L.single}</span></div>
-      <p className="mt-2 text-sm font-medium leading-[1.35] tracking-[-.01em] text-white">{t}</p>
-      <ul className="mt-2.5 space-y-1.5">{o.map((x, i) => <li key={x} className={`flex items-center gap-2.5 rounded-[10px] px-2.5 py-[7px] text-xs leading-snug transition-colors duration-300 ${sel === i ? "bg-flame/[.12] text-white ring-1 ring-flame/60" : "bg-white/[.03] text-white/70 ring-1 ring-white/[.06]"}`}>
-        <span className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-[5px] text-xs font-semibold ${sel === i ? "text-white" : "bg-white/[.06] text-white/55"}`} style={sel === i ? { background: O } : {}}>{String.fromCharCode(65 + i)}</span>
-        <span className="flex-1">{x}</span>{sel === i && <m.span layoutId={`r${k}`}><CheckCircle {...ic} size={14} style={{ color: O }} /></m.span>}</li>)}</ul></div>);
+    <div className="rounded-[18px] px-4 pb-2 pt-3.5" style={{ background: S1 }}>
+      <p className="text-[12.5px]" style={{ color: G1 }}>{k}. {L.q}</p>
+      <p className="mt-2 text-[13.5px] leading-[1.4] tracking-[-.005em] text-white">{t}</p>
+      <ul className="mt-2">{o.map((x, i) => <li key={x} className={`flex items-center gap-3 py-[9px] text-[13px] leading-snug transition-colors duration-300 ${sel === i ? "text-white" : "text-white/70"}`}>
+        <Radio on={sel === i} /><span className="flex-1">{String.fromCharCode(65 + i)} <span className="px-0.5 text-white/50">•</span> {x}</span></li>)}</ul></div>);
   return (<div className="absolute inset-0 flex flex-col" style={{ background: S0 }}>
-    <Status /><Nav title={L.title} right={<span className="text-sm tabular-nums text-white/50">{n >= 6 ? 2 : 1}/6</span>} />
-    <div className="flex items-center gap-3 px-4 pb-3 pt-3"><Bar v={(n >= 6 ? 2 : 1) / 6} /></div>
-    <div className="space-y-2.5 px-3"><Qc k={1} t={q} o={opts} sel={pick} /><Qc k={2} t={L.q2} o={L.o2} sel={n >= 6 ? 1 : -1} /></div>
-    <Toast show={run && n >= 4 && n < 6} text={L.ok} sub={L.okS} />
+    <Status /><Nav left={<><BackArrow /><span className="text-[15px] text-white/90">{L.back}</span></>} title={L.title} />
+    <div className="mx-3 mt-3 flex items-center gap-4 rounded-[16px] px-4 py-3" style={{ background: S1 }}><Bar v={step / 4} h={3} /><span className="text-[12.5px] tabular-nums text-white/60">{step}/4</span></div>
+    <p className="px-4 pb-2.5 pt-5 text-[12.5px] text-white/75">{L.label}</p>
+    <div className="space-y-2.5 px-3"><Qc k={1} t={q} o={opts} sel={pick} /><Qc k={2} t={L.q2} o={L.o2} sel={pick2} /></div>
     <Toast show={run && n >= 8} text={L.pass} sub={L.passS} /></div>);
 }
 
