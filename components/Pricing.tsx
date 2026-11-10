@@ -12,12 +12,8 @@ import { useLocale, fmt } from "./i18n/LocaleProvider";
 import { BillingSwitch, PlanCard } from "./home/home5b";
 import { QUOTE } from "./pages/copy-quote";
 import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Tag, Lightning, EnvelopeSimple } from "./ui/icons";
+import { Split } from "./ui/Split";
 
-/** Heading with the house style: silver words, the last third in orange. */
-function Split({ text }: { text: string }) {
-  const w = text.split(" "); const n = w.length - Math.max(1, Math.ceil(w.length / 3));
-  return <><span className="t-ink">{w.slice(0, n).join(" ")}</span> <span className="t-accent">{w.slice(n).join(" ")}</span></>;
-}
 const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
 const glassCard = "rounded-[28px] bg-[var(--card)]";
 

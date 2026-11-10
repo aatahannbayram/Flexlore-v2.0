@@ -3,6 +3,7 @@ import { Bar } from "./Blog";
 import { Footer } from "./Sections";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
+import { Split } from "./ui/Split";
 
 export type UC = { slug: string; crumb: string; k: string; h1: string; lede: string; img: string; alt: string; quote: string;
   problem: [string, string][]; steps: [string, string][]; out: string[]; faq: { q: string; a: string }[]; related: string };
@@ -38,7 +39,7 @@ export default function UseCase({ c }: { c: UC }) {
         <div className="relative w-full container-x">
           <nav aria-label="Breadcrumb" className="mono text-xs uppercase tracking-[.18em] text-white/70"><Link href="/" className="inline-flex min-h-11 items-center hover:text-white">Home</Link> / <span>Use cases</span> / <span className="text-white/80">{c.crumb}</span></nav>
           <p className="mono mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-ice-100" />{c.k}</p>
-          <h1 className="display mt-4 max-w-[17ch] text-h1">{c.h1}</h1>
+          <h1 className="display mt-4 max-w-[17ch] text-h1"><Split text={c.h1} /></h1>
           <p className="mt-5 max-w-[58ch] text-lg leading-[1.4] text-white/80">{c.lede}</p>
           <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
         </div>

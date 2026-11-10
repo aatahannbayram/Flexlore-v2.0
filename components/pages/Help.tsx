@@ -54,7 +54,9 @@ export function FaqPage() {
   const { locale, d } = useLocale(); const c = HELP[locale].faq;
   const items = useMemo<Item[]>(() => {
     const pr = locale === "tr" ? PRICING_FAQ_TR : locale === "en" ? PRICING_FAQ : [];
-    return [...d.faq.items.map(([q, a]) => ({ q, a, g: "product" as const })), ...pr.map(({ q, a }) => ({ q, a: fixPricing(a), g: "pricing" as const }))];
+    const seen = new Set(d.faq.items.map(([q]) => q.trim().toLowerCase()));
+    return [...d.faq.items.map(([q, a]) => ({ q, a, g: "product" as const })),
+      ...pr.filter(({ q }) => !seen.has(q.trim().toLowerCase())).map(({ q, a }) => ({ q, a: fixPricing(a), g: "pricing" as const }))];
   }, [d, locale]);
   const [term, setTerm] = useState(""); const [grp, setGrp] = useState<"all" | Item["g"]>("all"); const [open, setOpen] = useState<string | null>(null);
   const norm = (s: string) => s.toLocaleLowerCase(locale);
