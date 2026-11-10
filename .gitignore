@@ -12,3 +12,6 @@ media-src/*
 # test output
 test-results/
 playwright-report/
+# Local secrets (ElevenLabs key and other env values); never commit
+/.env.local
+/.env*.local

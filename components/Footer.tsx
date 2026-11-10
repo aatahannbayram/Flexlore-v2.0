@@ -5,6 +5,7 @@ import { Plus, EnvelopeSimple, ArrowUpRight, ArrowUp } from "./ui/icons";
 import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
 import { useLocale } from "./i18n/LocaleProvider";
+import { consentNeeded, openConsent, CONSENT_SETTINGS } from "./consent";
 
 /* Footer (v4): warm dark ground in three layers.
  * 1. Brand block (wordmark, line, social) and four link groups. Phones: the link groups are accordions (48 px rows).
@@ -170,6 +171,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
             <ul className="-mx-2 flex flex-wrap" aria-label={f.legal}>
               {SITE.legal.map(([n, h]) => (
                 <li key={n}><a className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
+              {consentNeeded && <li><button type="button" onClick={openConsent} className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white">{CONSENT_SETTINGS[locale] ?? CONSENT_SETTINGS.en}</button></li>}
             </ul>
           </div>
           <p className="mt-2 max-w-[90ch] text-[12px] leading-[1.5] text-white/55">

@@ -1,0 +1,5 @@
+{
+  "agent_id": "agent_9501m73f04vbejxbzr3bftjwe0d9",
+  "name": "Flexlore Website Assistant",
+  "notes": "Live settings are versioned in agent.snapshot.json (scripts/elevenlabs-sync.mjs pull). This repo owns only prompt.md and the site knowledge base, pushed to a branch (push --branch). Publishing (merge to main) is done deliberately, after approval."
+}
