@@ -40,20 +40,29 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
     <T id="main-next" aria-label={c.programs} {...(T === "div" ? { role: "region" } : {})} className={`scroll-mt-[var(--header-h)] ${T === "div" ? "" : "bg-bg"}`}>
       <div className="container-x pt-2 md:pt-4">
         <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-7">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-white/50">{c.programs}</p>
-          <span aria-hidden="true" className="hidden h-7 w-px bg-white/15 lg:block" />
-          <Reveal as="ul" stagger={0.06} className="flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
-            {list.map((p) => (
+          <p className="shrink-0 text-[13px] font-medium text-white/50">{c.programs}</p>
+          <span aria-hidden="true" className="hidden h-6 w-px bg-white/15 lg:block" />
+          <Reveal as="ul" stagger={0.06} className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
+            {list.map((p) => {
+              // Official artwork with its own light field (NVIDIA badge, Google identifier) stays as supplied; marks made for
+              // dark grounds (ElevenLabs white wordmark, the YC "Y") and text-only programs sit straight on the ground.
+              const plate = p.org === "NVIDIA" || p.org === "Google";
+              return (
               <RevealItem as="li" key={p.name}>
-                <a href={p.href} target="_blank" rel="noopener" aria-label={p.name} className="group inline-flex min-h-11 items-center transition-transform duration-300 hover:-translate-y-0.5">
-                  {p.badge
+                <a href={p.href} target="_blank" rel="noopener" aria-label={p.name} className="group inline-flex h-11 items-center opacity-80 transition-[opacity,transform] duration-300 hover:-translate-y-0.5 hover:opacity-100">
+                  {p.badge && plate
                     ? p.caption
-                      ? <span className="flex h-11 flex-col items-center justify-center rounded-[4px] bg-[#EDEDED] px-3"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[13px] w-auto max-w-none" />
-                          <span className="mt-1 text-[12px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
-                      : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-9 w-auto max-w-none rounded-[4px]" />
-                    : <span className="flex flex-col leading-tight"><span className="text-[16px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[12px] text-white/55">by {p.org}</span></span>}
+                      ? <span className="flex h-10 flex-col items-center justify-center rounded-[6px] bg-[#EDEDED] px-3"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[12px] w-auto max-w-none" />
+                          <span className="mt-1 text-[11.5px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
+                      : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-10 w-auto max-w-none rounded-[6px]" />
+                    : p.badge && p.org === "Y Combinator"
+                      ? <span className="flex items-center gap-2.5"><img src={p.badge} alt="" width={26} height={26} className="block h-[26px] w-[26px] rounded-[4px]" />
+                          <span className="flex flex-col leading-tight"><span className="text-[15px] font-semibold tracking-[-0.02em] text-white">{p.caption}</span><span className="text-[11.5px] text-white/55">Y Combinator</span></span></span>
+                      : p.badge
+                        ? <span className="flex flex-col items-start gap-1"><img src={p.badge} alt={p.org} width={p.badgeW} height={p.badgeH} className="block h-[15px] w-auto max-w-none" /><span className="text-[11.5px] leading-none text-white/55">{p.caption}</span></span>
+                        : <span className="flex flex-col leading-tight"><span className="text-[15px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[11.5px] text-white/55">by {p.org}</span></span>}
                 </a>
-              </RevealItem>))}
+              </RevealItem>); })}
             {ph && <RevealItem as="li">
               {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
                   third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}

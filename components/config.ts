@@ -17,6 +17,10 @@ export const SITE = {
     { name: "Google for Startups Cloud Program", org: "Google", href: "https://startup.google.com/cloud/", badge: "/brand/programs/google-for-startups-cloud.svg" as string | null, badgeW: 163, badgeH: 40, caption: "Google for Startups" as string | null, flag: "googleProgram" as string | null },
     // Anthropic publishes no member badge for Claude Startups (membership confirmed in Claude Console), so it stays text.
     { name: "Claude Startups", org: "Anthropic", href: "https://claude.com/programs/startups", badge: null as string | null, badgeW: 0, badgeH: 0, caption: null as string | null, flag: null as string | null },
+    // ElevenLabs: official white wordmark from elevenlabs.io/brand (unaltered), program name as caption. Grant plan confirmed in the account.
+    { name: "ElevenLabs Startup Grants", org: "ElevenLabs", href: "https://elevenlabs.io/startup-grants", badge: "/brand/programs/elevenlabs-logo-white.svg" as string | null, badgeW: 694, badgeH: 90, caption: "Startup Grants" as string | null, flag: null as string | null },
+    // Y Combinator Startup School (added at Ata's request, 2026-11-11): the official YC "Y" mark from startupschool.org, with the program name.
+    { name: "Y Combinator Startup School", org: "Y Combinator", href: "https://www.startupschool.org/", badge: "/brand/programs/yc-startup-school-y.svg" as string | null, badgeW: 45, badgeH: 45, caption: "Startup School" as string | null, flag: null as string | null },
   ],
   // Sections that need real content. Off = not rendered, so placeholders never ship.
   // googleProgram / productHunt: badges hidden until approved. construction: the "İnşaat ve saha" tab and /sektor/insaat/.
