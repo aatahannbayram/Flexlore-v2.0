@@ -16,7 +16,7 @@ const T = {
     ready: "İşe hazır", week: "Bu hafta +6 puan", ai: "Yapay zekâ taslağı", aiLine: "Video 6 adıma bölündü", quiz: "Quiz taslağı", review: "Adımları incele", step: "Adım" },
 };
 const CLIPS = ["kitchen", "steam", "plating", "kitchen", "plating", "steam"];
-const glass = "rounded-[18px] bg-[rgb(20_20_20/0.55)] ring-1 ring-white/[.09] backdrop-blur-xl";
+const glass = "rounded-[18px] bg-[rgb(20_20_20/0.55)] ring-1 ring-white/[.09]";
 
 export function TabletScreen({ active, lang = "en" }: { active: boolean; lang?: "en" | "tr" }) {
   const t = T[lang]; const reduce = useReducedMotion();

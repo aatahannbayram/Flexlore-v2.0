@@ -12,7 +12,7 @@ import { FilePdf, ArrowRight, CheckCircle, Sparkle, MapPin, LockSimple, Eye, Pen
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full" /> });
 
-const glass = "rounded-[18px] bg-[rgb(20_20_20/0.78)] backdrop-blur-md";
+const glass = "rounded-[18px] bg-[rgb(20_20_20/0.78)]";
 const row = "flex items-center gap-3 rounded-xl bg-[rgb(255_255_255/0.07)] px-3 py-2.5 text-[13px]";
 const st = (ms: number) => ({ animationDelay: `${ms}ms` });
 

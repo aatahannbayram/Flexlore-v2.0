@@ -23,7 +23,7 @@ export function LoginPage() {
         <div className="dark relative min-h-[300px] overflow-hidden rounded-[32px] bg-[#171717] text-white sm:min-h-[380px] lg:order-first lg:min-h-0">
           <Pic n="hero-sef" eager sizes="(min-width:1024px) 55vw, 100vw" className="absolute inset-0 h-full w-full object-cover object-[70%_40%]" />
           <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.05)_30%,rgb(16_16_16/0.88)_100%)]" />
-          <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-[rgb(20_20_20/0.55)] p-5 backdrop-blur-xl md:inset-x-6 md:bottom-6 md:p-6">
+          <div className="absolute inset-x-4 bottom-4 rounded-[22px] bg-[rgb(20_20_20/0.8)] p-5 md:inset-x-6 md:bottom-6 md:p-6">
             <p className="text-[clamp(22px,1rem+1.2vw,32px)] font-semibold leading-tight tracking-[-0.03em]">{c.cap1}</p>
             <p className="mt-1.5 text-[15px] text-white/75">{c.cap2}</p>
           </div>

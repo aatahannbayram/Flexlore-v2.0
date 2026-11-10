@@ -48,7 +48,7 @@ const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k:
     <div className="col-span-12 lg:col-span-7"><div className="flex flex-wrap items-center gap-3"><Ch n={n}>{k}</Ch>{extra}</div><H2 id={id} a={h} b={h2} className={w} /></div>
     <p className="col-span-12 max-w-[30rem] text-[15px] leading-[1.55] text-ink-muted md:text-[16px] lg:col-span-5 lg:justify-self-end">{p}</p>
   </div>);
-const glass = "rounded-[16px] bg-[rgb(24_24_24/0.62)] backdrop-blur-xl";
+const glass = "rounded-[16px] bg-[rgb(24_24_24/0.62)]";
 /** Warm fade from the photo into the ground. */
 const fade = "bg-[linear-gradient(180deg,rgb(16_16_16/0)_30%,rgb(16_16_16/0.55)_62%,rgb(16_16_16/0.94)_100%)]";
 /** Rule-of-thirds lines for the camera screen. */
@@ -85,13 +85,13 @@ function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) 
       <span aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: THIRDS }} />
       <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/70 to-transparent px-[18px] pb-[22px] pt-[50px] text-[12px] font-semibold">
         <Lightning size={16} aria-hidden="true" className="text-white/85" />
-        <span className="flex items-center gap-[6px] rounded-full bg-black/55 px-[10px] py-[4px] text-[13px] tabular-nums backdrop-blur-md"><span className="rec-dot h-[7px] w-[7px] rounded-full bg-[#FF453A]" />00:{String(t).padStart(2, "0")}</span>
+        <span className="flex items-center gap-[6px] rounded-full bg-black/70 px-[10px] py-[4px] text-[13px] tabular-nums"><span className="rec-dot h-[7px] w-[7px] rounded-full bg-[#FF453A]" />00:{String(t).padStart(2, "0")}</span>
         <span className="text-white/85">4K · 30</span>
       </div>
       <span aria-hidden="true" className="cam-focus absolute left-[30%] top-[47%] h-[92px] w-[92px]">
         {["start-0 top-0 border-s-2 border-t-2 rounded-ss-[6px]", "end-0 top-0 border-e-2 border-t-2 rounded-se-[6px]", "start-0 bottom-0 border-s-2 border-b-2 rounded-es-[6px]", "end-0 bottom-0 border-e-2 border-b-2 rounded-ee-[6px]"].map((c) => <span key={c} className={`absolute h-[16px] w-[16px] border-white ${c}`} />)}
       </span>
-      <div className="absolute inset-x-0 bottom-0 bg-black/70 pb-[34px] pt-[12px] backdrop-blur-md">
+      <div className="absolute inset-x-0 bottom-0 bg-black/70 pb-[34px] pt-[12px]">
         <div className="flex justify-center gap-[6px] text-[12px] font-semibold tabular-nums">
           {["0.5", "1×", "2"].map((z, k) => <span key={z} className={`grid h-[30px] w-[30px] place-items-center rounded-full ${k === 1 ? "bg-white/20 text-[#FFD60A]" : "bg-white/10 text-white/80"}`}>{z}</span>)}
         </div>
@@ -120,12 +120,12 @@ function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en" | "tr"
     <div className="relative mt-3 flex-1 overflow-hidden bg-black">
       <Clip name="steam" active={active} className="scale-[1.02]" />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/75 to-transparent" />
-      <span className="absolute start-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">{L.s}</span>
+      <span className="absolute start-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white">{L.s}</span>
       <div className="absolute inset-x-4 bottom-[26px]">
         <p className="mb-2 text-[17px] font-semibold tracking-[-.01em] text-white">{L.h}</p>
         <Player t={t} d={D} text={L.p} more={L.more} />
       </div>
-      <div className={`absolute inset-x-5 top-[30%] flex flex-col items-center gap-3 rounded-[18px] bg-black/55 px-4 py-5 text-center backdrop-blur-md transition-all duration-500 ${done ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}>
+      <div className={`absolute inset-x-5 top-[30%] flex flex-col items-center gap-3 rounded-[18px] bg-black/75 px-4 py-5 text-center transition-all duration-500 ${done ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}>
         <span className="scale-[1.6]"><CheckRing on={done} reduce={reduce} /></span>
         <span className="mt-1 text-[16px] font-semibold text-white">{L.done}</span>
         <span className="rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-[#111]">{L.next}</span></div>
@@ -153,7 +153,7 @@ export function StepsV3() {
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(16_16_16/0.3)_0%,rgb(16_16_16/0.85)_78%)]" />
-            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 backdrop-blur-md transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
+            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             {/* The phone is sized by the stage height, so it always stands whole inside the frame. */}
             <div className="absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
               <Device label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
@@ -319,7 +319,7 @@ export function WorkspaceV3() {
                   {seen && <img src={wsImg(s.img)} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
                     className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-55 saturate-[0.35] group-hover:opacity-75"}`} />}
                   <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.2)_40%,rgb(16_16_16/0.88)_100%)]" />
-                  <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] backdrop-blur-md transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(16_16_16/0.45)] text-white/85"}`}><Ic size={17} aria-hidden="true" /></span>
+                  <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(16_16_16/0.45)] text-white/85"}`}><Ic size={17} aria-hidden="true" /></span>
                   <span className="relative block">
                     <span className="block truncate text-[14px] font-semibold md:text-[15px]">{s.n}</span>
                     <span className="mt-0.5 flex items-center gap-1.5 text-[12px] text-white/75"><span aria-hidden="true" className={`h-1.5 w-1.5 shrink-0 rounded-full ${act ? "bg-white" : "bg-white/40"}`} /><span className="truncate">{fmt(c.due, { n: s.due })}</span></span>
@@ -339,8 +339,8 @@ export function WorkspaceV3() {
                       {seen && <img src={wsImg(cur.pics[k])} alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-80" />}
                       <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.35)_0%,rgb(16_16_16/0.25)_35%,rgb(16_16_16/0.92)_100%)]" />
                       <span className="relative flex items-start justify-between gap-2">
-                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[rgb(16_16_16/0.5)] text-white backdrop-blur-md"><Play size={13} weight="fill" aria-hidden="true" /></span>
-                        <span className={`rounded-full bg-[rgb(16_16_16/0.55)] px-2 py-0.5 text-[12px] tabular-nums backdrop-blur-md md:text-[13px] ${full ? "text-white" : "text-white/80"}`}>{full ? <span className="flex items-center gap-1"><Check size={13} aria-hidden="true" className="tick" /><span className="hidden sm:inline">{a}/{b}</span></span> : `${a}/${b}`}</span>
+                        <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[rgb(16_16_16/0.72)] text-white"><Play size={13} weight="fill" aria-hidden="true" /></span>
+                        <span className={`rounded-full bg-[rgb(16_16_16/0.72)] px-2 py-0.5 text-[12px] tabular-nums md:text-[13px] ${full ? "text-white" : "text-white/80"}`}>{full ? <span className="flex items-center gap-1"><Check size={13} aria-hidden="true" className="tick" /><span className="hidden sm:inline">{a}/{b}</span></span> : `${a}/${b}`}</span>
                       </span>
                       <span className="relative block">
                         <span className="line-clamp-2 block text-[13px] font-semibold leading-snug md:text-[14px]">{j}</span>
@@ -613,7 +613,7 @@ export function SectorsV3() {
                 {pic(img, "(min-width:1024px) 50vw, 100vw", `absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-[1.2s] ease-[var(--ease-out-expo)] ${on ? "scale-100 saturate-100" : "scale-110 saturate-[0.4]"}`, pos)}
                 <span aria-hidden="true" className={`absolute inset-0 transition-opacity duration-700 ${on ? "bg-[linear-gradient(180deg,rgb(16_16_16/0.45)_0%,rgb(16_16_16/0)_28%,rgb(16_16_16/0.15)_50%,rgb(16_16_16/0.92)_100%)]" : "bg-[rgb(16_16_16/0.55)]"}`} />
                 <span className="relative flex items-center justify-between">
-                  <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.5)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums backdrop-blur-md">
+                  <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums">
                     <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span className="text-white/80">0{k + 1}</span></span>
                 </span>
                 <span className="relative block">
@@ -622,7 +622,7 @@ export function SectorsV3() {
                     <span className="overflow-hidden">
                       <span className="block max-w-[34rem] pt-2.5 text-[15px] leading-[1.5] text-white/80">{tabs[k][0]}</span>
                       <span className="mt-4 flex flex-wrap gap-2">
-                        {tabs[k][1].map((u) => <span key={u} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[13px] text-white/90 backdrop-blur-md"><Check size={13} aria-hidden="true" className="tick" />{u}</span>)}
+                        {tabs[k][1].map((u) => <span key={u} className="inline-flex items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.62)] px-3 py-1.5 text-[13px] text-white/90"><Check size={13} aria-hidden="true" className="tick" />{u}</span>)}
                       </span>
                     </span>
                   </span>
@@ -638,7 +638,7 @@ export function SectorsV3() {
               <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#171717] p-4 text-white">
                 {pic(img, "80vw", "absolute inset-0 h-full w-full object-cover", pos)}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.5)_0%,rgb(16_16_16/0)_26%,rgb(16_16_16/0)_42%,rgb(16_16_16/0.94)_100%)]" />
-                <span className="relative inline-flex h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.5)] pe-3 ps-2.5 text-[13px] font-semibold backdrop-blur-md"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
+                <span className="relative inline-flex h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
                 <span className="relative block"><span className="block text-[20px] font-semibold leading-tight tracking-[-0.02em]">{c.cards[k]}</span>
                   <span className="mt-1.5 line-clamp-3 block text-[13px] leading-[1.45] text-white/75">{tabs[k][0]}</span></span>
               </Link>

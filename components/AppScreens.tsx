@@ -84,7 +84,7 @@ export function Bar({ v, h = 4 }: { v: number; h?: number }) {
 }
 export function Toast({ show, text, sub }: { show: boolean; text: string; sub?: string }) {
   return (<AnimatePresence>{show && <m.div initial={{ y: -40, opacity: 0, scale: .9 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: -30, opacity: 0, scale: .95 }} transition={{ type: "spring", stiffness: 380, damping: 30 }}
-    className="absolute left-1/2 top-[48px] z-30 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#1f1f22]/95 py-1.5 pl-1.5 pr-3.5 shadow-[0_10px_30px_rgba(0,0,0,.6),inset_0_1px_0_rgba(255,255,255,.06)] backdrop-blur">
+    className="absolute left-1/2 top-[48px] z-30 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#1f1f22]/95 py-1.5 pl-1.5 pr-3.5 shadow-[0_10px_30px_rgba(0,0,0,.6),inset_0_1px_0_rgba(255,255,255,.06)]">
     <span className="grid h-6 w-6 place-items-center rounded-full bg-flame"><Check size={13} className="text-[#111111]" /></span>
     <span className="leading-tight"><span className="block text-xs font-semibold text-white">{text}</span>{sub && <span className="block text-xs text-white/50">{sub}</span>}</span></m.div>}</AnimatePresence>);
 }

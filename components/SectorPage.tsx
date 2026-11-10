@@ -76,7 +76,7 @@ export default function SectorPage({ i }: { i: number }) {
             <m.p initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.8, ease }} className="mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</m.p>
             <m.div initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.7, ease }} className="mt-8 flex flex-wrap gap-3">
               <a href={SITE.demo} className="btn btn-accent group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
-              <a href="#tasks" className="btn h-11 rounded-full bg-white/10 px-5 text-[15px] font-semibold text-white backdrop-blur-md hover:bg-white/15">See the tasks</a>
+              <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">See the tasks</a>
             </m.div>
           </m.div>
         </section>
@@ -114,7 +114,7 @@ export default function SectorPage({ i }: { i: number }) {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgb(16_16_16/0.15),rgb(16_16_16/0.85)_75%)]" />
                 <AnimatePresence mode="wait" initial={false}>
                   <m.div key={sop} initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.4, ease }}
-                    className="absolute inset-x-4 bottom-4 rounded-[20px] bg-[rgb(24_24_24/0.7)] p-4 text-white backdrop-blur-xl md:inset-x-auto md:bottom-6 md:end-6 md:w-[min(420px,60%)] md:p-5">
+                    className="absolute inset-x-4 bottom-4 rounded-[20px] bg-[rgb(24_24_24/0.84)] p-4 text-white md:inset-x-auto md:bottom-6 md:end-6 md:w-[min(420px,60%)] md:p-5">
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">Video SOP · {s.sops[sop].steps.length} steps</p>
                       <p className="text-[12px] tabular-nums text-white/60">{Math.min(done, s.sops[sop].steps.length)}/{s.sops[sop].steps.length}</p>

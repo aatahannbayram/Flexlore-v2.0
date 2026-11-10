@@ -34,7 +34,7 @@ export function PhotoBand({ img, pos = "50% 50%", tone = "side", blur = false, d
   const s = src(img);
   return (
     <div id={id} role={label || labelledBy ? "region" : undefined} aria-label={label} aria-labelledby={labelledBy}
-      className={`dark relative isolate overflow-hidden rounded-[32px] bg-[#141414] text-white ${className}`}>
+      className={`dark relative isolate overflow-hidden rounded-[32px] bg-[#141414] text-white [content-visibility:auto] [contain-intrinsic-size:auto_640px] ${className}`}>
       <picture className="absolute inset-0 -z-10">
         {s.avif && <source type="image/avif" srcSet={s.avif} />}
         <img src={s.webp} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos, opacity: dim }}
@@ -46,6 +46,6 @@ export function PhotoBand({ img, pos = "50% 50%", tone = "side", blur = false, d
 }
 
 /** Glass tile for use on a PhotoBand. */
-export const glassTile = "rounded-[22px] bg-white/[.06] backdrop-blur-xl shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]";
+export const glassTile = "rounded-[22px] bg-white/[.07] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]";
 /** Small icon chip on glass. */
 export const glassIcon = "grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white";

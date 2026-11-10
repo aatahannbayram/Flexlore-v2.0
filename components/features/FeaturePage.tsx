@@ -72,7 +72,7 @@ export function FeaturePage({ slug }: { slug: string }) {
               <Pic n={f.photo} className="absolute inset-0 h-full w-full scale-105 object-cover opacity-45 blur-[3px]" />
               <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.25),rgb(17_17_17/0.8))]" />
               <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5"><FeatureVisual v={f.visual} mock={it.mock} lang={lang} /></div>
-              <span className="absolute bottom-4 start-4 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1 text-[12px] text-white/70 backdrop-blur">{c.sample}</span>
+              <span className="absolute bottom-4 start-4 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1 text-[12px] text-white/70">{c.sample}</span>
             </div>
             </Tilt>
           </div>
@@ -88,7 +88,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           <h2 id="why-h" className="relative px-2 pt-2 text-[15px] font-medium text-white/70">{c.why}</h2>
           <Reveal as="ul" stagger={0.1} className="relative mt-5 grid gap-3 md:grid-cols-3">
             {it.pains.map(([h, p], k) => { const I = PAIN_IC[k]; return (
-              <RevealItem as="li" key={h}><m.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }} className="h-full rounded-[22px] bg-[rgb(24_24_24/0.62)] p-6 backdrop-blur-md md:p-7">
+              <RevealItem as="li" key={h}><m.div whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 300, damping: 22 }} className="h-full rounded-[22px] bg-[rgb(24_24_24/0.62)] p-6 md:p-7">
                 <span className="relative grid h-11 w-11 place-items-center rounded-[14px] bg-white/10"><span aria-hidden="true" className="feat-ring absolute inset-0 rounded-[14px] ring-1 ring-white/30" /><I size={20} /></span>
                 <h3 className="mt-7 text-[19px] font-semibold tracking-[-0.02em]">{h}</h3><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
               </m.div></RevealItem>); })}
@@ -105,7 +105,7 @@ export function FeaturePage({ slug }: { slug: string }) {
           <div className="dark relative col-span-12 aspect-[4/3] overflow-hidden rounded-[32px] bg-[#161616] lg:col-span-6">
             <Pic n={f.photo} className="absolute inset-0 h-full w-full object-cover" />
             <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_45%,rgb(17_17_17/0.7)_100%)]" />
-            <div className="absolute inset-x-5 bottom-5 rounded-[18px] bg-[rgb(20_20_20/0.78)] p-4 text-white backdrop-blur-md">
+            <div className="absolute inset-x-5 bottom-5 rounded-[18px] bg-[rgb(20_20_20/0.78)] p-4 text-white">
               <p className="flex items-center gap-2 text-[14px] font-semibold"><Ic size={16} />{it.k}</p>
               <p className="mt-1 text-[13px] text-white/70">{t.items[slug][1]}</p>
             </div>
@@ -151,8 +151,8 @@ function FeatureCard({ f }: { f: Feature }) {
     <li><Link href={`/features/${f.slug}/`} className="group flex h-full flex-col rounded-[24px] bg-[var(--card)] p-2 transition-colors hover:bg-[var(--card-2)]">
       <span className="dark relative block aspect-[16/9] overflow-hidden rounded-[18px] bg-[#1a1a1a]">
         <Pic n={f.photo} className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105" />
-        <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.65)] text-white backdrop-blur"><Ic size={17} /></span>
-        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.65)] px-2.5 py-1 text-[12px] text-white/80 backdrop-blur">{t.soon}</span>}
+        <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.78)] text-white"><Ic size={17} /></span>
+        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.65)] px-2.5 py-1 text-[12px] text-white/80">{t.soon}</span>}
       </span>
       <span className="flex flex-1 flex-col px-3 pb-3 pt-4"><span className="text-[17px] font-semibold">{h}</span><span className="mt-1 text-[14px] leading-[1.5] text-ink-muted">{line}</span>
         <ArrowRight size={15} aria-hidden="true" className="mt-4 text-ink-faint transition-transform group-hover:translate-x-1 rtl:-scale-x-100" /></span>
@@ -204,7 +204,7 @@ function Steps({ steps, title, photo }: { steps: string[][]; title: string; phot
             {steps.map(([h, p], k) => (
               <li key={h} className="md:pe-4">
                 <span className={`relative z-10 grid h-11 w-11 place-items-center rounded-full text-[15px] font-semibold tabular-nums ring-1 transition-colors duration-500 ${lit > k ? "bg-[#E7EBEB] text-[#111] ring-transparent" : "bg-[#1c1c1c] text-white/70 ring-white/15"}`}>{k + 1}</span>
-                <div className="mt-5 rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6 backdrop-blur-md">
+                <div className="mt-5 rounded-[22px] bg-[rgb(24_24_24/0.6)] p-6">
                   <h3 className="text-[19px] font-semibold tracking-[-0.02em]">{h}</h3><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p>
                 </div>
               </li>))}

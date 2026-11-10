@@ -15,16 +15,16 @@ const TERMS_KEY = "flx-ai-terms-v1";
 const PATH_OK = /^\/(?:[a-z0-9-]+\/)*(?:#[a-z-]+)?$/;
 const LINK_HOSTS = /^(?:www\.)?flexlore\.com$|^app-eu1\.hubspot\.com$/;
 
-type T = { title: string; sub: string; hello: string; chips: string[]; ph: string; send: string; mic: string; endVoice: string; mute: string; unmute: string; close: string;
+type T = { title: string; sub: string; hello: string; chips: string[]; ph: string; send: string; mic: string; voiceCta: string; voiceSub: string; endVoice: string; mute: string; unmute: string; close: string;
   listening: string; speaking: string; connecting: string; voiceHint: string; notice: string; privacy: string; note: string; error: string; ended: string; you: string; newChat: string };
 const EN: T = { title: "Flex AI", sub: "Flexlore's AI assistant", hello: "Hi, I'm Flex AI. Ask me how Flexlore works for your team, or let's book a demo.",
-  chips: ["How does Flexlore work?", "Is it right for restaurants?", "What does the AI do?", "Show me pricing"], ph: "Ask Flex AI", send: "Send", mic: "Talk to Flex AI by voice",
+  chips: ["How does Flexlore work?", "Is it right for restaurants?", "What does the AI do?", "Show me pricing"], ph: "Ask Flex AI", send: "Send", mic: "Talk to Flex AI by voice", voiceCta: "Talk by voice", voiceSub: "Ask out loud. Flex AI answers and can show you around the site.",
   endVoice: "End voice", mute: "Mute microphone", unmute: "Unmute microphone", close: "Close Flex AI", listening: "Listening", speaking: "Flex AI is speaking", connecting: "Connecting",
   voiceHint: "Speak naturally. You can say \"show me pricing\" and I will open the page.", notice: "Flex AI is an AI assistant. Your messages are processed by Flexlore and ElevenLabs to answer you.",
   privacy: "Privacy Policy", note: "AI assistant, may make mistakes.", error: "Flex AI cannot answer right now. Please try again shortly or write to support@flexlore.com.",
   ended: "The conversation ended.", you: "You", newChat: "New chat" };
 const TR: T = { title: "Flex AI", sub: "Flexlore'un yapay zekâ asistanı", hello: "Merhaba, ben Flex AI. Flexlore'un ekibinizde nasıl çalıştığını sorabilir ya da demo planlayabilirsiniz.",
-  chips: ["Flexlore nasıl çalışır?", "Restoranlar için uygun mu?", "Yapay zekâ ne yapıyor?", "Fiyatları göster"], ph: "Flex AI'ya sorun", send: "Gönder", mic: "Flex AI ile sesli konuşun",
+  chips: ["Flexlore nasıl çalışır?", "Restoranlar için uygun mu?", "Yapay zekâ ne yapıyor?", "Fiyatları göster"], ph: "Flex AI'ya sorun", send: "Gönder", mic: "Flex AI ile sesli konuşun", voiceCta: "Sesli konuşun", voiceSub: "Sesli sorun. Flex AI cevaplar ve sizi sitede gezdirebilir.",
   endVoice: "Sesli görüşmeyi bitir", mute: "Mikrofonu kapat", unmute: "Mikrofonu aç", close: "Flex AI'yı kapatın", listening: "Dinliyor", speaking: "Flex AI konuşuyor", connecting: "Bağlanıyor",
   voiceHint: "Doğal konuşun. \"Fiyatları göster\" derseniz sayfayı açarım.", notice: "Flex AI bir yapay zekâ asistanıdır. Mesajlarınız size yanıt vermek için Flexlore ve ElevenLabs tarafından işlenir.",
   privacy: "Gizlilik Politikası", note: "Yapay zekâ asistanı, hata yapabilir.", error: "Flex AI şu an yanıt veremiyor. Lütfen biraz sonra tekrar deneyin ya da support@flexlore.com adresine yazın.",
@@ -46,7 +46,8 @@ const css = `
 .fx-dot{animation:fx-dot 1.1s ease-in-out infinite}@keyframes fx-dot{0%,100%{opacity:.25;transform:none}50%{opacity:1;transform:translateY(-2px)}}
 .fx-breathe{animation:fx-breathe 3.2s ease-in-out infinite}@keyframes fx-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
 .fx-spin{animation:fx-spin 14s linear infinite}@keyframes fx-spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.fx-in,.fx-msg,.fx-dot,.fx-breathe,.fx-spin{animation:none}}`;
+.fx-halo{animation:fx-halo 2.4s ease-out infinite}@keyframes fx-halo{0%{transform:scale(.9);opacity:.6}100%{transform:scale(1.35);opacity:0}}
+@media (prefers-reduced-motion:reduce){.fx-in,.fx-msg,.fx-dot,.fx-breathe,.fx-spin,.fx-halo{animation:none}}`;
 
 function Icon({ d, s = 18 }: { d: string; s?: number }) { return <svg viewBox="0 0 24 24" width={s} height={s} fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>; }
 const I = {
@@ -145,7 +146,7 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
   const startVoice = () => {
     accept(); if (connected || connecting) { try { c.endSession(); } catch {} }
     setVoice(true); skipFirst.current = false;
-    window.setTimeout(() => c.startSession({ ...base(), connectionType: "webrtc", overrides: { agent: { language: lang } } }), 150);
+    window.setTimeout(() => c.startSession({ ...base(), connectionType: "websocket", overrides: { agent: { language: lang } } }), 150);
   };
   const stopVoice = () => { try { c.endSession(); } catch {} setVoice(false); requestAnimationFrame(() => field.current?.focus()); };
   // Hiding the panel ends a voice call (a text chat simply waits, so it can be picked up again).
@@ -163,6 +164,7 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
         <span className="relative"><img src="/icon.svg" alt="" width={40} height={40} className="h-10 w-10 rounded-[12px]" />
           <span aria-hidden="true" className={`absolute -bottom-0.5 -end-0.5 h-3 w-3 rounded-full ring-2 ring-[#111] ${connected ? "bg-[#F4F0EB]" : "bg-white/25"}`} /></span>
         <div className="min-w-0 flex-1"><h2 id="fx-title" className="text-[16px] font-semibold leading-tight tracking-[-0.01em]">{t.title}</h2><p className="truncate text-[12.5px] text-white/55">{t.sub}</p></div>
+        {!voice && <button type="button" onClick={startVoice} aria-label={t.mic} title={t.mic} className="grid h-10 w-10 place-items-center rounded-full bg-white/[.08] text-white transition-colors hover:bg-white/[.14]"><Icon d={I.mic} s={18} /></button>}
         {msgs.length > 0 && !voice && <button type="button" onClick={reset} aria-label={t.newChat} title={t.newChat} className="grid h-10 w-10 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/[.08] hover:text-white"><Icon d={I.plus} /></button>}
         <button type="button" onClick={onClose} aria-label={t.close} className="grid h-10 w-10 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/[.08] hover:text-white"><Icon d={I.x} /></button>
       </header>
@@ -188,6 +190,17 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
         /* Text mode */
         <>
           <div ref={list} aria-live="polite" className="flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-5">
+            {msgs.length === 0 && (
+              <button type="button" onClick={startVoice} className="fx-msg group relative mb-2 flex w-full items-center gap-4 overflow-hidden rounded-[22px] bg-[radial-gradient(120%_140%_at_0%_0%,rgb(255_255_255/0.09),rgb(255_255_255/0.03)_60%)] p-4 text-start ring-1 ring-white/10 transition-colors hover:ring-white/25">
+                <span className="relative grid h-16 w-16 shrink-0 place-items-center">
+                  <span aria-hidden="true" className="fx-halo absolute inset-0 rounded-full ring-2 ring-white/30" />
+                  <span aria-hidden="true" className="fx-halo absolute inset-0 rounded-full ring-2 ring-white/20" style={{ animationDelay: "1.2s" }} />
+                  <span aria-hidden="true" className="fx-breathe absolute inset-1 rounded-full bg-[radial-gradient(circle_at_35%_30%,#2c2c2c,#151515_70%)] shadow-[0_0_0_1px_rgb(255_255_255/0.1)]" />
+                  <img src="/icon.svg" alt="" width={34} height={34} className="relative h-[34px] w-[34px] rounded-[10px]" />
+                </span>
+                <span className="min-w-0 flex-1"><span className="block text-[15.5px] font-semibold">{t.voiceCta}</span><span className="mt-0.5 block text-[12.5px] leading-[1.4] text-white/60">{t.voiceSub}</span></span>
+                <span aria-hidden="true" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#F4F0EB] text-[#111] transition-transform group-hover:scale-105"><Icon d={I.mic} s={19} /></span>
+              </button>)}
             <div className="fx-msg flex gap-2.5"><img src="/icon.svg" alt="" width={28} height={28} className="mt-0.5 h-7 w-7 shrink-0 rounded-[8px]" />
               <p className="max-w-[85%] rounded-[18px] rounded-tl-[6px] bg-white/[.06] px-3.5 py-2.5 text-[14.5px] leading-[1.5] text-white/90">{t.hello}</p></div>
             {msgs.length === 0 && <div className="flex flex-wrap gap-2 ps-[38px]">{t.chips.map((x) => <button key={x} type="button" onClick={() => send(x)}
@@ -203,7 +216,7 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
             {!terms && <p className="mb-2.5 px-1 text-[12px] leading-[1.45] text-white/50">{t.notice} <a href="/legal/privacy/" className="text-white/75 underline underline-offset-2">{t.privacy}</a></p>}
             <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="flex items-end gap-2 rounded-[22px] bg-white/[.05] p-1.5 ring-1 ring-white/10 focus-within:ring-white/30">
               <label htmlFor="fx-input" className="sr-only">{t.ph}</label>
-              <textarea id="fx-input" ref={field} rows={1} value={input} maxLength={600} onChange={(e) => setInput(e.target.value)} placeholder={t.ph}
+              <textarea id="fx-input" ref={field} rows={1} data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false" spellCheck={false} value={input} maxLength={600} onChange={(e) => setInput(e.target.value)} placeholder={t.ph}
                 onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(input); } }}
                 className="max-h-28 min-h-11 flex-1 resize-none appearance-none rounded-none border-0 !bg-transparent px-3 py-2.5 !shadow-none focus:!bg-transparent focus:!shadow-none text-[15px] leading-[1.4] text-white outline-none placeholder:text-white/40" />
               <button type="button" onClick={startVoice} aria-label={t.mic} title={t.mic} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/75 transition-colors hover:bg-white/[.1] hover:text-white"><Icon d={I.mic} s={19} /></button>

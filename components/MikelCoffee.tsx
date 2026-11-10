@@ -122,7 +122,7 @@ function RecipeScreen({ d, i, l }: { d: Drink; i: number; l: L }) {
     <div className="flex h-[40px] items-center px-3 text-sm"><span style={{ color: O }}>‹ {t2(l, "Reçeteler", "Recipes")}</span><span className="absolute left-1/2 -translate-x-1/2 font-semibold text-white">{t2(l, d.tr, d.en)}</span></div>
     <div className="relative mx-3 h-[170px] overflow-hidden rounded-[14px] bg-black">
       <AnimatePresence mode="popLayout"><motion.video key={d.k + i} src={`/video/steps/${clip(d.k, i)}.mp4`} poster={`/video/steps/${clip(d.k, i)}.jpg`} autoPlay muted loop playsInline initial={{ opacity: 0 }} animate={{ opacity: .9 }} exit={{ opacity: 0 }} transition={{ duration: .45 }} className="absolute inset-0 h-full w-full object-cover" /></AnimatePresence>
-      <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium text-white backdrop-blur">{t2(l, "Adım", "Step")} {i + 1}/{d.steps.length}</span>
+      <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-xs font-medium text-white">{t2(l, "Adım", "Step")} {i + 1}/{d.steps.length}</span>
       <div className="absolute inset-x-2 bottom-2 flex gap-1">{d.steps.map((_, k) => <span key={k} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/20">{k <= i && <motion.span layout className="block h-full" style={{ background: O, width: k < i ? "100%" : "60%" }} />}</span>)}</div>
     </div>
     <AnimatePresence mode="wait"><motion.div key={d.k + i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: .35 }} className="mx-3 mt-3 rounded-[14px] bg-[#1a1512] p-3">
@@ -265,7 +265,7 @@ export default function MikelCoffee() {
           <p className="mono text-xs uppercase tracking-[.22em] text-flame">{t2(l,"Video editörü · Usta kaydeder","Video editor · The lead records")}</p>
           <h2 className="display mt-4 text-h2">{t2(l,"Tek çekim, ","One take, ")}<span className="text-flame">{t2(l,"net adımlar.","clear steps.")}</span></h2>
           <p className="mt-5 max-w-[46ch] text-base leading-[1.5] text-white/60">{t2(l,"Usta baristanız istasyonu bir kez çeker; Flexlore editöründe başlangıç ve bitişi işaretleyip uzun videoyu adım adım izlenen bir akışa böler. Metin ve çıkartma ekler, yayınlar.","Your lead films the station once; in the Flexlore editor they mark start and stop and cut the long video into a step-by-step flow, add text and stickers, and publish.")}</p>
-          <div className="mt-10 hidden max-w-[520px] rounded-2xl bg-white/[.04] ring-1 ring-white/10 backdrop-blur md:block"><EdTools l={l} big /></div>
+          <div className="mt-10 hidden max-w-[520px] rounded-2xl bg-white/[.04] ring-1 ring-white/10 md:block"><EdTools l={l} big /></div>
         </div>
         <div className="mx-auto w-[min(78vw,330px)] min-w-0 md:w-full md:max-w-[330px] md:col-span-5 md:col-start-8"><Device label={t2(l,"Flexlore video editörü","Flexlore video editor")}><EditorScreen l={l} /></Device></div>
       </div></section>

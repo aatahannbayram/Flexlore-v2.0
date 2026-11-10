@@ -81,7 +81,7 @@ const CardBg = ({ src, pos = "50% 50%" }: { src: string; pos?: string }) => (
     <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="h-full w-full scale-105 object-cover opacity-55 blur-[2px] saturate-[0.7]" />
     <span className="absolute inset-0 bg-[linear-gradient(110deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)] rtl:bg-[linear-gradient(250deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)]" />
   </span>);
-const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] backdrop-blur-xl md:p-7";
+const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] md:p-7";
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 

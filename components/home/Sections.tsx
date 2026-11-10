@@ -86,7 +86,7 @@ export function Problem({ lang }: { lang: Lang }) {
             <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
             <Reveal as="ul" stagger={0.12} delay={0.15} className="absolute inset-x-4 bottom-4 space-y-2 sm:inset-x-6 sm:bottom-6 sm:max-w-[25rem]">
               {c.points.map((x, i) => { const Ic = icons[i]; return (
-                <RevealItem as="li" key={x.h} className="flex items-center gap-3.5 rounded-2xl bg-[rgb(17_17_17/0.72)] px-4 py-3 backdrop-blur-md">
+                <RevealItem as="li" key={x.h} className="flex items-center gap-3.5 rounded-2xl bg-[rgb(17_17_17/0.72)] px-4 py-3">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-white/[.08] text-ink"><Ic size={18} aria-hidden="true" /></span>
                   <span><span className="block text-[15px] font-semibold tracking-[-.01em]">{x.h}</span><span className="block text-[13px] text-ice-300">{x.p}</span></span>
                 </RevealItem>); })}
@@ -198,7 +198,7 @@ export function Industries({ lang }: { lang: Lang }) {
           <Reveal as="ul" stagger={0.04} className="relative z-10 mx-auto mt-6 flex max-w-[52rem] flex-wrap justify-center gap-2.5">
             {others.map(([name]) => { const Ic = AREA_ICONS[c.areas.findIndex(([n]) => n === name)] ?? DotsThreeCircle; return (
               <RevealItem as="li" key={name}>
-                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(255_255_255/0.08)] pl-3 pr-4 text-[15px] text-ice-100 backdrop-blur-md"><Ic size={17} className="text-ice-300" />{name}</span>
+                <span className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] pl-3 pr-4 text-[15px] text-ice-100"><Ic size={17} className="text-ice-300" />{name}</span>
               </RevealItem>); })}
           </Reveal>
           {/* Languages in their own script, one quiet row. Flags are left out on purpose: most carry blue. */}

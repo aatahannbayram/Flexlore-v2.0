@@ -65,8 +65,8 @@ export function EditorScreen({ active, lang = "en" }: ScreenProps) {
     {/* Clip: vertical video, black pillar boxes */}
     <div className="relative h-[292px] shrink-0 bg-black">
       <div className="absolute inset-y-0 left-1/2 w-[62%] -translate-x-1/2 overflow-hidden"><Clip name="kitchen" active={playing} /></div>
-      <span className="absolute left-2.5 top-2.5 rounded-[11px] bg-white/[.14] px-3 py-[7px] text-[12px] text-white backdrop-blur-md">Operator 1</span>
-      <span className="absolute bottom-2.5 left-2 rounded-[10px] bg-black/70 px-2.5 py-[6px] text-[11.5px] tabular-nums text-white backdrop-blur">{L.vd}: <span style={{ color: O }}>{mm(v)}</span> / {mm(DUR)}</span>
+      <span className="absolute left-2.5 top-2.5 rounded-[11px] bg-white/[.14] px-3 py-[7px] text-[12px] text-white">Operator 1</span>
+      <span className="absolute bottom-2.5 left-2 rounded-[10px] bg-black/70 px-2.5 py-[6px] text-[11.5px] tabular-nums text-white">{L.vd}: <span style={{ color: O }}>{mm(v)}</span> / {mm(DUR)}</span>
     </div>
     {/* Controls */}
     <div className="grid h-[48px] shrink-0 grid-cols-5 items-center px-2 text-[13px] text-white" style={{ borderTop: `1px solid ${HL}`, borderBottom: `1px solid ${HL}` }}>
@@ -145,7 +145,7 @@ export function PlayerScreen({ active }: ScreenProps) {
     <div className="relative flex-1 overflow-hidden bg-black">
       <Clip name="plating" active={active} className="scale-[1.02]" />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-black via-black/70 to-transparent" />
-      <span className="absolute bottom-[104px] right-3 flex flex-col items-center gap-2 rounded-full bg-black/35 px-1.5 py-2 text-white backdrop-blur"><Arrow up /><span className="h-px w-3 bg-white/30" /><Arrow /></span>
+      <span className="absolute bottom-[104px] right-3 flex flex-col items-center gap-2 rounded-full bg-black/35 px-1.5 py-2 text-white"><Arrow up /><span className="h-px w-3 bg-white/30" /><Arrow /></span>
       <div className="absolute inset-x-4 bottom-[26px]"><Player t={t} text="Fan the sliced chicken over the greens, add the eggs and wipe the rim before" /></div></div></div>);
 }
 
@@ -213,7 +213,7 @@ export function LandscapePlayerScreen({ active, lang = "en" }: ScreenProps) {
     <div className="absolute bottom-[24px] left-[56px] right-[240px]">
       <p className="mb-2 text-[15px] font-medium tracking-[-.01em] text-white">{k + 1} - {L.list[k][0]}</p>
       <Player t={run ? w * 3 + 1 : 7} text={L.text[k]} more={lang === "tr" ? "Devamı..." : undefined} /></div>
-    <div className="absolute bottom-[18px] right-[16px] top-[16px] w-[212px] rounded-[18px] bg-black/55 p-2 backdrop-blur-md ring-1 ring-white/[.06]">
+    <div className="absolute bottom-[18px] right-[16px] top-[16px] w-[212px] rounded-[18px] bg-black/55 p-2 ring-1 ring-white/[.06]">
       <p className="px-2 pb-1.5 pt-1 text-[11px]" style={{ color: G1 }}>{L.steps}</p>
       <ul className="space-y-1">{L.list.map(([t], i) => <li key={t} className="relative flex items-center gap-2 rounded-[11px] px-2 py-[7px]">
         {i === k && <m.span layoutId="lp-hl" className="absolute inset-0 rounded-[11px] bg-white/[.10]" transition={{ duration: reduce ? 0 : .45, ease }} />}

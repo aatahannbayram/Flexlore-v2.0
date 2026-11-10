@@ -51,14 +51,14 @@ export function Compare5({ short = false }: { short?: boolean }) {
           <div aria-hidden="true" className="absolute inset-0">
             <Pic n="food-qa" sizes="(min-width:1024px) 80vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
             <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_30%,rgb(17_17_17/0.15)_55%,rgb(17_17_17/0.85)_100%)]" />
-            <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2 text-[13px] font-semibold backdrop-blur-md md:end-6 md:top-6 md:text-[14px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
+            <span className="absolute end-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.75)] py-1.5 pe-3.5 ps-2 text-[13px] font-semibold md:end-6 md:top-6 md:text-[14px]"><img src="/brand/symbol-main.svg" alt="" className="h-4 w-4" />{c.now}</span>
           </div>
           {/* The usual way, on top, clipped at the handle */}
           <div aria-hidden="true" className="absolute inset-0" style={clip}>
             <picture><source srcSet="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-800.avif 800w, /blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.avif 1600w" sizes="(min-width:1024px) 80vw, 100vw" type="image/avif" />
               <img src="/blog/5Gqy3sTtza69mfyNDeoj3TAXg-1600.webp" alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale" /></picture>
             <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.45)_0%,rgb(17_17_17/0.25)_40%,rgb(17_17_17/0.9)_100%)]" />
-            <span className="absolute start-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.6)] py-1.5 pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 backdrop-blur-md md:start-6 md:top-6 md:text-[14px]"><X size={13} />{c.old}</span>
+            <span className="absolute start-4 top-4 inline-flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.75)] py-1.5 pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 md:start-6 md:top-6 md:text-[14px]"><X size={13} />{c.old}</span>
           </div>
           {/* Handle */}
           <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 z-10 w-0" style={{ left: `${pos}%` }}>
@@ -69,7 +69,7 @@ export function Compare5({ short = false }: { short?: boolean }) {
           <div className="pointer-events-none absolute inset-x-3 bottom-3 z-10 md:inset-x-auto md:bottom-6 md:start-6 md:w-[25rem]" dir={rtl ? "rtl" : "ltr"}>
             <AnimatePresence mode="wait" initial={false}>
               <m.ul key={old ? "old" : "now"} aria-live="polite" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -4 }} transition={{ duration: 0.25, ease: EASE }}
-                className="space-y-1 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-2 backdrop-blur-md">
+                className="space-y-1 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-2">
                 <li className="px-2.5 pb-1 pt-1 text-[12px] font-medium uppercase tracking-[.08em] text-white/55">{old ? c.old : c.now}</li>
                 {rows.map(([o, n]) => (
                   <li key={o} className={`flex items-center gap-3 rounded-[14px] px-2.5 py-2 text-[14px] md:text-[15px] ${old ? "text-white/60" : "bg-[rgb(255_255_255/0.06)] font-medium text-white"}`}>
