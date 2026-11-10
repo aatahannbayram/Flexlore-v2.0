@@ -71,7 +71,7 @@ export async function mount(agentId: string, locale: Locale) {
     el.setAttribute("default-expanded", "true");
     el.setAttribute("dismissible", "true");
     el.setAttribute("markdown-link-allowed-hosts", "flexlore.com,www.flexlore.com,app-eu1.hubspot.com");
-    el.setAttribute("avatar-image-url", location.origin + "/brand/symbol-main.svg");
+    el.setAttribute("avatar-image-url", location.origin + "/icon.svg");
     el.setAttribute("syntax-highlight-theme", "dark");
     el.style.zIndex = "45";
     // Client tool: the agent can open site pages (navigate_to_page). Only known site paths; the Launcher does the
