@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "../i18n/LocaleProvider";
 import type { Locale } from "../i18n/locales";
 
@@ -54,7 +55,20 @@ export function AssistantLauncher() {
     catch { setState("error"); }
   }, [dismiss, locale]);
   // Keep the open widget in step with the site language and the page.
-  useEffect(() => { if (state === "on") mod?.sync(locale); }, [state, locale, mod]);
+  const pathname = usePathname();
+  useEffect(() => { if (state === "on") mod?.sync(locale); }, [state, locale, mod, pathname]);
+  // The agent's navigate_to_page tool: an in-app route change, so the conversation keeps going.
+  const router = useRouter();
+  useEffect(() => {
+    if (!mod) return;
+    const go = (e: Event) => {
+      const path = (e as CustomEvent<string>).detail; const [route, hash] = path.split("#");
+      if (location.pathname === route && hash) { document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" }); return; }
+      router.push(path, { scroll: !hash });
+    };
+    window.addEventListener(mod.NAV_EVENT, go);
+    return () => window.removeEventListener(mod.NAV_EVENT, go);
+  }, [mod, router]);
   useEffect(() => { if (state !== "error") return; const id = window.setTimeout(() => setState("idle"), 6000); return () => window.clearTimeout(id); }, [state]);
   if (!AGENT || demo || state === "on") return null;
   const c = mod ? (mod.COPY[locale] ?? mod.COPY.en) : null;

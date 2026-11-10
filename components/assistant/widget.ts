@@ -23,6 +23,10 @@ const LABELS = {
   tr: { main_label: "Flexlore yapay zekâ asistanı", start_chat: "Soru sorun", start_call: "Sesli konuşun", chatting_status: "Flexlore yapay zekâ asistanı", listening_status: "Yapay zekâ asistanı dinliyor", speaking_status: "Yapay zekâ asistanı konuşuyor. Araya girebilirsiniz", input_placeholder: "Sorunuzu yazın", input_placeholder_text_only: "Sorunuzu yazın", send_message: "Gönder", accept_terms: "Devam et", dismiss_terms: "Vazgeç", end_chat: "Sohbeti bitir", end_call: "Bitir", new_call: "Yeni görüşme", text_mode: "Yazılı moda geç", voice_mode: "Sesli moda geç", switched_to_text_mode: "Yazılı moda geçildi", switched_to_voice_mode: "Sesli moda geçildi", mute_microphone: "Mikrofonu kapat", collapse: "Küçült", expand: "Büyüt", connecting_status: "Bağlanıyor", reconnecting_status: "Yeniden bağlanıyor...", typing_indicator: "Asistan yazıyor...", thinking_status: "Düşünüyor...", error_occurred: "Bir hata oluştu", user_ended_conversation: "Sohbeti bitirdiniz", agent_ended_conversation: "Asistan sohbeti bitirdi", input_label: "Mesaj alanı", input_placeholder_new_conversation: "Yeni bir sohbet başlatın", initiate_feedback: "Bu sohbet nasıldı?", submit: "Gönder", go_back: "Geri", copy: "Kopyala", copied: "Kopyalandı" },
 };
 
+/** Event the Launcher listens for to navigate inside the app. */
+export const NAV_EVENT = "flx-assistant-nav";
+const PATH_OK = /^\/(?:[a-z0-9-]+\/)*(?:#[a-z-]+)?$/;
+
 let scriptP: Promise<void> | null = null;
 function loadScript() {
   return (scriptP ??= new Promise<void>((res, rej) => {
@@ -70,6 +74,16 @@ export async function mount(agentId: string, locale: Locale) {
     el.setAttribute("avatar-image-url", location.origin + "/brand/symbol-main.svg");
     el.setAttribute("syntax-highlight-theme", "dark");
     el.style.zIndex = "45";
+    // Client tool: the agent can open site pages (navigate_to_page). Only known site paths; the Launcher does the
+    // in-app navigation, so the widget and a voice call stay alive across the page change.
+    el.addEventListener("elevenlabs-convai:call", (e) => {
+      const d = (e as CustomEvent<{ config: { clientTools?: Record<string, (p: { path?: string }) => Promise<string> | string> } }>).detail;
+      d.config.clientTools = { ...d.config.clientTools, navigate_to_page: ({ path }) => {
+        if (!path || !PATH_OK.test(path) || path.includes("//")) return "That page is not available.";
+        window.dispatchEvent(new CustomEvent(NAV_EVENT, { detail: path }));
+        return `Opened ${path}`;
+      } };
+    });
     document.body.appendChild(el);
     brandFont(el);
   }
