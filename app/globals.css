@@ -433,3 +433,24 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 /* Hero stage: the trade photo of the moment eases in from a slight zoom while it shows. */
 .stage-zoom { animation: stageZoom 4.8s ease-out both; }
 @keyframes stageZoom { from { transform: scale(1.08); } to { transform: scale(1); } }
+
+
+/* ---------- v2.0 type and colour system (2026-11-11) ----------
+   Quieter, tighter, less framed. Headings are medium weight with tight tracking and a little smaller; the second half of
+   a two-tone heading is a soft grey instead of orange, so orange stays a rare accent (the home hero, small dots, the
+   logo). Ticks are calm ink. The page is a touch narrower and the rhythm slightly tighter. One font (Schibsted Grotesk). */
+:root { --container: 1120px; --section-y: clamp(72px, 10vh, 128px);
+  --text-base: clamp(15.5px, 0.94rem + 0.12vw, 17px); --text-lg: clamp(17px, 1rem + 0.25vw, 20px);
+  --text-h2: clamp(30px, 1.3rem + 1.8vw, 46px); }
+.display { font-weight: 580; letter-spacing: -0.042em; }
+.h2 { font-weight: 560; letter-spacing: -0.038em; line-height: 1.05; }
+.h3 { font-weight: 560; }
+.v3-h1 { font-weight: 580; letter-spacing: -0.042em; }
+.v3-h2 { font-size: clamp(24px, 0.85rem + 1.2vw, 38px); font-weight: 560; letter-spacing: -0.032em; line-height: 1.1; }
+.v4-h2 { font-size: clamp(28px, 0.85rem + 1.75vw, 46px); font-weight: 560; letter-spacing: -0.042em; line-height: 1.05; }
+.t-accent { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: rgb(244 240 235 / 0.42); }
+:root[data-theme="light"] .t-accent:not(.dark *) { background: none; color: rgb(22 22 22 / 0.42); }
+/* Orange payoff, kept for a few moments only (home hero). */
+.t-flame { background: linear-gradient(180deg, #FF9F63 0%, #F57B3A 48%, #EC6726 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.tick { color: rgb(244 240 235 / 0.62); }
+:root[data-theme="light"] .tick:not(.dark *) { color: rgb(22 22 22 / 0.55); }

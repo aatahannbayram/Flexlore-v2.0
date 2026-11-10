@@ -41,7 +41,7 @@ function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; c
 }
 /** Chapter marker: the home page reads as one story, numbered 01 to 06. */
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-line-strong" /><Kicker>{children}</Kicker></div>);
+  <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><Kicker>{children}</Kicker></div>);
 /** Chapter head: number and heading on the left, the lead on the right (03 and 04 share it, so they read as a pair). */
 const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
@@ -289,9 +289,9 @@ export function WorkspaceV3() {
     <section aria-labelledby="ws-h" className="section-y pt-0">
       <div className="container-x">
         <Head n="03" k={c.k} id="ws-h" h={c.h} p={c.p} />
-        <div ref={ref} className="relative mt-9 overflow-hidden rounded-[28px] bg-[var(--card)] p-3 md:mt-14 md:p-6" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        <div ref={ref} className="relative mt-9 md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           {seen && <AnimatePresence initial={false}>
-            <m.span key={cur.img} aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }} className="pointer-events-none absolute inset-0">
+            <m.span key={cur.img} aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }} className="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]">
               <img src={wsImg(cur.img)} alt="" decoding="async" loading="lazy" className="h-full w-full scale-110 object-cover opacity-[0.1] blur-2xl saturate-0" />
             </m.span></AnimatePresence>}
           <div className="relative grid lg:grid-cols-[180px_1fr] lg:gap-x-6">
@@ -412,7 +412,7 @@ export function WebV3() {
         <Head n="04" k={t.k} id="web-h" h={t.h} h2={t.h2} p={t.p}
           extra={<span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{w2.soon}</span>} />
         {/* Same frame and the same 7 / 5 split as chapter 03: desk on the left, field on the right. */}
-        <div ref={ref} className="mt-9 grid gap-3 rounded-[28px] bg-[var(--card)] p-3 md:mt-14 md:p-4 lg:grid-cols-12 lg:gap-4">
+        <div ref={ref} className="mt-9 grid gap-3 md:mt-14 lg:grid-cols-12 lg:gap-4">
           <figure className="dark relative overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-7">
             <DeskScene on={on} near={near} />
             <span aria-hidden="true" className={`absolute inset-0 hidden md:block ${fade}`} />
@@ -569,7 +569,7 @@ export function EndV3() {
   return (
     <section aria-labelledby="end-h" className="section-y pt-0">
       <div className="container-x">
-        <div className="grid-12 items-center gap-y-7 overflow-hidden rounded-[32px] bg-[var(--card)] px-5 py-8 sm:px-10 md:py-16 lg:px-16">
+        <div className="grid-12 items-center gap-y-7 border-t border-line pt-12 md:pt-16">
           <div className="col-span-12 lg:col-span-5">
             <h2 id="end-h" className="v4-h2 max-w-[12ch]">{c.h}</h2>
             <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
@@ -646,7 +646,7 @@ export function SectorsV3() {
         </ul>
         <Link href="/see-it/" className="btn btn-secondary mt-5 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         {/* One slim glass strip: the other areas on one side, the 8 languages as round flags (a tap switches the site) on the other. */}
-        <div className="mt-3 grid gap-5 rounded-[24px] bg-[var(--card)] p-5 md:p-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+        <div className="mt-8 grid gap-5 border-t border-line pt-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.also}</p>
             <ul className="mt-3 flex flex-wrap gap-2">

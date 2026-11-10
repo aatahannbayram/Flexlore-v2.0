@@ -27,8 +27,8 @@ const Rise = ({ children, d = 0, className = "" }: { children: React.ReactNode; 
   return <m.div initial={reduce ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.8, delay: d, ease }} className={className}>{children}</m.div>;
 };
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-3"><span className="text-[13px] font-semibold tabular-nums text-ink">{n}</span><span aria-hidden="true" className="h-px w-8 bg-[rgb(255_255_255/0.2)]" />
-    <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{children}</p></div>);
+  <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />
+    <p className="text-[14px] font-medium tracking-[-0.005em] text-ink-faint">{children}</p></div>);
 function H2({ text, className = "" }: { text: string; className?: string }) {
   const reduce = useReducedMotion(); const w = text.split(" ");
   if (reduce) return <h2 className={`v4-h2 mt-4 ${className}`}>{text}</h2>;

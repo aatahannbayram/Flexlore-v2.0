@@ -28,7 +28,7 @@ export function Photo({ n, sizes = "100vw", className = "", priority = false, po
 }
 
 export const Kicker = ({ children, light = false }: { children: React.ReactNode; light?: boolean }) => (
-  <p className={`text-[13px] font-semibold uppercase tracking-[0.14em] ${light ? "text-white/70" : "text-ink-faint"}`}>{children}</p>);
+  <p className={`text-[14px] font-medium tracking-[-0.005em] ${light ? "text-white/70" : "text-ink-faint"}`}>{children}</p>);
 /** Two-tone heading: the set-up in ink, the result in orange. */
 export const H2 = ({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) => (
   <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>);

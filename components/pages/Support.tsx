@@ -42,14 +42,14 @@ export function SupportPage() {
         <Kicker icon={Lifebuoy}>{c.k}</Kicker>
         <h1 id="sup-h" className={`${h1} mt-6 max-w-[14ch]`}>{h.h1a} <span className="t-accent">{h.h1b}</span></h1>
         <p className="lead mt-5 max-w-[34rem]">{h.lead}</p>
-        <PhotoBand img="office" pos="50% 45%" className="mt-10 p-3 md:mt-14 md:p-4"><ul className="grid gap-3 sm:grid-cols-3">
+        <ul className="mt-10 grid border-y border-line sm:grid-cols-3 sm:divide-x sm:divide-line md:mt-14 rtl:sm:divide-x-reverse">
           {h.quick.map(([t, line], k) => { const [href, I, ext] = quick[k]; const inner = (<>
-            <span className={glassIcon}><I size={18} aria-hidden="true" /></span>
-            <span className="min-w-0 flex-1"><span className="block text-[16px] font-semibold text-white">{t}</span><span className="block truncate text-[14px] text-white/65">{line}</span></span>
-            <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-white/50 transition-colors group-hover:text-white rtl:-scale-x-100" /></>);
-            const cls = `group flex min-h-[96px] items-center gap-4 ${glassTile} px-5 transition-colors hover:bg-white/[.1]`;
+            <I size={20} aria-hidden="true" className="shrink-0 text-ink-faint transition-colors group-hover:text-ink" />
+            <span className="min-w-0 flex-1"><span className="block text-[16px] font-medium text-ink">{t}</span><span className="block truncate text-[14px] text-ink-muted">{line}</span></span>
+            <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink rtl:-scale-x-100" /></>);
+            const cls = `group flex min-h-[92px] items-center gap-4 border-b border-line px-1 py-5 transition-colors last:border-b-0 sm:border-b-0 sm:px-6 sm:first:ps-0`;
             return (<li key={t}>{ext ? <a href={href} className={cls}>{inner}</a> : <Link href={href} className={cls}>{inner}</Link>}</li>); })}
-        </ul></PhotoBand>
+        </ul>
       </div>
     </section>
 
