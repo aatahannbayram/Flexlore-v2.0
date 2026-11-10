@@ -1,40 +1,39 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "../i18n/LocaleProvider";
 import type { Locale } from "../i18n/locales";
 
-/* Site assistant, part 1: the Flexlore Assistant on ElevenLabs (agent config as code in elevenlabs/, pushed by
-   scripts/elevenlabs-sync.mjs). All that ships with the page is this round glass button. Part 2 (./widget: greeting copy
-   and the widget loader) is a plain dynamic import fetched when the browser is idle, which still talks to no one.
-   Nothing from ElevenLabs loads, no connection opens and no microphone is asked for until the visitor clicks: the click
-   loads the official widget (pinned, SRI-checked), mounts it opened, and this button steps aside for the widget's own
-   launcher (dark, set in the agent's widget settings).
+/* Flex AI, part 1: the round glass button in the bottom corner, and once per visit a short greeting. This is all that
+   ships with the page. Part 2 (./FlexPanel: our chat and voice panel on the ElevenLabs agent, agent config as code in
+   elevenlabs/) is a plain dynamic import fetched when the browser is idle or on the first click; it connects to nothing
+   until the visitor sends a message or taps the mic.
      NEXT_PUBLIC_ELEVENLABS_AGENT_ID  the public agent's ID. Unset = no assistant at all.
-   The agent only accepts sessions from the allowlisted hosts (preprod, flexlore.com, www, localhost). */
+   The agent only accepts sessions from the allowlisted hosts (preprod, flexlore.com, www, localhost). The button lives in
+   the root layout, so the panel and a running conversation survive page changes. */
 const AGENT = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID || "";
-type Mod = typeof import("./widget");
+type Mod = typeof import("./FlexPanel");
 let modP: Promise<Mod> | null = null;
-const loadMod = () => (modP ??= import("./widget").catch((e) => { modP = null; throw e; }));
+const loadMod = () => (modP ??= import("./FlexPanel").catch((e) => { modP = null; throw e; }));
 
-const T: Record<Locale, [string, string]> = {
-  tr: ["Flexlore yapay zekâ asistanını açın", "Asistan açılıyor"], en: ["Open the Flexlore AI assistant", "Opening the assistant"],
-  de: ["Flexlore-KI-Assistent öffnen", "Assistent wird geöffnet"], ar: ["افتح مساعد Flexlore الذكي", "جارٍ فتح المساعد"],
-  es: ["Abrir el asistente de IA de Flexlore", "Abriendo el asistente"], ru: ["Открыть ИИ-ассистента Flexlore", "Открываем ассистента"],
-  fr: ["Ouvrir l'assistant IA de Flexlore", "Ouverture de l'assistant"], pl: ["Otwórz asystenta AI Flexlore", "Otwieranie asystenta"],
+const T: Record<Locale, [string, string, string]> = {
+  tr: ["Flex AI'yı açın", "Flex AI'yı kapatın", "Flex AI şu an açılamadı. Lütfen biraz sonra tekrar deneyin."],
+  en: ["Open Flex AI", "Close Flex AI", "Flex AI could not open right now. Please try again shortly."],
+  de: ["Flex AI öffnen", "Flex AI schließen", "Flex AI konnte gerade nicht geöffnet werden."], ar: ["افتح Flex AI", "أغلق Flex AI", "تعذر فتح Flex AI الآن."],
+  es: ["Abrir Flex AI", "Cerrar Flex AI", "Flex AI no se pudo abrir ahora."], ru: ["Открыть Flex AI", "Закрыть Flex AI", "Сейчас не удалось открыть Flex AI."],
+  fr: ["Ouvrir Flex AI", "Fermer Flex AI", "Flex AI n'a pas pu s'ouvrir."], pl: ["Otwórz Flex AI", "Zamknij Flex AI", "Nie udało się otworzyć Flex AI."],
 };
 
-/** The two-part Flexlore symbol (light upper half, orange lower half): the same file as the favicon. */
-export const Mark = ({ className = "" }: { className?: string }) => <img src="/brand/symbol-main.svg" alt="" width={24} height={24} className={className} />;
-const X = () => <svg viewBox="0 0 16 16" width={14} height={14} aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
-const ANIM = `.as-in{animation:as-in .45s cubic-bezier(.22,1,.36,1) both}@keyframes as-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}.as-spin{animation:as-spin .9s linear infinite}@keyframes as-spin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.as-in,.as-spin{animation:none}}`;
+/** The Flexlore app icon (the favicon): the two-part mark on its dark tile. */
+export const Mark = ({ className = "" }: { className?: string }) => <img src="/icon.svg" alt="" width={32} height={32} className={className} />;
+const X = () => <svg viewBox="0 0 16 16" width={16} height={16} aria-hidden="true"><path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>;
+const ANIM = `.as-in{animation:as-in .45s cubic-bezier(.22,1,.36,1) both}@keyframes as-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}.as-spin{animation:as-spin .9s linear infinite}@keyframes as-spin{to{transform:rotate(360deg)}}.as-halo{animation:as-halo 2.8s ease-out infinite}@keyframes as-halo{0%{transform:scale(1);opacity:.35}100%{transform:scale(1.45);opacity:0}}@media (prefers-reduced-motion:reduce){.as-in,.as-spin,.as-halo{animation:none;opacity:0}}`;
 const bubble = "as-in max-w-[min(300px,calc(100vw-96px))] rounded-[18px] bg-[rgb(22_22_22/0.88)] text-[14px] leading-snug text-white shadow-[0_18px_40px_-18px_rgb(0_0_0/0.8)] backdrop-blur-xl";
 
 const HI_KEY = "flx-as-hi";
 export function AssistantLauncher() {
   const { locale } = useLocale(); const t = T[locale] ?? T.en;
   const [mod, setMod] = useState<Mod | null>(null);
-  const [state, setState] = useState<"idle" | "loading" | "on" | "error">("idle");
+  const [open, setOpen] = useState(false); const [ever, setEver] = useState(false); const [err, setErr] = useState(false);
   const [hi, setHi] = useState(false); const [demo, setDemo] = useState(false);
   // The customer demo page has its own layout and controls in this corner.
   useEffect(() => { setDemo(location.pathname.startsWith("/demo/")); }, []);
@@ -49,43 +48,31 @@ export function AssistantLauncher() {
     return () => { window.clearTimeout(a); window.clearTimeout(b); };
   }, []);
   const dismiss = useCallback(() => { setHi(false); try { sessionStorage.setItem(HI_KEY, "1"); } catch {} }, []);
-  const open = useCallback(async () => {
-    dismiss(); setState("loading");
-    try { const m = await loadMod(); setMod(m); await m.mount(AGENT, locale); setState("on"); }
-    catch { setState("error"); }
-  }, [dismiss, locale]);
-  // Keep the open widget in step with the site language and the page.
-  const pathname = usePathname();
-  useEffect(() => { if (state === "on") mod?.sync(locale); }, [state, locale, mod, pathname]);
-  // The agent's navigate_to_page tool: an in-app route change, so the conversation keeps going.
-  const router = useRouter();
-  useEffect(() => {
-    if (!mod) return;
-    const go = (e: Event) => {
-      const path = (e as CustomEvent<string>).detail; const [route, hash] = path.split("#");
-      if (location.pathname === route && hash) { document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" }); return; }
-      router.push(path, { scroll: !hash });
-    };
-    window.addEventListener(mod.NAV_EVENT, go);
-    return () => window.removeEventListener(mod.NAV_EVENT, go);
-  }, [mod, router]);
-  useEffect(() => { if (state !== "error") return; const id = window.setTimeout(() => setState("idle"), 6000); return () => window.clearTimeout(id); }, [state]);
-  if (!AGENT || demo || state === "on") return null;
-  const c = mod ? (mod.COPY[locale] ?? mod.COPY.en) : null;
-  return (
-    <div className="dark fixed bottom-4 end-4 z-[45] flex flex-col items-end gap-3 text-white sm:bottom-6 sm:end-6 print:hidden">
+  const toggle = useCallback(() => {
+    dismiss(); setEver(true);
+    if (open) { setOpen(false); return; }
+    loadMod().then((m) => { setMod(m); setOpen(true); setErr(false); }).catch(() => setErr(true));
+  }, [dismiss, open]);
+  const close = useCallback(() => { setOpen(false); requestAnimationFrame(() => document.getElementById("flx-ai-btn")?.focus()); }, []);
+  useEffect(() => { if (!err) return; const id = window.setTimeout(() => setErr(false), 6000); return () => window.clearTimeout(id); }, [err]);
+  if (!AGENT || demo) return null;
+  const g = mod ? (mod.GREET[locale] ?? mod.GREET.en) : null;
+  return (<>
+    {/* The panel stays mounted once opened, so closing it does not end a conversation in progress. */}
+    {ever && mod && <div hidden={!open}><mod.default locale={locale} open={open} onClose={close} /></div>}
+    <div className={`dark fixed bottom-4 end-4 z-[47] flex flex-col items-end gap-3 text-white sm:bottom-6 sm:end-6 print:hidden ${open ? "max-sm:hidden" : ""}`}>
       <style>{ANIM}</style>
-      {c && hi && state === "idle" && (
+      {g && hi && !open && (
         <div role="status" className={`${bubble} relative flex items-start gap-1 self-end py-1.5 pe-1.5 ps-4`}>
-          <button type="button" onClick={open} className="min-h-11 flex-1 py-1.5 text-start">{c.hi}</button>
-          <button type="button" onClick={dismiss} aria-label={c.dismiss} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"><X /></button>
+          <button type="button" onClick={toggle} className="min-h-11 flex-1 py-1.5 text-start">{g[0]}</button>
+          <button type="button" onClick={dismiss} aria-label={g[1]} className="grid h-11 w-11 shrink-0 place-items-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"><X /></button>
         </div>)}
-      {state === "error" && <p role="alert" className={`${bubble} px-4 py-3 text-white/85`}>{c?.error ?? "Error"}</p>}
-      <button type="button" onClick={open} disabled={state === "loading"} aria-busy={state === "loading"} aria-label={state === "loading" ? t[1] : t[0]}
-        className="grid h-14 w-14 place-items-center rounded-full bg-[rgb(22_22_22/0.78)] text-[#F4F0EB] shadow-[0_16px_36px_-14px_rgb(0_0_0/0.85),inset_0_1px_0_rgb(255_255_255/0.12)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.04] disabled:cursor-progress motion-reduce:transition-none motion-reduce:hover:scale-100">
-        {state === "loading"
-          ? <span aria-hidden="true" className="as-spin h-5 w-5 rounded-full border-2 border-white/25 border-t-white" />
-          : <Mark className="h-6 w-6" />}
+      {err && <p role="alert" className={`${bubble} px-4 py-3 text-white/85`}>{t[2]}</p>}
+      <button id="flx-ai-btn" type="button" onClick={toggle} aria-expanded={open} aria-label={open ? t[1] : t[0]}
+        className="relative grid h-14 w-14 place-items-center rounded-full bg-[rgb(22_22_22/0.82)] text-[#F4F0EB] shadow-[0_16px_36px_-14px_rgb(0_0_0/0.85),inset_0_1px_0_rgb(255_255_255/0.12)] backdrop-blur-xl transition-transform duration-300 hover:scale-[1.05] motion-reduce:transition-none motion-reduce:hover:scale-100">
+        {!open && !ever && <span aria-hidden="true" className="as-halo absolute inset-0 rounded-full ring-2 ring-white/40" />}
+        {open ? <X /> : <Mark className="h-8 w-8 rounded-[9px]" />}
       </button>
-    </div>);
+    </div>
+  </>);
 }
