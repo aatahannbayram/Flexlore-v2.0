@@ -105,7 +105,7 @@ function Orb({ c, active, small = false }: { c: ReturnType<typeof useConversatio
   </div>);
 }
 
-function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClose: () => void }) {
+function Panel({ locale, open, onClose, onActive }: { locale: Locale; open: boolean; onClose: () => void; onActive?: (a: boolean) => void }) {
   const t = locale === "tr" ? TR : EN; const lang = locale === "tr" ? "tr" : "en";
   const router = useRouter();
   const [msgs, setMsgs] = useState<Msg[]>([]); const [input, setInput] = useState(""); const [voice, setVoice] = useState(false); const [typing, setTyping] = useState(false);
@@ -159,6 +159,9 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
 
   const status = connecting ? t.connecting : c.isSpeaking ? t.speaking : t.listening;
   const empty = msgs.length === 0;
+  useEffect(() => { onActive?.(msgs.length > 0); }, [msgs.length, onActive]);
+  const asked = new Set(msgs.filter((m) => m.role === "user").map((m) => m.text));
+  const left = t.chips.filter((x) => !asked.has(x));
   const chipIcons = [I.steps, I.store, I.spark, I.tag];
   return (
     <section role="dialog" aria-modal="false" aria-labelledby="fx-title"
@@ -173,7 +176,7 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
             <span className={`h-1.5 w-1.5 rounded-full ${connected ? "bg-[#F4F0EB] shadow-[0_0_10px_rgb(244_240_235/0.9)]" : "bg-white/25"}`} aria-hidden="true" /></h2>
           <p className="text-[12px] text-white/45">{t.sub}</p>
         </div>
-        {!empty && !voice && <button type="button" onClick={reset} aria-label={t.newChat} title={t.newChat} className="grid h-10 w-10 place-items-center rounded-full text-white/55 transition-colors hover:bg-white/[.08] hover:text-white"><Icon d={I.plus} /></button>}
+        {!empty && !voice && <button type="button" onClick={reset} className="fx-msg flex h-9 items-center gap-1.5 rounded-full bg-white/[.07] pe-3.5 ps-2.5 text-[13px] font-medium text-white/80 ring-1 ring-white/10 transition-colors hover:bg-white/[.12] hover:text-white"><Icon d={I.plus} s={15} />{t.newChat}</button>}
         <button type="button" onClick={onClose} aria-label={t.close} className="grid h-10 w-10 place-items-center rounded-full text-white/55 transition-colors hover:bg-white/[.08] hover:text-white"><Icon d={I.x} /></button>
       </header>
 
@@ -219,6 +222,10 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
                   ? <div key={m.id} className="fx-msg flex justify-end"><p className="max-w-[85%] whitespace-pre-wrap rounded-[20px] rounded-br-[6px] bg-[#F4F0EB] px-4 py-2.5 text-[14.5px] leading-[1.5] text-[#111]"><span className="sr-only">{t.you}: </span>{m.text}</p></div>
                   : m.role === "system" ? <p key={m.id} role="status" className="fx-msg text-center text-[12.5px] text-white/45">{m.text}</p>
                   : <p key={m.id} className="fx-msg max-w-[95%] whitespace-pre-wrap text-[15px] leading-[1.6] text-white/90"><span className="sr-only">{t.title}: </span><Rich text={m.text} go={go} /></p>)}
+                {!typing && left.length > 0 && msgs[msgs.length - 1]?.role === "agent" && (
+                  <div className="fx-msg -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                    {left.map((x) => <button key={x} type="button" onClick={() => send(x)} className="shrink-0 rounded-full bg-white/[.05] px-3.5 py-2 text-[13px] text-white/75 ring-1 ring-white/10 transition-colors hover:bg-white/[.1] hover:text-white">{x}</button>)}
+                  </div>)}
                 {typing && <div className="flex items-center gap-1.5 py-1" aria-hidden="true">{[0, 1, 2].map((n) => <span key={n} className="fx-dot h-1.5 w-1.5 rounded-full bg-white/70" style={{ animationDelay: `${n * .15}s` }} />)}</div>}
               </div>
             )}
@@ -241,6 +248,6 @@ function Panel({ locale, open, onClose }: { locale: Locale; open: boolean; onClo
     </section>);
 }
 
-export default function FlexPanel({ locale, open, onClose }: { locale: Locale; open: boolean; onClose: () => void }) {
-  return <ConversationProvider><Panel locale={locale} open={open} onClose={onClose} /></ConversationProvider>;
+export default function FlexPanel({ locale, open, onClose, onActive }: { locale: Locale; open: boolean; onClose: () => void; onActive?: (a: boolean) => void }) {
+  return <ConversationProvider><Panel locale={locale} open={open} onClose={onClose} onActive={onActive} /></ConversationProvider>;
 }
