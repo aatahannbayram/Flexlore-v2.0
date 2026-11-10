@@ -13,6 +13,13 @@ import { Video } from "./Site";
 import { Header } from "./Header";
 import { FilmSlate, Sparkle, ChartLineUp, CheckCircle, WarningCircle, ArrowRight } from "./ui/icons";
 import { Chev } from "./v3/Chevron";
+import { PhotoBand, glassTile } from "./ui/PhotoBand";
+
+/* Two photo bands per sector (03 and the closing card), none shared with the sector's own hero video or task still. */
+const SECTOR_BANDS: Record<string, [string, string]> = {
+  restoran: ["problem-vardiya", "hero-sef"], uretim: ["safety", "phone-mount"], otel: ["restaurant", "/video/hotel2.jpg"],
+  franchise: ["cafe-opening", "brewery"], depo: ["qr-scan", "saha-liman"], firin: ["problem-kagitlar", "/video/coffee.jpg"],
+};
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const Rise = ({ children, d = 0, className = "" }: { children: React.ReactNode; d?: number; className?: string }) => {
@@ -50,6 +57,7 @@ export default function SectorPage({ i }: { i: number }) {
     return () => window.clearTimeout(t); }, [live, reduce, done, sop, s.sops]);
   const tl = useRef<HTMLOListElement>(null); const tlOn = useInView(tl, { amount: 0.5, once: true });
   const HOW_IC = [FilmSlate, Sparkle, ChartLineUp];
+  const [howImg, endImg] = SECTOR_BANDS[s.slug] ?? ["huddle", "office"];
   return (
     <LazyMotion features={domAnimation}>
       <Header />
@@ -130,22 +138,22 @@ export default function SectorPage({ i }: { i: number }) {
 
         {/* 03 How Flexlore solves it */}
         <section className="section-y pt-0">
-          <div className="container-x">
+          <div className="container-x"><PhotoBand img={howImg} className="p-5 sm:p-8 md:p-12">
             <Ch n="03">How Flexlore solves it</Ch><H2 text="Film once. Check it. Know who is ready." className="max-w-[20ch]" />
             <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
               {s.how.map((h, k) => { const Ic = HOW_IC[k] ?? Sparkle; return (
-                <Rise key={h.k} d={k * 0.1} className={`${card} group relative overflow-hidden p-6 md:p-7`}>
+                <Rise key={h.k} d={k * 0.1} className={`${glassTile} group relative overflow-hidden p-6 md:p-7`}>
                   <div className="flex items-center justify-between">
                     <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[#F4F0EB] text-[#111] transition-transform duration-500 group-hover:-rotate-6"><Ic size={20} aria-hidden="true" /></span>
                     <span className="text-[13px] font-semibold tabular-nums text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
                   </div>
                   <p className="mt-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{h.k}</p>
                   <h3 className="mt-2 text-[22px] font-semibold leading-[1.15] tracking-[-0.025em]">{h.h}</h3>
-                  <p className="mt-3 text-[15px] leading-[1.55] text-ink-muted">{h.p}</p>
+                  <p className="mt-3 text-[15px] leading-[1.55] text-white/70">{h.p}</p>
                   <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-ink transition-transform duration-700 group-hover:scale-x-100 rtl:origin-right" />
                 </Rise>); })}
             </div>
-          </div>
+          </PhotoBand></div>
         </section>
 
         {/* 04 Sample quiz */}
@@ -192,13 +200,13 @@ export default function SectorPage({ i }: { i: number }) {
 
         <section className="section-y pt-0">
           <div className="container-x">
-            <div className="grid-12 items-center gap-y-6 rounded-[32px] bg-[var(--card)] px-5 py-8 sm:px-10 md:py-14 lg:px-14">
+            <PhotoBand img={endImg} className="grid-12 items-center gap-y-6 px-5 py-10 sm:px-10 md:py-20 lg:px-14">
               <div className="col-span-12 lg:col-span-8">
-                <h2 className="v4-h2 max-w-[18ch]">See it with one of your own tasks.</h2>
-                <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted">Twenty minutes, one real job from your {s.en.toLowerCase()}. We build it with you on the call.</p>
+                <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">See it with one of</span> <span className="t-accent">your own tasks.</span></h2>
+                <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">Twenty minutes, one real job from your {s.en.toLowerCase()}. We build it with you on the call.</p>
               </div>
-              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-accent group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
-            </div>
+              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-primary group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
+            </PhotoBand>
           </div>
         </section>
 

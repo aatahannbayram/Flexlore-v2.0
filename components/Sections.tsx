@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
+import { PhotoBand, glassTile } from "./ui/PhotoBand";
 
 const Tag = ({ live }: { live: boolean }) => (
   <span className={`mono inline-flex items-center gap-1.5 text-xs uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
@@ -43,12 +44,21 @@ export function AISection() {
   );
 }
 
+/* AI page body: today and coming soon as two glass tiles over a dimmed photo of a phone filming a step. */
 export function AIDetail() {
-  const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (<div>
-    <div className="flex items-baseline justify-between pb-3"><h2 className="text-base font-semibold">{t}</h2><Tag live={live} /></div>
-    {xs.map((x) => (<div key={x.h} className="py-6"><h3 className={`text-lg font-semibold tracking-tight ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-base leading-[1.45] text-white/70">{x.p}</p></div>))}</div>);
-  return (<div className="mt-14 grid gap-14 md:grid-cols-2 md:gap-10"><Col t="Today" live xs={AI_NOW} /><div><Col t="Coming soon" live={false} xs={AI_NEXT} /><p className="mono mt-4 text-xs uppercase tracking-[.14em] text-white/70">On our roadmap. No dates yet.</p></div></div>);
+  const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (
+    <div className={`${glassTile} p-6 md:p-8`}>
+      <div className="flex items-center justify-between gap-3"><h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{t}</h2><Pill live={live} /></div>
+      <ul className="mt-4 divide-y divide-white/10">{xs.map((x) => (<li key={x.h} className="flex gap-4 py-5 last:pb-0"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white"><x.i size={18} /></span>
+        <div><h3 className={`text-[18px] font-semibold tracking-[-0.015em] ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[15px] leading-[1.55] text-white/70">{x.p}</p></div></li>))}</ul>
+    </div>);
+  return (<PhotoBand img="food-qa" pos="50% 40%" className="mt-12 p-3 md:mt-16 md:p-5">
+    <div className="grid gap-3 md:grid-cols-2"><Col t="Today" live xs={AI_NOW} /><Col t="Coming soon" live={false} xs={AI_NEXT} /></div>
+    <p className="px-3 pb-2 pt-5 text-[13px] text-white/60">On our roadmap. No dates yet.</p>
+  </PhotoBand>);
 }
+const Pill = ({ live }: { live: boolean }) => (
+  <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold ${live ? "bg-[#F4F0EB] text-[#111]" : "bg-white/10 text-white/75"}`}>{live ? "Live" : "Coming soon"}</span>);
 
 // Directory by category. Only what Linear/Notion verify: apps + web are live; FLE-124 covers API, webhooks,
 // BI connections and an MCP server. HRIS, LMS and MES/ERP have no named connector on the roadmap, so they are
@@ -87,14 +97,19 @@ export function Integrations() {
   );
 }
 
+/* Integrations page body: every category as a glass tile over the dimmed web dashboard mockup. */
 export function IntegrationsDetail() {
-  return (<div className="mt-14">
-    {DIR.map((c) => (<div key={c.cat} className="grid gap-4 py-7 md:grid-cols-12">
-      <h2 className="mono text-xs uppercase tracking-[.18em] text-white/70 md:col-span-3">{c.cat}</h2>
-      <ul className="grid gap-6 sm:grid-cols-2 md:col-span-9 lg:grid-cols-3">
-        {c.items.map((x) => (<li key={x.h}><p className={`text-base font-semibold tracking-tight ${x.live ? "" : "text-white/70"}`}>{x.h}</p><div className="mt-1"><Tag live={x.live} /></div><p className="mt-2 text-sm leading-[1.4] text-white/70">{x.p}</p></li>))}
-      </ul></div>))}
-  </div>);
+  return (<PhotoBand img="/photos/cta-dashboard.webp" pos="50% 30%" dim={0.5} tone="center" className="mt-12 p-3 md:mt-16 md:p-5">
+    <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      {DIR.map((c, k) => (<div key={c.cat} className={`${glassTile} p-6 md:p-7 ${k === 0 ? "md:col-span-2 lg:col-span-4" : ""}`}>
+        <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{c.cat}</h2>
+        <ul className={`mt-5 grid gap-5 ${k === 0 ? "sm:grid-cols-3" : ""}`}>
+          {c.items.map((x) => { const body = (<div className="flex gap-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white"><x.i className="h-[18px] w-[18px]" /></span>
+            <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><p className="text-[17px] font-semibold tracking-[-0.01em]">{x.h}</p><Pill live={x.live} /></div><p className="mt-1.5 text-[14px] leading-[1.5] text-white/70">{x.p}</p></div></div>);
+            return <li key={x.h}>{x.href ? <a href={x.href} target="_blank" rel="noopener" className="block rounded-[14px] transition-opacity hover:opacity-80">{body}</a> : body}</li>; })}
+        </ul></div>))}
+    </div>
+  </PhotoBand>);
 }
 
 export { Footer } from "./Footer";

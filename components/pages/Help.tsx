@@ -5,6 +5,8 @@ import { SITE, PRICING_FAQ, PRICING_FAQ_TR } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { HELP } from "./copy-help";
 import { Pic } from "../home/home5";
+import { PhotoBand, glassIcon } from "../ui/PhotoBand";
+import { Split } from "../ui/Split";
 import { StoreButtons } from "../Icons";
 import { glass, h1, pill, Kicker } from "./Support";
 import { ArrowRight, ArrowUpRight, LockSimple, Question, MagnifyingGlass, Plus, X } from "../ui/icons";
@@ -109,13 +111,14 @@ export function FaqPage() {
                 </ul>
               </div>))}
           </div>)}
-        <div className={`${glass} mt-12 flex flex-col gap-6 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-10`}>
-          <div><h2 className="text-[24px] font-semibold tracking-[-0.03em] md:text-[30px]">{c.moreH}</h2><p className="mt-2 max-w-[36rem] text-[15px] text-ink-muted md:text-[16px]">{c.moreP}</p></div>
+        <PhotoBand img="brewery" pos="50% 35%" className="mt-12 flex flex-col gap-6 p-6 md:mt-16 md:flex-row md:items-center md:justify-between md:p-12">
+          <div><span className={glassIcon}><Question size={18} aria-hidden="true" /></span>
+            <h2 className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[34px]"><Split text={c.moreH} /></h2><p className="mt-2 max-w-[36rem] text-[15px] text-white/70 md:text-[16px]">{c.moreP}</p></div>
           <div className="flex flex-wrap gap-2">
-            <Link href="/support/" className={`${pill} btn-secondary h-12 px-5`}>{c.contact}</Link>
+            <Link href="/support/" className={`${pill} btn-glass-2 h-12 px-5`}>{c.contact}</Link>
             <a href={SITE.demo} className={`${pill} btn-primary h-12 px-6`}>{c.demo}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
           </div>
-        </div>
+        </PhotoBand>
       </div>
     </section>
   </>);

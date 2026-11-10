@@ -4,6 +4,10 @@ import { Footer } from "./Sections";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Split } from "./ui/Split";
+import { PhotoBand, glassTile } from "./ui/PhotoBand";
+
+/* Two photo bands per use case (the problem, the closing), none the same as its hero photo. */
+const UC_BANDS: Record<string, [string, string]> = { "master-apprentice-skills-transfer": ["saha-eldiven-makro", "bakery"], "installation-training-on-site-orientation": ["field", "phone-mount"] };
 
 export type UC = { slug: string; crumb: string; k: string; h1: string; lede: string; img: string; alt: string; quote: string;
   problem: [string, string][]; steps: [string, string][]; out: string[]; faq: { q: string; a: string }[]; related: string };
@@ -29,7 +33,7 @@ export const USE_CASES: UC[] = [
 ];
 
 export default function UseCase({ c }: { c: UC }) {
-  const r = USE_CASES.find((x) => x.slug === c.related)!;
+  const r = USE_CASES.find((x) => x.slug === c.related)!; const band = UC_BANDS[c.slug] ?? ["huddle", "office"];
   return (<>
     <Bar />
     <main id="main">
@@ -44,30 +48,33 @@ export default function UseCase({ c }: { c: UC }) {
           <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
         </div>
       </section>
-      <section className="py-24" aria-labelledby="uc-p">
+      <section className="section-y" aria-labelledby="uc-p">
         <div className="container-x">
-          <p className="display text-h2 text-white/90">{c.quote}</p>
-          <h2 id="uc-p" className="eyebrow mt-16">The problem</h2>
-          <ul className="mt-6 grid md:grid-cols-3">{c.problem.map(([h, p], i) => <li key={h} className="py-6 md:pr-6 md:[&:not(:first-child)]:pl-6 md:last:border-r-0"><span className="mono text-xs text-white/70">0{i + 1}</span><p className="mt-3 text-lg font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-base leading-[1.4] text-white/70">{p}</p></li>)}</ul>
+          <p className="v4-h2 max-w-[22ch]"><span className="t-ink">{c.quote}</span></p>
+          <PhotoBand img={band[0]} className="mt-12 p-5 sm:p-8 md:mt-16 md:p-12">
+            <h2 id="uc-p" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">The problem</h2>
+            <ul className="mt-6 grid gap-3 md:grid-cols-3">{c.problem.map(([h, p], i) => <li key={h} className={`${glassTile} p-6 md:p-7`}><span className="text-[13px] font-semibold tabular-nums text-white/45">0{i + 1}</span><p className="mt-6 text-[19px] font-semibold tracking-[-0.02em]">{h}</p><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p></li>)}</ul>
+          </PhotoBand>
         </div>
       </section>
-      <section className="pb-24" aria-labelledby="uc-s">
+      <section className="section-y pt-0" aria-labelledby="uc-s">
         <div className="grid container-x gap-10 md:grid-cols-12">
-          <div className="md:col-span-4"><h2 id="uc-s" className="display text-h2">How it works</h2><p className="mt-3 text-base leading-[1.4] text-white/70">Film it. Approve it. Assign it.</p></div>
-          <ol className="md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-3 py-6"><span className="grid h-10 w-10 place-items-center rounded-full text-white/80">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-lg font-semibold tracking-tight">{h}</p><p className="mt-1.5 text-base leading-[1.4] text-white/70">{p}</p></div></li>)}</ol>
+          <div className="md:col-span-4"><h2 id="uc-s" className="v4-h2"><span className="t-ink">How it</span> <span className="t-accent">works</span></h2><p className="mt-3 text-[16px] leading-[1.5] text-ink-muted">Film it. Approve it. Assign it.</p></div>
+          <ol className="grid gap-2 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[22px] bg-[var(--card)] p-5 md:p-6"><span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[var(--card-2)] text-ink">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[18px] font-semibold tracking-[-0.015em]">{h}</p><p className="mt-1.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p></div></li>)}</ol>
         </div>
       </section>
-      <section className="pb-24" aria-labelledby="uc-o">
-        <div className="container-x pt-12"><h2 id="uc-o" className="eyebrow">What changes</h2>
-          <ul className="mt-6 grid gap-6 md:grid-cols-3">{c.out.map((o) => <li key={o} className="flex gap-3 text-lg font-semibold leading-[1.2] tracking-tight"><I.check size={22} className="mt-0.5 shrink-0 text-white/70" />{o}</li>)}</ul></div>
+      <section className="section-y pt-0" aria-labelledby="uc-f">
+        <div className="grid container-x gap-10 md:grid-cols-12"><h2 id="uc-f" className="v4-h2 md:col-span-4"><span className="t-ink">Questions</span></h2>
+          <div className="grid gap-2 md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group rounded-[22px] bg-[var(--card)] px-5 py-4 md:px-6"><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 text-[17px] font-semibold tracking-[-0.01em]">{f.q}<span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] pb-2 text-[15px] leading-[1.6] text-ink-muted">{f.a}</p></details>)}</div></div>
       </section>
-      <section className="pb-24" aria-labelledby="uc-f">
-        <div className="grid container-x gap-10 md:grid-cols-12"><h2 id="uc-f" className="display text-h2 md:col-span-4">Questions</h2>
-          <div className="md:col-span-8">{c.faq.map((f) => <details key={f.q} className="group mb-2 rounded-xl bg-bg2 py-5"><summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold tracking-tight">{f.q}<span className="text-white/70 transition group-open:rotate-45">+</span></summary><p className="mt-2 max-w-[62ch] text-base leading-[1.45] text-white/65">{f.a}</p></details>)}</div></div>
-      </section>
-      <section className="pb-24"><div className="container-x pt-10">
-        <p className="mono text-xs uppercase tracking-[.2em] text-white/70">Related use case</p>
-        <Link href={`/use-cases/${r.slug}/`} className="mt-3 inline-flex min-h-11 items-center text-h3 font-semibold tracking-tight">{r.crumb} <Arr className="ml-1" /></Link></div></section>
+      <section className="pb-[var(--section-y)]" aria-labelledby="uc-o"><div className="container-x">
+        <PhotoBand img={band[1]} tone="center" className="px-5 py-12 text-center sm:px-10 md:py-20">
+          <h2 id="uc-o" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">What changes</h2>
+          <ul className="mx-auto mt-6 grid max-w-[60rem] gap-3 text-start md:grid-cols-3">{c.out.map((o) => <li key={o} className={`${glassTile} flex gap-3 p-5 text-[17px] font-semibold leading-[1.3] tracking-[-0.01em]`}><I.check size={20} className="tick mt-0.5 shrink-0" />{o}</li>)}</ul>
+          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">Book a demo <Arr className="ms-1" /></a>
+            <Link href={`/use-cases/${r.slug}/`} className="btn btn-glass-2 h-11 px-5 text-[15px]">{r.crumb}</Link></div>
+        </PhotoBand>
+      </div></section>
     </main>
     <Footer />
   </>);

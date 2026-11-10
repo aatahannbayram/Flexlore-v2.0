@@ -19,6 +19,7 @@ import { Compare5 } from "../home/home5b";
 import { Reveal, RevealItem } from "../ui/Reveal";
 import { ArrowRight, Check, Plus, CheckCircle, Lightning, Users, Clock, Warning } from "../ui/icons";
 import { Split } from "../ui/Split";
+import { PhotoBand, glassTile } from "../ui/PhotoBand";
 
 const LOAD: Record<Locale, () => Promise<FDict>> = {
   en: async () => fen,
@@ -165,13 +166,13 @@ function End({ c }: { c: FDict["common"] }) {
   const { lang } = useLocale();
   return (
     <section className="container-x pb-[var(--section-y)] pt-10">
-      <div className="dark relative grid items-center gap-6 overflow-hidden rounded-[32px] bg-[#111] p-4 text-white md:p-6 lg:grid-cols-12 lg:gap-8">
-        <div className="order-last rounded-[24px] bg-white/[.04] p-6 backdrop-blur-md md:p-8 lg:order-first lg:col-span-5">
-          <p className="text-[clamp(26px,1rem+1.5vw,40px)] font-semibold leading-[1.06] tracking-[-0.04em]"><span className="t-ink">{c.endH}</span></p><p className="mt-4 text-[16px] leading-[1.55] text-white/70">{c.endP}</p>
+      <PhotoBand img="saha-iskele-pov" pos="50% 45%" dim={0.4} className="grid items-center gap-6 p-4 md:p-6 lg:grid-cols-12 lg:gap-8">
+        <div className={`order-last ${glassTile} p-6 md:p-8 lg:order-first lg:col-span-5`}>
+          <p className="text-[clamp(26px,1rem+1.5vw,40px)] font-semibold leading-[1.06] tracking-[-0.04em]"><Split text={c.endH} /></p><p className="mt-4 text-[16px] leading-[1.55] text-white/70">{c.endP}</p>
           <a href={SITE.demo} className="btn btn-primary mt-7 h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
         <div className="lg:col-span-7"><Duo lang={lang} /></div>
-      </div>
+      </PhotoBand>
     </section>);
 }
 

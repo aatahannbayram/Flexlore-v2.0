@@ -6,6 +6,8 @@ import { useLocale } from "../i18n/LocaleProvider";
 import { SUPPORT } from "./copy";
 import { HELP } from "./copy-help";
 import { Pic } from "../home/home5";
+import { Split } from "../ui/Split";
+import { PhotoBand, glassTile, glassIcon } from "../ui/PhotoBand";
 import { StoreButtons } from "../Icons";
 import { Lifebuoy, ArrowRight, ArrowUpRight, EnvelopeSimple, CalendarBlank, CheckCircle, Question, Check } from "../ui/icons";
 
@@ -40,14 +42,14 @@ export function SupportPage() {
         <Kicker icon={Lifebuoy}>{c.k}</Kicker>
         <h1 id="sup-h" className={`${h1} mt-6 max-w-[14ch]`}>{h.h1a} <span className="t-accent">{h.h1b}</span></h1>
         <p className="lead mt-5 max-w-[34rem]">{h.lead}</p>
-        <ul className="mt-10 grid gap-3 sm:grid-cols-3 md:mt-14">
+        <PhotoBand img="office" pos="50% 45%" className="mt-10 p-3 md:mt-14 md:p-4"><ul className="grid gap-3 sm:grid-cols-3">
           {h.quick.map(([t, line], k) => { const [href, I, ext] = quick[k]; const inner = (<>
-            <span className="grid h-11 w-11 shrink-0 place-items-center rounded-[14px] bg-[var(--card-2)] text-ink"><I size={18} aria-hidden="true" /></span>
-            <span className="min-w-0 flex-1"><span className="block text-[16px] font-semibold text-ink">{t}</span><span className="block truncate text-[14px] text-ink-muted">{line}</span></span>
-            <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-ink-faint transition-colors group-hover:text-ink rtl:-scale-x-100" /></>);
-            const cls = `group flex min-h-[88px] items-center gap-4 ${glass} !rounded-[22px] px-5 transition-colors hover:bg-[var(--card-2)]`;
+            <span className={glassIcon}><I size={18} aria-hidden="true" /></span>
+            <span className="min-w-0 flex-1"><span className="block text-[16px] font-semibold text-white">{t}</span><span className="block truncate text-[14px] text-white/65">{line}</span></span>
+            <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-white/50 transition-colors group-hover:text-white rtl:-scale-x-100" /></>);
+            const cls = `group flex min-h-[96px] items-center gap-4 ${glassTile} px-5 transition-colors hover:bg-white/[.1]`;
             return (<li key={t}>{ext ? <a href={href} className={cls}>{inner}</a> : <Link href={href} className={cls}>{inner}</Link>}</li>); })}
-        </ul>
+        </ul></PhotoBand>
       </div>
     </section>
 
@@ -99,10 +101,11 @@ export function SupportPage() {
 
     <section aria-labelledby="sup-faq" className="section-y pt-0">
       <div className="container-x">
-        <div className={`${glass} flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-10`}>
-          <div><h2 id="sup-faq" className="text-[24px] font-semibold tracking-[-0.03em] md:text-[30px]">{h.faqH}</h2><p className="mt-2 max-w-[36rem] text-[15px] text-ink-muted md:text-[16px]">{h.faqP}</p></div>
+        <PhotoBand img="cafe-opening" pos="50% 40%" className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-12">
+          <div><span className={glassIcon}><Question size={18} aria-hidden="true" /></span>
+            <h2 id="sup-faq" className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[34px]"><Split text={h.faqH} /></h2><p className="mt-2 max-w-[36rem] text-[15px] text-white/70 md:text-[16px]">{h.faqP}</p></div>
           <Link href="/faq/" className={`${pill} btn-primary h-12 shrink-0 self-start px-6 md:self-auto`}>{h.faqCta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></Link>
-        </div>
+        </PhotoBand>
       </div>
     </section>
   </>);

@@ -13,6 +13,7 @@ import { BillingSwitch, PlanCard } from "./home/home5b";
 import { QUOTE } from "./pages/copy-quote";
 import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Tag, Lightning, EnvelopeSimple } from "./ui/icons";
 import { Split } from "./ui/Split";
+import { PhotoBand, glassTile } from "./ui/PhotoBand";
 
 const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
 const glassCard = "rounded-[28px] bg-[var(--card)]";
@@ -76,9 +77,7 @@ export default function Pricing() {
 
       {/* Enterprise: a photo band with the tiers, then the quote request. */}
       <section id="enterprise" aria-labelledby="ent-h" className="container-x mt-28 md:mt-36">
-        <div className="dark relative isolate overflow-hidden rounded-[32px] bg-[#141414] p-6 text-white md:p-12">
-          <picture className="absolute inset-0 -z-10"><source type="image/avif" srcSet="/photos/huddle-1600.avif" /><img src="/photos/huddle-1600.webp" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-[50%_35%] opacity-45 saturate-[0.75]" /></picture>
-          <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgb(14_14_14/0.95)_0%,rgb(14_14_14/0.8)_50%,rgb(14_14_14/0.55)_100%)] rtl:bg-[linear-gradient(260deg,rgb(14_14_14/0.95)_0%,rgb(14_14_14/0.8)_50%,rgb(14_14_14/0.55)_100%)]" />
+        <PhotoBand img="huddle" pos="50% 35%" className="p-6 md:p-12">
           <div className="grid-12 items-end gap-y-8">
             <div className="col-span-12 lg:col-span-7">
               <p className="inline-flex items-center gap-2.5 text-[14px] font-medium text-white/70"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/10"><Buildings size={16} /></span>{t.entK}</p>
@@ -93,7 +92,7 @@ export default function Pricing() {
           </div>
           <ul className="mt-10 grid gap-3 md:grid-cols-3">
             {tiers.map((x) => (
-              <li key={x.id} className="flex flex-col rounded-[22px] bg-white/[.06] p-6 backdrop-blur-xl">
+              <li key={x.id} className={`flex flex-col ${glassTile} p-6`}>
                 <p className="text-[16px] font-semibold text-white/85">Enterprise {x.name}</p>
                 <p className="mt-4 text-[32px] font-semibold leading-none tracking-[-.04em]">{x.custom ? c.custom : <>{x.price}<span className="ms-1 text-[14px] font-normal text-white/60">{c.perMo}</span></>}</p>
                 <p className="mt-2 text-[14px] text-white/60">{fmt(t.entUsers, { n: x.users })}</p>
@@ -103,7 +102,7 @@ export default function Pricing() {
                 </ul>
               </li>))}
           </ul>
-        </div>
+        </PhotoBand>
       </section>
 
       <section id="quote" aria-labelledby="quote-h" className="container-x mt-6 scroll-mt-28">
@@ -144,15 +143,14 @@ export default function Pricing() {
       </div>
     </section>
     <section className="pb-[var(--section-y)]"><div className="container-x">
-      <div className={`${glassCard} relative isolate overflow-hidden px-6 py-14 text-center md:py-20`}>
-        <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_120%,rgb(244_240_235/0.12)_0%,rgb(244_240_235/0)_60%)]" />
+      <PhotoBand img="restaurant" pos="50% 40%" tone="center" className="px-6 py-16 text-center md:py-24">
         <p className="v4-h2 mx-auto max-w-[22ch]"><Split text={t.endH} /></p>
-        <p className="mt-4 text-[17px] text-ink-muted">{t.endP}</p>
+        <p className="mt-4 text-[17px] text-white/75">{t.endP}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-          <a href="#quote" className="btn btn-secondary h-11 px-5 text-[15px]">{q.cta}</a>
+          <a href="#quote" className="btn btn-glass-2 h-11 px-5 text-[15px]">{q.cta}</a>
         </div>
-      </div></div></section>
+      </PhotoBand></div></section>
     <Footer />
   </>);
 }
