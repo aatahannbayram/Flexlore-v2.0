@@ -46,7 +46,8 @@ function Eyebrow({ i }: { i: number }) {
 
 /* The stage behind the hero phone cycles through the trades, in the order of the eyebrow words (hero.rot): restaurants,
    production lines, hotels, franchises, warehouses, bakeries. Warm photos only, darkened so the phone leads. */
-const STAGE_PICS: [string, string][] = [["chef-plating", "50% 30%"], ["field", "40% 35%"], ["hotel-desk", "50% 45%"], ["huddle", "50% 40%"], ["warehouse", "50% 40%"], ["bakery", "30% 50%"]];
+// Bright, airy scenes made for this stage (ElevenLabs image generation, 2026-11-11), cropped 5:6 with the person on the right.
+const STAGE_PICS: [string, string][] = [["stage-restoran", "50% 0%"], ["stage-uretim", "50% 8%"], ["stage-otel", "50% 0%"], ["stage-franchise", "50% 0%"], ["stage-depo", "50% 30%"], ["stage-firin", "50% 40%"]];
 export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false); const reduce = useReducedMotion();
   const [i, setI] = useState(0); const n = Math.min(STAGE_PICS.length, h.rot.length);
@@ -84,8 +85,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
                   <picture key={img} className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${on ? "opacity-100" : "opacity-0"}`}>
                     <source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:1024px) 45vw, 90vw" />
                     <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:1024px) 45vw, 90vw" alt="" decoding="async" loading="eager" {...(k === 0 ? { fetchPriority: "high" as const } : {})}
-                      style={{ objectPosition: pos }} className={`h-full w-full object-cover saturate-[1.12] contrast-[1.04] ${on && !reduce ? "stage-zoom" : ""}`} /></picture>); })}
-                <span className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_60%_45%,rgb(17_17_17/0)_0%,rgb(17_17_17/0.55)_100%),linear-gradient(0deg,rgb(17_17_17/0.5)_0%,rgb(17_17_17/0)_35%),linear-gradient(120deg,rgb(236_103_38/0.10)_0%,rgb(236_103_38/0)_45%)]" />
+                      style={{ objectPosition: pos }} className={`h-full w-full object-cover ${on && !reduce ? "stage-zoom" : ""}`} /></picture>); })}
+                <span className="absolute inset-0 bg-[radial-gradient(ellipse_90%_80%_at_62%_38%,rgb(17_17_17/0)_0%,rgb(17_17_17/0.22)_100%),linear-gradient(0deg,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0)_26%)]" />
               </div>
               <AnimatePresence mode="wait" initial={false}>
                 <m.p key={i} aria-hidden="true" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.4, ease: EASE }}
