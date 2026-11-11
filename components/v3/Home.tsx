@@ -487,22 +487,28 @@ function useMedia(q: string) {
   return v;
 }
 type CaseT = (typeof HOME4)["en"]["cases"];
+/* Split card: the brand on a clean panel (sector, logo, what they do, status, position), the photo of their work
+ * beside it with nothing printed over it. Phones stack the photo over the panel. */
 function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t: CaseT; act: boolean; k: number; n: number; className: string }) {
   const I = SEC_IC[c.sec];
   return (
     <article aria-roledescription="slide" aria-label={`${c.company}, ${k + 1} / ${n}`}
-      className={`dark relative shrink-0 select-none overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 ${act ? "opacity-100" : "opacity-45"} ${className}`}>
-      <Photo n={c.img} portrait sizes="(min-width:768px) 70vw, 86vw" className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] ${act ? "scale-100" : "scale-[1.06]"}`} />
-      <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.55)_60%,rgb(16_16_16/0.85)_100%)]" />
-      <div className="relative flex h-full flex-col items-center justify-between p-6 text-center md:p-8">
-        <span className={`${glass} inline-flex items-center gap-2 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90`}><I size={14} aria-hidden="true" />{t.sec[c.sec]}</span>
-        <div className="max-w-[92%] md:max-w-[80%]">
-          {LOGOS[c.slug]
-            ? <h3 className="flex justify-center drop-shadow-[0_2px_18px_rgb(16_16_16/0.45)]"><CaseLogo slug={c.slug} name={c.company} /></h3>
-            : <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>}
-          <p className="mt-3 text-[15px] text-white/80 md:text-[17px]">{t.desc[c.desc]}</p>
+      className={`dark card-pro group relative flex shrink-0 select-none flex-col-reverse overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 md:grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] ${act ? "opacity-100" : "opacity-45"} ${className}`}>
+      <div className="flex min-h-0 flex-1 flex-col justify-between gap-5 p-5 md:p-8">
+        <div className="flex items-center justify-between gap-3">
+          <span className="inline-flex h-9 items-center gap-2 rounded-full bg-white/[.07] px-3.5 text-[13px] font-medium text-white/85"><I size={14} aria-hidden="true" />{t.sec[c.sec]}</span>
+          <span className="text-[13px] tabular-nums text-white/45">{String(k + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}</span>
         </div>
-        <span className={`${glass} inline-flex min-h-11 items-center gap-2 !rounded-full px-5 text-[14px] font-medium text-white/85`}>{t.soon}</span>
+        <div>
+          {LOGOS[c.slug]
+            ? <h3 className="flex"><CaseLogo slug={c.slug} name={c.company} compact /></h3>
+            : <h3 className="text-[clamp(26px,0.9rem+1.6vw,40px)] [text-wrap:balance] font-semibold leading-[1.02] tracking-[-0.04em]">{c.company}</h3>}
+          <p className="mt-3 text-[15px] leading-[1.5] text-white/70 md:text-[16px]">{t.desc[c.desc]}</p>
+        </div>
+        <p className="flex items-center gap-2.5 border-t border-white/[.08] pt-4 text-[13px] text-white/60"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-white/50" />{t.soon}</p>
+      </div>
+      <div className="relative h-[52%] shrink-0 overflow-hidden md:h-auto">
+        <Photo n={c.img} portrait sizes="(min-width:768px) 45vw, 86vw" className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] ${act ? "scale-100 group-hover:scale-[1.03]" : "scale-[1.06]"}`} />
       </div>
     </article>);
 }
@@ -548,7 +554,7 @@ function CasesPinned() {
         </div>
         <div ref={view} className="mt-6 w-full" role="region" aria-roledescription="carousel" aria-label={t.k}>
           <m.div ref={track} style={{ x }} className="flex w-max gap-4 px-[max(var(--pad-x),calc((100vw-var(--container))/2))]">
-            {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act k={k} n={list.length} className="aspect-[16/9] h-[min(52vh,480px)]" />)}
+            {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act k={k} n={list.length} className="aspect-[16/8] h-[min(50vh,440px)]" />)}
           </m.div>
         </div>
       </div>

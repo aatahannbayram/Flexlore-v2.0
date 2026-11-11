@@ -24,11 +24,13 @@ export const LOGOS: Partial<Record<string, Logo>> = {
 };
 
 /** The logo at a height that keeps wide and tall marks visually even (wide marks get less height). */
-export function CaseLogo({ slug, name }: { slug: string; name: string }) {
+export function CaseLogo({ slug, name, compact = false }: { slug: string; name: string; compact?: boolean }) {
   const l = LOGOS[slug];
   if (!l) return null;
   const ratio = l.w / l.h;
-  const h = ratio > 3.3 ? "h-[clamp(50px,0.9rem+4.6vw,104px)]" : ratio > 2 ? "h-[clamp(64px,1.1rem+6vw,136px)]" : "h-[clamp(96px,1.6rem+8vw,190px)]";
+  const h = compact
+    ? (ratio > 3.3 ? "h-[clamp(34px,0.6rem+2.2vw,52px)]" : ratio > 2 ? "h-[clamp(44px,0.8rem+2.8vw,68px)]" : "h-[clamp(64px,1rem+4vw,104px)]")
+    : ratio > 3.3 ? "h-[clamp(50px,0.9rem+4.6vw,104px)]" : ratio > 2 ? "h-[clamp(64px,1.1rem+6vw,136px)]" : "h-[clamp(96px,1.6rem+8vw,190px)]";
   const cls = `${h} w-auto max-w-full`;
   return "src" in l
     ? <img src={l.src} alt={name} width={l.w} height={l.h} decoding="async" loading="lazy" draggable={false} className={`${cls} object-contain`} />
