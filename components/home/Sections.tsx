@@ -49,7 +49,7 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
                 <li key={`${copy}-${k}`} aria-hidden={copy === 1 ? true : undefined}>
                   <a href={p ? p.href : "https://www.producthunt.com/products/flexlore-app"} target="_blank" rel="noopener" aria-label={p ? p.name : "Flexlore on Product Hunt"} tabIndex={copy === 1 ? -1 : undefined}
                     className="flex h-14 items-center rounded-full bg-white/[.04] px-5 ring-1 ring-white/[.07] transition-colors duration-300 hover:bg-white/[.08]">
-                    {!p ? <span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">Product Hunt</span><span className="text-[12px] text-white/50">{lang === "tr" ? "Lansman" : "Launch"}</span></span>
+                    {!p ? <span className="flex items-center gap-2.5"><img src="/brand/programs/producthunt.svg" alt="" width={24} height={24} className="block h-6 w-6" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">Product Hunt</span><span className="text-[12px] text-white/50">{lang === "tr" ? "Lansman" : "Launch"}</span></span></span>
                     : p.badge && (p.org === "NVIDIA" || p.org === "Google")
                       ? p.caption
                         ? <span className="flex h-9 flex-col items-center justify-center rounded-[6px] bg-[#EDEDED] px-2.5"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[11px] w-auto max-w-none" /><span className="mt-0.5 text-[12px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>

@@ -133,7 +133,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                 <li key={n}>
                   <a href={u(f.aiQ)} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`}
                     className="group inline-flex h-11 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[13.5px] font-medium text-white/80 ring-1 ring-white/[.07] transition-colors hover:bg-white/[.1] hover:text-white">
-                    <Mark k={k} dir="ai" cls="h-4 w-4" />{n}
+                    {k === "claude" ? <img src="/brand/ai/claude-color.svg" alt="" width={16} height={16} className="h-4 w-4 shrink-0" /> : <Mark k={k} dir="ai" cls="h-4 w-4" />}{n}
                     <ArrowUpRight size={12} aria-hidden="true" className="text-white/35 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
                   </a>
                 </li>))}
