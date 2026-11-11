@@ -490,8 +490,8 @@ section[id], [id]:target { scroll-margin-top: 80px; }
 .home-v3 .t-ink { color: #F2F2F0; }
 :root[data-theme="light"] .home-v3 .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }
 :root[data-theme="light"] .home-v3 .t-ink:not(.dark *) { color: rgb(22 22 22); }
-.eyebrow { font-size: 13px; font-weight: 500; color: rgb(242 242 240 / 0.6); }
-:root[data-theme="light"] .eyebrow:not(.dark *) { color: rgb(22 22 22 / 0.6); }
+.ch-label { font-size: 13px; font-weight: 500; color: rgb(242 242 240 / 0.6); }
+:root[data-theme="light"] .ch-label:not(.dark *) { color: rgb(22 22 22 / 0.6); }
 .intro { font-size: 16px; line-height: 26px; color: rgb(242 242 240 / 0.7); }
 @media (min-width: 768px) { .intro { font-size: 18px; line-height: 28px; } }
 :root[data-theme="light"] .intro:not(.dark *) { color: rgb(22 22 22 / 0.7); }

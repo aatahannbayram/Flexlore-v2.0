@@ -74,7 +74,7 @@ export function Dashboard({ on, lang = "en" }: { on: boolean; lang?: string }) {
   const [hover, setHover] = useState(-1);
   useEffect(() => { if (!on || still) return; const id = setInterval(() => setHover((h) => (h + 1) % 4), 2400); return () => clearInterval(id); }, [on, still]);
   const cur = ([[468, 262], [516, 470], [1010, 348], [1112, 28]] as const)[Math.max(0, hover)];
-  const tx = (i: number) => 12 + i * 33.5, ty = (v: number) => 108 - ((v - 55) / 30) * 88;
+  const tx = (i: number) => 12 + i * 33.5, ty = (v: number) => 174 - ((v - 55) / 30) * 150;
   const line = TREND.map((v, i) => `${i ? "L" : "M"}${tx(i)},${ty(v)}`).join("");
   const last = [tx(7), ty(82)] as const;
   return (<div className="relative flex h-full w-full bg-bg font-sans text-ice-100 antialiased">
@@ -98,11 +98,10 @@ export function Dashboard({ on, lang = "en" }: { on: boolean; lang?: string }) {
       </div>
       <div className="flex-1 overflow-hidden px-6 pb-5 pt-5">
         <div className="grid h-[88px] grid-cols-4 gap-4">{KPI.map((k, i) => <Kpi key={k.l} k={k} i={i} on={on} still={still} t={t} />)}</div>
-        <div className="mt-4 grid h-[524px] grid-cols-[1fr_300px] gap-4">
-          <div className="flex min-w-0 flex-col gap-4">
-            <section className={`pb-3.5 ${panel}`} style={{ background: CARD }}>
+        <div className="mt-4 grid h-[524px] grid-cols-[1fr_300px] grid-rows-[auto_1fr] gap-4">
+          <section className={`flex flex-col pb-3.5 ${panel}`} style={{ background: CARD }}>
               <Head t={t("Library")} r={<span className="flex items-center gap-3 text-xs text-ice-500">{["All 24", "Kitchen 11", "Front of house 7"].map((x, i) => <span key={x} className={i ? "" : "text-ice-100"}>{t(x)}</span>)}</span>} />
-              <div className="grid grid-cols-4 gap-3 px-3.5">{LIB.map(([tt, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <m.div key={tt} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -2 : 0) : 10 }} transition={{ delay: on && !hv ? .2 + i * .06 : 0, duration: .5, ease }}>
+              <div className="my-auto grid grid-cols-4 gap-3 px-3.5">{LIB.map(([tt, v, st, d, b], i) => { const hv = hover === 0 && i === 1; return <m.div key={tt} initial={false} animate={{ opacity: on ? 1 : 0, y: on ? (hv ? -2 : 0) : 10 }} transition={{ delay: on && !hv ? .2 + i * .06 : 0, duration: .5, ease }}>
                 <div className={`relative aspect-[16/10] overflow-hidden rounded-[8px] bg-cover bg-center ring-1 transition-[box-shadow] ${hv ? "ring-white/30" : "ring-white/[.06]"}`} style={{ backgroundImage: `url(/video/${v}.webp)` }}>
                   <span className="absolute inset-0 bg-gradient-to-t from-black/55 to-black/5" />
                   <span className={`absolute left-1/2 top-1/2 grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-black transition-all duration-300 ${hv ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}><Play size={11} weight="fill" className="ml-0.5" /></span>
@@ -110,42 +109,37 @@ export function Dashboard({ on, lang = "en" }: { on: boolean; lang?: string }) {
                 <p className="mt-2 truncate text-xs font-medium text-ice-100">{t(tt)}</p>
                 <p className="mt-0.5 flex items-center gap-1.5 text-xs text-ice-500"><span className="tabular-nums">{st} {t("steps")}</span><i className="h-[3px] w-[3px] rounded-full bg-ice-500" /><span className={b === "Published" ? "text-ice-300" : ""}>{t(b)}</span></p></m.div>; })}</div>
             </section>
-            <div className="grid min-h-0 flex-1 grid-cols-2 gap-4">
-              <section className={`flex flex-col ${panel}`} style={{ background: CARD }}>
-                <Head t={t("Readiness")} r={<span className="text-xs text-ice-500">{t("Last 8 weeks")}</span>} />
-                <p className="px-4 text-xs text-ice-500"><span className="text-xl font-semibold tracking-[-.02em] tabular-nums text-ice-50">{lang === "tr" ? "%82" : "82%"}</span> <span className="ml-1 text-ice-300">{t("+21 pts")}</span></p>
-                <svg viewBox="0 0 260 128" className="mt-auto w-full px-2 pb-2 text-ice-200">
-                  <defs><linearGradient id="wa-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="currentColor" stopOpacity=".14" /><stop offset="1" stopColor="currentColor" stopOpacity="0" /></linearGradient></defs>
-                  {[0, 1, 2, 3].map((g) => <line key={g} x1="0" x2="260" y1={20 + g * 29} y2={20 + g * 29} stroke="rgb(255 255 255 / .05)" strokeDasharray="2 4" />)}
-                  <m.path d={`${line}L${tx(7)},120L${tx(0)},120Z`} fill="url(#wa-fill)" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1, duration: .8 }} />
-                  <m.path d={line} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" initial={false} animate={{ pathLength: on ? 1 : 0 }} transition={{ delay: .4, duration: 1.3, ease }} />
-                  <line x1={last[0]} x2={last[0]} y1={last[1]} y2="120" stroke="rgb(255 255 255 / .18)" strokeDasharray="2 3" opacity={hover === 1 ? 1 : 0} className="transition-opacity" />
-                  <m.circle cx={last[0]} cy={last[1]} r={hover === 1 ? 4 : 3} className="fill-ice-50" stroke={CARD} strokeWidth="2" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1.6 }} />
-                </svg>
-              </section>
-              <section className={panel} style={{ background: CARD }}>
-                <Head t={t("Orientation")} r={<span className="text-xs text-ice-500">{t("3 new starters")}</span>} />
-                <div className="space-y-3.5 px-4 pt-1">{NEW.map(([n, i, team, day, done], r) => <div key={n}>
-                  <div className="flex items-center gap-2.5"><Av i={i} s={24} t={r} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium text-ice-100">{n}</span><span className="block text-xs text-ice-500">{t("Day")} {day} · {t(team)}</span></span><span className="text-xs tabular-nums text-ice-400">{done}/8</span></div>
-                  <div className="mt-2 grid grid-cols-8 gap-1">{Array.from({ length: 8 }, (_, s) => <m.i key={s} className="h-1 origin-left rounded-full" style={{ background: TRACK }} initial={false} animate={{ backgroundColor: on && s < done ? "#B3BCBE" : TRACK }} transition={{ delay: .6 + r * .15 + s * .05, duration: .3 }} />)}</div></div>)}</div>
-              </section>
-            </div>
-          </div>
-          <div className="flex min-h-0 flex-col gap-4">
-            <section className={`pb-2 ${panel}`} style={{ background: CARD }}>
+          <section className={`flex flex-col justify-between pb-2 ${panel}`} style={{ background: CARD }}>
               <Head t={t("Readiness by location")} r={<span className="text-xs text-ice-500">{t("People")}</span>} />
               {LOC.map(([n, p, ppl], i) => <div key={n} className={`mx-2 flex h-9 items-center gap-3 rounded-[8px] px-2 transition-colors ${hover === 2 && i === 3 ? "bg-white/[.04]" : ""}`}>
                 <span className="w-[74px] text-xs text-ice-200">{t(n)}</span>
                 <span className="h-1 flex-1 overflow-hidden rounded-full" style={{ background: TRACK }}><m.span className="block h-full rounded-full bg-ice-300" initial={false} animate={{ width: on ? `${p}%` : 0 }} transition={{ delay: .5 + i * .08, duration: 1, ease }} /></span>
                 <span className="w-8 text-right text-xs tabular-nums text-ice-100">{lang === "tr" ? `%${p}` : `${p}%`}</span><span className="w-5 text-right text-xs tabular-nums text-ice-500">{ppl}</span></div>)}
             </section>
-            <section className={`min-h-0 flex-1 ${panel}`} style={{ background: CARD }}>
+          <div className="grid min-h-0 grid-cols-2 gap-4"><section className={`flex flex-col ${panel}`} style={{ background: CARD }}>
+                <Head t={t("Readiness")} r={<span className="text-xs text-ice-500">{t("Last 8 weeks")}</span>} />
+                <p className="px-4 text-xs text-ice-500"><span className="text-xl font-semibold tracking-[-.02em] tabular-nums text-ice-50">{lang === "tr" ? "%82" : "82%"}</span> <span className="ml-1 text-ice-300">{t("+21 pts")}</span></p>
+                <svg viewBox="0 0 260 196" className="mt-auto w-full px-2 pb-2 text-ice-200">
+                  <defs><linearGradient id="wa-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="currentColor" stopOpacity=".14" /><stop offset="1" stopColor="currentColor" stopOpacity="0" /></linearGradient></defs>
+                  {[0, 1, 2, 3].map((g) => <line key={g} x1="0" x2="260" y1={24 + g * 50} y2={24 + g * 50} stroke="rgb(255 255 255 / .05)" strokeDasharray="2 4" />)}
+                  <m.path d={`${line}L${tx(7)},186L${tx(0)},186Z`} fill="url(#wa-fill)" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1, duration: .8 }} />
+                  <m.path d={line} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" initial={false} animate={{ pathLength: on ? 1 : 0 }} transition={{ delay: .4, duration: 1.3, ease }} />
+                  <line x1={last[0]} x2={last[0]} y1={last[1]} y2="186" stroke="rgb(255 255 255 / .18)" strokeDasharray="2 3" opacity={hover === 1 ? 1 : 0} className="transition-opacity" />
+                  <m.circle cx={last[0]} cy={last[1]} r={hover === 1 ? 4 : 3} className="fill-ice-50" stroke={CARD} strokeWidth="2" initial={false} animate={{ opacity: on ? 1 : 0 }} transition={{ delay: 1.6 }} />
+                </svg>
+              </section>
+              <section className={`flex flex-col ${panel}`} style={{ background: CARD }}>
+                <Head t={t("Orientation")} r={<span className="text-xs text-ice-500">{t("3 new starters")}</span>} />
+                <div className="flex flex-1 flex-col justify-evenly px-4 pb-2">{NEW.map(([n, i, team, day, done], r) => <div key={n}>
+                  <div className="flex items-center gap-2.5"><Av i={i} s={24} t={r} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium text-ice-100">{n}</span><span className="block text-xs text-ice-500">{t("Day")} {day} · {t(team)}</span></span><span className="text-xs tabular-nums text-ice-400">{done}/8</span></div>
+                  <div className="mt-2 grid grid-cols-8 gap-1">{Array.from({ length: 8 }, (_, s) => <m.i key={s} className="h-1 origin-left rounded-full" style={{ background: TRACK }} initial={false} animate={{ backgroundColor: on && s < done ? "#B3BCBE" : TRACK }} transition={{ delay: .6 + r * .15 + s * .05, duration: .3 }} />)}</div></div>)}</div>
+              </section></div>
+          <section className={`flex min-h-0 flex-col ${panel}`} style={{ background: CARD }}>
               <Head t={t("On shift now")} r={<span className="text-xs tabular-nums text-ice-500">{t("5 of 12")}</span>} />
               <div className="space-y-1 px-2">{TEAM.map(([n, i, role, st], r) => <div key={n} className="flex h-[38px] items-center gap-2.5 px-2">
                 <Av i={i} s={26} t={r} /><span className="flex-1 leading-tight"><span className="block text-xs font-medium text-ice-100">{n}</span><span className="block text-xs text-ice-500">{t(role)}</span></span>
                 <span className={`flex items-center gap-1.5 text-xs ${st === "Ready" ? "text-ice-300" : "text-ice-500"}`}><i className={`h-1.5 w-1.5 rounded-full ${st === "Ready" ? "bg-ice-300" : "border border-ice-500"}`} />{t(st)}</span></div>)}</div>
             </section>
-          </div>
         </div>
       </div>
     </div>

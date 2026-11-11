@@ -1,13 +1,13 @@
 "use client";
-/* Flexlore Web, the desktop app: one large browser window running the real web panel (sample data), three facts in a
- * row under it, and the three steps of the manager's week. Copy is the approved web-panel
+/* Flexlore Web, the desktop app: the promise and the manager's three steps on the start side, a browser window running
+ * the real web panel (sample data) on the end side, bleeding to the page edge on large screens. Copy is the approved web-panel
  * feature page text (TR and EN; other languages read English). The panel is marked "Coming soon" as on that page. */
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { m, useInView, useReducedMotion } from "framer-motion";
 import { useLocale } from "../i18n/LocaleProvider";
 import { rise } from "./Top";
-import { Books, UsersThree, ChartBar, CheckCircle } from "../ui/icons";
+import { Books, UsersThree, ChartBar } from "../ui/icons";
 
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full bg-[#111]" /> });
 
@@ -27,40 +27,33 @@ export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: str
   const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
   const icons = [Books, UsersThree, ChartBar];
   return (
-    <section id="desktop" aria-labelledby="desk-h" className="section-y">
-      <div className="container-x">
-        <div className="mx-auto flex max-w-[44rem] flex-col items-center text-center">
+    <section id="desktop" aria-labelledby="desk-h" className="section-y overflow-x-clip [--bleed:calc(var(--pad-x)+max(0px,(100vw-var(--container)-2*var(--pad-x))/2))]">
+      <div className="container-x grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+        {/* Start side: the promise, then the manager's week in three steps. */}
+        <div className="lg:col-span-5">
           <div className="flex items-center gap-3"><Ch n="05">{t.k}</Ch><span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{t.soon}</span></div>
-          <H2 id="desk-h" a={t.h} className="mx-auto max-w-[24ch]" />
-          <p className="rv intro mt-4 max-w-[34rem]">{t.p}</p>
+          <H2 id="desk-h" a={t.h} className="max-w-[16ch]" />
+          <p className="rv intro mt-4 max-w-[28rem]">{t.p}</p>
+          <ol className="mt-8 flex flex-col gap-5 md:mt-10">
+            {t.steps.map(([h, p], k) => { const I = icons[k]; return (
+              <m.li key={h} {...rise(reduce, k)} className="flex gap-4">
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-[var(--card)] text-ink"><I size={18} aria-hidden="true" /></span>
+                <span className="block"><span className="block text-[17px] font-semibold leading-[24px] tracking-[-0.015em] text-ink">{h}</span>
+                  <span className="mt-1 block text-[15px] leading-[22px] text-ink-muted">{p}</span></span>
+              </m.li>); })}
+          </ol>
         </div>
-
-        {/* The desktop app: a quiet browser frame (three neutral dots, the app name), the live panel inside. */}
-        <div ref={ref} className="relative mx-auto mt-8 max-w-[1040px] md:mt-12">
-          <m.div {...rise(reduce)} className="card-pro overflow-hidden rounded-[20px] bg-[#0E0E0E] ring-1 ring-white/10">
+        {/* End side: the desktop app in a quiet browser frame, running past the container to the page edge. */}
+        <div ref={ref} className="relative lg:col-span-7">
+          <m.div {...rise(reduce)} className="card-pro overflow-hidden rounded-[20px] bg-[#0E0E0E] ring-1 ring-white/10 lg:w-[calc(100%+var(--bleed))] lg:rounded-e-none">
             <div className="flex h-10 items-center gap-2 border-b border-white/[.06] px-4" aria-hidden="true">
               <span className="h-2.5 w-2.5 rounded-full bg-white/20" /><span className="h-2.5 w-2.5 rounded-full bg-white/20" /><span className="h-2.5 w-2.5 rounded-full bg-white/20" />
-              <span className="mx-auto rounded-full bg-white/[.06] px-4 py-1 text-[12px] font-medium text-white/60">{t.title}</span>
-              <span className="w-[42px]" />
+              <span className="ms-4 rounded-full bg-white/[.06] px-4 py-1 text-[12px] font-medium text-white/60">{t.title}</span>
             </div>
-            <div aria-hidden="true" dir="ltr">{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full bg-[#111]" />}</div>
+            <div aria-hidden="true" dir="ltr" className="lg:w-[max(100%,860px)]">{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full bg-[#111]" />}</div>
           </m.div>
-          {/* Three facts under the window: a centred row on large screens, a list on phones. */}
-          <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
-            {t.points.map((x, k) => <m.li key={x} {...rise(reduce, k)} className="flex items-center gap-2.5 text-[15px] text-ink sm:rounded-full sm:bg-[var(--card)] sm:py-2 sm:pe-4 sm:ps-3"><CheckCircle size={16} weight="fill" aria-hidden="true" className="tick shrink-0" />{x}</m.li>)}
-          </ul>
-          <p className="mt-4 text-center text-[12px] text-ink-faint">{t.sample}</p>
+          <p className="mt-3 text-[12px] text-ink-faint">{t.sample}</p>
         </div>
-
-        {/* The manager's week in three steps. */}
-        <ol className="mx-auto mt-12 grid max-w-[1040px] gap-4 md:grid-cols-3 md:gap-6">
-          {t.steps.map(([h, p], k) => { const I = icons[k]; return (
-            <m.li key={h} {...rise(reduce, k)} className="rounded-[20px] bg-[var(--card)] p-6">
-              <span className="flex items-center justify-between text-ink-faint"><I size={20} aria-hidden="true" /><span className="text-[13px] tabular-nums">0{k + 1}</span></span>
-              <h3 className="mt-6 text-[20px] font-semibold leading-[26px] tracking-[-0.02em] text-ink">{h}</h3>
-              <p className="mt-2 text-[15px] leading-[22px] text-ink-muted">{p}</p>
-            </m.li>); })}
-        </ol>
       </div>
     </section>);
 }

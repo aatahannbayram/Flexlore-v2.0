@@ -54,7 +54,7 @@ function RowCount({ row, n, className = "" }: { row: React.RefObject<HTMLElement
 }
 /** Chapter marker: the home page reads as one story, numbered 01 to 06. */
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-2" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><p className="eyebrow">{children}</p></div>);
+  <div className="flex items-center gap-2" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><p className="ch-label">{children}</p></div>);
 /** Chapter head: number and heading on the left, the lead on the right (03 and 04 share it, so they read as a pair). */
 const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
