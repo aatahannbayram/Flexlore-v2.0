@@ -1,68 +1,21 @@
 "use client";
-/* /home2 trial, built from scratch (2026-11-11). Principle taken from the competitor review (Opus, 7taps, DeepHow), not
- * their layouts: the product is the proof, so every block shows a real app screen on a bright photo of the work it
- * belongs to. Dark #111 ground, no dark video, no glass-on-film. Copy comes from the approved site strings; the only
- * numbers are the hero's labelled sample. Order: hero with product tabs, programs, four product blocks, roles,
- * industries, questions, closing call. */
-import { useEffect, useRef, useState } from "react";
+/* /home2 trial (2026-11-11). Two parts only: the framed-scene hero, then one light "sheet" that rises over it with the
+ * why in four bento cards and a sentence that reads the loop, word by word, with small pills and icons set into it.
+ * Colours follow the brand (cream, ink, a little orange; no blue). Copy is the site's approved text; the only numbers
+ * are the labelled sample ones already used on the home page. */
+import { Fragment, useRef } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useLocale } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
 import { SITE } from "../config";
-import { Device } from "../AppScreens";
-import { StepPlayerScreen } from "../v3/Home";
-import { EASE } from "../ui/Reveal";
 import { TrustStrip } from "../home/Sections";
-import { ArrowRight, Check, CaretDown, ForkKnife, Factory, Bed, Storefront } from "../ui/icons";
+import { Check, Play, Translate, FilmSlate, Scissors, ArrowUpRight, ShieldCheck, ChartBar, ListChecks, UsersThree } from "../ui/icons";
+import { Device } from "../AppScreens";
+import { StoreButtons } from "../Icons";
 
-const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-
-/* Strings new to this page; every other line is the site's own copy. Other locales read English. */
-const T = {
-  en: {
-    tabs: ["Film", "Teach", "Check", "See"],
-    k: ["Film and split", "Watch on the floor", "Quiz", "Readiness"],
-    ticks: [["No studio, no script", "AI drafts steps and quiz", "You approve and assign"], ["On their own phone", "In their own language", "Replay any step"],
-      ["Opens after every step is watched", "You edit and approve it", "Result comes straight to you"], ["By person, shift and location", "No chasing anyone", "Know which site needs you"]],
-    rolesK: "Who it is for", rolesH: "One loop, three people.",
-    roles: [["Managers", "Film the job once, approve the draft, assign it by role and site."], ["Frontline teams", "Learn the job on their own phone, at the station, in their language."], ["Head office", "One standard across every site, and one view of who is ready."]],
-    indK: "Industries", faqK: "Questions", sample: "Sample data", ready: "ready", step: "Step 3 of 6", more: "All questions",
-  },
-  tr: {
-    tabs: ["Çek", "Öğret", "Ölç", "Gör"],
-    k: ["Çek ve böl", "Sahada izle", "Quiz", "Hazırlık"],
-    ticks: [["Stüdyo, senaryo gerekmez", "Adımları ve quizi AI taslaklar", "Siz onaylar, siz atarsınız"], ["Kendi telefonunda", "Kendi dilinde", "Her adımı yeniden açar"],
-      ["Tüm adımlar izlenince açılır", "Siz düzenler, siz onaylarsınız", "Sonuç doğrudan size gelir"], ["Kişi, vardiya ve şube bazında", "Kimseyi kovalamadan", "Hangi şubenin size ihtiyacı var"]],
-    rolesK: "Kimler için", rolesH: "Tek döngü, üç kişi.",
-    roles: [["Yöneticiler", "İşi bir kez çeker, taslağı onaylar, role ve şubeye göre atar."], ["Saha ekipleri", "İşi kendi telefonunda, işin başında, kendi dilinde öğrenir."], ["Merkez ofis", "Her şubede tek standart, kimin hazır olduğuna tek bakış."]],
-    indK: "Sektörler", faqK: "Sorular", sample: "Örnek veri", ready: "hazır", step: "Adım 3 / 6", more: "Tüm sorular",
-  },
-} as const;
-
-const pic = (n: string, sizes: string, cls: string, pos = "50% 50%", eager = false) => (
-  <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${n}-800.avif 800w, /photos/${n}-1600.avif 1600w`} sizes={sizes} />
-    <img src={`/photos/${n}-1600.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes={sizes} alt="" decoding="async" loading={eager ? "eager" : "lazy"}
-      style={{ objectPosition: pos }} className={cls} /></picture>);
-
-/** A bright photo of the work with the app standing in it: the visual every block on this page shares. */
-function Stage({ photo, pos, children, label, className = "" }: { photo: string; pos?: string; children: React.ReactNode; label: string; className?: string }) {
-  return (
-    <div className={`relative overflow-hidden rounded-[28px] bg-[#1A1A1A] ${className}`}>
-      {pic(photo, "(min-width:1024px) 50vw, 100vw", "h-full w-full object-cover", pos)}
-      <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgb(17_17_17/0.35),transparent)]" />
-      <div className="absolute left-1/2 top-1/2 h-[86%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_24px_36px_rgba(0,0,0,0.45)]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
-        <Device label={label}>{children}</Device>
-      </div>
-    </div>);
-}
-const Tick = ({ t }: { t: string }) => (
-  <li className="flex items-center gap-2.5 text-[15px] text-ink"><span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/[.08]"><Check size={12} aria-hidden="true" className="tick" /></span>{t}</li>);
-const Kick = ({ children }: { children: React.ReactNode }) => (
-  <p className="flex items-center gap-2 text-[13px] font-medium text-ink-muted"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />{children}</p>);
 
 /* ---------- Hero: a framed scene ----------
  * The same bright kitchen photo twice: softened full-bleed behind, sharp inside a rounded glass frame. The headline sits
@@ -105,105 +58,202 @@ function Hero() {
     </section>);
 }
 
-/* ---------- The loop as four product blocks: copy on one side, the real screen on a bright photo on the other ---------- */
-function Block({ n, k, h, p, ticks, photo, pos, flip, children }: { n: number; k: string; h: string; p: string; ticks: readonly string[]; photo: string; pos: string; flip: boolean; children: (on: boolean) => React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "400px 0px", once: true }); const reduce = useReducedMotion();
+/* ---------- The sheet: why Flexlore in four cards ---------- */
+const S = {
+  en: { tag: "Why", sample: "Sample data", ready: "ready", correct: "Correct", q: "Before you start the fryer, what do you check?", a: "Oil level and filter",
+    cards: ["See who is ready", "Watches step by step", "Ready on the floor", "Takes the quiz"],
+    line: [["Film the job", "Film"], ["split it into steps", "Split"], ["and send it to the team", "Send"]], tail: "Flexlore shows who watched, who passed the quiz and who is ready, on one screen." },
+  tr: { tag: "Neden", sample: "Örnek veri", ready: "hazır", correct: "Doğru", q: "Fritözü çalıştırmadan önce neyi kontrol edersiniz?", a: "Yağ seviyesi ve filtre",
+    cards: ["Kimin hazır olduğunu görün", "Adım adım izler", "Sahada hazır", "Quizi çözer"],
+    line: [["İşi bir kez", "Çekin"], ["adımlara", "Bölün"], ["ve ekibe", "Gönderin"]], tail: "Flexlore kimin izlediğini, kimin quizi geçtiğini ve kimin hazır olduğunu tek ekranda gösterir." },
+} as const;
+const card = "relative flex min-h-[300px] flex-col sm:aspect-[4/5] sm:min-h-0 items-center overflow-hidden rounded-[28px] bg-[#ECE7E0] p-6 text-center text-[#111]";
+
+/* Readiness by site as a ring (the sample numbers from the web panel). */
+function Ring() {
+  const seg = [["Merkez", 92, "#111111"], ["Havalimanı", 86, "#3A3A3A"], ["Liman", 79, "#8A847C"], ["Kadıköy", 64, "#EC6726"]] as const;
+  const total = seg.reduce((a, x) => a + x[1], 0); let acc = 0; const R = 54, C = 2 * Math.PI * R;
   return (
-    <m.article ref={ref} initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10% 0px" }} transition={{ duration: 0.7, ease: EASE }}
-      className="grid items-center gap-8 lg:grid-cols-12 lg:gap-14">
-      <div className={`lg:col-span-5 ${flip ? "lg:order-last" : ""}`}>
-        <Kick><span className="tabular-nums text-ink">0{n}</span> {k}</Kick>
-        <h3 className="mt-4 text-[28px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink md:text-[36px]">{h}</h3>
-        <p className="mt-4 max-w-[28rem] text-[16px] leading-[1.6] text-ink-muted">{p}</p>
-        <ul className="mt-6 flex flex-col gap-3">{ticks.map((t) => <Tick key={t} t={t} />)}</ul>
+    <svg viewBox="0 0 160 160" className="h-[62%] w-auto" aria-hidden="true">
+      {seg.map(([n, v, c]) => { const len = (v / total) * C - 6; const off = -acc; acc += (v / total) * C; return (
+        <circle key={n} cx="80" cy="80" r={R} fill="none" stroke={c} strokeWidth="26" strokeDasharray={`${len} ${C - len}`} strokeDashoffset={off} transform="rotate(-90 80 80)" strokeLinecap="butt" />); })}
+      <circle cx="80" cy="80" r="9" fill="#111" /><circle cx="80" cy="80" r="3.5" fill="#ECE7E0" />
+      {seg.map(([n, v], k) => { const a = ((seg.slice(0, k).reduce((x, y) => x + y[1], 0) + v / 2) / total) * 2 * Math.PI - Math.PI / 2; return (
+        <g key={n + "l"} transform={`translate(${80 + Math.cos(a) * 70} ${80 + Math.sin(a) * 70})`}><rect x="-15" y="-8" width="30" height="16" rx="5" fill="#111" opacity=".78" /><text x="0" y="4" textAnchor="middle" fontSize="9.5" fontWeight="600" fill="#fff">%{v}</text></g>); })}
+    </svg>);
+}
+function Sheet() {
+  const { lang, locale, d } = useLocale(); const t = S[lang === "tr" ? "tr" : "en"]; const w = HOME2[locale].why; const reduce = useReducedMotion();
+  const rise = (k: number) => (reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.22, ease: "easeOut" as const, delay: k * 0.06 } });
+  const nums = (d.hero.chip.v.match(/\d+/g) ?? ["12", "14"]).map(Number); const done = Math.min(...nums), of = Math.max(...nums);
+  return (
+    <section aria-labelledby="why-h" className="relative z-10 -mt-24 px-2 sm:-mt-28 sm:px-5 lg:px-7">
+      {/* Two faint sheets behind the front one, so it reads as a stack rising over the hero. */}
+      <span aria-hidden="true" className="absolute inset-x-[9%] -top-6 h-24 rounded-t-[40px] bg-[#F4F0EB]/30" />
+      <span aria-hidden="true" className="absolute inset-x-[5%] -top-3 h-24 rounded-t-[40px] bg-[#F4F0EB]/55" />
+      <div className="relative rounded-[32px] bg-[#F7F4EF] pb-24 pt-20 text-[#111] sm:rounded-[40px] md:pt-28">
+        <div className="container-x">
+          <div className="mx-auto flex max-w-[52rem] flex-col items-center text-center">
+            <span className="inline-flex -rotate-[6deg] items-center gap-1.5 rounded-[8px] bg-[#111] px-2.5 py-1 text-[12px] font-semibold uppercase tracking-[0.12em] text-[#F7F4EF]"><span className="text-[#F7F4EF]/55">01</span>{t.tag}</span>
+            <h2 id="why-h" className="mt-6 text-[40px] font-extrabold uppercase leading-[0.95] tracking-[-0.04em] sm:text-[56px] lg:text-[72px]">{w.h} {w.h2}</h2>
+            <p className="mt-6 max-w-[40rem] text-[16px] leading-[26px] text-[#111]/70 md:text-[18px] md:leading-[28px]">{w.lead}</p>
+          </div>
+          <ul className="mx-auto mt-12 grid max-w-[1120px] gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <m.li {...rise(0)} className={card}><Ring /><p className="mt-auto text-[18px] font-semibold leading-[24px]">{t.cards[0]}</p><p className="mt-1 text-[12px] text-[#111]/50">{t.sample}</p></m.li>
+            <m.li {...rise(1)} className={card}>
+              <p className="text-[18px] font-semibold leading-[24px]">{t.cards[1]}</p>
+              <div className="mt-auto flex flex-col items-center gap-3">
+                <span className="flex -space-x-2"><span className="grid h-14 w-14 place-items-center rounded-full bg-[#111] text-white ring-4 ring-[#ECE7E0]"><Play size={20} weight="fill" /></span><span className="grid h-14 w-14 place-items-center rounded-full bg-[#EC6726] text-white ring-4 ring-[#ECE7E0]"><Translate size={20} /></span></span>
+                <span className="h-0 w-0 border-x-[7px] border-b-[10px] border-x-transparent border-b-[#111]" aria-hidden="true" />
+                <span className="h-20 w-20 overflow-hidden rounded-full ring-4 ring-white shadow-[0_14px_30px_-12px_rgb(0_0_0/0.45)]"><img src="/photos/sec-restoran-800.webp" alt="" loading="lazy" decoding="async" className="h-full w-full scale-[2.4] object-cover object-[62%_18%]" /></span>
+              </div>
+            </m.li>
+            <m.li {...rise(2)} className={`${card} justify-end text-white`}>
+              <img src="/photos/sec-uretim-800.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[55%_40%]" />
+              <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.05),rgb(17_17_17/0.55))]" />
+              <span className="relative text-[52px] font-extrabold leading-none tracking-[-0.04em] tabular-nums">{done}/{of}</span>
+              <span className="relative mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-[13px] font-medium backdrop-blur-md"><Check size={13} />{t.ready} · {t.sample}</span>
+              <p className="relative mt-4 text-[18px] font-semibold leading-[24px]">{t.cards[2]}</p>
+            </m.li>
+            <m.li {...rise(3)} className={card}>
+              <p className="text-[18px] font-semibold leading-[24px]">{t.cards[3]}</p>
+              <div className="mt-auto w-full rounded-t-[22px] bg-white px-4 pb-0 pt-5 text-start shadow-[0_-10px_40px_-20px_rgb(0_0_0/0.35)]">
+                <span className="mx-auto grid h-10 w-10 place-items-center rounded-full bg-[#111] text-white"><ShieldCheck size={18} weight="fill" /></span>
+                <p className="mt-3 text-[13px] font-semibold leading-[18px]">{t.q}</p>
+                <span className="mt-3 flex items-center justify-between rounded-[12px] bg-[#111] px-3 py-2.5 text-[13px] text-white"><span>{t.a}</span><span className="flex items-center gap-1 text-[12px] text-white/75"><Check size={12} />{t.correct}</span></span>
+                <span className="mt-2 block h-9 rounded-t-[12px] bg-[#ECE7E0]" />
+              </div>
+            </m.li>
+          </ul>
+        </div>
+        <Loop t={t} cta={d.nav.cta} />
       </div>
-      <div className="lg:col-span-7">
-        <Stage photo={photo} pos={pos} label={h} className="aspect-[4/5] sm:aspect-[16/12] lg:aspect-[16/11]">{near ? children(on) : <div className="absolute inset-0 bg-[#111]" />}</Stage>
-      </div>
-    </m.article>);
+    </section>);
 }
 
-export default function Home2() {
-  const { d, lang, locale } = useLocale(); const x = T[lang === "tr" ? "tr" : "en"]; const s = HOME2[locale].steps; const tabs = HOME2[locale].tabs;
-  const IND = [["/sektor/restoran/", "stage-restoran", ForkKnife, "50% 10%"], ["/sektor/uretim/", "stage-uretim", Factory, "50% 15%"], ["/sektor/otel/", "stage-otel", Bed, "50% 10%"], ["/sektor/franchise/", "stage-franchise", Storefront, "50% 15%"]] as const;
-  const faq = (d.faq as unknown as { items: [string, string][] }).items.slice(0, 5);
+/* ---------- The loop as one sentence: verbs as pills, small icon tiles floating, words light up as it scrolls ---------- */
+function Word({ w, p, i, n }: { w: string; p: MotionValue<number>; i: number; n: number }) {
+  const o = useTransform(p, [i / n, (i + 1) / n], [0.16, 1]);
+  return <m.span style={{ opacity: o }}>{w}</m.span>;
+}
+function Loop({ t, cta }: { t: (typeof S)["en"] | (typeof S)["tr"]; cta: string }) {
+  const ref = useRef<HTMLDivElement>(null); const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.85", "end 0.45"] });
+  const tail = t.tail.split(" "); const n = tail.length;
+  const pill = "ms-1 inline-flex -translate-y-[0.08em] items-center rounded-[0.5em] bg-white px-[0.5em] py-[0.12em] align-middle text-[0.62em] font-medium shadow-[0_8px_24px_-12px_rgb(0_0_0/0.35)] ring-1 ring-black/[.06]";
+  const icons = [FilmSlate, Scissors, ArrowUpRight];
   return (
-    <>
-      <Hero />
-      {/* Programs: the logos stay as they are on the home page. */}
-      <section id="loop" aria-labelledby="loop-h" className="section-y">
-        <div className="container-x">
-          <div className="mx-auto max-w-[44rem] text-center">
-            <div className="flex justify-center"><Kick>{d.process.k}</Kick></div>
-            <h2 id="loop-h" className="v4-h2 mt-4">{d.process.h}</h2>
-          </div>
-          <div className="mt-14 flex flex-col gap-20 md:mt-20 md:gap-28">
-            <Block n={1} k={x.k[0]} h={s[0][0]} p={s[1][1]} ticks={x.ticks[0]} photo="stage-franchise" pos="50% 15%" flip={false}>{(on) => <Editor active={on} lang={lang} clip="how-editor" />}</Block>
-            <Block n={2} k={x.k[1]} h={s[2][0]} p={s[2][1]} ticks={x.ticks[1]} photo="stage-uretim" pos="50% 10%" flip>{(on) => <StepPlayerScreen active={on} lang={lang} />}</Block>
-            <Block n={3} k={x.k[2]} h={s[3][0]} p={s[3][1]} ticks={x.ticks[2]} photo="stage-restoran" pos="50% 5%" flip={false}>{(on) => <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} />}</Block>
-            <Block n={4} k={x.k[3]} h={s[4][0]} p={s[4][1]} ticks={x.ticks[3]} photo="stage-otel" pos="50% 5%" flip>{(on) => <Ready active={on} lang={lang} />}</Block>
-          </div>
-        </div>
-      </section>
+    <div ref={ref} className="container-x relative mt-28 md:mt-36">
+      <span aria-hidden="true" className="absolute left-1/2 -top-16 grid h-14 w-14 -translate-x-1/2 rotate-[8deg] place-items-center rounded-[16px] bg-[#EC6726] text-white shadow-[0_18px_30px_-14px_rgb(236_103_38/0.7)]"><ChartBar size={24} weight="fill" /></span>
+      <p className="relative mx-auto max-w-[56rem] text-center text-[30px] font-semibold leading-[1.22] tracking-[-0.03em] sm:text-[40px] lg:text-[52px]">
+        {t.line.map(([pre, verb], k) => { const I = icons[k]; return (
+          <Fragment key={verb}>{pre} <span className={pill}><I size={16} className="me-1.5 opacity-70" />{verb}</span>{k < t.line.length - 1 ? ", " : ". "}</Fragment>); })}
+        {reduce ? <span>{t.tail}</span> : tail.map((w, i) => <Fragment key={i}>{i ? " " : ""}<Word w={w} p={scrollYProgress} i={i} n={n} /></Fragment>)}
+      </p>
+      <span aria-hidden="true" className="absolute -bottom-8 left-[18%] hidden h-12 w-12 -rotate-[10deg] place-items-center rounded-[14px] bg-[#111] text-white md:grid"><Play size={18} weight="fill" /></span>
+      <span aria-hidden="true" className="absolute -bottom-2 right-[16%] hidden h-12 w-12 rotate-[12deg] place-items-center rounded-[14px] bg-[#111] text-white md:grid"><Check size={18} /></span>
+      <div className="mt-14 flex justify-center"><a href={SITE.demo} target="_blank" rel="noopener" className="inline-flex h-12 items-center rounded-full bg-[#111] px-7 text-[15px] font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5">{cta}</a></div>
+    </div>);
+}
 
-      {/* Roles: who does what in the loop, on bright photos. */}
-      <section aria-labelledby="roles-h" className="section-y pt-0">
-        <div className="container-x">
-          <Kick>{x.rolesK}</Kick><h2 id="roles-h" className="v4-h2 mt-4">{x.rolesH}</h2>
-          <ul className="mt-10 grid gap-4 md:grid-cols-3">
-            {x.roles.map(([h, p], k) => (
-              <li key={h} className="overflow-hidden rounded-[24px] bg-[#1A1A1A]">
-                <div className="relative aspect-[4/3]">{pic(["stage-firin", "stage-depo", "office"][k], "(min-width:768px) 33vw, 100vw", "h-full w-full object-cover", ["50% 30%", "50% 20%", "50% 40%"][k])}</div>
-                <div className="p-5 md:p-6"><h3 className="text-[20px] font-semibold tracking-[-0.025em] text-ink">{h}</h3><p className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{p}</p></div>
+
+/* ---------- Facts: a framed photo with the promise on one side and four plain facts as tiles ----------
+ * Only facts that are true today (languages, platforms, what it takes to start); no user counts or ratings. One tile in orange. */
+const F = {
+  en: { h: "The same standard on every shift, at every site.", p: "Film a job once; your team learns it on their own phone, in their own language.",
+    tiles: [["8", "languages"], ["iOS · Android", "team app"], ["Web", "manager panel"], ["1", "phone is all it takes"]] },
+  tr: { h: "Her vardiyada, her şubede aynı standart.", p: "Bir işi bir kez çekin; ekibiniz kendi telefonunda, kendi dilinde öğrensin.",
+    tiles: [["8", "dilde kullanılabilir"], ["iOS · Android", "ekip uygulaması"], ["Web", "yönetici paneli"], ["1", "telefon yeter"]] },
+} as const;
+function Facts() {
+  const { lang, d } = useLocale(); const t = F[lang === "tr" ? "tr" : "en"]; const img = "ws-j-vinc";
+  return (
+    <section aria-labelledby="facts-h" className="dark relative isolate mt-[var(--sp-section)] overflow-hidden px-2 py-10 text-white sm:px-5 lg:px-7 lg:py-16">
+      <picture className="absolute inset-0 -z-10"><img src={`/photos/${img}-800.webp`} alt="" loading="lazy" decoding="async" className="h-full w-full scale-110 object-cover blur-[22px] brightness-[0.35]" /></picture>
+      <div className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[28px] ring-1 ring-white/40">
+        <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="100vw" />
+          <img src={`/photos/${img}-1600.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="100vw" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-[60%_40%]" /></picture>
+        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_10_10/0.85)_0%,rgb(10_10_10/0.55)_45%,rgb(10_10_10/0.35)_100%)]" />
+        <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(to_top,rgb(10_10_10/0.8),transparent)]" />
+        <div className="relative grid min-h-[560px] items-end gap-10 p-6 sm:p-10 lg:grid-cols-2 lg:p-16">
+          <div>
+            <h2 id="facts-h" className="max-w-[16ch] text-[34px] font-semibold leading-[1.08] tracking-[-0.03em] sm:text-[44px] lg:text-[52px]">{t.h}</h2>
+            <p className="mt-5 max-w-[26rem] text-[16px] leading-[26px] text-white/80 md:text-[18px] md:leading-[28px]">{t.p}</p>
+            <a href={SITE.demo} target="_blank" rel="noopener" className="mt-8 inline-flex h-12 items-center gap-2 rounded-[12px] bg-[#F7F4EF] px-5 text-[15px] font-semibold text-[#111]"><Play size={14} weight="fill" />{d.nav.cta}</a>
+          </div>
+          <ul className="grid grid-cols-2 gap-3 sm:gap-4">
+            {t.tiles.map(([v, l], k) => (
+              <li key={l} className={`flex min-h-[132px] flex-col items-center justify-center rounded-[18px] p-4 text-center ${k === 0 ? "bg-[#EC6726] text-white" : "bg-[rgb(10_10_10/0.45)] ring-1 ring-white/10 backdrop-blur-md"}`}>
+                <span className="text-[28px] font-semibold leading-none tracking-[-0.03em] sm:text-[34px]">{v}</span>
+                <span className={`mt-2 text-[14px] ${k === 0 ? "text-white/90" : "text-white/70"}`}>{l}</span>
               </li>))}
           </ul>
         </div>
-      </section>
+      </div>
+    </section>);
+}
 
-      {/* Industries: four bright cards with the first use of each. */}
-      <section aria-labelledby="ind-h" className="section-y pt-0">
-        <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-4"><div><Kick>{x.indK}</Kick><h2 id="ind-h" className="v4-h2 mt-4 max-w-[22ch]">{d.ind.h}</h2></div>
-            <Link href="/see-it/" className="btn btn-secondary h-11">{d.ind.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link></div>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {IND.map(([href, img, Ic, pos], k) => (
-              <li key={href}><Link href={href} className="group block overflow-hidden rounded-[24px] bg-[#1A1A1A]">
-                <div className="relative aspect-[4/3] overflow-hidden">{pic(img, "(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw", "h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]", pos)}</div>
-                <div className="p-5"><span className="flex items-center gap-2 text-[17px] font-semibold text-ink"><Ic size={17} aria-hidden="true" />{d.ind.cards[k]}</span>
-                  <p className="mt-2 text-[14px] leading-[1.5] text-ink-muted">{tabs[k][1][0]}</p></div>
-              </Link></li>))}
-          </ul>
+/* ---------- Bento: everything the floor needs, photo cards with one line each and one orange stat ---------- */
+const B = {
+  en: { k: "Built for the floor", h: "Everything learning on the floor needs.", p: "Short video steps, an AI-drafted quiz and one screen that shows who is ready.",
+    a: "On their own phone, in their own language.", b: "Replays any step they get stuck on.", c: "people finished the opening routine", d: "AI drafts the quiz; you approve it.", sample: "Sample data" },
+  tr: { k: "Saha için", h: "Sahada öğrenmek için gereken her şey.", p: "Kısa video adımları, yapay zekânın taslakladığı quiz ve kimin hazır olduğunu gösteren tek ekran.",
+    a: "Kendi telefonunda, kendi dilinde.", b: "Takıldığı adımı yeniden açar.", c: "kişi açılış rutinini tamamladı", d: "Quiz taslağını yapay zekâ hazırlar, siz onaylarsınız.", sample: "Örnek veri" },
+} as const;
+function Photo({ n, pos, className = "" }: { n: string; pos: string; className?: string }) {
+  return <img src={`/photos/${n}-800.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes="(min-width:1024px) 40vw, 100vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className={`absolute inset-0 h-full w-full object-cover ${className}`} />;
+}
+function Bento() {
+  const { lang, d } = useLocale(); const t = B[lang === "tr" ? "tr" : "en"]; const reduce = useReducedMotion();
+  const nums = (d.hero.chip.v.match(/\d+/g) ?? ["12", "14"]).map(Number); const done = Math.min(...nums), of = Math.max(...nums);
+  const rise = (k: number) => (reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.22, ease: "easeOut" as const, delay: k * 0.06 } });
+  const foot = "relative mt-auto bg-[linear-gradient(to_top,#F7F4EF_55%,rgb(247_244_239/0))] px-5 pb-5 pt-16 text-[#111]";
+  return (
+    <section aria-labelledby="bento-h" className="section-y">
+      <div className="container-x">
+        <div className="mx-auto max-w-[44rem] text-center">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#EC6726]">{t.k}</p>
+          <h2 id="bento-h" className="mt-3 text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] text-ink [text-wrap:balance] sm:text-[44px]">{t.h}</h2>
+          <p className="mx-auto mt-4 max-w-[34rem] text-[16px] leading-[26px] text-ink-muted md:text-[18px] md:leading-[28px]">{t.p}</p>
         </div>
-      </section>
+        <ul className="mt-12 grid gap-4 md:grid-cols-[1fr_1.6fr_1fr] md:grid-rows-[1fr_1fr] lg:gap-5">
+          <m.li {...rise(0)} className="relative flex min-h-[420px] flex-col overflow-hidden rounded-[24px] md:row-span-2"><Photo n="how-otel" pos="70% 30%" /><div className={foot}><Translate size={22} aria-hidden="true" /><p className="mt-3 text-[16px] font-medium leading-[22px]">{t.a}</p></div></m.li>
+          <m.li {...rise(1)} className="relative flex min-h-[420px] flex-col overflow-hidden rounded-[24px] md:row-span-2"><Photo n="ws-j-brifing" pos="50% 40%" /><div className={foot}><Play size={22} weight="fill" aria-hidden="true" /><p className="mt-3 text-[16px] font-medium leading-[22px]">{t.b}</p></div></m.li>
+          <m.li {...rise(2)} className="flex min-h-[200px] flex-col justify-between rounded-[24px] bg-[#EC6726] p-6 text-white">
+            <UsersThree size={24} aria-hidden="true" />
+            <span><span className="block text-[52px] font-semibold leading-none tracking-[-0.04em] tabular-nums">{done}/{of}</span><span className="mt-2 block text-[15px] leading-[21px] text-white/90">{t.c}</span><span className="mt-1 block text-[12px] text-white/75">{t.sample}</span></span>
+          </m.li>
+          <m.li {...rise(3)} className="relative flex min-h-[200px] flex-col overflow-hidden rounded-[24px]"><Photo n="ws-j-alerjen" pos="50% 45%" /><div className={foot}><ListChecks size={22} aria-hidden="true" /><p className="mt-3 text-[15px] font-medium leading-[21px]">{t.d}</p></div></m.li>
+        </ul>
+      </div>
+    </section>);
+}
 
-      {/* Questions: the five most asked, open by click. */}
-      <section aria-labelledby="faq-h" className="section-y pt-0">
-        <div className="container-x grid gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-4"><Kick>{x.faqK}</Kick><h2 id="faq-h" className="v4-h2 mt-4">{(d.faq as unknown as { h: string }).h}</h2>
-            <Link href="/faq/" className="btn btn-secondary mt-6 h-11">{x.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link></div>
-          <div className="flex flex-col gap-2 lg:col-span-8">
-            {faq.map(([q, a]) => (
-              <details key={q} className="group rounded-[18px] bg-[#1A1A1A] px-5 open:bg-[#1E1E1E]">
-                <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-medium text-ink">{q}<CaretDown size={14} aria-hidden="true" className="shrink-0 transition-transform group-open:rotate-180" /></summary>
-                <p className="pb-5 text-[15px] leading-[1.6] text-ink-muted">{a}</p>
-              </details>))}
-          </div>
+/* ---------- App: the team app on two phones, the store buttons under the promise ---------- */
+const A = {
+  en: { k: "Team app", h: "On every phone your team already has.", p: "Your team learns the job on the phone; you run it from the desk. Download it on iOS and Android." },
+  tr: { k: "Ekip uygulaması", h: "Ekibinizin zaten taşıdığı telefonda.", p: "Ekip işi telefonda öğrenir, siz masadan yönetirsiniz. iOS ve Android'de indirin." },
+} as const;
+function AppPhones() {
+  const { lang, d } = useLocale(); const t = A[lang === "tr" ? "tr" : "en"]; const ref = useRef<HTMLDivElement>(null);
+  return (
+    <section aria-labelledby="app-h" className="px-2 pb-[var(--sp-section)] sm:px-5 lg:px-7">
+      <div className="overflow-hidden rounded-[32px] bg-[#F7F4EF] text-[#111] sm:rounded-[40px]">
+        <div className="mx-auto max-w-[44rem] px-6 pt-16 text-center md:pt-24">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.16em] text-[#EC6726]">{t.k}</p>
+          <h2 id="app-h" className="mt-3 text-[34px] font-semibold leading-[1.1] tracking-[-0.03em] [text-wrap:balance] sm:text-[44px]">{t.h}</h2>
+          <p className="mx-auto mt-4 max-w-[32rem] text-[16px] leading-[26px] text-[#111]/70 md:text-[18px] md:leading-[28px]">{t.p}</p>
+          <div className="mt-8 flex justify-center"><StoreButtons className="!flex-row flex-wrap justify-center" lang={lang === "tr" ? "tr" : "en"} /></div>
         </div>
-      </section>
+        {/* Two phones rising from the foot of the card, slightly turned toward each other. */}
+        <div ref={ref} className="relative mx-auto mt-14 flex h-[380px] max-w-[760px] items-end justify-center gap-6 sm:h-[460px] md:mt-20" dir="ltr" aria-hidden="true">
+          <div className="relative h-[86%] translate-y-[14%] -rotate-[5deg] drop-shadow-[0_30px_40px_rgb(0_0_0/0.25)]" style={{ aspectRatio: "393 / 852" }}><Device label={d.hero.chip.t}><Quiz active={false} lang={lang} q={d.bento.q} a={d.bento.qa} /></Device></div>
+          <div className="relative h-full translate-y-[10%] rotate-[4deg] drop-shadow-[0_30px_40px_rgb(0_0_0/0.25)]" style={{ aspectRatio: "393 / 852" }}><Device label={d.hero.chip.t}><Ready active={false} lang={lang} /></Device></div>
+        </div>
+      </div>
+    </section>);
+}
 
-      {/* Closing: one bright photo, the last call to action. */}
-      <section aria-labelledby="end-h" className="section-y pt-0">
-        <div className="container-x">
-          <div className="relative overflow-hidden rounded-[28px] bg-[#1A1A1A]">
-            <div className="absolute inset-0">{pic("stage-depo", "100vw", "h-full w-full object-cover", "50% 30%")}</div>
-            <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.88)_0%,rgb(17_17_17/0.6)_45%,rgb(17_17_17/0.1)_80%)] rtl:-scale-x-100" />
-            <div className="relative max-w-[34rem] p-8 md:p-14">
-              <h2 id="end-h" className="v4-h2 text-white">{d.end.h}</h2>
-              <p className="mt-4 text-[16px] leading-[1.6] text-white/80">{d.end.p}</p>
-              <a href={SITE.demo} target="_blank" rel="noopener" className="btn btn-accent mt-8 h-12 px-6 text-[15px]">{d.end.cta}</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>);
+export default function Home2() {
+  return (<><Hero /><Sheet /><Facts /><Bento /><AppPhones /></>);
 }
