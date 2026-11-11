@@ -293,7 +293,10 @@ export function WorkspaceV3() {
   const total = sites.reduce((a, x) => a + x.people, 0);
   const cardH = "h-[118px] sm:h-[136px] md:h-[148px]";
   return (
-    <section aria-labelledby="ws-h" className="section-y pt-0">
+    <section aria-labelledby="ws-h" className="section-y relative isolate">
+      {/* Turn of the page: a fine line of light and a soft glow under it, so the statement above closes and the product opens. */}
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_100%_at_50%_0%,rgb(244_240_235/0.05),transparent_70%)]" />
+      <span aria-hidden="true" className="absolute inset-x-[12%] top-0 h-px bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.16),transparent)]" />
       <div className="container-x">
         <Head n="03" k={c.k} id="ws-h" h={c.h} p={c.p} />
         <div ref={ref} className="relative mt-9 md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>

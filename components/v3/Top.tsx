@@ -91,6 +91,13 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
                 <m.p key={i} aria-hidden="true" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.4, ease: EASE }}
                   className="absolute bottom-5 start-6 text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{h.rot[i % h.rot.length]}</m.p>
               </AnimatePresence>
+              {/* Two quiet glass notes on the stage (facts, not figures): the app's own languages, a finished step. */}
+              <div aria-hidden="true" className="float-y absolute end-4 top-6 hidden items-center gap-2 rounded-full bg-[rgb(17_17_17/0.55)] py-2 pe-3.5 ps-2.5 text-[13px] text-white shadow-[0_18px_40px_-20px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.1)] ring-1 ring-white/10 backdrop-blur-md sm:flex">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" className="text-white/75"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" /></svg>
+                {lang === "tr" ? "8 dilde" : "In 8 languages"}</div>
+              <div aria-hidden="true" className="float-y absolute bottom-14 end-5 hidden items-center gap-2.5 rounded-[16px] bg-[rgb(17_17_17/0.6)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95),inset_0_1px_0_rgb(255_255_255/0.1)] ring-1 ring-white/10 backdrop-blur-md sm:flex" style={{ animationDelay: "-2.5s" }}>
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-[#F4F0EB] text-[#111]"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>
+                <span className="leading-tight"><span className="block text-[13px] font-semibold">{lang === "tr" ? "Adım tamamlandı" : "Step complete"}</span><span className="block text-[11.5px] text-white/55">{lang === "tr" ? "Quiz açıldı" : "Quiz unlocked"}</span></span></div>
               {/* The phone stands at the lower left, over the window's edge, so the photo reads and the app leads. */}
               <div className="absolute left-[34%] top-[54%] w-[44%] max-w-[260px] -translate-x-1/2 -translate-y-1/2 lg:left-[22%]" dir="ltr">
                 <div className="hero-lift drop-shadow-[0_45px_70px_rgba(0,0,0,0.7)]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
@@ -100,11 +107,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
         </div>
       </div>
       {/* The programs strip sits on a dim city skyline at dusk, fading into the page above and below. */}
-      <div className="relative isolate py-8 md:py-12">
-        <span aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
-          <img src="/media/v3/saha-cati-siluet-800.webp" alt="" loading="lazy" decoding="async" className="h-full w-full scale-110 object-cover object-[30%_75%] opacity-40 blur-[2px]" />
-          <span className="absolute inset-0 bg-[linear-gradient(180deg,#111111_0%,rgb(17_17_17/0.55)_35%,rgb(17_17_17/0.55)_65%,#111111_100%)]" />
-        </span>
+      <div className="relative isolate pb-10 pt-4 md:pb-14">
+        <span aria-hidden="true" className="absolute inset-x-[10%] top-0 h-px bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.12),transparent)]" />
         {children}
       </div>
       <VideoModal open={demo} onClose={() => setDemo(false)} title={h.watchTitle} youtubeId="4CLIlnp0L28" closeLabel={d.nav.close} />

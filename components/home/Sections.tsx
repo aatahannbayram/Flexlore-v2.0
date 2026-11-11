@@ -40,36 +40,29 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
     <T id="main-next" aria-label={c.programs} {...(T === "div" ? { role: "region" } : {})} className={`scroll-mt-[var(--header-h)] ${T === "div" ? "" : "bg-bg"}`}>
       <div className="container-x pt-2 md:pt-4">
         <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-7">
-          <p className="shrink-0 text-[13px] font-medium text-white/50">{c.programs}</p>
-          <span aria-hidden="true" className="hidden h-6 w-px bg-white/15 lg:block" />
-          <Reveal as="ul" stagger={0.06} className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 lg:justify-start">
-            {list.map((p) => {
-              // Official artwork with its own light field (NVIDIA badge, Google identifier) stays as supplied; marks made for
-              // dark grounds (ElevenLabs white wordmark, the YC "Y") and text-only programs sit straight on the ground.
-              const plate = p.org === "NVIDIA" || p.org === "Google";
-              return (
-              <RevealItem as="li" key={p.name}>
-                <a href={p.href} target="_blank" rel="noopener" aria-label={p.name} className="group inline-flex h-11 items-center opacity-80 transition-[opacity,transform] duration-300 hover:-translate-y-0.5 hover:opacity-100">
-                  {p.badge && plate
-                    ? p.caption
-                      ? <span className="flex h-10 flex-col items-center justify-center rounded-[6px] bg-[#EDEDED] px-3"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[12px] w-auto max-w-none" />
-                          <span className="mt-1 text-[11.5px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
-                      : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-10 w-auto max-w-none rounded-[6px]" />
-                    : p.badge && p.org === "Y Combinator"
-                      ? <span className="flex items-center gap-2.5"><img src={p.badge} alt="" width={26} height={26} className="block h-[26px] w-[26px] rounded-[4px]" />
-                          <span className="flex flex-col leading-tight"><span className="text-[15px] font-semibold tracking-[-0.02em] text-white">{p.caption}</span><span className="text-[11.5px] text-white/55">Y Combinator</span></span></span>
-                      : p.badge
-                        ? <span className="flex flex-col items-start gap-1"><img src={p.badge} alt={p.org} width={p.badgeW} height={p.badgeH} className="block h-[15px] w-auto max-w-none" /><span className="text-[11.5px] leading-none text-white/55">{p.caption}</span></span>
-                        : <span className="flex flex-col leading-tight"><span className="text-[15px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[11.5px] text-white/55">by {p.org}</span></span>}
-                </a>
-              </RevealItem>); })}
-            {ph && <RevealItem as="li">
-              {/* Product Hunt's official featured badge (post 1077441, light theme), self-hosted: their embed URL sets a
-                  third-party cookie (__cf_bm) and sends no CORS headers. Upvote count is a snapshot; re-download to refresh. */}
-              <a href="https://www.producthunt.com/products/flexlore-app?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-flexlore-app" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center transition-transform duration-300 hover:-translate-y-0.5">
-                <img src="/brand/stores/producthunt-featured-light.svg" alt="Flexlore App on Product Hunt" width={186} height={40} className="block h-9 w-auto rounded-[4px]" loading="lazy" /></a>
-            </RevealItem>}
-          </Reveal>
+          <p className="shrink-0 text-[13px] font-medium text-white/45">{c.programs}</p>
+          {/* A slow, endless row of the programs (paused on hover, still with reduced motion). Each mark sits in the same
+              glass pill so the row reads as one set; official plates (NVIDIA, Google) stay as supplied inside it. */}
+          <div className="marquee relative w-full min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+            <ul className="marquee-track flex w-max items-center gap-3">
+              {[0, 1].map((copy) => [...list.map((p) => ({ p })), ...(ph ? [{ p: null }] : [])].map(({ p }, k) => (
+                <li key={`${copy}-${k}`} aria-hidden={copy === 1 ? true : undefined}>
+                  <a href={p ? p.href : "https://www.producthunt.com/products/flexlore-app"} target="_blank" rel="noopener" aria-label={p ? p.name : "Flexlore on Product Hunt"} tabIndex={copy === 1 ? -1 : undefined}
+                    className="flex h-14 items-center rounded-full bg-white/[.04] px-5 ring-1 ring-white/[.07] transition-colors duration-300 hover:bg-white/[.08]">
+                    {!p ? <span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">Product Hunt</span><span className="text-[11.5px] text-white/50">{lang === "tr" ? "Lansman" : "Launch"}</span></span>
+                    : p.badge && (p.org === "NVIDIA" || p.org === "Google")
+                      ? p.caption
+                        ? <span className="flex h-9 flex-col items-center justify-center rounded-[6px] bg-[#EDEDED] px-2.5"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[11px] w-auto max-w-none" /><span className="mt-0.5 text-[11px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
+                        : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-9 w-auto max-w-none rounded-[5px]" />
+                      : p.badge && p.org === "Y Combinator"
+                        ? <span className="flex items-center gap-2.5"><img src={p.badge} alt="" width={24} height={24} className="block h-6 w-6 rounded-[4px]" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">{p.caption}</span><span className="text-[11.5px] text-white/50">Y Combinator</span></span></span>
+                        : p.badge
+                          ? <span className="flex flex-col items-start gap-1"><img src={p.badge} alt={p.org} width={p.badgeW} height={p.badgeH} className="block h-[14px] w-auto max-w-none" /><span className="text-[11.5px] leading-none text-white/50">{p.caption}</span></span>
+                          : <span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[11.5px] text-white/50">by {p.org}</span></span>}
+                  </a>
+                </li>)))}
+            </ul>
+          </div>
         </div>
       </div>
     </T>);

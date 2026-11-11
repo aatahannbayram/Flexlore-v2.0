@@ -74,14 +74,8 @@ const T: Record<string, { all: string; faq: string; aiP: string; talk: string; t
   pl: { faq: "FAQ", all: "Wszystkie funkcje", aiP: "Otwórz asystenta z gotowym pytaniem o to, co robi Flexlore i dla kogo jest.", talk: "Napisz do nas", talkP: "Pytania o wdrożenie, pilotaż lub konto? Napisz do nas.", mail: "E-mail", open: "otwiera się w nowej karcie" },
 };
 
-const link = "inline-flex min-h-11 min-w-11 items-center text-[15px] text-white/65 transition-colors duration-200 hover:text-white";
+const link = "inline-flex min-h-11 min-w-11 items-center text-[14.5px] text-white/60 sm:min-h-9 transition-colors duration-200 hover:text-white";
 /* A dim, softly blurred photo behind each footer card; the glass and a dark wash on top keep the text readable. */
-const CardBg = ({ src, pos = "50% 50%" }: { src: string; pos?: string }) => (
-  <span aria-hidden="true" className="absolute inset-0 -z-10">
-    <img src={src} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className="h-full w-full scale-105 object-cover opacity-55 blur-[2px] saturate-[0.7]" />
-    <span className="absolute inset-0 bg-[linear-gradient(110deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)] rtl:bg-[linear-gradient(250deg,rgb(14_14_14/0.94)_0%,rgb(14_14_14/0.78)_45%,rgb(14_14_14/0.5)_100%)]" />
-  </span>);
-const card = "relative isolate overflow-hidden rounded-[24px] bg-[linear-gradient(180deg,rgb(255_255_255/0.06)_0%,rgb(255_255_255/0.02)_100%)] p-5 shadow-[inset_0_1px_0_rgb(255_255_255/0.07)] md:p-7";
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
@@ -94,7 +88,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
           <div className="lg:col-span-4">
             <img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={240} height={52} className="h-8 w-auto md:h-10" />
-            <p className="mt-4 max-w-[30ch] text-[16px] leading-[1.5] text-white/65 md:text-[17px]">{f.tag}</p>
+            <p className="mt-4 max-w-[30ch] text-[15px] leading-[1.55] text-white/55">{f.tag}</p>
             <ul className="mt-5 flex gap-2" aria-label={f.follow}>
               {SOCIAL.map(([n, k, h]) => (
                 <li key={k}>
@@ -110,7 +104,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           <div className="grid gap-x-6 border-y border-[rgb(255_255_255/0.08)] sm:grid-cols-4 sm:border-0 lg:col-span-8">
             {GROUPS.map((g) => { const on = open === g.g; return (
               <nav key={g.en} aria-label={f.groups[g.g]} className="border-[rgb(255_255_255/0.08)] [&:not(:first-child)]:border-t sm:!border-0">
-                <p className="mb-3 hidden text-[13px] font-semibold uppercase tracking-[0.12em] text-white/55 sm:block">{f.groups[g.g]}</p>
+                <p className="mb-3 hidden text-[13.5px] font-medium text-white/45 sm:block">{f.groups[g.g]}</p>
                 <button type="button" aria-expanded={on} aria-controls={`ft-${g.g}`} onClick={() => setOpen(on ? null : g.g)}
                   className="flex min-h-14 w-full items-center justify-between text-start text-[16px] font-medium text-white sm:hidden">
                   {f.groups[g.g]}<Plus size={16} aria-hidden="true" className={`text-white/55 transition-transform duration-300 ${on ? "rotate-45" : ""}`} /></button>
@@ -129,35 +123,29 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-3 md:mt-16 md:grid-cols-2 md:gap-4">
-          <section aria-labelledby="ft-ai" className={`${card} flex flex-col`}>
-            <CardBg src="/media/v3/web-toplanti-800.webp" pos="60% 40%" />
-            <h3 id="ft-ai" className="text-[17px] font-semibold text-white md:text-[19px]">{f.ai}</h3>
-            <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.aiP}</p>
-            <ul className="mt-auto grid grid-cols-1 gap-2 pt-5 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3">
+        {/* One quiet utility row instead of two photo cards: ask an AI about Flexlore, write to us, get the app. */}
+        <div className="mt-10 grid gap-6 border-t border-[rgb(255_255_255/0.08)] pt-8 md:mt-14 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
+          <section aria-labelledby="ft-ai">
+            <h3 id="ft-ai" className="text-[14px] font-medium text-white/80">{f.ai}</h3>
+            <p className="mt-1 max-w-[46ch] text-[13.5px] leading-[1.55] text-white/50">{t.aiP}</p>
+            <ul className="mt-4 flex flex-wrap gap-2">
               {AI.map(([n, k, u]) => (
                 <li key={n}>
                   <a href={u(f.aiQ)} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`}
-                    className="group flex min-h-12 items-center gap-2.5 rounded-[14px] bg-white/[.05] px-3.5 text-[14px] font-medium text-white/85 transition-colors hover:bg-white/[.1] hover:text-white">
-                    <Mark k={k} dir="ai" cls="h-[18px] w-[18px]" />
-                    <span className="min-w-0 flex-1 truncate">{n}</span>
-                    <ArrowUpRight size={13} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
+                    className="group inline-flex h-10 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[13.5px] font-medium text-white/80 ring-1 ring-white/[.07] transition-colors hover:bg-white/[.1] hover:text-white">
+                    <Mark k={k} dir="ai" cls="h-4 w-4" />{n}
+                    <ArrowUpRight size={12} aria-hidden="true" className="text-white/35 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
                   </a>
                 </li>))}
             </ul>
           </section>
-
-          <section aria-labelledby="ft-talk" className={card}>
-            <CardBg src="/photos/hotel-desk-800.webp" pos="50% 45%" />
-            <h3 id="ft-talk" className="text-[17px] font-semibold text-white md:text-[19px]">{t.talk}</h3>
-            <p className="mt-2 max-w-[40ch] text-[14px] leading-[1.55] text-white/60 md:text-[15px]">{t.talkP}</p>
-            <a href="mailto:support@flexlore.com" className="group mt-5 flex min-h-12 items-center gap-3 rounded-[14px] bg-white/[.05] px-3.5 py-2 transition-colors hover:bg-white/[.1]">
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-white/[.08] text-white"><EnvelopeSimple size={18} aria-hidden="true" /></span>
-              <span className="min-w-0 flex-1"><span className="block text-[12px] text-white/55">{t.mail}</span><span className="block truncate text-[15px] font-medium text-white">support@flexlore.com</span></span>
-              <ArrowUpRight size={14} aria-hidden="true" className="shrink-0 text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
-            </a>
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[rgb(255_255_255/0.08)] pt-4">
-              <span className="text-[14px] text-white/60">{f.app}</span>
+          <section aria-labelledby="ft-talk" className="lg:border-s lg:border-[rgb(255_255_255/0.08)] lg:ps-12">
+            <h3 id="ft-talk" className="text-[14px] font-medium text-white/80">{t.talk}</h3>
+            <a href="mailto:support@flexlore.com" className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[18px] font-medium tracking-[-0.01em] text-white transition-colors hover:text-white/80">
+              <EnvelopeSimple size={18} aria-hidden="true" className="text-white/55" />support@flexlore.com
+              <ArrowUpRight size={14} aria-hidden="true" className="text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <span className="text-[13px] text-white/50">{f.app}</span>
               <div className="[&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center"><StoreButtons small lang={lang} /></div>
             </div>
           </section>

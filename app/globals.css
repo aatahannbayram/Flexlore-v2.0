@@ -467,3 +467,10 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 }
 @keyframes rv-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes sw-in { from { opacity: 0.12; transform: translateY(0.25em); } to { opacity: 1; transform: none; } }
+
+/* Programs row: a slow endless marquee (two copies of the list), paused on hover; static with reduced motion. */
+.marquee-track { animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
+[dir="rtl"] .marquee-track { animation-direction: reverse; }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track > li[aria-hidden] { display: none; } .marquee { mask-image: none; } }
