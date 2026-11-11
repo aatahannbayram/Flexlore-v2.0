@@ -54,8 +54,8 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       {SCENES.map((s, i) => { const on = i === k; return (
         <div key={s.clip} className={`absolute inset-0 transition-opacity duration-700 ease-out ${on ? "opacity-100" : "opacity-0"}`}>
           {rest && !reduce
-            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[6px] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
-            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[6px]" />}
+            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[1.08] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
+            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[1.08]" />}
         </div>); })}
       <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.12)_0%,rgb(17_17_17/0.22)_100%)]" />
       <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.9)_0%,rgb(17_17_17/0.66)_40%,rgb(17_17_17/0.25)_72%,rgb(17_17_17/0.4)_100%)] rtl:-scale-x-100" />
@@ -84,9 +84,9 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           {/* The promise, wide: each sentence on one line on large screens. */}
           <div className="relative z-10 col-span-12 lg:col-span-8">
             <Eyebrow word={word} k={k} />
-            <h1 id="hero-h" className="mt-5 text-[clamp(40px,0.9rem+3.6vw,66px)] font-[580] leading-[1.02] tracking-[-0.045em]">
-              <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="t-ink">{h.h1a}</span></span></span>
-              <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-grad">{h.h1b}</span></span></span>
+            <h1 id="hero-h" className="mt-5 text-[clamp(40px,0.9rem+3.6vw,68px)] font-bold leading-[1.02] tracking-[-0.04em]">
+              <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="hero-metal">{h.h1a}</span></span></span>
+              <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-ember">{h.h1b}</span></span></span>
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
@@ -100,8 +100,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           {/* The phone on the end side, playing the step the scene shows; a glass note pops beside it each time a
               step is ticked. */}
           <div className="relative col-span-12 flex justify-center lg:col-span-4 lg:justify-end">
-            <div className="hs-device relative w-[64%] max-w-[290px] lg:w-[280px]" style={{ animationDelay: "200ms" }} dir="ltr">
-              <div className="hero-lift drop-shadow-[0_45px_70px_rgba(0,0,0,0.7)]"><Device label={h.chip.t}><WorkScreen active lang={lang} onStep={onStep} /></Device></div>
+            <div className="hs-device relative w-[66%] max-w-[300px] lg:w-[290px]" style={{ animationDelay: "200ms" }} dir="ltr">
+              <div className="hero-lift rounded-[42px] shadow-[0_60px_90px_-35px_rgb(0_0_0/0.85),0_20px_40px_-20px_rgb(0_0_0/0.6)]"><Device max label={h.chip.t}><WorkScreen active lang={lang} onStep={onStep} /></Device></div>
               <AnimatePresence>{note && (
                 <m.div key={ticks} aria-hidden="true" initial={reduce ? false : { opacity: 0, x: 12, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, x: -6 }} transition={{ duration: 0.22, ease: "easeOut" }}
                   className="absolute -start-[30%] top-[62%] flex items-center gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">

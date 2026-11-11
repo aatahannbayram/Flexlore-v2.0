@@ -506,3 +506,10 @@ section[id], [id]:target { scroll-margin-top: 80px; }
 @media (prefers-reduced-motion: reduce) { .home-v3 .rv-js { opacity: 1; transform: none; transition: none; } }
 
 .home-v3 [id] { scroll-margin-top: 80px; }
+
+/* Hero headline (2026-11-12): bold, tight, two lit gradients. Line one is metal (peach, white, peach); line two is
+   ember (bright orange to burnt orange; its darkest stop stays above 3:1 on #111 for large text). */
+.hero-metal { background: linear-gradient(180deg, #F2D2BE 0%, #FFFFFF 42%, #FBEEE6 58%, #E3AE8C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.hero-ember { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%, #B9521F 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+:root[data-theme="light"] .hero-metal:not(.dark *) { background-image: linear-gradient(180deg, #3A2A20 0%, #111111 60%, #4A3326 100%); }
+:root[data-theme="light"] .hero-ember:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #C2521A 100%); }

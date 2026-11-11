@@ -64,15 +64,16 @@ export function Scaled({ children, base = 320 }: { children: React.ReactNode; ba
   return (<div ref={r} className="relative h-full w-full overflow-hidden rounded-[var(--scr-r,2.55rem)] bg-bg [isolation:isolate]">
     <div className="absolute left-0 top-0 origin-top-left font-sans antialiased [font-feature-settings:'cv11','ss01']" style={{ width: base, height: h || "100%", transform: `scale(${k})` }}>{children}</div></div>);
 }
-/** iPhone 15 Pro-style frame: titanium rim, inner black bezel, Dynamic Island. */
-export function Device({ children, label }: { children: React.ReactNode; label: string }) {
-  const btn = "absolute w-[3px] bg-[#3b3b3e]";
-  return (<div role="img" aria-label={label} className="dark relative aspect-[393/852] w-full [container-type:inline-size]" style={{ ["--scr-r" as string]: "11cqw" }}>
+/** iPhone frame: titanium rim, inner black bezel, Dynamic Island. `max` is the iPhone 16 Pro Max (440 x 956 pt, thinner
+ *  bezel, Desert Titanium rim, a wider design width so the app reads at Pro Max scale). */
+export function Device({ children, label, max = false }: { children: React.ReactNode; label: string; max?: boolean }) {
+  const btn = `absolute w-[3px] ${max ? "bg-[#8c7a66]" : "bg-[#3b3b3e]"}`;
+  return (<div role="img" aria-label={label} className={`dark relative w-full [container-type:inline-size] ${max ? "aspect-[440/956]" : "aspect-[393/852]"}`} style={{ ["--scr-r" as string]: max ? "11.6cqw" : "11cqw" }}>
     <span className={`${btn} -left-[2px] top-[16%] h-[4%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[23%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[32%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -right-[2px] top-[26%] h-[11%] rounded-r-sm`} />
-    <div className="absolute inset-0 rounded-[14cqw] bg-[#2a2a2d] p-[2.5px] ring-1 ring-white/10">
+    <div className={`absolute inset-0 rounded-[14cqw] p-[2.5px] ring-1 ${max ? "bg-[linear-gradient(140deg,#d8c3a8_0%,#9c876f_35%,#6f604f_65%,#b49c80_100%)] ring-white/20" : "bg-[#2a2a2d] ring-white/10"}`}>
       <div className="h-full w-full rounded-[13.4cqw] bg-[#050506] p-[1px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]">
-        <div className="h-full w-full rounded-[13cqw] bg-black p-[2cqw]">
-          <Scaled>
+        <div className={`h-full w-full rounded-[13cqw] bg-black ${max ? "p-[1.5cqw]" : "p-[2cqw]"}`}>
+          <Scaled base={max ? 344 : 320}>
             {children}
             <div className="absolute left-1/2 top-[11px] z-30 flex h-[29px] w-[96px] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-[10px] shadow-[0_0_0_.5px_rgba(255,255,255,.04)]"><span className="h-[9px] w-[9px] rounded-full bg-bg2 ring-1 ring-white/[.04]" /></div>
             <div className="absolute bottom-[8px] left-1/2 z-30 h-[5px] w-[124px] -translate-x-1/2 rounded-full bg-white/90 mix-blend-difference" />
