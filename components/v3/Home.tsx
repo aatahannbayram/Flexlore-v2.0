@@ -261,23 +261,27 @@ function useCount(to: number, run: boolean) {
  * every few seconds while the panel is on screen (paused on hover); the numbers count up. Sample numbers, labelled. */
 const WS_X = [50, 150, 250];
 const wsImg = (n: string) => (n in M ? `/media/v3/${n}-800.webp` : `/photos/${n}-800.webp`);
-const WS_PATHS = ["M150 0 V12 H62 Q50 12 50 22 V32", "M150 0 V32", "M150 0 V12 H238 Q250 12 250 22 V32"];
-const wsDown = (x: number) => WS_X.map((t) => (t === x ? `M${x} 0 V32` : `M${x} 0 V12 H${t + (t > x ? -12 : 12)} Q${t} 12 ${t} 22 V32`));
-function WsLines({ paths, act, seen, reduce, k }: { paths: string[]; act: number[]; seen: boolean; reduce: boolean | null; k: string }) {
+const WS_FAN = ["M150 0 V12 H62 Q50 12 50 22 V32", "M150 0 V32", "M150 0 V12 H238 Q250 12 250 22 V32"];
+/** From the picked site back to the centre trunk, where the next level's label sits. */
+const wsBack = (x: number) => (x === 150 ? "M150 0 V20" : `M${x} 0 V4 Q${x} 10 ${x + (x < 150 ? 8 : -8)} 10 H${150 + (x < 150 ? -8 : 8)} Q150 10 150 16 V20`);
+function WsLines({ paths, act, seen, pulse, reduce, k, h = 32, at = 0, cls = "h-7 md:h-9" }: { paths: string[]; act: number[]; seen: boolean; pulse: boolean; reduce: boolean | null; k: string; h?: number; at?: number; cls?: string }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 300 32" preserveAspectRatio="none" className="block h-7 w-full md:h-9">
+    <svg aria-hidden="true" viewBox={`0 0 300 ${h}`} preserveAspectRatio="none" className={`block w-full ${cls}`}>
       {paths.map((p) => <path key={p} d={p} fill="none" stroke="rgb(255 255 255 / 0.26)" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
-        pathLength={1} strokeDasharray="1" style={{ strokeDashoffset: seen || reduce ? 0 : 1, transition: reduce ? "none" : "stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1)" }} />)}
-      {act.map((n) => <path key={`${k}${n}`} d={paths[n]} fill="none" stroke="rgb(244 240 235 / 0.9)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength={1}
+        style={{ opacity: seen || reduce ? 1 : 0, transition: reduce ? "none" : `opacity .6s ease ${at}s` }} />)}
+      {pulse && act.map((n) => <path key={`${k}${n}`} d={paths[n]} fill="none" stroke="rgb(244 240 235 / 0.9)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength={1}
         className={reduce ? "" : "ws-flow"} strokeDasharray={reduce ? "1" : "0.18 0.82"} />)}
     </svg>);
 }
-function WsLevel({ n, name, hint }: { n: number; name: string; hint: string }) {
+/** Level label on the trunk: number, name and a short hint, read top to bottom in the middle of the tree. */
+function WsPill({ n, name, hint }: { n: number; name: string; hint: string }) {
   return (
-    <div className="mb-2 flex items-baseline gap-2 lg:mb-0 lg:flex-col lg:justify-center lg:gap-1 lg:border-e lg:border-line lg:pe-5">
-      <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-ink-faint tabular-nums">0{n}</span>
-      <span className="text-[14px] font-semibold text-ink lg:text-[16px]">{name}</span>
-      <span className="truncate text-[13px] text-ink-faint lg:whitespace-normal">{hint}</span>
+    <div className="flex justify-center">
+      <span className="inline-flex max-w-full items-center gap-2 rounded-full bg-[rgb(24_24_24/0.78)] px-3.5 py-1.5 text-[13px] ring-1 ring-[rgb(255_255_255/0.12)] backdrop-blur-sm">
+        <span className="font-semibold tabular-nums text-flame">0{n}</span>
+        <span className="font-semibold text-ink">{name}</span>
+        <span className="hidden truncate text-ink-faint sm:inline">· {hint}</span>
+      </span>
     </div>);
 }
 export function WorkspaceV3() {
@@ -288,7 +292,12 @@ export function WorkspaceV3() {
     { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], pics: ["factory", "field", "safety"], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
     { n: c.nodes[3], Ic: HardHat, img: "saha-santiye-havadan", pos: "50% 50%", jobs: c.siteJobs[1], pics: ["saha-iskele-pov", "saha-liman", "saha-drone-cember"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
-  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const auto = on && !hold && !reduce;
+  /* The tree builds itself once, level by level (label, cards, then the line down to the next level); only then do the
+   * pulses run and the sites start taking turns. */
+  const [ready, setReady] = useState(false);
+  useEffect(() => { if (!seen) return; const t = window.setTimeout(() => setReady(true), reduce ? 0 : 2300); return () => window.clearTimeout(t); }, [seen, reduce]);
+  const rise = (t: number) => (reduce ? {} : { initial: { opacity: 0, y: 14 }, animate: seen ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }, transition: { duration: 0.6, delay: t, ease: EASE } });
+  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const auto = on && !hold && !reduce && ready;
   useEffect(() => { if (!auto) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 3), 5000); return () => window.clearTimeout(t); }, [auto, i]);
   const cur = sites[i]; const pct = Math.round(100 * cur.done.reduce((a, [x, y]) => a + x / y, 0) / cur.done.length);
   const shown = useCount(pct, seen && !reduce); const people = useCount(cur.people, seen && !reduce);
@@ -300,12 +309,17 @@ export function WorkspaceV3() {
       <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_100%_at_50%_0%,rgb(244_240_235/0.05),transparent_70%)]" />
       <span aria-hidden="true" className="absolute inset-x-[12%] top-0 h-px bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.16),transparent)]" />
       <div className="container-x">
-        <Head n="03" k={c.k} id="ws-h" h={c.h} p={c.p} />
-        <div ref={ref} className="relative mt-9 md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <div className="relative grid lg:grid-cols-[180px_1fr] lg:gap-x-6">
-            {/* 01 Workspace: the head office, one card wide, centred over the sites. */}
-            <WsLevel n={1} name={L[0][0]} hint={L[0][1]} />
-            <div className="grid grid-cols-3 gap-2 md:gap-3">
+        {/* Centred head: one idea, read before the tree starts building. */}
+        <div className="mx-auto flex max-w-[44rem] flex-col items-center text-center">
+          <Ch n="03">{c.k}</Ch>
+          <H2 id="ws-h" a={c.h} className="mx-auto max-w-[22ch]" />
+          <p className="rv mt-4 max-w-[34rem] text-[14.5px] leading-[1.65] text-ink-muted md:text-[15px]">{c.p}</p>
+        </div>
+        <div ref={ref} className="relative mx-auto mt-10 max-w-[940px] md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+          {/* 01 Workspace: the head office, one card wide, on the trunk. */}
+          <m.div {...rise(0)}><WsPill n={1} name={L[0][0]} hint={L[0][1]} /></m.div>
+          <WsLines paths={["M150 0 V20"]} act={[]} seen={seen} pulse={false} reduce={reduce} k="t" h={20} at={0.1} cls="h-4 md:h-5" />
+          <m.div {...rise(0.2)} className="grid grid-cols-3 gap-2 md:gap-3">
               <div className={`dark card-pro relative col-start-2 flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white ring-1 ring-[rgb(255_255_255/0.35)] md:p-3 ${cardH}`}>
                 {seen && <img src="/photos/office-800.webp" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_42%] saturate-[1.15] contrast-[1.05]" />}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.25)_0%,rgb(16_16_16/0.3)_40%,rgb(16_16_16/0.9)_100%)]" />
@@ -316,11 +330,12 @@ export function WorkspaceV3() {
                   <span className="mt-0.5 flex items-center gap-2.5 text-[12px] text-white/75"><span className="flex items-center gap-1"><MapPin size={12} aria-hidden="true" />{sites.length}</span><span className="flex items-center gap-1 truncate tabular-nums"><Users size={12} aria-hidden="true" />{total}</span></span>
                 </span>
               </div>
-            </div>
-            <span className="hidden lg:block" /><WsLines paths={WS_PATHS} act={[i]} seen={seen} reduce={reduce} k="a" />
-            {/* 02 Folders: the sites. Picking one sends the pulse down to its work. */}
-            <WsLevel n={2} name={L[1][0]} hint={L[1][1]} />
-            <div role="tablist" aria-label={c.k} className="grid grid-cols-3 gap-2 md:gap-3">
+          </m.div>
+          {/* 02 Folders: the trunk carries on to the label, then fans out to the sites. */}
+          <WsLines paths={["M150 0 V20"]} act={[0]} seen={seen} pulse={ready} reduce={reduce} k="u" h={20} at={0.55} cls="h-5 md:h-6" />
+          <m.div {...rise(0.75)}><WsPill n={2} name={L[1][0]} hint={L[1][1]} /></m.div>
+          <WsLines paths={WS_FAN} act={[i]} seen={seen} pulse={ready} reduce={reduce} k={`a${i}`} at={0.85} />
+          <m.div {...rise(1.05)} role="tablist" aria-label={c.k} className="grid grid-cols-3 gap-2 md:gap-3">
               {sites.map((s, k) => { const act = k === i; const Ic = s.Ic; return (
                 <button key={s.n} type="button" role="tab" aria-selected={act} aria-controls="ws-panel" onClick={() => setI(k)}
                   className={`group dark card-pro relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-start text-white ring-1 transition-all duration-500 md:p-3 ${cardH} ${act ? "ring-[rgb(255_255_255/0.45)]" : "ring-transparent hover:ring-[rgb(255_255_255/0.2)]"}`}>
@@ -334,10 +349,12 @@ export function WorkspaceV3() {
                   </span>
                   {act && auto && <span key={`t${i}`} aria-hidden="true" className="ws-timer absolute inset-x-0 bottom-0 h-[2px] origin-left bg-[rgb(244_240_235/0.8)] rtl:origin-right" />}
                 </button>); })}
-            </div>
-            <span className="hidden lg:block" /><WsLines paths={wsDown(WS_X[i])} act={[0, 1, 2]} seen={seen} reduce={reduce} k={`b${i}`} />
-            {/* 03 Work: the picked site's jobs, each with how many of its people have finished it. */}
-            <WsLevel n={3} name={L[2][0]} hint={L[2][1]} />
+            </m.div>
+          {/* 03 Work: from the picked site back to the trunk, then out to its jobs. */}
+          <WsLines paths={[wsBack(WS_X[i])]} act={[0]} seen={seen} pulse={ready} reduce={reduce} k={`b${i}`} h={20} at={1.45} cls="h-5 md:h-6" />
+          <m.div {...rise(1.6)}><WsPill n={3} name={L[2][0]} hint={L[2][1]} /></m.div>
+          <WsLines paths={WS_FAN} act={[0, 1, 2]} seen={seen} pulse={ready} reduce={reduce} k={`c${i}`} at={1.7} />
+          <m.div {...rise(1.9)}>
             <div id="ws-panel" role="tabpanel">
               <AnimatePresence mode="wait" initial={false}>
                 <m.ul key={i} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.3, ease: EASE }}
@@ -352,19 +369,19 @@ export function WorkspaceV3() {
                       </span>
                       <span className="relative block">
                         <span className="line-clamp-2 block text-[13px] font-semibold leading-snug md:text-[14px]">{j}</span>
-                        <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/[.15]"><m.span initial={{ width: 0 }} animate={{ width: seen ? `${(100 * a) / b}%` : 0 }} transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : 0.15 + k * 0.07, ease: EASE }} className="block h-full rounded-full bg-white/90" /></span>
+                        <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/[.15]"><m.span initial={{ width: 0 }} animate={{ width: seen ? `${(100 * a) / b}%` : 0 }} transition={{ duration: reduce ? 0 : 0.7, delay: reduce ? 0 : (ready ? 0.15 : 2.1) + k * 0.07, ease: EASE }} className="block h-full rounded-full bg-white/90" /></span>
                       </span>
                     </li>); })}
                 </m.ul>
               </AnimatePresence>
-              <p className="mt-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 text-[13px] text-ink-muted">
+              <p className="mt-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 px-1 text-[13px] text-ink-muted">
                 <span className="flex items-center gap-3"><span className="font-semibold text-ink">{cur.n}</span><span className="flex items-center gap-1.5 tabular-nums"><Users size={14} aria-hidden="true" />{people} {c.people}</span></span>
                 <span className="flex items-center gap-2">{c.done}<span className="text-[18px] font-semibold tracking-[-0.03em] text-ink tabular-nums">%{shown}</span></span>
               </p>
             </div>
-          </div>
+          </m.div>
         </div>
-        <p className="mt-3 text-end text-[12px] text-ink-faint">{c.sample}</p>
+        <p className="mx-auto mt-3 max-w-[940px] text-end text-[12px] text-ink-faint">{c.sample}</p>
       </div>
     </section>);
 }
