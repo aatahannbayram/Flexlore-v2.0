@@ -49,7 +49,7 @@ const ED = {
    0-3 paused at 00:00 · 3 play · 7 Start step (marks 00:01) · 23 Stop step (00:05), pause · 26 modal up ·
    28-42 title types · 46 Save pressed · 49 modal closes · 50-60 toast · 64 loop. */
 const DUR = 13, Q = 4;
-export function EditorScreen({ active, lang = "en", still }: ScreenProps) {
+export function EditorScreen({ active, lang = "en", still, clip }: ScreenProps) {
   const L = ED[lang]; const reduce = useReducedMotion(); const run = active && !reduce;
   const q = useTick(run, 250, 64);
   // Reduced motion / inactive: the marked step, paused, no modal.
@@ -64,7 +64,7 @@ export function EditorScreen({ active, lang = "en", still }: ScreenProps) {
     <Status /><Nav left={<span className="text-[15px] text-white/75">{L.done}</span>} title={`1 • ${L.title}`} right={<Kebab />} />
     {/* Clip: vertical video, black pillar boxes */}
     <div className="relative h-[292px] shrink-0 bg-black">
-      <div className="absolute inset-y-0 left-1/2 w-[62%] -translate-x-1/2 overflow-hidden"><Clip name="kitchen" active={playing} still={still} /></div>
+      <div className="absolute inset-y-0 left-1/2 w-[62%] -translate-x-1/2 overflow-hidden"><Clip name={clip ?? "kitchen"} active={playing} still={clip ? undefined : still} /></div>
       <span className="absolute left-2.5 top-2.5 rounded-[11px] bg-white/[.14] px-3 py-[7px] text-[12px] text-white">Operator 1</span>
       <span className="absolute bottom-2.5 left-2 rounded-[10px] bg-black/70 px-2.5 py-[6px] text-[11.5px] tabular-nums text-white">{L.vd}: <span style={{ color: O }}>{mm(v)}</span> / {mm(DUR)}</span>
     </div>

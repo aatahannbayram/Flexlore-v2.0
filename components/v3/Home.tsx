@@ -125,7 +125,7 @@ export function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en"
     <Status /><Nav title={L.t} right={<span className="text-[13px] tabular-nums text-white/60">6/6</span>} />
     <span className="mx-3.5 mt-2 block h-[3px] overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-white transition-[width] duration-500" style={{ width: done ? "100%" : "83.4%" }} /></span>
     <div className="relative mt-3 flex-1 overflow-hidden bg-black">
-      <Clip name="steam" active={active} still={STILL[2]} />
+      <Clip name="how-player" active={active} />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/75 to-transparent" />
       <span className="absolute start-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white">{L.s}</span>
       <div className="absolute inset-x-4 bottom-[26px]">
@@ -144,7 +144,7 @@ export function StepsV3() {
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
   const run = on && !hold && !paused && !reduce;
   useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
-  const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} still={STILL[1]} />
+  const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} clip="how-editor" />
     : i === 2 ? <StepPlayerScreen active={on} lang={lang} /> : i === 3 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
   /* Load the story screens as soon as the section is near, so switching steps never waits on code (no pop-in). */
   useEffect(() => { if (near) void import("../AppScreensStory"); }, [near]);

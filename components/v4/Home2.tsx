@@ -12,7 +12,7 @@ import { useLocale } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
 import { SITE } from "../config";
 import { Device } from "../AppScreens";
-import { CameraScreen, StepPlayerScreen, STILL } from "../v3/Home";
+import { CameraScreen, StepPlayerScreen } from "../v3/Home";
 import { EASE } from "../ui/Reveal";
 import { TrustStrip } from "../home/Sections";
 import { ArrowRight, Check, CaretDown, ForkKnife, Factory, Bed, Storefront } from "../ui/icons";
@@ -145,7 +145,7 @@ export default function Home2() {
             <h2 id="loop-h" className="v4-h2 mt-4">{d.process.h}</h2>
           </div>
           <div className="mt-14 flex flex-col gap-20 md:mt-20 md:gap-28">
-            <Block n={1} k={x.k[0]} h={s[0][0]} p={s[1][1]} ticks={x.ticks[0]} photo="stage-franchise" pos="50% 15%" flip={false}>{(on) => <Editor active={on} lang={lang} still={STILL[1]} />}</Block>
+            <Block n={1} k={x.k[0]} h={s[0][0]} p={s[1][1]} ticks={x.ticks[0]} photo="stage-franchise" pos="50% 15%" flip={false}>{(on) => <Editor active={on} lang={lang} clip="how-editor" />}</Block>
             <Block n={2} k={x.k[1]} h={s[2][0]} p={s[2][1]} ticks={x.ticks[1]} photo="stage-uretim" pos="50% 10%" flip>{(on) => <StepPlayerScreen active={on} lang={lang} />}</Block>
             <Block n={3} k={x.k[2]} h={s[3][0]} p={s[3][1]} ticks={x.ticks[2]} photo="stage-restoran" pos="50% 5%" flip={false}>{(on) => <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} />}</Block>
             <Block n={4} k={x.k[3]} h={s[4][0]} p={s[4][1]} ticks={x.ticks[3]} photo="stage-otel" pos="50% 5%" flip>{(on) => <Ready active={on} lang={lang} />}</Block>

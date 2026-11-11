@@ -17,7 +17,7 @@ export const HL = "rgba(255,255,255,.07)";
 export const ease = [0.22, 1, 0.36, 1] as const;
 export const ic = { size: 15 } as const;
 export const card = "rounded-[14px] border border-white/[.07] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_1px_2px_rgba(0,0,0,.4),0_8px_24px_-12px_rgba(0,0,0,.6)]";
-export type ScreenProps = { active: boolean; lang?: Lang; still?: Still };
+export type ScreenProps = { active: boolean; lang?: Lang; still?: Still; clip?: string };
 
 /** Counts 0..max-1 every `ms` while `active`; resets to 0 when paused. */
 export function useTick(active: boolean, ms: number, max: number) {
