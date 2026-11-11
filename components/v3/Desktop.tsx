@@ -1,5 +1,5 @@
 "use client";
-/* Flexlore Web, the desktop app: the promise and the manager's three steps on the start side, a browser window running
+/* Flexlore Web, the desktop app: the promise and the manager's four steps on the start side, a browser window running
  * the real web panel (sample data) on the end side, bleeding to the page edge on large screens. Copy is the approved web-panel
  * feature page text (TR and EN; other languages read English). The panel is marked "Coming soon" as on that page. */
 import { useRef } from "react";
@@ -7,29 +7,29 @@ import dynamic from "next/dynamic";
 import { m, useInView, useReducedMotion } from "framer-motion";
 import { useLocale } from "../i18n/LocaleProvider";
 import { rise } from "./Top";
-import { Books, UsersThree, ChartBar } from "../ui/icons";
+import { MonitorPlay, Books, UsersThree, ChartBar } from "../ui/icons";
 
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full bg-[#111]" /> });
 
 const T = {
   en: { k: "Flexlore Web", soon: "Coming soon", h: "One screen for every location.", p: "Start with the list of who is behind, then open the job or the person behind it.",
     points: ["Completion by person, team and site", "The question most people miss", "Library and assignments in one place"],
-    steps: [["Build the library", "Organise jobs in folders and workspaces."], ["Assign and schedule", "Send jobs to roles, teams and locations."], ["Follow the exceptions", "See who has not finished and where people struggle."]],
+    steps: [["Turn screen recordings into steps", "Record a task on your computer once and Flexlore turns it into a step-by-step job."], ["Build the library", "Organise jobs in folders and workspaces."], ["Assign and schedule", "Send jobs to roles, teams and locations."], ["Follow the exceptions", "See who has not finished and where people struggle."]],
     sample: "Sample data", title: "Flexlore Web" },
   tr: { k: "Flexlore Web", soon: "Yakında", h: "Her şube için tek ekran.", p: "Geride kalanların listesiyle başlayın, ardından ilgili işi veya kişiyi açın.",
     points: ["Kişi, ekip ve şube bazında tamamlanma", "En çok kaçırılan soru", "Kütüphane ve atamalar tek yerde"],
-    steps: [["Kütüphaneyi oluşturun", "İşleri klasörlerde ve çalışma alanlarında düzenleyin."], ["Atayın ve planlayın", "İşleri rollere, ekiplere ve şubelere gönderin."], ["İstisnaları takip edin", "Kimin bitirmediğini ve insanların nerede zorlandığını görün."]],
+    steps: [["Ekran kaydını adımlara dönüştürün", "Bilgisayarda bir işlemi bir kez kaydedin, Flexlore onu adım adım bir işe dönüştürsün."], ["Kütüphaneyi oluşturun", "İşleri klasörlerde ve çalışma alanlarında düzenleyin."], ["Atayın ve planlayın", "İşleri rollere, ekiplere ve şubelere gönderin."], ["İstisnaları takip edin", "Kimin bitirmediğini ve insanların nerede zorlandığını görün."]],
     sample: "Örnek veri", title: "Flexlore Web" },
 } as const;
 
 export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: string; className?: string }) => React.ReactNode; Ch: (p: { n: string; children: React.ReactNode }) => React.ReactNode }) {
   const { lang } = useLocale(); const t = T[lang === "tr" ? "tr" : "en"]; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
-  const icons = [Books, UsersThree, ChartBar];
+  const icons = [MonitorPlay, Books, UsersThree, ChartBar];
   return (
     <section id="desktop" aria-labelledby="desk-h" className="section-y overflow-x-clip [--bleed:calc(var(--pad-x)+max(0px,(100vw-var(--container)-2*var(--pad-x))/2))]">
       <div className="container-x grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-        {/* Start side: the promise, then the manager's week in three steps. */}
+        {/* Start side: the promise, then the manager's week in four steps. */}
         <div className="lg:col-span-5">
           <div className="flex items-center gap-3"><Ch n="05">{t.k}</Ch><span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{t.soon}</span></div>
           <H2 id="desk-h" a={t.h} className="max-w-[16ch]" />

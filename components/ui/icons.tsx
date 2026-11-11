@@ -50,6 +50,7 @@ export { ListChecks } from "./icons/ListChecks";
 export { LockSimple } from "./icons/LockSimple";
 export { MagnifyingGlass } from "./icons/MagnifyingGlass";
 export { MapPin } from "./icons/MapPin";
+export { MonitorPlay } from "./icons/MonitorPlay";
 export { Moon } from "./icons/Moon";
 export { Package } from "./icons/Package";
 export { Pause } from "./icons/Pause";

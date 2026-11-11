@@ -98,6 +98,9 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.15rem; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s; }
 .btn-primary { background: #F4F0EB; color: #111111; }
 .btn-primary:hover { background: #FFFFFF; }
+/* Header "Book a demo": the one orange button in the bar, same in both themes (#111 on #EC6726 is 6.1:1). */
+.btn-cta { display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 14px; border-radius: 999px; background: #EC6726; color: #111111; font-size: 13px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .2s var(--ease-out-expo); }
+.btn-cta:hover { background: #D75E23; }
 .btn-secondary { background: rgb(255 255 255 / 0.07); color: var(--color-ink); }
 .btn-secondary:hover { background: rgb(255 255 255 / 0.12); }
 .btn-sm { min-height: 36px; padding: 0 1rem; font-size: 14px; }

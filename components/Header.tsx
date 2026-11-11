@@ -123,16 +123,16 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
           </ul>
 
-          <div className="flex items-center gap-2 sm:gap-4">
-            {/* Theme and language share one quiet capsule: sun or moon, a hairline, then the flag with its language code. */}
+          <div className="flex items-center gap-2">
+            {/* Theme and language sit side by side, no frame, 36 px: sun or moon, a hairline, then the flag with its language code. */}
             {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
-              : <div className="hidden items-center sm:flex">
-                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
-                  <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
-                  <FlagPicker />
+              : <div className="hidden h-9 items-center sm:flex">
+                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-9 !w-9" />
+                  <span aria-hidden="true" className="h-4 w-px bg-line-strong" />
+                  <FlagPicker compact />
                 </div>}
-            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-white/15 transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
-            <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a></div>
+            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-9 items-center rounded-full px-3.5 text-[13px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            <a href={SITE.demo} className="btn-cta">{t.cta}</a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
           </div>
