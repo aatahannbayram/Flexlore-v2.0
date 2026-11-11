@@ -125,7 +125,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
 
         {/* One quiet utility row instead of two photo cards: ask an AI about Flexlore, write to us, get the app. */}
         <div className="mt-10 grid gap-6 border-t border-[rgb(255_255_255/0.08)] pt-8 md:mt-14 lg:grid-cols-[1.2fr_1fr] lg:gap-12">
-          <section aria-labelledby="ft-ai">
+          <section aria-labelledby="ft-ai" className="hidden md:block">
             <h3 id="ft-ai" className="text-[14px] font-medium text-white/80">{f.ai}</h3>
             <p className="mt-1 max-w-[46ch] text-[13.5px] leading-[1.55] text-white/50">{t.aiP}</p>
             <ul className="mt-4 flex flex-wrap gap-2">

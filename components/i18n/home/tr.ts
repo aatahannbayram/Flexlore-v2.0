@@ -31,7 +31,7 @@ export const tr: Dict = {
     points: [["Fire ve yeniden işleme", "Tahmin, yeniden yapım ve iade olarak geri döner."], ["Vardiyadan vardiyaya fark", "Her vardiya işi başka birinden öğrenir."], ["Kimsenin açmadığı klasörler", "Yazılı ama sahada hiç açılmıyor."]],
   },
   process: {
-    k: "Nasıl çalışır", h: "Tek telefon videosundan işi bilen bir ekibe.", pause: "Duraklat", play: "Oynat", sample: "Uygulama ekranları örnek içerikle yeniden oluşturuldu.",
+    k: "Nasıl çalışır", h: "Bir kez çekin. Ekibin tamamı aynı şekilde öğrensin.", pause: "Duraklat", play: "Oynat", sample: "Uygulama ekranları örnek içerikle yeniden oluşturuldu.",
     steps: [
       ["İşi çekin", "En iyi çalışanınız işi, yapıldığı yerde telefonla kaydeder. Stüdyo yok, senaryo yok."],
       ["Yapay zekâ adımları hazırlar", "Flexlore videoyu adımlara böler, talimatların ve kısa bir quizin taslağını hazırlar. Ekibiniz düzenler ve onaylar."],
@@ -55,7 +55,7 @@ export const tr: Dict = {
     e: ["Tamamlanma.", "Hangi şubenin size ihtiyacı olduğunu bilin."], locs: ["Merkez", "Havalimanı", "Liman"], sample: "Örnek veri",
   },
   ind: {
-    k: "Sektörler", h: "İşi yaparak öğrenen ekipler için.", more: "Flexlore'u kendi işinizde görün",
+    k: "Sektörler", h: "Ayakta, elle, vardiyalı çalışan ekipler için.", more: "Flexlore'u kendi işinizde görün",
     cards: ["Restoran ve kafeler", "Üretim", "Oteller", "Franchise'lar"],
     also: "Ayrıca kullanıldığı alanlar", areas: ["Sağlık ve klinikler", "Eğitim", "Eğitim sağlayıcılar", "Wellness ve spor", "Eğlence", "Ve dahası"],
     langs: "8 dilde kullanılabilir.",
@@ -113,7 +113,7 @@ export const tr: Dict = {
       ["Fiyatlandırma nasıl?", "Planlar kullanıcı sayısına göre fiyatlanır: Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar."],
     ],
   },
-  end: { h: "Kendi sahanızda görün.", p: "Yirmi dakika, gerçek işlerinizden biri. Görüşmede birlikte hazırlıyoruz.", cta: "Demo isteyin" },
+  end: { h: "Kendi işinizden bir örnekle görün.", p: "20 dakikalık görüşmede gerçek bir işinizi birlikte adım adım talimata çeviriyoruz.", cta: "Demo isteyin" },
   footer: {
     tag: "Her iş, adım adım. İşi yapan kişinin gözünden.", ai: "Yapay zekâ ile özetleyin", aiQ: "Flexlore'un (https://flexlore.com) ne yaptığını, kimler için olduğunu ve nasıl çalıştığını özetle.",
     follow: "Flexlore'u takip edin", app: "Uygulamayı indirin", rights: "Tüm hakları saklıdır.", top: "Başa dön", legal: "Yasal",

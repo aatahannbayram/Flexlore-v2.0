@@ -43,11 +43,11 @@ export function AssistantLauncher() {
     const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
     const go = () => { loadMod().then(setMod).catch(() => {}); };
     const a = window.setTimeout(() => (ric ? ric(go, { timeout: 4000 }) : go()), 3500);
-    let seen = false; try { seen = sessionStorage.getItem(HI_KEY) === "1"; } catch {}
-    const b = seen ? 0 : window.setTimeout(() => { loadMod().then((m) => { setMod(m); setHi(true); }).catch(() => {}); }, 6000);
+    let seen = false; try { seen = localStorage.getItem(HI_KEY) === "1" || window.matchMedia("(max-width: 639px)").matches; } catch {}
+    const b = seen ? 0 : window.setTimeout(() => { loadMod().then((m) => { setMod(m); setHi(true); try { localStorage.setItem(HI_KEY, "1"); } catch {} }).catch(() => {}); }, 20000);
     return () => { window.clearTimeout(a); window.clearTimeout(b); };
   }, []);
-  const dismiss = useCallback(() => { setHi(false); try { sessionStorage.setItem(HI_KEY, "1"); } catch {} }, []);
+  const dismiss = useCallback(() => { setHi(false); try { localStorage.setItem(HI_KEY, "1"); } catch {} }, []);
   const toggle = useCallback(() => {
     dismiss(); setEver(true);
     if (open) { setOpen(false); return; }
@@ -60,7 +60,7 @@ export function AssistantLauncher() {
   return (<>
     {/* The panel stays mounted once opened, so closing it does not end a conversation in progress. */}
     {ever && mod && <div hidden={!open}><mod.default locale={locale} open={open} onClose={close} onActive={setActive} /></div>}
-    <div className={`dark fixed bottom-4 end-4 z-[47] flex flex-col items-end gap-3 text-white sm:bottom-6 sm:end-6 print:hidden ${open ? "max-sm:hidden" : ""}`}>
+    <div className={`dark fixed bottom-6 end-6 z-[47] flex flex-col items-end gap-3 text-white print:hidden ${open ? "max-sm:hidden" : ""}`}>
       <style>{ANIM}</style>
       {g && hi && !open && (
         <div role="status" className={`${bubble} relative flex items-start gap-1 self-end py-1.5 pe-1.5 ps-4`}>

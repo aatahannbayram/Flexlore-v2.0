@@ -32,7 +32,7 @@ export const Kicker = ({ children, light = false }: { children: React.ReactNode;
 /** Two-tone heading: the set-up in ink, the result in orange. */
 export const H2 = ({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) => (
   <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>);
-export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: { opacity: 0, y: 20 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.6, ease: EASE, delay: i * 0.07 } };
+export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.22, ease: "easeOut" as const, delay: i * 0.06 } };
 
 /* Over the headline: one quiet line naming the trade, in step with the photo behind the phone (existing 8-language copy). */
 function Eyebrow({ i }: { i: number }) {

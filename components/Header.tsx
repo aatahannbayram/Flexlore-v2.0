@@ -42,10 +42,10 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
 
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
-    setLined(y > 8);
+    setLined(y > 24);
     void prev; setHidden(false); // sticky: the header stays in view; it turns into a glass bar once the page moves
   });
-  useEffect(() => { setLined(window.scrollY > 8); }, []);
+  useEffect(() => { setLined(window.scrollY > 24); }, []);
   // Preload the menu content once the browser is idle after load (not on pointerdown: starting a chunk load mid-tap
   // cancelled the click on touch devices).
   useEffect(() => {
@@ -94,7 +94,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-500 ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.78)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[18px] backdrop-saturate-[1.4]" : "bg-transparent"}`}>
+        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore home">
@@ -123,7 +123,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
           </ul>
 
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-2 sm:gap-4">
             {/* Theme and language share one quiet capsule: sun or moon, a hairline, then the flag with its language code. */}
             {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
               : <div className="hidden items-center sm:flex">
@@ -131,8 +131,8 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   <span aria-hidden="true" className="h-5 w-px bg-line-strong" />
                   <FlagPicker />
                 </div>}
-            {SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full bg-white/[.07] px-4 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.12] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
-            <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a>
+            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-4 text-[14px] font-semibold text-ink ring-1 ring-inset ring-white/15 transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            <a href={SITE.demo} className="btn btn-primary h-11 px-4 text-[14px]">{t.cta}</a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
           </div>

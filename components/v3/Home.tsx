@@ -8,7 +8,7 @@
 import { useCallback, useEffect, useRef, useState, Fragment } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { AnimatePresence, m, useInView, useReducedMotion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
@@ -25,9 +25,12 @@ import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
 
 /** Section heading: words rise in one after another when the heading enters view (static under reduced motion).
+ *  Two tones everywhere: a heading with two sentences splits after the first; otherwise the last third is the result.
  *  Payoff words (the `b` part, or the last third of `a`) carry the brand orange (.t-accent, globals.css). */
 function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) {
-  const reduce = useReducedMotion(); const aw = a.split(" "); const nA = b ? aw.length : aw.length - Math.ceil(aw.length / 3);
+  const reduce = useReducedMotion();
+  if (!b) { const m = a.match(/^(.+?\.)\s+(.+)$/); if (m) { a = m[1]; b = m[2]; } }
+  const aw = a.split(" "); const nA = b ? aw.length : aw.length - Math.ceil(aw.length / 3);
   const words = [...aw.map((w, k) => [w, k >= nA] as const), ...(b ? b.split(" ").map((w) => [w, true] as const) : [])];
   if (reduce) return <h2 id={id} className={`v4-h2 mt-3 ${className}`}><span className="t-ink">{aw.slice(0, nA).join(" ")}</span> <span className="t-accent">{[...aw.slice(nA), ...(b ? [b] : [])].join(" ")}</span></h2>;
   return (
@@ -35,18 +38,27 @@ function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; c
       transition={{ staggerChildren: 0.045 }}>
       {words.map(([w, pay], k) => (
         <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom">
-          <m.span className={`inline-block ${pay ? "t-accent" : "t-ink"}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease: EASE }}>{w}</m.span>
+          <m.span className={`inline-block ${pay ? "t-accent" : "t-ink"}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.22, ease: "easeOut" as const }}>{w}</m.span>
         </span>)).flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
 }
+/** Sideways rows on phones: "1 / 4" under the row, following the card that is snapped in. */
+function RowCount({ row, n, className = "" }: { row: React.RefObject<HTMLElement | null>; n: number; className?: string }) {
+  const [i, setI] = useState(0);
+  useEffect(() => { const el = row.current; if (!el) return; let raf = 0;
+    const f = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const kids = [...el.children] as HTMLElement[]; const pad = parseFloat(getComputedStyle(el).paddingInlineStart) || 0;
+      let best = 0, d = Infinity; kids.forEach((c, k) => { const x = Math.abs(c.offsetLeft - pad - el.scrollLeft); if (x < d) { d = x; best = k; } }); setI(best); }); };
+    el.addEventListener("scroll", f, { passive: true }); return () => { el.removeEventListener("scroll", f); cancelAnimationFrame(raf); }; }, [row]);
+  return <p aria-hidden="true" className={`mt-3 text-center text-[12px] tabular-nums text-ink-faint ${className}`}>{i + 1} / {n}</p>;
+}
 /** Chapter marker: the home page reads as one story, numbered 01 to 06. */
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><Kicker>{children}</Kicker></div>);
+  <div className="flex items-center gap-2" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><p className="eyebrow">{children}</p></div>);
 /** Chapter head: number and heading on the left, the lead on the right (03 and 04 share it, so they read as a pair). */
 const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
     <div className="col-span-12 lg:col-span-7"><div className="flex flex-wrap items-center gap-3"><Ch n={n}>{k}</Ch>{extra}</div><H2 id={id} a={h} b={h2} className={w} /></div>
-    <p className="rv col-span-12 max-w-[26rem] text-[14.5px] leading-[1.65] text-ink-muted md:text-[15px] lg:col-span-5 lg:justify-self-end">{p}</p>
+    <p className="rv intro col-span-12 max-w-[30rem] lg:col-span-5 lg:justify-self-end">{p}</p>
   </div>);
 const glass = "rounded-[16px] bg-[rgb(24_24_24/0.62)]";
 /** Warm fade from the photo into the ground. */
@@ -152,8 +164,8 @@ export function StepsV3() {
     <section id="how" aria-labelledby="how-h" className="section-y">
       <div className="container-x">
         <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[30ch]" />
-        <div ref={ref} className="mt-9 grid gap-5 md:mt-14 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <m.div {...(reduce ? {} : { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-10% 0px" }, transition: { duration: 0.9, ease: EASE } })}
+        <div ref={ref} className="mt-8 grid gap-5 md:mt-12 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+          <m.div {...rise(reduce)}
             className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
@@ -232,21 +244,22 @@ export function WhyV3() {
         {/* A statement, set apart: the line reveals word by word as it scrolls in (CSS scroll timeline, no JS). */}
         <div className="mx-auto max-w-[52rem] pt-6 text-center md:pt-10">
           <div className="flex justify-center"><Ch n="02">{c.k}</Ch></div>
-          <h2 id="why-h" className="v4-h2 mt-5" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
-          <p className="rv mx-auto mt-6 max-w-[38rem] text-[15px] leading-[1.65] text-ink-muted md:text-[16px]">{c.lead}</p>
+          <h2 id="why-h" className="rv v4-h2 mt-3" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
+          <p className="rv intro mx-auto mt-4 max-w-[40rem]">{c.lead}</p>
         </div>
-        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
+        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
-            <m.li key={h} {...rise(reduce, k)} className="dark card-pro group relative aspect-[4/5] w-[82%] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[420px] md:w-auto">
+            <m.li key={h} {...rise(reduce, k)} className="dark card-pro group relative aspect-[4/5] w-[calc(100%-32px)] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[420px] md:w-auto">
               <Photo n={imgs[k]} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]" />
               <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
               <div className="absolute inset-x-4 top-[24%] md:inset-x-5" aria-hidden="true">{frags[k]}</div>
               <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                <h3 className="text-[20px] font-semibold leading-[1.15] tracking-[-0.025em] md:text-[22px]">{h}</h3>
-                <p className="mt-2 text-[13.5px] leading-[1.55] text-white/65 md:text-[14px]">{p}</p>
+                <h3 className="text-[20px] font-semibold leading-[26px] tracking-[-0.02em]">{h}</h3>
+                <p className="mt-2 text-[15px] leading-[22px] text-white/70">{p}</p>
               </div>
             </m.li>))}
         </ul>
+        <RowCount row={ref} n={c.cards.length} className="md:hidden" />
       </div>
     </section>);
 }
@@ -316,10 +329,10 @@ export function WorkspaceV3() {
         {/* Centred head: one idea, read before the tree starts building. */}
         <div className="mx-auto flex max-w-[44rem] flex-col items-center text-center">
           <Ch n="03">{c.k}</Ch>
-          <H2 id="ws-h" a={c.h} className="mx-auto max-w-[22ch]" />
-          <p className="rv mt-4 max-w-[34rem] text-[14.5px] leading-[1.65] text-ink-muted md:text-[15px]">{c.p}</p>
+          <H2 id="ws-h" a={c.h} className="mx-auto max-w-[30ch]" />
+          <p className="rv intro mt-4 max-w-[34rem]">{c.p}</p>
         </div>
-        <div ref={ref} className="relative mx-auto mt-10 max-w-[940px] md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        <div ref={ref} className="relative mx-auto mt-8 max-w-[940px] md:mt-12" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           {/* 01 Workspace: the head office, one card wide, on the trunk. */}
           <m.div {...rise(0)}><WsPill n={1} name={L[0][0]} hint={L[0][1]} /></m.div>
           <WsLines paths={["M150 0 V20"]} act={[]} seen={seen} pulse={false} reduce={reduce} k="t" h={20} at={0.1} cls="h-4 md:h-5" />
@@ -450,7 +463,7 @@ export function WebV3() {
         <Head n="04" k={t.k} id="web-h" h={t.h} h2={t.h2} p={t.p}
           extra={<span className="rounded-full bg-[var(--card)] px-2.5 py-0.5 text-[12px] font-medium text-ink-muted">{w2.soon}</span>} />
         {/* Same frame and the same 7 / 5 split as chapter 03: desk on the left, field on the right. */}
-        <div ref={ref} className="mt-9 grid gap-3 md:mt-14 lg:grid-cols-12 lg:gap-4">
+        <div ref={ref} className="mt-8 grid gap-4 md:mt-12 lg:gap-6 lg:grid-cols-12 lg:gap-4">
           <figure className="dark relative overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-7">
             <DeskScene on={on} near={near} />
             <span aria-hidden="true" className={`absolute inset-0 hidden md:block ${fade}`} />
@@ -491,11 +504,6 @@ export function WebV3() {
  * every card at full strength; the sector tabs follow, a tab click scrolls to its card. Logos where we have them.
  * Phones and reduced motion: the swipe carousel (snap, the next card peeks), with arrows and arrow keys. */
 const SEC_IC = { food: ForkKnife, franchise: Storefront, mfg: Factory, build: HardHat } as const;
-function useMedia(q: string) {
-  const [v, setV] = useState(false);
-  useEffect(() => { const mq = window.matchMedia(q); const f = () => setV(mq.matches); f(); mq.addEventListener("change", f); return () => mq.removeEventListener("change", f); }, [q]);
-  return v;
-}
 type CaseT = (typeof HOME4)["en"]["cases"];
 function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t: CaseT; act: boolean; k: number; n: number; className: string }) {
   const I = SEC_IC[c.sec];
@@ -512,7 +520,7 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
             : <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>}
           <p className="mt-3 text-[15px] text-white/80 md:text-[17px]">{t.desc[c.desc]}</p>
         </div>
-        <span className={`${glass} inline-flex min-h-11 items-center gap-2 !rounded-full px-5 text-[14px] font-medium text-white/85`}>{t.soon}</span>
+        <span aria-hidden="true" />
       </div>
     </article>);
 }
@@ -533,37 +541,6 @@ const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void })
     <button type="button" onClick={() => go(i + 1)} disabled={i === n - 1} aria-label="Next" className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="end" className="h-2.5 w-3.5" /></button>
   </div>);
 
-function CasesPinned() {
-  const { locale } = useLocale(); const t = HOME4[locale].cases; const list = CASES; const secs = [...new Set(list.map((c) => c.sec))];
-  const wrap = useRef<HTMLElement>(null); const view = useRef<HTMLDivElement>(null); const track = useRef<HTMLDivElement>(null);
-  const [dist, setDist] = useState(0); const [rtl, setRtl] = useState(false); const [i, setI] = useState(0);
-  useEffect(() => { setRtl(document.documentElement.dir === "rtl"); }, [locale]);
-  useEffect(() => { const f = () => { const tr = track.current, v = view.current; if (tr && v) setDist(Math.max(0, tr.scrollWidth - v.clientWidth)); };
-    f(); const ro = new ResizeObserver(f); if (track.current) ro.observe(track.current); if (view.current) ro.observe(view.current); return () => ro.disconnect(); }, []);
-  const { scrollYProgress } = useScroll({ target: wrap, offset: ["start start", "end end"] });
-  const x = useTransform(scrollYProgress, (p) => (rtl ? 1 : -1) * p * dist);
-  useMotionValueEvent(scrollYProgress, "change", (p) => setI(Math.round(p * (list.length - 1))));
-  const go = useCallback((n: number) => { const el = wrap.current; if (!el) return; const k = Math.max(0, Math.min(list.length - 1, n));
-    const top = el.getBoundingClientRect().top + window.scrollY; const span = el.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: top + span * (k / (list.length - 1)) + 1, behavior: "smooth" }); }, [list.length]);
-  return (
-    <section ref={wrap} id="customers" aria-labelledby="cases-h" className="relative" style={{ height: `calc(100vh + ${dist}px)` }}>
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden pt-[var(--header-h)]">
-        <div className="container-x">
-          <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
-          <div className="relative mt-5 flex items-center justify-between gap-4 border-b border-line">
-            <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
-            <Arrows i={i} n={list.length} go={go} />
-          </div>
-        </div>
-        <div ref={view} className="mt-6 w-full" role="region" aria-roledescription="carousel" aria-label={t.k}>
-          <m.div ref={track} style={{ x }} className="flex w-max gap-4 px-[max(var(--pad-x),calc((100vw-var(--container))/2))]">
-            {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act k={k} n={list.length} className="aspect-[16/9] h-[min(52vh,480px)]" />)}
-          </m.div>
-        </div>
-      </div>
-    </section>);
-}
 function CasesCarousel() {
   const { locale } = useLocale(); const t = HOME4[locale].cases; const reduce = useReducedMotion();
   const list = CASES; const track = useRef<HTMLDivElement>(null); const [i, setI] = useState(0);
@@ -582,6 +559,7 @@ function CasesCarousel() {
     <section id="customers" aria-labelledby="cases-h" className="section-y overflow-hidden pt-0">
       <div className="container-x">
         <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
+        <p className="intro mt-4">{t.soon}</p>
         <div className="mt-6 flex items-center justify-between gap-4 border-b border-line">
           <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
           <Arrows i={i} n={list.length} go={go} />
@@ -590,15 +568,16 @@ function CasesCarousel() {
       <div ref={track} role="region" aria-roledescription="carousel" aria-label={t.k} tabIndex={0}
         onKeyDown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); } if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); } }}
         onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerLeave={up}
-        className="no-sb relative mt-6 flex cursor-grab snap-x snap-mandatory gap-3 overflow-x-auto px-[max(var(--pad-x),calc((100vw-var(--container))/2))] [scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))] active:cursor-grabbing md:gap-4">
-        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-[4/5] w-[86%] snap-start sm:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)]" />)}
+        className="no-sb relative mt-8 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto md:mt-12 md:gap-6 px-[max(var(--pad-x),calc((100vw-var(--container))/2))] [scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))] active:cursor-grabbing">
+        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-[4/5] w-[calc(100%-32px)] snap-start sm:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)] md:max-h-[min(56vh,500px)]" />)}
       </div>
-      <div className="mt-5 flex justify-center gap-1.5" aria-hidden="true">{list.map((c, k) => <span key={c.slug} className={`h-1.5 rounded-full transition-all duration-300 ${k === i ? "w-6 bg-ink" : "w-1.5 bg-line-strong"}`} />)}</div>
+      <div className="mt-4 flex items-center justify-center gap-3" aria-hidden="true">
+        <span className="flex gap-1.5">{list.map((c, k) => <span key={c.slug} className={`h-1.5 rounded-full transition-all duration-200 ${k === i ? "w-6 bg-ink" : "w-1.5 bg-line-strong"}`} />)}</span>
+        <span className="text-[12px] tabular-nums text-ink-faint">{i + 1} / {list.length}</span></div>
     </section>);
 }
 export function CasesV3() {
-  const reduce = useReducedMotion(); const wide = useMedia("(min-width: 768px) and (min-height: 600px)");
-  return wide && !reduce ? <CasesPinned /> : <CasesCarousel />;
+  return <CasesCarousel />;
 }
 /* ---------- Closing call to action: the approved card with the phone and tablet on one stand ---------- */
 const CtaDuoInner = dynamic(() => import("../home/CtaDuo").then((x) => x.CtaDuo), { ssr: false, loading: () => <div className="aspect-[2752/1536] w-full" /> });
@@ -607,13 +586,13 @@ export function EndV3() {
   return (
     <section aria-labelledby="end-h" className="section-y pt-0">
       <div className="container-x">
-        <div className="grid-12 items-center gap-y-7 border-t border-line pt-12 md:pt-16">
+        <div className="grid-12 items-center gap-y-8">
           <div className="col-span-12 lg:col-span-5">
-            <h2 id="end-h" className="v4-h2 max-w-[12ch]">{c.h}</h2>
-            <p className="mt-4 max-w-[26rem] text-[17px] leading-[1.55] text-ink-muted">{c.p}</p>
-            <a href={SITE.demo} className="btn btn-accent group mt-7 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
+            <p className="intro mt-4 max-w-[28rem]">{c.p}</p>
+            <a href={SITE.demo} className="btn btn-accent group mt-8 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
           </div>
-          <div className="col-span-12 mx-auto w-[86%] sm:w-full lg:col-span-7"><div dir="ltr"><CtaDuoInner lang={lang} /></div></div>
+          <div className="col-span-12 mx-auto w-full lg:col-span-7"><div dir="ltr" className="overflow-hidden rounded-[24px]"><CtaDuoInner lang={lang} /></div></div>
         </div>
       </div>
     </section>);
@@ -628,7 +607,7 @@ const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "
   ["/sektor/otel/", "sec-otel", Bed, "82% 30%"], ["/sektor/franchise/", "sec-franchise", Storefront, "30% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
 export function SectorsV3() {
-  const { d, locale, setLocale } = useLocale(); const c = d.ind; const tabs = HOME2[locale].tabs; const reduce = useReducedMotion();
+  const { d, locale, setLocale } = useLocale(); const c = d.ind; const tabs = HOME2[locale].tabs; const reduce = useReducedMotion(); const row = useRef<HTMLUListElement>(null);
   const [act, setAct] = useState(0);
   const pic = (img: string, sizes: string, cls: string, pos: string) => (
     <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes={sizes} />
@@ -642,7 +621,7 @@ export function SectorsV3() {
         </div>
         {/* Large screens: four panels in a row; the one under the pointer (or keyboard focus) opens wide and tells its story,
             the others narrow to a photo strip with their number and name. */}
-        <ul className="mt-9 hidden h-[clamp(440px,58vh,560px)] gap-3 md:mt-14 lg:flex">
+        <ul className="mt-12 hidden h-[clamp(440px,58vh,560px)] gap-6 lg:flex">
           {IND.map(([href, img, Ic, pos], k) => { const on = act === k; return (
             <li key={href} className="min-w-0 transition-[flex-grow] duration-700 ease-[var(--ease-out-expo)]" style={{ flexGrow: on ? 2.7 : 1, flexBasis: 0 }}
               onMouseEnter={() => setAct(k)}>
@@ -669,22 +648,23 @@ export function SectorsV3() {
             </li>); })}
         </ul>
         {/* Phones and tablets: cards in a sideways row (snap, the next card peeks), each with its line and uses. */}
-        <ul className="no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] lg:hidden">
+        <ul ref={row} className="no-sb -mx-[var(--pad-x)] mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] lg:hidden">
           {IND.map(([href, img, Ic, pos], k) => (
-            <m.li key={href} className="w-[80%] shrink-0 snap-start sm:w-[46%]"
-              initial={reduce ? false : { opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.7, delay: reduce ? 0 : k * 0.08, ease: EASE }}>
+            <m.li key={href} className="w-[calc(100%-32px)] shrink-0 snap-start sm:w-[46%]"
+              {...rise(reduce, k)}>
               <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#171717] p-4 text-white">
                 {pic(img, "80vw", "absolute inset-0 h-full w-full object-cover", pos)}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.5)_0%,rgb(16_16_16/0)_26%,rgb(16_16_16/0)_42%,rgb(16_16_16/0.94)_100%)]" />
                 <span className="relative inline-flex h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
                 <span className="relative block"><span className="block text-[20px] font-semibold leading-tight tracking-[-0.02em]">{c.cards[k]}</span>
-                  <span className="mt-1.5 line-clamp-3 block text-[13px] leading-[1.45] text-white/75">{tabs[k][0]}</span></span>
+                  <span className="mt-1.5 line-clamp-3 block text-[15px] leading-[22px] text-white/70">{tabs[k][0]}</span></span>
               </Link>
             </m.li>))}
         </ul>
-        <Link href="/see-it/" className="btn btn-secondary mt-5 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        <RowCount row={row} n={IND.length} className="lg:hidden" />
+        <Link href="/see-it/" className="btn btn-secondary mt-8 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
         {/* One slim glass strip: the other areas on one side, the 8 languages as round flags (a tap switches the site) on the other. */}
-        <div className="mt-8 grid gap-5 border-t border-line pt-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+        <div className="mt-12 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
             <p className="text-[13.5px] font-medium text-ink-faint">{c.also}</p>
             <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2.5">
@@ -707,6 +687,15 @@ export function SectorsV3() {
 }
 
 /** Everything below the hero, in page order. */
+/** One reveal for the page: text marked .rv fades up 12 px in 220 ms, once, when it enters the view. */
+function useReveal() {
+  useEffect(() => {
+    const els = [...document.querySelectorAll<HTMLElement>(".home-v3 .rv")]; if (!els.length || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+    els.forEach((el) => { el.classList.add("rv-js"); io.observe(el); }); return () => io.disconnect();
+  }, []);
+}
 export default function BelowV3() {
+  useReveal();
   return (<><StepsV3 /><WhyV3 /><WorkspaceV3 /><WebV3 /><SectorsV3 /><CasesV3 /><EndV3 /></>);
 }

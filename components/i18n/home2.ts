@@ -39,7 +39,7 @@ export const HOME2: Record<Locale, H> = {
       ["Kimin hazır olduğunu görün", "Kimin izlediğini ve quizi geçtiğini kişi, vardiya ve şube bazında görün. Hangi şubenin size ihtiyacı olduğunu ilk siz bilin."],
     ],
     roles: ["Siz", "Ekibiniz"],
-    why: { k: "Neden Flexlore", h: "Bilgi kişide değil,", h2: "şirkette kalsın.", lead: "Flexlore, işi en iyi yapan kişinin yöntemini telefon videosuyla kayda alır ve her yeni çalışana aynı şekilde öğretir. Masa başında değil, sahada çalışan ekipler için yapıldı.",
+    why: { k: "Neden Flexlore", h: "Usta gitse de", h2: "bilgi şirkette kalır.", lead: "Flexlore, işi en iyi yapan kişinin yöntemini telefon videosuyla kayda alır ve her yeni çalışana aynı şekilde öğretir. Masa başında değil, sahada çalışan ekipler için.",
       cards: [["Ustalık şirkette kalır", "En iyi çalışanınızın yöntemi bir kez kaydedilir. O kişi izne çıksa da ayrılsa da bilgi sizde kalır."], ["Kâğıt yerine video", "Kimsenin okumadığı kılavuzlar yerine, işin başında izlenen kısa adımlar."], ["Saha için yapıldı", "Telefonla çekilir, telefonda izlenir. Bilgisayar başında olmayan ekipler için tasarlandı."]],
       a: ["Ustanın yöntemi", "Şirketin standardı"], b: ["Kâğıt kılavuz", "Kısa video adımları"], c: ["Telefonda", "Kendi dilinde", "İşin başında"] },
     tabs: [

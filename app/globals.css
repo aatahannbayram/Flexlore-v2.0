@@ -474,3 +474,35 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
 [dir="rtl"] .marquee-track { animation-direction: reverse; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track > li[aria-hidden] { display: none; } .marquee { mask-image: none; } }
+
+/* ---------- Home rhythm v2.1 (2026-11-11): one spacing scale on an 8 px grid, one type scale ----------
+   Sections are spaced by one token (gap between sections = --sp-section); inside a section: eyebrow 12, heading to
+   intro 16, intro to content 48 (32 on phones), content to link 32. Card gaps 24 / 16. Two-tone headings: set-up in
+   ink, result at 55 %. Reveals: one fade-up, 12 px, 220 ms ease-out, once. */
+:root { --sp-section: 72px; }
+@media (min-width: 768px) { :root { --sp-section: 96px; } }
+@media (min-width: 1024px) { :root { --sp-section: 128px; } }
+section[id], [id]:target { scroll-margin-top: 80px; }
+.home-v3 section.section-y { padding-top: var(--sp-section) !important; padding-bottom: 0 !important; }
+.home-v3 > section:last-child, .home-v3 section.section-y:last-of-type { padding-bottom: var(--sp-section) !important; }
+.home-v3 .v4-h2 { font-size: clamp(30px, 1.15rem + 1.55vw, 44px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: balance; }
+.home-v3 .t-accent { color: rgb(242 242 240 / 0.55); }
+.home-v3 .t-ink { color: #F2F2F0; }
+:root[data-theme="light"] .home-v3 .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }
+:root[data-theme="light"] .home-v3 .t-ink:not(.dark *) { color: rgb(22 22 22); }
+.eyebrow { font-size: 13px; font-weight: 500; color: rgb(242 242 240 / 0.6); }
+:root[data-theme="light"] .eyebrow:not(.dark *) { color: rgb(22 22 22 / 0.6); }
+.intro { font-size: 16px; line-height: 26px; color: rgb(242 242 240 / 0.7); }
+@media (min-width: 768px) { .intro { font-size: 18px; line-height: 28px; } }
+:root[data-theme="light"] .intro:not(.dark *) { color: rgb(22 22 22 / 0.7); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .home-v3 .v4-h2:not(:has(.sw)), .home-v3 .rv { animation: none; }
+    .home-v3 .sw { animation: none; display: inline; }
+  }
+}
+.home-v3 .rv-js { opacity: 0; transform: translateY(12px); transition: opacity .22s ease-out, transform .22s ease-out; }
+.home-v3 .rv-js.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .home-v3 .rv-js { opacity: 1; transform: none; transition: none; } }
+
+.home-v3 [id] { scroll-margin-top: 80px; }
