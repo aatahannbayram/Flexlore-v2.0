@@ -11,7 +11,7 @@ import Copq from "./Copq";
 import { useLocale, fmt } from "./i18n/LocaleProvider";
 import { BillingSwitch, PlanCard } from "./home/home5b";
 import { QUOTE } from "./pages/copy-quote";
-import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Tag, Lightning, EnvelopeSimple } from "./ui/icons";
+import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple } from "./ui/icons";
 import { Split } from "./ui/Split";
 import { PhotoBand, glassTile } from "./ui/PhotoBand";
 
@@ -62,12 +62,12 @@ export default function Pricing() {
       <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgb(244_240_235/0.09)_0%,rgb(244_240_235/0)_70%)]" />
       <section className="container-x">
         <div className="mx-auto max-w-[52rem] text-center">
-          <p className="inline-flex items-center gap-2.5 rounded-full bg-[var(--card)] py-1.5 pe-4 ps-1.5 text-[14px] font-medium text-ink-muted"><span className="grid h-7 w-7 place-items-center rounded-full bg-white/[.08] text-ink"><Tag size={14} /></span>{t.k}</p>
-          <h1 className="mx-auto mt-6 max-w-[22ch] text-[clamp(38px,1rem+3.4vw,72px)] font-semibold leading-[1.02] tracking-[-0.05em] [text-wrap:balance]"><Split text={t.h1} /></h1>
-          <p className="mx-auto mt-6 max-w-[34rem] text-[17px] leading-[1.6] text-ink-muted md:text-[18px]">{t.sub}</p>
+          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><span className="ch-label">{t.k}</span></p>
+          <h1 className="mx-auto mt-5 max-w-[22ch] text-[clamp(38px,0.9rem+3.3vw,64px)] leading-[1.04] [text-wrap:balance]"><Split text={t.h1} /></h1>
+          <p className="intro mx-auto mt-5 max-w-[34rem]">{t.sub}</p>
           <div className="mt-10 flex justify-center"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
         </div>
-        <ul className="mt-14 grid gap-3 md:grid-cols-2 xl:grid-cols-4" aria-label={c.k}>
+        <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:gap-6 xl:grid-cols-4" aria-label={c.k}>
           {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} full />)}
         </ul>
         <p className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">
@@ -76,8 +76,8 @@ export default function Pricing() {
       </section>
 
       {/* Enterprise: a photo band with the tiers, then the quote request. */}
-      <section id="enterprise" aria-labelledby="ent-h" className="container-x mt-28 md:mt-36">
-        <PhotoBand img="huddle" pos="50% 35%" className="p-6 md:p-12">
+      <section id="enterprise" aria-labelledby="ent-h" className="container-x mt-[var(--sp-section)]">
+        <PhotoBand img="ws-ofis" pos="50% 40%" className="p-6 md:p-12">
           <div className="grid-12 items-end gap-y-8">
             <div className="col-span-12 lg:col-span-7">
               <p className="inline-flex items-center gap-2.5 text-[14px] font-medium text-white/70"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/10"><Buildings size={16} /></span>{t.entK}</p>
@@ -108,16 +108,16 @@ export default function Pricing() {
       <section id="quote" aria-labelledby="quote-h" className="container-x mt-6 scroll-mt-28">
         <div className="grid-12 gap-y-8 pt-14 md:pt-20">
           <div className="col-span-12 lg:col-span-5">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{q.k}</p>
+            <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><span className="ch-label">{q.k}</span></p>
             <h2 id="quote-h" className="v4-h2 mt-4 max-w-[16ch]"><Split text={q.h} /></h2>
-            <p className="mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted">{q.p}</p>
+            <p className="intro mt-4 max-w-[30rem]">{q.p}</p>
             <a href={SITE.demo} className="group mt-6 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{q.alt}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>
           </div>
           <div className="col-span-12 lg:col-span-7"><QuoteForm /></div>
         </div>
       </section>
 
-      <section aria-labelledby="cmp-h" className="container-x mt-28 md:mt-36">
+      <section aria-labelledby="cmp-h" className="container-x mt-[var(--sp-section)]">
         <h2 id="cmp-h" className="v4-h2"><Split text={t.compareH} /></h2>
         <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mt-6 md:hidden">{cmp ? t.hide : t.show}</button>
         <div id="cmp-table" className={`no-sb mt-10 overflow-x-auto ${glassCard} p-2 ${cmp ? "block" : "hidden"} md:block`}>
@@ -128,7 +128,7 @@ export default function Pricing() {
         </div>
       </section>
     </main>
-    <div className="mt-28 md:mt-36"><Copq lang={lang} /></div>
+    <div className="mt-[var(--sp-section)]"><Copq lang={lang} /></div>
     <section aria-labelledby="pfaq-h" className="section-y">
       <div className="container-x grid-12 gap-y-10">
         <h2 id="pfaq-h" className="v4-h2 col-span-12 lg:col-span-4"><Split text={t.faqH} /></h2>
@@ -143,7 +143,7 @@ export default function Pricing() {
       </div>
     </section>
     <section className="pb-[var(--section-y)]"><div className="container-x">
-      <PhotoBand img="restaurant" pos="50% 40%" tone="center" className="px-6 py-16 text-center md:py-24">
+      <PhotoBand img="ws-mutfak" pos="50% 45%" tone="center" className="px-6 py-16 text-center md:py-24">
         <p className="v4-h2 mx-auto max-w-[22ch]"><Split text={t.endH} /></p>
         <p className="mt-4 text-[17px] text-white/75">{t.endP}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
