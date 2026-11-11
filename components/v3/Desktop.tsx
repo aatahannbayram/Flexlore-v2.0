@@ -7,23 +7,24 @@ import dynamic from "next/dynamic";
 import { m, useInView, useReducedMotion } from "framer-motion";
 import { useLocale } from "../i18n/LocaleProvider";
 import { rise } from "./Top";
+import { HOME4 } from "../i18n/home4";
 import { MonitorPlay, Books, UsersThree, ChartBar } from "../ui/icons";
 
 const Dash = dynamic(() => import("../WebApp").then((x) => x.LazyDash), { ssr: false, loading: () => <div className="aspect-[1180/720] w-full bg-[#111]" /> });
 
 const T = {
-  en: { k: "Flexlore Web", soon: "Coming soon", h: "One screen for every location.", p: "Start with the list of who is behind, then open the job or the person behind it.",
-    points: ["Completion by person, team and site", "The question most people miss", "Library and assignments in one place"],
-    steps: [["Turn screen recordings into steps", "Record a task on your computer once and Flexlore turns it into a step-by-step job."], ["Build the library", "Organise jobs in folders and workspaces."], ["Assign and schedule", "Send jobs to roles, teams and locations."], ["Follow the exceptions", "See who has not finished and where people struggle."]],
-    sample: "Sample data", title: "Flexlore Web" },
-  tr: { k: "Flexlore Web", soon: "Yakında", h: "Her şube için tek ekran.", p: "Geride kalanların listesiyle başlayın, ardından ilgili işi veya kişiyi açın.",
-    points: ["Kişi, ekip ve şube bazında tamamlanma", "En çok kaçırılan soru", "Kütüphane ve atamalar tek yerde"],
-    steps: [["Ekran kaydını adımlara dönüştürün", "Bilgisayarda bir işlemi bir kez kaydedin, Flexlore onu adım adım bir işe dönüştürsün."], ["Kütüphaneyi oluşturun", "İşleri klasörlerde ve çalışma alanlarında düzenleyin."], ["Atayın ve planlayın", "İşleri rollere, ekiplere ve şubelere gönderin."], ["İstisnaları takip edin", "Kimin bitirmediğini ve insanların nerede zorlandığını görün."]],
-    sample: "Örnek veri", title: "Flexlore Web" },
+  en: { k: "Flexlore Web", soon: "Coming soon", h: "One screen for every location.", p: "Start with the list of who is behind, then open the job or the person behind it.", steps: [["Build the library", "Organise jobs in folders and workspaces."], ["Assign and schedule", "Send jobs to roles, teams and locations."], ["Follow the exceptions", "See who has not finished and where people struggle."]], title: "Flexlore Web" },
+  tr: { k: "Flexlore Web", soon: "Yakında", h: "Her şube için tek ekran.", p: "Geride kalanların listesiyle başlayın, ardından ilgili işi veya kişiyi açın.", steps: [["Kütüphaneyi oluşturun", "İşleri klasörlerde ve çalışma alanlarında düzenleyin."], ["Atayın ve planlayın", "İşleri rollere, ekiplere ve şubelere gönderin."], ["İstisnaları takip edin", "Kimin bitirmediğini ve insanların nerede zorlandığını görün."]], title: "Flexlore Web" },
+  de: { k: "Flexlore Web", soon: "Demnächst", h: "Ein Bildschirm für alle Standorte.", p: "Beginnen Sie mit der Liste derer, die zurückliegen, und öffnen Sie dann die Aufgabe oder die Person dahinter.", steps: [["Bibliothek aufbauen", "Aufgaben in Ordnern und Workspaces organisieren."], ["Zuweisen und planen", "Aufgaben an Rollen, Teams und Standorte senden."], ["Ausnahmen verfolgen", "Sehen, wer noch nicht fertig ist und wo es hakt."]], title: "Flexlore Web" },
+  ar: { k: "Flexlore Web", soon: "قريبًا", h: "شاشة واحدة لكل المواقع.", p: "ابدأ بقائمة المتأخرين، ثم افتح المهمة أو الشخص المعني.", steps: [["أنشئ المكتبة", "نظّم المهام في مجلدات ومساحات عمل."], ["أسند وجدول", "أرسل المهام إلى الأدوار والفرق والمواقع."], ["تابع الاستثناءات", "اعرف من لم ينجز بعد وأين يواجه الموظفون صعوبة."]], title: "Flexlore Web" },
+  es: { k: "Flexlore Web", soon: "Próximamente", h: "Una pantalla para todas las ubicaciones.", p: "Empiece por la lista de quién va con retraso y abra después la tarea o la persona correspondiente.", steps: [["Cree la biblioteca", "Organice las tareas en carpetas y espacios de trabajo."], ["Asigne y programe", "Envíe tareas a puestos, equipos y ubicaciones."], ["Siga las excepciones", "Vea quién no ha terminado y dónde tienen dificultades."]], title: "Flexlore Web" },
+  ru: { k: "Flexlore Web", soon: "Скоро", h: "Один экран для всех точек.", p: "Начните со списка отстающих, затем откройте нужную работу или сотрудника.", steps: [["Создайте библиотеку", "Организуйте работы по папкам и рабочим пространствам."], ["Назначайте и планируйте", "Отправляйте работы ролям, командам и точкам."], ["Следите за отклонениями", "Видно, кто не закончил и где возникают трудности."]], title: "Flexlore Web" },
+  fr: { k: "Flexlore Web", soon: "Bientôt disponible", h: "Un seul écran pour tous les sites.", p: "Commencez par la liste des personnes en retard, puis ouvrez la tâche ou la personne concernée.", steps: [["Créez la bibliothèque", "Organisez les tâches en dossiers et espaces de travail."], ["Attribuez et planifiez", "Envoyez les tâches aux rôles, équipes et sites."], ["Suivez les exceptions", "Voyez qui n'a pas terminé et où les difficultés apparaissent."]], title: "Flexlore Web" },
+  pl: { k: "Flexlore Web", soon: "Wkrótce", h: "Jeden ekran dla wszystkich lokalizacji.", p: "Zacznij od listy osób z zaległościami, a potem otwórz zadanie lub osobę, której dotyczą.", steps: [["Zbuduj bibliotekę", "Porządkuj zadania w folderach i przestrzeniach roboczych."], ["Przypisuj i planuj", "Wysyłaj zadania do ról, zespołów i lokalizacji."], ["Śledź wyjątki", "Zobacz, kto nie ukończył i gdzie ludzie mają trudności."]], title: "Flexlore Web" },
 } as const;
 
 export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: string; className?: string }) => React.ReactNode; Ch: (p: { n: string; children: React.ReactNode }) => React.ReactNode }) {
-  const { lang } = useLocale(); const t = T[lang === "tr" ? "tr" : "en"]; const reduce = useReducedMotion();
+  const { lang, locale } = useLocale(); const t = T[locale]; const sample = HOME4[locale].web.sample; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
   const icons = [MonitorPlay, Books, UsersThree, ChartBar];
   return (
@@ -52,7 +53,7 @@ export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: str
             </div>
             <div aria-hidden="true" dir="ltr" className="lg:w-[max(100%,860px)]">{near ? <Dash on={on} lang={lang} /> : <div className="aspect-[1180/720] w-full bg-[#111]" />}</div>
           </m.div>
-          <p className="mt-3 text-[12px] text-ink-faint">{t.sample}</p>
+          <p className="mt-3 text-[12px] text-ink-faint">{sample}</p>
         </div>
       </div>
     </section>);

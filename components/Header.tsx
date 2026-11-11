@@ -94,7 +94,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
+        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${home && !(lined || mega || open) ? "dark" : ""} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore home">

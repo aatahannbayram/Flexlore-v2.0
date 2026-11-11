@@ -286,9 +286,9 @@ const wsBack = (x: number) => (x === 150 ? "M150 0 V20" : `M${x} 0 V4 Q${x} 10 $
 function WsLines({ paths, act, seen, pulse, reduce, k, h = 32, at = 0, cls = "h-7 md:h-9" }: { paths: string[]; act: number[]; seen: boolean; pulse: boolean; reduce: boolean | null; k: string; h?: number; at?: number; cls?: string }) {
   return (
     <svg aria-hidden="true" viewBox={`0 0 300 ${h}`} preserveAspectRatio="none" className={`block w-full ${cls}`}>
-      {paths.map((p) => <path key={p} d={p} fill="none" stroke="rgb(255 255 255 / 0.26)" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
+      {paths.map((p) => <path key={p} d={p} fill="none" stroke="var(--ws-line)" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
         style={{ opacity: seen || reduce ? 1 : 0, transition: reduce ? "none" : `opacity .6s ease ${at}s` }} />)}
-      {pulse && act.map((n) => <path key={`${k}${n}`} d={paths[n]} fill="none" stroke="rgb(244 240 235 / 0.9)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength={1}
+      {pulse && act.map((n) => <path key={`${k}${n}`} d={paths[n]} fill="none" stroke="var(--ws-pulse)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength={1}
         className={reduce ? "" : "ws-flow"} strokeDasharray={reduce ? "1" : "0.18 0.82"} />)}
     </svg>);
 }
@@ -296,7 +296,7 @@ function WsLines({ paths, act, seen, pulse, reduce, k, h = 32, at = 0, cls = "h-
 function WsPill({ n, name, hint }: { n: number; name: string; hint: string }) {
   return (
     <div className="flex justify-center">
-      <span className="inline-flex max-w-full items-center gap-2 rounded-full bg-[rgb(24_24_24/0.78)] px-3.5 py-1.5 text-[13px] ring-1 ring-[rgb(255_255_255/0.12)] backdrop-blur-sm">
+      <span className="inline-flex max-w-full items-center gap-2 rounded-full bg-[var(--card)] px-3.5 py-1.5 text-[13px] ring-1 ring-line backdrop-blur-sm">
         <span className="font-semibold tabular-nums text-flame">0{n}</span>
         <span className="font-semibold text-ink">{name}</span>
         <span className="hidden truncate text-ink-faint sm:inline">· {hint}</span>

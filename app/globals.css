@@ -516,3 +516,19 @@ section[id], [id]:target { scroll-margin-top: 80px; }
 .hero-ember { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%, #B9521F 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 :root[data-theme="light"] .hero-metal:not(.dark *) { background-image: linear-gradient(180deg, #3A2A20 0%, #111111 60%, #4A3326 100%); }
 :root[data-theme="light"] .hero-ember:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #C2521A 100%); }
+
+/* Workspace tree lines follow the theme. */
+:root { --ws-line: rgb(255 255 255 / 0.26); --ws-pulse: rgb(244 240 235 / 0.9); }
+:root[data-theme="light"] { --ws-line: rgb(22 22 22 / 0.22); --ws-pulse: rgb(22 22 22 / 0.8); }
+
+/* ---------- One heading system for every page (2026-11-12) ----------
+   Page titles share the home hero's voice: bold, tight, the set-up in metal and the result in ember. Section headings
+   everywhere use the home scale (44/50 to 30/36) with the second part at 55 %. */
+main h1 { font-weight: 700 !important; letter-spacing: -0.04em !important; }
+main h1 .t-ink { background: linear-gradient(180deg, #F2D2BE 0%, #FFFFFF 42%, #FBEEE6 58%, #E3AE8C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+main h1 .t-accent { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%, #B9521F 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+:root[data-theme="light"] main h1 .t-ink:not(.dark *) { background-image: linear-gradient(180deg, #3A2A20 0%, #111111 60%, #4A3326 100%); }
+:root[data-theme="light"] main h1 .t-accent:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #C2521A 100%); }
+.v4-h2 { font-size: clamp(30px, 1.15rem + 1.55vw, 44px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: balance; }
+.t-accent { color: rgb(242 242 240 / 0.55); }
+:root[data-theme="light"] .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }
