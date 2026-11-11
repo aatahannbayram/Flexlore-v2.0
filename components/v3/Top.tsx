@@ -84,7 +84,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           {/* The promise, wide: each sentence on one line on large screens. */}
           <div className="relative z-10 col-span-12 lg:col-span-8">
             <Eyebrow word={word} k={k} />
-            <h1 id="hero-h" className="mt-5 text-[clamp(40px,0.9rem+3.6vw,68px)] font-bold leading-[1.02] tracking-[-0.04em]">
+            <h1 id="hero-h" className="mt-5 text-[clamp(38px,0.8rem+3.3vw,62px)] font-bold leading-[1.02] tracking-[-0.04em]">
               <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="hero-metal">{h.h1a}</span></span></span>
               <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-ember">{h.h1b}</span></span></span>
             </h1>
