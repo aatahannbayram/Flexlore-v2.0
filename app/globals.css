@@ -474,8 +474,3 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
 [dir="rtl"] .marquee-track { animation-direction: reverse; }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track > li[aria-hidden] { display: none; } .marquee { mask-image: none; } }
-
-/* /home2 hero still: a slow push-in so the frame feels filmed. */
-@keyframes kb { from { transform: scale(1.02); } to { transform: scale(1.1); } }
-.kb { transform-origin: 72% 45%; animation: kb 18s ease-out both alternate infinite; }
-@media (prefers-reduced-motion: reduce) { .kb { animation: none; } }
