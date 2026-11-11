@@ -12,7 +12,7 @@ import { useLocale } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
 import { SITE } from "../config";
 import { Device } from "../AppScreens";
-import { CameraScreen, StepPlayerScreen } from "../v3/Home";
+import { StepPlayerScreen } from "../v3/Home";
 import { EASE } from "../ui/Reveal";
 import { TrustStrip } from "../home/Sections";
 import { ArrowRight, Check, CaretDown, ForkKnife, Factory, Bed, Storefront } from "../ui/icons";
@@ -64,49 +64,43 @@ const Tick = ({ t }: { t: string }) => (
 const Kick = ({ children }: { children: React.ReactNode }) => (
   <p className="flex items-center gap-2 text-[13px] font-medium text-ink-muted"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />{children}</p>);
 
-/* ---------- Hero: the promise on the start side, the product on the end side, four tabs that walk the loop ---------- */
-function Hero({ x }: { x: (typeof T)["en"] | (typeof T)["tr"] }) {
-  const { d, lang } = useLocale(); const h = d.hero; const reduce = useReducedMotion();
-  const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.3 });
-  const [i, setI] = useState(0); const [hold, setHold] = useState(false);
-  useEffect(() => { if (!on || hold || reduce) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 4), 5500); return () => window.clearTimeout(t); }, [on, hold, reduce, i]);
-  const photos = ["stage-firin", "stage-uretim", "stage-restoran", "stage-otel"]; const pos = ["50% 40%", "50% 10%", "50% 5%", "50% 5%"];
-  const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <StepPlayerScreen active={on} lang={lang} />
-    : i === 2 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
-  const nums = (h.chip.v.match(/\d+/g) ?? ["12", "14"]).map(Number); const done = Math.min(...nums), of = Math.max(...nums);
+/* ---------- Hero: a framed scene ----------
+ * The same bright kitchen photo twice: softened full-bleed behind, sharp inside a rounded glass frame. The headline sits
+ * in the middle with a small looping clip set into the line (the job being filmed) and a tick after the payoff; one
+ * white call to action; the programs strip runs along the frame's foot. The site header floats over the frame's top. */
+const HERO_IMG = "ws-mutfak";
+function HeroPic({ cls }: { cls: string }) {
+  return (<picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${HERO_IMG}-800.avif 800w, /photos/${HERO_IMG}-1600.avif 1600w`} sizes="100vw" />
+    <img src={`/photos/${HERO_IMG}-1600.webp`} srcSet={`/photos/${HERO_IMG}-800.webp 800w, /photos/${HERO_IMG}-1600.webp 1600w`} sizes="100vw" alt="" fetchPriority="high" decoding="async" className={cls} /></picture>);
+}
+function Hero() {
+  const { d } = useLocale(); const h = d.hero; const reduce = useReducedMotion();
+  const words = h.h1a.split(" "); const lastA = words.pop(); const sub = h.sub.split(/(?<=\.)\s/)[0];
   return (
-    <section aria-labelledby="hero-h" className="pb-14 pt-[calc(var(--header-h)+40px)] md:pb-20 md:pt-[calc(var(--header-h)+64px)]">
-      <div className="container-x grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-        <div className="lg:col-span-5">
-          <Kick>{h.rot.slice(0, 4).join(" · ")}</Kick>
-          <h1 id="hero-h" className="mt-5 text-[36px] font-semibold leading-[1.04] tracking-[-0.045em] text-ink sm:text-[46px] lg:text-[54px]">{h.h1a} <span className="text-ink-faint">{h.h1b}</span></h1>
-          <p className="mt-5 max-w-[30rem] text-[16px] leading-[1.6] text-ink-muted">{h.sub}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={SITE.demo} target="_blank" rel="noopener" className="btn btn-accent h-12 px-6 text-[15px]">{d.nav.cta}</a>
-            <a href="#loop" className="btn btn-secondary h-12 px-5 text-[15px]">{d.process.k}<CaretDown size={14} aria-hidden="true" /></a>
-          </div>
+    <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111] p-2 text-white sm:p-5 lg:p-7">
+      <HeroPic cls="h-full w-full scale-110 object-cover blur-[20px] brightness-[0.45]" />
+      <div className="relative flex min-h-[calc(100svh-16px)] flex-col overflow-hidden rounded-[28px] ring-1 ring-white/35 sm:min-h-[calc(100svh-40px)] sm:rounded-[36px] lg:min-h-[calc(100svh-56px)]">
+        <HeroPic cls="h-full w-full object-cover object-[50%_40%]" />
+        <span aria-hidden="true" className="absolute inset-0 bg-[rgb(10_10_10/0.6)]" />
+        <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(55%_40%_at_50%_45%,rgb(10_10_10/0.4),transparent)]" />
+        <span aria-hidden="true" className="absolute inset-0 rounded-[inherit] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),inset_0_0_0_1px_rgb(255_255_255/0.08)]" />
+        <div className="relative mx-auto flex w-full max-w-[60rem] flex-1 flex-col items-center justify-center px-5 pb-10 pt-[calc(var(--header-h)+40px)] text-center">
+          <m.h1 id="hero-h" initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.22, ease: "easeOut" }}
+            className="text-[40px] font-semibold leading-[1.06] tracking-[-0.035em] [text-shadow:0_2px_24px_rgb(0_0_0/0.35)] sm:text-[56px] lg:text-[72px]">
+            {words.join(" ")}{" "}
+            {/* A short clip set into the line, slightly turned, like a photo laid on the page. */}
+            <span aria-hidden="true" className="relative mx-1 inline-block h-[0.8em] w-[1.35em] -rotate-[4deg] overflow-hidden rounded-[0.16em] align-[-0.06em] ring-[3px] ring-white/90 shadow-[0_12px_30px_-10px_rgb(0_0_0/0.7)]">
+              <video className="h-full w-full object-cover" src="/video/how-editor.mp4" poster="/video/how-editor.webp" muted loop playsInline autoPlay={!reduce} preload="metadata" />
+            </span>{" "}{lastA}
+            <br />
+            <span className="text-white/85">{h.h1b}</span>
+            <span aria-hidden="true" className="ms-2 inline-grid h-[0.62em] w-[0.62em] translate-y-[-0.05em] place-items-center rounded-full ring-[3px] ring-white/85 align-middle"><Check size={18} className="text-white" /></span>
+          </m.h1>
+          <p className="mt-6 max-w-[30rem] text-[16px] leading-[26px] text-white/80 md:text-[18px] md:leading-[28px]">{sub}</p>
+          <a href={SITE.demo} target="_blank" rel="noopener" className="mt-8 inline-flex h-12 items-center rounded-full bg-white px-7 text-[15px] font-semibold text-[#111] transition-transform duration-200 hover:-translate-y-0.5">{d.nav.cta}</a>
         </div>
-        <div ref={ref} className="lg:col-span-7" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <div className="relative aspect-[4/5] sm:aspect-[16/12] lg:aspect-auto lg:h-[min(620px,calc(100svh-var(--header-h)-170px))]">
-            <AnimatePresence initial={false}>
-              <m.div key={i} className="absolute inset-0" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} exit={reduce ? undefined : { opacity: 0 }} transition={{ duration: 0.5, ease: EASE }}>
-                <Stage photo={photos[i]} pos={pos[i]} label={x.tabs[i]} className="h-full">{screen}</Stage>
-              </m.div>
-            </AnimatePresence>
-            {/* The sample readiness, floating on the photo. */}
-            <div className="pointer-events-none absolute bottom-4 end-4 w-[176px] rounded-[18px] bg-[rgb(17_17_17/0.78)] p-3.5 text-white backdrop-blur-md md:bottom-6 md:end-6 md:w-[200px]">
-              <div className="flex items-baseline justify-between"><span className="text-[26px] font-semibold tabular-nums tracking-[-0.04em]">{done}/{of}</span><span className="text-[12px] text-white/70">{x.ready}</span></div>
-              <span className="mt-2 block h-1 overflow-hidden rounded-full bg-white/15"><span className="block h-full rounded-full bg-white" style={{ width: `${(100 * done) / of}%` }} /></span>
-              <p className="mt-2 truncate text-[12px] text-white/70">{h.chip.t} · {x.sample}</p>
-            </div>
-          </div>
-          <div role="tablist" aria-label={d.process.k} className="mt-3 grid grid-cols-4 gap-1 rounded-full bg-white/[.05] p-1">
-            {x.tabs.map((t, k) => (
-              <button key={t} type="button" role="tab" aria-selected={i === k} onClick={() => setI(k)}
-                className={`relative h-11 rounded-full text-[14px] font-medium transition-colors ${i === k ? "bg-[#F4F0EB] text-[#111]" : "text-ink-muted hover:text-ink"}`}>
-                <span className="tabular-nums opacity-50">0{k + 1}</span> {t}</button>))}
-          </div>
-        </div>
+        {/* Programs along the frame's foot. */}
+        <div className="relative pb-5 sm:pb-7"><TrustStrip as="div" label={d.trust.programs} /></div>
       </div>
     </section>);
 }
@@ -135,9 +129,8 @@ export default function Home2() {
   const faq = (d.faq as unknown as { items: [string, string][] }).items.slice(0, 5);
   return (
     <>
-      <Hero x={x} />
+      <Hero />
       {/* Programs: the logos stay as they are on the home page. */}
-      <div className="container-x"><TrustStrip as="div" label={d.trust.programs} /></div>
       <section id="loop" aria-labelledby="loop-h" className="section-y">
         <div className="container-x">
           <div className="mx-auto max-w-[44rem] text-center">
