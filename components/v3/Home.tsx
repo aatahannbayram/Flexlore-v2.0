@@ -64,17 +64,18 @@ const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorSc
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 // Bright scenes behind the phone, one per step: film at the bench, split for the team, watch on the floor, quiz, see who is ready.
-const STAGE = ["stage-firin", "stage-franchise", "stage-uretim", "stage-restoran", "stage-otel"] as const;
+// Other takes of the hero's scenes, so the two chapters never show the same frame; softened behind the phone.
+const STAGE = ["how-firin", "how-franchise", "how-uretim", "how-restoran", "how-otel"] as const;
 /* The phone shows a close-up of the same scene (focus point per step), so stage and screen are one place. */
-export const STILL = [{ src: "/photos/stage-firin-800.webp", at: "45% 78%" }, { src: "/photos/stage-franchise-800.webp", at: "48% 72%" },
-  { src: "/photos/stage-uretim-800.webp", at: "34% 42%" }] as const;
-const STAGE_POS: Record<string, string> = { "stage-firin": "50% 40%", "stage-franchise": "50% 10%", "stage-uretim": "50% 10%", "stage-restoran": "50% 5%", "stage-otel": "50% 5%" };
+export const STILL = [{ src: "/photos/how-firin-800.webp", at: "50% 66%" }, { src: "/photos/how-franchise-800.webp", at: "62% 76%" },
+  { src: "/photos/how-uretim-800.webp", at: "60% 46%" }] as const;
+const STAGE_POS: Record<string, string> = { "how-firin": "50% 50%", "how-franchise": "60% 40%", "how-uretim": "60% 40%", "how-restoran": "60% 40%", "how-otel": "70% 40%", "stage-firin": "50% 40%", "stage-franchise": "50% 10%", "stage-uretim": "50% 10%", "stage-restoran": "50% 5%", "stage-otel": "50% 5%" };
 /* Who holds the phone at each step: 0 you (the owner or manager), 1 your team. */
 const ROLE = [0, 0, 1, 1, 0] as const;
 /* Stage photo: the v3 set, or a /photos still. None of them shows a phone or tablet, so the mockup is the only device on
    the stage; all are softened a little so the phone reads as the thing in focus. */
 function StageImg({ n, soft = false }: { n: string; soft?: boolean }) {
-  const cls = `absolute inset-0 h-full w-full object-cover ${soft ? "scale-105 blur-[3px]" : ""}`;
+  const cls = `absolute inset-0 h-full w-full object-cover ${soft ? "scale-[1.06] blur-[6px]" : ""}`;
   if (n in M) return <Photo n={n as Media} sizes="(min-width:1024px) 55vw, 100vw" className={cls} />;
   return (<picture><source type="image/avif" srcSet={`/photos/${n}-800.avif 800w, /photos/${n}-1600.avif 1600w`} sizes="(min-width:1024px) 55vw, 100vw" />
     <img src={`/photos/${n}-1600.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes="(min-width:1024px) 55vw, 100vw" alt="" decoding="async" loading="lazy"
@@ -156,7 +157,7 @@ export function StepsV3() {
             className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
-                {near && <StageImg n={STAGE[i]} />}
+                {near && <StageImg n={STAGE[i]} soft />}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_75%_at_50%_55%,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0.55)_100%)]" />
