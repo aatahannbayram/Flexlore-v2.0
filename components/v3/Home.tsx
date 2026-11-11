@@ -413,17 +413,26 @@ function BoardScreen() {
       </div>
     </div>);
 }
+/* Meeting room (1408 x 792): the TV hangs well above everyone's heads, two laptops and a phone face the camera. Each
+   screen's corners were measured from the photo; the mask is the exact screen area, so nothing is painted over a person. */
+const MEET = { w: 1408, h: 792, tv: [[496, 95], [918, 95], [917, 333], [496, 333]], phone: [[820, 440], [849, 440], [850, 505], [820, 505]],
+  lapL: [[485, 560], [662, 571], [639, 708], [462, 687]], lapR: [[766, 568], [952, 560], [970, 685], [782, 701]] };
 function DeskScene({ on, near }: { on: boolean; near: boolean }) {
   const { lang } = useLocale(); const box = useRef<HTMLDivElement>(null); const [W, setW] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(() => setW(el.clientWidth)); ro.observe(el); return () => ro.disconnect(); }, []);
-  const [IW] = M["web-toplanti"].size; const s = W / IW; const [L, R] = M["web-toplanti"].screens.map((q) => q.map(([x, y]) => [x * s, y * s]));
+  const k = W / MEET.w; const q = (pts: number[][]) => pts.map(([x, y]) => [x * k, y * k]);
+  const scr = (pts: number[][], w: number, h: number, child: React.ReactNode) => (
+    <div className="absolute left-0 top-0 origin-top-left overflow-hidden bg-[#111]" style={{ width: w, height: h, transform: quadMatrix(w, h, q(pts)) }}>{child}</div>);
   return (
-    <div ref={box} className="relative aspect-[1408/768] w-full overflow-hidden">
-      <Photo n="web-toplanti" sizes="(min-width:1024px) 50vw, 100vw" className="absolute inset-0 h-full w-full object-cover" />
+    <div ref={box} className="relative aspect-[1408/792] w-full overflow-hidden">
+      <picture className="absolute inset-0"><source type="image/avif" srcSet="/photos/meet-800.avif 800w, /photos/meet-1600.avif 1600w" sizes="(min-width:1024px) 58vw, 100vw" />
+        <img src="/photos/meet-1600.webp" srcSet="/photos/meet-800.webp 800w, /photos/meet-1600.webp 1600w" sizes="(min-width:1024px) 58vw, 100vw" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" /></picture>
       {W > 0 && near && (
-        <div aria-hidden="true" className="absolute inset-0" style={{ maskImage: "url(/media/v3/web-toplanti-mask.png)", WebkitMaskImage: "url(/media/v3/web-toplanti-mask.png)", maskSize: "100% 100%", WebkitMaskSize: "100% 100%" }}>
-          <div className="absolute left-0 top-0 origin-top-left" style={{ width: 1180, height: 720, transform: quadMatrix(1180, 720, R) }}><div className="h-full w-full overflow-hidden bg-[#111]"><Dash on={on} lang={lang} /></div></div>
-          <div className="absolute left-0 top-0 origin-top-left" style={{ width: 1180, height: 720, transform: quadMatrix(1180, 720, L) }}><BoardScreen /></div>
+        <div aria-hidden="true" dir="ltr" className="absolute inset-0" style={{ maskImage: "url(/photos/meet-mask.png)", WebkitMaskImage: "url(/photos/meet-mask.png)", maskSize: "100% 100%", WebkitMaskSize: "100% 100%" }}>
+          {scr(MEET.tv, 1180, 720, <Dash on={on} lang={lang} />)}
+          {scr(MEET.lapL, 1180, 720, <BoardScreen />)}
+          {scr(MEET.lapR, 1180, 720, <Dash on={false} lang={lang} />)}
+          {scr(MEET.phone, 393, 852, <Ready active={false} lang={lang} />)}
         </div>)}
     </div>);
 }
