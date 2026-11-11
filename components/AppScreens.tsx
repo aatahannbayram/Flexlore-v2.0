@@ -17,7 +17,7 @@ export const HL = "rgba(255,255,255,.07)";
 export const ease = [0.22, 1, 0.36, 1] as const;
 export const ic = { size: 15 } as const;
 export const card = "rounded-[14px] border border-white/[.07] shadow-[inset_0_1px_0_rgba(255,255,255,.05),0_1px_2px_rgba(0,0,0,.4),0_8px_24px_-12px_rgba(0,0,0,.6)]";
-export type ScreenProps = { active: boolean; lang?: Lang };
+export type ScreenProps = { active: boolean; lang?: Lang; still?: Still };
 
 /** Counts 0..max-1 every `ms` while `active`; resets to 0 when paused. */
 export function useTick(active: boolean, ms: number, max: number) {
@@ -26,7 +26,19 @@ export function useTick(active: boolean, ms: number, max: number) {
   return n;
 }
 /** Muted loop from public/video. Plays only while `active` (page-wide registry caps concurrent loops). */
-export function Clip({ name, active, className = "" }: { name: string; active: boolean; className?: string }) {
+/** A still close-up of the scene behind the phone, so the screen and the stage show the same place. `at` is the focus
+ *  point (object-position and zoom origin); it drifts in slowly while active, like a handheld clip. */
+export type Still = { src: string; at: string };
+export function StillClip({ still, active, className = "" }: { still: Still; active: boolean; className?: string }) {
+  return (<div className="relative h-full w-full overflow-hidden">
+    <img src={still.src} alt="" decoding="async" className={`h-full w-full object-cover transition-transform ease-out motion-reduce:transition-none ${active ? "scale-[1.75] duration-[6000ms]" : "scale-[1.6] duration-0"} ${className}`}
+      style={{ objectPosition: still.at, transformOrigin: still.at }} /></div>);
+}
+export function Clip({ name, active, className = "", still }: { name: string; active: boolean; className?: string; still?: Still }) {
+  if (still) return <StillClip still={still} active={active} className={className} />;
+  return <VideoClip name={name} active={active} className={className} />;
+}
+function VideoClip({ name, active, className = "" }: { name: string; active: boolean; className?: string }) {
   const r = useRef<HTMLVideoElement>(null); const [ready, setReady] = useState(false);
   useEffect(() => { const v = r.current; if (!v) return; if (active) playOnly(v); else stopVideo(v); }, [active]);
   useEffect(() => () => { const v = r.current; if (v) stopVideo(v); }, []);

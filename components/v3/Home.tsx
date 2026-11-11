@@ -65,6 +65,9 @@ const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 // Bright scenes behind the phone, one per step: film at the bench, split for the team, watch on the floor, quiz, see who is ready.
 const STAGE = ["stage-firin", "stage-franchise", "stage-uretim", "stage-restoran", "stage-otel"] as const;
+/* The phone shows a close-up of the same scene (focus point per step), so stage and screen are one place. */
+const STILL = [{ src: "/photos/stage-firin-800.webp", at: "45% 78%" }, { src: "/photos/stage-franchise-800.webp", at: "48% 72%" },
+  { src: "/photos/stage-uretim-800.webp", at: "34% 42%" }] as const;
 const STAGE_POS: Record<string, string> = { "stage-firin": "50% 40%", "stage-franchise": "50% 10%", "stage-uretim": "50% 10%", "stage-restoran": "50% 5%", "stage-otel": "50% 5%" };
 /* Who holds the phone at each step: 0 you (the owner or manager), 1 your team. */
 const ROLE = [0, 0, 1, 1, 0] as const;
@@ -84,7 +87,7 @@ function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) 
   useEffect(() => { if (!active) return; setT(0); const id = window.setInterval(() => setT((v) => Math.min(13, v + 1)), 420); return () => window.clearInterval(id); }, [active]);
   return (
     <div className="absolute inset-0 overflow-hidden bg-black text-white">
-      <img src="/photos/bakery-800.webp" alt="" decoding="async" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: "22% 50%" }} />
+      <img src={STILL[0].src} alt="" decoding="async" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" style={{ objectPosition: STILL[0].at, transformOrigin: STILL[0].at }} />
       <span aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: THIRDS }} />
       <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/70 to-transparent px-[18px] pb-[22px] pt-[50px] text-[12px] font-semibold">
         <Lightning size={16} aria-hidden="true" className="text-white/85" />
@@ -102,7 +105,7 @@ function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) 
           <span className="text-white/45">{lang === "tr" ? "Foto" : "Photo"}</span><span className="text-[#FFD60A]">Video</span><span className="text-white/45">Slo-mo</span>
         </div>
         <div className="mt-[14px] flex items-center justify-between px-[34px]">
-          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src="/photos/bakery-800.webp" alt="" decoding="async" className="h-full w-full object-cover" /></span>
+          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src={STILL[0].src} alt="" decoding="async" className="h-full w-full object-cover" /></span>
           <span className="grid h-[64px] w-[64px] place-items-center rounded-full ring-[3px] ring-white"><span className="h-[24px] w-[24px] rounded-[6px] bg-[#FF453A]" /></span>
           <span className="grid h-[40px] w-[40px] place-items-center rounded-full bg-white/15"><ArrowCounterClockwise size={18} aria-hidden="true" /></span>
         </div>
@@ -121,7 +124,7 @@ function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en" | "tr"
     <Status /><Nav title={L.t} right={<span className="text-[13px] tabular-nums text-white/60">6/6</span>} />
     <span className="mx-3.5 mt-2 block h-[3px] overflow-hidden rounded-full bg-white/10"><span className="block h-full rounded-full bg-white transition-[width] duration-500" style={{ width: done ? "100%" : "83.4%" }} /></span>
     <div className="relative mt-3 flex-1 overflow-hidden bg-black">
-      <Clip name="steam" active={active} className="scale-[1.02]" />
+      <Clip name="steam" active={active} still={STILL[2]} />
       <span className="pointer-events-none absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-black via-black/75 to-transparent" />
       <span className="absolute start-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[11px] font-medium text-white">{L.s}</span>
       <div className="absolute inset-x-4 bottom-[26px]">
@@ -140,7 +143,7 @@ export function StepsV3() {
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
   const run = on && !hold && !paused && !reduce;
   useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
-  const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} />
+  const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} still={STILL[1]} />
     : i === 2 ? <StepPlayerScreen active={on} lang={lang} /> : i === 3 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
   /* Load the story screens as soon as the section is near, so switching steps never waits on code (no pop-in). */
   useEffect(() => { if (near) void import("../AppScreensStory"); }, [near]);
