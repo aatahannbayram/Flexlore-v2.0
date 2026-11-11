@@ -413,10 +413,10 @@ function BoardScreen() {
       </div>
     </div>);
 }
-/* Meeting room (1408 x 792): the TV hangs well above everyone's heads, two laptops and a phone face the camera. Each
+/* Meeting room (1408 x 792): a manager presents at a TV hung above everyone's heads; two laptops face the camera. Each
    screen's corners were measured from the photo; the mask is the exact screen area, so nothing is painted over a person. */
-const MEET = { w: 1408, h: 792, tv: [[496, 95], [918, 95], [917, 333], [496, 333]], phone: [[820, 440], [849, 440], [850, 505], [820, 505]],
-  lapL: [[485, 560], [662, 571], [639, 708], [462, 687]], lapR: [[766, 568], [952, 560], [970, 685], [782, 701]] };
+const MEET = { w: 1408, h: 792, tv: [[410, 54], [977, 54], [977, 384], [410, 384]],
+  lapL: [[465, 587], [695, 600], [665, 777], [429, 736]], lapR: [[740, 528], [935, 515], [958, 649], [761, 674]] };
 function DeskScene({ on, near }: { on: boolean; near: boolean }) {
   const { lang } = useLocale(); const box = useRef<HTMLDivElement>(null); const [W, setW] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(() => setW(el.clientWidth)); ro.observe(el); return () => ro.disconnect(); }, []);
@@ -432,7 +432,6 @@ function DeskScene({ on, near }: { on: boolean; near: boolean }) {
           {scr(MEET.tv, 1180, 720, <Dash on={on} lang={lang} />)}
           {scr(MEET.lapL, 1180, 720, <BoardScreen />)}
           {scr(MEET.lapR, 1180, 720, <Dash on={false} lang={lang} />)}
-          {scr(MEET.phone, 393, 852, <Ready active={false} lang={lang} />)}
         </div>)}
     </div>);
 }
