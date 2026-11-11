@@ -18,7 +18,10 @@ export function HeroCinema({ children }: { children?: React.ReactNode }) {
   return (
     <>
       <section aria-labelledby="hero-h" className="dark relative isolate flex min-h-[100svh] w-full flex-col overflow-hidden bg-[#111] text-white">
-        <SmartVideo name="gen-hands" idle className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        {/* The phone held upright, filming the pass (still with a slow push-in; static under reduced motion). */}
+        <picture className="absolute inset-0 -z-20 overflow-hidden"><source type="image/avif" srcSet="/photos/hero-dikey-1024.avif 1024w, /photos/hero-dikey-2048.avif 2048w" sizes="100vw" />
+          <img src="/photos/hero-dikey-2048.webp" srcSet="/photos/hero-dikey-1024.webp 1024w, /photos/hero-dikey-2048.webp 2048w" sizes="100vw" alt="" fetchPriority="high" decoding="async"
+            className="kb h-full w-full object-cover object-[72%_50%]" /></picture>
         <span aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-[62%] bg-[linear-gradient(to_top,rgb(10_10_10/0.82),rgb(10_10_10/0.35)_55%,transparent)]" />
         <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-40 bg-[linear-gradient(to_bottom,rgb(10_10_10/0.55),transparent)]" />
         <div className="container-x mt-auto flex w-full flex-col gap-6 pb-8 pt-[calc(var(--header-h)+48px)] sm:gap-8 sm:pb-12 lg:flex-row lg:items-end lg:justify-between lg:pb-16">
@@ -61,4 +64,24 @@ export function HeroCinema({ children }: { children?: React.ReactNode }) {
       </section>
       {children}
     </>);
+}
+
+/** /home2 closing: the hero's language again, full-bleed film with the last call to action at the bottom. */
+export function EndCinema() {
+  const { d } = useLocale(); const c = d.end;
+  return (
+    <section aria-labelledby="end-h" className="dark relative isolate flex min-h-[82svh] w-full flex-col overflow-hidden bg-[#111] text-white">
+      <SmartVideo name="warehouse2" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+      <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgb(10_10_10/0.88),rgb(10_10_10/0.4)_55%,rgb(10_10_10/0.7))]" />
+      <div className="container-x mt-auto flex w-full flex-col gap-6 pb-12 pt-28 sm:pb-16 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
+        <div className="max-w-[40rem]">
+          <h2 id="end-h" className="text-[2rem] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-4xl lg:text-[3.5rem]">{c.h}</h2>
+          <p className="mt-4 max-w-[30rem] text-[16px] leading-[1.6] text-white/75">{c.p}</p>
+        </div>
+        <div className="flex flex-col gap-3 sm:inline-flex sm:flex-row sm:items-center sm:gap-0 sm:self-start sm:rounded-full sm:bg-white sm:p-1.5 lg:self-end">
+          <a href="/see-it/" className="flex min-h-11 items-center justify-center rounded-full bg-white px-5 text-[14px] font-medium text-[#111] sm:bg-transparent sm:px-4">{d.ind.more}</a>
+          <a href={SITE.demo} target="_blank" rel="noopener" className="flex min-h-11 items-center justify-center rounded-full px-6 text-[14px] font-medium text-white transition-opacity hover:opacity-90" style={{ background: GRAD }}>{c.cta}</a>
+        </div>
+      </div>
+    </section>);
 }

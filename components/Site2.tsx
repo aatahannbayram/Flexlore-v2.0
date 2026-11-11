@@ -8,7 +8,7 @@ import { TrustStrip } from "./home/Sections";
 import { HeroCinema } from "./v3/HeroCinema";
 import { useLocale } from "./i18n/LocaleProvider";
 import { VideoPause } from "./ui/SmartVideo";
-const Below = dynamic(() => import("./v3/Home"));
+const Below = dynamic(() => import("./v3/Below2"));
 
 /** /home2: the home page with the cinematic full-bleed hero, for side-by-side comparison with /. Everything below the
  *  hero is the same as the home page. Not in the sitemap, noindex. */

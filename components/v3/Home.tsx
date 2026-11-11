@@ -23,6 +23,8 @@ import { CASES } from "./cases";
 import { LOGOS, CaseLogo } from "./logos";
 import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
+import { useCinema } from "./cinema";
+import { SmartVideo } from "../ui/SmartVideo";
 
 /** Section heading: words rise in one after another when the heading enters view (static under reduced motion).
  *  Payoff words (the `b` part, or the last third of `a`) carry the brand orange (.t-accent, globals.css). */
@@ -138,7 +140,7 @@ function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en" | "tr"
     </div></div>);
 }
 export function StepsV3() {
-  const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const roles = HOME2[locale].roles; const x = EXTRA[locale]; const reduce = useReducedMotion();
+  const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const roles = HOME2[locale].roles; const x = EXTRA[locale]; const reduce = useReducedMotion(); const cin = useCinema();
   const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
   const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
   const run = on && !hold && !paused && !reduce;
@@ -148,31 +150,33 @@ export function StepsV3() {
   /* Load the story screens as soon as the section is near, so switching steps never waits on code (no pop-in). */
   useEffect(() => { if (near) void import("../AppScreensStory"); }, [near]);
   return (
-    <section id="how" aria-labelledby="how-h" className="section-y">
+    <section id="how" aria-labelledby="how-h" className={cin ? "dark relative section-y lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center lg:py-28" : "section-y"}>
       <div className="container-x">
-        <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[30ch]" />
+        <div className={cin ? "relative z-10" : ""}><Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className={cin ? "max-w-[18ch]" : "max-w-[30ch]"} /></div>
         <div ref={ref} className="mt-9 grid gap-5 md:mt-14 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           <m.div {...(reduce ? {} : { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-10% 0px" }, transition: { duration: 0.9, ease: EASE } })}
-            className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
+            className={`dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto ${cin ? "lg:!absolute lg:inset-0 lg:h-auto lg:rounded-none lg:shadow-none" : "lg:h-[540px]"}`}>
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
                 {near && <StageImg n={STAGE[i]} />}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_75%_at_50%_55%,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0.55)_100%)]" />
-            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
+            {/* Film mode: the stage is the whole section; a dark wash on the start side carries the heading and the steps. */}
+            {cin && <span aria-hidden="true" className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgb(10_10_10/0.9)_0%,rgb(10_10_10/0.6)_36%,rgb(10_10_10/0)_62%)] lg:block rtl:-scale-x-100" />}
+            {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className={`absolute end-3 top-3 z-10 grid h-11 w-11 ${cin ? "lg:end-12 lg:top-24" : ""} place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 transition-colors hover:text-white md:end-5 md:top-5`}>{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             {/* The phone is sized by the stage height, so it always stands whole inside the frame. */}
-            <div className="absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
+            <div className={`absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%] ${cin ? "lg:left-[72%] lg:top-[50%] lg:h-[66%]" : ""}`} style={{ aspectRatio: "393 / 852" }} dir="ltr">
               <Device label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
             </div>
             <AnimatePresence mode="wait" initial={false}>
               <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
-                className={`${glass} absolute start-3 top-3 flex w-max max-w-[calc(100%-4.5rem)] items-center gap-2 !rounded-full py-1.5 pe-3.5 ps-1.5 text-[13px] font-medium text-white md:start-5 md:top-5`}>
+                className={`${glass} absolute start-3 top-3 flex w-max max-w-[calc(100%-4.5rem)] items-center gap-2 !rounded-full py-1.5 pe-3.5 ps-1.5 text-[13px] font-medium text-white md:start-5 md:top-5 ${cin ? "lg:start-auto lg:end-28 lg:top-[6.25rem] lg:bg-[rgb(10_10_10/0.45)] lg:backdrop-blur-lg" : ""}`}>
                 <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold ${ROLE[i] ? "bg-[#F4F0EB] text-[#111]" : "bg-white/15"}`}>{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
               </m.div>
             </AnimatePresence>
           </m.div>
-          <div className="flex min-w-0 flex-col lg:col-span-5">
+          <div className={`flex min-w-0 flex-col lg:col-span-5 ${cin ? "relative z-10 lg:rounded-[24px] lg:bg-[rgb(10_10_10/0.4)] lg:p-2 lg:backdrop-blur-lg" : ""}`}>
             {/* Steps as quiet rows: the picked one lifts onto a card, opens its line and fills an orange bar while it plays. */}
             <ol className="relative flex flex-col gap-1 before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
               {s.map(([h, p], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
@@ -195,7 +199,7 @@ export function StepsV3() {
             </ol>
           </div>
         </div>
-        <div className="mt-4 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-5">
+        <div className={`mt-4 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-5 ${cin ? "relative z-10 lg:text-white/70" : ""}`}>
           <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
         </div>
       </div>
@@ -207,7 +211,7 @@ export function StepsV3() {
  * company, short video steps replace paper, and it is made for people on the floor. A small glass fragment on each photo
  * shows the idea. Phones: one row that scrolls sideways (snap, the next card peeks). */
 export function WhyV3() {
-  const { locale } = useLocale(); const c = HOME2[locale].why; const reduce = useReducedMotion();
+  const { locale } = useLocale(); const c = HOME2[locale].why; const reduce = useReducedMotion(); const cin = useCinema();
   const ref = useRef<HTMLUListElement>(null); const go = useInView(ref, { amount: 0.3, once: true });
   const row = "flex items-center gap-2.5 rounded-[10px] bg-white/[.06] px-3 py-2.5 text-[13px] text-white";
   const frags = [
@@ -226,14 +230,25 @@ export function WhyV3() {
   ];
   const imgs: Media[] = ["problem-vardiya", "problem-kagitlar", "saha-iskele-pov"];
   return (
-    <section aria-labelledby="why-h" className="section-y pt-0">
+    <section aria-labelledby="why-h" className={cin ? "section-y pt-0" : "section-y pt-0"}>
+      {/* Film mode: the statement sits on a full-bleed clip of the work itself (our footage), darkened for AA. */}
+      {cin && <div className="dark relative isolate flex min-h-[78svh] items-center overflow-hidden text-white">
+        <SmartVideo name="gen-baker" className="absolute inset-0 -z-20 h-full w-full object-cover" />
+        <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[rgb(10_10_10/0.62)]" />
+        <span aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-[linear-gradient(to_top,var(--bg),transparent)]" />
+        <div className="container-x mx-auto max-w-[56rem] py-24 text-center">
+          <div className="flex justify-center"><Ch n="02">{c.k}</Ch></div>
+          <h2 id="why-h" className="v4-h2 mt-5" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-white/55"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
+          <p className="rv mx-auto mt-6 max-w-[38rem] text-[15px] leading-[1.65] text-white/75 md:text-[16px]">{c.lead}</p>
+        </div>
+      </div>}
       <div className="container-x">
         {/* A statement, set apart: the line reveals word by word as it scrolls in (CSS scroll timeline, no JS). */}
-        <div className="mx-auto max-w-[52rem] pt-6 text-center md:pt-10">
+        {!cin && <div className="mx-auto max-w-[52rem] pt-6 text-center md:pt-10">
           <div className="flex justify-center"><Ch n="02">{c.k}</Ch></div>
           <h2 id="why-h" className="v4-h2 mt-5" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
           <p className="rv mx-auto mt-6 max-w-[38rem] text-[15px] leading-[1.65] text-ink-muted md:text-[16px]">{c.lead}</p>
-        </div>
+        </div>}
         <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
             <m.li key={h} {...rise(reduce, k)} className="dark card-pro group relative aspect-[4/5] w-[82%] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[420px] md:w-auto">
