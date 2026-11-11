@@ -124,14 +124,14 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
           </ul>
 
           <div className="flex items-center gap-2">
-            {/* Theme and language sit side by side, no frame, 36 px: sun or moon, a hairline, then the flag with its language code. */}
+            {/* Theme and language sit side by side, no frame (44 px touch targets): sun or moon, a hairline, then the flag with its language code. */}
             {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
-              : <div className="hidden h-9 items-center sm:flex">
-                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-9 !w-9" />
+              : <div className="hidden h-11 items-center sm:flex">
+                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
                   <span aria-hidden="true" className="h-4 w-px bg-line-strong" />
                   <FlagPicker compact />
                 </div>}
-            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-9 items-center rounded-full px-3.5 text-[13px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="btn-cta">{t.cta}</a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>

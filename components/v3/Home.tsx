@@ -155,8 +155,9 @@ export function StepPlayerScreen({ active, lang }: { active: boolean; lang: "en"
 export function StepsV3() {
   const { d, lang, locale } = useLocale(); const c = d.process; const s = HOME2[locale].steps; const roles = HOME2[locale].roles; const x = EXTRA[locale]; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const on = useInView(ref, { amount: 0.35 }); const near = useInView(ref, { margin: "300px 0px", once: true });
-  const [i, setI] = useState(0); const [hold, setHold] = useState(false); const [paused, setPaused] = useState(false);
-  const run = on && !hold && !paused && !reduce;
+  /* Steps advance on their own every 6 s while the section is on screen; only the pause button stops them. */
+  const [i, setI] = useState(0); const [paused, setPaused] = useState(false);
+  const run = on && !paused && !reduce;
   useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
   const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} clip="how-editor" />
     : i === 2 ? <StepPlayerScreen active={on} lang={lang} /> : i === 3 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
@@ -166,19 +167,24 @@ export function StepsV3() {
     <section id="how" aria-labelledby="how-h" className="section-y">
       <div className="container-x">
         <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[30ch]" />
-        <div ref={ref} className="mt-8 grid gap-5 md:mt-12 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        <div ref={ref} className="mt-8 grid gap-5 md:mt-12 lg:grid-cols-12 lg:items-center lg:gap-10">
           <m.div {...rise(reduce)}
-            className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
+            className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[600px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
-                {near && <StageImg n={STAGE[i]} soft />}
+                {near && <div className={`absolute inset-0 ${reduce ? "" : "stage-zoom"}`}><StageImg n={STAGE[i]} soft /></div>}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_75%_at_50%_55%,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0.55)_100%)]" />
             {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             {/* The phone is sized by the stage height, so it always stands whole inside the frame. */}
-            <div className="absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
-              <Device label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
+            <div className="absolute left-1/2 top-[52%] h-[76%] -translate-x-1/2 -translate-y-1/2 rounded-[13%/6%] shadow-[0_50px_80px_-30px_rgb(0_0_0/0.8),0_18px_36px_-18px_rgb(0_0_0/0.55)] md:top-[48%] md:h-[80%]" style={{ aspectRatio: "440 / 956" }} dir="ltr">
+              <Device max label={s[i][0]}>{near ? <AnimatePresence initial={false}><m.div key={i} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.35 }}>{screen}</m.div></AnimatePresence> : <div className="absolute inset-0 bg-[#111]" />}</Device>
+            </div>
+            {/* Where the story is: five segments, the open one filling over its 6 s. */}
+            <div aria-hidden="true" className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-[rgb(17_17_17/0.55)] px-3 py-2.5 ring-1 ring-white/10 backdrop-blur-md md:bottom-5">
+              {s.map((_, k) => <span key={k} className="h-[3px] w-7 overflow-hidden rounded-full bg-white/20 md:w-10">
+                <span key={`${i}-${run}`} className="block h-full origin-left rounded-full bg-[#EC6726] rtl:origin-right" style={k < i ? { transform: "none" } : k === i ? (run ? { animation: "barfill 6s linear both" } : { transform: "none" }) : { transform: "scaleX(0)" }} /></span>)}
             </div>
             <AnimatePresence mode="wait" initial={false}>
               <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
@@ -190,12 +196,13 @@ export function StepsV3() {
           <div className="flex min-w-0 flex-col lg:col-span-5">
             {/* Steps as quiet rows: the picked one lifts onto a card, opens its line and fills an orange bar while it plays. */}
             <ol className="relative flex flex-col gap-1 before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
+              <span aria-hidden="true" className="absolute start-[27px] top-6 w-px bg-[#EC6726] transition-[height] duration-500 ease-out md:start-[31px]" style={{ height: `calc((100% - 48px) * ${i / (s.length - 1)})` }} />
               {s.map(([h, p], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
                 <li key={h}>
                   <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
                     className={`group relative w-full overflow-hidden rounded-[18px] px-4 py-3 text-start transition-colors duration-300 md:px-5 md:py-3.5 ${act ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
                     <span className="flex items-center gap-3">
-                      <span className={`relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold tabular-nums ring-1 transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111] ring-[#F4F0EB]" : done ? "bg-bg text-ink ring-line-strong" : "bg-bg text-ink-faint ring-line"}`}>
+                      <span className={`relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold tabular-nums ring-1 transition-colors duration-300 ${act ? "bg-[#EC6726] text-white ring-[#EC6726] shadow-[0_0_0_4px_rgb(236_103_38/0.18)]" : done ? "bg-bg text-[#EC6726] ring-[#EC6726]/60" : "bg-bg text-ink-faint ring-line"}`}>
                         {done ? <Check size={12} aria-hidden="true" /> : k + 1}</span>
                       <span className={`min-w-0 flex-1 text-[17px] font-medium leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[18px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
                       <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-medium transition-colors duration-300 ${act ? (team ? "bg-ink text-bg" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
@@ -203,8 +210,6 @@ export function StepsV3() {
                     <span aria-hidden={!act} className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                       <span className="overflow-hidden"><span className="block ps-9 pt-1.5 text-[14.5px] leading-[1.6] text-ink-muted">{p}</span></span>
                     </span>
-                    {act && <span aria-hidden="true" className="absolute inset-x-4 bottom-0 h-[2px] overflow-hidden rounded-full bg-line md:inset-x-5">
-                      <span key={`${i}-${run}`} className="block h-full origin-left bg-ink rtl:origin-right" style={run ? { animation: "barfill 6s linear both" } : { transform: "scaleX(0)" }} /></span>}
                   </button>
                 </li>); })}
             </ol>
