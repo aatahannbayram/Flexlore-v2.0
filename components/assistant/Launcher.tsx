@@ -69,7 +69,7 @@ export function AssistantLauncher() {
         </div>)}
       {err && <p role="alert" className={`${bubble} px-4 py-3 text-white/85`}>{t[2]}</p>}
       <button id="flx-ai-btn" type="button" onClick={toggle} aria-expanded={open} aria-label={open ? t[1] : t[0]}
-        className="fl-pop group relative flex h-14 items-center gap-2.5 rounded-full bg-[#161616] p-1.5 text-[#F4F0EB] shadow-[0_18px_44px_-14px_rgb(0_0_0/0.9),0_0_0_1px_rgb(255_255_255/0.09),inset_0_1px_0_rgb(255_255_255/0.1)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-14px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.16),0_0_32px_-6px_rgb(244_240_235/0.25)] motion-reduce:transition-none sm:pe-4">
+        className={`fl-pop group relative flex h-14 items-center gap-2.5 rounded-full bg-[#161616] p-1.5 text-[#F4F0EB] shadow-[0_18px_44px_-14px_rgb(0_0_0/0.9),0_0_0_1px_rgb(255_255_255/0.09),inset_0_1px_0_rgb(255_255_255/0.1)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-14px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.16),0_0_32px_-6px_rgb(244_240_235/0.25)] motion-reduce:transition-none ${open ? "w-14 justify-center" : "sm:pe-4"}`}>
         {open ? <span className="grid h-11 w-11 place-items-center"><X /></span> : (<>
           {/* Mini orb: the app icon in a slowly turning ring of light */}
           <span className="relative grid h-11 w-11 shrink-0 place-items-center">
