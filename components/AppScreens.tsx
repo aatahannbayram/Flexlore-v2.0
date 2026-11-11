@@ -144,7 +144,7 @@ const WS = {
 /* Film: each step opens in turn (its clip plays, the scrubber runs), its check ticks, then the next opens.
    One loop = 15 ticks of 1 s. Reduced motion or inactive: a still of step 1 open. */
 const STEP_T = 4, LOOP = 15;
-export function WorkScreen({ active, lang = "en" }: ScreenProps) {
+export function WorkScreen({ active, lang = "en", onStep }: ScreenProps & { onStep?: (k: number, done: number) => void }) {
   const L = WS[lang]; const reduce = useReducedMotion(); const run = active && !reduce;
   const n = useTick(run, 1000, LOOP);
   const k = run ? Math.min(Math.floor(n / STEP_T), 2) : 0;           // open step
@@ -152,6 +152,8 @@ export function WorkScreen({ active, lang = "en" }: ScreenProps) {
   const end = run && n >= STEP_T * 3;                                // all done: scroll back to the top
   const done = (i: number) => run ? (i < k || (i === k && within >= 3) || end) : !!reduce;
   const count = [0, 1, 2].filter((i) => done(i)).length;          // steps watched, of 6
+  // Tell the page which step is open and how many are ticked (the home hero follows it with the same scene).
+  useEffect(() => { onStep?.(k, count); }, [k, count, onStep]);
   // Scroll so the open step sits near the top: steps above it are collapsed cards of 50pt + 10pt gap.
   const first = useRef<HTMLDivElement>(null); const [top0, setTop0] = useState(300);
   useEffect(() => { if (first.current) setTop0(first.current.offsetTop); }, [lang]);
