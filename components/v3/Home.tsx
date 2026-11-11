@@ -414,9 +414,10 @@ function BoardScreen() {
     </div>);
 }
 /* Meeting room (1408 x 792): a manager presents at a TV hung above everyone's heads; two laptops face the camera. Each
-   screen's corners were measured from the photo; the mask is the exact screen area, so nothing is painted over a person. */
-const MEET = { w: 1408, h: 792, tv: [[410, 54], [977, 54], [977, 384], [410, 384]],
-  lapL: [[465, 587], [695, 600], [665, 777], [429, 736]], lapR: [[740, 528], [935, 515], [958, 649], [761, 674]] };
+   screen's four edges were fitted to the photo and their crossings are the corners; the mask is the exact screen area, so nothing is painted over a person. */
+// Corners sit 2.6 px outside the fitted inner bezel, so the panel tucks under the bezel with no white seam.
+const MEET = { w: 1408, h: 792, tv: [[407.4, 52.7], [980.2, 52.7], [980.2, 386.2], [408, 386.3]],
+  lapL: [[458.8, 577.3], [698.5, 598.4], [667.6, 780.1], [422.9, 739.5]], lapR: [[737.6, 527], [936.9, 513.3], [960.6, 650.7], [759.1, 676.2]] };
 function DeskScene({ on, near }: { on: boolean; near: boolean }) {
   const { lang } = useLocale(); const box = useRef<HTMLDivElement>(null); const [W, setW] = useState(0);
   useEffect(() => { const el = box.current; if (!el) return; const ro = new ResizeObserver(() => setW(el.clientWidth)); ro.observe(el); return () => ro.disconnect(); }, []);
