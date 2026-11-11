@@ -57,15 +57,17 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
   useEffect(() => { if (reduce || !rest) return; const t = window.setInterval(() => setI((k) => (k + 1) % n), 3600); return () => window.clearInterval(t); }, [reduce, n, rest]);
   return (
     <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111111] pt-[var(--header-h)] text-ink">
+      {/* Atmosphere: a warm glow behind the stage, a soft light upper left, a faint grain-free vignette. */}
+      <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_78%_42%,rgb(236_103_38/0.16)_0%,rgb(236_103_38/0)_70%),radial-gradient(40%_45%_at_12%_18%,rgb(244_240_235/0.07)_0%,rgb(244_240_235/0)_70%),radial-gradient(120%_80%_at_50%_120%,rgb(0_0_0/0.6)_0%,rgb(0_0_0/0)_60%)]" />
       <div className="container-x relative">
         <div className="grid-12 items-center gap-y-10 pb-12 pt-8 lg:min-h-[min(calc(100svh-var(--header-h)-40px),820px)] lg:py-14">
           <div className="col-span-12 lg:col-span-6">
             <Eyebrow i={i} />
-            <h1 id="hero-h" className="mt-6 max-w-[15ch] text-[clamp(40px,1rem+3.2vw,74px)] font-semibold leading-[0.97] tracking-[-0.055em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-6 max-w-[15ch] text-[clamp(40px,1rem+3vw,70px)] font-[580] leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">
               <span className="hs-word block"><span className="t-ink">{h.h1a}</span></span>
               <span className="hs-word block pb-[0.06em]" style={{ animationDelay: "90ms" }}><span className="hero-grad">{h.h1b}</span></span>
             </h1>
-            <p className="hs-in mt-6 max-w-[32rem] text-[16px] leading-[1.6] text-white/70 sm:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
+            <p className="hs-in mt-6 max-w-[30rem] text-[15.5px] leading-[1.65] text-white/62 sm:text-[16px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="btn btn-glass h-11 px-6 text-[15px]">{d.nav.cta}</a>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-11 px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
@@ -77,19 +79,20 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           {/* The stage: one rounded window onto the trade of the moment, the phone with the live app standing in front. */}
           <div className="col-span-12 lg:col-span-6">
             <div className="hs-device relative mx-auto aspect-[4/5] w-full max-w-[520px] lg:aspect-[5/6] lg:max-w-none" style={{ animationDelay: "200ms" }}>
-              <div aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-[36px] bg-[#1A1A1A]">
+              <div aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-[36px] bg-[#1A1A1A] shadow-[0_50px_100px_-40px_rgb(0_0_0/0.9),0_0_0_1px_rgb(255_255_255/0.08)]">
                 {STAGE_PICS.slice(0, rest ? n : 1).map(([img, pos], k) => { const on = k === i; return (
                   <picture key={img} className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${on ? "opacity-100" : "opacity-0"}`}>
                     <source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:1024px) 45vw, 90vw" />
                     <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="(min-width:1024px) 45vw, 90vw" alt="" decoding="async" loading="eager" {...(k === 0 ? { fetchPriority: "high" as const } : {})}
-                      style={{ objectPosition: pos }} className={`h-full w-full object-cover ${on && !reduce ? "stage-zoom" : ""}`} /></picture>); })}
-                <span className="absolute inset-0 bg-[radial-gradient(ellipse_60%_55%_at_50%_55%,rgb(17_17_17/0.15)_0%,rgb(17_17_17/0.7)_100%),linear-gradient(0deg,rgb(17_17_17/0.55)_0%,rgb(17_17_17/0)_40%)]" />
+                      style={{ objectPosition: pos }} className={`h-full w-full object-cover saturate-[1.12] contrast-[1.04] ${on && !reduce ? "stage-zoom" : ""}`} /></picture>); })}
+                <span className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_60%_45%,rgb(17_17_17/0)_0%,rgb(17_17_17/0.55)_100%),linear-gradient(0deg,rgb(17_17_17/0.5)_0%,rgb(17_17_17/0)_35%),linear-gradient(120deg,rgb(236_103_38/0.10)_0%,rgb(236_103_38/0)_45%)]" />
               </div>
               <AnimatePresence mode="wait" initial={false}>
                 <m.p key={i} aria-hidden="true" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.4, ease: EASE }}
                   className="absolute bottom-5 start-6 text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{h.rot[i % h.rot.length]}</m.p>
               </AnimatePresence>
-              <div className="absolute left-1/2 top-1/2 w-[44%] max-w-[260px] -translate-x-1/2 -translate-y-1/2" dir="ltr">
+              {/* The phone stands at the lower left, over the window's edge, so the photo reads and the app leads. */}
+              <div className="absolute left-[34%] top-[54%] w-[44%] max-w-[260px] -translate-x-1/2 -translate-y-1/2 lg:left-[22%]" dir="ltr">
                 <div className="hero-lift drop-shadow-[0_45px_70px_rgba(0,0,0,0.7)]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
               </div>
             </div>

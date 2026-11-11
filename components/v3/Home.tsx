@@ -5,7 +5,7 @@
  * 04 web, desk to field (twin of 03) · 05 industries · 06 customers (pinned, slides sideways as the page scrolls) · closing card.
  * Orange is the payoff words, the progress line and the call to action.
  * Copy: d.process / d.bento / d.end / d.ind (main dictionary), HOME2 (steps, roles, why, sector lines, web chip), HOME4 (workspaces, web, customers). */
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, Fragment } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { AnimatePresence, m, useInView, useReducedMotion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
@@ -46,11 +46,13 @@ const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
 const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
     <div className="col-span-12 lg:col-span-7"><div className="flex flex-wrap items-center gap-3"><Ch n={n}>{k}</Ch>{extra}</div><H2 id={id} a={h} b={h2} className={w} /></div>
-    <p className="col-span-12 max-w-[30rem] text-[15px] leading-[1.55] text-ink-muted md:text-[16px] lg:col-span-5 lg:justify-self-end">{p}</p>
+    <p className="rv col-span-12 max-w-[26rem] text-[14.5px] leading-[1.65] text-ink-muted md:text-[15px] lg:col-span-5 lg:justify-self-end">{p}</p>
   </div>);
 const glass = "rounded-[16px] bg-[rgb(24_24_24/0.62)]";
 /** Warm fade from the photo into the ground. */
 const fade = "bg-[linear-gradient(180deg,rgb(16_16_16/0)_30%,rgb(16_16_16/0.55)_62%,rgb(16_16_16/0.94)_100%)]";
+/** Words of a heading, each revealed as the line scrolls in (see .sw in globals.css). `from` continues the count. */
+const Words = ({ text, from = 0 }: { text: string; from?: number }) => <>{text.split(" ").map((w, k) => <Fragment key={k}>{k > 0 && " "}<span className="sw" style={{ ["--i" as string]: from + k }}>{w}</span></Fragment>)}</>;
 /** Rule-of-thirds lines for the camera screen. */
 const THIRDS = (() => { const l = "rgb(255 255 255 / 0.18)"; const g = (dir: string) => `linear-gradient(${dir},transparent calc(33.33% - .5px),${l} calc(33.33% - .5px),${l} calc(33.33% + .5px),transparent calc(33.33% + .5px),transparent calc(66.66% - .5px),${l} calc(66.66% - .5px),${l} calc(66.66% + .5px),transparent calc(66.66% + .5px))`; return `${g("90deg")},${g("180deg")}`; })();
 
@@ -221,16 +223,21 @@ export function WhyV3() {
   return (
     <section aria-labelledby="why-h" className="section-y pt-0">
       <div className="container-x">
-        <Head n="02" k={c.k} id="why-h" h={c.h} h2={c.h2} p={c.lead} w="max-w-[20ch]" />
-        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-9 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
+        {/* A statement, set apart: the line reveals word by word as it scrolls in (CSS scroll timeline, no JS). */}
+        <div className="mx-auto max-w-[52rem] pt-6 text-center md:pt-10">
+          <div className="flex justify-center"><Ch n="02">{c.k}</Ch></div>
+          <h2 id="why-h" className="v4-h2 mt-5" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
+          <p className="rv mx-auto mt-6 max-w-[38rem] text-[15px] leading-[1.65] text-ink-muted md:text-[16px]">{c.lead}</p>
+        </div>
+        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-14 md:grid md:grid-cols-3 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
-            <m.li key={h} {...rise(reduce, k)} className="dark group relative aspect-[4/5] w-[82%] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[440px] md:w-auto">
+            <m.li key={h} {...rise(reduce, k)} className="dark card-pro group relative aspect-[4/5] w-[82%] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[420px] md:w-auto">
               <Photo n={imgs[k]} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]" />
               <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
               <div className="absolute inset-x-4 top-[24%] md:inset-x-5" aria-hidden="true">{frags[k]}</div>
               <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
                 <h3 className="text-[20px] font-semibold leading-[1.15] tracking-[-0.025em] md:text-[22px]">{h}</h3>
-                <p className="mt-2 text-[14px] leading-[1.5] text-white/75 md:text-[15px]">{p}</p>
+                <p className="mt-2 text-[13.5px] leading-[1.55] text-white/65 md:text-[14px]">{p}</p>
               </div>
             </m.li>))}
         </ul>
@@ -257,7 +264,7 @@ const wsDown = (x: number) => WS_X.map((t) => (t === x ? `M${x} 0 V32` : `M${x} 
 function WsLines({ paths, act, seen, reduce, k }: { paths: string[]; act: number[]; seen: boolean; reduce: boolean | null; k: string }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 300 32" preserveAspectRatio="none" className="block h-7 w-full md:h-9">
-      {paths.map((p) => <path key={p} d={p} fill="none" stroke="rgb(255 255 255 / 0.14)" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
+      {paths.map((p) => <path key={p} d={p} fill="none" stroke="rgb(255 255 255 / 0.26)" strokeWidth="1.5" vectorEffect="non-scaling-stroke"
         pathLength={1} strokeDasharray="1" style={{ strokeDashoffset: seen || reduce ? 0 : 1, transition: reduce ? "none" : "stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1)" }} />)}
       {act.map((n) => <path key={`${k}${n}`} d={paths[n]} fill="none" stroke="rgb(244 240 235 / 0.9)" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" pathLength={1}
         className={reduce ? "" : "ws-flow"} strokeDasharray={reduce ? "1" : "0.18 0.82"} />)}
@@ -290,16 +297,12 @@ export function WorkspaceV3() {
       <div className="container-x">
         <Head n="03" k={c.k} id="ws-h" h={c.h} p={c.p} />
         <div ref={ref} className="relative mt-9 md:mt-14" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          {seen && <AnimatePresence initial={false}>
-            <m.span key={cur.img} aria-hidden="true" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.9, ease: EASE }} className="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]">
-              <img src={wsImg(cur.img)} alt="" decoding="async" loading="lazy" className="h-full w-full scale-110 object-cover opacity-[0.1] blur-2xl saturate-0" />
-            </m.span></AnimatePresence>}
           <div className="relative grid lg:grid-cols-[180px_1fr] lg:gap-x-6">
             {/* 01 Workspace: the head office, one card wide, centred over the sites. */}
             <WsLevel n={1} name={L[0][0]} hint={L[0][1]} />
             <div className="grid grid-cols-3 gap-2 md:gap-3">
-              <div className={`dark relative col-start-2 flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white ring-1 ring-[rgb(255_255_255/0.3)] md:p-3 ${cardH}`}>
-                {seen && <img src="/photos/office-800.webp" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_42%] grayscale" />}
+              <div className={`dark card-pro relative col-start-2 flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white ring-1 ring-[rgb(255_255_255/0.35)] md:p-3 ${cardH}`}>
+                {seen && <img src="/photos/office-800.webp" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_42%] saturate-[1.15] contrast-[1.05]" />}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.25)_0%,rgb(16_16_16/0.3)_40%,rgb(16_16_16/0.9)_100%)]" />
                 <span className="relative grid h-9 w-9 place-items-center rounded-[11px] bg-[#F4F0EB] text-[#111]"><Buildings size={17} aria-hidden="true" />
                   {!reduce && <span aria-hidden="true" className="ws-ping absolute inset-0 rounded-[11px] ring-1 ring-[#F4F0EB]" />}</span>
@@ -315,9 +318,9 @@ export function WorkspaceV3() {
             <div role="tablist" aria-label={c.k} className="grid grid-cols-3 gap-2 md:gap-3">
               {sites.map((s, k) => { const act = k === i; const Ic = s.Ic; return (
                 <button key={s.n} type="button" role="tab" aria-selected={act} aria-controls="ws-panel" onClick={() => setI(k)}
-                  className={`group dark relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-start text-white ring-1 transition-all duration-500 md:p-3 ${cardH} ${act ? "ring-[rgb(255_255_255/0.45)]" : "ring-transparent hover:ring-[rgb(255_255_255/0.2)]"}`}>
+                  className={`group dark card-pro relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-start text-white ring-1 transition-all duration-500 md:p-3 ${cardH} ${act ? "ring-[rgb(255_255_255/0.45)]" : "ring-transparent hover:ring-[rgb(255_255_255/0.2)]"}`}>
                   {seen && <img src={wsImg(s.img)} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
-                    className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-55 saturate-[0.35] group-hover:opacity-75"}`} />}
+                    className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-70 saturate-[0.6] group-hover:opacity-90"}`} />}
                   <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.2)_40%,rgb(16_16_16/0.88)_100%)]" />
                   <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(16_16_16/0.45)] text-white/85"}`}><Ic size={17} aria-hidden="true" /></span>
                   <span className="relative block">
@@ -335,7 +338,7 @@ export function WorkspaceV3() {
                 <m.ul key={i} initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.3, ease: EASE }}
                   className="grid grid-cols-3 gap-2 md:gap-3">
                   {cur.jobs.map((j, k) => { const [a, b] = cur.done[k]; const full = a === b; return (
-                    <li key={j} className={`dark relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white md:p-3 ${cardH}`}>
+                    <li key={j} className={`dark card-pro relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white md:p-3 ${cardH}`}>
                       {seen && <img src={wsImg(cur.pics[k])} alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-80" />}
                       <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.35)_0%,rgb(16_16_16/0.25)_35%,rgb(16_16_16/0.92)_100%)]" />
                       <span className="relative flex items-start justify-between gap-2">
@@ -648,19 +651,19 @@ export function SectorsV3() {
         {/* One slim glass strip: the other areas on one side, the 8 languages as round flags (a tap switches the site) on the other. */}
         <div className="mt-8 grid gap-5 border-t border-line pt-6 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.also}</p>
-            <ul className="mt-3 flex flex-wrap gap-2">
+            <p className="text-[13.5px] font-medium text-ink-faint">{c.also}</p>
+            <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2.5">
               {c.areas.map((a, k) => { const I = AREA_IC[k] ?? DotsThreeCircle; return (
-                <li key={a} className="inline-flex h-9 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[14px] text-ink"><I size={15} aria-hidden="true" className="text-ink-muted" />{a}</li>); })}
+                <li key={a} className="inline-flex items-center gap-2 text-[15px] text-ink/85"><I size={16} aria-hidden="true" className="text-ink-faint" />{a}</li>); })}
             </ul>
           </div>
           <div className="lg:border-s lg:border-line lg:ps-10">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.langs}</p>
+            <p className="text-[13.5px] font-medium text-ink-faint">{c.langs}</p>
             <ul className="mt-3 flex flex-wrap gap-1">
               {LOCALES.map((l) => { const on = l.code === locale; return (
                 <li key={l.code}><button type="button" aria-pressed={on} aria-label={l.name} title={l.name} onClick={() => setLocale(l.code)}
                   className={`grid h-11 w-11 place-items-center rounded-full transition-all duration-300 ${on ? "bg-white/[.12] ring-2 ring-ink" : "hover:bg-white/[.06]"}`}>
-                  <img src={`/flags/${l.flag}.svg`} alt="" width={28} height={28} className={`h-7 w-7 rounded-full object-cover transition-transform duration-300 ${on ? "scale-105" : "opacity-85"}`} /></button></li>); })}
+                  <img src={`/flags/${l.flag}.svg`} alt="" width={28} height={28} className={`h-6 w-6 rounded-full object-cover transition-[transform,opacity] duration-300 ${on ? "scale-110" : "opacity-60 hover:opacity-100"}`} /></button></li>); })}
             </ul>
           </div>
         </div>

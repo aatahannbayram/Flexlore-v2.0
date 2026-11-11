@@ -454,3 +454,16 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 .t-flame { background: linear-gradient(180deg, #FF9F63 0%, #F57B3A 48%, #EC6726 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .tick { color: rgb(244 240 235 / 0.62); }
 :root[data-theme="light"] .tick:not(.dark *) { color: rgb(22 22 22 / 0.55); }
+
+/* Cards: a deeper, softer lift with a hairline of light (works with the glass chips on top). */
+.card-pro { box-shadow: 0 1px 0 rgb(255 255 255 / 0.06) inset, 0 0 0 1px rgb(255 255 255 / 0.05), 0 30px 60px -32px rgb(0 0 0 / 0.95), 0 12px 24px -16px rgb(0 0 0 / 0.6); }
+/* Text motion without JS: headings and leads rise in as they scroll into view; a statement reveals word by word.
+   Browsers without scroll timelines (and reduced motion) show the text as is. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .v4-h2:not(:has(.sw)), .rv { animation: rv-in linear both; animation-timeline: view(); animation-range: entry 0% entry 70%; }
+    .sw { display: inline-block; animation: sw-in linear both; animation-timeline: view(); animation-range: entry calc(10% + var(--i, 0) * 4%) cover calc(28% + var(--i, 0) * 4%); }
+  }
+}
+@keyframes rv-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes sw-in { from { opacity: 0.12; transform: translateY(0.25em); } to { opacity: 1; transform: none; } }

@@ -71,6 +71,7 @@
 :root[data-theme="light"] .text-white\/50:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/55:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/60:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
+:root[data-theme="light"] .text-white\/62:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/65:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/70:not(.dark, .dark *) { color: rgb(22 22 22 / 0.7); }
 :root[data-theme="light"] .text-white\/75:not(.dark, .dark *) { color: rgb(22 22 22 / 0.75); }
