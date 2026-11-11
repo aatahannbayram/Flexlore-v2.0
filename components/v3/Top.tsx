@@ -54,9 +54,10 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       {SCENES.map((s, i) => { const on = i === k; return (
         <div key={s.clip} className={`absolute inset-0 transition-opacity duration-700 ease-out ${on ? "opacity-100" : "opacity-0"}`}>
           {rest && !reduce
-            ? <video className={`h-full w-full scale-[1.06] object-cover blur-[1.5px] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
-            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.06] object-cover blur-[1.5px]" />}
+            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[6px] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
+            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[6px]" />}
         </div>); })}
+      <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.12)_0%,rgb(17_17_17/0.22)_100%)]" />
       <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.9)_0%,rgb(17_17_17/0.66)_40%,rgb(17_17_17/0.25)_72%,rgb(17_17_17/0.4)_100%)] rtl:-scale-x-100" />
       <span className="absolute inset-0 bg-[radial-gradient(45%_55%_at_74%_55%,rgb(236_103_38/0.22)_0%,rgb(236_103_38/0)_70%)] mix-blend-screen" />
       <span className="absolute inset-0 bg-[rgb(236_103_38/0.07)] mix-blend-overlay" />
