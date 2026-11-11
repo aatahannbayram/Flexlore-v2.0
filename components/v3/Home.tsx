@@ -291,9 +291,9 @@ export function WorkspaceV3() {
   const { d, locale } = useLocale(); const c = HOME4[locale].ws; const L = WS_LEVELS[locale]; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const seen = useInView(ref, { amount: 0.3, once: true }); const on = useInView(ref, { amount: 0.3 });
   const sites: { n: string; Ic: typeof Factory; img: string; pos: string; jobs: string[]; pics: string[]; people: number; due: number; done: [number, number][] }[] = [
-    { n: c.nodes[1], Ic: ForkKnife, img: "cafe-opening", pos: "55% 50%", jobs: d.bento.jobs, pics: ["restaurant", "chef-plating", "hero-sef"], people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
-    { n: c.nodes[2], Ic: Factory, img: "food-qa", pos: "50% 45%", jobs: c.siteJobs[0], pics: ["factory", "field", "safety"], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
-    { n: c.nodes[3], Ic: HardHat, img: "saha-santiye-havadan", pos: "50% 50%", jobs: c.siteJobs[1], pics: ["saha-iskele-pov", "saha-liman", "saha-drone-cember"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
+    { n: c.nodes[1], Ic: ForkKnife, img: "ws-mutfak", pos: "50% 45%", jobs: d.bento.jobs, pics: ["ws-j-acilis", "ws-j-alerjen", "ws-j-fritoz"], people: 64, due: 5, done: [[14, 14], [11, 14], [6, 14]] },
+    { n: c.nodes[2], Ic: Factory, img: "ws-uretim", pos: "50% 45%", jobs: c.siteJobs[0], pics: ["ws-j-hat", "ws-j-kalip", "ws-j-kkd"], people: 93, due: 8, done: [[22, 22], [17, 22], [9, 22]] },
+    { n: c.nodes[3], Ic: HardHat, img: "ws-santiye", pos: "50% 45%", jobs: c.siteJobs[1], pics: ["ws-j-iskele", "ws-j-vinc", "ws-j-brifing"], people: 41, due: 3, done: [[18, 18], [15, 18], [12, 18]] },
   ];
   /* The tree builds itself once, level by level (label, cards, then the line down to the next level); only then do the
    * pulses run and the sites start taking turns. */
@@ -324,8 +324,8 @@ export function WorkspaceV3() {
           <WsLines paths={["M150 0 V20"]} act={[]} seen={seen} pulse={false} reduce={reduce} k="t" h={20} at={0.1} cls="h-4 md:h-5" />
           <m.div {...rise(0.2)} className="grid grid-cols-3 gap-2 md:gap-3">
               <div className={`dark card-pro relative col-start-2 flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white ring-1 ring-[rgb(255_255_255/0.35)] md:p-3 ${cardH}`}>
-                {seen && <img src="/photos/office-800.webp" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_42%] saturate-[1.15] contrast-[1.05]" />}
-                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.25)_0%,rgb(16_16_16/0.3)_40%,rgb(16_16_16/0.9)_100%)]" />
+                {seen && <img src="/photos/ws-ofis-800.webp" alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover object-[50%_42%]" />}
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0)_40%,rgb(16_16_16/0.78)_100%)]" />
                 <span className="relative grid h-9 w-9 place-items-center rounded-[11px] bg-[#F4F0EB] text-[#111]"><Buildings size={17} aria-hidden="true" />
                   {!reduce && <span aria-hidden="true" className="ws-ping absolute inset-0 rounded-[11px] ring-1 ring-[#F4F0EB]" />}</span>
                 <span className="relative block">
@@ -343,8 +343,8 @@ export function WorkspaceV3() {
                 <button key={s.n} type="button" role="tab" aria-selected={act} aria-controls="ws-panel" onClick={() => setI(k)}
                   className={`group dark card-pro relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-start text-white ring-1 transition-all duration-500 md:p-3 ${cardH} ${act ? "ring-[rgb(255_255_255/0.45)]" : "ring-transparent hover:ring-[rgb(255_255_255/0.2)]"}`}>
                   {seen && <img src={wsImg(s.img)} alt="" decoding="async" loading="lazy" style={{ objectPosition: s.pos }}
-                    className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100 saturate-100" : "opacity-70 saturate-[0.6] group-hover:opacity-90"}`} />}
-                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.2)_40%,rgb(16_16_16/0.88)_100%)]" />
+                    className={`absolute inset-0 h-full w-full object-cover transition-[transform,filter,opacity] duration-700 ease-out ${act ? "scale-105 opacity-100" : "opacity-80 saturate-[0.75] group-hover:opacity-100 group-hover:saturate-100"}`} />}
+                  <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0)_40%,rgb(16_16_16/0.78)_100%)]" />
                   <span className={`relative grid h-9 w-9 place-items-center rounded-[11px] transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111]" : "bg-[rgb(16_16_16/0.45)] text-white/85"}`}><Ic size={17} aria-hidden="true" /></span>
                   <span className="relative block">
                     <span className="block truncate text-[14px] font-semibold md:text-[15px]">{s.n}</span>
@@ -356,7 +356,7 @@ export function WorkspaceV3() {
           {/* 03 Work: from the picked site back to the trunk, then out to its jobs. */}
           <WsLines paths={[wsBack(WS_X[i])]} act={[0]} seen={seen} pulse={ready} reduce={reduce} k={`b${i}`} h={20} at={1.45} cls="h-5 md:h-6" />
           <m.div {...rise(1.6)}><WsPill n={3} name={L[2][0]} hint={L[2][1]} /></m.div>
-          <WsLines paths={WS_FAN} act={[0, 1, 2]} seen={seen} pulse={ready} reduce={reduce} k={`c${i}`} at={1.7} />
+          <WsLines paths={WS_FAN} act={[1]} seen={seen} pulse={ready} reduce={reduce} k={`c${i}`} at={1.7} />
           <m.div {...rise(1.9)}>
             <div id="ws-panel" role="tabpanel">
               <AnimatePresence mode="wait" initial={false}>
@@ -364,8 +364,8 @@ export function WorkspaceV3() {
                   className="grid grid-cols-3 gap-2 md:gap-3">
                   {cur.jobs.map((j, k) => { const [a, b] = cur.done[k]; const full = a === b; return (
                     <li key={j} className={`dark card-pro relative flex flex-col justify-between overflow-hidden rounded-[18px] bg-[#171717] p-2.5 text-white md:p-3 ${cardH}`}>
-                      {seen && <img src={wsImg(cur.pics[k])} alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-80" />}
-                      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.35)_0%,rgb(16_16_16/0.25)_35%,rgb(16_16_16/0.92)_100%)]" />
+                      {seen && <img src={wsImg(cur.pics[k])} alt="" decoding="async" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />}
+                      <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.3)_0%,rgb(16_16_16/0)_32%,rgb(16_16_16/0.82)_100%)]" />
                       <span className="relative flex items-start justify-between gap-2">
                         <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[11px] bg-[rgb(16_16_16/0.72)] text-white"><Play size={13} weight="fill" aria-hidden="true" /></span>
                         <span className={`rounded-full bg-[rgb(16_16_16/0.72)] px-2 py-0.5 text-[12px] tabular-nums md:text-[13px] ${full ? "text-white" : "text-white/80"}`}>{full ? <span className="flex items-center gap-1"><Check size={13} aria-hidden="true" className="tick" /><span className="hidden sm:inline">{a}/{b}</span></span> : `${a}/${b}`}</span>
