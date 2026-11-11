@@ -453,8 +453,8 @@ export function WebV3() {
                 className="absolute end-3 top-3 w-[min(62%,250px)] md:end-5 md:top-5" aria-hidden="true">{chip(b.jobs[0], `${b.sent} · ${b.today}`)}</m.div>)}</AnimatePresence>
           </figure>
           <figure className="dark relative min-h-[420px] overflow-hidden rounded-[20px] bg-[#171717] lg:col-span-5 lg:min-h-0">
-            <picture className="absolute inset-0"><source type="image/avif" srcSet="/photos/factory-800.avif 800w, /photos/factory-1600.avif 1600w" sizes="(min-width:1024px) 38vw, 100vw" />
-              <img src="/photos/factory-800.webp" srcSet="/photos/factory-800.webp 800w, /photos/factory-1600.webp 1600w" sizes="(min-width:1024px) 38vw, 100vw" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-[20%_50%]" /></picture>
+            <picture className="absolute inset-0"><source type="image/avif" srcSet="/photos/web-saha-800.avif 800w, /photos/web-saha-1600.avif 1600w" sizes="(min-width:1024px) 38vw, 100vw" />
+              <img src="/photos/web-saha-800.webp" srcSet="/photos/web-saha-800.webp 800w, /photos/web-saha-1600.webp 1600w" sizes="(min-width:1024px) 38vw, 100vw" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover object-[25%_50%]" /></picture>
             <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
             <div className="float-y absolute end-[7%] top-[7%] w-[min(36%,140px)] drop-shadow-[0_24px_36px_rgba(0,0,0,0.5)]" dir="ltr" aria-hidden="true">
               <Device label={d.hero.chip.t}>{near ? <WorkScreen active={on} lang={lang} /> : <div className="absolute inset-0 bg-[#111]" />}</Device>
@@ -463,8 +463,8 @@ export function WebV3() {
               <m.div key="back" initial={reduce ? false : { opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} exit={reduce ? undefined : { opacity: 0, x: -24 }} transition={{ duration: 0.45, ease: EASE }}
                 className="absolute start-3 top-3 w-[min(54%,230px)] md:start-5 md:top-5" aria-hidden="true">{chip(b.branch, b.branchP)}</m.div>)}</AnimatePresence>
             <figcaption className="absolute inset-x-0 bottom-0 flex flex-col items-start p-4 text-start text-white md:p-6">
-              <span className="block max-w-[56%] text-[19px] font-semibold tracking-[-0.02em] md:text-[22px]">{t.flow[1][0]} <span className="text-white/45">·</span> {t.flow[2][0]}</span>
-              <span className="mt-1 block max-w-[56%] text-[14px] text-white/70">{t.flow[2][1]}</span>
+              <span className="block max-w-[56%] text-[19px] font-semibold tracking-[-0.02em] md:text-[22px]">{t.flow[1][0]}</span>
+              <span className="mt-1 block max-w-[56%] text-[14px] text-white/75">{t.flow[1][1]}</span>
             </figcaption>
           </figure>
         </div>
@@ -614,8 +614,8 @@ export function EndV3() {
  * Large screens: four photo panels in a row into the sector pages; the one under the pointer or focus opens wide with
  * its line and three uses, the others narrow. Phones and tablets: cards that scroll sideways. Under them one glass strip:
  * other areas as chips, and the 8 languages as round flags that switch the site language. */
-const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "chef-plating", ForkKnife, "50% 30%"], ["/sektor/uretim/", "field", Factory, "40% 40%"],
-  ["/sektor/otel/", "hotel-desk", Bed, "50% 45%"], ["/sektor/franchise/", "huddle", Storefront, "50% 40%"]];
+const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "sec-restoran", ForkKnife, "62% 40%"], ["/sektor/uretim/", "sec-uretim", Factory, "55% 40%"],
+  ["/sektor/otel/", "sec-otel", Bed, "82% 30%"], ["/sektor/franchise/", "sec-franchise", Storefront, "30% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
 export function SectorsV3() {
   const { d, locale, setLocale } = useLocale(); const c = d.ind; const tabs = HOME2[locale].tabs; const reduce = useReducedMotion();
@@ -638,14 +638,14 @@ export function SectorsV3() {
               onMouseEnter={() => setAct(k)}>
               <Link href={href} onFocus={() => setAct(k)} aria-label={c.cards[k]}
                 className="group dark relative flex h-full flex-col justify-between overflow-hidden rounded-[24px] bg-[#171717] p-5 text-white">
-                {pic(img, "(min-width:1024px) 50vw, 100vw", `absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-[1.2s] ease-[var(--ease-out-expo)] ${on ? "scale-100 saturate-100" : "scale-110 saturate-[0.4]"}`, pos)}
-                <span aria-hidden="true" className={`absolute inset-0 transition-opacity duration-700 ${on ? "bg-[linear-gradient(180deg,rgb(16_16_16/0.45)_0%,rgb(16_16_16/0)_28%,rgb(16_16_16/0.15)_50%,rgb(16_16_16/0.92)_100%)]" : "bg-[rgb(16_16_16/0.55)]"}`} />
+                {pic(img, "(min-width:1024px) 50vw, 100vw", `absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-[1.2s] ease-[var(--ease-out-expo)] ${on ? "scale-100" : "scale-110 saturate-[0.85] group-hover:saturate-100"}`, pos)}
+                <span aria-hidden="true" className={`absolute inset-0 transition-opacity duration-700 ${on ? "bg-[linear-gradient(180deg,rgb(16_16_16/0.45)_0%,rgb(16_16_16/0)_28%,rgb(16_16_16/0.15)_50%,rgb(16_16_16/0.92)_100%)]" : "bg-[linear-gradient(180deg,rgb(16_16_16/0.1)_0%,rgb(16_16_16/0)_45%,rgb(16_16_16/0.7)_100%)]"}`} />
                 <span className="relative flex items-center justify-between">
                   <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums">
                     <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span className="text-white/80">0{k + 1}</span></span>
                 </span>
                 <span className="relative block">
-                  <span className={`block font-semibold leading-tight tracking-[-0.03em] transition-[font-size] duration-500 ${on ? "text-[30px]" : "truncate text-[19px]"}`}>{c.cards[k]}</span>
+                  <span className={`block font-semibold leading-tight tracking-[-0.03em] transition-[font-size] duration-500 ${on ? "text-[30px]" : "text-[19px] [overflow-wrap:anywhere]"}`}>{c.cards[k]}</span>
                   <span className={`grid transition-[grid-template-rows,opacity] duration-700 ease-[var(--ease-out-expo)] ${on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                     <span className="overflow-hidden">
                       <span className="block max-w-[34rem] pt-2.5 text-[15px] leading-[1.5] text-white/80">{tabs[k][0]}</span>
