@@ -63,8 +63,9 @@ const THIRDS = (() => { const l = "rgb(255 255 255 / 0.18)"; const g = (dir: str
 const Editor = dynamic(() => import("../AppScreensStory").then((x) => x.EditorScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Quiz = dynamic(() => import("../AppScreensStory").then((x) => x.QuizScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
 const Ready = dynamic(() => import("../AppScreensStory").then((x) => x.ReadyScreen), { ssr: false, loading: () => <div className="absolute inset-0 bg-[#111]" /> });
-const STAGE = ["bakery", "bakery", "saha-liman", "saha-drone-cember", "saha-santiye-havadan"] as const;
-const STAGE_POS: Record<string, string> = { bakery: "30% 50%" };
+// Bright scenes behind the phone, one per step: film at the bench, split for the team, watch on the floor, quiz, see who is ready.
+const STAGE = ["stage-firin", "stage-franchise", "stage-uretim", "stage-restoran", "stage-otel"] as const;
+const STAGE_POS: Record<string, string> = { "stage-firin": "50% 40%", "stage-franchise": "50% 10%", "stage-uretim": "50% 10%", "stage-restoran": "50% 5%", "stage-otel": "50% 5%" };
 /* Who holds the phone at each step: 0 you (the owner or manager), 1 your team. */
 const ROLE = [0, 0, 1, 1, 0] as const;
 /* Stage photo: the v3 set, or a /photos still. None of them shows a phone or tablet, so the mockup is the only device on
@@ -74,7 +75,7 @@ function StageImg({ n, soft = false }: { n: string; soft?: boolean }) {
   if (n in M) return <Photo n={n as Media} sizes="(min-width:1024px) 55vw, 100vw" className={cls} />;
   return (<picture><source type="image/avif" srcSet={`/photos/${n}-800.avif 800w, /photos/${n}-1600.avif 1600w`} sizes="(min-width:1024px) 55vw, 100vw" />
     <img src={`/photos/${n}-1600.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes="(min-width:1024px) 55vw, 100vw" alt="" decoding="async" loading="lazy"
-      style={{ objectPosition: STAGE_POS[n] }} className={`${cls} saturate-[0.85]`} /></picture>);
+      style={{ objectPosition: STAGE_POS[n] }} className={cls} /></picture>);
 }
 /* Step 1 screen: the phone's camera filming the baker at work. Thirds grid, focus box on the hands, REC timer counting up,
    zoom and mode rows, shutter recording. Units are px of the 320 px design screen. */
@@ -148,13 +149,14 @@ export function StepsV3() {
       <div className="container-x">
         <Ch n="01">{c.k}</Ch><H2 id="how-h" a={c.h} className="max-w-[30ch]" />
         <div ref={ref} className="mt-9 grid gap-5 md:mt-14 lg:grid-cols-12 lg:items-center lg:gap-10" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
-          <div className="dark relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
+          <m.div {...(reduce ? {} : { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-10% 0px" }, transition: { duration: 0.9, ease: EASE } })}
+            className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[540px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
-                {near && <StageImg n={STAGE[i]} soft />}
+                {near && <StageImg n={STAGE[i]} />}
               </m.div>
             </AnimatePresence>
-            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_55%,rgb(16_16_16/0.3)_0%,rgb(16_16_16/0.85)_78%)]" />
+            <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_75%_at_50%_55%,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0.55)_100%)]" />
             {!reduce && <button type="button" onClick={() => setPaused(!paused)} aria-label={paused ? c.play : c.pause} className="absolute end-3 top-3 z-10 grid h-11 w-11 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white/80 transition-colors hover:text-white md:end-5 md:top-5">{paused ? <Play size={15} weight="fill" aria-hidden="true" /> : <Pause size={15} weight="fill" aria-hidden="true" />}</button>}
             {/* The phone is sized by the stage height, so it always stands whole inside the frame. */}
             <div className="absolute left-1/2 top-[55%] h-[80%] -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_30px_40px_rgba(0,0,0,0.5)] md:top-1/2 md:h-[84%]" style={{ aspectRatio: "393 / 852" }} dir="ltr">
@@ -163,25 +165,25 @@ export function StepsV3() {
             <AnimatePresence mode="wait" initial={false}>
               <m.div key={i} initial={reduce ? false : { opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -6 }} transition={{ duration: 0.35, ease: EASE }}
                 className={`${glass} absolute start-3 top-3 flex w-max max-w-[calc(100%-4.5rem)] items-center gap-2 !rounded-full py-1.5 pe-3.5 ps-1.5 text-[13px] font-medium text-white md:start-5 md:top-5`}>
-                <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-[0.08em] ${ROLE[i] ? "bg-white text-[#111]" : "bg-white/15"}`}>{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
+                <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-semibold ${ROLE[i] ? "bg-[#F4F0EB] text-[#111]" : "bg-white/15"}`}>{roles[ROLE[i]]}</span><span className="truncate">{x.chips[i]}</span>
               </m.div>
             </AnimatePresence>
-          </div>
+          </m.div>
           <div className="flex min-w-0 flex-col lg:col-span-5">
             {/* Steps as quiet rows: the picked one lifts onto a card, opens its line and fills an orange bar while it plays. */}
-            <ol className="flex flex-col gap-1" role="tablist" aria-label={c.k}>
+            <ol className="relative flex flex-col gap-1 before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
               {s.map(([h, p], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
                 <li key={h}>
                   <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
                     className={`group relative w-full overflow-hidden rounded-[18px] px-4 py-3 text-start transition-colors duration-300 md:px-5 md:py-3.5 ${act ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
                     <span className="flex items-center gap-3">
-                      <span className={`grid w-6 shrink-0 text-[13px] font-semibold tabular-nums transition-colors duration-300 ${act ? "text-ink" : "text-ink-faint"}`}>
-                        {done ? <Check size={15} aria-hidden="true" className="tick" /> : String(k + 1).padStart(2, "0")}</span>
-                      <span className={`min-w-0 flex-1 text-[18px] font-semibold leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[19px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
-                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12px] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 ${act ? (team ? "bg-ink text-bg" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
+                      <span className={`relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold tabular-nums ring-1 transition-colors duration-300 ${act ? "bg-[#F4F0EB] text-[#111] ring-[#F4F0EB]" : done ? "bg-bg text-ink ring-line-strong" : "bg-bg text-ink-faint ring-line"}`}>
+                        {done ? <Check size={12} aria-hidden="true" /> : k + 1}</span>
+                      <span className={`min-w-0 flex-1 text-[17px] font-medium leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[18px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
+                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-medium transition-colors duration-300 ${act ? (team ? "bg-ink text-bg" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
                     </span>
                     <span aria-hidden={!act} className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                      <span className="overflow-hidden"><span className="block ps-9 pt-1.5 text-[15px] leading-[1.55] text-ink-muted">{p}</span></span>
+                      <span className="overflow-hidden"><span className="block ps-9 pt-1.5 text-[14.5px] leading-[1.6] text-ink-muted">{p}</span></span>
                     </span>
                     {act && <span aria-hidden="true" className="absolute inset-x-4 bottom-0 h-[2px] overflow-hidden rounded-full bg-line md:inset-x-5">
                       <span key={`${i}-${run}`} className="block h-full origin-left bg-ink rtl:origin-right" style={run ? { animation: "barfill 6s linear both" } : { transform: "scaleX(0)" }} /></span>}

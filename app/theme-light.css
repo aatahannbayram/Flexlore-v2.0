@@ -15,6 +15,7 @@
 :root[data-theme="light"] .bg-white\/\[\.06\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.051); }
 :root[data-theme="light"] .bg-white\/\[\.07\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.06); }
 :root[data-theme="light"] .bg-white\/\[\.08\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.068); }
+:root[data-theme="light"] .bg-white\/\[\.09\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.076); }
 :root[data-theme="light"] .bg-white\/\[\.10\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/\[\.12\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
 :root[data-theme="light"] .bg-white\/\[\.14\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }
@@ -71,7 +72,6 @@
 :root[data-theme="light"] .text-white\/50:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/55:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/60:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
-:root[data-theme="light"] .text-white\/62:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/65:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/70:not(.dark, .dark *) { color: rgb(22 22 22 / 0.7); }
 :root[data-theme="light"] .text-white\/75:not(.dark, .dark *) { color: rgb(22 22 22 / 0.75); }

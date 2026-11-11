@@ -74,7 +74,7 @@ const T: Record<string, { all: string; faq: string; aiP: string; talk: string; t
   pl: { faq: "FAQ", all: "Wszystkie funkcje", aiP: "Otwórz asystenta z gotowym pytaniem o to, co robi Flexlore i dla kogo jest.", talk: "Napisz do nas", talkP: "Pytania o wdrożenie, pilotaż lub konto? Napisz do nas.", mail: "E-mail", open: "otwiera się w nowej karcie" },
 };
 
-const link = "inline-flex min-h-11 min-w-11 items-center text-[14.5px] text-white/60 sm:min-h-9 transition-colors duration-200 hover:text-white";
+const link = "inline-flex min-h-11 min-w-11 items-center text-[14.5px] text-white/60 transition-colors duration-200 hover:text-white";
 /* A dim, softly blurred photo behind each footer card; the glass and a dark wash on top keep the text readable. */
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
@@ -132,7 +132,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {AI.map(([n, k, u]) => (
                 <li key={n}>
                   <a href={u(f.aiQ)} target="_blank" rel="noopener" aria-label={`${n} (${t.open})`}
-                    className="group inline-flex h-10 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[13.5px] font-medium text-white/80 ring-1 ring-white/[.07] transition-colors hover:bg-white/[.1] hover:text-white">
+                    className="group inline-flex h-11 items-center gap-2 rounded-full bg-white/[.05] pe-3.5 ps-3 text-[13.5px] font-medium text-white/80 ring-1 ring-white/[.07] transition-colors hover:bg-white/[.1] hover:text-white">
                     <Mark k={k} dir="ai" cls="h-4 w-4" />{n}
                     <ArrowUpRight size={12} aria-hidden="true" className="text-white/35 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white/80 rtl:-scale-x-100" />
                   </a>
@@ -162,14 +162,10 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               {consentNeeded && <li><button type="button" onClick={openConsent} className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white">{CONSENT_SETTINGS[locale] ?? CONSENT_SETTINGS.en}</button></li>}
             </ul>
           </div>
-          <p className="mt-2 max-w-[90ch] text-[12px] leading-[1.5] text-white/55">
+          <p className="mt-3 max-w-[90ch] pb-8 text-[12px] leading-[1.5] text-white/35">
             © 2026 NVIDIA, the NVIDIA logo, and NVIDIA Inception are trademarks and/or registered trademarks of NVIDIA Corporation in the U.S. and other countries.
           </p>
         </div>
-      </div>
-      {/* Closing wordmark: decorative, fades into the ground, cropped by the page edge. */}
-      <div aria-hidden="true" className="container-x pointer-events-none mt-4 select-none overflow-hidden md:mt-6">
-        <p dir="ltr" className="translate-y-[22%] bg-[linear-gradient(180deg,rgb(255_255_255/0.12)_0%,rgb(255_255_255/0)_85%)] bg-clip-text text-center text-[clamp(84px,21vw,300px)] font-semibold leading-[0.8] tracking-[-0.06em] text-transparent">Flexlore</p>
       </div>
     </footer>
   );

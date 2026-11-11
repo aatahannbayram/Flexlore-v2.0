@@ -57,30 +57,30 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
     if (document.readyState === "complete") { ric ? ric(go, { timeout: 2500 }) : window.setTimeout(go, 1500); } else window.addEventListener("load", () => (ric ? ric(go, { timeout: 2500 }) : window.setTimeout(go, 1500)), { once: true }); }, []);
   useEffect(() => { if (reduce || !rest) return; const t = window.setInterval(() => setI((k) => (k + 1) % n), 3600); return () => window.clearInterval(t); }, [reduce, n, rest]);
   return (
-    <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111111] pt-[var(--header-h)] text-ink">
+    <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111111] pt-[var(--header-h)] text-ink [--bleed:calc(var(--pad-x)+max(0px,(100vw-var(--container)-2*var(--pad-x))/2))]">
       {/* Atmosphere: a warm glow behind the stage, a soft light upper left, a faint grain-free vignette. */}
       <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_60%_at_78%_42%,rgb(236_103_38/0.16)_0%,rgb(236_103_38/0)_70%),radial-gradient(40%_45%_at_12%_18%,rgb(244_240_235/0.07)_0%,rgb(244_240_235/0)_70%),radial-gradient(120%_80%_at_50%_120%,rgb(0_0_0/0.6)_0%,rgb(0_0_0/0)_60%)]" />
       <div className="container-x relative">
-        <div className="grid-12 items-center gap-y-10 pb-12 pt-8 lg:min-h-[min(calc(100svh-var(--header-h)-40px),820px)] lg:py-14">
-          <div className="col-span-12 lg:col-span-6">
+        <div className="grid-12 items-center gap-y-10 pb-10 pt-6 lg:min-h-[min(calc(100svh-var(--header-h)-24px),840px)] lg:py-10">
+          <div className="relative z-10 col-span-12 lg:col-span-5">
             <Eyebrow i={i} />
-            <h1 id="hero-h" className="mt-6 max-w-[15ch] text-[clamp(40px,1rem+3vw,70px)] font-[580] leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-5 max-w-[14ch] text-[clamp(36px,0.9rem+2.5vw,58px)] font-[580] leading-[1] tracking-[-0.045em] [text-wrap:balance]">
               <span className="hs-word block"><span className="t-ink">{h.h1a}</span></span>
               <span className="hs-word block pb-[0.06em]" style={{ animationDelay: "90ms" }}><span className="hero-grad">{h.h1b}</span></span>
             </h1>
-            <p className="hs-in mt-6 max-w-[30rem] text-[15.5px] leading-[1.65] text-white/62 sm:text-[16px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
-            <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
+            <p className="hs-in mt-5 max-w-[23rem] text-[15px] leading-[1.65] text-white/60" style={{ animationDelay: "150ms" }}>{h.sub}</p>
+            <div className="hs-in mt-7 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="btn btn-glass h-11 px-6 text-[15px]">{d.nav.cta}</a>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-11 px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
-            <div className="hs-in mt-8 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>
-              <StoreButtons small lang={lang} className="opacity-80 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
+            <div className="hs-in mt-7 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>
+              <StoreButtons small lang={lang} className="opacity-60 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
             </div>
           </div>
           {/* The stage: one rounded window onto the trade of the moment, the phone with the live app standing in front. */}
-          <div className="col-span-12 lg:col-span-6">
-            <div className="hs-device relative mx-auto aspect-[4/5] w-full max-w-[520px] lg:aspect-[5/6] lg:max-w-none" style={{ animationDelay: "200ms" }}>
-              <div aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-[36px] bg-[#1A1A1A] shadow-[0_50px_100px_-40px_rgb(0_0_0/0.9),0_0_0_1px_rgb(255_255_255/0.08)]">
+          <div className="col-span-12 lg:col-span-7">
+            <div className="hs-device relative mx-auto aspect-[4/5] w-full max-w-[560px] lg:mx-0 lg:w-[calc(100%+var(--bleed))] lg:max-w-none lg:aspect-auto lg:h-[min(calc(100svh-var(--header-h)-80px),720px)]" style={{ animationDelay: "200ms" }}>
+              <div aria-hidden="true" className="absolute inset-0 overflow-hidden rounded-[36px] bg-[#1A1A1A] shadow-[0_50px_100px_-40px_rgb(0_0_0/0.9),0_0_0_1px_rgb(255_255_255/0.08)] lg:rounded-e-none">
                 {STAGE_PICS.slice(0, rest ? n : 1).map(([img, pos], k) => { const on = k === i; return (
                   <picture key={img} className={`absolute inset-0 transition-opacity duration-[1200ms] ease-out ${on ? "opacity-100" : "opacity-0"}`}>
                     <source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes="(min-width:1024px) 45vw, 90vw" />
@@ -90,17 +90,14 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
               </div>
               <AnimatePresence mode="wait" initial={false}>
                 <m.p key={i} aria-hidden="true" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.4, ease: EASE }}
-                  className="absolute bottom-5 start-6 text-[13px] font-medium uppercase tracking-[0.14em] text-white/75">{h.rot[i % h.rot.length]}</m.p>
+                  className="absolute bottom-6 end-8 text-[13px] font-medium uppercase tracking-[0.14em] text-white/80">{h.rot[i % h.rot.length]}</m.p>
               </AnimatePresence>
               {/* Two quiet glass notes on the stage (facts, not figures): the app's own languages, a finished step. */}
-              <div aria-hidden="true" className="float-y absolute end-4 top-6 hidden items-center gap-2 rounded-full bg-[rgb(17_17_17/0.55)] py-2 pe-3.5 ps-2.5 text-[13px] text-white shadow-[0_18px_40px_-20px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.1)] ring-1 ring-white/10 backdrop-blur-md sm:flex">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" className="text-white/75"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" /></svg>
-                {lang === "tr" ? "8 dilde" : "In 8 languages"}</div>
               <div aria-hidden="true" className="float-y absolute bottom-14 end-5 hidden items-center gap-2.5 rounded-[16px] bg-[rgb(17_17_17/0.6)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95),inset_0_1px_0_rgb(255_255_255/0.1)] ring-1 ring-white/10 backdrop-blur-md sm:flex" style={{ animationDelay: "-2.5s" }}>
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-[#F4F0EB] text-[#111]"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>
                 <span className="leading-tight"><span className="block text-[13px] font-semibold">{lang === "tr" ? "Adım tamamlandı" : "Step complete"}</span><span className="block text-[11.5px] text-white/55">{lang === "tr" ? "Quiz açıldı" : "Quiz unlocked"}</span></span></div>
               {/* The phone stands at the lower left, over the window's edge, so the photo reads and the app leads. */}
-              <div className="absolute left-[34%] top-[54%] w-[44%] max-w-[260px] -translate-x-1/2 -translate-y-1/2 lg:left-[22%]" dir="ltr">
+              <div className="absolute left-[28%] top-[54%] w-[42%] max-w-[250px] -translate-x-1/2 -translate-y-1/2 lg:left-[9%] lg:top-1/2 lg:w-[33%]" dir="ltr">
                 <div className="hero-lift drop-shadow-[0_45px_70px_rgba(0,0,0,0.7)]"><Device label={h.chip.t}><WorkScreen active lang={lang} /></Device></div>
               </div>
             </div>

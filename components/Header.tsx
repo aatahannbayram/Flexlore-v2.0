@@ -43,7 +43,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
   useMotionValueEvent(scrollY, "change", (y) => {
     const prev = scrollY.getPrevious() ?? 0;
     setLined(y > 8);
-    if (y < 400) setHidden(false); else if (y > prev + 4) { setHidden(true); setMega(null); } else if (y < prev - 4) setHidden(false);
+    void prev; setHidden(false); // sticky: the header stays in view; it turns into a glass bar once the page moves
   });
   useEffect(() => { setLined(window.scrollY > 8); }, []);
   // Preload the menu content once the browser is idle after load (not on pointerdown: starting a chunk load mid-tap
@@ -94,7 +94,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 backdrop-blur-[16px] backdrop-saturate-[1.4] transition-colors duration-300 ${lined || mega ? "bg-[rgb(var(--bg-rgb)/0.86)]" : "bg-[rgb(var(--bg-rgb)/0.55)]"}`}>
+        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-500 ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.78)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[18px] backdrop-saturate-[1.4]" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore home">
@@ -102,12 +102,12 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             </a>{brand}
           </div>
 
-          <ul className="hidden items-center gap-0.5 text-[15px] lg:flex" onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
+          <ul className="hidden items-center gap-1 text-[15px] font-medium lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2" onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
             {NAV_LABELS.map((g) => (
               <li key={g.id} onMouseEnter={() => enter(g.id)}>
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
                   onClick={() => setMega(mega === g.id ? null : g.id)}
-                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-3.5 transition-colors ${mega === g.id ? "bg-white/[.07] text-ink" : "text-ink-muted hover:text-ink"}`}>
+                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-4 tracking-[-0.01em] transition-colors ${mega === g.id ? "bg-white/[.09] text-ink" : "text-ink/80 hover:bg-white/[.06] hover:text-ink"}`}>
                   {navLabel(g.id, g.label[lang])}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
                 </button>
                 {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. */}
@@ -120,7 +120,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-3.5 text-ink-muted transition-colors hover:text-ink">{t.navP}</a></li>
+            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
           </ul>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
