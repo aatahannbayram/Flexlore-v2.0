@@ -23,6 +23,7 @@ import { CASES } from "./cases";
 import { LOGOS, CaseLogo } from "./logos";
 import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
+import { DesktopV3 } from "./Desktop";
 
 /** Section heading: words rise in one after another when the heading enters view (static under reduced motion).
  *  Two tones everywhere: a heading with two sentences splits after the first; otherwise the last third is the result.
@@ -697,5 +698,5 @@ function useReveal() {
 }
 export default function BelowV3() {
   useReveal();
-  return (<><StepsV3 /><WhyV3 /><WorkspaceV3 /><WebV3 /><SectorsV3 /><CasesV3 /><EndV3 /></>);
+  return (<><StepsV3 /><WhyV3 /><WorkspaceV3 /><WebV3 /><DesktopV3 H2={H2} Ch={Ch} /><SectorsV3 /><CasesV3 /><EndV3 /></>);
 }
