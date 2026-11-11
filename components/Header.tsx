@@ -22,7 +22,7 @@ const MobileMenuBody = dynamic(() => loadMenus().then((x) => x.MobileMenuBody), 
  *  Desktop: categorised mega menus (Product, Industries, Resources) with an icon, title and one line per item, plus Pricing;
  *  on the right one capsule for theme and language, Log in and Book a demo (⌘K still opens search). Mobile: a full-screen menu grouped the same way.
  *  Hides on scroll down after 400 px, comes back on scroll up, and stays visible while focus or a menu is inside it. */
-export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, brand }: { lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
+export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, pill = false, brand }: { pill?: boolean; lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
   const ctx = useLocale(); const lang: Lang = langProp ?? ctx.lang; const n = ctx.d.nav;
   // Pages with their own EN/TR switch (the Mikel demo) keep it; everywhere else the 8-language flag picker drives the site.
   const own = !!setLang; const t = own ? copy[lang] : { ...copy[lang], langLabel: n.language, navP: n.pricing, cta: n.cta, menu: n.menu, close: n.close }; const tr = lang === "tr";
@@ -102,7 +102,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             </a>{brand}
           </div>
 
-          <ul className="hidden items-center gap-1 text-[15px] font-medium lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2" onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
+          <ul className={`hidden items-center gap-1 text-[15px] font-medium transition-[background-color,padding] duration-500 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2 ${pill && !lined && !open ? "rounded-full bg-white/10 p-1 backdrop-blur-lg" : ""}`} onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
             {NAV_LABELS.map((g) => (
               <li key={g.id} onMouseEnter={() => enter(g.id)}>
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
