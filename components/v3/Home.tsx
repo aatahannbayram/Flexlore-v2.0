@@ -98,11 +98,16 @@ function StageImg({ n, soft = false }: { n: string; soft?: boolean }) {
 /* Step 1 screen: the phone's camera filming the baker at work. Thirds grid, focus box on the hands, REC timer counting up,
    zoom and mode rows, shutter recording. Units are px of the 320 px design screen. */
 export function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "tr" }) {
-  const [t, setT] = useState(0);
+  const [t, setT] = useState(0); const vid = useRef<HTMLVideoElement>(null); const reduce = useReducedMotion();
+  useEffect(() => { const v = vid.current; if (!v) return; if (active && !reduce) { v.play().catch(() => {}); } else v.pause(); }, [active, reduce]);
   useEffect(() => { if (!active) return; setT(0); const id = window.setInterval(() => setT((v) => Math.min(13, v + 1)), 420); return () => window.clearInterval(id); }, [active]);
   return (
     <div className="absolute inset-0 overflow-hidden bg-black text-white">
-      <img src={STILL[0].src} alt="" decoding="async" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" style={{ objectPosition: STILL[0].at, transformOrigin: STILL[0].at }} />
+      {/* The viewfinder plays the baker kneading (gen-baker), cropped to the hands; the poster shows until it plays and
+          stays still under reduced motion. */}
+      <video ref={vid} className="absolute inset-0 h-full w-full scale-[1.25] object-cover" style={{ objectPosition: "42% 70%", transformOrigin: "42% 70%" }}
+        poster="/video/gen-baker.webp" muted loop playsInline preload="none" aria-hidden="true">
+        <source src="/video/gen-baker.webm" type="video/webm" /><source src="/video/gen-baker.mp4" type="video/mp4" /></video>
       <span aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: THIRDS }} />
       <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/70 to-transparent px-[18px] pb-[22px] pt-[50px] text-[12px] font-semibold">
         <Lightning size={16} aria-hidden="true" className="text-white/85" />
@@ -120,7 +125,7 @@ export function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "
           <span className="text-white/45">{lang === "tr" ? "Foto" : "Photo"}</span><span className="text-[#FFD60A]">Video</span><span className="text-white/45">Slo-mo</span>
         </div>
         <div className="mt-[14px] flex items-center justify-between px-[34px]">
-          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src={STILL[0].src} alt="" decoding="async" className="h-full w-full object-cover" /></span>
+          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src="/video/gen-baker.webp" alt="" decoding="async" className="h-full w-full object-cover" /></span>
           <span className="grid h-[64px] w-[64px] place-items-center rounded-full ring-[3px] ring-white"><span className="h-[24px] w-[24px] rounded-[6px] bg-[#FF453A]" /></span>
           <span className="grid h-[40px] w-[40px] place-items-center rounded-full bg-white/15"><ArrowCounterClockwise size={18} aria-hidden="true" /></span>
         </div>
