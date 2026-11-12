@@ -2,13 +2,15 @@
 /* Sector page (v4, warm premium like the home page). One story in five numbered chapters, more motion, less text:
  * hero video → 01 the problem (two cards) → 02 real tasks (pick a task, its steps check off one by one on a photo)
  * → 03 how Flexlore solves it (three cards with live progress) → 04 a sample quiz (tap an answer) → 05 a sample
- * rollout (timeline that draws in) → closing card → next sector. Content: components/sectors.ts (English). */
+ * rollout (timeline that draws in) → closing card → next sector. Content: components/sectors.ts (English, plus Turkish
+ * copy in sectorsTr). Turkish visitors get Turkish (base(locale) === "tr"), every other language keeps English. */
 import { SITE } from "./config";
 import { useEffect, useRef, useState } from "react";
 import { Footer } from "./Sections";
 import Link from "next/link";
 import { m, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion, useInView, AnimatePresence } from "framer-motion";
-import { sectors } from "./sectors";
+import { sectors, sectorCopy } from "./sectors";
+import { useLocale } from "./i18n/LocaleProvider";
 import { Video } from "./Site";
 import { Header } from "./Header";
 import { FilmSlate, Sparkle, ChartLineUp, CheckCircle, WarningCircle, ArrowRight } from "./ui/icons";
@@ -40,8 +42,25 @@ function H2({ text, className = "" }: { text: string; className?: string }) {
 }
 const card = "rounded-[24px] bg-[var(--card)]";
 
+/* Page UI strings. Sector content lives in sectors.ts. */
+const UI = {
+  en: { demo: "Book a demo", seeTasks: "See the tasks", problem: "The problem", eyes: "From the operator's eyes", tasksH: "Real tasks. Step by step.",
+    tasks: "Tasks", sop: "Video SOP", steps: "steps", how: "How Flexlore solves it", howH: "Film once. Check it. Know who is ready.",
+    quiz: "Sample quiz", quizNote: "Drafted from the video. Edited and approved by your team.", tap: "Tap an answer",
+    right: "Correct. Logged to readiness.", wrong: "Not quite. The clip replays this step.", rollout: "A sample rollout", rolloutH: "From one phone to every shift.",
+    ctaA: "See it with one of", ctaB: "your own tasks.", next: "Next sector",
+    ctaP: (name: string) => `Twenty minutes, one real job from your ${name.toLowerCase()}. We build it with you on the call.` },
+  tr: { demo: "Demo isteyin", seeTasks: "İşleri görün", problem: "Sorun", eyes: "Çalışanın gözünden", tasksH: "Gerçek işler. Adım adım.",
+    tasks: "İşler", sop: "Video iş talimatı", steps: "adım", how: "Flexlore bunu nasıl çözüyor", howH: "Bir kez çekin. Kontrol edin. Kimin hazır olduğunu bilin.",
+    quiz: "Örnek quiz", quizNote: "Videodan taslak olarak hazırlanır. Ekibiniz düzenler ve onaylar.", tap: "Bir cevap seçin",
+    right: "Doğru. Hazırlık kaydına işlendi.", wrong: "Tam değil. Klip bu adımı yeniden oynatır.", rollout: "Örnek bir devreye alma", rolloutH: "Tek telefondan her vardiyaya.",
+    ctaA: "Bunu kendi", ctaB: "işlerinizden biriyle görün.", next: "Sonraki sektör",
+    ctaP: (_name: string) => "Yirmi dakika, kendi işletmenizden gerçek bir iş. Görüşmede sizinle birlikte hazırlıyoruz." },
+};
+
 export default function SectorPage({ i }: { i: number }) {
-  const s = sectors[i]; const next = sectors[(i + 1) % sectors.length];
+  const { lang } = useLocale(); const t = UI[lang];
+  const sec = sectors[i]; const s = { ...sec, ...sectorCopy(sec, lang) }; const next = sectors[(i + 1) % sectors.length];
   const reduce = useReducedMotion();
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress: p } = useScroll({ target: hero, offset: ["start start", "end start"] });
@@ -61,7 +80,7 @@ export default function SectorPage({ i }: { i: number }) {
   return (
     <LazyMotion features={domAnimation}>
       <Header />
-      <main id="main" lang="en">
+      <main id="main" lang={lang}>
         <section ref={hero} className="dark relative h-svh min-h-[560px] overflow-hidden">
           <m.div style={{ scale: reduce ? 1 : vs }} className="absolute inset-0"><Video name={s.v} eager /></m.div>
           <div className="absolute inset-0 bg-[rgb(16_16_16/0.4)]" />
@@ -75,8 +94,8 @@ export default function SectorPage({ i }: { i: number }) {
             </h1>
             <m.p initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.8, ease }} className="mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</m.p>
             <m.div initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.7, ease }} className="mt-8 flex flex-wrap gap-3">
-              <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
-              <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">See the tasks</a>
+              <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.demo}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+              <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">{t.seeTasks}</a>
             </m.div>
           </m.div>
         </section>
@@ -84,7 +103,7 @@ export default function SectorPage({ i }: { i: number }) {
         {/* 01 The problem */}
         <section className="section-y">
           <div className="container-x grid-12 items-end gap-y-8">
-            <div className="col-span-12 lg:col-span-6"><Ch n="01">The problem</Ch><H2 text={s.problem.h} className="max-w-[16ch]" /></div>
+            <div className="col-span-12 lg:col-span-6"><Ch n="01">{t.problem}</Ch><H2 text={s.problem.h} className="max-w-[16ch]" /></div>
             <div className="col-span-12 grid gap-3 sm:grid-cols-2 lg:col-span-6">
               {s.problem.p.map((x, k) => (
                 <Rise key={k} d={k * 0.1} className={`${card} p-5 md:p-6`}>
@@ -98,9 +117,9 @@ export default function SectorPage({ i }: { i: number }) {
         {/* 02 Real tasks: pick one, its steps check off on the photo */}
         <section id="tasks" className="section-y pt-0">
           <div className="container-x">
-            <Ch n="02">From the operator's eyes</Ch><H2 text="Real tasks. Step by step." className="max-w-[18ch]" />
+            <Ch n="02">{t.eyes}</Ch><H2 text={t.tasksH} className="max-w-[18ch]" />
             <div className="mt-8 grid gap-4 md:mt-12 lg:grid-cols-12 lg:gap-8">
-              <div role="tablist" aria-label="Tasks" className="no-sb -mx-[var(--pad-x)] flex gap-2 overflow-x-auto px-[var(--pad-x)] lg:col-span-4 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0">
+              <div role="tablist" aria-label={t.tasks} className="no-sb -mx-[var(--pad-x)] flex gap-2 overflow-x-auto px-[var(--pad-x)] lg:col-span-4 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0">
                 {s.sops.map((o, k) => { const act = sop === k; return (
                   <button key={o.t} type="button" role="tab" aria-selected={act} onClick={() => setSop(k)}
                     className={`group relative flex min-h-14 shrink-0 items-center gap-4 overflow-hidden rounded-[16px] px-4 py-3 text-start transition-colors duration-300 lg:w-full ${act ? "bg-[var(--card-2)] text-ink" : "text-ink-muted hover:bg-[var(--card)] hover:text-ink"}`}>
@@ -116,7 +135,7 @@ export default function SectorPage({ i }: { i: number }) {
                   <m.div key={sop} initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.4, ease }}
                     className="absolute inset-x-4 bottom-4 rounded-[20px] bg-[rgb(24_24_24/0.84)] p-4 text-white md:inset-x-auto md:bottom-6 md:end-6 md:w-[min(420px,60%)] md:p-5">
                     <div className="flex items-center justify-between gap-3">
-                      <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">Video SOP · {s.sops[sop].steps.length} steps</p>
+                      <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.sop} · {s.sops[sop].steps.length} {t.steps}</p>
                       <p className="text-[12px] tabular-nums text-white/60">{Math.min(done, s.sops[sop].steps.length)}/{s.sops[sop].steps.length}</p>
                     </div>
                     <h3 className="mt-1.5 text-[20px] font-semibold tracking-[-0.02em]">{s.sops[sop].t}</h3>
@@ -139,7 +158,7 @@ export default function SectorPage({ i }: { i: number }) {
         {/* 03 How Flexlore solves it */}
         <section className="section-y pt-0">
           <div className="container-x"><PhotoBand img={howImg} className="p-5 sm:p-8 md:p-12">
-            <Ch n="03">How Flexlore solves it</Ch><H2 text="Film once. Check it. Know who is ready." className="max-w-[20ch]" />
+            <Ch n="03">{t.how}</Ch><H2 text={t.howH} className="max-w-[20ch]" />
             <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
               {s.how.map((h, k) => { const Ic = HOW_IC[k] ?? Sparkle; return (
                 <Rise key={h.k} d={k * 0.1} className={`${glassTile} group relative overflow-hidden p-6 md:p-7`}>
@@ -161,8 +180,8 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="container-x">
             <div className={`${card} grid-12 items-center gap-y-8 overflow-hidden p-5 sm:p-8 md:p-12`}>
               <div className="col-span-12 lg:col-span-6">
-                <Ch n="04">Sample quiz</Ch><H2 text={s.quiz.q} className="max-w-[20ch]" />
-                <p className="mt-4 text-[15px] text-ink-muted">Drafted from the video. Edited and approved by your team.</p>
+                <Ch n="04">{t.quiz}</Ch><H2 text={s.quiz.q} className="max-w-[20ch]" />
+                <p className="mt-4 text-[15px] text-ink-muted">{t.quizNote}</p>
               </div>
               <div className="col-span-12 space-y-2.5 lg:col-span-6">
                 {s.quiz.a.map((a, k) => {
@@ -173,7 +192,7 @@ export default function SectorPage({ i }: { i: number }) {
                       {a}<span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-black/10 text-[12px] font-semibold">{pick !== null && right ? <CheckCircle size={16} weight="fill" /> : String.fromCharCode(65 + k)}</span>
                     </m.button>);
                 })}
-                <p className="min-h-6 px-1 text-[13px] text-ink-muted" aria-live="polite">{pick === null ? "Tap an answer" : pick === s.quiz.ok ? "Correct. Logged to readiness." : "Not quite. The clip replays this step."}</p>
+                <p className="min-h-6 px-1 text-[13px] text-ink-muted" aria-live="polite">{pick === null ? t.tap : pick === s.quiz.ok ? t.right : t.wrong}</p>
               </div>
             </div>
           </div>
@@ -182,7 +201,7 @@ export default function SectorPage({ i }: { i: number }) {
         {/* 05 Sample rollout: the line draws in, the points light up one after another */}
         <section className="section-y pt-0">
           <div className="container-x">
-            <Ch n="05">A sample rollout</Ch><H2 text="From one phone to every shift." className="max-w-[18ch]" />
+            <Ch n="05">{t.rollout}</Ch><H2 text={t.rolloutH} className="max-w-[18ch]" />
             <ol ref={tl} className="relative mt-10 grid gap-6 md:mt-14 md:grid-cols-4 md:gap-4">
               <span aria-hidden="true" className="absolute start-[7px] top-2 h-[calc(100%-16px)] w-px bg-[rgb(255_255_255/0.12)] md:start-0 md:top-[7px] md:h-px md:w-full" />
               <span aria-hidden="true" className="tl-line absolute start-[7px] top-2 h-[calc(100%-16px)] w-px origin-top bg-ink transition-transform duration-[1600ms] ease-out md:start-0 md:top-[7px] md:h-px md:w-full md:origin-left rtl:md:origin-right"
@@ -202,10 +221,10 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="container-x">
             <PhotoBand img={endImg} className="grid-12 items-center gap-y-6 px-5 py-10 sm:px-10 md:py-20 lg:px-14">
               <div className="col-span-12 lg:col-span-8">
-                <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">See it with one of</span> <span className="t-accent">your own tasks.</span></h2>
-                <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">Twenty minutes, one real job from your {s.en.toLowerCase()}. We build it with you on the call.</p>
+                <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">{t.ctaA}</span> <span className="t-accent">{t.ctaB}</span></h2>
+                <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">{t.ctaP(s.en)}</p>
               </div>
-              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
+              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.demo}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
             </PhotoBand>
           </div>
         </section>
@@ -214,8 +233,8 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-75"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.55)_55%,transparent_100%)]" />
           <div className="container-x relative w-full">
-            <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70"><span className="tabular-nums text-white">{next.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />Next sector</p>
-            <p className="mt-4 flex items-center gap-4 text-[clamp(40px,6vw,84px)] font-semibold leading-none tracking-[-0.04em] text-white transition-transform duration-500 group-hover:translate-x-3 rtl:group-hover:-translate-x-3">{next.en}
+            <p className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70"><span className="tabular-nums text-white">{next.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{t.next}</p>
+            <p className="mt-4 flex items-center gap-4 text-[clamp(40px,6vw,84px)] font-semibold leading-none tracking-[-0.04em] text-white transition-transform duration-500 group-hover:translate-x-3 rtl:group-hover:-translate-x-3">{lang === "tr" ? next.tr : next.en}
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-white/10 ring-1 ring-white/20 transition-colors group-hover:bg-white group-hover:text-[#111] md:h-16 md:w-16"><ArrowRight size={22} aria-hidden="true" className="rtl:-scale-x-100" /></span></p>
           </div>
         </Link>

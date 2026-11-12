@@ -544,11 +544,12 @@ function CaseTabs({ t, secs, cur, go, list }: { t: CaseT; secs: (typeof CASES)[n
           {act && <m.span layoutId="case-tab" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }} className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-ink" />}</button>); })}
     </div>);
 }
-const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void }) => (
+const ARROWS: Record<string, [string, string]> = { en: ["Previous", "Next"], tr: ["Önceki", "Sonraki"], de: ["Zurück", "Weiter"], ar: ["السابق", "التالي"], es: ["Anterior", "Siguiente"], ru: ["Назад", "Далее"], fr: ["Précédent", "Suivant"], pl: ["Poprzedni", "Następny"] };
+const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void }) => { const [prev, next] = ARROWS[useLocale().locale] ?? ARROWS.en; return (
   <div className="hidden shrink-0 gap-2 pb-2 md:flex">
-    <button type="button" onClick={() => go(i - 1)} disabled={i === 0} aria-label="Previous" className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="start" className="h-2.5 w-3.5" /></button>
-    <button type="button" onClick={() => go(i + 1)} disabled={i === n - 1} aria-label="Next" className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="end" className="h-2.5 w-3.5" /></button>
-  </div>);
+    <button type="button" onClick={() => go(i - 1)} disabled={i === 0} aria-label={prev} className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="start" className="h-2.5 w-3.5" /></button>
+    <button type="button" onClick={() => go(i + 1)} disabled={i === n - 1} aria-label={next} className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="end" className="h-2.5 w-3.5" /></button>
+  </div>); };
 
 function CasesCarousel() {
   const { locale } = useLocale(); const t = HOME4[locale].cases; const reduce = useReducedMotion();

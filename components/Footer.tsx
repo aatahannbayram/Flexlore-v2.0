@@ -81,6 +81,18 @@ const link = "inline-flex min-h-11 min-w-11 items-center text-[14.5px] text-whit
 const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cls?: string }) => (
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
+/* Footer legal row in the visitor's language (order of SITE.legal). The documents themselves are English. */
+const LEGAL_LABEL: Record<string, string[]> = {
+  en: ["Privacy", "Terms", "Cookies", "Security", "DPA", "Subprocessors", "Acceptable use", "Billing"],
+  tr: ["Gizlilik", "Koşullar", "Çerezler", "Güvenlik", "Veri işleme", "Alt işleyenler", "Kabul edilebilir kullanım", "Faturalama"],
+  de: ["Datenschutz", "AGB", "Cookies", "Sicherheit", "AVV", "Unterauftragsverarbeiter", "Nutzungsrichtlinie", "Abrechnung"],
+  ar: ["الخصوصية", "الشروط", "ملفات تعريف الارتباط", "الأمان", "اتفاقية معالجة البيانات", "المعالجون الفرعيون", "الاستخدام المقبول", "الفوترة"],
+  es: ["Privacidad", "Términos", "Cookies", "Seguridad", "DPA", "Subencargados", "Uso aceptable", "Facturación"],
+  ru: ["Конфиденциальность", "Условия", "Cookie", "Безопасность", "DPA", "Субобработчики", "Допустимое использование", "Оплата"],
+  fr: ["Confidentialité", "Conditions", "Cookies", "Sécurité", "DPA", "Sous-traitants", "Utilisation acceptable", "Facturation"],
+  pl: ["Prywatność", "Warunki", "Cookies", "Bezpieczeństwo", "DPA", "Podmioty przetwarzające", "Dozwolone użycie", "Płatności"],
+};
+
 export function Footer({ lang: _l }: { lang?: L } = {}) {
   const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null); const trust = useTrustTR();
   return (
@@ -159,8 +171,8 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
               <a href="#" className="group inline-flex min-h-11 items-center gap-1.5 text-white/75 transition-colors hover:text-white">
                 <ArrowUp size={13} aria-hidden="true" className="transition-transform group-hover:-translate-y-0.5" />{f.top}</a></span>
             <ul className="-mx-2 flex flex-wrap" aria-label={f.legal}>
-              {SITE.legal.map(([n, h]) => (
-                <li key={n}><a className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
+              {SITE.legal.map(([n, h], k) => (
+                <li key={n}><a className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white" href={h}>{(LEGAL_LABEL[locale] ?? LEGAL_LABEL.en)[k] ?? n}</a></li>))}
               {trust && <li><Link className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/80 transition-colors duration-200 hover:text-white" href={trust.href}>{TRUST_TR_FOOTER[trust.tr ? "tr" : "en"]}</Link></li>}
               {consentNeeded && <li><button type="button" onClick={openConsent} className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white">{CONSENT_SETTINGS[locale] ?? CONSENT_SETTINGS.en}</button></li>}
             </ul>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
 import { PhotoBand, glassTile } from "./ui/PhotoBand";
+import { useLocale } from "./i18n/LocaleProvider";
+import { base } from "./i18n/locales";
 
 const Tag = ({ live }: { live: boolean }) => (
   <span className={`mono inline-flex items-center gap-1.5 text-xs uppercase tracking-[.16em] ${live ? "text-white" : "text-white/70"}`}>
@@ -44,17 +46,35 @@ export function AISection() {
   );
 }
 
-/* AI page body: today and coming soon as two glass tiles over a dimmed photo of a phone filming a step. */
+/* AI page body: today and coming soon as two glass tiles over a dimmed photo of a phone filming a step.
+   Turkish strings below; every other locale shows English (base(locale)). */
+const AI_NOW_TR: [string, string][] = [
+  ["Videodan adımlara", "İşin telefonla çekilmiş videosunu yükleyin. Flexlore onu net adımlara böler; kimse aradığı kısmı bulmak için uzun bir kaydı ileri geri sarmak zorunda kalmaz."],
+  ["Talimatlar taslak olarak hazır", "Her adım için içerikten yazılı bir talimat taslağı çıkarılır. Siz düzenlersiniz, siz onaylarsınız."],
+  ["Quizler sizin için yazılır", "Flexlore adımlardan kısa bir quiz taslağı hazırlar. Kimin yalnızca izlediğini değil, işi kimin anladığını görürsünüz."],
+];
+const AI_NEXT_TR: [string, string][] = [
+  ["Çok dilli içerik", "İçerik ekibinizin konuştuğu dillerde olur; vardiyada kim olursa olsun standart aynı kalır."],
+  ["Sizin markanız, sizin diliniz", "Uygulamada logonuz, renkleriniz ve karşılama ekranınız; şablonlar rollerinize, şubelerinize ve kullandığınız terimlere göre uyarlanır."],
+  ["QR'ı okutun, işe başlayın", "Her işin paylaşılabilir bir bağlantısı olur. Bir makine, istasyon ya da şube kapısı için QR yazdırın. Okuttuğunuzda doğru iş açılır."],
+  ["Eğitim verilerinize soru sorun", "Eğitim verilerini zaten kullandığınız BI araçlarına bağlayın. Yapay zekâ asistanınıza hangi şubenin hazır olmadığını sorun."],
+];
+const DETAIL_TR = { today: "Bugün", soon: "Yakında", live: "Yayında", roadmap: "Yol haritamızda. Henüz tarih yok." };
+const DETAIL_EN = { today: "Today", soon: "Coming soon", live: "Live", roadmap: "On our roadmap. No dates yet." };
+const PillL = ({ live, t }: { live: boolean; t: typeof DETAIL_EN }) => (
+  <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold ${live ? "bg-[#F4F0EB] text-[#111]" : "bg-white/10 text-white/75"}`}>{live ? t.live : t.soon}</span>);
 export function AIDetail() {
-  const Col = ({ t, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (
+  const tr = base(useLocale().locale) === "tr"; const t = tr ? DETAIL_TR : DETAIL_EN;
+  const loc = (xs: typeof AI_NOW, txt: [string, string][]) => tr ? xs.map((x, k) => ({ ...x, h: txt[k][0], p: txt[k][1] })) : xs;
+  const Col = ({ t: title, live, xs }: { t: string; live: boolean; xs: typeof AI_NOW }) => (
     <div className={`${glassTile} p-6 md:p-8`}>
-      <div className="flex items-center justify-between gap-3"><h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{t}</h2><Pill live={live} /></div>
+      <div className="flex items-center justify-between gap-3"><h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{title}</h2><PillL live={live} t={t} /></div>
       <ul className="mt-4 divide-y divide-white/10">{xs.map((x) => (<li key={x.h} className="flex gap-4 py-5 last:pb-0"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white"><x.i size={18} /></span>
         <div><h3 className={`text-[18px] font-semibold tracking-[-0.015em] ${live ? "" : "text-white/85"}`}>{x.h}</h3><p className="mt-1.5 max-w-[52ch] text-[15px] leading-[1.55] text-white/70">{x.p}</p></div></li>))}</ul>
     </div>);
   return (<PhotoBand img="food-qa" pos="50% 40%" className="mt-12 p-3 md:mt-16 md:p-5">
-    <div className="grid gap-3 md:grid-cols-2"><Col t="Today" live xs={AI_NOW} /><Col t="Coming soon" live={false} xs={AI_NEXT} /></div>
-    <p className="px-3 pb-2 pt-5 text-[13px] text-white/60">On our roadmap. No dates yet.</p>
+    <div className="grid gap-3 md:grid-cols-2"><Col t={t.today} live xs={loc(AI_NOW, AI_NOW_TR)} /><Col t={t.soon} live={false} xs={loc(AI_NEXT, AI_NEXT_TR)} /></div>
+    <p className="px-3 pb-2 pt-5 text-[13px] text-white/60">{t.roadmap}</p>
   </PhotoBand>);
 }
 const Pill = ({ live }: { live: boolean }) => (
@@ -97,15 +117,25 @@ export function Integrations() {
   );
 }
 
-/* Integrations page body: every category as a glass tile over the dimmed web dashboard mockup. */
+/* Integrations page body: every category as a glass tile over the dimmed web dashboard mockup.
+   DIR_TR mirrors DIR by index (category name, then [title, text] per item). */
+const DIR_TR: { cat: string; items: [string, string][] }[] = [
+  { cat: "Uygulamalar", items: [["iOS", "iPhone'da çekin ve öğrenin."], ["Android", "Android'de çekin ve öğrenin."], ["Web platformu", "Yöneticiler iş atar ve kimin hazır olduğunu takip eder."]] },
+  { cat: "BI ve raporlama", items: [["BI araçları", "Eğitim verilerini zaten kullandığınız BI araçlarına bağlayın."]] },
+  { cat: "Yapay zekâ asistanları (MCP)", items: [["MCP sunucusu", "Yapay zekâ asistanınıza hangi şubenin hazır olmadığını sorun."]] },
+  { cat: "API ve webhook'lar", items: [["REST API", "Kişileri, işleri, quiz sonuçlarını ve kimin hazır olduğunu okuyun."], ["Webhook'lar", "Bir quiz geçildiğinde ya da hazır olma durumu değiştiğinde olay bildirimi."]] },
+  { cat: "HRIS · LMS · MES/ERP", items: [["API üzerinden", "Henüz hazır bir bağlantı yok. Hangi sistemleri kullandığınızı bize söyleyin."]] },
+];
 export function IntegrationsDetail() {
+  const tr = base(useLocale().locale) === "tr"; const t = tr ? DETAIL_TR : DETAIL_EN;
+  const dir = tr ? DIR.map((c, k) => ({ cat: DIR_TR[k].cat, items: c.items.map((x, j) => ({ ...x, h: DIR_TR[k].items[j][0], p: DIR_TR[k].items[j][1] })) })) : DIR;
   return (<PhotoBand img="/photos/cta-dashboard.webp" pos="50% 30%" dim={0.5} tone="center" className="mt-12 p-3 md:mt-16 md:p-5">
     <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-      {DIR.map((c, k) => (<div key={c.cat} className={`${glassTile} p-6 md:p-7 ${k === 0 ? "md:col-span-2 lg:col-span-4" : ""}`}>
+      {dir.map((c, k) => (<div key={c.cat} className={`${glassTile} p-6 md:p-7 ${k === 0 ? "md:col-span-2 lg:col-span-4" : ""}`}>
         <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{c.cat}</h2>
         <ul className={`mt-5 grid gap-5 ${k === 0 ? "sm:grid-cols-3" : ""}`}>
           {c.items.map((x) => { const body = (<div className="flex gap-4"><span className="grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white"><x.i className="h-[18px] w-[18px]" /></span>
-            <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><p className="text-[17px] font-semibold tracking-[-0.01em]">{x.h}</p><Pill live={x.live} /></div><p className="mt-1.5 text-[14px] leading-[1.5] text-white/70">{x.p}</p></div></div>);
+            <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><p className="text-[17px] font-semibold tracking-[-0.01em]">{x.h}</p><PillL live={x.live} t={t} /></div><p className="mt-1.5 text-[14px] leading-[1.5] text-white/70">{x.p}</p></div></div>);
             return <li key={x.h}>{x.href ? <a href={x.href} target="_blank" rel="noopener" className="block rounded-[14px] transition-opacity hover:opacity-80">{body}</a> : body}</li>; })}
         </ul></div>))}
     </div>
