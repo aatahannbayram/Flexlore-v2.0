@@ -132,7 +132,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   <FlagPicker compact />
                 </div>}
             <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
-            <a href={SITE.demo} className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.cta}</a></div>
+            <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.cta}</span></a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
           </div>
