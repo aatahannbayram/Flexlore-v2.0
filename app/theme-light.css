@@ -65,7 +65,6 @@
 :root[data-theme="light"] .ring-white\/\[\.04\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.06\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.07\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
-:root[data-theme="light"] .ring-white\/\[\.08\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.09\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .text-white\/25:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
