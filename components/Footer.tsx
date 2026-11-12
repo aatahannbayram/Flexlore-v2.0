@@ -6,6 +6,8 @@ import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
 import { useLocale } from "./i18n/LocaleProvider";
 import { consentNeeded, openConsent, CONSENT_SETTINGS } from "./consent";
+import { useTrustTR } from "./trust/flags";
+import { TRUST_TR_FOOTER } from "./trust/config";
 
 /* Footer (v4): warm dark ground in three layers.
  * 1. Brand block (wordmark, line, social) and four link groups. Phones: the link groups are accordions (48 px rows).
@@ -80,7 +82,7 @@ const Mark = ({ k, dir, cls = "h-4 w-4" }: { k: string; dir: "social" | "ai"; cl
   <span aria-hidden="true" className={`social-mark shrink-0 ${cls}`} style={{ ["--m" as string]: `url(/brand/${dir}/${k}.svg)` }} />);
 
 export function Footer({ lang: _l }: { lang?: L } = {}) {
-  const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null);
+  const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null); const trust = useTrustTR();
   return (
     <footer aria-labelledby="footer-h" className="dark relative overflow-hidden border-t border-[rgb(255_255_255/0.08)] bg-[#111111] text-[15px] text-white">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
@@ -159,6 +161,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
             <ul className="-mx-2 flex flex-wrap" aria-label={f.legal}>
               {SITE.legal.map(([n, h]) => (
                 <li key={n}><a className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white" href={h}>{n}</a></li>))}
+              {trust && <li><Link className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/80 transition-colors duration-200 hover:text-white" href={trust.href}>{TRUST_TR_FOOTER[trust.tr ? "tr" : "en"]}</Link></li>}
               {consentNeeded && <li><button type="button" onClick={openConsent} className="inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-white/60 transition-colors duration-200 hover:text-white">{CONSENT_SETTINGS[locale] ?? CONSENT_SETTINGS.en}</button></li>}
             </ul>
           </div>

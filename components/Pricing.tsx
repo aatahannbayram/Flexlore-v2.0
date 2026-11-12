@@ -4,6 +4,7 @@
  * form (#quote) that opens the visitor's email app with a filled message. Checkout: each plan's `checkout` /
  * `checkoutYearly` in config.ts takes a Stripe Payment Link; until one is set, the button falls back to the app flow. */
 import { useState } from "react";
+import { TrustNote } from "./trust/TrustNote";
 import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS } from "./config";
 import { Header } from "./Header";
 import { Footer } from "./Sections";
@@ -112,6 +113,7 @@ export default function Pricing() {
             <h2 id="quote-h" className="v4-h2 mt-4 max-w-[16ch]"><Split text={q.h} /></h2>
             <p className="intro mt-4 max-w-[30rem]">{q.p}</p>
             <a href={SITE.demo} className="group mt-6 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{q.alt}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>
+            <TrustNote className="mt-2" />
           </div>
           <div className="col-span-12 lg:col-span-7"><QuoteForm /></div>
         </div>

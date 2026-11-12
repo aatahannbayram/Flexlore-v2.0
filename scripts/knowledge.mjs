@@ -60,6 +60,16 @@ for (const s of sectors) {
   add("en", `sector-${s.slug}`, s.en, `${s.h} ${s.lede} ${s.problem?.h ?? ""} ${sops}. ${s.ready ?? ""}`, u(`/sektor/${s.slug}/`), ["industry", "sector", s.slug, s.tr]);
 }
 
+// Data and KVKK for customers in Türkiye (components/trust): the page text in Turkish and English, with the rules the
+// assistant follows on this topic. Indexed by the assistant even while the page itself is noindex.
+const { TURKIYE_TEXT, TURKIYE_TITLE } = await load("components/trust/turkiye-copy.ts");
+const { TRUST_TR_PATH } = await load("components/trust/config.ts");
+const TRUST_RULES = {
+  tr: "Asistan için kurallar: \"KVKK uyumluyuz\", \"GDPR uyumlu\" veya \"verileriniz Türkiye'de\" denmez; şifreleme, ISO, SOC 2, sızma testi veya yedek süresi iddiası yapılmaz. Belge (Veri İşleme Sözleşmesi, standart sözleşme ekleri, çalışan bilgilendirme metni) isteyene metin verilmez; sayfadaki \"Belgeleri talep edin\" butonu gösterilir (" + SITE.url + TRUST_TR_PATH.tr + "#belgeler). Hukuki sorularda: \"Bu hukuki görüş değildir, ekibimiz yardımcı olur.\"",
+  en: "Rules for the assistant: never say Flexlore is \"KVKK compliant\" or \"GDPR compliant\" or that data is kept in Türkiye; make no claims about encryption, ISO, SOC 2, penetration tests or backup periods. When someone asks for the documents (Data Processing Agreement, standard contract annexes, employee notice template), do not provide text; point to the \"Request the documents\" button on the page (" + SITE.url + TRUST_TR_PATH.en + "#belgeler). For legal questions: \"This is not legal advice; our team can help.\"",
+};
+for (const k of ["tr", "en"]) add(k, "trust-turkiye", TURKIYE_TITLE[k], `${TURKIYE_TEXT(k)} ${TRUST_RULES[k]}`, u(TRUST_TR_PATH[k]), ["kvkk", "data", "privacy", "gdpr", "turkey", "türkiye", "legal", "dpa", "subprocessors", "consent", "transfer"]);
+
 const byLocale = Object.fromEntries(LOCALES.map((l) => [l, all.filter((e) => e.locale === l)]));
 mkdirSync(`${ROOT}/public/knowledge`, { recursive: true });
 for (const l of LOCALES) writeFileSync(`${ROOT}/public/knowledge/${l}.json`, JSON.stringify({ v: 1, locale: l, entries: byLocale[l] }));

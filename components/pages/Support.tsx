@@ -4,6 +4,7 @@ import Link from "next/link";
 import { SITE } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { SUPPORT } from "./copy";
+import { TrustNote } from "../trust/TrustNote";
 import { HELP } from "./copy-help";
 import { Pic } from "../home/home5";
 import { Split } from "../ui/Split";
@@ -50,6 +51,7 @@ export function SupportPage() {
             const cls = `group flex min-h-[92px] items-center gap-4 border-b border-line px-1 py-5 transition-colors last:border-b-0 sm:border-b-0 sm:px-6 sm:first:ps-0`;
             return (<li key={t}>{ext ? <a href={href} className={cls}>{inner}</a> : <Link href={href} className={cls}>{inner}</Link>}</li>); })}
         </ul>
+        <TrustNote className="mt-4" />
       </div>
     </section>
 

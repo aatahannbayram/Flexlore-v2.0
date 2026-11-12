@@ -4,6 +4,8 @@ import Link from "next/link";
 import { SITE, PRICING_FAQ, PRICING_FAQ_TR } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { HELP } from "./copy-help";
+import { useTrustTR } from "../trust/flags";
+import { TRUST_TR_LABEL } from "../trust/labels";
 import { Pic } from "../home/home5";
 import { PhotoBand, glassIcon } from "../ui/PhotoBand";
 import { Split } from "../ui/Split";
@@ -50,16 +52,18 @@ export function LoginPage() {
  * Every answered question on the site in one place: the product questions (the home page FAQ, all 8 languages) and, where
  * the pricing FAQ is written (English and Turkish), pricing and billing. A search box filters as you type; chips pick a
  * group; each question opens in place. JSON-LD (FAQPage) is in app/faq/page.tsx. */
-type Item = { q: string; a: string; g: "product" | "pricing" };
+type Item = { q: string; a: string; g: "product" | "pricing"; href?: string; link?: string };
 const fixPricing = (a: string) => a.replace("listed on this page", "listed on the pricing page").replace("bu sayfada", "fiyatlar sayfasında");
 export function FaqPage() {
-  const { locale, d } = useLocale(); const c = HELP[locale].faq;
+  const { locale, d } = useLocale(); const c = HELP[locale].faq; const trust = useTrustTR();
   const items = useMemo<Item[]>(() => {
     const pr = locale === "tr" ? PRICING_FAQ_TR : locale === "en" ? PRICING_FAQ : [];
     const seen = new Set(d.faq.items.map(([q]) => q.trim().toLowerCase()));
     return [...d.faq.items.map(([q, a]) => ({ q, a, g: "product" as const })),
-      ...pr.filter(({ q }) => !seen.has(q.trim().toLowerCase())).map(({ q, a }) => ({ q, a: fixPricing(a), g: "pricing" as const }))];
-  }, [d, locale]);
+      ...pr.filter(({ q }) => !seen.has(q.trim().toLowerCase())).map(({ q, a }) => ({ q, a: fixPricing(a), g: "pricing" as const })),
+      // Türkiye visitors only (components/trust/config.ts): one item pointing to the data and KVKK page.
+      ...(trust ? [(({ faqQ, faqA, faqLink }) => ({ q: faqQ, a: faqA, g: "product" as const, href: trust.href, link: faqLink }))(TRUST_TR_LABEL[trust.tr ? "tr" : "en"])] : [])];
+  }, [d, locale, trust]);
   const [term, setTerm] = useState(""); const [grp, setGrp] = useState<"all" | Item["g"]>("all"); const [open, setOpen] = useState<string | null>(null);
   const norm = (s: string) => s.toLocaleLowerCase(locale);
   const shown = items.filter((x) => (grp === "all" || x.g === grp) && (!term.trim() || norm(x.q + " " + x.a).includes(norm(term.trim()))));
@@ -105,7 +109,7 @@ export function FaqPage() {
                         <span aria-hidden="true" className={`grid h-9 w-9 shrink-0 place-items-center rounded-full ring-1 transition-[transform,background-color] duration-300 ${on ? "rotate-45 bg-ink text-bg ring-ink" : "bg-[var(--card-2)] text-ink ring-line"}`}><Plus size={14} /></span>
                       </button></h3>
                       <div id={`fa-${id}`} role="region" aria-labelledby={`fq-${id}`} className={`grid transition-[grid-template-rows] duration-300 ease-[var(--ease-out-expo)] ${on ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                        <div className="overflow-hidden"><p className="max-w-[44rem] px-5 pb-6 text-[15px] leading-[1.65] text-ink-muted md:px-7 md:text-[16px]">{x.a}</p></div>
+                        <div className="overflow-hidden"><p className="max-w-[44rem] px-5 pb-6 text-[15px] leading-[1.65] text-ink-muted md:px-7 md:text-[16px]">{x.a}{x.href && <> <Link href={x.href} className="font-semibold text-ink underline underline-offset-4">{x.link}</Link></>}</p></div>
                       </div>
                     </li>); })}
                 </ul>
