@@ -26,7 +26,7 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
     <div className="container-x grid grid-cols-[minmax(0,1fr)] gap-8 pb-24 pt-32 md:pt-44 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-16">
       <LegalNav active={doc.slug} />
       <article className="min-w-0 max-w-[46rem]" lang="en" dir="ltr">
-        <Kicker><Link href="/legal/" className="hover:text-ink">Legal</Link></Kicker>
+        <Kicker><Link href="/legal/" className="inline-flex min-h-11 items-center hover:text-ink">Legal</Link></Kicker>
         <h1 className="mt-6 text-[clamp(36px,1rem+2.6vw,60px)] font-semibold leading-[1] tracking-[-0.045em] [text-wrap:balance]">{doc.title}</h1>
         <p className="mt-4 text-[14px] text-ink-faint">Last updated {doc.updated}</p>
         <LegalLangNote />

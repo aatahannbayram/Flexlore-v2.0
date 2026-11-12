@@ -41,7 +41,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="inline-flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
               <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><ShieldCheck size={15} aria-hidden="true" /></span>{c.crumb} · Türkiye</p>
-            <Link href={c.other[1]} hrefLang={lang === "tr" ? "en" : "tr"} className="btn btn-secondary !h-10 !min-h-10 !px-4 !text-[14px]">{c.other[0]}</Link>
+            <Link href={c.other[1]} hrefLang={lang === "tr" ? "en" : "tr"} className="btn btn-secondary !px-4 !text-[14px]">{c.other[0]}</Link>
           </div>
           <h1 className={`${h1} mt-6 max-w-[14ch]`}>{c.h1a} <span className="t-accent">{c.h1b}</span></h1>
           <p className="lead mt-5 max-w-[36rem]">{c.lead}</p>
