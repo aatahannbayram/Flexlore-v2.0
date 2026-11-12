@@ -43,8 +43,10 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
   return (
     <section aria-labelledby="facts-h" className="section-y">
       <div className="dark relative isolate overflow-hidden px-2 py-8 text-white sm:px-5 sm:py-12 lg:px-7 lg:py-16">
-        {stack("h-full w-full scale-110 object-cover blur-[24px] brightness-[0.4]")}
-        <div className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[28px] ring-1 ring-white/35" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
+        {/* The blurred copy fades in and out at the top and bottom, so the band melts into the page instead of starting
+            and ending in hard lines. */}
+        <div aria-hidden="true" className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_22%,#000_78%,transparent)]">{stack("h-full w-full scale-110 object-cover blur-[24px] brightness-[0.4]")}</div>
+        <div className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[28px] ring-1 ring-white/15" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           {stack("h-full w-full object-cover")}
           {/* Darken only where the words sit: the start side and the foot. */}
           <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_10_10/0.82)_0%,rgb(10_10_10/0.5)_42%,rgb(10_10_10/0.18)_70%,rgb(10_10_10/0.3)_100%)] rtl:-scale-x-100" />

@@ -446,6 +446,8 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 6px)); } }
 [dir="rtl"] .marquee-track { animation-direction: reverse; }
+/* Wide screens: the whole set fits, so it stands still in one centred row and no mark is cut at the edges. */
+@media (min-width: 1024px) { .marquee { overflow: visible; -webkit-mask-image: none; mask-image: none; } .marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; } .marquee-track > li[aria-hidden] { display: none; } }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .marquee-track > li[aria-hidden] { display: none; } .marquee { mask-image: none; } }
 
 /* ---------- Home rhythm v2.1 (2026-11-11): one spacing scale on an 8 px grid, one type scale ----------
@@ -536,6 +538,8 @@ main h1 .t-accent { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%,
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 62%, transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 62%, transparent 100%); }
 :root[data-theme="light"] #main::before { opacity: 0.5; }
+/* Pages that open on their own dark photo or video hero (home, sectors, use cases, customers) keep their ground. */
+#main:has(> :first-child.dark)::before, #main.home-v3::before { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .ember::before, #main::before { animation: ember-drift 16s ease-in-out infinite alternate; }
 }

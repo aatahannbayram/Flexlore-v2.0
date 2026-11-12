@@ -41,14 +41,15 @@ export function TrustStrip({ lang = "en", label, as: T = "section" }: { lang?: L
       <div className="pt-2 md:pt-4">
         <div className="flex flex-col items-center gap-5">
           <p className="shrink-0 text-[13px] font-medium text-white/45">{c.programs}</p>
-          {/* A slow, endless row of the programs (paused on hover, still with reduced motion). Each mark sits in the same
-              glass pill so the row reads as one set; official plates (NVIDIA, Google) stay as supplied inside it. */}
-          <div className="marquee relative w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]">
+          {/* Wide screens: one static, centred row, so no mark is ever cut. Narrower screens: a slow endless row (paused on
+              hover, still with reduced motion) with wide faded edges. Each mark sits in the same quiet tile so the row reads
+              as one set; official plates (NVIDIA, Google) stay as supplied inside it. */}
+          <div className="marquee relative w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_18%,#000_82%,transparent)]">
             <ul className="marquee-track flex w-max items-center gap-3">
               {[0, 1].map((copy) => [...list.map((p) => ({ p })), ...(ph ? [{ p: null }] : [])].map(({ p }, k) => (
                 <li key={`${copy}-${k}`} aria-hidden={copy === 1 ? true : undefined}>
                   <a href={p ? p.href : "https://www.producthunt.com/products/flexlore-app"} target="_blank" rel="noopener" aria-label={p ? p.name : "Flexlore on Product Hunt"} tabIndex={copy === 1 ? -1 : undefined}
-                    className="flex h-14 items-center rounded-full bg-white/[.04] px-5 ring-1 ring-white/[.07] transition-colors duration-300 hover:bg-white/[.08]">
+                    className="flex h-14 items-center rounded-[14px] bg-white/[.03] px-5 ring-1 ring-white/[.04] transition-colors duration-300 hover:bg-white/[.07]">
                     {!p ? <span className="flex items-center gap-2.5"><img src="/brand/programs/producthunt.svg" alt="" width={24} height={24} className="block h-6 w-6" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">Product Hunt</span><span className="text-[12px] text-white/50">{lang === "tr" ? "Lansman" : "Launch"}</span></span></span>
                     : p.badge && (p.org === "NVIDIA" || p.org === "Google")
                       ? p.caption
