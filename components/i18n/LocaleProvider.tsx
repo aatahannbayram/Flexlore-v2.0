@@ -17,10 +17,18 @@ const C = createContext<Ctx>({ locale: "en", lang: "en", d: en, setLocale: () =>
 export const useLocale = () => useContext(C);
 export const fmt = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ""));
 
+/* Start fetching the visitor's dictionary as soon as this module runs in the browser, in parallel with hydration, instead
+   of after it: the page stays hidden (i18n-wait, behind the splash) until the dictionary is in, so this shortens the
+   wait for every non-English visitor. The provider picks the promise up below; nothing renders differently. */
+let early: { l: Locale; p: Promise<Dict> } | null = null;
+if (typeof window !== "undefined") {
+  try { let s: string | null = null; try { s = localStorage.getItem(KEY); } catch {} const l = isLocale(s) ? s : detectLocale(); if (l !== "en") early = { l, p: LOAD[l]() }; } catch {}
+}
+
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const [locale, set] = useState<Locale>("en"); const [d, setD] = useState<Dict>(en); const [ready, setReady] = useState(false);
   const apply = useCallback((l: Locale) => {
-    set(l); LOAD[l]().then(setD).catch(() => setD(en)).finally(() => requestAnimationFrame(() => document.documentElement.classList.remove("i18n-wait")));
+    set(l); const p = early?.l === l ? early.p : LOAD[l](); early = null; p.then(setD).catch(() => setD(en)).finally(() => requestAnimationFrame(() => document.documentElement.classList.remove("i18n-wait")));
     const dir = LOCALES.find((x) => x.code === l)?.dir ?? "ltr";
     document.documentElement.lang = l; document.documentElement.dir = dir;
   }, []);

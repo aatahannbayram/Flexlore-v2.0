@@ -11,6 +11,7 @@
 :root[data-theme="light"] .bg-white\/75:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/\[\.025\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.021); }
 :root[data-theme="light"] .bg-white\/\[\.02\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.017); }
+:root[data-theme="light"] .bg-white\/\[\.03\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.025); }
 :root[data-theme="light"] .bg-white\/\[\.04\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
 :root[data-theme="light"] .bg-white\/\[\.05\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.043); }
 :root[data-theme="light"] .bg-white\/\[\.06\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.051); }
@@ -43,6 +44,7 @@
 :root[data-theme="light"] .hover\:bg-white\/\[\.03\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.025); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.04\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.06\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.051); }
+:root[data-theme="light"] .hover\:bg-white\/\[\.07\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.06); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.08\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.068); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.12\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.14\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }

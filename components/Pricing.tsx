@@ -7,7 +7,7 @@ import { useState } from "react";
 import { TrustNote } from "./trust/TrustNote";
 import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS } from "./config";
 import { Header } from "./Header";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import Copq from "./Copq";
 import { useLocale, fmt } from "./i18n/LocaleProvider";
 import { BillingSwitch, PlanCard } from "./home/home5b";

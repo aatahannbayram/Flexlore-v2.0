@@ -9,7 +9,7 @@ import { m, useReducedMotion, useScroll, useTransform, type MotionValue } from "
 import { useLocale } from "../i18n/LocaleProvider";
 import { HOME2 } from "../i18n/home2";
 import { SITE } from "../config";
-import { TrustStrip } from "../home/Sections";
+import { TrustStrip } from "../home/TrustStrip";
 import { Check, Play, Translate, FilmSlate, Scissors, ArrowUpRight, ShieldCheck, ChartBar, ListChecks, UsersThree } from "../ui/icons";
 import { Device } from "../AppScreens";
 import { StoreButtons } from "../Icons";

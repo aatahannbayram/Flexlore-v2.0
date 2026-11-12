@@ -4,7 +4,7 @@ import { ThemeToggle } from "./ui/ThemeToggle";
 import { FlagPicker } from "./ui/FlagPicker";
 import { useLocale } from "./i18n/LocaleProvider";
 import dynamic from "next/dynamic";
-import { AnimatePresence, m, useMotionValueEvent, useScroll, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { Pause, Play, List, X, CaretDown } from "./ui/icons";
 import { copy, Lang } from "./copy";
 import { SITE } from "./config";
@@ -28,10 +28,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
   const own = !!setLang; const t = own ? copy[lang] : { ...copy[lang], langLabel: n.language, navP: n.pricing, cta: n.cta, menu: n.menu, close: n.close }; const tr = lang === "tr";
   const navLabel = (id: string, fb: string) => own ? fb : ({ product: n.product, industries: n.industries, resources: n.resources } as Record<string, string>)[id] ?? fb;
   const reduce = useReducedMotion();
-  const { scrollY } = useScroll();
   const [lined, setLined] = useState(false);
-  const [hidden, setHidden] = useState(false);
-  const [focusIn, setFocusIn] = useState(false);
   const [open, setOpen] = useState(false);            // mobile menu
   const [mega, setMega] = useState<string | null>(null); // desktop mega menu id
   const [search, setSearch] = useState(false);
@@ -40,12 +37,12 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
   const closeT = useRef<number | undefined>(undefined);
   const triggers = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setLined(y > 24);
-    void prev; setHidden(false); // sticky: the header stays in view; it turns into a glass bar once the page moves
-  });
-  useEffect(() => { setLined(window.scrollY > 24); }, []);
+  // Always in view (fixed); it turns into a glass bar once the page moves. A passive listener that only sets state when
+  // the 24 px threshold is crossed, so scrolling does not re-render the header.
+  useEffect(() => {
+    const f = () => setLined(window.scrollY > 24); f();
+    window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f);
+  }, []);
   // Preload the menu content once the browser is idle after load (not on pointerdown: starting a chunk load mid-tap
   // cancelled the click on touch devices).
   useEffect(() => {
@@ -72,7 +69,6 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
 
   const enter = (id: string) => { window.clearTimeout(closeT.current); setMega(id); };
   const leave = () => { closeT.current = window.setTimeout(() => setMega(null), 140); };
-  const show = !hidden || focusIn || open || !!mega;
 
   const LangSwitch = setLang && (
     <div role="group" aria-label={t.langLabel} className="relative flex rounded-full bg-white/[.06] p-0.5 text-xs font-semibold">
@@ -91,9 +87,8 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
 
   return (
     <>
-      <m.header
-        onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
-        animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
+      <header
+        onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setMega(null); }}
         className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${(home || overDark) && !(lined || mega || open) ? "dark" : ""} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -138,7 +133,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
           </div>
 
         </nav>
-      </m.header>
+      </header>
 
       {/* Mobile menu: grouped, with icons, like an app sidebar */}
       <AnimatePresence>

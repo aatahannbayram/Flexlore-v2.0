@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Sections";
+import { Footer } from "@/components/Footer";
 import { TurkiyePage, TURKIYE_TITLE } from "@/components/trust/TurkiyePage";
 import { TRUST_TR, TRUST_TR_PATH } from "@/components/trust/config";
 import { meta, Ld, crumbs, abs, robots } from "@/components/seo";

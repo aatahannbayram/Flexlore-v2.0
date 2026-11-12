@@ -6,7 +6,7 @@
  * (app/musteriler/[slug]/page.tsx). Frame copy is TR/EN; sector and descriptor follow the visitor's language. */
 import Link from "next/link";
 import { Header } from "../Header";
-import { Footer } from "../Sections";
+import { Footer } from "../Footer";
 import { useLocale } from "../i18n/LocaleProvider";
 import { HOME4 } from "../i18n/home4";
 import { SITE } from "../config";

@@ -132,6 +132,15 @@ details summary::-webkit-details-marker { display:none; }
 @keyframes hs-fade { from { transform: translateY(10px); } to { transform: none; } }
 @keyframes hs-settle { from { opacity: .001; transform: scale(.96); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .hs-word, .hs-in, .hs-device { animation: none; } }
+/* Sector hero entrance, the same motion as before but in CSS, so it starts at first paint instead of after hydration
+   (the lede is the page's largest text; waiting for JS held LCP back by about a second on phones). */
+.sx-fade { animation: sx-fade .6s ease .4s both; }
+.sx-word { animation: sx-word .9s var(--ease-out-expo) both; }
+.sx-up { animation: sx-up .8s var(--ease-out-expo) .75s both; }
+@keyframes sx-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sx-word { from { transform: translateY(105%); } to { transform: none; } }
+@keyframes sx-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .sx-fade, .sx-word, .sx-up { animation: none; } }
 
 .marquee{animation:mq 60s linear infinite}
 

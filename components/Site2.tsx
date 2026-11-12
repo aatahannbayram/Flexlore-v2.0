@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { useLocale } from "./i18n/LocaleProvider";
 import { VideoPause } from "./ui/SmartVideo";

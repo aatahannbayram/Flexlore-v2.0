@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocale } from "./i18n/LocaleProvider";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Header } from "./Header";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import { SITE } from "./config";
 import { Arr } from "./Icons";
 import type { Lang } from "./copy";

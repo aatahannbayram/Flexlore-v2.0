@@ -1,5 +1,5 @@
 import { Bar } from "./Blog";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import UseCaseView from "./UseCaseView";
 
 /* Two photo bands per use case (the problem, the closing), none the same as its hero photo. */

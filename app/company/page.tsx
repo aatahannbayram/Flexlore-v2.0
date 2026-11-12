@@ -1,5 +1,5 @@
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Sections";
+import { Footer } from "@/components/Footer";
 import { CompanyPage } from "@/components/pages/Company";
 import { meta, Ld, crumbs, abs } from "@/components/seo";
 import { SITE } from "@/components/config";

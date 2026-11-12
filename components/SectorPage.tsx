@@ -6,7 +6,7 @@
  * copy in sectorsTr). Turkish visitors get Turkish (base(locale) === "tr"), every other language keeps English. */
 import { SITE } from "./config";
 import { useEffect, useRef, useState } from "react";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import Link from "next/link";
 import { m, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion, useInView, AnimatePresence } from "framer-motion";
 import { sectors, sectorCopy } from "./sectors";
@@ -86,17 +86,17 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="absolute inset-0 bg-[rgb(16_16_16/0.4)]" />
           <div className="absolute inset-x-0 bottom-0 h-3/4 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.75)_45%,transparent_100%)]" />
           <m.div style={{ y: reduce ? 0 : ty }} className="container-x relative flex h-full flex-col justify-end pb-[9vh]">
-            <m.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
-              <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</m.p>
+            <p className="sx-fade flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
+              <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</p>
             <h1 className="mt-5 max-w-[14ch] text-[clamp(44px,7vw,96px)] font-semibold leading-[0.98] tracking-[-0.045em] text-white">
-              {s.h.split(" ").map((w, k) => <span key={k} className="inline-block overflow-hidden pb-[.08em] align-bottom"><m.span initial={reduce ? false : { y: "105%" }} animate={{ y: 0 }} transition={{ delay: 0.3 + k * 0.07, duration: 0.9, ease }} className="inline-block">{w}</m.span></span>)
+              {s.h.split(" ").map((w, k) => <span key={k} className="inline-block overflow-hidden pb-[.08em] align-bottom"><span className="sx-word inline-block" style={{ animationDelay: `${300 + k * 70}ms` }}>{w}</span></span>)
                 .flatMap((el, k) => (k ? [" ", el] : [el]))}
             </h1>
-            <m.p initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.8, ease }} className="mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</m.p>
-            <m.div initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.7, ease }} className="mt-8 flex flex-wrap gap-3">
+            <p className="sx-up mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</p>
+            <div className="sx-up mt-8 flex flex-wrap gap-3" style={{ animationDelay: "950ms", animationDuration: "700ms" }}>
               <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.demo}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
               <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">{t.seeTasks}</a>
-            </m.div>
+            </div>
           </m.div>
         </section>
 

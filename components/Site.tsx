@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { Footer } from "./Sections";
+import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { TrustStrip } from "./home/Sections";
+import { TrustStrip } from "./home/TrustStrip";
 import dynamic from "next/dynamic";
 import { HeroV3 } from "./v3/Top";
 const Below = dynamic(() => import("./v3/Home"));
@@ -27,7 +27,7 @@ export default function Site() {
       <Header home paused={paused} setPaused={setPaused} motionOk={!reduce} />
       <VideoPause.Provider value={paused}>
         <main id="main" lang={locale} className="home-v3">
-          <HeroV3><TrustStrip as="div" label={d.trust.programs} /></HeroV3>
+          <HeroV3><TrustStrip as="div" lang={locale} label={d.trust.programs} /></HeroV3>
           <Below />
         </main>
       </VideoPause.Provider>

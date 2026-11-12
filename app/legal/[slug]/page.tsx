@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
-import { Footer } from "@/components/Sections";
+import { Footer } from "@/components/Footer";
 import { LegalArticle } from "@/components/legal/LegalLayout";
 import { LEGAL, legalBySlug } from "@/components/legal/docs";
 import { meta, Ld, crumbs, abs } from "@/components/seo";

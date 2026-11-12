@@ -2,7 +2,7 @@
 /* 404: header, one line, two ways back, footer. */
 import Link from "next/link";
 import { Header } from "../Header";
-import { Footer } from "../Sections";
+import { Footer } from "../Footer";
 import { useLocale } from "../i18n/LocaleProvider";
 import { Chev } from "./Chevron";
 import { Split } from "../ui/Split";
