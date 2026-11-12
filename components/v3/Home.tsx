@@ -194,21 +194,23 @@ export function StepsV3() {
             </AnimatePresence>
           </m.div>
           <div className="flex min-w-0 flex-col lg:col-span-5">
-            {/* Steps as quiet rows: the picked one lifts onto a card, opens its line and fills an orange bar while it plays. */}
+            {/* Steps as quiet rows on a thin rail: the picked one lifts onto a card and opens its line. Every open line reserves
+                the height of the longest one (all five stacked in one grid cell), so the list never changes height and
+                nothing around it moves when the step changes. Numbers stay neutral: white for the open step, a tick once done. */}
             <ol className="relative flex flex-col gap-1 before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
-              <span aria-hidden="true" className="absolute start-[27px] top-6 w-px bg-[#EC6726] transition-[height] duration-500 ease-out md:start-[31px]" style={{ height: `calc((100% - 48px) * ${i / (s.length - 1)})` }} />
-              {s.map(([h, p], k) => { const act = i === k; const done = k < i; const team = ROLE[k] === 1; return (
+              {s.map(([h], k) => { const act = i === k; const done = k < i; return (
                 <li key={h}>
                   <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
                     className={`group relative w-full overflow-hidden rounded-[18px] px-4 py-3 text-start transition-colors duration-300 md:px-5 md:py-3.5 ${act ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
                     <span className="flex items-center gap-3">
-                      <span className={`relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold tabular-nums ring-1 transition-colors duration-300 ${act ? "bg-[#EC6726] text-white ring-[#EC6726] shadow-[0_0_0_4px_rgb(236_103_38/0.18)]" : done ? "bg-bg text-[#EC6726] ring-[#EC6726]/60" : "bg-bg text-ink-faint ring-line"}`}>
+                      <span className={`relative z-10 grid h-6 w-6 shrink-0 place-items-center rounded-full text-[12px] font-semibold tabular-nums ring-1 transition-colors duration-300 ${act ? "bg-ink text-bg ring-ink" : done ? "bg-bg text-ink-muted ring-line-strong" : "bg-bg text-ink-faint ring-line"}`}>
                         {done ? <Check size={12} aria-hidden="true" /> : k + 1}</span>
                       <span className={`min-w-0 flex-1 text-[17px] font-medium leading-snug tracking-[-0.02em] transition-colors duration-300 md:text-[18px] ${act ? "text-ink" : done ? "text-ink-muted" : "text-ink-faint group-hover:text-ink-muted"}`}>{h}</span>
-                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-medium transition-colors duration-300 ${act ? (team ? "bg-ink text-bg" : "bg-white/10 text-ink") : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
+                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[12.5px] font-medium transition-colors duration-300 ${act ? "bg-white/[.08] text-ink-muted" : "text-ink-faint"}`}>{roles[ROLE[k]]}</span>
                     </span>
                     <span aria-hidden={!act} className={`grid transition-[grid-template-rows,opacity] duration-500 ease-[var(--ease-out-expo)] ${act ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-                      <span className="overflow-hidden"><span className="block ps-9 pt-1.5 text-[14.5px] leading-[1.6] text-ink-muted">{p}</span></span>
+                      <span className="overflow-hidden"><span className="grid ps-9 pt-1.5 text-[14.5px] leading-[1.6] text-ink-muted">
+                        {s.map(([, q], j) => <span key={j} aria-hidden={j !== k} className={`[grid-area:1/1] ${j === k ? "" : "invisible"}`}>{q}</span>)}</span></span>
                     </span>
                   </button>
                 </li>); })}
