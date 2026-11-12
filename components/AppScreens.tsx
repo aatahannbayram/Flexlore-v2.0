@@ -109,9 +109,11 @@ export function Track({ v }: { v: number }) {
     <m.span className="absolute inset-y-0 left-0 rounded-full" style={{ background: "linear-gradient(90deg,#E4E4E4,#949494)" }} initial={false} animate={{ width: left }} transition={tr} />
     <m.span className="absolute top-1/2 h-[12px] w-[12px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#B2B2B2] bg-[#111111]" initial={false} animate={{ left }} transition={tr} /></span>);
 }
-export function Player({ t, d = 12, text, more = "Read more..." }: { t: number; d?: number; text?: string; more?: string }) {
+export function Player({ t, d = 12, text, more = "Read more...", playing = false }: { t: number; d?: number; text?: string; more?: string; playing?: boolean }) {
   return (<div><div className="flex items-center gap-2.5 text-xs tabular-nums text-white">
-    <span className="grid h-[20px] w-[20px] shrink-0 place-items-center rounded-full ring-[1.5px] ring-white"><Play size={9} weight="fill" className="ml-px" /></span>
+    <span className="grid h-[20px] w-[20px] shrink-0 place-items-center rounded-full ring-[1.5px] ring-white">{playing
+      ? <span aria-hidden="true" className="flex gap-[2.5px]"><span className="h-[8px] w-[2.5px] rounded-full bg-white" /><span className="h-[8px] w-[2.5px] rounded-full bg-white" /></span>
+      : <Play size={9} weight="fill" className="ml-px" />}</span>
     <span>{mm(t)}</span><Track v={t / d} /><span>{mm(d)}</span></div>
     {text && <p className="mt-2 text-xs leading-[1.45] text-[#B2B2B2]">{text} <span className="font-medium text-white">{more}</span></p>}</div>);
 }
@@ -177,9 +179,9 @@ export function WorkScreen({ active, lang = "en", onStep }: ScreenProps & { onSt
             <m.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} transition={{ duration: reduce ? 0 : .6, ease }} className="overflow-hidden">
               <div className="relative mt-3 h-[188px] overflow-hidden rounded-[14px] bg-black">
                 {open ? <Clip name={clip} active={run} /> : <span className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(/video/${clip}.webp)` }} />}
-                <AnimatePresence initial={false}>{!(run && open && within >= 1 && within < 3) &&
+                <AnimatePresence initial={false}>{!(run && open && within >= 1) &&
                   <m.span key="ring" initial={{ opacity: 0, scale: .85 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.1 }} transition={{ duration: .35 }} className="absolute inset-0 grid place-items-center bg-black/10"><PlayRing /></m.span>}</AnimatePresence>
-                {run && open && <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-2.5 pb-2 pt-6"><Player t={Math.min(within * 4, 12)} /></span>}
+                {run && open && <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-2.5 pb-2 pt-6"><Player t={Math.min(Math.max(within - 1, 0) * 4, 12)} playing={within >= 1 && within < 4} /></span>}
               </div>
               <p className="mt-2.5 text-[11.5px]" style={{ color: G1 }}>{L.desc}</p>
               <p className="mt-1 text-[12.5px] leading-[1.4] text-white/90">{desc}</p>

@@ -54,18 +54,23 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       {SCENES.map((s, i) => { const on = i === k; return (
         <div key={s.clip} className={`absolute inset-0 transition-opacity duration-700 ease-out ${on ? "opacity-100" : "opacity-0"}`}>
           {rest && !reduce
-            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[1.08] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
-            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[1.08]" />}
+            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
+            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92]" />}
         </div>); })}
-      <span className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.12)_0%,rgb(17_17_17/0.22)_100%)]" />
-      <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.9)_0%,rgb(17_17_17/0.66)_40%,rgb(17_17_17/0.25)_72%,rgb(17_17_17/0.4)_100%)] rtl:-scale-x-100" />
-      <span className="absolute inset-0 bg-[radial-gradient(45%_55%_at_74%_55%,rgb(236_103_38/0.22)_0%,rgb(236_103_38/0)_70%)] mix-blend-screen" />
-      <span className="absolute inset-0 bg-[rgb(236_103_38/0.07)] mix-blend-overlay" />
-      <span className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgb(17_17_17/0.75),rgb(17_17_17/0))]" />
-      <span className="absolute inset-x-0 bottom-0 h-[34%] bg-[linear-gradient(to_top,#111111_10%,rgb(17_17_17/0))]" />
+      {/* Darker and calmer than the clip: a deep wash from the text side, a vignette that closes the corners, one warm
+          glow behind the phone, and a long fade into the ground so the strip below starts on #111. */}
+      <span className="absolute inset-0 bg-[rgb(10_10_10/0.34)]" />
+      <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(12_12_12/0.95)_0%,rgb(12_12_12/0.82)_34%,rgb(12_12_12/0.45)_64%,rgb(12_12_12/0.55)_100%)] rtl:-scale-x-100" />
+      <span className="absolute inset-0 bg-[radial-gradient(130%_95%_at_60%_45%,transparent_45%,rgb(8_8_8/0.7)_100%)]" />
+      <span className="absolute inset-0 bg-[radial-gradient(38%_50%_at_76%_52%,rgb(236_103_38/0.2)_0%,rgb(236_103_38/0)_70%)] mix-blend-screen rtl:-scale-x-100" />
+      <span className="absolute inset-0 bg-[radial-gradient(40%_45%_at_18%_42%,rgb(236_103_38/0.07)_0%,rgb(236_103_38/0)_70%)]" />
+      <span className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.85),rgb(12_12_12/0))]" />
+      <span className="absolute inset-x-0 bottom-0 h-[45%] bg-[linear-gradient(to_top,#111111_8%,rgb(17_17_17/0.85)_35%,rgb(17_17_17/0))]" />
     </div>);
 }
 
+/** Hero lines stand without a closing full stop (any language). */
+const bare = (t: string) => t.replace(/[.。]\s*$/, "");
 const STEP_DONE: Record<string, string> = { en: "Step complete", tr: "Adım tamamlandı", de: "Schritt erledigt", ar: "اكتملت الخطوة", es: "Paso completado", ru: "Шаг выполнен", fr: "Étape terminée", pl: "Krok ukończony" };
 export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false); const reduce = useReducedMotion();
@@ -86,8 +91,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           <div className="relative z-10 col-span-12 lg:col-span-8">
             <Eyebrow word={word} k={k} />
             <h1 id="hero-h" className="mt-5 text-[clamp(38px,0.8rem+3.3vw,62px)] font-bold leading-[1.02] tracking-[-0.04em]">
-              <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="hero-metal">{h.h1a}</span></span></span>
-              <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-ember">{h.h1b}</span></span></span>
+              <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="hero-metal">{bare(h.h1a)}</span></span></span>
+              <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-ember">{bare(h.h1b)}</span></span></span>
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>

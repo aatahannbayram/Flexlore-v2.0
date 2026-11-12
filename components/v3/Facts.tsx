@@ -42,10 +42,10 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
   const stack = (cls: string) => SLIDES.map(([n, pos], k) => <div key={n} className={`absolute inset-0 transition-opacity duration-700 ease-out ${k === i ? "opacity-100" : "opacity-0"}`}>{pic(n, pos, cls)}</div>);
   return (
     <section aria-labelledby="facts-h" className="section-y">
-      <div className="dark relative isolate overflow-hidden px-2 py-8 text-white sm:px-5 sm:py-12 lg:px-7 lg:py-16">
+      <div className="dark relative isolate overflow-x-clip px-2 py-8 text-white sm:px-5 sm:py-12 lg:px-7 lg:py-16">
         {/* The blurred copy fades in and out at the top and bottom, so the band melts into the page instead of starting
             and ending in hard lines. */}
-        <div aria-hidden="true" className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,#000_22%,#000_78%,transparent)]">{stack("h-full w-full scale-110 object-cover blur-[24px] brightness-[0.4]")}</div>
+        <div aria-hidden="true" className="absolute inset-x-0 -inset-y-24 -z-10 [mask-image:linear-gradient(to_bottom,transparent,#000_30%,#000_62%,transparent)]">{stack("h-full w-full scale-110 object-cover blur-[24px] brightness-[0.4]")}</div>
         <div className="relative mx-auto max-w-[1240px] overflow-hidden rounded-[28px] ring-1 ring-white/15" onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)}>
           {stack("h-full w-full object-cover")}
           {/* Darken only where the words sit: the start side and the foot. */}

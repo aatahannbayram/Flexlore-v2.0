@@ -331,9 +331,8 @@ export function WorkspaceV3() {
   const cardH = "h-[118px] sm:h-[136px] md:h-[148px]";
   return (
     <section aria-labelledby="ws-h" className="section-y relative isolate">
-      {/* Turn of the page: a fine line of light and a soft glow under it, so the statement above closes and the product opens. */}
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[420px] bg-[radial-gradient(60%_100%_at_50%_0%,rgb(244_240_235/0.05),transparent_70%)]" />
-      <span aria-hidden="true" className="absolute inset-x-[12%] top-0 h-px bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.16),transparent)]" />
+      {/* Turn of the page: a soft glow behind the heading, faded at the top so nothing marks where the section starts. */}
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[560px] bg-[radial-gradient(55%_60%_at_50%_45%,rgb(244_240_235/0.045),transparent_72%)] [mask-image:linear-gradient(to_bottom,transparent,#000_30%)]" />
       <div className="container-x">
         {/* Centred head: one idea, read before the tree starts building. */}
         <div className="mx-auto flex max-w-[44rem] flex-col items-center text-center">
