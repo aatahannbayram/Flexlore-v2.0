@@ -4,23 +4,20 @@ import CasePage from "@/components/v3/CasePage";
 import { CASES, published } from "@/components/v3/cases";
 import { meta } from "@/components/seo";
 
-/* Customer stories. Only approved cases get a page. While none is approved, one unlinked, noindex preview
- * (/musteriler/taslak/) is built so the template can be reviewed; it is left out of the sitemap. */
-const PREVIEW = "taslak";
+/* Customer pages: one per company on the home carousel. A page is indexable (and may join the sitemap) only once its
+ * case is approved and complete (published()); until then it is built but noindex, and shows only the carousel facts
+ * plus a "case study coming soon" card (components/v3/CasePage.tsx). */
 export const dynamicParams = false;
-export function generateStaticParams() {
-  const list = published().map((c) => ({ slug: c.slug }));
-  return list.length ? list : [{ slug: PREVIEW }];
-}
+export function generateStaticParams() { return CASES.map((c) => ({ slug: c.slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  if (slug === PREVIEW) return { title: "Customer story (preview)", robots: { index: false, follow: false } };
   const c = CASES.find((x) => x.slug === slug); if (!c) return {};
-  return meta({ title: `${c.company} | Flexlore`, description: c.quote ?? c.company, path: `/musteriler/${slug}/` });
+  const live = published().some((x) => x.slug === slug);
+  const m = meta({ title: `${c.company} | Flexlore`, description: c.quote ?? `${c.company} and Flexlore.`, path: `/musteriler/${slug}/` });
+  return live ? m : { ...m, robots: { index: false, follow: true } };
 }
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  if (slug === PREVIEW) return <CasePage slug={CASES[0].slug} />;
-  if (!published().some((c) => c.slug === slug)) notFound();
+  if (!CASES.some((c) => c.slug === slug)) notFound();
   return <CasePage slug={slug} />;
 }

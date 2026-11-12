@@ -35,7 +35,9 @@
 :root[data-theme="light"] .decoration-white\/20:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .decoration-white\/40:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.4); }
 :root[data-theme="light"] .divide-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] .group:hover .group-hover\:text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .group:hover .group-hover\:text-white\/80:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
+:root[data-theme="light"] .group:hover .group-hover\:text-white\/90:not(.dark, .dark *) { color: rgb(22 22 22 / 0.9); }
 :root[data-theme="light"] .hover\:bg-white\/10:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.03\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.025); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.04\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
@@ -45,6 +47,7 @@
 :root[data-theme="light"] .hover\:bg-white\/\[\.14\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }
 :root[data-theme="light"] .hover\:bg-white\/\[\.1\]:hover:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .hover\:decoration-white:hover:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 1); }
+:root[data-theme="light"] .hover\:ring-white\/20:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .hover\:ring-white\/50:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .hover\:text-white:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .hover\:text-white\/80:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }

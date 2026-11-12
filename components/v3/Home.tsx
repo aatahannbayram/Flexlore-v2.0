@@ -518,7 +518,8 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
   const I = SEC_IC[c.sec];
   return (
     <article aria-roledescription="slide" aria-label={`${c.company}, ${k + 1} / ${n}`}
-      className={`dark relative shrink-0 select-none overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 ${act ? "opacity-100" : "opacity-45"} ${className}`}>
+      className={`group dark relative shrink-0 select-none overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 ${act ? "opacity-100" : "opacity-45"} ${className}`}>
+      <Link href={`/musteriler/${c.slug}/`} draggable={false} aria-label={`${c.company}: ${OPEN[useLocale().locale] ?? OPEN.en}`} className="absolute inset-0 z-10 rounded-[24px]" />
       <Photo n={c.img} portrait sizes="(min-width:768px) 70vw, 86vw" className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] ${act ? "scale-100" : "scale-[1.06]"}`} />
       <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.55)_60%,rgb(16_16_16/0.85)_100%)]" />
       <div className="relative flex h-full flex-col items-center justify-between p-6 text-center md:p-8">
@@ -529,7 +530,7 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
             : <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>}
           <p className="mt-3 text-[15px] text-white/80 md:text-[17px]">{t.desc[c.desc]}</p>
         </div>
-        <span aria-hidden="true" />
+        <span className={`${glass} inline-flex items-center gap-1.5 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90 transition-colors group-hover:text-white`}>{OPEN[useLocale().locale] ?? OPEN.en}<Chev dir="end" className="h-2 w-3" /></span>
       </div>
     </article>);
 }
@@ -544,6 +545,7 @@ function CaseTabs({ t, secs, cur, go, list }: { t: CaseT; secs: (typeof CASES)[n
           {act && <m.span layoutId="case-tab" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }} className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-ink" />}</button>); })}
     </div>);
 }
+const OPEN: Record<string, string> = { en: "View", tr: "İncele", de: "Ansehen", ar: "عرض", es: "Ver", ru: "Смотреть", fr: "Voir", pl: "Zobacz" };
 const ARROWS: Record<string, [string, string]> = { en: ["Previous", "Next"], tr: ["Önceki", "Sonraki"], de: ["Zurück", "Weiter"], ar: ["السابق", "التالي"], es: ["Anterior", "Siguiente"], ru: ["Назад", "Далее"], fr: ["Précédent", "Suivant"], pl: ["Poprzedni", "Następny"] };
 const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void }) => { const [prev, next] = ARROWS[useLocale().locale] ?? ARROWS.en; return (
   <div className="hidden shrink-0 gap-2 pb-2 md:flex">
@@ -553,20 +555,35 @@ const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void })
 
 function CasesCarousel() {
   const { locale } = useLocale(); const t = HOME4[locale].cases; const reduce = useReducedMotion();
-  const list = CASES; const track = useRef<HTMLDivElement>(null); const [i, setI] = useState(0);
+  const list = CASES; const track = useRef<HTMLDivElement>(null); const pin = useRef<HTMLDivElement>(null); const [i, setI] = useState(0);
   const secs = [...new Set(list.map((c) => c.sec))];
+  /* Tablets and up with motion: the chapter pins and page scroll drives the track sideways (first card to last). */
+  const [pinned, setPinned] = useState(false);
+  useEffect(() => { const q = matchMedia("(min-width: 768px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)"); const f = () => setPinned(q.matches); f(); q.addEventListener("change", f); return () => q.removeEventListener("change", f); }, []);
+  const span = () => { const p = pin.current!; return { top: p.getBoundingClientRect().top + scrollY, range: Math.max(1, p.offsetHeight - innerHeight) }; };
+  const dir = () => (track.current && getComputedStyle(track.current).direction === "rtl" ? -1 : 1);
+  useEffect(() => { if (!pinned) return; let raf = 0;
+    const f = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const el = track.current; if (!el || !pin.current) return; const { top, range } = span();
+      el.scrollLeft = dir() * Math.min(1, Math.max(0, (scrollY - top) / range)) * (el.scrollWidth - el.clientWidth); }); };
+    f(); addEventListener("scroll", f, { passive: true }); addEventListener("resize", f); return () => { removeEventListener("scroll", f); removeEventListener("resize", f); cancelAnimationFrame(raf); }; }, [pinned]);
   const go = useCallback((n: number) => { const el = track.current; if (!el) return; const k = Math.max(0, Math.min(list.length - 1, n)); const card = el.children[k] as HTMLElement | undefined;
-    if (card) el.scrollTo({ left: card.offsetLeft - parseFloat(getComputedStyle(el).paddingInlineStart), behavior: reduce ? "auto" : "smooth" }); setI(k); }, [list.length, reduce]);
+    if (!card) return; const left = Math.abs(card.offsetLeft - parseFloat(getComputedStyle(el).paddingInlineStart));
+    if (pinned && pin.current) { const { top, range } = span(); scrollTo({ top: top + range * Math.min(1, left / Math.max(1, el.scrollWidth - el.clientWidth)), behavior: "smooth" }); }
+    else el.scrollTo({ left: dir() * left, behavior: reduce ? "auto" : "smooth" });
+    setI(k); }, [list.length, reduce, pinned]);
   useEffect(() => { const el = track.current; if (!el) return; let raf = 0;
     const f = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => { const pad = parseFloat(getComputedStyle(el).paddingInlineStart); const kids = [...el.children] as HTMLElement[];
       let best = 0, dist = Infinity; kids.forEach((c, k) => { const dd = Math.abs(c.offsetLeft - pad - el.scrollLeft); if (dd < dist) { dist = dd; best = k; } }); setI(best); }); };
     el.addEventListener("scroll", f, { passive: true }); return () => { el.removeEventListener("scroll", f); cancelAnimationFrame(raf); }; }, []);
   const drag = useRef<{ x: number; l: number; moved: boolean } | null>(null);
-  const down = (e: React.PointerEvent) => { if (e.pointerType !== "mouse" || !track.current) return; drag.current = { x: e.clientX, l: track.current.scrollLeft, moved: false }; track.current.style.scrollSnapType = "none"; };
+  const dragged = useRef(false);
+  const down = (e: React.PointerEvent) => { if (pinned || e.pointerType !== "mouse" || !track.current) return; dragged.current = false; drag.current = { x: e.clientX, l: track.current.scrollLeft, moved: false }; track.current.style.scrollSnapType = "none"; };
   const move = (e: React.PointerEvent) => { const g = drag.current; if (!g || !track.current) return; const dx = e.clientX - g.x; if (Math.abs(dx) > 4) g.moved = true; track.current.scrollLeft = g.l - dx; };
-  const up = () => { const g = drag.current; if (!g || !track.current) return; track.current.style.scrollSnapType = ""; drag.current = null; if (g.moved) go(i); };
+  const up = () => { const g = drag.current; if (!g || !track.current) return; track.current.style.scrollSnapType = ""; drag.current = null; if (g.moved) { dragged.current = true; go(i); } };
   return (
-    <section id="customers" aria-labelledby="cases-h" className="section-y overflow-hidden pt-0">
+    <section id="customers" aria-labelledby="cases-h" className="section-y overflow-x-clip pt-0">
+      <div ref={pin} style={pinned ? { height: `calc(100svh + ${(list.length - 1) * 60}svh)` } : undefined}>
+      <div className={pinned ? "sticky top-[var(--header-h)] flex h-[calc(100svh-var(--header-h))] flex-col justify-center" : ""}>
       <div className="container-x">
         <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
         <p className="intro mt-4">{t.soon}</p>
@@ -577,13 +594,14 @@ function CasesCarousel() {
       </div>
       <div ref={track} role="region" aria-roledescription="carousel" aria-label={t.k} tabIndex={0}
         onKeyDown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); } if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); } }}
-        onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerLeave={up}
-        className="no-sb relative mt-8 flex cursor-grab snap-x snap-mandatory gap-4 overflow-x-auto md:mt-12 md:gap-6 px-[max(var(--pad-x),calc((100vw-var(--container))/2))] [scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))] active:cursor-grabbing">
-        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-[4/5] w-[calc(100%-32px)] snap-start sm:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)] md:max-h-[min(56vh,500px)]" />)}
+        onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerLeave={up} onClickCapture={(e) => { if (dragged.current) { e.preventDefault(); e.stopPropagation(); dragged.current = false; } }}
+        className={`no-sb relative mt-8 flex shrink-0 gap-4 md:mt-10 md:gap-6 ${pinned ? "overflow-x-hidden" : "cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"} px-[max(var(--pad-x),calc((100vw-var(--container))/2))] [scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))]`}>
+        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-[4/5] w-[calc(100%-32px)] snap-start sm:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)] md:max-h-[min(52vh,480px)]" />)}
       </div>
       <div className="mt-4 flex items-center justify-center gap-3" aria-hidden="true">
         <span className="flex gap-1.5">{list.map((c, k) => <span key={c.slug} className={`h-1.5 rounded-full transition-all duration-200 ${k === i ? "w-6 bg-ink" : "w-1.5 bg-line-strong"}`} />)}</span>
         <span className="text-[12px] tabular-nums text-ink-faint">{i + 1} / {list.length}</span></div>
+      </div></div>
     </section>);
 }
 export function CasesV3() {
