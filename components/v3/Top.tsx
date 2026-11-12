@@ -2,7 +2,7 @@
 /* v3 home page, first screen: hero (B1), plus the shared photo, kicker and heading helpers.
  * The rest of the page is in ./Home.tsx and loads after this. */
 import { useCallback, useEffect, useState } from "react";
-import { Device, WorkScreen } from "../AppScreens";
+import { Device, WorkScreen, CheckRing } from "../AppScreens";
 import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { SITE } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
@@ -111,7 +111,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
               <AnimatePresence>{note && (
                 <m.div key={ticks} aria-hidden="true" initial={reduce ? false : { opacity: 0, x: 12, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, x: -6 }} transition={{ duration: 0.22, ease: "easeOut" }}
                   className="absolute -start-[30%] top-[62%] flex items-center gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">
-                  <span className="grid h-7 w-7 place-items-center rounded-full bg-[#EC6726] text-white"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>
+                  <span className="grid h-7 w-7 place-items-center [&>svg]:h-7 [&>svg]:w-7"><CheckRing on reduce={reduce} /></span>
                   <span className="leading-tight"><span className="block text-[14px] font-semibold">{STEP_DONE[locale] ?? STEP_DONE.en}</span><span className="block text-[12px] text-white/70">{ticks}/6</span></span>
                 </m.div>)}</AnimatePresence>
             </div>

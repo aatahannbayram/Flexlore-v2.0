@@ -26,9 +26,9 @@ const FEATURE: Record<string, { img: string; href: string; t: (d: Dict | undefin
 function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
   const { locale, d } = useLocale(); const t = FEAT_NAV[locale];
   return (
-    <div className="grid grid-cols-[1fr_210px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
+    <div className="grid grid-cols-[minmax(0,1fr)_200px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
       <div className="p-2">
-        <div className="grid grid-cols-3 gap-x-2">
+        <div className="grid grid-cols-[repeat(3,minmax(0,1fr))] gap-x-2">
           {GROUPS.map((g) => (
             <div key={g}>
               <p className="px-2.5 pb-2 text-[12px] font-medium text-ink-faint">{t.groups[g]}</p>
@@ -61,7 +61,7 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
   const href = f.href.startsWith("/#") && home ? f.href.slice(1) : f.href;
   const [hover, setHover] = useState<number | null>(null);
   return (
-    <div className="grid grid-cols-[1fr_230px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
+    <div className="grid grid-cols-[minmax(0,1fr)_230px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
       <ul className="grid grid-cols-2 content-start gap-0.5 p-1" onMouseLeave={() => setHover(null)}>
         {g.items.map((it, i) => { const Ic = it.icon; return (
           <li key={it.href} onMouseEnter={() => setHover(i)} className="relative">

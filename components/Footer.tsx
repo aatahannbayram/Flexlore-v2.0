@@ -156,8 +156,8 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </section>
           <section aria-labelledby="ft-talk" className="lg:border-s lg:border-[rgb(255_255_255/0.08)] lg:ps-12">
             <h3 id="ft-talk" className="text-[14px] font-medium text-white/80">{t.talk}</h3>
-            <a href="mailto:support@flexlore.com" className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[18px] font-medium tracking-[-0.01em] text-white transition-colors hover:text-white/80">
-              <EnvelopeSimple size={18} aria-hidden="true" className="text-white/55" />support@flexlore.com
+            <a href="mailto:support@flexlore.com" className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[15px] font-medium text-white/90 transition-colors hover:text-white">
+              <EnvelopeSimple size={15} aria-hidden="true" className="text-white/55" />support@flexlore.com
               <ArrowUpRight size={14} aria-hidden="true" className="text-white/40 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <span className="text-[13px] text-white/50">{f.app}</span>
