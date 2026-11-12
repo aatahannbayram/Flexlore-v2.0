@@ -31,7 +31,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
         <span aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-1/2 -z-10 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(236_103_38/0.16),transparent)]" />
         <div className="container-x">
           <div className="flex items-center justify-between gap-4 text-[14px] text-white/60">
-            <p>{c.crumb} · Türkiye</p>
+            <p>{c.crumb}</p>
             <Link href={c.other[1]} hrefLang={lang === "tr" ? "en" : "tr"} className="inline-flex min-h-11 items-center underline-offset-4 hover:text-white hover:underline">{c.other[0]}</Link>
           </div>
           <h1 className="mt-8 max-w-[12ch] text-[clamp(48px,1rem+5vw,104px)] font-semibold leading-[0.95] tracking-[-0.055em] [text-wrap:balance]">

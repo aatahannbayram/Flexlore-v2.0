@@ -23,6 +23,7 @@
 :root[data-theme="light"] .bg-white\/\[\.15\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.128); }
 :root[data-theme="light"] .bg-white\/\[\.1\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
 :root[data-theme="light"] .bg-white\/\[\.22\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.187); }
+:root[data-theme="light"] .bg-white\/\[0\.07\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.06); }
 :root[data-theme="light"] .border-white:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .border-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .border-white\/20:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.2); }

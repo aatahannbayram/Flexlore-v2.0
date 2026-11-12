@@ -8,7 +8,7 @@ export const SUBJECT = "KVKK belge talebi";
 export const C = {
   tr: {
     crumb: "Güven", other: ["English", TRUST_TR_PATH.en] as const,
-    h1a: "Türkiye'de veri", h1b: "ve KVKK.",
+    h1a: "Türkiye'de veri", h1b: "ve KVKK",
     lead: "Verileriniz nerede tutuluyor, kim hangi rolde, Türkiye'den aktarım nasıl yapılıyor ve videoda görünen çalışanlar için neye dikkat etmelisiniz. Kısa ve sade.",
     facts: [["Konum", "ABD, Amazon Web Services (us-east-1)"], ["Roller", "Siz veri sorumlusu, Flexlore veri işleyen"], ["Aktarım", "KVKK m.9, Kurulun standart sözleşmesi"]],
     s1: { h: "Verileriniz nerede", p: ["Flexlore'daki veriler (hesaplar, iş talimatları, eğitim videoları, quiz sonuçları) Amerika Birleşik Devletleri'nde, Amazon Web Services'in us-east-1 (Kuzey Virginia) bölgesinde tutulur.", "Türkiye'den bu bölgeye aktarım, KVKK'nın yurt dışına aktarım kuralına (m.9) göre yapılır. Aşağıda adım adım anlattık."] },
@@ -32,7 +32,7 @@ export const C = {
   },
   en: {
     crumb: "Trust", other: ["Türkçe", TRUST_TR_PATH.tr] as const,
-    h1a: "Data and KVKK", h1b: "in Türkiye.",
+    h1a: "Data and KVKK", h1b: "in Türkiye",
     lead: "Where your data is kept, who holds which role, how transfers from Türkiye work and what to keep in mind for employees who appear in videos. Short and plain.",
     facts: [["Location", "United States, Amazon Web Services (us-east-1)"], ["Roles", "You are the controller, Flexlore the processor"], ["Transfer", "KVKK Article 9, the Board's standard contract"]],
     s1: { h: "Where your data is", p: ["Data in Flexlore (accounts, work instructions, training videos, quiz results) is kept in the United States, in the us-east-1 (Northern Virginia) region of Amazon Web Services.", "Transfers from Türkiye to that region follow the KVKK rule on transfers abroad (Article 9). The steps are below."] },
