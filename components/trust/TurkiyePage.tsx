@@ -37,7 +37,8 @@ export function TurkiyePage({ lang }: { lang: L }) {
           <h1 className="mt-8 max-w-[12ch] text-[clamp(48px,1rem+5vw,104px)] font-semibold leading-[0.95] tracking-[-0.055em] [text-wrap:balance]">
             {c.h1a} <span className="t-accent">{c.h1b}</span></h1>
           <p className="mt-6 max-w-[36rem] text-[18px] leading-[1.6] text-white/70">{c.lead}</p>
-          <dl className="mt-12 grid gap-6 border-t border-white/10 pt-6 sm:grid-cols-3 md:mt-16">
+          <span aria-hidden="true" className="ember-line mt-12 block md:mt-16" />
+          <dl className="grid gap-6 pt-6 sm:grid-cols-3">
             {c.facts.map(([k, v]) => (
               <div key={k}><dt className="text-[13px] text-white/50">{k}</dt><dd className="mt-1 text-[16px] font-medium leading-snug text-white">{v}</dd></div>))}
           </dl>

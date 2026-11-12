@@ -96,7 +96,7 @@ const LEGAL_LABEL: Record<string, string[]> = {
 export function Footer({ lang: _l }: { lang?: L } = {}) {
   const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null); const trust = useTrustTR();
   return (
-    <footer aria-labelledby="footer-h" className="dark relative overflow-hidden border-t border-[rgb(255_255_255/0.08)] bg-[#111111] text-[15px] text-white">
+    <footer aria-labelledby="footer-h" className="ember ember-foot dark border-t border-[rgb(255_255_255/0.08)] text-[15px] text-white">
       <h2 id="footer-h" className="sr-only">Flexlore</h2>
       <div className="container-x relative pt-12 md:pt-20">
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-[var(--gutter)]">
