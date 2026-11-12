@@ -26,7 +26,7 @@ export const copy: Record<Lang, C> = {
     ], cta: "Book a demo", langLabel: "Language", login: "Log in",
     // TEMPORARY hero eyebrow (decision 2026-11-03).
     hero: "Video work instructions", rotPre: "Video work instructions for ", rotPost: "", rot: ["restaurants", "production lines", "hotels", "franchises", "warehouses", "bakeries"],
-    watch: "Watch 2-min demo", watchTitle: "Flexlore in 2 minutes", storeNote: "Live on iOS and Android",
+    watch: "Watch the demo", watchTitle: "Flexlore in 2 minutes", storeNote: "Live on iOS and Android",
     chip: { title: "Opening checklist", status: "Ready", note: "Line cooks, morning shift. Sample data." },
     stK: "Why it matters", whereK: "Where it works", st: ["Know-how lives", "in someone's hands."], stSub: "It leaves when they do. New people copy whoever is on shift, and a step learned by guessing comes back as scrap, rework, returns, remakes and callbacks. The binder is on a shelf. The job is on the floor. Flexlore puts the job on every phone.",
     pK: "Follow one job", pH: ["Film it.", "Approve it.", "Assign it."],
@@ -65,7 +65,7 @@ export const copy: Record<Lang, C> = {
     ], cta: "Demo isteyin", langLabel: "Dil", login: "Giriş yap",
     // GEÇİCİ hero üst etiketi (karar 2026-11-03).
     hero: "Video iş talimatları", rotPre: "", rotPost: " için video iş talimatları", rot: ["Restoranlar", "Üretim hatları", "Oteller", "Franchise'lar", "Depolar", "Fırınlar"],
-    watch: "2 dakikalık demoyu izleyin", watchTitle: "2 dakikada Flexlore", storeNote: "iOS ve Android'de yayında",
+    watch: "Demoyu izleyin", watchTitle: "2 dakikada Flexlore", storeNote: "iOS ve Android'de yayında",
     chip: { title: "Açılış kontrol listesi", status: "Hazır", note: "Hat aşçıları, sabah vardiyası. Örnek veri." },
     stK: "Neden önemli", whereK: "Nerede çalışır", st: ["Bilgi birinin", "ellerinde yaşar."], stSub: "İş tahminle öğrenilince fire, yeniden işleme ve iade olarak geri döner. Flexlore işi operatörün tarafından adım adım kaydeder; sıradaki kişi ne yapacağını tam olarak görür: daha hızlı işe alışma, daha az kalite hatası ve insanlar değişse de kalan bilgi.",
     pK: "Bir işi takip edin", pH: ["Çek.", "Onayla.", "Ata."],

@@ -5,7 +5,7 @@ import { X } from "./icons";
 import { pauseAll } from "./SmartVideo";
 import { EASE } from "./Reveal";
 
-/** 2-minute demo. The YouTube iframe loads only when the modal opens. Focus is trapped, Escape closes,
+/** Product demo video (about 1.5 minutes). The YouTube iframe loads only when the modal opens. Focus is trapped, Escape closes,
  *  focus returns to the button that opened it. */
 export function VideoModal({ open, onClose, title, youtubeId, closeLabel }: { open: boolean; onClose: () => void; title: string; youtubeId: string; closeLabel: string }) {
   const box = useRef<HTMLDivElement>(null);

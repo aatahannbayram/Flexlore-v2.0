@@ -20,7 +20,7 @@ export const pl: Dict = {
     rotPre: "Wideoinstrukcje pracy dla ", rotPost: "", rot: ["restauracji", "linii produkcyjnych", "hoteli", "franczyz", "magazynów", "piekarni"],
     h1a: "Nagraj zadanie raz.", h1b: "Wiedz, kto jest gotowy je wykonać.",
     sub: "Nagraj raz, jak wykonuje się zadanie. Flexlore zamieni to w szkolenie wideo krok po kroku z krótkimi sprawdzianami i pokaże, kto jest gotowy w każdej lokalizacji.",
-    watch: "Obejrzyj 2-minutowe demo", watchTitle: "Flexlore w 2 minuty", app: "Pobierz aplikację",
+    watch: "Obejrzyj demo", watchTitle: "Flexlore w 2 minuty", app: "Pobierz aplikację",
     chip: { t: "Procedura otwarcia", s: "Zmiana poranna", v: "Ukończyło 12 z 14" }, live: "Nagrywanie", step: "Krok 3 z 6", sample: "Przykładowe dane",
   },
   trust: { programs: "Programy i premiery" },

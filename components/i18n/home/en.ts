@@ -21,7 +21,7 @@ export const en = {
     rotPre: "Video work instructions for ", rotPost: "", rot: ["restaurants", "production lines", "hotels", "franchises", "warehouses", "bakeries"],
     h1a: "Film the job once.", h1b: "Know who's ready to do it.",
     sub: "Record how a job is done once. Flexlore turns it into step-by-step video training with quick checks, and shows who's ready at every location.",
-    watch: "Watch 2-min demo", watchTitle: "Flexlore in 2 minutes", app: "Get the app",
+    watch: "Watch the demo", watchTitle: "Flexlore in 2 minutes", app: "Get the app",
     chip: { t: "Opening routine", s: "Morning shift", v: "12 of 14 completed" }, live: "Recording", step: "Step 3 of 6", sample: "Sample data",
   },
   trust: { programs: "Programs and launches" },

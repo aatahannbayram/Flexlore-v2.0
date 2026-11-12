@@ -22,7 +22,7 @@ export const tr: Dict = {
     rotPre: "", rotPost: " için video iş talimatları", rot: ["Restoranlar", "Üretim hatları", "Oteller", "Franchise'lar", "Depolar", "Fırınlar"],
     h1a: "İşi bir kez çekin.", h1b: "Kimin hazır olduğunu bilin.",
     sub: "Bir işin nasıl yapıldığını bir kez kaydedin. Flexlore bunu kısa kontrollerle adım adım video eğitime dönüştürür, her şubede kimin hazır olduğunu gösterir.",
-    watch: "2 dakikalık demoyu izleyin", watchTitle: "2 dakikada Flexlore", app: "Uygulamayı indirin",
+    watch: "Demoyu izleyin", watchTitle: "2 dakikada Flexlore", app: "Uygulamayı indirin",
     chip: { t: "Açılış rutini", s: "Sabah vardiyası", v: "14 kişiden 12'si tamamladı" }, live: "Kaydediliyor", step: "Adım 3 / 6", sample: "Örnek veri",
   },
   trust: { programs: "Programlar ve lansman" },
