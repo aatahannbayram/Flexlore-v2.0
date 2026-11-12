@@ -11,6 +11,6 @@ export const metadata = { ...m, robots: TRUST_TR.approved ? robots : { index: fa
   alternates: { canonical: TRUST_TR_PATH.tr, languages: { tr: TRUST_TR_PATH.tr, en: TRUST_TR_PATH.en } } };
 export default function Page() {
   const ld = { "@context": "https://schema.org", "@type": "WebPage", url: abs(TRUST_TR_PATH.tr), name: TURKIYE_TITLE.tr, inLanguage: "tr", dateModified: TRUST_TR.updated.iso };
-  return (<><Ld data={[crumbs([["Home", "/"], [TURKIYE_TITLE.tr, TRUST_TR_PATH.tr]]), ld]} /><Header />
+  return (<><Ld data={[crumbs([["Home", "/"], [TURKIYE_TITLE.tr, TRUST_TR_PATH.tr]]), ld]} /><Header overDark />
     <main id="main" className="overflow-x-clip"><TurkiyePage lang="tr" /></main><Footer /></>);
 }

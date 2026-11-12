@@ -22,7 +22,7 @@ const MobileMenuBody = dynamic(() => loadMenus().then((x) => x.MobileMenuBody), 
  *  Desktop: categorised mega menus (Product, Industries, Resources) with an icon, title and one line per item, plus Pricing;
  *  on the right one capsule for theme and language, Log in and Book a demo (⌘K still opens search). Mobile: a full-screen menu grouped the same way.
  *  Hides on scroll down after 400 px, comes back on scroll up, and stays visible while focus or a menu is inside it. */
-export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, pill = false, brand }: { pill?: boolean; lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
+export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, overDark = false, pill = false, brand }: { overDark?: boolean; pill?: boolean; lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
   const ctx = useLocale(); const lang: Lang = langProp ?? ctx.lang; const n = ctx.d.nav;
   // Pages with their own EN/TR switch (the Mikel demo) keep it; everywhere else the 8-language flag picker drives the site.
   const own = !!setLang; const t = own ? copy[lang] : { ...copy[lang], langLabel: n.language, navP: n.pricing, cta: n.cta, menu: n.menu, close: n.close }; const tr = lang === "tr";
@@ -94,7 +94,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
       <m.header
         onFocusCapture={() => setFocusIn(true)} onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) { setFocusIn(false); setMega(null); } }}
         animate={{ y: show ? 0 : "-100%" }} transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 260, damping: 30 }}
-        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${home && !(lined || mega || open) ? "dark" : ""} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
+        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${(home || overDark) && !(lined || mega || open) ? "dark" : ""} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore">

@@ -5,7 +5,8 @@
  * The documents themselves (DPA, standard contract annexes, employee notice template) are never published here; the
  * request button opens an email to support with the subject "KVKK belge talebi".
  * Layout: a dark hero with the three facts, then one narrow reading column. Each section is a small number, a heading
- * and plain text; no cards, no icons in the body, numbers stay neutral (orange only on the one request button). */
+ * and plain text; no cards, no icons in the body, numbers stay neutral (orange only on the one request button).
+ * Hero and request box use the .ember background (app/globals.css), piloted here before any wider use. */
 import Link from "next/link";
 import { C, SUBJECT, type L } from "./turkiye-copy";
 export { TURKIYE_TITLE } from "./turkiye-copy";
@@ -27,8 +28,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
   const c = C[lang]; const mail = `mailto:support@flexlore.com?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(c.s6.body)}`;
   return (
     <article lang={lang} dir="ltr" className="pb-24">
-      <header className="dark relative isolate overflow-hidden bg-[#111111] pb-14 pt-[calc(var(--header-h)+56px)] text-white md:pb-20 md:pt-[calc(var(--header-h)+96px)]">
-        <span aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-1/2 -z-10 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(236_103_38/0.16),transparent)]" />
+      <header className="ember dark pb-14 pt-[calc(var(--header-h)+56px)] text-white md:pb-20 md:pt-[calc(var(--header-h)+96px)]">
         <div className="container-x">
           <div className="flex items-center justify-between gap-4 text-[14px] text-white/60">
             <p>{c.crumb}</p>
@@ -82,7 +82,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
           </Sec>
 
           <section id="belgeler" aria-labelledby="tr-s6" className="scroll-mt-[calc(var(--header-h)+24px)] pt-16 md:pt-24">
-            <div className="dark rounded-[28px] bg-[#171717] p-7 text-white md:p-10">
+            <div className="ember ember-sm dark rounded-[28px] p-7 text-white md:p-10">
               <h2 id="tr-s6" className="text-[30px] font-semibold leading-[1.05] tracking-[-0.035em] md:text-[40px]">{c.s6.h}</h2>
               <p className="mt-3 max-w-[32rem] text-[16px] leading-[1.6] text-white/65">{c.s6.p}</p>
               <ul className="mt-6 flex flex-wrap gap-2">{c.s6.docs.map((d) => (
