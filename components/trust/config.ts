@@ -4,7 +4,8 @@
  *                   Türkiye. false hides all of them everywhere; the page itself still opens from a direct link.
  * TRUST_TR.approved false until counsel has approved the page: noindex and left out of the sitemap. true lifts both.
  *
- * A visitor counts as in Türkiye when the site language is Turkish or the browser time zone is Europe/Istanbul.
+ * A visitor counts as in Türkiye only by location: the browser time zone is Europe/Istanbul. The site language does not
+ * count (a Turkish speaker abroad sees nothing); it only picks the Turkish or the English page.
  * The check runs only in the browser, after the first render (no hydration mismatch). Nothing is sent anywhere, no
  * cookie or storage is written and no location or IP service is called. */
 

@@ -70,7 +70,7 @@ export const LEGAL: LegalDoc[] = [
       ["Payments", ["There are no card payments on the website. Subscriptions are bought inside the mobile apps and billed by Apple (App Store) or Google (Google Play); RevenueCat keeps track of the subscription status."]],
       ["How we choose them", ["Each provider receives only the data it needs for its task."]],
       ["Changes", ["We update this page before a new sub-processor starts handling customer personal data. Customers with a signed DPA can object to a change by writing to support@flexlore.com."]],
-      ["Locations and details", ["For the location of each provider and the data it receives, write to support@flexlore.com. Customers in Türkiye can also read our page on data and KVKK at flexlore.com/trust/turkey/."]],
+      ["Locations and details", ["For the location of each provider and the data it receives, write to support@flexlore.com."]],
     ] },
   { slug: "security", title: "Security", nav: "Security", updated: "12 November 2026", draft: true,
     desc: "Where your workspace data is kept, what your administrators control, how AI handles your content, and our certification status.",
