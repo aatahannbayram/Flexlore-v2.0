@@ -55,8 +55,8 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
               <H2 id="facts-h" a={t.h} className="max-w-[16ch]" />
               <p className="rv intro mt-4 max-w-[26rem] !text-white/80">{t.p}</p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href={SITE.demo} target="_blank" rel="noopener" className="inline-flex h-12 items-center gap-2 rounded-full bg-[#F4F0EB] px-6 text-[15px] font-semibold text-[#111] transition-transform duration-200 hover:-translate-y-0.5"><Play size={14} weight="fill" aria-hidden="true" />{d.nav.cta}</a>
-                <a href="/features/" className="inline-flex h-12 items-center gap-2 rounded-full px-4 text-[15px] font-medium text-white/85 ring-1 ring-inset ring-white/25 transition-colors hover:bg-white/10">{t.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+                <a href={SITE.demo} target="_blank" rel="noopener" className="btn btn-cta h-12 px-6"><Play size={14} weight="fill" aria-hidden="true" />{d.nav.cta}</a>
+                <a href="/features/" className="btn btn-secondary h-12 px-5">{t.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
               </div>
             </div>
             {/* Four things the page has not said yet, as a description list. */}

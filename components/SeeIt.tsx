@@ -61,7 +61,7 @@ export default function SeeIt() {
           </div>
         </div>
         </PhotoBand>
-        <div className="mt-16 flex justify-center"><a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{tr ? "Demo isteyin" : "Book a demo"} <Arr className="ms-1" /></a></div>
+        <div className="mt-16 flex justify-center"><a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{tr ? "Demo isteyin" : "Book a demo"} <Arr className="ms-1" /></a></div>
       </div>
     </main>
     <Footer />

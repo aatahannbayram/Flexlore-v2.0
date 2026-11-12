@@ -45,7 +45,7 @@ export default function UseCase({ c }: { c: UC }) {
           <p className="mono mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-ice-100" />{c.k}</p>
           <h1 className="display mt-4 max-w-[17ch] text-h1"><Split text={c.h1} /></h1>
           <p className="mt-5 max-w-[58ch] text-lg leading-[1.4] text-white/80">{c.lede}</p>
-          <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn-p">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
+          <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn btn-cta">Book a demo <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">See pricing</Link></div>
         </div>
       </section>
       <section className="section-y" aria-labelledby="uc-p">
@@ -71,7 +71,7 @@ export default function UseCase({ c }: { c: UC }) {
         <PhotoBand img={band[1]} tone="center" className="px-5 py-12 text-center sm:px-10 md:py-20">
           <h2 id="uc-o" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">What changes</h2>
           <ul className="mx-auto mt-6 grid max-w-[60rem] gap-3 text-start md:grid-cols-3">{c.out.map((o) => <li key={o} className={`${glassTile} flex gap-3 p-5 text-[17px] font-semibold leading-[1.3] tracking-[-0.01em]`}><I.check size={20} className="tick mt-0.5 shrink-0" />{o}</li>)}</ul>
-          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">Book a demo <Arr className="ms-1" /></a>
+          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">Book a demo <Arr className="ms-1" /></a>
             <Link href={`/use-cases/${r.slug}/`} className="btn btn-glass-2 h-11 px-5 text-[15px]">{r.crumb}</Link></div>
         </PhotoBand>
       </div></section>

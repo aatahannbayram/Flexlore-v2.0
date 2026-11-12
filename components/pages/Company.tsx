@@ -72,7 +72,7 @@ export function CompanyPage() {
         <PhotoBand img="saha-santiye-havadan" pos="50% 50%" className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-12">
           <div><p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{c.programs}</p>
             <ul className="mt-4 flex flex-wrap gap-2">{SITE.programs.map((p) => <li key={p.name}><a href={p.href} target="_blank" rel="noopener" className={`${glassTile} inline-flex min-h-11 items-center !rounded-full px-4 text-[14px] font-medium text-white/90 transition-colors hover:bg-white/[.12]`}>{p.name}</a></li>)}</ul></div>
-          <a href={SITE.demo} className="btn btn-primary shrink-0">{d.end.cta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
+          <a href={SITE.demo} className="btn btn-cta shrink-0">{d.end.cta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
         </PhotoBand>
       </div>
     </section>

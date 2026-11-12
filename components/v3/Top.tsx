@@ -91,7 +91,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
-              <a href={SITE.demo} className="btn btn-glass h-11 px-6 text-[15px]">{d.nav.cta}</a>
+              <a href={SITE.demo} className="btn btn-cta h-11 px-6 text-[15px]">{d.nav.cta}</a>
               <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-11 px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
             </div>
             <div className="hs-in mt-7 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>

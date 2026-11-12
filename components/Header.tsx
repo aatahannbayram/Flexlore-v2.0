@@ -132,7 +132,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   <FlagPicker compact />
                 </div>}
             <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
-            <a href={SITE.demo} className="btn-cta">{t.cta}</a></div>
+            <a href={SITE.demo} className="btn btn-cta">{t.cta}</a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
           </div>
@@ -153,7 +153,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
               {own ? LangSwitch : <FlagPicker up />}
               <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} />
-              <span className="flex items-center gap-2">{SITE.login && <a href="/login/" className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-primary">{t.cta}</a></span>
+              <span className="flex items-center gap-2">{SITE.login && <a href="/login/" className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-cta">{t.cta}</a></span>
             </div>
           </m.div>)}
       </AnimatePresence>

@@ -597,7 +597,7 @@ export function EndV3() {
           <div className="col-span-12 lg:col-span-5">
             <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
             <p className="intro mt-4 max-w-[28rem]">{c.p}</p>
-            <a href={SITE.demo} className="btn btn-accent group mt-8 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <a href={SITE.demo} className="btn btn-cta group mt-8 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
           </div>
           <div className="col-span-12 mx-auto w-full lg:col-span-7"><div dir="ltr" className="overflow-hidden rounded-[24px]"><CtaDuoInner lang={lang} /></div></div>
         </div>

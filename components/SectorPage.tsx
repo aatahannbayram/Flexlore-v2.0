@@ -75,7 +75,7 @@ export default function SectorPage({ i }: { i: number }) {
             </h1>
             <m.p initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.8, ease }} className="mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</m.p>
             <m.div initial={reduce ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.95, duration: 0.7, ease }} className="mt-8 flex flex-wrap gap-3">
-              <a href={SITE.demo} className="btn btn-accent group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+              <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
               <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">See the tasks</a>
             </m.div>
           </m.div>
@@ -205,7 +205,7 @@ export default function SectorPage({ i }: { i: number }) {
                 <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">See it with one of</span> <span className="t-accent">your own tasks.</span></h2>
                 <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">Twenty minutes, one real job from your {s.en.toLowerCase()}. We build it with you on the call.</p>
               </div>
-              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-primary group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
+              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">Book a demo<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
             </PhotoBand>
           </div>
         </section>

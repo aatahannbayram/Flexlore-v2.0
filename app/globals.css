@@ -94,22 +94,18 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .num { font-weight: 600; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .mono { font-variant-numeric: tabular-nums; }
 
-/* buttons: 44px minimum target */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.15rem; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s; }
-.btn-primary { background: #F4F0EB; color: #111111; }
-.btn-primary:hover { background: #FFFFFF; }
-/* Header "Book a demo": the one orange button in the bar, same in both themes (#111 on #EC6726 is 6.1:1). */
-/* Header call to action: a bright orange pill, lit from above, dark text; 44 px tall for touch. */
-.btn-cta { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 20px; border-radius: 999px; background: linear-gradient(180deg, #FF8A4C 0%, #F2702F 55%, #EC6726 100%); color: #111111; font-size: 15px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35), 0 10px 24px -12px rgb(236 103 38 / 0.7); transition: filter .2s ease-out, transform .2s ease-out; }
-.btn-cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
-.btn-secondary { background: rgb(255 255 255 / 0.07); color: var(--color-ink); }
-.btn-secondary:hover { background: rgb(255 255 255 / 0.12); }
+/* Buttons: three looks only, all pills, 44 px minimum target, no gradients, glows or drop shadows.
+   Orange (.btn-cta): the demo call to action. Flat #EC6726, dark label (#111 on #EC6726 is 6.1:1).
+   White (.btn-primary, .btn-p, .btn-accent, .btn-glass): the other main action. Flat white, dark label.
+   Glass (.btn-secondary, .btn-g, .btn-glass-2): everything else. Frosted clear pill with a hairline. */
+.btn, .btn-p, .btn-g, .btn-cta { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.25rem; font-size: 15px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; box-shadow: none; transition: background-color .25s var(--ease-out-expo), color .25s, box-shadow .25s, transform .2s var(--ease-out-expo); }
+.btn-cta { background: #EC6726; color: #111111; }
+.btn-cta:hover { background: #F07A3F; }
+.btn-primary, .btn-p, .btn-accent, .btn-glass { background: #FFFFFF; color: #111111; }
+.btn-primary:hover, .btn-p:hover, .btn-accent:hover, .btn-glass:hover { background: #EDE9E4; }
+.btn-secondary, .btn-g, .btn-glass-2 { background: rgb(255 255 255 / 0.08); color: var(--color-ink); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
+.btn-secondary:hover, .btn-g:hover, .btn-glass-2:hover { background: rgb(255 255 255 / 0.14); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2); }
 .btn-sm { min-height: 36px; padding: 0 1rem; font-size: 14px; }
-/* legacy button names used by other pages */
-.btn-p { display:inline-flex; align-items:center; min-height: 44px; border-radius:999px; background:var(--color-ink); color:#111111; font-size:14px; font-weight:600; padding:0 1rem; white-space:nowrap; transition: background .25s; }
-.btn-p:hover { background:#fff; }
-.btn-g { display:inline-flex; align-items:center; min-height: 44px; border-radius:999px; background: rgb(255 255 255 / .07); color:var(--color-ink); font-size:14px; font-weight:500; padding:0 1rem; transition: background .25s; }
-.btn-g:hover { background: rgb(255 255 255 / .12); }
 
 /* surfaces */
 .panel { background: var(--color-surface-1); border-radius: var(--radius-card); }
@@ -230,10 +226,10 @@ main:not([lang="tr"]) .l-tr { display: none; }
   --color-bg2: #191919; --color-card: #1F1F1F; --color-ash: #8A8A8A;
   color-scheme: dark; color: var(--color-ink);
 }
-:root[data-theme="light"] .btn-primary:not(.dark *), :root[data-theme="light"] .btn-p:not(.dark *) { background: #161616; color: #FAF8F5; }
-:root[data-theme="light"] .btn-primary:not(.dark *):hover, :root[data-theme="light"] .btn-p:not(.dark *):hover { background: #000000; }
-:root[data-theme="light"] .btn-secondary:not(.dark *), :root[data-theme="light"] .btn-g:not(.dark *) { background: rgb(22 22 22 / 0.06); color: #161616; }
-:root[data-theme="light"] .btn-secondary:not(.dark *):hover, :root[data-theme="light"] .btn-g:not(.dark *):hover { background: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *) { background: #161616; color: #FAF8F5; }
+:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *):hover { background: #000000; }
+:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *) { background: rgb(22 22 22 / 0.06); color: #161616; box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *):hover { background: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .prose-blog a { text-decoration-color: rgb(22 22 22 / .35); }
 /* Brand wordmark: the dark-ground file by default, the light-ground file in light mode. */
 .logo-light { display: none; }
@@ -323,35 +319,10 @@ html body { transition: opacity .25s ease; }
 @media (prefers-reduced-motion: reduce) { .cmp-pulse { animation: none; } }
 
 /* ---------- v3: accent button, chevron hover, heading ---------- */
-/* Accent button (the main call to action outside the hero): warm white with dark text, a soft sweep on hover. No orange
-   fills anywhere on the site; orange stays for the payoff words in headings and the logo. */
-.btn-accent { position: relative; isolation: isolate; overflow: hidden; background: #F4F0EB; color: #111111; font-weight: 600; letter-spacing: -0.01em; box-shadow: inset 0 1px 0 #FFFFFF, 0 12px 28px -16px rgb(0 0 0 / 0.7); }
-.btn-accent:hover { background: #FFFFFF; }
-:root[data-theme="light"] .btn-accent:not(.dark *) { background: #161616; color: #FAF8F5; box-shadow: none; }
-.btn-accent::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(17 17 17 / 0.07) 50%, transparent 65%); translate: -110% 0; transition: translate .8s var(--ease-out-expo); }
-.btn-accent:hover::after, .btn-accent:focus-visible::after { translate: 110% 0; }
-@media (prefers-reduced-motion: reduce) { .btn-accent::after { display: none; } }
 .hero-grad, .t-accent { background: linear-gradient(180deg, #FF9F63 0%, #F57B3A 48%, #EC6726 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 /* Payoff words in headings: the brand orange, brighter at the top of the letters and full at the base. Light mode uses a deeper
    orange so the words keep their weight on the pale ground. */
 :root[data-theme="light"] .t-accent:not(.dark *), :root[data-theme="light"] .hero-grad:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #D2581C 100%); }
-/* Glass buttons (hero): frosted orange for the main action, frosted light for the second one. White label, bold 19px. */
-/* Hero buttons. Primary: a plain frosted white pill with dark text and a small dark arrow disc; a soft sheen passes on
-   hover. Secondary: clear glass. */
-.btn-glass { position: relative; isolation: isolate; overflow: hidden; color: #111111; font-weight: 600; letter-spacing: -0.01em;
-  background: linear-gradient(180deg, rgb(255 255 255 / 0.97) 0%, rgb(244 240 235 / 0.9) 100%);
-  -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), inset 0 0 0 1px rgb(255 255 255 / 0.55), 0 0 0 1px rgb(255 255 255 / 0.08), 0 14px 32px -16px rgb(0 0 0 / 0.7);
-  transition: box-shadow .35s var(--ease-out-expo), translate .35s var(--ease-out-expo), background-color .35s; }
-.btn-glass::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 35%, rgb(17 17 17 / 0.06) 50%, transparent 65%); translate: -110% 0; transition: translate .9s var(--ease-out-expo); }
-.btn-glass:hover { translate: 0 -1px; box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), inset 0 0 0 1px rgb(255 255 255 / 0.7), 0 0 0 1px rgb(255 255 255 / 0.14), 0 18px 38px -16px rgb(0 0 0 / 0.8); }
-.btn-glass:hover::after, .btn-glass:focus-visible::after { translate: 110% 0; }
-.btn-glass .go { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 999px; background: #111111; color: #F4F0EB; margin-inline-end: -8px; transition: background-color .3s, transform .3s var(--ease-out-expo); }
-.btn-glass:hover .go { background: #2A2A2A; color: #FFFFFF; }
-.btn-glass-2 { color: #F4F0EB; background: rgb(255 255 255 / 0.07); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 0 0 1px rgb(255 255 255 / 0.1); transition: background-color .3s, box-shadow .3s; }
-.btn-glass-2:hover { background: rgb(255 255 255 / 0.12); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 0 0 1px rgb(255 255 255 / 0.16); }
-@media (prefers-reduced-motion: reduce) { .btn-glass, .btn-glass::after { transition: none; } .btn-glass::after { display: none; } .btn-glass:hover { translate: none; } }
 /* Loading mark: on the first page of a visit the Flexlore symbol assembles (the two halves meet), turns once and the page
    fades in under it. About 1.5 s, never blocks input, skipped for reduced motion and for later pages in the same visit. */
 .splash { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: var(--color-bg); pointer-events: none; animation: sp-out .4s var(--ease-out-expo) .65s forwards; }
@@ -409,9 +380,7 @@ html.splash-on .hs-word, html.splash-on .hs-in, html.splash-on .hs-device { anim
 :root[data-theme="light"] .t-ink:not(.dark *) { background-image: linear-gradient(180deg, #111111 0%, #2A2A2A 60%, #555049 120%); }
 
 /* App feel: buttons give a little under the finger, and lift a hair on hover where a mouse is present. */
-.btn { transition: background-color .25s var(--ease-out-expo), border-color .25s var(--ease-out-expo), color .25s, transform .2s var(--ease-out-expo), box-shadow .25s; }
 .btn:active { transform: scale(.97); }
-@media (hover: hover) { .btn-primary:hover, .btn-secondary:hover, .btn-accent:hover { transform: translateY(-1px); } .btn-glass:hover .go { transform: translateX(2px); } }
 @media (prefers-reduced-motion: reduce) { .btn, .btn:active, .btn:hover { transform: none !important; } }
 
 /* Hero depth on scroll, with no script: the photo drifts down a little slower than the page and the phone rises a touch.

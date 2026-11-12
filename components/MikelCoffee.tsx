@@ -317,7 +317,7 @@ export default function MikelCoffee() {
       <section className={`${sec} border-t border-[#e9dcc6]/[.08]`}><div className="mx-auto max-w-[1400px]">
         <h2 className="display max-w-[14ch] text-h1">{t2(l, "Bir reçeteyle başlayalım.", "Let's start with one recipe.")}</h2>
         <p className="mt-6 max-w-[50ch] text-lg leading-[1.4] text-white/65">{t2(l, "Bir kahve noktanızdan tek bir içeceği birlikte çekelim. Aynı gün adımlar, açılış listesi ve quiz hazır olsun; ekibiniz kendi tezgâhında denesin.", "Let's film one drink at one of your coffee points together. Same day: steps, opening checklist and quiz ready for your team to try at their own bar.")}</p>
-        <div className="mt-8 flex flex-wrap items-center gap-3"><a href={SITE.demo} className="btn-p">{t2(l, "Görüşme planla", "Book a call")} <Arr className="ml-1" /></a><Link href="/" className="btn-g">{t2(l, "Flexlore'u tanı", "About Flexlore")}</Link></div>
+        <div className="mt-8 flex flex-wrap items-center gap-3"><a href={SITE.demo} className="btn btn-cta">{t2(l, "Görüşme planla", "Book a call")} <Arr className="ml-1" /></a><Link href="/" className="btn-g">{t2(l, "Flexlore'u tanı", "About Flexlore")}</Link></div>
         <div className="mt-12 border-t border-white/[.07] pt-8"><p className="mono text-xs uppercase tracking-[.22em] text-flame">{t2(l, "Uygulamayı indirin", "Get the app")}</p>
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <a href="https://apps.apple.com/tr/app/flexlore/id6751126206" target="_blank" rel="noopener" aria-label="App Store'dan indirin" className="transition-opacity hover:opacity-80"><img src="/brand/stores/appstore-tr.svg" alt="App Store'dan İndirin" className="h-[48px] w-auto" /></a>

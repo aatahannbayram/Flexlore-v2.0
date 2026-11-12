@@ -60,7 +60,7 @@ export function FeaturePage({ slug }: { slug: string }) {
             <h1 className="mt-6 max-w-[16ch] text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]"><Split text={it.h1} /></h1>
             <p className="mt-6 max-w-[32rem] text-[18px] leading-[1.6] text-ink-muted">{it.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+              <a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
               <a href="#how" className="btn btn-secondary h-11 px-5 text-[15px]">{c.how}</a>
             </div>
             {f.status === "soon" && <p className="mt-6 flex max-w-[32rem] items-start gap-2 text-[14px] text-ink-faint"><Lightning size={15} aria-hidden="true" className="mt-0.5 shrink-0" />{c.soonNote}</p>}
@@ -169,7 +169,7 @@ function End({ c }: { c: FDict["common"] }) {
       <PhotoBand img="saha-iskele-pov" pos="50% 45%" dim={0.4} className="grid items-center gap-6 p-4 md:p-6 lg:grid-cols-12 lg:gap-8">
         <div className={`order-last ${glassTile} p-6 md:p-8 lg:order-first lg:col-span-5`}>
           <p className="text-[clamp(26px,1rem+1.5vw,40px)] font-semibold leading-[1.06] tracking-[-0.04em]"><Split text={c.endH} /></p><p className="mt-4 text-[16px] leading-[1.55] text-white/70">{c.endP}</p>
-          <a href={SITE.demo} className="btn btn-primary mt-7 h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          <a href={SITE.demo} className="btn btn-cta mt-7 h-11 px-5 text-[15px]">{c.demo}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
         <div className="lg:col-span-7"><Duo lang={lang} /></div>
       </PhotoBand>

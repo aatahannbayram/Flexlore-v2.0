@@ -253,8 +253,8 @@ export function PricingPreview({ lang }: { lang: Lang }) {
               <div className="mt-6 min-h-[4.75rem]"><PriceBlock p={p} yearly={yearly} lang={lang} small light={!rec} /></div>
               <div className="mt-5">
                 {p.id === "enterprise"
-                  ? <a href={SITE.demo} className="btn group w-full bg-light-surface text-light-ink hover:bg-ice-200">{t.talk}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></a>
-                  : <Link href={store ?? "/pricing/"} {...(store ? { target: "_blank", rel: "noopener" } : {})} className={`btn group w-full ${rec ? "btn-primary" : "bg-light-surface text-light-ink hover:bg-ice-200"}`}>{p.id === "free" ? t.start : t.choose}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></Link>}
+                  ? <a href={SITE.demo} className="btn group w-full btn-cta">{t.talk}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></a>
+                  : <Link href={store ?? "/pricing/"} {...(store ? { target: "_blank", rel: "noopener" } : {})} className={`btn group w-full ${rec ? "btn-primary" : "btn-secondary"}`}>{p.id === "free" ? t.start : t.choose}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5" /></Link>}
               </div>
               <div className={`mt-6 flex-1 rounded-2xl p-4 ${rec ? "bg-white/[.06]" : "bg-light-bg"}`}>
                 <p className={`flex items-center gap-2 text-sm font-semibold ${rec ? "text-ice-100" : "text-light-ink"}`}>
@@ -283,7 +283,7 @@ export function Faq({ lang }: { lang: Lang }) {
           <div className="mt-10 hidden max-w-[20rem] lg:block">
             <p className="text-lg font-semibold tracking-[-.01em]">{c.more}</p>
             <p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
-            <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+            <a href={SITE.demo} className="btn btn-cta mt-5">{home[lang].end.cta}</a>
             <p className="mt-4 text-sm text-ink-faint"><a href="mailto:support@flexlore.com" className="underline decoration-white/20 underline-offset-4 hover:text-ink">{c.email}</a></p>
           </div>
         </div>
@@ -308,7 +308,7 @@ export function Faq({ lang }: { lang: Lang }) {
         </ul>
         <div className="col-span-12 lg:hidden">
           <p className="text-lg font-semibold">{c.more}</p><p className="mt-2 text-base text-ink-muted">{c.moreP}</p>
-          <a href={SITE.demo} className="btn btn-primary mt-5">{home[lang].end.cta}</a>
+          <a href={SITE.demo} className="btn btn-cta mt-5">{home[lang].end.cta}</a>
         </div>
       </div>
     </section>);

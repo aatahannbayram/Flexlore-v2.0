@@ -41,7 +41,7 @@ export default function CasePage({ slug }: { slug: string }) {
                   <p className="mt-5 text-[18px] leading-[1.55] text-white/90">{v(x)}</p></div>))}
             </div>
             <div className="mt-3 flex flex-wrap gap-3 p-3 md:mt-5">
-              <a href={SITE.demo} className="btn btn-primary group h-11 px-5 text-[15px]">{t.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+              <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
               <Link href="/" className="btn btn-glass-2 h-11">{t.back}</Link>
             </div>
           </PhotoBand></div>

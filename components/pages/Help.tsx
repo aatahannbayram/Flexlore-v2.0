@@ -120,7 +120,7 @@ export function FaqPage() {
             <h2 className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[34px]"><Split text={c.moreH} /></h2><p className="mt-2 max-w-[36rem] text-[15px] text-white/70 md:text-[16px]">{c.moreP}</p></div>
           <div className="flex flex-wrap gap-2">
             <Link href="/support/" className={`${pill} btn-glass-2 h-12 px-5`}>{c.contact}</Link>
-            <a href={SITE.demo} className={`${pill} btn-primary h-12 px-6`}>{c.demo}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
+            <a href={SITE.demo} className={`${pill} btn-cta h-12 px-6`}>{c.demo}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
           </div>
         </PhotoBand>
       </div>

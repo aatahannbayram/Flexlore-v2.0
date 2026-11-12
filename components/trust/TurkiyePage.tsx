@@ -7,7 +7,7 @@
 import Link from "next/link";
 import { C, SUBJECT, type L } from "./turkiye-copy";
 export { TURKIYE_TITLE } from "./turkiye-copy";
-import { MapPin, UsersThree, ArrowsLeftRight, Buildings, EnvelopeSimple, ArrowRight, ArrowUpRight, Check, Info, Plus } from "../ui/icons";
+import { MapPin, UsersThree, ArrowsLeftRight, Buildings, EnvelopeSimple, ArrowRight, Check, Info, Plus } from "../ui/icons";
 
 const card = "rounded-[24px] bg-[var(--card)]";
 const H2 = ({ id, n, children }: { id: string; n: string; children: React.ReactNode }) => (
@@ -22,7 +22,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
     <article lang={lang} dir="ltr" className="container-x pb-24 pt-32 md:pt-40">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-[14px] text-ink-faint">{c.crumb} · Türkiye</p>
-        <Link href={c.other[1]} hrefLang={lang === "tr" ? "en" : "tr"} className="inline-flex min-h-11 items-center rounded-full bg-[var(--card)] px-4 text-[14px] text-ink-muted transition-colors hover:text-ink">{c.other[0]}</Link>
+        <Link href={c.other[1]} hrefLang={lang === "tr" ? "en" : "tr"} className="btn btn-secondary h-11 px-4 text-[14px]">{c.other[0]}</Link>
       </div>
       <h1 className="v3-h1 mt-4 max-w-[20ch]">{c.h1a} <span className="t-accent">{c.h1b}</span></h1>
       <p className="lead mt-5 max-w-[40rem]">{c.lead}</p>
@@ -82,9 +82,9 @@ export function TurkiyePage({ lang }: { lang: L }) {
                 <span className="grid h-10 w-10 place-items-center rounded-[12px] bg-white/[.08]"><Buildings size={18} aria-hidden="true" /></span>
                 <h2 id="tr-s6" className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[32px]">{c.s6.h}</h2>
                 <p className="mt-2 max-w-[34rem] text-[16px] leading-[1.6] text-white/70">{c.s6.p}</p>
-                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <a href={mail} className="btn btn-cta h-12 px-6"><EnvelopeSimple size={16} aria-hidden="true" />{c.s6.cta}</a>
-                  <Link href="/support/" className="group inline-flex min-h-11 items-center gap-1.5 text-[15px] text-white/70 hover:text-white">{c.s6.alt}<ArrowUpRight size={13} aria-hidden="true" /></Link>
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <a href={mail} className="btn btn-cta h-11 px-5"><EnvelopeSimple size={16} aria-hidden="true" />{c.s6.cta}</a>
+                  <Link href="/support/" className="btn btn-glass-2 h-11 px-5">{c.s6.alt}</Link>
                 </div>
               </div>
               <ul className="grid gap-2">{c.s6.docs.map((d) => (

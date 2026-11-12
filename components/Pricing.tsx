@@ -149,7 +149,7 @@ export default function Pricing() {
         <p className="v4-h2 mx-auto max-w-[22ch]"><Split text={t.endH} /></p>
         <p className="mt-4 text-[17px] text-white/75">{t.endP}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={SITE.demo} className="btn btn-primary h-11 px-5 text-[15px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          <a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
           <a href="#quote" className="btn btn-glass-2 h-11 px-5 text-[15px]">{q.cta}</a>
         </div>
       </PhotoBand></div></section>

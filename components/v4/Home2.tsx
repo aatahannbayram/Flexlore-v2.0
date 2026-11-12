@@ -50,7 +50,7 @@ function Hero() {
             <span aria-hidden="true" className="ms-2 inline-grid h-[0.62em] w-[0.62em] translate-y-[-0.05em] place-items-center rounded-full ring-[3px] ring-white/85 align-middle"><Check size={18} className="text-white" /></span>
           </m.h1>
           <p className="mt-6 max-w-[30rem] text-[16px] leading-[26px] text-white/80 md:text-[18px] md:leading-[28px]">{sub}</p>
-          <a href={SITE.demo} target="_blank" rel="noopener" className="mt-8 inline-flex h-12 items-center rounded-full bg-white px-7 text-[15px] font-semibold text-[#111] transition-transform duration-200 hover:-translate-y-0.5">{d.nav.cta}</a>
+          <a href={SITE.demo} target="_blank" rel="noopener" className="btn btn-cta mt-8 h-12 px-7">{d.nav.cta}</a>
         </div>
         {/* Programs along the frame's foot. */}
         <div className="relative pb-5 sm:pb-7"><TrustStrip as="div" label={d.trust.programs} /></div>
