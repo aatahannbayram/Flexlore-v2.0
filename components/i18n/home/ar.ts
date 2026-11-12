@@ -116,7 +116,7 @@ export const ar: Dict = {
     tag: "كل مهمة، خطوة بخطوة، بعين من يؤديها.", ai: "احصل على ملخص بالذكاء الاصطناعي", aiQ: "لخّص ما يقدمه Flexlore (https://flexlore.com)، ولمن صُمم، وكيف يعمل.",
     follow: "تابع Flexlore", app: "حمّل التطبيق", rights: "جميع الحقوق محفوظة.", top: "العودة إلى الأعلى", legal: "الشؤون القانونية",
     groups: { product: "المنتج", cases: "حالات الاستخدام", industries: "القطاعات", company: "الشركة" },
-    links: { company: "من نحن", how: "كيف يعمل", web: "Flexlore Web", ai: "الذكاء الاصطناعي", integrations: "التكاملات", pricing: "الأسعار", business: "منشأتك", apprentice: "من الخبير إلى المتدرب", installation: "التدريب عند التركيب",
+    links: { careers: "الوظائف", company: "من نحن", how: "كيف يعمل", web: "Flexlore Web", ai: "الذكاء الاصطناعي", integrations: "التكاملات", pricing: "الأسعار", business: "منشأتك", apprentice: "من الخبير إلى المتدرب", installation: "التدريب عند التركيب",
       restaurants: "المطاعم", manufacturing: "التصنيع", hotels: "الفنادق", franchises: "سلاسل الامتياز", warehouses: "المستودعات", bakeries: "المخابز والمقاهي", blog: "المدونة", support: "الدعم", demo: "احجز عرضًا توضيحيًا" },
   },
 };

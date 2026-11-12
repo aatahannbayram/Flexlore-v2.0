@@ -115,7 +115,7 @@ export const ru: Dict = {
     tag: "Каждая работа шаг за шагом. Глазами того, кто её выполняет.", ai: "Краткое описание от ИИ", aiQ: "Кратко расскажи, что делает Flexlore (https://flexlore.com), для кого он предназначен и как работает.",
     follow: "Следите за Flexlore", app: "Скачать приложение", rights: "Все права защищены.", top: "Наверх", legal: "Правовая информация",
     groups: { product: "Продукт", cases: "Сценарии", industries: "Отрасли", company: "Компания" },
-    links: { company: "О нас", how: "Как это работает", web: "Flexlore Web", ai: "ИИ", integrations: "Интеграции", pricing: "Цены", business: "Ваш бизнес", apprentice: "От мастера к ученику", installation: "Обучение при монтаже",
+    links: { careers: "Карьера", company: "О нас", how: "Как это работает", web: "Flexlore Web", ai: "ИИ", integrations: "Интеграции", pricing: "Цены", business: "Ваш бизнес", apprentice: "От мастера к ученику", installation: "Обучение при монтаже",
       restaurants: "Рестораны", manufacturing: "Производство", hotels: "Отели", franchises: "Франшизы", warehouses: "Склады", bakeries: "Пекарни и кафе", blog: "Блог", support: "Поддержка", demo: "Заказать демо" },
   },
 };

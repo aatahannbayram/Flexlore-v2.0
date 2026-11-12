@@ -549,8 +549,10 @@ main h1 .t-accent { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%,
 :root[data-theme="light"] #main::before { opacity: 0.5; }
 /* Pages that open on their own dark photo or video hero (home, sectors, use cases, customers) keep their ground. */
 #main:has(> :first-child.dark)::before, #main.home-v3::before { display: none; }
+/* Pages whose first block is an ember hero (KVKK, careers) already carry their glow; a second one under it shows an edge. */
+#main:has(> :first-child > .ember:first-child)::before { display: none; }
 @media (prefers-reduced-motion: no-preference) {
-  .ember::before, #main::before { animation: ember-drift 16s ease-in-out infinite alternate; }
+  .ember:not(.ember-sm)::before, #main::before { animation: ember-drift 16s ease-in-out infinite alternate; }
 }
 @keyframes ember-drift { from { transform: translateX(-3%) scale(1); } to { transform: translateX(3%) scale(1.06); } }
 /* Ember line: a hairline that glows orange in the middle and fades to grey at both ends (dividers on ember blocks). */

@@ -116,7 +116,7 @@ export const pl: Dict = {
     tag: "Każde zadanie krok po kroku. Oczami osoby, która je wykonuje.", ai: "Podsumowanie od AI", aiQ: "Podsumuj, czym zajmuje się Flexlore (https://flexlore.com), dla kogo jest i jak działa.",
     follow: "Obserwuj Flexlore", app: "Pobierz aplikację", rights: "Wszelkie prawa zastrzeżone.", top: "Do góry", legal: "Informacje prawne",
     groups: { product: "Produkt", cases: "Zastosowania", industries: "Branże", company: "Firma" },
-    links: { company: "O nas", how: "Jak to działa", web: "Flexlore Web", ai: "AI", integrations: "Integracje", pricing: "Cennik", business: "Twoja firma", apprentice: "Od mistrza do ucznia", installation: "Szkolenie przy instalacji",
+    links: { careers: "Kariera", company: "O nas", how: "Jak to działa", web: "Flexlore Web", ai: "AI", integrations: "Integracje", pricing: "Cennik", business: "Twoja firma", apprentice: "Od mistrza do ucznia", installation: "Szkolenie przy instalacji",
       restaurants: "Restauracje", manufacturing: "Produkcja", hotels: "Hotele", franchises: "Franczyzy", warehouses: "Magazyny", bakeries: "Piekarnie i kawiarnie", blog: "Blog", support: "Wsparcie", demo: "Umów demo" },
   },
 };

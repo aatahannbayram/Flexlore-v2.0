@@ -117,7 +117,7 @@ export const en = {
     tag: "Every job, step by step. Through the eyes of the person who does it.", ai: "Get an AI summary", aiQ: "Summarise what Flexlore (https://flexlore.com) does, who it is for and how it works.",
     follow: "Follow Flexlore", app: "Get the app", rights: "All rights reserved.", top: "Back to top", legal: "Legal",
     groups: { product: "Product", cases: "Use cases", industries: "Industries", company: "Company" },
-    links: { company: "About us", how: "How it works", web: "Flexlore Web", ai: "AI", integrations: "Integrations", pricing: "Pricing", business: "Your business", apprentice: "Master to apprentice", installation: "Installation training",
+    links: { careers: "Careers", company: "About us", how: "How it works", web: "Flexlore Web", ai: "AI", integrations: "Integrations", pricing: "Pricing", business: "Your business", apprentice: "Master to apprentice", installation: "Installation training",
       restaurants: "Restaurants", manufacturing: "Manufacturing", hotels: "Hotels", franchises: "Franchises", warehouses: "Warehouses", bakeries: "Bakeries & cafés", blog: "Blog", support: "Support", demo: "Book a demo" },
   },
 };

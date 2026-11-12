@@ -118,7 +118,7 @@ export const tr: Dict = {
     tag: "Her iş, adım adım. İşi yapan kişinin gözünden.", ai: "Yapay zekâ ile özetleyin", aiQ: "Flexlore'un (https://flexlore.com) ne yaptığını, kimler için olduğunu ve nasıl çalıştığını özetle.",
     follow: "Flexlore'u takip edin", app: "Uygulamayı indirin", rights: "Tüm hakları saklıdır.", top: "Başa dön", legal: "Yasal",
     groups: { product: "Ürün", cases: "Kullanım alanları", industries: "Sektörler", company: "Şirket" },
-    links: { company: "Hakkımızda", how: "Nasıl çalışır", web: "Flexlore Web", ai: "Yapay zekâ", integrations: "Entegrasyonlar", pricing: "Fiyatlar", business: "Sizin işiniz", apprentice: "Ustadan çırağa", installation: "Kurulum eğitimi",
+    links: { careers: "Kariyer", company: "Hakkımızda", how: "Nasıl çalışır", web: "Flexlore Web", ai: "Yapay zekâ", integrations: "Entegrasyonlar", pricing: "Fiyatlar", business: "Sizin işiniz", apprentice: "Ustadan çırağa", installation: "Kurulum eğitimi",
       restaurants: "Restoranlar", manufacturing: "Üretim", hotels: "Oteller", franchises: "Franchise", warehouses: "Depolar", bakeries: "Fırın ve kafeler", blog: "Blog", support: "Destek", demo: "Demo isteyin" },
   },
 };

@@ -80,24 +80,24 @@
     },
     {
       "from": "/careers",
-      "to": "/company/",
+      "to": "/careers/",
       "status": 301,
-      "approved": false,
-      "note": "No careers page on the new site. Proposed: company page. Needs a decision (are the two roles still open?)."
+      "approved": true,
+      "note": "New careers page (13 November 2026)."
     },
     {
       "from": "/careers/product-designer-ui-ux",
-      "to": "/company/",
+      "to": "/careers/",
       "status": 301,
-      "approved": false,
-      "note": "No careers page on the new site. Proposed: company page. Needs a decision (are the two roles still open?)."
+      "approved": true,
+      "note": "Old Framer post was a template leftover from another company (not a real Flexlore role); goes to the careers page."
     },
     {
       "from": "/careers/senior-software-engineer",
-      "to": "/company/",
+      "to": "/careers/",
       "status": 301,
-      "approved": false,
-      "note": "No careers page on the new site. Proposed: company page. Needs a decision (are the two roles still open?)."
+      "approved": true,
+      "note": "Old Framer post was a template leftover from another company (not a real Flexlore role); goes to the careers page."
     },
     {
       "from": "/company",

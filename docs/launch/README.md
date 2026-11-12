@@ -23,7 +23,7 @@ deployed. Merge, deploy and DNS changes need Ata's approval.
 ## 2. Launch day, in this order
 
 1. **Turn indexing on:** `components/config.ts`, `SITE.noindex: false`. This changes `robots.txt` and the robots meta on every page. Do this only in the launch build, never on preprod.
-2. **Redirects:** load `redirects.json` into the host (nginx, Amplify or CloudFront, whichever is chosen in FLE-144). 23 entries only add the trailing slash. 4 need a decision first (see section 3).
+2. **Redirects:** load `redirects.json` into the host (nginx, Amplify or CloudFront, whichever is chosen in FLE-144). 23 entries only add the trailing slash, 3 go to the new careers page. `/download` needs a decision first (see section 3).
 3. **DNS:** lower the TTL a day ahead. Do not touch MX or TXT records (email and domain verification).
 4. **Search Console:** submit `https://www.flexlore.com/sitemap.xml`, then check for 404s daily for two weeks.
 5. **Framer:** cancel the subscription only after the new site has run for two weeks without problems.
@@ -32,7 +32,6 @@ deployed. Merge, deploy and DNS changes need Ata's approval.
 
 | Item | Question | Proposal |
 |---|---|---|
-| `/careers`, `/careers/product-designer-ui-ux`, `/careers/senior-software-engineer` | No careers page on the new site. Are the two roles still open? | Redirect to `/company/`, or add a careers page if the roles are open |
 | `/download` | No download page on the new site | Redirect to `/` (store badges are in every footer) |
 | Legal drafts | Acceptable use, DPA, sub-processors, security, billing and cookies are marked `draft: true` | Counsel review before launch |
 | KVKK page | `TRUST_TR.approved` is `false`: noindex and out of the sitemap | Counsel review |
@@ -41,6 +40,8 @@ deployed. Merge, deploy and DNS changes need Ata's approval.
 | Security headers | CSP, HSTS and similar are set by the server, not the site | Set on the chosen host; nothing on the shared VPS was touched |
 
 ## 4. Known and accepted
+
+- The old Framer `/careers` pages were a template from another company ("Payer"), with apply buttons pointing to the template seller's checkout. They are not reused; `/careers/` is new and lists no roles until real ones are added to `ROLES` in `components/pages/careers-copy.ts`. Applications go to support@flexlore.com until a careers address exists.
 
 - Blog posts and legal documents are English only; sector, AI, integrations and use-case pages are English and Turkish.
 - On `/features/` the Turkish feature copy arrives a moment after the page shows (CLS 0.018, the good limit is 0.1).

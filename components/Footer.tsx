@@ -44,6 +44,7 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
   { g: "company", en: "Company", tr: "Şirket", items: [
     { k: "blog", en: "Blog", href: "/blog/" },
     { k: "company", en: "About us", tr: "Hakkımızda", href: "/company/" },
+    { k: "careers", en: "Careers", tr: "Kariyer", href: "/careers/" },
     { k: "support", en: "Support", tr: "Destek", href: "/support/" },
     { k: "faq", en: "FAQ", tr: "SSS", href: "/faq/" },
     { k: "demo", en: "Book a demo", tr: "Demo isteyin", href: SITE.demo, ext: true },

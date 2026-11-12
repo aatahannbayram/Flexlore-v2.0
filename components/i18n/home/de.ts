@@ -116,7 +116,7 @@ export const de: Dict = {
     tag: "Jede Aufgabe, Schritt für Schritt. Mit den Augen der Person, die sie macht.", ai: "KI-Zusammenfassung erhalten", aiQ: "Fasse zusammen, was Flexlore (https://flexlore.com) macht, für wen es gedacht ist und wie es funktioniert.",
     follow: "Flexlore folgen", app: "App laden", rights: "Alle Rechte vorbehalten.", top: "Nach oben", legal: "Rechtliches",
     groups: { product: "Produkt", cases: "Anwendungsfälle", industries: "Branchen", company: "Unternehmen" },
-    links: { company: "Über uns", how: "So funktioniert es", web: "Flexlore Web", ai: "KI", integrations: "Integrationen", pricing: "Preise", business: "Ihr Betrieb", apprentice: "Vom Meister zum Lehrling", installation: "Inbetriebnahme-Schulung",
+    links: { careers: "Karriere", company: "Über uns", how: "So funktioniert es", web: "Flexlore Web", ai: "KI", integrations: "Integrationen", pricing: "Preise", business: "Ihr Betrieb", apprentice: "Vom Meister zum Lehrling", installation: "Inbetriebnahme-Schulung",
       restaurants: "Restaurants", manufacturing: "Fertigung", hotels: "Hotels", franchises: "Franchise", warehouses: "Lager", bakeries: "Bäckereien und Cafés", blog: "Blog", support: "Support", demo: "Demo buchen" },
   },
 };
