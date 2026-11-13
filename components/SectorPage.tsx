@@ -32,9 +32,9 @@ const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
     <p className="text-[14px] font-medium tracking-[-0.005em] text-ink-faint">{children}</p></div>);
 function H2({ text, className = "" }: { text: string; className?: string }) {
   const reduce = useReducedMotion(); const w = text.split(" ");
-  if (reduce) return <h2 className={`v4-h2 mt-4 !font-normal !tracking-[-0.035em] ${className}`}>{text}</h2>;
+  if (reduce) return <h2 className={`v4-h2 mt-4 ${className}`}>{text}</h2>;
   return (
-    <m.h2 aria-label={text} className={`v4-h2 mt-4 !font-normal !tracking-[-0.035em] ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }} transition={{ staggerChildren: 0.045 }}>
+    <m.h2 aria-label={text} className={`v4-h2 mt-4 ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }} transition={{ staggerChildren: 0.045 }}>
       {w.map((x, k) => <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom"><m.span className="inline-block" variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease }}>{x}</m.span></span>)
         .flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);

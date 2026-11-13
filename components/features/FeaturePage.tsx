@@ -337,7 +337,7 @@ export function FeaturesIndex() {
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4"><div className="lg:sticky lg:top-[calc(var(--header-h)+100px)]">
               <p className="text-[13px] font-semibold tabular-nums text-flame">0{k + 1}<span className="text-ink-faint"> / 03</span></p>
-              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] font-normal leading-[1.02] tracking-[-0.035em]">{t.groups[g]}</h2>
+              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] !font-medium leading-[1.02] tracking-[-0.035em]">{t.groups[g]}</h2>
               <p className="mt-4 max-w-[24rem] text-[17px] leading-[1.6] text-ink-muted">{t.lines[g]}</p>
               <div className="mt-6"><Dots g={g} /></div>
             </div></div>
