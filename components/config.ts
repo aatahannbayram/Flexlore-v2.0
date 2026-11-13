@@ -5,6 +5,10 @@ export const SITE = {
   // (`FLX_LAUNCH=1 npm run build`), which opens robots, the sitemap and every page's meta. Read at build time only.
   noindex: process.env.FLX_LAUNCH !== "1",
   // Log in link in the header (desktop and the mobile menu). Empty = hidden. Set by Flexlore, 2026-11-10.
+  /* Measurement carried over from the old site (same GA4 property and HubSpot portal, so history continues). Active only in
+     the launch build (FLX_LAUNCH=1) and only after the visitor allows analytics in the consent banner. */
+  ga4: process.env.FLX_LAUNCH === "1" ? "G-7QNETL3VJ3" : "",
+  hubspot: process.env.FLX_LAUNCH === "1" ? "147293209" : "",
   login: "https://app.flexlore.com",
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
   // Programs Flexlore is accepted into (confirmed by Ata, 2026-11-04). Shown in the home trust strip.

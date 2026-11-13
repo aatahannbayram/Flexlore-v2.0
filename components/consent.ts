@@ -6,8 +6,8 @@ export type Consent = { v: 1; analytics: boolean; at: number };
 export const CONSENT_KEY = "flx-consent";
 export const CONSENT_EVENT = "flx-consent";
 export const CONSENT_OPEN_EVENT = "flx-consent-open";
-/** True when the build includes a tool that needs consent (today: PostHog). */
-export const consentNeeded = !!process.env.NEXT_PUBLIC_POSTHOG_KEY;
+/** True when the build includes a tool that needs consent (PostHog, or GA4 and HubSpot in the launch build). */
+export const consentNeeded = !!process.env.NEXT_PUBLIC_POSTHOG_KEY || process.env.FLX_LAUNCH === "1";
 
 export function readConsent(): Consent | null {
   try { const c = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null"); return c && c.v === 1 ? c : null; } catch { return null; }
