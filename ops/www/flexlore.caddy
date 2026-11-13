@@ -1,8 +1,7 @@
-# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. flexlore.com is the canonical host (SITE.url, every page's
-# <link rel="canonical">). www serves the same site WITHOUT redirecting: the old Framer site sent flexlore.com -> www with a
-# permanent 308 that browsers remember, so a www -> apex redirect here loops for every returning visitor
-# (ERR_TOO_MANY_REDIRECTS, seen 2026-11-14). Revisit a www -> apex 301 only after those cached redirects have aged out.
-flexlore.com, www.flexlore.com {
+# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. www.flexlore.com is the canonical host (SITE.url, every
+# page's <link rel="canonical">), as on the old Framer site, so Search Console history and rankings carry on unchanged.
+# The bare domain redirects to www, the same direction as Framer's old 308 that browsers remember (so no redirect loop).
+www.flexlore.com {
 	encode zstd gzip
 	header {
 		# Start HSTS short; raise to 31536000 after two calm weeks.
@@ -15,4 +14,8 @@ flexlore.com, www.flexlore.com {
 		-Server
 	}
 	reverse_proxy flexlore-web:80
+}
+
+flexlore.com {
+	redir https://www.flexlore.com{uri} permanent
 }

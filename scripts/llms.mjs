@@ -7,7 +7,7 @@ const feats = [...data.matchAll(/\{ slug: "([^"]+)", icon: "[^"]+", group: "(\w+
 const en = readFileSync(ROOT + "components/i18n/features/en.ts", "utf8");
 const meta = (slug) => { const i = en.indexOf(`"${slug}": {`) >= 0 ? en.indexOf(`"${slug}": {`) : en.indexOf(`${slug}: {`); const m = en.slice(i).match(/meta: "([^"]+)"[\s\S]*?k: "([^"]+)"/); return m ? { meta: m[1], k: m[2] } : { meta: "", k: slug }; };
 const G = { create: "Create", spread: "Roll out", manage: "Manage" };
-const site = "https://flexlore.com";
+const site = "https://www.flexlore.com";
 let out = `# Flexlore
 
 > Flexlore turns your operational know-how into video-based, step-by-step, AI-assisted employee training you can measure, for every shift and location.

@@ -1,6 +1,6 @@
 // Single source of truth for launch flags, links and pricing hooks.
 export const SITE = {
-  url: "https://flexlore.com",
+  url: "https://www.flexlore.com",
   // Search engines: closed by default (preprod and local builds). The launch build sets FLX_LAUNCH=1
   // (`FLX_LAUNCH=1 npm run build`), which opens robots, the sitemap and every page's meta. Read at build time only.
   noindex: process.env.FLX_LAUNCH !== "1",

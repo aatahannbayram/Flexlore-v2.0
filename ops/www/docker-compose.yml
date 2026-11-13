@@ -1,4 +1,4 @@
-# Production site flexlore.com: static export (out/) served by nginx, behind the shared Caddy proxy (network "web").
+# Production site www.flexlore.com: static export (out/) served by nginx, behind the shared Caddy proxy (network "web").
 # Lives in /opt/sites/flexlore-web on the VPS. Only this container is created or restarted by a deploy.
 services:
   flexlore-web:
