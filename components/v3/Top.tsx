@@ -59,11 +59,12 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
         </div>); })}
       {/* Darker and calmer than the clip: a deep wash from the text side, a vignette that closes the corners, one warm
           glow behind the phone, and a long fade into the ground so the strip below starts on #111. */}
-      <span className="absolute inset-0 bg-[rgb(10_10_10/0.34)]" />
-      <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(12_12_12/0.95)_0%,rgb(12_12_12/0.82)_34%,rgb(12_12_12/0.45)_64%,rgb(12_12_12/0.55)_100%)] rtl:-scale-x-100" />
-      <span className="absolute inset-0 bg-[radial-gradient(130%_95%_at_60%_45%,transparent_45%,rgb(8_8_8/0.7)_100%)]" />
+      <span className="absolute inset-0 bg-[rgb(10_10_10/0.12)]" />
+      <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_10_10/0.98)_0%,rgb(10_10_10/0.94)_22%,rgb(10_10_10/0.8)_38%,rgb(10_10_10/0.55)_54%,rgb(10_10_10/0.3)_70%,rgb(10_10_10/0.16)_85%,rgb(10_10_10/0.1)_100%)] rtl:-scale-x-100" />
+      <span className="absolute inset-0 bg-[rgb(10_10_10/0.4)] md:hidden" />
+      <span className="absolute inset-0 bg-[radial-gradient(120%_100%_at_70%_45%,transparent_50%,rgb(8_8_8/0.55)_100%)]" />
       <span className="absolute inset-0 bg-[radial-gradient(38%_50%_at_76%_52%,rgb(236_103_38/0.2)_0%,rgb(236_103_38/0)_70%)] mix-blend-screen rtl:-scale-x-100" />
-      <span className="absolute inset-0 bg-[radial-gradient(40%_45%_at_18%_42%,rgb(236_103_38/0.07)_0%,rgb(236_103_38/0)_70%)]" />
+      <span className="absolute inset-0 bg-[radial-gradient(40%_45%_at_18%_42%,rgb(236_103_38/0.035)_0%,rgb(236_103_38/0)_70%)]" />
       <span className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.85),rgb(12_12_12/0))]" />
       <span className="absolute inset-x-0 bottom-0 h-[45%] bg-[linear-gradient(to_top,#111111_8%,rgb(17_17_17/0.85)_35%,rgb(17_17_17/0))]" />
     </div>);
