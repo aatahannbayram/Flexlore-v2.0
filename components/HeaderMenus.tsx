@@ -26,7 +26,7 @@ const FEATURE: Record<string, { img: string; href: string; t: (d: Dict | undefin
 function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
   const { locale, d } = useLocale(); const t = FEAT_NAV[locale];
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_200px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
+    <div className="grid grid-cols-[minmax(0,1fr)_200px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.985)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
       <div className="p-2">
         <div className="grid grid-cols-[repeat(3,minmax(0,1fr))] gap-x-2">
           {GROUPS.map((g) => (
@@ -47,8 +47,8 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
         </div>
       </div>
       <a href="/see-it/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
-        <picture className="absolute inset-0"><source srcSet="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.avif" type="image/avif" /><img src="/blog/vvyMkqyAHHEpN8ItawEya0MuNM-800.webp" alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
-        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.88)_100%)]" />
+        <picture className="absolute inset-0"><source srcSet="/media/v3/saha-eldiven-makro-m.avif" type="image/avif" /><img src="/media/v3/saha-eldiven-makro-m.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[35%_40%] transition-transform duration-700 group-hover:scale-[1.04]" /></picture>
+        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.25)_0%,rgb(17_17_17/0.1)_35%,rgb(17_17_17/0.92)_100%)]" />
         <span className="relative text-[12px] text-white/70">{tt(d, "seeit", 1, "One real job, start to finish")}</span>
         <span className="relative mt-1 flex items-end justify-between gap-2 text-[15px] font-semibold leading-snug text-white">{tt(d, "seeit", 0, "See it in your business")}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
       </a>
@@ -61,7 +61,7 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
   const href = f.href.startsWith("/#") && home ? f.href.slice(1) : f.href;
   const [hover, setHover] = useState<number | null>(null);
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_230px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.94)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
+    <div className="grid grid-cols-[minmax(0,1fr)_230px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.985)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
       <ul className="grid grid-cols-2 content-start gap-0.5 p-1" onMouseLeave={() => setHover(null)}>
         {g.items.map((it, i) => { const Ic = it.icon; return (
           <li key={it.href} onMouseEnter={() => setHover(i)} className="relative">
