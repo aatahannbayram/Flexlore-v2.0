@@ -12,7 +12,7 @@ export const SITE = {
     // NVIDIA: official member badge from design.nvidia.com/partners/inception (Download Badge). Full colour, unaltered, on white
     // as in NVIDIA's own JPG export, trademark line in the footer. The -plate copy only changes the viewBox to the badge's white
     // panel (no transparent margin, no thin outer keyline) so it can sit larger on a rounded white plate in the programs row.
-    { name: "NVIDIA Inception", org: "NVIDIA", href: "https://www.nvidia.com/en-us/startups/", badge: "/brand/programs/nvidia-inception-badge-plate.svg" as string | null, badgeW: 135, badgeH: 48, caption: null as string | null, flag: null as string | null },
+    { name: "NVIDIA Inception", org: "NVIDIA", href: "https://www.nvidia.com/en-us/startups/", badge: "/brand/programs/nvidia-inception-badge-plate.svg" as string | null, badgeW: 112, badgeH: 40, caption: null as string | null, flag: null as string | null },
     // Google: official "Cloud Program" identifier from startup.google.com/cloud (green + grey only, no blue). The full
     // Google for Startups lockup uses the multicolour Google wordmark (blue), so the program name is set as a caption instead.
     { name: "Google for Startups Cloud Program", org: "Google", href: "https://startup.google.com/cloud/", badge: "/brand/programs/google-for-startups-cloud.svg" as string | null, badgeW: 163, badgeH: 40, caption: "Google for Startups" as string | null, flag: "googleProgram" as string | null },

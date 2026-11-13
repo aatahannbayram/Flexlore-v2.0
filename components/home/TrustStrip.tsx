@@ -24,7 +24,7 @@ export function TrustStrip({ label, lang = "en", as: T = "section" }: { label: s
                     : p.badge && (p.org === "NVIDIA" || p.org === "Google")
                       ? p.caption
                         ? <span className="flex h-10 flex-col items-center justify-center rounded-[6px] bg-[#EDEDED] px-2.5"><img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className="block h-[11px] w-auto max-w-none" /><span className="mt-0.5 text-[12px] font-medium leading-none text-[#5F6368]">{p.caption}</span></span>
-                        : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none ${p.org === "NVIDIA" ? "h-12 rounded-[9px]" : "h-12 rounded-[5px]"}`} />
+                        : <img src={p.badge} alt={p.name} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none ${p.org === "NVIDIA" ? "h-10 rounded-[6px]" : "h-12 rounded-[5px]"}`} />
                       : p.badge && p.org === "Y Combinator"
                         ? <span className="flex items-center gap-2.5"><img src={p.badge} alt="" width={24} height={24} className="block h-6 w-6 rounded-[4px]" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">{p.caption}</span><span className="text-[12px] text-white/50">Y Combinator</span></span></span>
                         : p.badge
