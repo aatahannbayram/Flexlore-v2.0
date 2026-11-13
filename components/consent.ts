@@ -18,5 +18,5 @@ export function writeConsent(analytics: boolean) {
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: c }));
 }
 /** Footer link label ("Cookie settings"). */
-export const CONSENT_SETTINGS: Record<string, string> = {"en": "Cookie settings", "tr": "Çerez ayarları", "de": "Cookie-Einstellungen", "ar": "إعدادات ملفات تعريف الارتباط", "es": "Ajustes de cookies", "ru": "Настройки cookie", "fr": "Paramètres des cookies", "pl": "Ustawienia cookies"};
+export const CONSENT_SETTINGS: Record<string, string> = {"en": "Cookie settings", "tr": "Çerez ayarları", "de": "Cookie-Einstellungen", "ar": "إعدادات ملفات تعريف الارتباط", "es": "Ajustes de cookies", "nl": "Cookie-instellingen", "pt": "Configurações de cookies", "fr": "Paramètres des cookies", "pl": "Ustawienia cookies"};
 export const openConsent = () => window.dispatchEvent(new Event(CONSENT_OPEN_EVENT));

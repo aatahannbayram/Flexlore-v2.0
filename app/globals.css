@@ -95,12 +95,20 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .mono { font-variant-numeric: tabular-nums; }
 
 /* Buttons: three looks only, all pills, 44 px minimum target, no gradients, glows or drop shadows.
-   Orange (.btn-cta): the demo call to action. Flat #EC6726, dark label (#111 on #EC6726 is 6.1:1).
+   Orange (.btn-cta): the demo call to action. #EC6726 with a light sheen, white label (asked for 2026-11-13; white on
+   #EC6726 is about 3.2:1, below 4.5:1 for small text, so the label stays 14 px and up and medium weight).
    White (.btn-primary, .btn-p, .btn-accent, .btn-glass): the other main action. Flat white, dark label.
    Glass (.btn-secondary, .btn-g, .btn-glass-2): everything else. Frosted clear pill with a hairline. */
 .btn, .btn-p, .btn-g, .btn-cta { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.25rem; font-size: 15px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; box-shadow: none; transition: background-color .25s var(--ease-out-expo), color .25s, box-shadow .25s, transform .2s var(--ease-out-expo); }
-.btn-cta { background: #EC6726; color: #111111; }
-.btn-cta:hover { background: #F07A3F; }
+.btn-cta { color: #FFFFFF; background-color: #EC6726;
+  /* Flat (2D) like the glass buttons: one faint hairline, and a very light diagonal glint that crosses on hover. No
+     top highlight or inner shadow, so it never reads as raised. Shape unchanged. */
+  background-image: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / 0.16) 50%, transparent 60%);
+  background-size: 260% 100%; background-position: 120% 0; background-repeat: no-repeat;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
+  transition: background-color .25s var(--ease-out-expo), background-position .9s var(--ease-out-expo), color .25s, box-shadow .25s, transform .2s var(--ease-out-expo); }
+.btn-cta:hover { background-color: #F07A3F; background-position: -20% 0; }
+@media (prefers-reduced-motion: reduce) { .btn-cta { transition: background-color .25s; } }
 .btn-primary, .btn-p, .btn-accent, .btn-glass { background: #FFFFFF; color: #111111; }
 .btn-primary:hover, .btn-p:hover, .btn-accent:hover, .btn-glass:hover { background: #EDE9E4; }
 .btn-secondary, .btn-g, .btn-glass-2 { background: rgb(255 255 255 / 0.08); color: var(--color-ink); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }

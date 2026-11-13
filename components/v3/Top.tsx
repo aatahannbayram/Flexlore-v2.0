@@ -72,7 +72,7 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
 
 /** Hero lines stand without a closing full stop (any language). */
 const bare = (t: string) => t.replace(/[.。]\s*$/, "");
-const STEP_DONE: Record<string, string> = { en: "Step complete", tr: "Adım tamamlandı", de: "Schritt erledigt", ar: "اكتملت الخطوة", es: "Paso completado", ru: "Шаг выполнен", fr: "Étape terminée", pl: "Krok ukończony" };
+const STEP_DONE: Record<string, string> = { en: "Step complete", tr: "Adım tamamlandı", de: "Schritt erledigt", ar: "اكتملت الخطوة", es: "Paso completado", pt: "Etapa concluída", nl: "Stap voltooid", fr: "Étape terminée", pl: "Krok ukończony" };
 export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false); const reduce = useReducedMotion();
   const [k, setK] = useState(0); const [ticks, setTicks] = useState(0); const [note, setNote] = useState(false);

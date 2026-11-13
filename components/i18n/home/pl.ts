@@ -56,7 +56,7 @@ export const pl: Dict = {
     k: "Branże", h: "Dla zespołów, które uczą się w praktyce.", more: "Zobacz Flexlore w swojej firmie",
     cards: ["Restauracje i kawiarnie", "Produkcja", "Hotele", "Franczyzy"],
     also: "Stosowany także w", areas: ["Opieka zdrowotna i kliniki", "Edukacja", "Firmy szkoleniowe", "Wellness i sport", "Rozrywka", "I nie tylko"],
-    langs: "Dostępny w 8 językach.",
+    langs: "Ta strona w Twoim języku.",
   },
   pricing: {
     k: "Cennik", h: "Cena zależy od wielkości zespołu.", lead: "Zacznij za darmo z maksymalnie 3 użytkownikami. Plan Enterprise od 30 użytkowników.",

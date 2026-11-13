@@ -56,7 +56,7 @@ export const de: Dict = {
     k: "Branchen", h: "Für Teams, die durch Tun lernen.", more: "Flexlore in Ihrem Betrieb ansehen",
     cards: ["Restaurants und Cafés", "Fertigung", "Hotels", "Franchise"],
     also: "Auch im Einsatz in", areas: ["Gesundheitswesen und Kliniken", "Bildung", "Schulungsanbieter", "Wellness und Sport", "Unterhaltung", "Und mehr"],
-    langs: "Verfügbar in 8 Sprachen.",
+    langs: "Diese Website in Ihrer Sprache.",
   },
   pricing: {
     k: "Preise", h: "Nach der Größe Ihres Teams.", lead: "Kostenlos starten mit bis zu 3 Nutzern. Enterprise ab 30 Nutzern.",

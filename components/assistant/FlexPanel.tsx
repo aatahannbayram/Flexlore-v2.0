@@ -33,7 +33,7 @@ const TR: T = { title: "Flex AI", sub: "Yapay zekâ asistanı", heroH: "Merhaba,
 export const GREET: Record<Locale, [string, string]> = {
   tr: ["Sorunuz mu var? Flex AI yardımcı olabilir.", "Mesajı kapatın"], en: ["Got a question? Flex AI can help.", "Dismiss message"],
   de: ["Eine Frage? Flex AI hilft weiter (auf Englisch).", "Nachricht schließen"], ar: ["لديك سؤال؟ يمكن لـ Flex AI المساعدة (بالإنجليزية).", "إغلاق الرسالة"],
-  es: ["¿Una pregunta? Flex AI puede ayudar (en inglés).", "Cerrar mensaje"], ru: ["Есть вопрос? Flex AI поможет (на английском).", "Закрыть сообщение"],
+  es: ["¿Una pregunta? Flex AI puede ayudar (en inglés).", "Cerrar mensaje"], nl: ["Een vraag? Flex AI helpt u verder (in het Engels).", "Bericht sluiten"], pt: ["Tem uma pergunta? O Flex AI pode ajudar (em inglês).", "Fechar mensagem"],
   fr: ["Une question ? Flex AI peut aider (en anglais).", "Fermer le message"], pl: ["Masz pytanie? Flex AI pomoże (po angielsku).", "Zamknij wiadomość"],
 };
 

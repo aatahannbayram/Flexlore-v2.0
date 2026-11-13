@@ -8,8 +8,8 @@ import { LOCALES, detectLocale, isLocale, base, type Locale } from "./locales";
 const LOAD: Record<Locale, () => Promise<Dict>> = {
   en: async () => en,
   tr: () => import("./home/tr").then((m) => m.tr), de: () => import("./home/de").then((m) => m.de), ar: () => import("./home/ar").then((m) => m.ar),
-  es: () => import("./home/es").then((m) => m.es), ru: () => import("./home/ru").then((m) => m.ru), fr: () => import("./home/fr").then((m) => m.fr),
-  pl: () => import("./home/pl").then((m) => m.pl),
+  es: () => import("./home/es").then((m) => m.es), nl: () => import("./home/nl").then((m) => m.nl), pt: () => import("./home/pt").then((m) => m.pt),
+  fr: () => import("./home/fr").then((m) => m.fr), pl: () => import("./home/pl").then((m) => m.pl),
 };
 const KEY = "flx-lang";
 type Ctx = { locale: Locale; lang: "en" | "tr"; d: Dict; setLocale: (l: Locale) => void; ready: boolean };

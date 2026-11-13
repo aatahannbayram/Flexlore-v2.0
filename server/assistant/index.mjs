@@ -11,13 +11,13 @@ const KB = JSON.parse(readFileSync(new URL("./knowledge.json", import.meta.url),
 const PORT = Number(process.env.PORT || 8787);
 const MODEL = process.env.ASSISTANT_MODEL || "claude-opus-5-5";
 const ORIGINS = (process.env.ALLOWED_ORIGINS || "https://www.flexlore.com,https://flexlore.com").split(",").map((s) => s.trim()).filter(Boolean);
-const LOCALES = new Set(["en", "tr", "de", "ar", "es", "ru", "fr", "pl"]);
+const LOCALES = new Set(["en", "tr", "de", "ar", "es", "nl", "pt", "fr", "pl"]);
 const LIMIT = { max: Number(process.env.RATE_MAX || 20), windowMs: Number(process.env.RATE_WINDOW_MS || 10 * 60 * 1000) };
 const client = new Anthropic(); // reads ANTHROPIC_API_KEY
 
 // One system prompt per locale: the rules, then the visitor's language entries and the English ones. It is identical for
 // every request in that locale, so it is cached (cache_control) and only the conversation is billed in full.
-const NAMES = { en: "English", tr: "Turkish", de: "German", ar: "Arabic", es: "Spanish", ru: "Russian", fr: "French", pl: "Polish" };
+const NAMES = { en: "English", tr: "Turkish", de: "German", ar: "Arabic", es: "Spanish", nl: "Dutch", pt: "Brazilian Portuguese", fr: "French", pl: "Polish" };
 const kbText = (l) => KB.entries.filter((e) => e.locale === l || e.locale === "en").map((e) => `<entry id="${e.id}" url="${e.url}">\n# ${e.title}\n${e.body}\n</entry>`).join("\n");
 const SYSTEM = Object.fromEntries([...LOCALES].map((l) => [l, [
   { type: "text", text: [

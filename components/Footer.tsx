@@ -72,7 +72,8 @@ const T: Record<string, { all: string; faq: string; aiP: string; talk: string; t
   de: { faq: "FAQ", all: "Alle Funktionen", aiP: "Öffnen Sie Ihren Assistenten mit einer fertigen Frage dazu, was Flexlore macht und für wen.", talk: "Schreiben Sie uns", talkP: "Fragen zu Einführung, Pilot oder Konto? Schreiben Sie uns.", mail: "E-Mail", open: "öffnet in neuem Tab" },
   ar: { faq: "الأسئلة الشائعة", all: "جميع الميزات", aiP: "افتح مساعدك بسؤال جاهز عمّا تفعله Flexlore ولمن هي.", talk: "تواصل معنا", talkP: "لديك أسئلة حول الإطلاق أو التجربة أو حسابك؟ راسلنا.", mail: "البريد الإلكتروني", open: "يفتح في علامة تبويب جديدة" },
   es: { faq: "Preguntas frecuentes", all: "Todas las funciones", aiP: "Abre tu asistente con una pregunta lista sobre qué hace Flexlore y para quién es.", talk: "Escríbenos", talkP: "¿Preguntas sobre la implantación, un piloto o tu cuenta? Escríbenos.", mail: "Correo", open: "se abre en una pestaña nueva" },
-  ru: { faq: "Частые вопросы", all: "Все функции", aiP: "Откройте ассистента с готовым вопросом о том, что делает Flexlore и для кого он.", talk: "Напишите нам", talkP: "Вопросы о внедрении, пилоте или аккаунте? Напишите нам.", mail: "Почта", open: "откроется в новой вкладке" },
+  pt: { faq: "Perguntas frequentes", all: "Todos os recursos", aiP: "Abra seu assistente com uma pergunta pronta sobre o que o Flexlore faz e para quem é.", talk: "Fale conosco", talkP: "Dúvidas sobre implantação, piloto ou sua conta? Escreva para nós.", mail: "E-mail", open: "abre em uma nova aba" },
+  nl: { faq: "FAQ", all: "Alle functies", aiP: "Open uw assistent met een kant-en-klare vraag over wat Flexlore doet en voor wie het is.", talk: "Neem contact op", talkP: "Vragen over een uitrol, een pilot of uw account? Schrijf ons.", mail: "E-mail", open: "opent in een nieuw tabblad" },
   fr: { faq: "FAQ", all: "Toutes les fonctionnalités", aiP: "Ouvrez votre assistant avec une question prête sur ce que fait Flexlore et pour qui.", talk: "Écrivez-nous", talkP: "Une question sur le déploiement, un pilote ou votre compte ? Écrivez-nous.", mail: "E-mail", open: "s'ouvre dans un nouvel onglet" },
   pl: { faq: "FAQ", all: "Wszystkie funkcje", aiP: "Otwórz asystenta z gotowym pytaniem o to, co robi Flexlore i dla kogo jest.", talk: "Napisz do nas", talkP: "Pytania o wdrożenie, pilotaż lub konto? Napisz do nas.", mail: "E-mail", open: "otwiera się w nowej karcie" },
 };
@@ -89,7 +90,8 @@ const LEGAL_LABEL: Record<string, string[]> = {
   de: ["Datenschutz", "AGB", "Cookies", "Sicherheit", "AVV", "Unterauftragsverarbeiter", "Nutzungsrichtlinie", "Abrechnung"],
   ar: ["الخصوصية", "الشروط", "ملفات تعريف الارتباط", "الأمان", "اتفاقية معالجة البيانات", "المعالجون الفرعيون", "الاستخدام المقبول", "الفوترة"],
   es: ["Privacidad", "Términos", "Cookies", "Seguridad", "DPA", "Subencargados", "Uso aceptable", "Facturación"],
-  ru: ["Конфиденциальность", "Условия", "Cookie", "Безопасность", "DPA", "Субобработчики", "Допустимое использование", "Оплата"],
+  pt: ["Privacidade", "Termos", "Cookies", "Segurança", "DPA", "Subprocessadores", "Uso aceitável", "Cobrança"],
+  nl: ["Privacy", "Voorwaarden", "Cookies", "Beveiliging", "DPA", "Subverwerkers", "Acceptabel gebruik", "Facturering"],
   fr: ["Confidentialité", "Conditions", "Cookies", "Sécurité", "DPA", "Sous-traitants", "Utilisation acceptable", "Facturation"],
   pl: ["Prywatność", "Warunki", "Cookies", "Bezpieczeństwo", "DPA", "Podmioty przetwarzające", "Dozwolone użycie", "Płatności"],
 };

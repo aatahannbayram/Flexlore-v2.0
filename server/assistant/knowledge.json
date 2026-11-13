@@ -79,7 +79,7 @@
    "id": "en:industries-more",
    "locale": "en",
    "title": "Also used in",
-   "body": "Healthcare and clinics, Education, Training providers, Wellness and sport, Entertainment, And more. Available in 8 languages.",
+   "body": "Healthcare and clinics, Education, Training providers, Wellness and sport, Entertainment, And more. This site in your language.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -397,7 +397,7 @@
    "id": "tr:industries-more",
    "locale": "tr",
    "title": "Ayrıca kullanıldığı alanlar",
-   "body": "Sağlık ve klinikler, Eğitim, Eğitim sağlayıcılar, Wellness ve spor, Eğlence, Ve dahası. 8 dilde kullanılabilir.",
+   "body": "Sağlık ve klinikler, Eğitim, Eğitim sağlayıcılar, Wellness ve spor, Eğlence, Ve dahası. Bu siteyi kendi dilinizde okuyun.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -715,7 +715,7 @@
    "id": "de:industries-more",
    "locale": "de",
    "title": "Auch im Einsatz in",
-   "body": "Gesundheitswesen und Kliniken, Bildung, Schulungsanbieter, Wellness und Sport, Unterhaltung, Und mehr. Verfügbar in 8 Sprachen.",
+   "body": "Gesundheitswesen und Kliniken, Bildung, Schulungsanbieter, Wellness und Sport, Unterhaltung, Und mehr. Diese Website in Ihrer Sprache.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -1033,7 +1033,7 @@
    "id": "ar:industries-more",
    "locale": "ar",
    "title": "يُستخدم أيضًا في",
-   "body": "الرعاية الصحية والعيادات, التعليم, مقدمو خدمات التدريب, العافية والرياضة, الترفيه, وغيرها. متاح بـ 8 لغات.",
+   "body": "الرعاية الصحية والعيادات, التعليم, مقدمو خدمات التدريب, العافية والرياضة, الترفيه, وغيرها. هذا الموقع بلغتك.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -1351,7 +1351,7 @@
    "id": "es:industries-more",
    "locale": "es",
    "title": "También se utiliza en",
-   "body": "Salud y clínicas, Educación, Centros de formación, Bienestar y deporte, Ocio y entretenimiento, Y más. Disponible en 8 idiomas.",
+   "body": "Salud y clínicas, Educación, Centros de formación, Bienestar y deporte, Ocio y entretenimiento, Y más. Este sitio en su idioma.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -1595,10 +1595,10 @@
    ]
   },
   {
-   "id": "ru:how",
-   "locale": "ru",
-   "title": "Как это работает",
-   "body": "1. Снимите работу один раз: Снимите на телефон, как лучший сотрудник выполняет работу, прямо на месте. Без студии и сценария. 2. Разбейте и отправьте: Разбейте видео на шаги в редакторе. ИИ готовит черновик инструкций и теста; вы утверждаете и назначаете по роли и локации. 3. Смотрит шаг за шагом: Команда смотрит на своих телефонах, на своём языке, и повторяет любой шаг. 4. Проходит тест: Когда все шаги просмотрены, открывается короткий тест. Результат сразу приходит вам. 5. Смотрите, кто готов: Смотрите, кто посмотрел каждую работу и сдал тест, по сотрудникам, сменам и точкам, и первыми узнавайте, какой точке вы нужны. Тест показывает, кто понял шаги. Допуск к работе на месте по-прежнему даёт ваш руководитель смены.",
+   "id": "pt:how",
+   "locale": "pt",
+   "title": "Como funciona",
+   "body": "1. Filme a tarefa uma vez: Filme sua melhor pessoa fazendo a tarefa, onde ela acontece. Sem estúdio, sem roteiro. 2. Divida e publique: Corte o vídeo em etapas no editor. A IA cria um rascunho das instruções e de um quiz; você aprova e atribui por função e unidade. 3. Assiste etapa por etapa: Sua equipe assiste no próprio celular, no próprio idioma, e revê qualquer etapa. 4. Faz o quiz: Quando todas as etapas são assistidas, um quiz curto é liberado. O resultado chega direto para você. 5. Veja quem está pronto: Veja quem assistiu a cada tarefa e passou no quiz, por pessoa, turno e unidade, e saiba primeiro qual unidade precisa de você. O quiz mostra quem entendeu as etapas. A liberação de alguém na operação continua com o seu supervisor.",
    "url": "https://www.flexlore.com/#how",
    "tags": [
     "how",
@@ -1609,10 +1609,10 @@
    ]
   },
   {
-   "id": "ru:why",
-   "locale": "ru",
-   "title": "Почему Flexlore: Знания остаются в компании, а не у одного человека.",
-   "body": "Flexlore записывает на видео с телефона, как ваш лучший сотрудник выполняет работу, и одинаково обучает каждого новичка. Создан для команд, которые работают на площадке, а не за столом. Опыт остаётся у вас: Метод вашего лучшего сотрудника записывается один раз. В отпуске он или ушёл, знания остаются. Видео вместо бумаги: Короткие шаги, которые смотрят прямо на рабочем месте, вместо инструкций, которые никто не читает. Создан для площадки: Снимается на телефон, смотрится на телефоне. Для команд, которые не сидят за компьютером.",
+   "id": "pt:why",
+   "locale": "pt",
+   "title": "Por que o Flexlore: O know-how fica com a empresa, não com uma só pessoa.",
+   "body": "O Flexlore registra como sua melhor pessoa faz a tarefa, em um vídeo de celular, e ensina cada nova contratação do mesmo jeito. Feito para equipes que trabalham na operação, não em uma mesa. A experiência fica com você: O método da sua melhor pessoa é registrado uma vez. Se ela sair de férias ou da empresa, o know-how fica. Vídeo em vez de papel: Etapas curtas assistidas na tarefa, em vez de manuais que ninguém lê. Feito para a operação: Filmado no celular, assistido no celular. Feito para equipes que não estão em frente a um computador.",
    "url": "https://www.flexlore.com/#why",
    "tags": [
     "why",
@@ -1622,10 +1622,10 @@
    ]
   },
   {
-   "id": "ru:industry-0",
-   "locale": "ru",
-   "title": "Рестораны и кафе",
-   "body": "Шеф снимает один раз. Каждый повар выполняет те же шаги на своей станции. Рецепты и подача, одинаковые в каждом заведении. Открытие и закрытие смены. Гигиена и аллергены.",
+   "id": "pt:industry-0",
+   "locale": "pt",
+   "title": "Restaurantes e cafés",
+   "body": "O chef filma uma vez. Todos os cozinheiros seguem as mesmas etapas no posto. Receitas e montagem dos pratos, iguais em todas as unidades. Rotinas de abertura e fechamento. Etapas de higiene e alérgenos.",
    "url": "https://www.flexlore.com/sektor/restoran/",
    "tags": [
     "industry",
@@ -1633,10 +1633,10 @@
    ]
   },
   {
-   "id": "ru:industry-1",
-   "locale": "ru",
-   "title": "Производство",
-   "body": "Метод вашего лучшего оператора становится стандартом каждой смены. Охрана труда на видео: СИЗ, блокировка, проверка станков. Переналадка и ежедневный пуск. Передача навыков от мастера ученику.",
+   "id": "pt:industry-1",
+   "locale": "pt",
+   "title": "Indústria",
+   "body": "O jeito de trabalhar do seu melhor operador vira o padrão em todos os turnos. Saúde e segurança em vídeo: EPI, bloqueio, verificação de máquinas. Setup de máquinas e partida diária. Transferência de conhecimento de mestre para aprendiz.",
    "url": "https://www.flexlore.com/sektor/uretim/",
    "tags": [
     "industry",
@@ -1644,10 +1644,10 @@
    ]
   },
   {
-   "id": "ru:industry-2",
-   "locale": "ru",
-   "title": "Отели",
-   "body": "Хаускипинг и ресепшен работают по вашему стандарту в каждом номере. Уборка номера. Заселение на ресепшене. Адаптация новичков без постоянного сопровождения.",
+   "id": "pt:industry-2",
+   "locale": "pt",
+   "title": "Hotéis",
+   "body": "Governança e recepção trabalham no padrão da casa em todos os quartos. Arrumação de quartos da governança. Check-in na recepção. Integração de novas contratações sem acompanhamento lado a lado.",
    "url": "https://www.flexlore.com/sektor/otel/",
    "tags": [
     "industry",
@@ -1655,10 +1655,10 @@
    ]
   },
   {
-   "id": "ru:industry-3",
-   "locale": "ru",
-   "title": "Франшизы",
-   "body": "Головной офис запускает процесс один раз и сравнивает прохождение по точкам. Один стандарт во всех точках. Запуск нового меню и продуктов. Чек-лист открытия точки.",
+   "id": "pt:industry-3",
+   "locale": "pt",
+   "title": "Franquias",
+   "body": "A matriz lança um processo uma vez e compara a conclusão por unidade. Um só padrão em todas as unidades. Lançamento de novos cardápios e produtos. Checklist de abertura de loja.",
    "url": "https://www.flexlore.com/sektor/franchise/",
    "tags": [
     "industry",
@@ -1666,10 +1666,10 @@
    ]
   },
   {
-   "id": "ru:industries-more",
-   "locale": "ru",
-   "title": "Также используется в",
-   "body": "Здравоохранение и клиники, Образование, Учебные центры, Велнес и спорт, Индустрия развлечений, И не только. Доступно на 8 языках.",
+   "id": "pt:industries-more",
+   "locale": "pt",
+   "title": "Também usado em",
+   "body": "Saúde e clínicas, Educação, Empresas de treinamento, Bem-estar e esporte, Entretenimento, E muito mais. Este site no seu idioma.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -1677,90 +1677,90 @@
    ]
   },
   {
-   "id": "ru:faq-0",
-   "locale": "ru",
-   "title": "Как Flexlore использует ИИ?",
-   "body": "Он делит записанное видео на шаги, готовит черновики письменных инструкций и составляет короткий тест по содержанию. Каждый черновик проверяет и утверждает ваша команда до публикации.",
+   "id": "pt:faq-0",
+   "locale": "pt",
+   "title": "Como o Flexlore usa IA?",
+   "body": "Ele divide um vídeo gravado em etapas, cria um rascunho das instruções escritas e gera um quiz curto a partir do conteúdo. Cada rascunho é revisado e aprovado pela sua equipe antes de ser publicado.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-1",
-   "locale": "ru",
-   "title": "Для кого Flexlore?",
-   "body": "Для команд, где работу осваивают на практике: рестораны и сети кафе, производственные линии, отели, франшизы, склады и пекарни.",
+   "id": "pt:faq-1",
+   "locale": "pt",
+   "title": "Para quem é o Flexlore?",
+   "body": "Para equipes em que a tarefa se aprende fazendo: redes de restaurantes e cafés, linhas de produção, hotéis, franquias, armazéns e padarias.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-2",
-   "locale": "ru",
-   "title": "Нужны ли технические навыки?",
-   "body": "Нет. Если вы умеете снимать на телефон, вы сможете создать пошаговую видеоинструкцию (SOP).",
+   "id": "pt:faq-2",
+   "locale": "pt",
+   "title": "Preciso de conhecimento técnico?",
+   "body": "Não. Se você sabe filmar com o celular, consegue criar uma SOP em vídeo passo a passo.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-3",
-   "locale": "ru",
-   "title": "Что нужно, чтобы начать?",
-   "body": "Телефон и одна реальная работа. Снимите её, проверьте черновик ИИ и назначьте. На демо-звонке мы вместе с вами создадим одну из ваших работ.",
+   "id": "pt:faq-3",
+   "locale": "pt",
+   "title": "O que é preciso para começar?",
+   "body": "Um celular e uma tarefa real. Filme, revise o que a IA rascunhou e atribua. Na chamada de demonstração, montamos uma das suas tarefas com você.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-4",
-   "locale": "ru",
-   "title": "На каких устройствах это работает?",
-   "body": "iOS и Android для вашей команды, а также веб-платформа для руководителей.",
+   "id": "pt:faq-4",
+   "locale": "pt",
+   "title": "Em quais dispositivos funciona?",
+   "body": "iOS e Android para sua equipe, além de uma plataforma web para gestores.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-5",
-   "locale": "ru",
-   "title": "Кто видит наш контент?",
-   "body": "Решаете вы. Доступ настраивается по ролям и точкам, поэтому сотрудники видят только предназначенные им работы. Как мы обрабатываем данные, описано на страницах о конфиденциальности, безопасности и субподрядчиках.",
+   "id": "pt:faq-5",
+   "locale": "pt",
+   "title": "Quem pode ver nosso conteúdo?",
+   "body": "Você decide. O acesso é definido por função e unidade, então cada pessoa vê só as tarefas destinadas a ela. Nossas páginas de Privacidade, Segurança e Subprocessadores explicam como os dados são tratados.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-6",
-   "locale": "ru",
-   "title": "Какие языки поддерживаются?",
-   "body": "Flexlore доступен на 8 языках: английском, турецком, немецком, арабском, испанском, русском, французском и польском.",
+   "id": "pt:faq-6",
+   "locale": "pt",
+   "title": "Quais idiomas são suportados?",
+   "body": "O Flexlore está disponível em 8 idiomas: inglês, turco, alemão, árabe, espanhol, russo, francês e polonês.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:faq-7",
-   "locale": "ru",
-   "title": "Как формируется цена?",
-   "body": "Цена тарифов зависит от числа пользователей: Free рассчитан на 3, Pro на 10, ProPlus на 30. Enterprise от 30 пользователей.",
+   "id": "pt:faq-7",
+   "locale": "pt",
+   "title": "Como é a cobrança?",
+   "body": "Os planos são definidos pelo número de usuários: o Free inclui 3, o Pro 10 e o ProPlus 30. O Enterprise começa a partir de 30 usuários.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
    ]
   },
   {
-   "id": "ru:feature-video-to-sop",
-   "locale": "ru",
-   "title": "Видео в SOP",
-   "body": "Превратите видео реальной работы с телефона в пошаговые видеоинструкции (SOP). Flexlore делит видео на шаги и готовит черновики инструкций, ваша команда их утверждает. Снимите работу: Запишите её на рабочем месте на любой телефон. Без сценария и студии. Проверьте черновик: Flexlore делит видео на шаги с письменными инструкциями. Редактируйте что угодно. Опубликуйте и назначьте: Отправьте нужным ролям и точкам. Все осваивают работу одинаково. Нужно ли сначала писать сценарий? Нет. Снимите работу так, как её выполняют. Flexlore подготовит шаги и инструкции по видео, а ваша команда отредактирует и утвердит их. Какой длины может быть видео? Подходят и короткие работы, и более длинные процедуры. Длинные видео делятся на небольшие шаги, которые можно проходить по одному. Кто проверяет то, что пишет ИИ? Вы. Ничего не публикуется, пока кто-то из вашей команды не утвердит.",
+   "id": "pt:feature-video-to-sop",
+   "locale": "pt",
+   "title": "Vídeo para SOP",
+   "body": "Transforme um vídeo de celular do trabalho real em SOPs em vídeo passo a passo. O Flexlore divide o vídeo em etapas e cria um rascunho das instruções; sua equipe aprova. Filme a tarefa: Grave no posto de trabalho, com qualquer celular. Sem roteiro, sem estúdio. Revise o rascunho: O Flexlore divide o vídeo em etapas com instruções escritas. Edite o que quiser. Publique e atribua: Envie para as funções e unidades certas. Todos aprendem do mesmo jeito. Preciso escrever um roteiro antes? Não. Filme a tarefa como ela é feita. O Flexlore cria um rascunho das etapas e instruções a partir do vídeo, e sua equipe edita e aprova. Qual pode ser a duração do vídeo? Funciona para tarefas curtas e para procedimentos mais longos. Vídeos longos são divididos em etapas menores, que as pessoas seguem uma de cada vez. Quem revisa o que a IA escreve? Você. Nada é publicado até alguém da sua equipe aprovar.",
    "url": "https://www.flexlore.com/features/video-to-sop/",
    "tags": [
     "feature",
@@ -1769,10 +1769,10 @@
    ]
   },
   {
-   "id": "ru:feature-pdf-to-steps",
-   "locale": "ru",
-   "title": "PDF в шаги (Скоро)",
-   "body": "Превратите имеющиеся PDF и письменные процедуры в пошаговые инструкции и тест, а затем добавьте видео там, где оно помогает. Загрузите PDF: Добавьте имеющуюся процедуру, руководство или чек-лист. Получите шаги: Flexlore подготовит нумерованные шаги, инструкции и тест. Ваша команда отредактирует и утвердит их. Добавьте видео там, где важно: Снимите сложные шаги и держите всё в одной работе. Доступен ли импорт PDF сейчас? Он в наших планах. Закажите демо, чтобы узнать, на каком он этапе. Какие документы подойдут? Письменные процедуры, руководства и чек-листы. Расскажите на демо, что у вас есть. Нужно ли будет всё равно снимать? Для начала нет. Добавьте видео к шагам, где важно увидеть, как это делается.",
+   "id": "pt:feature-pdf-to-steps",
+   "locale": "pt",
+   "title": "PDF para etapas (Em breve)",
+   "body": "Transforme PDFs e procedimentos escritos que você já tem em instruções passo a passo e um quiz, depois adicione vídeo onde ajudar. Envie o PDF: Adicione um procedimento, manual ou checklist que você já tem. Receba as etapas: O Flexlore cria um rascunho de etapas numeradas, instruções e um quiz. Sua equipe edita e aprova. Adicione vídeo onde importa: Filme as etapas mais difíceis e mantenha tudo em uma só tarefa. A importação de PDF já está disponível? Está no nosso roadmap. Agende uma demo para ver em que pé está. Quais documentos vão funcionar? Procedimentos escritos, manuais e checklists. Conte na chamada de demonstração o que você tem. Ainda vou precisar filmar? Não para começar. Adicione vídeo às etapas em que ver faz a diferença.",
    "url": "https://www.flexlore.com/features/pdf-to-steps/",
    "tags": [
     "feature",
@@ -1781,10 +1781,10 @@
    ]
   },
   {
-   "id": "ru:feature-video-editor",
-   "locale": "ru",
-   "title": "Видеоредактор",
-   "body": "Видеоредактор для телефона для обучения линейного персонала: обрезка, отметка шагов, текст и стикеры, без навыков монтажа. Обрежьте: Уберите начало, конец и всё лишнее посередине прямо на телефоне. Отметьте шаги: Укажите, где начинается и заканчивается каждый шаг, чтобы у каждого шага был свой фрагмент. Добавьте текст и стикеры: Укажите на важную деталь: температуру, настройку, предупреждение. Нужен ли опыт монтажа? Нет. Редактор создан для сотрудников на месте: обрезать, отметить шаги и добавить текст можно в несколько касаний. Можно ли редактировать после публикации? Да. Обновите шаг и опубликуйте новую версию для всех. Работает ли он на Android и iPhone? Да, редактор входит в приложение Flexlore на обеих платформах.",
+   "id": "pt:feature-video-editor",
+   "locale": "pt",
+   "title": "Editor de vídeo",
+   "body": "Um editor de vídeo pensado para o celular, para treinamento de equipes operacionais: corte, marque etapas, adicione texto e figurinhas, sem precisar saber editar. Corte: Corte o início, o fim e o que estiver no meio, direto no celular. Marque as etapas: Defina onde cada etapa começa e termina, para que cada uma tenha seu próprio clipe. Adicione texto e figurinhas: Destaque o detalhe que importa: uma temperatura, uma configuração, um alerta. Preciso ter experiência com edição? Não. O editor foi feito para quem está na operação: corte, marque etapas e adicione texto com poucos toques. Posso editar depois de publicar? Sim. Atualize uma etapa e publique a nova versão para todos. Funciona no Android e no iPhone? Sim, o editor faz parte do app Flexlore nos dois.",
    "url": "https://www.flexlore.com/features/video-editor/",
    "tags": [
     "feature",
@@ -1793,10 +1793,10 @@
    ]
   },
   {
-   "id": "ru:feature-screen-recording",
-   "locale": "ru",
-   "title": "Запись экрана (Скоро)",
-   "body": "Запишите задачу в браузере и превратите её в пошаговое руководство в той же библиотеке, что и обучение на месте. Начните запись: Один раз выполните задачу в браузере, как обычно. Получите шаги: Каждый клик становится шагом с собственным описанием. Поделитесь в библиотеке: Обучение за компьютером и на месте хранится рядом и назначается одинаково. Доступна ли запись экрана сейчас? Она в наших планах. Закажите демо, чтобы узнать, на каком она этапе. Нужно ли будет что-то устанавливать? Мы расскажем подробности, когда функция будет готова. На демо-звонке сообщите, какие инструменты вы хотите записывать. Где хранятся руководства? В той же библиотеке Flexlore, что и ваши видео-SOP, с теми же ролями и назначениями.",
+   "id": "pt:feature-screen-recording",
+   "locale": "pt",
+   "title": "Gravação de tela (Em breve)",
+   "body": "Grave uma tarefa no navegador e transforme em um guia passo a passo, na mesma biblioteca do seu treinamento operacional. Comece a gravar: Faça a tarefa uma vez no navegador, como faria normalmente. Receba as etapas: Cada clique vira uma etapa com sua própria descrição. Compartilhe na biblioteca: Treinamentos de escritório e de operação ficam lado a lado, atribuídos da mesma forma. A gravação de tela já está disponível? Está no nosso roadmap. Agende uma demo para ver em que pé está. Vai ser preciso instalar algo? Vamos compartilhar os detalhes quando estiver pronto. Conte na chamada de demonstração quais ferramentas você quer gravar. Onde ficam os guias? Na mesma biblioteca do Flexlore que suas SOPs em vídeo, com as mesmas funções e atribuições.",
    "url": "https://www.flexlore.com/features/screen-recording/",
    "tags": [
     "feature",
@@ -1805,10 +1805,10 @@
    ]
   },
   {
-   "id": "ru:feature-ai-quiz",
-   "locale": "ru",
-   "title": "ИИ-тест",
-   "body": "ИИ готовит короткий тест по каждой работе, чтобы вы видели, кто понял шаги, а не только кто нажал «воспроизвести». Составлен по работе: Вопросы строятся на шагах и инструкциях, которые вы утвердили. Ответы на телефоне: Короткие практические проверки сразу после видео. Результаты по сотрудникам и точкам: Видно, кто сдал тест и на каком вопросе ошибаются чаще всего. Доказывает ли тест, что человек может выполнять работу? Тест показывает, кто понял шаги. Допуск к работе на месте по-прежнему даёт ваш руководитель смены. Можно ли редактировать вопросы? Да. Каждый вопрос остаётся черновиком, пока ваша команда его не утвердит. Сколько тестов можно создать? Это зависит от тарифа. Ограничения указаны на странице цен.",
+   "id": "pt:feature-ai-quiz",
+   "locale": "pt",
+   "title": "Quiz com IA",
+   "body": "A IA cria um quiz curto a partir de cada tarefa, para você ver quem entendeu as etapas, não só quem apertou o play. Criado a partir da tarefa: As perguntas vêm das etapas e instruções que você aprovou. Respondido no celular: Verificações curtas e práticas logo depois do vídeo. Resultados por pessoa e unidade: Veja quem passou e qual pergunta as pessoas mais erram. Um quiz prova que alguém sabe fazer a tarefa? O quiz mostra quem entendeu as etapas. A liberação de alguém na operação continua com o seu supervisor. Posso editar as perguntas? Sim. Cada pergunta é um rascunho até sua equipe aprovar. Quantos quizzes posso criar? Depende do seu plano. Veja os limites na página de preços.",
    "url": "https://www.flexlore.com/features/ai-quiz/",
    "tags": [
     "feature",
@@ -1817,10 +1817,10 @@
    ]
   },
   {
-   "id": "ru:feature-auto-translation",
-   "locale": "ru",
-   "title": "Автоматический перевод (Скоро)",
-   "body": "Одно видео, каждый сотрудник на своём языке. Автоматический перевод шагов и тестов для многоязычных линейных команд. Создайте один раз: Снимите и утвердите работу на своём языке. Автоматический перевод: Шаги, инструкции и тест переводятся на каждый язык, который вы используете. Обучение на своём языке: Каждый сотрудник видит работу на выбранном языке. Доступен ли автоматический перевод сейчас? Он в наших планах. Само приложение Flexlore уже доступно на 8 языках. Какие языки будут поддерживаться? Мы опубликуем список, когда функция будет готова. Расскажите, на каких языках говорят ваши команды. Можно ли сохранить наши термины? Сохранение названий ваших продуктов и внутренних терминов входит в план.",
+   "id": "pt:feature-auto-translation",
+   "locale": "pt",
+   "title": "Tradução automática (Em breve)",
+   "body": "Um vídeo, cada colaborador no seu idioma. Tradução automática de etapas e quizzes para equipes operacionais multilíngues. Crie uma vez: Filme e aprove a tarefa no seu idioma. Tradução automática: Etapas, instruções e quiz são traduzidos para cada idioma que você usa. Aprendizado no próprio idioma: Cada pessoa vê a tarefa no idioma que escolher. A tradução automática já está disponível? Está no nosso roadmap. O próprio app Flexlore já está disponível em 8 idiomas. Quais idiomas serão suportados? Vamos compartilhar a lista quando estiver pronta. Conte quais idiomas suas equipes falam. Podemos manter nossos próprios termos? Manter intactos os nomes dos seus produtos e os termos da casa faz parte do plano.",
    "url": "https://www.flexlore.com/features/auto-translation/",
    "tags": [
     "feature",
@@ -1829,10 +1829,10 @@
    ]
   },
   {
-   "id": "ru:feature-qr-codes",
-   "locale": "ru",
-   "title": "QR на рабочем месте (Скоро)",
-   "body": "Разместите QR-код на станке или рабочем месте. Отсканируйте его, и откроется нужная работа с шагами, без поиска. Распечатайте код: У каждой работы свой QR-код, который размещается там, где выполняется работа. Отсканируйте телефоном: Работа сразу открывается на шагах. Обновите один раз: Измените работу, и тот же код покажет новую версию. Доступен ли доступ по QR сейчас? Он в наших планах. Закажите демо, чтобы узнать, на каком он этапе. Нужны ли новые коды после обновления? По плану один и тот же код всегда будет открывать последнюю версию работы. Кто может открыть код? Доступ будет зависеть от тех же ролей и точек, что и во всём Flexlore.",
+   "id": "pt:feature-qr-codes",
+   "locale": "pt",
+   "title": "QR na tarefa (Em breve)",
+   "body": "Coloque um QR code em uma máquina ou posto de trabalho. Escaneie e a tarefa certa abre com suas etapas, sem precisar procurar. Imprima o código: Cada tarefa tem seu próprio QR code para colocar onde o trabalho acontece. Escaneie com o celular: A tarefa abre direto nas etapas. Atualize uma vez: Altere a tarefa e o mesmo código mostra a nova versão. O acesso por QR já está disponível? Está no nosso roadmap. Agende uma demo para ver em que pé está. Preciso de novos códigos depois de uma atualização? A ideia é que o mesmo código sempre abra a versão mais recente da tarefa. Quem pode abrir um código? O acesso vai seguir as mesmas funções e unidades do restante do Flexlore.",
    "url": "https://www.flexlore.com/features/qr-codes/",
    "tags": [
     "feature",
@@ -1841,10 +1841,10 @@
    ]
   },
   {
-   "id": "ru:feature-notifications",
-   "locale": "ru",
-   "title": "Уведомления (Скоро)",
-   "body": "Уведомляйте нужных людей, когда работа назначена, подходит срок или она обновлена, и отслеживайте прохождение после изменения. Измените работу: Опубликуйте новую версию или назначьте новую работу. Уведомление получают нужные люди: Сообщение приходит только тем ролям и точкам, которых это касается. Затем прохождение: Видно, кто посмотрел обновлённую работу и сдал тест. Доступны ли уведомления сейчас? Они в наших планах. Закажите демо, чтобы узнать, на каком они этапе. Кто получает уведомление? Только те, чьей роли и точки касается работа. Смогут ли руководители отправлять объявления? Объявления для команд и точек входят в план.",
+   "id": "pt:feature-notifications",
+   "locale": "pt",
+   "title": "Notificações (Em breve)",
+   "body": "Avise as pessoas certas quando uma tarefa for atribuída, estiver no prazo ou for atualizada, e acompanhe a conclusão depois da mudança. Altere uma tarefa: Publique uma nova versão ou atribua uma nova tarefa. As pessoas certas são avisadas: Só as funções e unidades afetadas recebem a mensagem. A conclusão é acompanhada: Veja quem assistiu e passou na tarefa atualizada. As notificações já estão disponíveis? Estão no nosso roadmap. Agende uma demo para ver em que pé estão. Quem recebe uma notificação? Só as pessoas cuja função e unidade se aplicam à tarefa. Os gestores podem enviar comunicados? Comunicados para equipes e unidades fazem parte do plano.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
@@ -1853,10 +1853,10 @@
    ]
   },
   {
-   "id": "ru:feature-permissions-workspaces",
-   "locale": "ru",
-   "title": "Права и рабочие пространства",
-   "body": "Роли, права доступа и рабочие пространства для команд с несколькими точками. Сотрудники видят только работы для своей роли и точки. Создайте рабочие пространства: По одному на точку, команду или отдел. Назначьте роли: Администраторы, редакторы и сотрудники, у каждого свои права. Делитесь по ролям и точкам: Работы доходят только до тех, кому они предназначены. Сколько рабочих пространств можно создать? Это зависит от тарифа. Ограничения указаны на странице цен. Может ли сотрудник работать на нескольких точках? Да. Доступ задаётся по роли и точке, поэтому человек может относиться к нескольким. Кто решает, кто что видит? Ваши администраторы. Руководители решают, до каких ролей и точек доходит каждая работа.",
+   "id": "pt:feature-permissions-workspaces",
+   "locale": "pt",
+   "title": "Permissões e espaços de trabalho",
+   "body": "Funções, permissões e espaços de trabalho para equipes com várias unidades. Cada pessoa vê só as tarefas destinadas à sua função e unidade. Crie espaços de trabalho: Um por unidade, equipe ou departamento. Atribua funções: Administradores, editores e colaboradores, cada um com suas permissões. Compartilhe por função e unidade: As tarefas chegam só a quem elas se destinam. Quantos espaços de trabalho podemos ter? Depende do seu plano. Veja os limites na página de preços. Uma pessoa pode trabalhar em várias unidades? Sim. O acesso é definido por função e unidade, então uma pessoa pode pertencer a mais de uma. Quem decide quem vê o quê? Seus administradores. Os gestores decidem quais funções e unidades cada tarefa alcança.",
    "url": "https://www.flexlore.com/features/permissions-workspaces/",
    "tags": [
     "feature",
@@ -1865,10 +1865,10 @@
    ]
   },
   {
-   "id": "ru:feature-web-panel",
-   "locale": "ru",
-   "title": "Веб-панель (Скоро)",
-   "body": "Веб-панель для руководителей: создавайте библиотеку, назначайте работы и следите за прохождением по сотрудникам и точкам. Создайте библиотеку: Организуйте работы по папкам и рабочим пространствам. Назначайте и планируйте: Отправляйте работы ролям, командам и точкам. Следите за отклонениями: Видно, кто не закончил и где возникают трудности. Доступна ли веб-панель сейчас? Flexlore Web скоро появится. Закажите демо, чтобы увидеть её раньше. Заменяет ли она приложение? Нет. Команды учатся на телефоне, а руководители работают в веб-панели за компьютером. Могут ли ей пользоваться несколько руководителей? Да, у каждого своя роль и свои точки.",
+   "id": "pt:feature-web-panel",
+   "locale": "pt",
+   "title": "Painel web (Em breve)",
+   "body": "Um painel web para gestores: monte a biblioteca, atribua tarefas e acompanhe a conclusão por pessoa e unidade. Monte a biblioteca: Organize tarefas em pastas e espaços de trabalho. Atribua e programe: Envie tarefas para funções, equipes e unidades. Acompanhe as exceções: Veja quem não terminou e onde as pessoas têm dificuldade. O painel web já está disponível? O Flexlore Web chega em breve. Agende uma demo para ver antes. Ele substitui o app? Não. As equipes aprendem no celular; os gestores usam o painel web no computador. Vários gestores podem usar? Sim, cada um com sua função e suas unidades.",
    "url": "https://www.flexlore.com/features/web-panel/",
    "tags": [
     "feature",
@@ -1877,10 +1877,10 @@
    ]
   },
   {
-   "id": "ru:feature-ai-agents-mcp",
-   "locale": "ru",
-   "title": "ИИ-агенты и MCP (Скоро)",
-   "body": "ИИ-агенты, автоматизации и MCP-сервер, который подключает Flexlore к Claude, ChatGPT и другим вашим инструментам. Задайте правило: Когда сотрудник присоединяется к команде, назначьте ему работы, нужные для его роли. Подключите ассистента: Свяжите Flexlore с Claude, ChatGPT или другим ИИ-ассистентом через MCP. Спрашивайте и действуйте: Спросите, кто отстаёт, и отправьте напоминание из того же чата. Доступны ли ИИ-агенты и MCP сейчас? Они в наших планах. Сейчас ИИ готовит шаги, инструкции и тесты по видео. С какими ассистентами это будет работать? MCP-сервер рассчитан на такие ассистенты, как Claude и ChatGPT. Используются ли наши данные для обучения моделей ИИ? Смотрите наши страницы о конфиденциальности и безопасности или спросите нас на демо-звонке.",
+   "id": "pt:feature-ai-agents-mcp",
+   "locale": "pt",
+   "title": "Agentes de IA e MCP (Em breve)",
+   "body": "Agentes de IA, automações e um servidor MCP que conecta o Flexlore ao Claude, ao ChatGPT e às suas outras ferramentas. Defina uma regra: Quando alguém entrar em uma equipe, atribua as tarefas de que essa função precisa. Conecte seu assistente: Conecte o Flexlore ao Claude, ao ChatGPT ou a outro assistente de IA via MCP. Pergunte e aja: Pergunte quem está atrasado e envie o lembrete no mesmo chat. Os agentes de IA e o MCP já estão disponíveis? Estão no nosso roadmap. Hoje, a IA cria rascunhos de etapas, instruções e quizzes a partir de um vídeo. Com quais assistentes vai funcionar? O servidor MCP foi pensado para assistentes como Claude e ChatGPT. Nossos dados são usados para treinar modelos de IA? Consulte nossas páginas de Privacidade e Segurança ou pergunte na chamada de demonstração.",
    "url": "https://www.flexlore.com/features/ai-agents-mcp/",
    "tags": [
     "feature",
@@ -1889,10 +1889,10 @@
    ]
   },
   {
-   "id": "ru:web",
-   "locale": "ru",
-   "title": "Веб-панель: Команда учится в телефоне. Вы управляете с рабочего места.",
-   "body": "Создавайте библиотеку, назначайте задачи и смотрите, кто готов, по сотрудникам, командам и точкам. Библиотека и назначения в одном месте. Готовность по сотрудникам, командам и точкам. Вопрос, в котором ошибаются чаще всего. Скоро",
+   "id": "pt:web",
+   "locale": "pt",
+   "title": "Painel web: Sua equipe aprende no celular. Você gerencia pelo computador.",
+   "body": "Monte a biblioteca, atribua tarefas e veja quem está pronto, por pessoa, equipe e unidade. Biblioteca e atribuições em um só lugar. Prontidão por pessoa, equipe e unidade. A pergunta que as pessoas mais erram. Em breve",
    "url": "https://www.flexlore.com/features/web-panel/",
    "tags": [
     "web",
@@ -1901,10 +1901,328 @@
    ]
   },
   {
-   "id": "ru:contact",
-   "locale": "ru",
-   "title": "Остались вопросы?",
-   "body": "Ответим на 20-минутном звонке на примере одной из ваших реальных работ. Или напишите на support@flexlore.com support@flexlore.com. Заказать демо: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "id": "pt:contact",
+   "locale": "pt",
+   "title": "Ainda tem alguma dúvida?",
+   "body": "Respondemos em uma chamada de 20 minutos, com uma das suas tarefas reais. Ou escreva para support@flexlore.com support@flexlore.com. Agendar demo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "url": "https://www.flexlore.com/support/",
+   "tags": [
+    "contact",
+    "support",
+    "demo"
+   ]
+  },
+  {
+   "id": "nl:how",
+   "locale": "nl",
+   "title": "Zo werkt het",
+   "body": "1. Film de taak één keer: Film uw beste medewerker terwijl die de taak uitvoert, op de plek waar het gebeurt. Geen studio, geen script. 2. Opdelen en publiceren: Deel de video in de editor op in stappen. AI maakt een concept van de instructies en een quiz; u keurt goed en wijst toe per rol en locatie. 3. Kijkt stap voor stap: Uw team kijkt op de eigen telefoon, in de eigen taal, en bekijkt elke stap opnieuw wanneer nodig. 4. Maakt de quiz: Zodra elke stap is bekeken, opent een korte quiz. Het resultaat komt direct bij u. 5. Zie wie er klaar voor is: Zie wie elke taak heeft bekeken en de quiz heeft gehaald, per persoon, dienst en locatie, en weet als eerste welke locatie u nodig heeft. Een quiz laat zien wie de stappen heeft begrepen. Het aftekenen op de werkvloer blijft bij uw leidinggevende.",
+   "url": "https://www.flexlore.com/#how",
+   "tags": [
+    "how",
+    "steps",
+    "video",
+    "quiz",
+    "ai"
+   ]
+  },
+  {
+   "id": "nl:why",
+   "locale": "nl",
+   "title": "Waarom Flexlore: Vakkennis blijft in het bedrijf, niet bij één persoon.",
+   "body": "Flexlore legt met een telefoonvideo vast hoe uw beste medewerker de taak doet, en leert elke nieuwe medewerker het op dezelfde manier. Gemaakt voor teams die op de werkvloer werken, niet achter een bureau. Expertise blijft bij u: De werkwijze van uw beste medewerker wordt één keer vastgelegd. Of die nu met verlof is of vertrekt, de kennis blijft. Video in plaats van papier: Korte stappen, bekeken bij het werk, in plaats van handleidingen die niemand leest. Gemaakt voor de werkvloer: Gefilmd met een telefoon, bekeken op een telefoon. Voor teams die niet achter een computer zitten.",
+   "url": "https://www.flexlore.com/#why",
+   "tags": [
+    "why",
+    "knowhow",
+    "video",
+    "field"
+   ]
+  },
+  {
+   "id": "nl:industry-0",
+   "locale": "nl",
+   "title": "Restaurants en cafés",
+   "body": "De chef filmt het één keer. Elke kok volgt dezelfde stappen op zijn post. Recepten en opmaak, gelijk in elke vestiging. Openings- en sluitroutines. Stappen voor hygiëne en allergenen.",
+   "url": "https://www.flexlore.com/sektor/restoran/",
+   "tags": [
+    "industry",
+    "sector"
+   ]
+  },
+  {
+   "id": "nl:industry-1",
+   "locale": "nl",
+   "title": "Productie",
+   "body": "De werkwijze van uw beste operator wordt de standaard in elke dienst. Veiligheid op video: PBM, vergrendeling, machinecontroles. Omstellen en dagelijkse opstart. Kennisoverdracht van meester op leerling.",
+   "url": "https://www.flexlore.com/sektor/uretim/",
+   "tags": [
+    "industry",
+    "sector"
+   ]
+  },
+  {
+   "id": "nl:industry-2",
+   "locale": "nl",
+   "title": "Hotels",
+   "body": "Housekeeping en receptie werken in elke kamer volgens uw huisstandaard. Kamer opmaken. Inchecken bij de receptie. Inwerken zonder meelopen.",
+   "url": "https://www.flexlore.com/sektor/otel/",
+   "tags": [
+    "industry",
+    "sector"
+   ]
+  },
+  {
+   "id": "nl:industry-3",
+   "locale": "nl",
+   "title": "Franchises",
+   "body": "Het hoofdkantoor lanceert een werkwijze één keer en vergelijkt de voortgang per locatie. Eén standaard op elke locatie. Nieuwe menu's en producten lanceren. Checklist voor het openen van een vestiging.",
+   "url": "https://www.flexlore.com/sektor/franchise/",
+   "tags": [
+    "industry",
+    "sector"
+   ]
+  },
+  {
+   "id": "nl:industries-more",
+   "locale": "nl",
+   "title": "Ook gebruikt in",
+   "body": "Zorg en klinieken, Onderwijs, Opleiders, Wellness en sport, Entertainment, En meer. Deze website in uw taal.",
+   "url": "https://www.flexlore.com/#industries",
+   "tags": [
+    "industry",
+    "languages"
+   ]
+  },
+  {
+   "id": "nl:faq-0",
+   "locale": "nl",
+   "title": "Hoe gebruikt Flexlore AI?",
+   "body": "Het deelt een opgenomen video op in stappen, maakt een concept van geschreven instructies en stelt een korte quiz op uit de inhoud. Elk concept wordt door uw team gecontroleerd en goedgekeurd voordat het uitgaat.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-1",
+   "locale": "nl",
+   "title": "Voor wie is Flexlore?",
+   "body": "Voor teams waar het werk wordt geleerd door te doen: restaurant- en caféketens, productielijnen, hotels, franchises, magazijnen en bakkerijen.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-2",
+   "locale": "nl",
+   "title": "Heb ik technische kennis nodig?",
+   "body": "Nee. Als u met een telefoon kunt filmen, kunt u een stapsgewijze video-SOP maken.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-3",
+   "locale": "nl",
+   "title": "Wat is er nodig om te beginnen?",
+   "body": "Een telefoon en één echte taak. Film het, controleer wat de AI heeft opgesteld en wijs het toe. Tijdens de demo bouwen we samen met u een van uw taken.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-4",
+   "locale": "nl",
+   "title": "Op welke apparaten werkt het?",
+   "body": "iOS en Android voor uw team, plus een webplatform voor leidinggevenden.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-5",
+   "locale": "nl",
+   "title": "Wie kan onze inhoud zien?",
+   "body": "Dat bepaalt u. Toegang wordt ingesteld per rol en locatie, zodat medewerkers alleen de taken zien die voor hen bedoeld zijn. Op onze pagina's over privacy, beveiliging en subverwerkers leest u hoe gegevens worden verwerkt.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-6",
+   "locale": "nl",
+   "title": "Welke talen worden ondersteund?",
+   "body": "Flexlore is beschikbaar in 8 talen: Engels, Turks, Duits, Arabisch, Spaans, Russisch, Frans en Pools.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:faq-7",
+   "locale": "nl",
+   "title": "Hoe zijn de prijzen opgebouwd?",
+   "body": "De prijs van de plannen hangt af van het aantal gebruikers: Free is voor 3, Pro voor 10 en ProPlus voor 30. Enterprise begint bij 30+ gebruikers.",
+   "url": "https://www.flexlore.com/#faq",
+   "tags": [
+    "faq"
+   ]
+  },
+  {
+   "id": "nl:feature-video-to-sop",
+   "locale": "nl",
+   "title": "Video naar SOP",
+   "body": "Zet een telefoonvideo van echt werk om in stapsgewijze video-SOP's. Flexlore deelt de video op in stappen en stelt de instructies op; uw team keurt goed. Film de taak: Neem het op bij de werkplek, met elke telefoon. Geen script, geen studio. Controleer het concept: Flexlore deelt de video op in stappen met geschreven instructies. Pas alles aan wat u wilt. Publiceer en wijs toe: Stuur het naar de juiste rollen en locaties. Iedereen leert het op dezelfde manier. Moet ik eerst een script schrijven? Nee. Film de taak zoals die wordt gedaan. Flexlore stelt de stappen en instructies op uit de video, en uw team past ze aan en keurt ze goed. Hoe lang mag de video zijn? Korte taken en langere procedures werken allebei. Langere video's worden opgedeeld in kleinere stappen die medewerkers één voor één kunnen volgen. Wie controleert wat de AI schrijft? Dat doet u. Er wordt niets gepubliceerd tot iemand in uw team het goedkeurt.",
+   "url": "https://www.flexlore.com/features/video-to-sop/",
+   "tags": [
+    "feature",
+    "create",
+    "live"
+   ]
+  },
+  {
+   "id": "nl:feature-pdf-to-steps",
+   "locale": "nl",
+   "title": "Pdf naar stappen (Binnenkort)",
+   "body": "Zet bestaande pdf's en geschreven procedures om in stapsgewijze instructies en een quiz, en voeg video toe waar dat helpt. Upload de pdf: Voeg een bestaande procedure, handleiding of checklist toe. Ontvang de stappen: Flexlore stelt genummerde stappen, instructies en een quiz op. Uw team past aan en keurt goed. Voeg video toe waar het telt: Film de lastige stappen en houd alles bij elkaar in één taak. Is pdf-import nu beschikbaar? Het staat op onze roadmap. Boek een demo om te zien hoe ver het is. Welke documenten werken? Geschreven procedures, handleidingen en checklists. Vertel ons tijdens de demo wat u hebt. Moet ik dan nog filmen? Niet om te beginnen. Voeg video toe aan de stappen waar zien het verschil maakt.",
+   "url": "https://www.flexlore.com/features/pdf-to-steps/",
+   "tags": [
+    "feature",
+    "create",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-video-editor",
+   "locale": "nl",
+   "title": "Video-editor",
+   "body": "Een video-editor voor de telefoon, gemaakt voor training op de werkvloer: inkorten, stappen markeren, tekst en stickers toevoegen, zonder montage-ervaring. Inkorten: Knip het begin, het einde en alles daartussen weg, direct op de telefoon. Markeer de stappen: Bepaal waar elke stap begint en eindigt, zodat elke stap een eigen clip heeft. Voeg tekst en stickers toe: Wijs op het detail dat telt: een temperatuur, een instelling, een waarschuwing. Heb ik montage-ervaring nodig? Nee. De editor is gemaakt voor mensen op de werkvloer: inkorten, stappen markeren en tekst toevoegen met een paar tikken. Kan ik na publicatie nog bewerken? Ja. Werk een stap bij en publiceer de nieuwe versie voor iedereen. Werkt het op Android en iPhone? Ja, de editor maakt op beide deel uit van de Flexlore-app.",
+   "url": "https://www.flexlore.com/features/video-editor/",
+   "tags": [
+    "feature",
+    "create",
+    "live"
+   ]
+  },
+  {
+   "id": "nl:feature-screen-recording",
+   "locale": "nl",
+   "title": "Schermopname (Binnenkort)",
+   "body": "Neem een taak in de browser op en zet die om in een stapsgewijze handleiding, in dezelfde bibliotheek als uw training voor de werkvloer. Start de opname: Voer de taak één keer uit in uw browser, zoals u dat normaal doet. Ontvang de stappen: Elke klik wordt een stap met een eigen beschrijving. Deel in de bibliotheek: Training voor bureau en werkvloer staan naast elkaar en worden op dezelfde manier toegewezen. Is schermopname nu beschikbaar? Het staat op onze roadmap. Boek een demo om te zien hoe ver het is. Moet er iets geïnstalleerd worden? We delen de details zodra het klaar is. Vertel ons tijdens de demo welke tools u wilt opnemen. Waar staan de handleidingen? In dezelfde Flexlore-bibliotheek als uw video-SOP's, met dezelfde rollen en toewijzingen.",
+   "url": "https://www.flexlore.com/features/screen-recording/",
+   "tags": [
+    "feature",
+    "create",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-ai-quiz",
+   "locale": "nl",
+   "title": "AI-quiz",
+   "body": "AI stelt bij elke taak een korte quiz op, zodat u ziet wie de stappen heeft begrepen, niet alleen wie op afspelen drukte. Opgesteld uit de taak: Vragen komen uit de stappen en instructies die u hebt goedgekeurd. Beantwoord op de telefoon: Korte, praktische controles direct na de video. Resultaten per persoon en locatie: Zie wie geslaagd is en welke vraag het vaakst fout gaat. Bewijst een quiz dat iemand de taak kan uitvoeren? Een quiz laat zien wie de stappen heeft begrepen. Het aftekenen op de werkvloer blijft bij uw leidinggevende. Kan ik de vragen aanpassen? Ja. Elke vraag is een concept tot uw team die goedkeurt. Hoeveel quizzen kan ik maken? Dat hangt af van uw plan. Zie de prijspagina voor de limieten.",
+   "url": "https://www.flexlore.com/features/ai-quiz/",
+   "tags": [
+    "feature",
+    "create",
+    "live"
+   ]
+  },
+  {
+   "id": "nl:feature-auto-translation",
+   "locale": "nl",
+   "title": "Automatische vertaling (Binnenkort)",
+   "body": "Eén video, elke medewerker in de eigen taal. Automatische vertaling van stappen en quizzen voor meertalige teams op de werkvloer. Eén keer maken: Film de taak en keur die goed in uw eigen taal. Automatisch vertalen: Stappen, instructies en quiz worden vertaald voor elke taal die u gebruikt. Leren in de eigen taal: Iedereen ziet de taak in de taal die hij of zij kiest. Is automatische vertaling nu beschikbaar? Het staat op onze roadmap. De Flexlore-app zelf is al beschikbaar in 8 talen. Welke talen worden ondersteund? We delen de lijst zodra het klaar is. Laat ons weten welke talen uw teams spreken. Kunnen we onze eigen termen behouden? Uw product- en interne termen intact houden is onderdeel van het plan.",
+   "url": "https://www.flexlore.com/features/auto-translation/",
+   "tags": [
+    "feature",
+    "spread",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-qr-codes",
+   "locale": "nl",
+   "title": "QR bij het werk (Binnenkort)",
+   "body": "Plak een QR-code op een machine of werkplek. Scan die en de juiste taak opent met de stappen, zonder te zoeken. Print de code: Elke taak krijgt een eigen QR-code voor de plek waar het werk gebeurt. Scan met een telefoon: De taak opent direct bij de stappen. Eén keer bijwerken: Wijzig de taak en dezelfde code toont de nieuwe versie. Is QR-toegang nu beschikbaar? Het staat op onze roadmap. Boek een demo om te zien hoe ver het is. Heb ik na een update nieuwe codes nodig? Het plan is dat dezelfde code altijd de nieuwste versie van de taak opent. Wie kan een code openen? Toegang volgt dezelfde rollen en locaties als de rest van Flexlore.",
+   "url": "https://www.flexlore.com/features/qr-codes/",
+   "tags": [
+    "feature",
+    "spread",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-notifications",
+   "locale": "nl",
+   "title": "Meldingen (Binnenkort)",
+   "body": "Breng de juiste mensen op de hoogte als een taak is toegewezen, verloopt of is bijgewerkt, en volg de voortgang na de wijziging. Wijzig een taak: Publiceer een nieuwe versie of wijs een nieuwe taak toe. De juiste mensen krijgen een melding: Alleen de betrokken rollen en locaties krijgen het bericht. Voortgang volgt: Zie wie de bijgewerkte taak heeft bekeken en de quiz heeft gehaald. Zijn meldingen nu beschikbaar? Ze staan op onze roadmap. Boek een demo om te zien hoe ver ze zijn. Wie ontvangt een melding? Alleen de mensen voor wier rol en locatie de taak geldt. Kunnen leidinggevenden mededelingen sturen? Mededelingen aan teams en locaties zijn onderdeel van het plan.",
+   "url": "https://www.flexlore.com/features/notifications/",
+   "tags": [
+    "feature",
+    "spread",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-permissions-workspaces",
+   "locale": "nl",
+   "title": "Rechten en workspaces",
+   "body": "Rollen, rechten en workspaces voor teams met meerdere locaties. Medewerkers zien alleen de taken die bedoeld zijn voor hun rol en locatie. Maak workspaces: Eén per locatie, team of afdeling. Wijs rollen toe: Beheerders, editors en medewerkers, elk met eigen rechten. Deel per rol en locatie: Taken komen alleen bij de mensen voor wie ze bedoeld zijn. Hoeveel workspaces kunnen we hebben? Dat hangt af van uw plan. Zie de prijspagina voor de limieten. Kan iemand op meerdere locaties werken? Ja. Toegang wordt ingesteld per rol en locatie, dus iemand kan bij meer dan één horen. Wie bepaalt wie wat ziet? Uw beheerders. Leidinggevenden bepalen welke rollen en locaties elke taak bereikt.",
+   "url": "https://www.flexlore.com/features/permissions-workspaces/",
+   "tags": [
+    "feature",
+    "manage",
+    "live"
+   ]
+  },
+  {
+   "id": "nl:feature-web-panel",
+   "locale": "nl",
+   "title": "Webpanel (Binnenkort)",
+   "body": "Een webpanel voor leidinggevenden: bouw de bibliotheek, wijs taken toe en volg de voortgang per persoon en locatie. Bouw de bibliotheek: Organiseer taken in mappen en workspaces. Wijs toe en plan in: Stuur taken naar rollen, teams en locaties. Volg de uitzonderingen: Zie wie nog niet klaar is en waar mensen vastlopen. Is het webpanel nu beschikbaar? Flexlore Web komt binnenkort. Boek een demo om het vroeg te zien. Vervangt het de app? Nee. Teams leren op de telefoon; leidinggevenden gebruiken het webpanel aan het bureau. Kunnen meerdere leidinggevenden het gebruiken? Ja, elk met een eigen rol en eigen locaties.",
+   "url": "https://www.flexlore.com/features/web-panel/",
+   "tags": [
+    "feature",
+    "manage",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:feature-ai-agents-mcp",
+   "locale": "nl",
+   "title": "AI-agents en MCP (Binnenkort)",
+   "body": "AI-agents, automatiseringen en een MCP-server die Flexlore koppelt aan Claude, ChatGPT en uw andere tools. Stel een regel in: Als iemand bij een team komt, wijs dan de taken toe die die rol nodig heeft. Koppel uw assistent: Verbind Flexlore met Claude, ChatGPT of een andere AI-assistent via MCP. Vraag en handel: Vraag wie achterloopt en stuur de herinnering vanuit dezelfde chat. Zijn AI-agents en MCP nu beschikbaar? Ze staan op onze roadmap. Op dit moment stelt AI stappen, instructies en quizzen op uit een video. Met welke assistenten gaat het werken? De MCP-server is ontworpen voor assistenten zoals Claude en ChatGPT. Worden onze gegevens gebruikt om AI-modellen te trainen? Zie onze pagina's over privacy en beveiliging, of vraag het ons tijdens de demo.",
+   "url": "https://www.flexlore.com/features/ai-agents-mcp/",
+   "tags": [
+    "feature",
+    "manage",
+    "soon"
+   ]
+  },
+  {
+   "id": "nl:web",
+   "locale": "nl",
+   "title": "Webpanel: Uw team leert op de telefoon. U stuurt het aan vanaf het bureau.",
+   "body": "Bouw de bibliotheek, wijs taken toe en zie wie er klaar voor is, per persoon, team en locatie. Bibliotheek en toewijzingen op één plek. Gereedheid per persoon, team en locatie. De vraag die het vaakst fout gaat. Binnenkort",
+   "url": "https://www.flexlore.com/features/web-panel/",
+   "tags": [
+    "web",
+    "panel",
+    "desk"
+   ]
+  },
+  {
+   "id": "nl:contact",
+   "locale": "nl",
+   "title": "Nog een vraag?",
+   "body": "We beantwoorden die in een gesprek van 20 minuten, met een van uw echte taken. Of schrijf naar support@flexlore.com support@flexlore.com. Demo boeken: https://app-eu1.hubspot.com/meetings/alper-kalip",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -1987,7 +2305,7 @@
    "id": "fr:industries-more",
    "locale": "fr",
    "title": "Également utilisé dans",
-   "body": "Santé et cliniques, Éducation, Organismes de formation, Bien-être et sport, Divertissement, Et plus encore. Disponible en 8 langues.",
+   "body": "Santé et cliniques, Éducation, Organismes de formation, Bien-être et sport, Divertissement, Et plus encore. Ce site dans votre langue.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",
@@ -2305,7 +2623,7 @@
    "id": "pl:industries-more",
    "locale": "pl",
    "title": "Stosowany także w",
-   "body": "Opieka zdrowotna i kliniki, Edukacja, Firmy szkoleniowe, Wellness i sport, Rozrywka, I nie tylko. Dostępny w 8 językach.",
+   "body": "Opieka zdrowotna i kliniki, Edukacja, Firmy szkoleniowe, Wellness i sport, Rozrywka, I nie tylko. Ta strona w Twoim języku.",
    "url": "https://www.flexlore.com/#industries",
    "tags": [
     "industry",

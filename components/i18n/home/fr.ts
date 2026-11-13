@@ -56,7 +56,7 @@ export const fr: Dict = {
     k: "Secteurs", h: "Pour les équipes qui apprennent en faisant.", more: "Voir Flexlore dans votre activité",
     cards: ["Restaurants et cafés", "Industrie", "Hôtels", "Franchises"],
     also: "Également utilisé dans", areas: ["Santé et cliniques", "Éducation", "Organismes de formation", "Bien-être et sport", "Divertissement", "Et plus encore"],
-    langs: "Disponible en 8 langues.",
+    langs: "Ce site dans votre langue.",
   },
   pricing: {
     k: "Tarifs", h: "Selon la taille de votre équipe.", lead: "Commencez gratuitement jusqu'à 3 utilisateurs. Enterprise à partir de 30 utilisateurs.",

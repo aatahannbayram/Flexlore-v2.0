@@ -24,7 +24,7 @@ import { PhotoBand, glassTile } from "../ui/PhotoBand";
 const LOAD: Record<Locale, () => Promise<FDict>> = {
   en: async () => fen,
   tr: () => import("../i18n/features/tr").then((m) => m.ftr), de: () => import("../i18n/features/de").then((m) => m.fde), ar: () => import("../i18n/features/ar").then((m) => m.far),
-  es: () => import("../i18n/features/es").then((m) => m.fes), ru: () => import("../i18n/features/ru").then((m) => m.fru), fr: () => import("../i18n/features/fr").then((m) => m.ffr),
+  es: () => import("../i18n/features/es").then((m) => m.fes), nl: () => import("../i18n/features/nl").then((m) => m.fnl), pt: () => import("../i18n/features/pt").then((m) => m.fpt), fr: () => import("../i18n/features/fr").then((m) => m.ffr),
   pl: () => import("../i18n/features/pl").then((m) => m.fpl),
 };
 function useFeatDict() { const { locale } = useLocale(); const [d, setD] = useState<FDict>(fen); useEffect(() => { LOAD[locale]().then(setD).catch(() => setD(fen)); }, [locale]); return d; }

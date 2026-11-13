@@ -4,7 +4,8 @@ import { CaretDown, Check } from "./icons";
 import { LOCALES } from "../i18n/locales";
 import { useLocale } from "../i18n/LocaleProvider";
 
-/* Language picker: the current language as a round flag and its code; a small menu lists all 8 with their native names. */
+/* Language picker: the current language as a round flag and its code; a small menu lists every language by its native
+   name, except Arabic, which is listed in English and left-aligned like the rest. */
 /* compact: the header look (16 px flag, small code) with a 44 px touch target; the mobile menu keeps the default. */
 export function FlagPicker({ up = false, compact = false, className = "" }: { up?: boolean; compact?: boolean; className?: string }) {
   const { locale, setLocale, d } = useLocale(); const [open, setOpen] = useState(false); const box = useRef<HTMLDivElement>(null);
@@ -25,13 +26,13 @@ export function FlagPicker({ up = false, compact = false, className = "" }: { up
         <CaretDown size={10} aria-hidden="true" className={`transition-transform ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <ul role="listbox" aria-label={d.nav.language} className={`absolute z-50 w-52 rounded-2xl bg-surface-1 p-1.5 ${up ? "bottom-full mb-2" : "top-full mt-2"} end-0`}>
+        <ul role="listbox" aria-label={d.nav.language} className={`absolute z-50 w-44 rounded-[14px] bg-surface-1 p-1 shadow-[0_18px_40px_-16px_rgb(0_0_0/0.6),inset_0_0_0_1px_var(--color-line)] ${up ? "bottom-full mb-2" : "top-full mt-2"} end-0`}>
           {LOCALES.map((l) => (
             <li key={l.code} role="option" aria-selected={l.code === locale}>
-              <button type="button" lang={l.code} dir={l.dir} onClick={() => { setLocale(l.code); setOpen(false); }}
-                className={`flex min-h-11 w-full items-center gap-3 rounded-xl px-3 text-start text-[15px] transition-colors hover:bg-surface-2 ${l.code === locale ? "text-ink" : "text-ink-muted"}`}>
-                <img src={`/flags/${l.flag}.svg`} alt="" width={20} height={20} className="h-[18px] w-[18px] rounded-full" />
-                <span className="flex-1">{l.name}</span>{l.code === locale && <Check size={15} aria-hidden="true" />}
+              <button type="button" lang={l.code === "ar" ? "en" : l.code} dir="ltr" onClick={() => { setLocale(l.code); setOpen(false); }}
+                className={`flex min-h-11 w-full items-center gap-2.5 rounded-[10px] px-2.5 text-start text-[13.5px] transition-colors hover:bg-surface-2 ${l.code === locale ? "text-ink" : "text-ink-muted"}`}>
+                <img src={`/flags/${l.flag}.svg`} alt="" width={20} height={20} className="h-4 w-4 rounded-full" />
+                <span className="flex-1">{l.code === "ar" ? "Arabic" : l.name}</span>{l.code === locale && <Check size={13} aria-hidden="true" />}
               </button>
             </li>))}
         </ul>)}

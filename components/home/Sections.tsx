@@ -9,7 +9,7 @@ import {
 } from "../ui/icons";
 import { copy, type Lang } from "../copy";
 
-const LANG_CODES: Record<string, string> = { English: "en", "Türkçe": "tr", Deutsch: "de", "العربية": "ar", "Español": "es", "Русский": "ru", "Français": "fr", Polski: "pl" };
+const LANG_CODES: Record<string, string> = { English: "en", "Türkçe": "tr", Deutsch: "de", "العربية": "ar", "Español": "es", "Русский": "ru", "Português": "pt", Nederlands: "nl", "Français": "fr", Polski: "pl" };
 import { home, IND_CARDS } from "./home-copy";
 import { SITE, PLANS, PLAN_TR } from "../config";
 import { Heading } from "../ui/Layout";

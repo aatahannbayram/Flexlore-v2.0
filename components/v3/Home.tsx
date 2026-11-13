@@ -557,8 +557,8 @@ function CaseTabs({ t, secs, cur, go, list }: { t: CaseT; secs: (typeof CASES)[n
           {act && <m.span layoutId="case-tab" transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 36 }} className="absolute inset-x-0 -bottom-px h-[2px] rounded-full bg-ink" />}</button>); })}
     </div>);
 }
-const OPEN: Record<string, string> = { en: "View", tr: "İncele", de: "Ansehen", ar: "عرض", es: "Ver", ru: "Смотреть", fr: "Voir", pl: "Zobacz" };
-const ARROWS: Record<string, [string, string]> = { en: ["Previous", "Next"], tr: ["Önceki", "Sonraki"], de: ["Zurück", "Weiter"], ar: ["السابق", "التالي"], es: ["Anterior", "Siguiente"], ru: ["Назад", "Далее"], fr: ["Précédent", "Suivant"], pl: ["Poprzedni", "Następny"] };
+const OPEN: Record<string, string> = { en: "View", tr: "İncele", de: "Ansehen", ar: "عرض", es: "Ver", pt: "Ver", nl: "Bekijken", fr: "Voir", pl: "Zobacz" };
+const ARROWS: Record<string, [string, string]> = { en: ["Previous", "Next"], tr: ["Önceki", "Sonraki"], de: ["Zurück", "Weiter"], ar: ["السابق", "التالي"], es: ["Anterior", "Siguiente"], pt: ["Anterior", "Próximo"], nl: ["Vorige", "Volgende"], fr: ["Précédent", "Suivant"], pl: ["Poprzedni", "Następny"] };
 const Arrows = ({ i, n, go }: { i: number; n: number; go: (k: number) => void }) => { const [prev, next] = ARROWS[useLocale().locale] ?? ARROWS.en; return (
   <div className="hidden shrink-0 gap-2 pb-2 md:flex">
     <button type="button" onClick={() => go(i - 1)} disabled={i === 0} aria-label={prev} className="grid h-11 w-11 place-items-center rounded-full bg-[var(--card)] transition-opacity hover:bg-[var(--card-2)] disabled:opacity-30"><Chev dir="start" className="h-2.5 w-3.5" /></button>
@@ -642,7 +642,8 @@ export function EndV3() {
 /* ---------- Industries: who it is for ----------
  * Large screens: four photo panels in a row into the sector pages; the one under the pointer or focus opens wide with
  * its line and three uses, the others narrow. Phones and tablets: cards that scroll sideways. Under them one glass strip:
- * other areas as chips, and the 8 languages as round flags that switch the site language. */
+ * other areas as chips, and the site languages as round flags that switch the site language (the label says "this site
+ * in your language", not a product language count: the app's own languages are listed elsewhere). */
 const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "sec-restoran", ForkKnife, "62% 40%"], ["/sektor/uretim/", "sec-uretim", Factory, "55% 40%"],
   ["/sektor/otel/", "sec-otel", Bed, "82% 30%"], ["/sektor/franchise/", "sec-franchise", Storefront, "30% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
@@ -703,7 +704,7 @@ export function SectorsV3() {
         </ul>
         <RowCount row={row} n={IND.length} className="lg:hidden" />
         <Link href="/see-it/" className="btn btn-secondary mt-8 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
-        {/* One slim glass strip: the other areas on one side, the 8 languages as round flags (a tap switches the site) on the other. */}
+        {/* One slim glass strip: the other areas on one side, the site languages as round flags (a tap switches the site) on the other. */}
         <div className="mt-12 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
             <p className="text-[13.5px] font-medium text-ink-faint">{c.also}</p>

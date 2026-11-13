@@ -28,7 +28,7 @@ export function TrustStrip({ label, lang = "en", as: T = "section" }: { label: s
                       : p.badge && p.org === "Y Combinator"
                         ? <span className="flex items-center gap-2.5"><img src={p.badge} alt="" width={24} height={24} className="block h-6 w-6 rounded-[4px]" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">{p.caption}</span><span className="text-[12px] text-white/50">Y Combinator</span></span></span>
                         : p.badge
-                          ? <span className="flex flex-col items-start gap-1"><img src={p.badge} alt={p.org} width={p.badgeW} height={p.badgeH} className="block h-[14px] w-auto max-w-none" /><span className="text-[12px] leading-none text-white/50">{p.caption}</span></span>
+                          ? <span className="flex flex-col items-start gap-1"><img src={p.badge} alt={p.org} width={p.badgeW} height={p.badgeH} className={`block w-auto max-w-none ${p.org === "ElevenLabs" ? "h-[12.5px]" : "h-[14px]"}`} /><span className="text-[12px] leading-none text-white/50">{p.caption}</span></span>
                           : <span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">{p.name}</span><span className="text-[12px] text-white/50">by {p.org}</span></span>}
                   </a>
                 </li>)))}

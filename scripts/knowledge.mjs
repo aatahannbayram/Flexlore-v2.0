@@ -10,7 +10,7 @@ const ROOT = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
 const j = createJiti(ROOT + "/", { alias: { "@": ROOT } });
 const load = (f) => j.import(`${ROOT}/${f}`);
 
-const LOCALES = ["en", "tr", "de", "ar", "es", "ru", "fr", "pl"];
+const LOCALES = ["en", "tr", "de", "ar", "es", "pt", "nl", "fr", "pl"];
 const { SITE, PLANS, PRICING_FAQ, PRICING_FAQ_TR, ENTERPRISE_TIERS } = await load("components/config.ts");
 const { FEATURES } = await load("components/features/data.ts");
 const { sectors } = await load("components/sectors.ts");

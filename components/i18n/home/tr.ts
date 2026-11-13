@@ -58,7 +58,7 @@ export const tr: Dict = {
     k: "Sektörler", h: "Ayakta, elle, vardiyalı çalışan ekipler için.", more: "Flexlore'u kendi işinizde görün",
     cards: ["Restoran ve kafeler", "Üretim", "Oteller", "Franchise'lar"],
     also: "Ayrıca kullanıldığı alanlar", areas: ["Sağlık ve klinikler", "Eğitim", "Eğitim sağlayıcılar", "Wellness ve spor", "Eğlence", "Ve dahası"],
-    langs: "8 dilde kullanılabilir.",
+    langs: "Bu siteyi kendi dilinizde okuyun.",
   },
   pricing: {
     k: "Fiyatlandırma", h: "Ekibinizin büyüklüğüne göre fiyat.", lead: "3 kullanıcıya kadar ücretsiz başlayın. Enterprise 30+ kullanıcıdan başlar.",

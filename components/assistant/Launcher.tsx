@@ -19,7 +19,7 @@ const T: Record<Locale, [string, string, string]> = {
   tr: ["Flex AI'yı açın", "Flex AI'yı kapatın", "Flex AI şu an açılamadı. Lütfen biraz sonra tekrar deneyin."],
   en: ["Open Flex AI", "Close Flex AI", "Flex AI could not open right now. Please try again shortly."],
   de: ["Flex AI öffnen", "Flex AI schließen", "Flex AI konnte gerade nicht geöffnet werden."], ar: ["افتح Flex AI", "أغلق Flex AI", "تعذر فتح Flex AI الآن."],
-  es: ["Abrir Flex AI", "Cerrar Flex AI", "Flex AI no se pudo abrir ahora."], ru: ["Открыть Flex AI", "Закрыть Flex AI", "Сейчас не удалось открыть Flex AI."],
+  es: ["Abrir Flex AI", "Cerrar Flex AI", "Flex AI no se pudo abrir ahora."], nl: ["Flex AI openen", "Flex AI sluiten", "Flex AI kon nu niet worden geopend. Probeer het zo opnieuw."], pt: ["Abrir o Flex AI", "Fechar o Flex AI", "Não foi possível abrir o Flex AI agora. Tente novamente em instantes."],
   fr: ["Ouvrir Flex AI", "Fermer Flex AI", "Flex AI n'a pas pu s'ouvrir."], pl: ["Otwórz Flex AI", "Zamknij Flex AI", "Nie udało się otworzyć Flex AI."],
 };
 

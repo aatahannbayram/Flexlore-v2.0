@@ -57,7 +57,7 @@ export const en = {
     k: "Industries", h: "For teams that learn by doing.", more: "See Flexlore in your business",
     cards: ["Restaurants and cafés", "Manufacturing", "Hotels", "Franchises"],
     also: "Also used in", areas: ["Healthcare and clinics", "Education", "Training providers", "Wellness and sport", "Entertainment", "And more"],
-    langs: "Available in 8 languages.",
+    langs: "This site in your language.",
   },
   pricing: {
     k: "Pricing", h: "Priced by the size of your team.", lead: "Start free with up to 3 users. Enterprise starts at 30+ users.",
