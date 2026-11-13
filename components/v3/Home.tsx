@@ -536,7 +536,7 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
   return (
     <article aria-roledescription="slide" aria-label={`${c.company}, ${k + 1} / ${n}`}
       className={`group dark relative shrink-0 select-none overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 ${act ? "opacity-100" : "opacity-45"} ${className}`}>
-      <Link href={`/musteriler/${c.slug}/`} draggable={false} aria-label={`${c.company}: ${OPEN[useLocale().locale] ?? OPEN.en}`} className="absolute inset-0 z-10 rounded-[24px]" />
+      <Link href={`/customers/${c.slug}/`} draggable={false} aria-label={`${c.company}: ${OPEN[useLocale().locale] ?? OPEN.en}`} className="absolute inset-0 z-10 rounded-[24px]" />
       <Photo n={c.img} portrait sizes="(min-width:768px) 70vw, 86vw" className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] ${act ? "scale-100" : "scale-[1.06]"}`} />
       <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.55)_60%,rgb(16_16_16/0.85)_100%)]" />
       <div className="relative flex h-full flex-col items-center justify-between p-6 text-center md:p-8">
@@ -649,8 +649,8 @@ export function EndV3() {
  * its line and three uses, the others narrow. Phones and tablets: cards that scroll sideways. Under them one glass strip:
  * other areas as chips, and the site languages as round flags that switch the site language (the label says "this site
  * in your language", not a product language count: the app's own languages are listed elsewhere). */
-const IND: [string, string, typeof Factory, string][] = [["/sektor/restoran/", "sec-restoran", ForkKnife, "62% 40%"], ["/sektor/uretim/", "sec-uretim", Factory, "55% 40%"],
-  ["/sektor/otel/", "sec-otel", Bed, "82% 30%"], ["/sektor/franchise/", "sec-franchise", Storefront, "30% 40%"]];
+const IND: [string, string, typeof Factory, string][] = [["/industries/restaurants/", "sec-restoran", ForkKnife, "62% 40%"], ["/industries/manufacturing/", "sec-uretim", Factory, "55% 40%"],
+  ["/industries/hotels/", "sec-otel", Bed, "82% 30%"], ["/industries/franchises/", "sec-franchise", Storefront, "30% 40%"]];
 const AREA_IC = [FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle];
 export function SectorsV3() {
   const { d, locale, setLocale } = useLocale(); const c = d.ind; const tabs = HOME2[locale].tabs; const reduce = useReducedMotion(); const row = useRef<HTMLUListElement>(null);

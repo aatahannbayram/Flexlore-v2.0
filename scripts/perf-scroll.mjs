@@ -2,7 +2,7 @@
 // frame timing. Usage: node scripts/perf-scroll.mjs [baseUrl]   (serve out/ first)
 import { chromium } from "@playwright/test";
 const base = process.argv[2] || "http://localhost:4322";
-const routes = ["/", "/pricing/", "/sektor/restoran/", "/features/video-to-sop/", "/company/", "/support/"];
+const routes = ["/", "/pricing/", "/industries/restaurants/", "/features/video-to-sop/", "/company/", "/support/"];
 const b = await chromium.launch({ channel: "chrome", args: ["--enable-gpu-rasterization", "--ignore-gpu-blocklist"] });
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 } });
 for (const r of routes) {

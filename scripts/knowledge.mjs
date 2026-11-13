@@ -13,7 +13,7 @@ const load = (f) => j.import(`${ROOT}/${f}`);
 const LOCALES = ["en", "tr", "de", "ar", "es", "pt", "nl", "fr", "pl"];
 const { SITE, PLANS, PRICING_FAQ, PRICING_FAQ_TR, ENTERPRISE_TIERS } = await load("components/config.ts");
 const { FEATURES } = await load("components/features/data.ts");
-const { sectors } = await load("components/sectors.ts");
+const { sectors, SECTOR_EN } = await load("components/sectors.ts");
 const { HOME2 } = await load("components/i18n/home2.ts");
 const HOME = {}, FEAT = {};
 for (const l of LOCALES) {
@@ -32,7 +32,7 @@ for (const l of LOCALES) {
   // Why Flexlore.
   if (h2?.why) add(l, "why", `${h2.why.k}: ${h2.why.h} ${h2.why.h2}`, `${h2.why.lead} ${h2.why.cards.map(([t, p]) => `${t}: ${p}`).join(" ")}`, u("/#why"), ["why", "knowhow", "video", "field"]);
   // Industries with their one-line use and three typical jobs.
-  if (h2?.tabs && d.ind?.cards) d.ind.cards.forEach((name, i) => { const t = h2.tabs[i]; if (t) add(l, `industry-${i}`, name, `${t[0]} ${t[1].join(". ")}.`, u(["/sektor/restoran/", "/sektor/uretim/", "/sektor/otel/", "/sektor/franchise/"][i]), ["industry", "sector"]); });
+  if (h2?.tabs && d.ind?.cards) d.ind.cards.forEach((name, i) => { const t = h2.tabs[i]; if (t) add(l, `industry-${i}`, name, `${t[0]} ${t[1].join(". ")}.`, u(["/industries/restaurants/", "/industries/manufacturing/", "/industries/hotels/", "/industries/franchises/"][i]), ["industry", "sector"]); });
   if (d.ind?.areas) add(l, "industries-more", d.ind.also, `${d.ind.areas.join(", ")}. ${d.ind.langs}`, u("/#industries"), ["industry", "languages"]);
   // Home FAQ.
   (d.faq?.items ?? []).forEach(([q, a], i) => add(l, `faq-${i}`, q, a, u("/#faq"), ["faq"]));
@@ -57,7 +57,7 @@ PRICING_FAQ_TR.forEach(({ q, a }, i) => add("tr", `pricing-faq-${i}`, q, a, u("/
 // Sector pages: the long copy exists in English only; the Turkish name is kept as a tag so Turkish questions still match.
 for (const s of sectors) {
   const sops = (s.sops ?? []).map((x) => `${x.t}: ${(x.steps ?? []).join(", ")}`).join(". ");
-  add("en", `sector-${s.slug}`, s.en, `${s.h} ${s.lede} ${s.problem?.h ?? ""} ${sops}. ${s.ready ?? ""}`, u(`/sektor/${s.slug}/`), ["industry", "sector", s.slug, s.tr]);
+  add("en", `sector-${s.slug}`, s.en, `${s.h} ${s.lede} ${s.problem?.h ?? ""} ${sops}. ${s.ready ?? ""}`, u(`/industries/${SECTOR_EN[s.slug] ?? s.slug}/`), ["industry", "sector", s.slug, s.tr]);
 }
 
 // Data and KVKK for customers in Türkiye (components/trust): the page text in Turkish and English, with the rules the

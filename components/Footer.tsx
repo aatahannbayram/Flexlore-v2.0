@@ -34,12 +34,12 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
     { k: "installation", en: "Installation training", tr: "Kurulum eğitimi", href: "/use-cases/installation-training-on-site-orientation/" },
   ] },
   { g: "industries", en: "Industries", tr: "Sektörler", items: [
-    { k: "restaurants", en: "Restaurants", tr: "Restoranlar", href: "/sektor/restoran/" },
-    { k: "manufacturing", en: "Manufacturing", tr: "Üretim", href: "/sektor/uretim/" },
-    { k: "hotels", en: "Hotels", tr: "Oteller", href: "/sektor/otel/" },
-    { k: "franchises", en: "Franchises", tr: "Franchise", href: "/sektor/franchise/" },
-    { k: "warehouses", en: "Warehouses", tr: "Depolar", href: "/sektor/depo/" },
-    { k: "bakeries", en: "Bakeries & cafés", tr: "Fırın ve kafeler", href: "/sektor/firin/" },
+    { k: "restaurants", en: "Restaurants", tr: "Restoranlar", href: "/industries/restaurants/" },
+    { k: "manufacturing", en: "Manufacturing", tr: "Üretim", href: "/industries/manufacturing/" },
+    { k: "hotels", en: "Hotels", tr: "Oteller", href: "/industries/hotels/" },
+    { k: "franchises", en: "Franchises", tr: "Franchise", href: "/industries/franchises/" },
+    { k: "warehouses", en: "Warehouses", tr: "Depolar", href: "/industries/warehouses/" },
+    { k: "bakeries", en: "Bakeries & cafés", tr: "Fırın ve kafeler", href: "/industries/bakeries-cafes/" },
   ] },
   { g: "company", en: "Company", tr: "Şirket", items: [
     { k: "blog", en: "Blog", href: "/blog/" },

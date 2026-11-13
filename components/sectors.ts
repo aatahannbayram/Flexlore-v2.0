@@ -9,6 +9,10 @@ export type Sector = {
   flow: { when: string; what: string }[];
   ready: string;
 };
+/** English URL slug per sector (Turkish slug stays the key and is used for the Turkish /tr/sektor/ pages). */
+export const SECTOR_EN: Record<string, string> = {"restoran": "restaurants", "uretim": "manufacturing", "otel": "hotels", "franchise": "franchises", "depo": "warehouses", "firin": "bakeries-cafes"};
+/** Public path of a sector page: /industries/<english-slug>/ (English). */
+export const sectorPath = (slug: string) => `/industries/${SECTOR_EN[slug] ?? slug}/`;
 export const sectors: Sector[] = [
   {
     slug: "restoran", v: "kitchen", still: "/photos/restaurant-1600.webp", en: "Restaurants", tr: "Restoranlar", idx: "01",

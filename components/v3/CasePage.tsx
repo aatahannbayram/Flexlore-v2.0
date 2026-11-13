@@ -1,9 +1,9 @@
 "use client";
-/* Customer page (/musteriler/<slug>/), one per company on the home carousel. It shows only what is approved for the
+/* Customer page (/customers/<slug>/), one per company on the home carousel. It shows only what is approved for the
  * carousel (company, sector, one-line descriptor, photo, logo where we have it). The story (problem, solution, result)
  * and the quote appear only when filled in components/v3/cases.ts; until then a "case study coming soon" card stands in
  * their place. Never invent a quote, a person or a number. Pages stay noindex until the case is approved and complete
- * (app/musteriler/[slug]/page.tsx). Frame copy is TR/EN; sector and descriptor follow the visitor's language. */
+ * (app/customers/[slug]/page.tsx). Frame copy is TR/EN; sector and descriptor follow the visitor's language. */
 import Link from "next/link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
@@ -60,7 +60,7 @@ export default function CasePage({ slug }: { slug: string }) {
 
             <h2 className="mt-16 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint md:mt-20">{t.more}</h2>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{others.map((o) => (
-              <li key={o.slug}><Link href={`/musteriler/${o.slug}/`} className="group dark relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[20px] bg-[#171717] p-5 text-white">
+              <li key={o.slug}><Link href={`/customers/${o.slug}/`} className="group dark relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[20px] bg-[#171717] p-5 text-white">
                 <Photo n={o.img} portrait sizes="(min-width:1024px) 25vw, 50vw" className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
                 <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(0deg,rgb(17_17_17/0.9)_0%,rgb(17_17_17/0.2)_60%)]" />
                 <span className="flex items-start justify-between gap-3 text-[18px] font-semibold leading-snug tracking-[-0.02em]">{o.company}<ArrowUpRight size={16} aria-hidden="true" className="mt-1 shrink-0 text-white/60 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" /></span>

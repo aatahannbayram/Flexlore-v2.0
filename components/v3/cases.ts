@@ -1,6 +1,6 @@
 /* Customer stories. The home carousel shows company name, sector and a one-line descriptor (requested by Flexlore,
  * 2026-11-05; written permission to name each customer must be on file). Quotes, names of people, logos and the
- * /musteriler/<slug>/ page appear only when filled in AND approved is true. Never invent a quote or a number.
+ * /customers/<slug>/ page appear only when filled in AND approved is true. Never invent a quote or a number.
  * Until then those fields stay null: [ONAY BEKLİYOR]. */
 import type M from "./media.json";
 export type Case = {

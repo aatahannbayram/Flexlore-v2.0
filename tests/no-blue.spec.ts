@@ -1,7 +1,7 @@
 /* Brand rule: no blue. Lists every visible element whose computed colour, background or border is a saturated hue
  * in 180-260°. Official store badges and real-colour round language flags are the approved exceptions. */
 import { test, expect } from "@playwright/test";
-const ROUTES = ["/", "/pricing/", "/sektor/restoran/", "/features/", "/integrations/", "/musteriler/eat-well-drink-joy/", "/company/", "/support/"];
+const ROUTES = ["/", "/pricing/", "/industries/restaurants/", "/features/", "/integrations/", "/customers/eat-well-drink-joy/", "/company/", "/support/"];
 for (const route of ROUTES) for (const w of [390, 1440]) test(`no blue ${route} @${w}`, async ({ page }) => {
   await page.setViewportSize({ width: w, height: 900 }); await page.goto(route, { waitUntil: "networkidle" });
   const hits = await page.evaluate(() => {

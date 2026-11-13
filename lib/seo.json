@@ -11,45 +11,29 @@
     "t": "Flexlore Blog: Frontline Onboarding and Training",
     "d": "Research-backed articles on onboarding, retention, safety, cross-training and the cost of poor quality for frontline operations."
   },
-  "/sektor/restoran/": {
+  "/industries/restaurants/": {
     "t": "Flexlore for Restaurants: Video SOPs for Every Station",
     "d": "Film the head chef's way once. New cooks learn plating, prep and hygiene steps on their phone and pass a quiz before service."
   },
-  "/sektor/uretim/": {
+  "/industries/manufacturing/": {
     "t": "Flexlore for Manufacturing: Step-by-Step Work Instructions",
     "d": "Changeovers, start-ups and quality checks filmed at the machine. Operators learn step by step; supervisors see who's cleared."
   },
-  "/sektor/otel/": {
+  "/industries/hotels/": {
     "t": "Flexlore for Hotels: Every Room Turned the Same Way",
     "d": "Room turns, check-in and breakfast set-up filmed by your team. Seasonal staff learn step by step and show up ready for the floor."
   },
-  "/sektor/franchise/": {
+  "/industries/franchises/": {
     "t": "Flexlore for Franchises: One Brand Standard, Every Branch",
     "d": "Film the standard once at the flagship. Every branch gets the same steps and quiz. Compare readiness branch by branch."
   },
-  "/sektor/depo/": {
+  "/industries/warehouses/": {
     "t": "Flexlore for Warehouses: Pick, Pack and Move Safely",
     "d": "Receiving, picking and equipment checks filmed in your aisles. Temporary staff learn step by step and pass a safety quiz."
   },
-  "/sektor/firin/": {
+  "/industries/bakeries-cafes/": {
     "t": "Flexlore for Bakeries and Cafés: The Craft, Step by Step",
     "d": "Dough, bake and espresso routines filmed close up at the bench. Early-shift staff learn each step and pass a quick quiz."
-  },
-  "/sektor/saha-servis/": {
-    "t": "Flexlore for Field Service: Orientation That Stays",
-    "d": "Film start-up, cleaning and checks on the installed machine. The customer's operators keep every step after your team leaves."
-  },
-  "/sektor/perakende/": {
-    "t": "Flexlore for Retail: The Same Standard in Every Store",
-    "d": "Display set-up, till and returns filmed on the shop floor. New associates learn step by step; area managers see who's ready."
-  },
-  "/sektor/oto-servis/": {
-    "t": "Flexlore for Auto Service: Every Job Done Right in the Bay",
-    "d": "Master technicians film the job from the bay. Junior techs follow every step and check, pass a quiz and get signed off by job."
-  },
-  "/sektor/her-is/": {
-    "t": "Flexlore for Any Repeatable Job: Film, Approve, Assign",
-    "d": "If your team does it more than once, film it on a phone. Flexlore drafts the steps and a quiz. You approve, assign and see who's ready."
   },
   "/blog/the-real-cost-of-poor-onboarding/": {
     "t": "The Real Cost of Poor Onboarding | Flexlore",

@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { Footer } from "./Footer";
 import Link from "next/link";
 import { m, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion, useInView, AnimatePresence } from "framer-motion";
-import { sectors, sectorCopy } from "./sectors";
+import { sectors, sectorCopy, sectorPath } from "./sectors";
 import { useLocale } from "./i18n/LocaleProvider";
 import { Video } from "./Site";
 import { Header } from "./Header";
@@ -239,7 +239,7 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
-        <Link href={`/sektor/${next.slug}/`} className="dark group relative flex h-[56svh] min-h-[380px] items-end overflow-hidden pb-12 md:pb-16">
+        <Link href={sectorPath(next.slug)} className="dark group relative flex h-[56svh] min-h-[380px] items-end overflow-hidden pb-12 md:pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-75"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.55)_55%,transparent_100%)]" />
           <div className="container-x relative w-full">

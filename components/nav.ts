@@ -23,12 +23,12 @@ export const NAV: NavGroup[] = [
   {
     id: "industries", label: { en: "Industries", tr: "Sektörler" },
     items: [
-      { k: "restaurants", href: "/sektor/restoran/", icon: ForkKnife, t: { en: "Restaurants", tr: "Restoranlar" }, d: { en: "Same plate, every shift", tr: "Her vardiyada aynı tabak" } },
-      { k: "manufacturing", href: "/sektor/uretim/", icon: Factory, t: { en: "Manufacturing", tr: "Üretim" }, d: { en: "Changeover without guesswork", tr: "Tahminsiz kalıp değişimi" } },
-      { k: "hotels", href: "/sektor/otel/", icon: Bed, t: { en: "Hotels", tr: "Oteller" }, d: { en: "Every room to your standard", tr: "Her oda sizin standardınızda" } },
-      { k: "franchises", href: "/sektor/franchise/", icon: Storefront, t: { en: "Franchises", tr: "Franchise" }, d: { en: "One launch, every branch", tr: "Tek lansman, her şube" } },
-      { k: "warehouses", href: "/sektor/depo/", icon: Package, t: { en: "Warehouses", tr: "Depolar" }, d: { en: "Picking and safety, one way", tr: "Toplama ve güvenlik, tek yol" } },
-      { k: "bakeries", href: "/sektor/firin/", icon: Coffee, t: { en: "Bakeries and cafés", tr: "Fırın ve kafeler" }, d: { en: "The recipe, not a guess", tr: "Tahmin değil, tarif" } },
+      { k: "restaurants", href: "/industries/restaurants/", icon: ForkKnife, t: { en: "Restaurants", tr: "Restoranlar" }, d: { en: "Same plate, every shift", tr: "Her vardiyada aynı tabak" } },
+      { k: "manufacturing", href: "/industries/manufacturing/", icon: Factory, t: { en: "Manufacturing", tr: "Üretim" }, d: { en: "Changeover without guesswork", tr: "Tahminsiz kalıp değişimi" } },
+      { k: "hotels", href: "/industries/hotels/", icon: Bed, t: { en: "Hotels", tr: "Oteller" }, d: { en: "Every room to your standard", tr: "Her oda sizin standardınızda" } },
+      { k: "franchises", href: "/industries/franchises/", icon: Storefront, t: { en: "Franchises", tr: "Franchise" }, d: { en: "One launch, every branch", tr: "Tek lansman, her şube" } },
+      { k: "warehouses", href: "/industries/warehouses/", icon: Package, t: { en: "Warehouses", tr: "Depolar" }, d: { en: "Picking and safety, one way", tr: "Toplama ve güvenlik, tek yol" } },
+      { k: "bakeries", href: "/industries/bakeries-cafes/", icon: Coffee, t: { en: "Bakeries and cafés", tr: "Fırın ve kafeler" }, d: { en: "The recipe, not a guess", tr: "Tahmin değil, tarif" } },
     ],
     more: { href: "/see-it/", t: { en: "See Flexlore in your business", tr: "Flexlore'u kendi işinizde görün" } },
   },

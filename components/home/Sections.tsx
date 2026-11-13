@@ -1,4 +1,5 @@
 "use client";
+import { sectorPath } from "../sectors";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -128,7 +129,7 @@ export function Industries({ lang }: { lang: Lang }) {
           <Reveal as="ul" stagger={0.05} className="lg:col-span-6">
             {IND_CARDS.map((x, i) => (
               <RevealItem as="li" key={x.slug}>
-                <Link href={`/sektor/${x.slug}/`} onMouseEnter={() => setOn(i)} onFocus={() => setOn(i)} data-on={on === i || undefined}
+                <Link href={sectorPath(x.slug)} onMouseEnter={() => setOn(i)} onFocus={() => setOn(i)} data-on={on === i || undefined}
                   className="group flex items-center gap-4 rounded-2xl px-2 py-3 transition-colors duration-300 hover:bg-white/[.04] focus-visible:bg-white/[.04] sm:px-4 sm:py-4 lg:data-[on]:bg-white/[.05]">
                   <picture className="shrink-0 lg:hidden"><source srcSet={x.still.replace(".webp", ".avif")} type="image/avif" />
                     <img src={x.still} alt="" loading="lazy" width={64} height={64} className="h-14 w-14 rounded-xl object-cover sm:h-16 sm:w-16" /></picture>
