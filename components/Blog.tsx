@@ -12,20 +12,15 @@ export const cardTitle = (p: Post) => p.cardTitle || p.h1;
 export function Bar() { return <Header />; }
 const Foot = () => <div className="mt-32"><Footer /></div>;
 
-/** First real paragraph of a post as plain text, cut on a word boundary. */
-function excerpt(p: Post, n = 190) {
-  const m = p.body.match(/<p>([\s\S]*?)<\/p>/); const t = (m ? m[1] : "").replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
-  return t.length > n ? `${t.slice(0, t.lastIndexOf(" ", n))}…` : t;
-}
 /** Reading time at 220 words a minute. */
 const mins = (p: Post) => Math.max(1, Math.round(p.body.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length / 220));
 const Meta = ({ p }: { p: Post }) => <p className="text-[13px] text-ink-faint">{p.cardDate} · {mins(p)} min read</p>;
 
-function Card({ p }: { p: Post }) {
+function Card({ p, eager = false }: { p: Post; eager?: boolean }) {
   return (
     <Link href={`/blog/${p.slug}/`} className="group flex flex-col">
       <div className="aspect-[16/10] overflow-hidden rounded-[20px] bg-[var(--card)]">
-        <Picture src={p.card} alt={p.coverAlt || cardTitle(p)} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" />
+        <Picture src={p.card} alt={p.coverAlt || cardTitle(p)} sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" priority={eager} className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.04]" />
       </div>
       <h2 className="mt-5 text-[19px] font-semibold leading-[1.25] tracking-[-0.02em] text-ink [text-wrap:balance] group-hover:text-ink-muted">{cardTitle(p)}</h2>
       <div className="mt-2"><Meta p={p} /></div>
@@ -33,44 +28,15 @@ function Card({ p }: { p: Post }) {
   );
 }
 
-/* Blog index: the ember hero used on careers and KVKK (title, one line, article count), the newest post as a wide card
- * with its first paragraph, then the rest in a grid. Posts are English only. */
+/* Blog index: straight into the articles, newest first, three to a row. The page title is the small label above the
+ * grid (the only H1). Posts are English only. */
 export function BlogIndex() {
-  const [first, ...rest] = posts;
   return (
     <>
-      <Header overDark />
-      <main id="main" className="overflow-x-clip">
-        <div>
-          <header className="ember dark pb-16 pt-[calc(var(--header-h)+56px)] text-white md:pb-24 md:pt-[calc(var(--header-h)+96px)]">
-            <div className="container-x">
-              <p className="text-[14px] text-white/60">Blog</p>
-              <h1 className="mt-8 max-w-[14ch] text-[clamp(44px,1rem+4.4vw,96px)] font-semibold leading-[0.97] tracking-[-0.05em] [text-wrap:balance]">
-                <span className="t-ink">Field notes on</span> <span className="t-accent">frontline training</span></h1>
-              <p className="mt-6 max-w-[36rem] text-[18px] leading-[1.6] text-white/70">Short reads on onboarding, standard work, cross-training and keeping new hires safe in their first weeks.</p>
-              <span aria-hidden="true" className="ember-line mt-12 block md:mt-16" />
-              <p className="pt-5 text-[14px] text-white/55">{posts.length} articles · English</p>
-            </div>
-          </header>
-          <div className="container-x">
-            <Link href={`/blog/${first.slug}/`} className="group -mt-0 grid items-center gap-8 pt-16 md:grid-cols-[1.25fr_1fr] md:gap-12 md:pt-24">
-              <div className="aspect-[16/10] overflow-hidden rounded-[28px] bg-[var(--card)]">
-                <Picture src={first.card} alt={first.coverAlt || cardTitle(first)} sizes="(min-width: 768px) 55vw, 100vw" priority className="h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(.22,1,.36,1)] group-hover:scale-[1.03]" />
-              </div>
-              <div>
-                <span className="inline-flex rounded-full bg-[var(--card)] px-3 py-1 text-[13px] font-medium text-ink-muted">Latest</span>
-                <h2 className="mt-5 text-[clamp(28px,1rem+1.6vw,42px)] font-semibold leading-[1.08] tracking-[-0.035em] text-ink [text-wrap:balance]">{cardTitle(first)}</h2>
-                <p className="mt-4 text-[17px] leading-[1.6] text-ink-muted">{excerpt(first)}</p>
-                <div className="mt-6 flex items-center justify-between gap-4"><Meta p={first} />
-                  <span className="inline-flex items-center gap-2 text-[15px] font-medium text-ink">Read article<Arr className="transition-transform group-hover:translate-x-0.5" /></span></div>
-              </div>
-            </Link>
-            <div className="mt-20 border-t border-line pt-14 md:mt-28">
-              <p className="text-[14px] font-medium text-ink-faint">All articles</p>
-              <div className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{rest.map((p) => <Card key={p.slug} p={p} />)}</div>
-            </div>
-          </div>
-        </div>
+      <Header />
+      <main id="main" className="container-x overflow-x-clip pt-[calc(var(--header-h)+48px)] md:pt-[calc(var(--header-h)+72px)]">
+        <h1 className="!text-[15px] font-medium !leading-normal !tracking-normal text-ink-faint">All articles</h1>
+        <div className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((p, k) => <Card key={p.slug} p={p} eager={k < 3} />)}</div>
       </main>
       <Foot />
     </>
