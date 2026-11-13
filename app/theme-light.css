@@ -87,3 +87,4 @@
 :root[data-theme="light"] .text-white\/85:not(.dark, .dark *) { color: rgb(22 22 22 / 0.85); }
 :root[data-theme="light"] .text-white\/90:not(.dark, .dark *) { color: rgb(22 22 22 / 0.9); }
 :root[data-theme="light"] .text-white\/95:not(.dark, .dark *) { color: rgb(22 22 22 / 0.95); }
+:root[data-theme="light"] .text-white\/\[\.04\]:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }

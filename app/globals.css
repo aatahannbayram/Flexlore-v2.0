@@ -558,3 +558,22 @@ main h1 .t-accent { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%,
 /* Footer: the same glow, quieter and without the bottom fade, so every page ends on a low warm light. */
 .ember.ember-foot::before { inset: 0 -20%; opacity: 0.55; -webkit-mask-image: none; mask-image: none;
   background: radial-gradient(34% 40% at 50% 100%, rgb(255 138 76 / 0.24), transparent 70%), radial-gradient(72% 60% at 50% 100%, rgb(236 103 38 / 0.20), transparent 72%); }
+
+/* Glass card (features index and feature cards): frosted but solid, a top highlight, a hairline and a soft drop shadow.
+   Reads best over the blurred photo glow each stage puts behind its cards. Light mode: white card, warm shadow. */
+.glass-card { background: linear-gradient(180deg, rgb(255 255 255 / 0.07), rgb(255 255 255 / 0.03));
+  -webkit-backdrop-filter: blur(20px) saturate(140%); backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.09), inset 0 0 0 1px rgb(255 255 255 / 0.07), 0 2px 6px rgb(0 0 0 / 0.22), 0 28px 56px -28px rgb(0 0 0 / 0.8);
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.4s var(--ease-out-expo, cubic-bezier(.16,1,.3,1)); }
+.glass-card:hover { background: linear-gradient(180deg, rgb(255 255 255 / 0.095), rgb(255 255 255 / 0.04));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 1px rgb(255 255 255 / 0.11), 0 4px 10px rgb(0 0 0 / 0.25), 0 36px 64px -28px rgb(0 0 0 / 0.85); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .glass-card:hover { transform: none; } }
+:root[data-theme="light"] .glass-card:not(.dark *) { background: linear-gradient(180deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.72));
+  box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgb(22 22 22 / 0.06), 0 2px 6px rgb(60 40 20 / 0.06), 0 28px 56px -30px rgb(60 40 20 / 0.28); }
+:root[data-theme="light"] .glass-card:not(.dark *):hover { box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgb(22 22 22 / 0.09), 0 4px 10px rgb(60 40 20 / 0.08), 0 36px 64px -30px rgb(60 40 20 / 0.34); }
+/* Slim segmented control (filters, tabs): a 44 px tap area around a 32 px pill, like the header buttons. */
+.seg { display: inline-grid; min-height: 44px; place-items: center; }
+.seg > span { display: inline-flex; height: 32px; align-items: center; gap: 6px; border-radius: 999px; padding: 0 12px; font-size: 13px; font-weight: 500; color: var(--color-ink-muted); transition: background-color .2s, color .2s, box-shadow .2s; }
+.seg:hover > span { color: var(--color-ink); }
+.seg[aria-pressed="true"] > span, .seg[aria-current] > span { color: var(--color-ink); background: rgb(255 255 255 / 0.09); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
+:root[data-theme="light"] :is(.seg[aria-pressed="true"], .seg[aria-current]):not(.dark *) > span { background: #fff; box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.08), 0 1px 3px rgb(22 22 22 / 0.08); }
