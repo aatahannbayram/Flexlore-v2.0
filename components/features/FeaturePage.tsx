@@ -30,9 +30,11 @@ const LOAD: Record<Locale, () => Promise<FDict>> = {
 function useFeatDict() { const { locale } = useLocale(); const [d, setD] = useState<FDict>(fen); useEffect(() => { LOAD[locale]().then(setD).catch(() => setD(fen)); }, [locale]); return d; }
 
 const card = "rounded-[28px] bg-[var(--card)]";
-const Pic = ({ n, className = "" }: { n: string; className?: string }) => (
-  <picture><source srcSet={`/photos/${n}-800.avif 800w, /photos/${n}-1600.avif 1600w`} sizes="(min-width:1024px) 50vw, 100vw" type="image/avif" />
-    <img src={`/photos/${n}-1600.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes="(min-width:1024px) 50vw, 100vw" alt="" loading="lazy" className={className} /></picture>);
+/** A feature photograph: a /photos name, or "v3:<name>" for the /media/v3 set (both ship 800 and 1600 in AVIF and WebP). */
+const Pic = ({ n, className = "", sizes = "(min-width:1024px) 50vw, 100vw" }: { n: string; className?: string; sizes?: string }) => {
+  const b = n.startsWith("v3:") ? `/media/v3/${n.slice(3)}` : `/photos/${n}`;
+  return (<picture><source srcSet={`${b}-800.avif 800w, ${b}-1600.avif 1600w`} sizes={sizes} type="image/avif" />
+    <img src={`${b}-1600.webp`} srcSet={`${b}-800.webp 800w, ${b}-1600.webp 1600w`} sizes={sizes} alt="" loading="lazy" decoding="async" className={className} /></picture>); };
 function Status({ f, c }: { f: Feature; c: FDict["common"] }) {
   return f.status === "live"
     ? <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--card)] px-3 py-1 text-[12px] font-medium text-ink-muted"><span className="h-1.5 w-1.5 rounded-full bg-calm-aqua" />{c.live}</span>
@@ -145,17 +147,40 @@ export function FeaturePage({ slug }: { slug: string }) {
   </>);
 }
 
-function FeatureCard({ f }: { f: Feature }) {
+/** Feature card: photograph on top, name, one line, arrow. `wide` lays it out side by side (a lone last card in a row). */
+function FeatureCard({ f, wide = false }: { f: Feature; wide?: boolean }) {
   const { locale } = useLocale(); const t = FEAT_NAV[locale]; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
   return (
-    <li><Link href={`/features/${f.slug}/`} className="group flex h-full flex-col rounded-[24px] bg-[var(--card)] p-2 transition-colors hover:bg-[var(--card-2)]">
-      <span className="dark relative block aspect-[16/9] overflow-hidden rounded-[18px] bg-[#1a1a1a]">
-        <Pic n={f.photo} className="h-full w-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105" />
-        <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.78)] text-white"><Ic size={17} /></span>
-        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.65)] px-2.5 py-1 text-[12px] text-white/80">{t.soon}</span>}
+    <li className={wide ? "md:col-span-2" : ""}><Link href={`/features/${f.slug}/`} className={`group flex h-full flex-col overflow-hidden rounded-[24px] bg-[var(--card)] ring-1 ring-transparent transition-[background-color,box-shadow] duration-300 hover:bg-[var(--card-2)] hover:ring-line focus-visible:ring-line ${wide ? "md:grid md:grid-cols-[1fr_1.1fr]" : ""}`}>
+      <span className={`dark relative block overflow-hidden bg-[#1a1a1a] ${wide ? "aspect-[16/10] md:aspect-auto md:h-full md:min-h-[220px]" : "aspect-[16/10]"}`}>
+        <Pic n={f.photo} sizes="(min-width:1024px) 30vw, 100vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
+        <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.35)_0%,rgb(17_17_17/0)_40%)]" />
+        <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.72)] text-white backdrop-blur-sm"><Ic size={17} /></span>
+        {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.72)] px-2.5 py-1 text-[12px] font-medium text-white/85 backdrop-blur-sm">{t.soon}</span>}
       </span>
-      <span className="flex flex-1 flex-col px-3 pb-3 pt-4"><span className="text-[17px] font-semibold">{h}</span><span className="mt-1 text-[14px] leading-[1.5] text-ink-muted">{line}</span>
-        <ArrowRight size={15} aria-hidden="true" className="mt-4 text-ink-faint transition-transform group-hover:translate-x-1 rtl:-scale-x-100" /></span>
+      <span className="flex flex-1 flex-col p-5 md:p-6"><span className="text-[18px] font-semibold tracking-[-0.015em]">{h}</span><span className="mt-1.5 text-[15px] leading-[1.5] text-ink-muted">{line}</span>
+        <span className="mt-auto flex items-center gap-1.5 pt-5 text-[14px] font-medium text-ink-faint transition-colors group-hover:text-ink">{t.how}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-1 rtl:-scale-x-100" /></span></span>
+    </Link></li>);
+}
+
+/** The lead feature of a stage: copy on one side, the live product visual over its photograph on the other. */
+function LeadCard({ f, d }: { f: Feature; d: FDict }) {
+  const { locale, lang } = useLocale(); const t = FEAT_NAV[locale]; const c = d.common; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
+  const it = d.items[f.slug as keyof FDict["items"]];
+  return (
+    <li className="md:col-span-2"><Link href={`/features/${f.slug}/`} className="group grid overflow-hidden rounded-[28px] bg-[var(--card)] ring-1 ring-transparent transition-[background-color,box-shadow] duration-300 hover:bg-[var(--card-2)] hover:ring-line md:grid-cols-[0.85fr_1.15fr]">
+      <span className="flex flex-col p-6 md:p-8">
+        <span className="flex flex-wrap items-center gap-2.5"><span className="grid h-10 w-10 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink transition-colors group-hover:bg-[var(--card)]"><Ic size={19} /></span><Status f={f} c={c} /></span>
+        <span className="mt-8 text-[clamp(24px,1rem+0.8vw,30px)] font-semibold leading-[1.1] tracking-[-0.03em]">{h}</span>
+        <span className="mt-3 text-[16px] leading-[1.55] text-ink-muted">{it?.sub ?? line}</span>
+        <span className="mt-auto flex items-center gap-1.5 pt-8 text-[15px] font-medium text-ink">{t.how}<ArrowRight size={15} aria-hidden="true" className="transition-transform group-hover:translate-x-1 rtl:-scale-x-100" /></span>
+      </span>
+      <span className="dark relative block min-h-[340px] overflow-hidden bg-[#161616] text-white md:min-h-[420px]">
+        <Pic n={f.photo} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full scale-105 object-cover opacity-55 blur-[3px] transition-transform duration-700 group-hover:scale-[1.08]" />
+        <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.2),rgb(17_17_17/0.78))]" />
+        <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5 md:p-7"><FeatureVisual v={f.visual} mock={it?.mock ?? []} lang={lang} /></span>
+        <span className="absolute bottom-3 start-3 rounded-full bg-[rgb(17_17_17/0.7)] px-3 py-1 text-[12px] text-white/70">{c.sample}</span>
+      </span>
     </Link></li>);
 }
 
@@ -214,21 +239,86 @@ function Steps({ steps, title, photo }: { steps: string[][]; title: string; phot
     </section>);
 }
 
+/* /features/: the product as one flow. A hero with the three stages in order (capture, roll out, manage), a sticky bar to
+ * jump between them and filter by what is available today, then one section per stage: its purpose on the left, a lead
+ * card with the live product visual and the other features in an even grid (a lone last card spans the row). */
+const LEAD: Record<string, true> = { "video-to-sop": true, "auto-translation": true, "permissions-workspaces": true };
+type Filter = "all" | "live" | "soon";
 export function FeaturesIndex() {
   const { locale } = useLocale(); const d = useFeatDict(); const c = d.common; const t = FEAT_NAV[locale];
+  const [filter, setFilter] = useState<Filter>("all"); const [cur, setCur] = useState<string>("");
+  const shown = (g: string) => FEATURES.filter((f) => f.group === g && (filter === "all" || f.status === filter));
+  const groups = GROUPS.filter((g) => shown(g).length > 0);
+  /* Which stage is on screen, for the sticky bar. */
+  useEffect(() => {
+    const els = ["g-top", ...GROUPS.map((g) => `g-${g}`)].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+    const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) setCur(e.target.id === "g-top" ? "" : e.target.id.slice(2)); }, { rootMargin: "-45% 0px -50% 0px" });
+    els.forEach((el) => io.observe(el)); return () => io.disconnect();
+  }, [filter]);
+  const count = (g: string, s?: "live" | "soon") => FEATURES.filter((f) => f.group === g && (!s || f.status === s)).length;
+  const total = (s?: "live" | "soon") => FEATURES.filter((f) => !s || f.status === s).length;
   return (<>
     <Header />
     <main id="main" className="home-v3 overflow-x-clip pt-[var(--header-h)]">
-      <section className="container-x pb-10 pt-12 text-center md:pt-20">
+      {/* Hero: the promise, then the three stages as a numbered flow. */}
+      <section id="g-top" className="container-x pb-12 pt-12 md:pb-16 md:pt-20">
         <p className="inline-flex items-center gap-2 text-[15px] font-medium text-ink-muted"><CheckCircle size={16} />{c.indexK}</p>
-        <h1 className="mx-auto mt-5 max-w-[20ch] text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
-        <p className="mx-auto mt-5 max-w-[38rem] text-[18px] leading-[1.6] text-ink-muted">{c.indexP}</p>
+        <h1 className="mt-5 max-w-[22ch] text-[clamp(34px,1rem+2.6vw,60px)] font-semibold leading-[1.02] tracking-[-0.045em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
+        <p className="mt-5 max-w-[40rem] text-[18px] leading-[1.6] text-ink-muted">{c.indexP}</p>
+        <ol className="mt-12 grid gap-3 md:mt-16 md:grid-cols-3 md:gap-4">
+          {GROUPS.map((g, k) => { const fs = FEATURES.filter((f) => f.group === g); return (
+            <li key={g} className="relative">
+              <a href={`#g-${g}`} className="group flex h-full flex-col rounded-[24px] bg-[var(--card)] p-6 ring-1 ring-transparent transition-[background-color,box-shadow] duration-300 hover:bg-[var(--card-2)] hover:ring-line md:p-7">
+                <span className="flex items-center justify-between"><span className="text-[14px] font-semibold tabular-nums text-flame">0{k + 1}</span>
+                  <ArrowRight size={16} aria-hidden="true" className="rotate-90 text-ink-faint transition-transform group-hover:translate-y-0.5" /></span>
+                <span className="mt-6 text-[24px] font-semibold tracking-[-0.025em]">{t.groups[g]}</span>
+                <span className="mt-2 text-[15px] leading-[1.55] text-ink-muted">{t.lines[g]}</span>
+                <span className="mt-auto flex items-center gap-3 pt-7">
+                  <span aria-hidden="true" className="flex -space-x-2 rtl:space-x-reverse">{fs.slice(0, 4).map((f) => <span key={f.slug} className="relative block h-9 w-9 overflow-hidden rounded-full ring-2 ring-[var(--card)] transition-[box-shadow] group-hover:ring-[var(--card-2)]"><Pic n={f.photo} sizes="72px" className="h-full w-full object-cover" /></span>)}</span>
+                  <span className="flex flex-wrap gap-x-3 text-[13px] text-ink-faint">{count(g, "live") > 0 && <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-calm-aqua" />{count(g, "live")} {t.now.toLowerCase()}</span>}{count(g, "soon") > 0 && <span className="inline-flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-ink-faint" />{count(g, "soon")} {t.soon.toLowerCase()}</span>}</span>
+                </span>
+              </a>
+              {k < 2 && <span aria-hidden="true" className="absolute -end-[14px] top-1/2 z-10 hidden h-7 w-7 -translate-y-1/2 place-items-center rounded-full bg-bg text-ink-faint ring-1 ring-line md:grid"><ArrowRight size={13} className="rtl:-scale-x-100" /></span>}
+            </li>); })}
+        </ol>
       </section>
-      {GROUPS.map((g) => (
-        <section key={g} aria-labelledby={`g-${g}`} className="container-x py-8 md:py-10">
-          <h2 id={`g-${g}`} className="text-[22px] font-semibold tracking-[-0.02em]">{t.groups[g]}</h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{FEATURES.filter((f) => f.group === g).map((f) => <FeatureCard key={f.slug} f={f} />)}</ul>
-        </section>))}
+
+      {/* Sticky bar: jump to a stage (from md up), filter by availability (always). */}
+      <div className="sticky top-[var(--header-h)] z-30 border-y border-line bg-[rgb(var(--bg-rgb)/0.86)] backdrop-blur-xl">
+        <div className="container-x flex items-center justify-center gap-4 overflow-x-auto py-2 [scrollbar-width:none] md:justify-between md:py-0">
+          <nav aria-label={c.indexK} className="hidden shrink-0 items-center gap-1 py-2 md:flex">
+            {groups.map((g) => { const k = GROUPS.indexOf(g); const on = cur === g; return (
+              <a key={g} href={`#g-${g}`} aria-current={on ? "true" : undefined} className={`inline-flex h-11 items-center gap-2 rounded-full px-3.5 text-[14px] font-medium transition-colors ${on ? "bg-[var(--card-2)] text-ink" : "text-ink-muted hover:text-ink"}`}>
+                <span className={`tabular-nums ${on ? "text-flame" : "text-ink-faint"}`}>0{k + 1}</span>{t.groups[g]}</a>); })}
+          </nav>
+          <div role="group" aria-label={`${t.every} / ${t.now} / ${t.soon}`} className="flex shrink-0 items-center gap-0.5 rounded-full bg-[var(--card)] p-0.5">
+            {([["all", t.every, total()], ["live", t.now, total("live")], ["soon", t.soon, total("soon")]] as [Filter, string, number][]).map(([k, label, n]) => (
+              <button key={k} type="button" aria-pressed={filter === k} onClick={() => setFilter(k)}
+                className={`inline-flex h-11 min-w-11 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium transition-colors ${filter === k ? "bg-ink text-bg" : "text-ink-muted hover:text-ink"}`}>
+                {k !== "all" && <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${k === "live" ? "bg-calm-aqua" : "bg-ink-faint"}`} />}{label}<span className={`tabular-nums ${filter === k ? "opacity-60" : "text-ink-faint"}`}>{n}</span></button>))}
+          </div>
+        </div>
+      </div>
+
+      {groups.map((g) => { const k = GROUPS.indexOf(g); const fs = shown(g); const lead = fs.find((f) => LEAD[f.slug]) ?? (fs.length > 1 && fs.length % 2 === 1 ? fs[0] : undefined);
+        const rest = fs.filter((f) => f !== lead); return (
+        <section key={g} id={`g-${g}`} aria-labelledby={`gh-${g}`} className="container-x scroll-mt-[calc(var(--header-h)+80px)] py-12 md:py-20">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-4"><div className="lg:sticky lg:top-[calc(var(--header-h)+104px)]">
+              <p className="text-[14px] font-semibold tabular-nums text-flame">0{k + 1}<span className="text-ink-faint"> / 03</span></p>
+              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(30px,1rem+1.6vw,44px)] font-semibold leading-[1.05] tracking-[-0.035em]">{t.groups[g]}</h2>
+              <p className="mt-4 max-w-[24rem] text-[17px] leading-[1.6] text-ink-muted">{t.lines[g]}</p>
+              <p className="mt-6 flex flex-wrap gap-2 text-[13px] text-ink-muted">
+                {count(g, "live") > 0 && <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--card)] px-3 py-1"><span className="h-1.5 w-1.5 rounded-full bg-calm-aqua" />{count(g, "live")} {t.now.toLowerCase()}</span>}
+                {count(g, "soon") > 0 && <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--card)] px-3 py-1"><span className="h-1.5 w-1.5 rounded-full bg-ink-faint" />{count(g, "soon")} {t.soon.toLowerCase()}</span>}
+              </p>
+            </div></div>
+            <ul className="grid gap-3 md:grid-cols-2 md:gap-4 lg:col-span-8">
+              {lead && <LeadCard f={lead} d={d} />}
+              {rest.map((f, i) => <FeatureCard key={f.slug} f={f} wide={rest.length % 2 === 1 && i === rest.length - 1} />)}
+            </ul>
+          </div>
+        </section>); })}
       <div className="pt-[var(--section-y)]"><Compare5 /></div>
       <End c={c} />
     </main>

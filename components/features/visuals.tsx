@@ -1,6 +1,7 @@
 "use client";
 /* One product visual per feature. Real app screens where they exist (phone screens, web dashboard); HTML mocks with
- * sample content for the rest. All decorative (the page copy says the same), dark in both themes, LTR inside. */
+ * sample content for the rest. All decorative (the page copy says the same), dark in both themes, LTR inside. The root is a
+ * size container so the phone is capped by the frame height too (42cqh) and never spills out of a short card. */
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useInView, useReducedMotion } from "framer-motion";
@@ -33,13 +34,13 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
   const seen = useInView(ref, { amount: 0.3, once: true }); const reduce = useReducedMotion();
   const [k, setK] = useState(0);
   useEffect(() => { if (v !== "translate" || !on || reduce) return; const id = window.setInterval(() => setK((x) => (x + 1) % SAMPLE_STEP.length), 2600); return () => window.clearInterval(id); }, [v, on, reduce]);
-  const phone = (screen: React.ReactNode) => <div className="w-[min(58%,270px)]"><Device label="">{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device></div>;
+  const phone = (screen: React.ReactNode) => <div className="w-[min(58%,270px,42cqh)]"><Device label="">{near ? screen : <div className="absolute inset-0 bg-[#111]" />}</Device></div>;
   let body: React.ReactNode = null;
   if (v === "sop") body = (<div className="flex w-full items-center justify-center gap-4">{phone(<WorkScreen active={on} lang={lang} />)}
     <div className={`${glass} hidden w-[44%] space-y-1.5 p-2.5 sm:block`}>{mock.slice(0, 3).map((x, i) => (
-      <div key={x} className={`${row} bx-rise`} style={st(300 + i * 250)}><span className="tabular-nums text-white/50">{i + 1}</span><span className="flex-1 truncate">{x}</span>
-        <span className="flex items-center gap-1 rounded-full bg-[#E7EBEB] px-2 py-0.5 text-[11px] font-semibold text-[#111]"><CheckCircle size={11} weight="fill" />{mock[4]}</span></div>))}
-      <p className="flex items-center gap-1.5 px-2 pt-1 text-[11px] text-white/55"><Sparkle size={11} weight="fill" />{mock[3]}</p></div></div>);
+      <div key={x} className={`${row} bx-rise`} style={st(300 + i * 250)}><span className="tabular-nums text-white/50">{i + 1}</span><span className="min-w-0 flex-1 truncate">{x}</span>
+        <CheckCircle size={15} weight="fill" className="shrink-0 text-[#E7EBEB]" /></div>))}
+      <p className="flex items-center gap-1.5 px-2 pt-1 text-[11px] text-white/55"><Sparkle size={11} weight="fill" />{mock[3]} · {mock[4]}</p></div></div>);
   if (v === "pdf") body = (<div className="flex w-full items-center justify-center gap-3 sm:gap-5">
     <div className="relative w-[38%] max-w-[190px] overflow-hidden rounded-[14px] bg-white p-3.5 text-[#111]">
       <p className="flex items-center gap-1.5 text-[11px] font-semibold"><FilePdf size={14} className="text-[#A03434]" /><span className="truncate">{mock[0]}</span></p>
@@ -84,5 +85,5 @@ export function FeatureVisual({ v, mock, lang }: { v: Visual; mock: string[]; la
     <p className={`${glass} p-3.5 text-[13px] leading-[1.55]`}><ChatCircle size={13} className="me-1.5 inline" />{mock[2]}</p>
     <div className={`${glass} bx-rise flex items-start gap-3 p-3.5`} style={st(600)}><span className="grid h-8 w-8 shrink-0 place-items-center rounded-[10px] bg-white/10"><Lightning size={15} /></span>
       <span className="text-[13px]"><span className="block text-white/60">{mock[3]}</span><span className="block font-medium">{mock[4]}</span></span></div></div>);
-  return <div ref={ref} dir="ltr" className={`relative flex h-full w-full items-center justify-center ${seen || reduce ? "bx-go" : ""}`}>{body}</div>;
+  return <div ref={ref} dir="ltr" className={`relative flex h-full w-full items-center justify-center [container-type:size] ${seen || reduce ? "bx-go" : ""}`}>{body}</div>;
 }
