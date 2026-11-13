@@ -1,8 +1,9 @@
 // Single source of truth for launch flags, links and pricing hooks.
 export const SITE = {
   url: "https://www.flexlore.com",
-  // DEMO: keep true. Flip to false at launch: robots, sitemap and every page's meta follow this flag.
-  noindex: true,
+  // Search engines: closed by default (preprod and local builds). The launch build sets FLX_LAUNCH=1
+  // (`FLX_LAUNCH=1 npm run build`), which opens robots, the sitemap and every page's meta. Read at build time only.
+  noindex: process.env.FLX_LAUNCH !== "1",
   // Log in link in the header (desktop and the mobile menu). Empty = hidden. Set by Flexlore, 2026-11-10.
   login: "https://app.flexlore.com",
   demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",

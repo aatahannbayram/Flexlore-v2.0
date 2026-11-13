@@ -1,0 +1,20 @@
+# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. www is the canonical host (SITE.url);
+# the bare domain redirects to it. Certificates are issued by Caddy once DNS points here.
+www.flexlore.com {
+	encode zstd gzip
+	header {
+		# Start HSTS short; raise to 31536000 after two calm weeks.
+		Strict-Transport-Security "max-age=86400"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "SAMEORIGIN"
+		# Microphone stays allowed for this site only: the Flex AI voice assistant uses it after the visitor asks.
+		Permissions-Policy "camera=(), geolocation=(), microphone=(self)"
+		-Server
+	}
+	reverse_proxy flexlore-web:80
+}
+
+flexlore.com {
+	redir https://www.flexlore.com{uri} permanent
+}
