@@ -142,7 +142,6 @@ details summary::-webkit-details-marker { display:none; }
 @keyframes sx-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .sx-fade, .sx-word, .sx-up { animation: none; } }
 
-.marquee{animation:mq 60s linear infinite}
 
 /* Bento micro-visuals: CSS only, final state shown under reduced motion. */
 .bento-swap .bento-a { animation: bento-a 4.8s var(--ease-out-expo) infinite; animation-delay: inherit; }
@@ -159,7 +158,6 @@ details summary::-webkit-details-marker { display:none; }
   .bento-swap .bento-a { animation: none; opacity: 0; } .bento-swap .bento-b { animation: none; opacity: 1; }
   .bento-cell, .bento-bar { animation: none; } .bento-pick { animation: none; background: rgb(231 235 235 / .14); }
 }
-@keyframes mq{to{transform:translateX(-50%)}}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }

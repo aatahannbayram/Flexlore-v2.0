@@ -103,18 +103,18 @@ export function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "
   useEffect(() => { if (!active) return; setT(0); const id = window.setInterval(() => setT((v) => Math.min(13, v + 1)), 420); return () => window.clearInterval(id); }, [active]);
   return (
     <div className="absolute inset-0 overflow-hidden bg-black text-white">
-      {/* The viewfinder plays the baker kneading (gen-baker), cropped to the hands; the poster shows until it plays and
+      {/* The viewfinder plays the same bright kitchen clip step 2 edits (how-editor); the poster shows until it plays and
           stays still under reduced motion. */}
-      <video ref={vid} className="absolute inset-0 h-full w-full scale-[1.25] object-cover" style={{ objectPosition: "42% 70%", transformOrigin: "42% 70%" }}
-        poster="/video/gen-baker.webp" muted loop playsInline preload="none" aria-hidden="true">
-        <source src="/video/gen-baker.webm" type="video/webm" /><source src="/video/gen-baker.mp4" type="video/mp4" /></video>
+      <video ref={vid} className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: "45% 50%" }}
+        poster="/video/how-editor.webp" muted loop playsInline preload="none" aria-hidden="true">
+        <source src="/video/how-editor.webm" type="video/webm" /><source src="/video/how-editor.mp4" type="video/mp4" /></video>
       <span aria-hidden="true" className="absolute inset-0" style={{ backgroundImage: THIRDS }} />
       <div className="absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-black/70 to-transparent px-[18px] pb-[22px] pt-[50px] text-[12px] font-semibold">
         <Lightning size={16} aria-hidden="true" className="text-white/85" />
         <span className="flex items-center gap-[6px] rounded-full bg-black/70 px-[10px] py-[4px] text-[13px] tabular-nums"><span className="rec-dot h-[7px] w-[7px] rounded-full bg-[#FF453A]" />00:{String(t).padStart(2, "0")}</span>
         <span className="text-white/85">4K · 30</span>
       </div>
-      <span aria-hidden="true" className="cam-focus absolute left-[30%] top-[47%] h-[92px] w-[92px]">
+      <span aria-hidden="true" className="cam-focus absolute left-[36%] top-[17%] h-[92px] w-[92px]">
         {["start-0 top-0 border-s-2 border-t-2 rounded-ss-[6px]", "end-0 top-0 border-e-2 border-t-2 rounded-se-[6px]", "start-0 bottom-0 border-s-2 border-b-2 rounded-es-[6px]", "end-0 bottom-0 border-e-2 border-b-2 rounded-ee-[6px]"].map((c) => <span key={c} className={`absolute h-[16px] w-[16px] border-white ${c}`} />)}
       </span>
       <div className="absolute inset-x-0 bottom-0 bg-black/70 pb-[34px] pt-[12px]">
@@ -125,7 +125,7 @@ export function CameraScreen({ active, lang }: { active: boolean; lang: "en" | "
           <span className="text-white/45">{lang === "tr" ? "Foto" : "Photo"}</span><span className="text-[#FFD60A]">Video</span><span className="text-white/45">Slo-mo</span>
         </div>
         <div className="mt-[14px] flex items-center justify-between px-[34px]">
-          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src="/video/gen-baker.webp" alt="" decoding="async" className="h-full w-full object-cover" /></span>
+          <span className="h-[40px] w-[40px] overflow-hidden rounded-[9px] ring-1 ring-white/30"><img src="/video/how-editor.webp" alt="" decoding="async" className="h-full w-full object-cover" /></span>
           <span className="grid h-[64px] w-[64px] place-items-center rounded-full ring-[3px] ring-white"><span className="h-[24px] w-[24px] rounded-[6px] bg-[#FF453A]" /></span>
           <span className="grid h-[40px] w-[40px] place-items-center rounded-full bg-white/15"><ArrowCounterClockwise size={18} aria-hidden="true" /></span>
         </div>
@@ -178,10 +178,10 @@ export function StepsV3() {
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
                 {near && <div className={`absolute inset-0 ${reduce ? "" : "stage-zoom"}`}>{i === 0
-                  /* Step 1: the stage is the same baker clip the phone is filming, softened, so phone and room match. */
-                  ? (reduce ? <img src="/video/gen-baker.webp" alt="" decoding="async" className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" />
-                    : <video className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" poster="/video/gen-baker.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
-                        <source src="/video/gen-baker.webm" type="video/webm" /><source src="/video/gen-baker.mp4" type="video/mp4" /></video>)
+                  /* Step 1: the stage is the same bright kitchen clip the phone is filming, softened, so phone and room match (and step 2 continues it). */
+                  ? (reduce ? <img src="/video/how-editor.webp" alt="" decoding="async" className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" />
+                    : <video className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" poster="/video/how-editor.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
+                        <source src="/video/how-editor.webm" type="video/webm" /><source src="/video/how-editor.mp4" type="video/mp4" /></video>)
                   : <StageImg n={STAGE[i]} soft />}</div>}
               </m.div>
             </AnimatePresence>
