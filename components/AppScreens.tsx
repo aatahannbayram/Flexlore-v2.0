@@ -64,20 +64,39 @@ export function Scaled({ children, base = 320 }: { children: React.ReactNode; ba
   return (<div ref={r} className="relative h-full w-full overflow-hidden rounded-[var(--scr-r,2.55rem)] bg-bg [isolation:isolate]">
     <div className="absolute left-0 top-0 origin-top-left font-sans antialiased [font-feature-settings:'cv11','ss01']" style={{ width: base, height: h || "100%", transform: `scale(${k})` }}>{children}</div></div>);
 }
-/** iPhone frame: titanium rim, inner black bezel, Dynamic Island. `max` is the iPhone 16 Pro Max (440 x 956 pt, thinner
- *  bezel, Desert Titanium rim, a wider design width so the app reads at Pro Max scale). */
+/** iPhone frame, drawn in CSS (no Apple artwork: Apple's bezels are licensed only for Apple-only apps, not websites).
+ *  Proportions follow the iPhone 16/17 Pro Max: 440 x 956 pt, display corner about 12.5% of the width, a thin titanium
+ *  band with a polished edge, antenna lines, Action button and volume on the left, side button and Camera Control on the
+ *  right, a black bezel, the Dynamic Island and a faint glass reflection. `max` is Desert Titanium; without it, black
+ *  titanium at 393 x 852 pt. All sizes are in cqw so the frame stays sharp at any width. */
+const RIM = {
+  max: { band: "linear-gradient(150deg,#efe2cf 0%,#c3ab8f 14%,#8a7660 34%,#6b5c4b 52%,#8f7b65 72%,#cdb79c 90%,#f1e5d3 100%)",
+    btn: "linear-gradient(90deg,#6b5c4b,#d2bea4 45%,#8a7660)", gap: "#5a4d3f" },
+  std: { band: "linear-gradient(150deg,#6c6c70 0%,#3e3e42 18%,#26262a 45%,#333337 70%,#5c5c61 90%,#77777c 100%)",
+    btn: "linear-gradient(90deg,#2a2a2d,#6a6a6f 45%,#333336)", gap: "#18181a" },
+};
 export function Device({ children, label, max = false }: { children: React.ReactNode; label: string; max?: boolean }) {
-  const btn = `absolute w-[3px] ${max ? "bg-[#8c7a66]" : "bg-[#3b3b3e]"}`;
-  return (<div role="img" aria-label={label} className={`dark relative w-full [container-type:inline-size] ${max ? "aspect-[440/956]" : "aspect-[393/852]"}`} style={{ ["--scr-r" as string]: max ? "11.6cqw" : "11cqw" }}>
-    <span className={`${btn} -left-[2px] top-[16%] h-[4%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[23%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -left-[2px] top-[32%] h-[7.5%] rounded-l-sm`} /><span className={`${btn} -right-[2px] top-[26%] h-[11%] rounded-r-sm`} />
-    <div className={`absolute inset-0 rounded-[14cqw] p-[2.5px] ring-1 ${max ? "bg-[linear-gradient(140deg,#d8c3a8_0%,#9c876f_35%,#6f604f_65%,#b49c80_100%)] ring-white/20" : "bg-[#2a2a2d] ring-white/10"}`}>
-      <div className="h-full w-full rounded-[13.4cqw] bg-[#050506] p-[1px] shadow-[inset_0_0_0_1px_rgba(255,255,255,.08)]">
-        <div className={`h-full w-full rounded-[13cqw] bg-black ${max ? "p-[1.5cqw]" : "p-[2cqw]"}`}>
-          <Scaled base={max ? 344 : 320}>
-            {children}
-            <div className="absolute left-1/2 top-[11px] z-30 flex h-[29px] w-[96px] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-[10px] shadow-[0_0_0_.5px_rgba(255,255,255,.04)]"><span className="h-[9px] w-[9px] rounded-full bg-bg2 ring-1 ring-white/[.04]" /></div>
-            <div className="absolute bottom-[8px] left-1/2 z-30 h-[5px] w-[124px] -translate-x-1/2 rounded-full bg-white/90 mix-blend-difference" />
-          </Scaled></div></div></div>
+  const r = max ? RIM.max : RIM.std;
+  const key = (side: "l" | "r", top: string, h: string) => (
+    <span aria-hidden="true" className={`absolute w-[0.95cqw] ${side === "l" ? "-left-[0.6cqw] rounded-l-[0.6cqw]" : "-right-[0.6cqw] rounded-r-[0.6cqw]"} shadow-[0_0.3cqw_0.6cqw_rgb(0_0_0/0.35)]`}
+      style={{ top, height: h, background: r.btn }} />);
+  const gap = (pos: string) => <span aria-hidden="true" className={`absolute h-[0.9cqw] w-[1.15cqw] ${pos}`} style={{ background: r.gap }} />;
+  return (<div role="img" aria-label={label} className={`dark relative w-full [container-type:inline-size] ${max ? "aspect-[440/956]" : "aspect-[393/852]"}`} style={{ ["--scr-r" as string]: "12.5cqw" }}>
+    {key("l", "17.5%", "3.6%")}{key("l", "24.5%", "6.8%")}{key("l", "33%", "6.8%")}{key("r", "27%", "10.5%")}{key("r", "52%", "5.4%")}
+    {/* Titanium band: polished edge (inset highlight), darker inner lip, soft contact shadow. */}
+    <div className="absolute inset-0 rounded-[15.2cqw] p-[1.15cqw] shadow-[inset_0_0_0_0.3cqw_rgb(255_255_255/0.35),inset_0_0.4cqw_0.5cqw_rgb(255_255_255/0.35),inset_0_-0.4cqw_0.6cqw_rgb(0_0_0/0.35),0_0_0_0.25cqw_rgb(0_0_0/0.55)]"
+      style={{ background: r.band }}>
+      {gap("left-0 top-[8.5%]")}{gap("right-0 top-[8.5%]")}{gap("left-0 bottom-[8.5%]")}{gap("right-0 bottom-[8.5%]")}
+      <div className="relative h-full w-full rounded-[14.05cqw] bg-[#020203] p-[1.55cqw] shadow-[inset_0_0_0_0.25cqw_rgb(0_0_0/0.9),inset_0_0_0_0.5cqw_rgb(255_255_255/0.05)]">
+        <Scaled base={max ? 344 : 320}>
+          {children}
+          <div className="absolute left-1/2 top-[11px] z-30 flex h-[30px] w-[98px] -translate-x-1/2 items-center justify-end rounded-full bg-black pr-[11px] shadow-[0_0_0_.5px_rgba(255,255,255,.05)]"><span className="h-[10px] w-[10px] rounded-full bg-[radial-gradient(circle_at_35%_35%,#3a3632_0%,#0d0c0b_55%,#000_100%)] ring-1 ring-white/[.06]" /></div>
+          <div className="absolute bottom-[8px] left-1/2 z-30 h-[5px] w-[124px] -translate-x-1/2 rounded-full bg-white/90 mix-blend-difference" />
+        </Scaled>
+        {/* Glass: one faint diagonal sheen over the screen, never over the content's contrast. */}
+        <span aria-hidden="true" className="pointer-events-none absolute inset-[1.55cqw] z-40 rounded-[var(--scr-r)] bg-[linear-gradient(118deg,rgb(255_255_255/0.07)_0%,rgb(255_255_255/0.02)_28%,transparent_42%)]" />
+      </div>
+    </div>
   </div>);
 }
 
