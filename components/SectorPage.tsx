@@ -91,7 +91,7 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_45%,transparent_35%,rgb(10_10_10/0.75)_100%)]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.8),transparent)]" />
           <div className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.7)_40%,transparent_100%)]" />
-          <div className="container-x relative flex h-full flex-col pb-[7vh] pt-[calc(var(--header-h)+28px)]">
+          <div className="container-x relative flex h-full flex-col pb-[max(7vh,112px)] pt-[calc(var(--header-h)+28px)]">
             <p className="sx-fade flex items-center gap-3 text-[13px] font-medium text-white/65">
               <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</p>
             <m.h1 style={{ y: reduce ? 0 : hy, opacity: reduce ? 1 : ho }} className="my-auto flex flex-wrap items-baseline gap-x-10 text-[clamp(44px,1rem+5vw,108px)] !font-normal leading-[0.98] !tracking-[-0.04em] text-white">
