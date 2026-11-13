@@ -2,8 +2,7 @@
 /* Motion lab: the proposed motion system next to what the site does today, so the team can choose by feel.
  * A tone switch (calm / lively) changes distances, durations, stagger and light strength in every demo at once.
  * Internal only (noindex, not linked). Turkish labels: the reviewers are the Flexlore team. */
-import { useEffect, useRef, useState } from "react";
-import { flushSync } from "react-dom";
+import { useRef, useState } from "react";
 import { m, AnimatePresence, useReducedMotion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight, Play } from "../ui/icons";
 
@@ -110,52 +109,6 @@ function Depth({ t }: { t: typeof T.calm }) {
   </div>);
 }
 
-/* 5. Story line: an orange line fills as you scroll; each step lights when the line reaches it. */
-function Story({ t }: { t: typeof T.calm }) {
-  const box = useRef<HTMLDivElement>(null); const { scrollYProgress } = useScroll({ container: box });
-  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 24 }); const [lit, setLit] = useState(0);
-  useEffect(() => fill.on("change", (v) => setLit(Math.min(4, Math.floor(v * 4.6)))), [fill]);
-  const steps = [["İşi bir kez çekin", "En iyi çalışanınız işi telefonla çeker."], ["Adımlara bölün", "Yapay zekâ talimat ve quiz taslağı hazırlar."], ["Ekip izler", "Herkes kendi dilinde, istasyonda."], ["Quiz", "Kim anladı, görürsünüz."], ["Kim hazır", "Kişi, vardiya ve şube bazında."]];
-  return (<div>
-    <Tag on>Kutunun içinde aşağı kaydırın</Tag>
-    <div ref={box} className="relative h-[420px] overflow-y-auto rounded-[24px] bg-[var(--card)] px-6 [scrollbar-width:thin]">
-      <div className="relative py-10" style={{ height: 1000 }}>
-        <span className="absolute start-[39px] top-10 h-[880px] w-[2px] bg-[var(--color-line-strong)]" />
-        <m.span style={{ scaleY: fill }} className="absolute start-[39px] top-10 h-[880px] w-[2px] origin-top bg-flame" />
-        {steps.map(([h, p], i) => (
-          <div key={h} className="relative flex gap-5" style={{ marginTop: i ? 120 : 0 }}>
-            <span className={`relative z-10 grid h-8 w-8 shrink-0 place-items-center rounded-full text-[13px] font-semibold tabular-nums transition-colors duration-500 ${lit >= i ? "bg-flame text-white" : "bg-[var(--card-2)] text-ink-faint"}`}>{i + 1}</span>
-            <m.div animate={{ opacity: lit >= i ? 1 : 0.35, x: lit >= i ? 0 : t.dist / 2 }} transition={{ duration: 0.35, ease: EASE }}>
-              <p className="text-[19px] font-semibold tracking-[-0.02em]">{h}</p><p className="mt-1 text-[15px] text-ink-muted">{p}</p></m.div>
-          </div>))}
-      </div>
-    </div>
-  </div>);
-}
-
-/* 6. Card to page: the photo grows from the card into the page header (View Transitions API, no extra JS library). */
-function Morph() {
-  const [open, setOpen] = useState<number | null>(null);
-  const go = (v: number | null) => { const d = document as Document & { startViewTransition?: (cb: () => void) => void };
-    if (d.startViewTransition) d.startViewTransition(() => flushSync(() => setOpen(v))); else setOpen(v); };
-  return (<div>
-    <Tag on>Bir karta tıklayın, sonra geri dönün</Tag>
-    {open === null ? (
-      <div className="grid gap-3 sm:grid-cols-3">{[0, 1, 2].map((i) => (
-        <button key={i} type="button" onClick={() => go(i)} className="glass-card group rounded-[22px] p-2 text-start [&:hover]:!transform-none">
-          <div className="aspect-[16/10] overflow-hidden rounded-[16px]" style={{ viewTransitionName: `lab-img-${i}` }}><img src={img(PHOTOS[i])} alt="" className="h-full w-full object-cover" /></div>
-          <p className="px-2 pb-2 pt-3 text-[15px] font-semibold" style={{ viewTransitionName: `lab-h-${i}` }}>{NAMES[i]}</p></button>))}</div>
-    ) : (
-      <div className="overflow-hidden rounded-[24px] bg-[var(--card)]">
-        <div className="relative aspect-[21/9]" style={{ viewTransitionName: `lab-img-${open}` }}><img src={img(PHOTOS[open], 1600)} alt="" className="h-full w-full object-cover" /></div>
-        <div className="flex flex-wrap items-center justify-between gap-4 p-6">
-          <p className="text-[32px] font-semibold tracking-[-0.035em]" style={{ viewTransitionName: `lab-h-${open}` }}>{NAMES[open]}</p>
-          <button type="button" onClick={() => go(null)} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[34px] !min-h-[34px] !px-3.5 !text-[13px]"><ArrowRight size={12} aria-hidden="true" className="rotate-180" />Geri</span></button>
-        </div>
-      </div>)}
-  </div>);
-}
-
 /* 7. Buttons: a small press, and the orange button's glint on hover. */
 function Buttons() {
   return (<div className="flex flex-wrap items-center gap-3">
@@ -200,8 +153,6 @@ export function MotionLab() {
     <Block n="03" title="Tek hover dili" note="Bugün bazı kartlar büyüyor, bazıları zıplıyor, bazıları sadece renk değiştiriyor. Sistemde hepsi aynı davranır."><Hover t={t} /></Block>
     <Block n="04" title="Camda ışık" note="İmleç cam kartın üstünde gezerken çok hafif bir ışık ve kenarda turuncu bir parıltı onu izler. Sadece fareyle; dokunmatikte yok."><Spot t={t} /></Block>
     <Block n="05" title="Hero'da derinlik" note="Aşağı kaydırırken başlık telefondan hızlı yükselir, fotoğraf hafifçe yakınlaşır. Sayfa kaydırması ele geçirilmez."><Depth t={t} /></Block>
-    <Block n="06" title="Hikâye çizgisi" note="Nasıl çalışır bölümünde turuncu çizgi kaydırdıkça dolar, adımlar sırayla yanar."><Story t={t} /></Block>
-    <Block n="07" title="Karttan sayfaya" note="Özellik kartına tıklayınca fotoğraf büyüyerek sayfanın başlığına yerleşir. Tarayıcının kendi geçiş özelliğiyle; desteklemeyen tarayıcıda normal sayfa açılır."><Morph /></Block>
-    <Block n="08" title="Buton tepkisi" note="Tıklamada hafif içe basma; turuncu butonda üzerine gelince düz bir ışık geçişi."><Buttons /></Block>
+    <Block n="06" title="Buton tepkisi" note="Tıklamada hafif içe basma; turuncu butonda üzerine gelince düz bir ışık geçişi."><Buttons /></Block>
   </div>);
 }

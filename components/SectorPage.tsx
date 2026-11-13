@@ -14,7 +14,6 @@ import { useLocale } from "./i18n/LocaleProvider";
 import { Video } from "./Site";
 import { Header } from "./Header";
 import { FilmSlate, Sparkle, ChartLineUp, CheckCircle, WarningCircle, ArrowRight } from "./ui/icons";
-import { Chev } from "./v3/Chevron";
 import { PhotoBand, glassTile } from "./ui/PhotoBand";
 
 /* Two photo bands per sector (03 and the closing card), none shared with the sector's own hero video or task still. */
@@ -26,16 +25,16 @@ const SECTOR_BANDS: Record<string, [string, string]> = {
 const ease = [0.22, 1, 0.36, 1] as const;
 const Rise = ({ children, d = 0, className = "" }: { children: React.ReactNode; d?: number; className?: string }) => {
   const reduce = useReducedMotion();
-  return <m.div initial={reduce ? false : { opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.8, delay: d, ease }} className={className}>{children}</m.div>;
+  return <m.div initial={reduce ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.7, delay: d, ease }} className={className}>{children}</m.div>;
 };
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
   <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />
     <p className="text-[14px] font-medium tracking-[-0.005em] text-ink-faint">{children}</p></div>);
 function H2({ text, className = "" }: { text: string; className?: string }) {
   const reduce = useReducedMotion(); const w = text.split(" ");
-  if (reduce) return <h2 className={`v4-h2 mt-4 ${className}`}>{text}</h2>;
+  if (reduce) return <h2 className={`v4-h2 mt-4 !font-normal !tracking-[-0.035em] ${className}`}>{text}</h2>;
   return (
-    <m.h2 aria-label={text} className={`v4-h2 mt-4 ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }} transition={{ staggerChildren: 0.045 }}>
+    <m.h2 aria-label={text} className={`v4-h2 mt-4 !font-normal !tracking-[-0.035em] ${className}`} initial="h" whileInView="s" viewport={{ once: true, amount: 0.6 }} transition={{ staggerChildren: 0.045 }}>
       {w.map((x, k) => <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom"><m.span className="inline-block" variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.7, ease }}>{x}</m.span></span>)
         .flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
@@ -64,7 +63,9 @@ export default function SectorPage({ i }: { i: number }) {
   const reduce = useReducedMotion();
   const hero = useRef<HTMLElement>(null);
   const { scrollYProgress: p } = useScroll({ target: hero, offset: ["start start", "end start"] });
-  const vs = useTransform(p, [0, 1], [1, 1.12]); const ty = useTransform(p, [0, 1], ["0%", "24%"]);
+  const vs = useTransform(p, [0, 1], [1, 1.1]); const hy = useTransform(p, [0, 1], [0, -160]); const by = useTransform(p, [0, 1], [0, -50]);
+  const ho = useTransform(p, [0, 0.75], [1, 0]);
+  const split = lang === "tr" ? ["Flexlore", `${s.tr} için`] : ["Flexlore for", s.en];
   const [pick, setPick] = useState<number | null>(null);
   const [sop, setSop] = useState(0);
   /* Steps of the picked task check off one by one while the panel is in view. */
@@ -81,23 +82,32 @@ export default function SectorPage({ i }: { i: number }) {
     <LazyMotion features={domAnimation}>
       <Header />
       <main id="main" lang={lang}>
-        <section ref={hero} className="dark relative h-svh min-h-[560px] overflow-hidden">
+        {/* Hero (2026-11-13): full-bleed sector video, a light-weight headline split to both edges ("Flexlore for |
+            Restaurants"), the sector line and lede bottom-left, one slim button bottom-right. On scroll the video zooms a
+            little and the headline rises faster than the text below it (depth), nothing hijacks the scroll. */}
+        <section ref={hero} className="dark relative h-svh min-h-[620px] overflow-hidden">
           <m.div style={{ scale: reduce ? 1 : vs }} className="absolute inset-0"><Video name={s.v} eager /></m.div>
-          <div className="absolute inset-0 bg-[rgb(16_16_16/0.4)]" />
-          <div className="absolute inset-x-0 bottom-0 h-3/4 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.75)_45%,transparent_100%)]" />
-          <m.div style={{ y: reduce ? 0 : ty }} className="container-x relative flex h-full flex-col justify-end pb-[9vh]">
-            <p className="sx-fade flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
+          <div className="absolute inset-0 bg-[rgb(12_12_12/0.5)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_45%,transparent_35%,rgb(10_10_10/0.75)_100%)]" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.8),transparent)]" />
+          <div className="absolute inset-x-0 bottom-0 h-[55%] bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.7)_40%,transparent_100%)]" />
+          <div className="container-x relative flex h-full flex-col pb-[7vh] pt-[calc(var(--header-h)+28px)]">
+            <p className="sx-fade flex items-center gap-3 text-[13px] font-medium text-white/65">
               <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</p>
-            <h1 className="mt-5 max-w-[14ch] text-[clamp(44px,7vw,96px)] font-semibold leading-[0.98] tracking-[-0.045em] text-white">
-              {s.h.split(" ").map((w, k) => <span key={k} className="inline-block overflow-hidden pb-[.08em] align-bottom"><span className="sx-word inline-block" style={{ animationDelay: `${300 + k * 70}ms` }}>{w}</span></span>)
-                .flatMap((el, k) => (k ? [" ", el] : [el]))}
-            </h1>
-            <p className="sx-up mt-6 max-w-[38rem] text-[17px] leading-[1.5] text-white/80 md:text-[19px]">{s.lede}</p>
-            <div className="sx-up mt-8 flex flex-wrap gap-3" style={{ animationDelay: "950ms", animationDuration: "700ms" }}>
-              <a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.demo}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
-              <a href="#tasks" className="btn h-11 rounded-full bg-[rgb(17_17_17/0.6)] px-5 text-[15px] font-semibold text-white hover:bg-[rgb(17_17_17/0.75)]">{t.seeTasks}</a>
-            </div>
-          </m.div>
+            <m.h1 style={{ y: reduce ? 0 : hy, opacity: reduce ? 1 : ho }} className="my-auto flex flex-wrap items-baseline gap-x-10 text-[clamp(44px,1rem+5vw,108px)] !font-normal leading-[0.98] !tracking-[-0.04em] text-white">
+              {split.map((w, k) => <span key={k} className={`inline-block overflow-hidden pb-[.08em] ${k ? "ms-auto" : ""}`}><span className="sx-word inline-block" style={{ animationDelay: `${250 + k * 160}ms` }}>{w}</span></span>)}
+            </m.h1>
+            <m.div style={{ y: reduce ? 0 : by }} className="grid items-end gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10">
+              <div className="sx-up max-w-[40rem]" style={{ animationDelay: "650ms" }}>
+                <p className="text-[clamp(20px,1rem+0.6vw,26px)] font-normal leading-[1.3] tracking-[-0.02em] text-white">{s.h}</p>
+                <p className="mt-3 text-[16px] leading-[1.55] text-white/70 md:text-[17px]">{s.lede}</p>
+              </div>
+              <div className="sx-up flex flex-wrap items-center gap-2" style={{ animationDelay: "850ms" }}>
+                <a href="#tasks" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.seeTasks}</span></a>
+                <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.demo}</span></a>
+              </div>
+            </m.div>
+          </div>
         </section>
 
         {/* 01 The problem */}
@@ -106,7 +116,7 @@ export default function SectorPage({ i }: { i: number }) {
             <div className="col-span-12 lg:col-span-6"><Ch n="01">{t.problem}</Ch><H2 text={s.problem.h} className="max-w-[16ch]" /></div>
             <div className="col-span-12 grid gap-3 sm:grid-cols-2 lg:col-span-6">
               {s.problem.p.map((x, k) => (
-                <Rise key={k} d={k * 0.1} className={`${card} p-5 md:p-6`}>
+                <Rise key={k} d={k * 0.06} className="glass-card rounded-[24px] p-5 md:p-6">
                   <span className="grid h-10 w-10 place-items-center rounded-[12px] bg-white/[.06] text-ink"><WarningCircle size={19} aria-hidden="true" /></span>
                   <p className="mt-4 text-[16px] leading-[1.5] text-ink-muted">{x}</p>
                 </Rise>))}
@@ -161,7 +171,7 @@ export default function SectorPage({ i }: { i: number }) {
             <Ch n="03">{t.how}</Ch><H2 text={t.howH} className="max-w-[20ch]" />
             <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
               {s.how.map((h, k) => { const Ic = HOW_IC[k] ?? Sparkle; return (
-                <Rise key={h.k} d={k * 0.1} className={`${glassTile} group relative overflow-hidden p-6 md:p-7`}>
+                <Rise key={h.k} d={k * 0.06} className={`${glassTile} group relative overflow-hidden p-6 md:p-7`}>
                   <div className="flex items-center justify-between">
                     <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[#F4F0EB] text-[#111] transition-transform duration-500 group-hover:-rotate-6"><Ic size={20} aria-hidden="true" /></span>
                     <span className="text-[13px] font-semibold tabular-nums text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
@@ -224,7 +234,7 @@ export default function SectorPage({ i }: { i: number }) {
                 <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">{t.ctaA}</span> <span className="t-accent">{t.ctaB}</span></h2>
                 <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">{t.ctaP(s.en)}</p>
               </div>
-              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="btn btn-cta group h-11 px-5 text-[15px]">{t.demo}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a></div>
+              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="inline-grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.demo}</span></a></div>
             </PhotoBand>
           </div>
         </section>

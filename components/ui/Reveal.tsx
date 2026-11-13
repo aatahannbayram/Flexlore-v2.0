@@ -8,9 +8,10 @@ export const EASE = [0.22, 1, 0.36, 1] as const;
  *  so server HTML is complete and readable if JS never runs. */
 export function useHydrated() { const [h, setH] = useState(false); useEffect(() => setH(true), []); return h; }
 
-const item: Variants = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } } };
+/* Motion system (2026-11-13, "calm"): one distance (12 px), one duration (0.7 s), one easing, stagger 0.06 s. */
+const item: Variants = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } } };
 
-/** Fade + 20 px rise when the block enters the viewport, once. `stagger` reveals direct <RevealItem> children in turn. */
+/** Fade + 12 px rise when the block enters the viewport, once. `stagger` reveals direct <RevealItem> children in turn. */
 export function Reveal({ children, className = "", stagger = 0, delay = 0, as = "div" }: {
   children: React.ReactNode; className?: string; stagger?: number; delay?: number; as?: "div" | "ul" | "ol" | "li";
 }) {
@@ -19,7 +20,7 @@ export function Reveal({ children, className = "", stagger = 0, delay = 0, as = 
   if (!hydrated || reduce) { const T = as; return <T className={className}>{children}</T>; }
   return (
     <M className={className} initial="hidden" whileInView="show" viewport={{ once: true, margin: "-10% 0px" }}
-      variants={stagger ? { hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren: delay } } } : { ...item, show: { ...(item.show as object), transition: { duration: 0.6, ease: EASE, delay } } }}>
+      variants={stagger ? { hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren: delay } } } : { ...item, show: { ...(item.show as object), transition: { duration: 0.7, ease: EASE, delay } } }}>
       {children}
     </M>);
 }

@@ -152,7 +152,7 @@ export function FeaturePage({ slug }: { slug: string }) {
 function FeatureCard({ f, wide = false }: { f: Feature; wide?: boolean }) {
   const { locale } = useLocale(); const t = FEAT_NAV[locale]; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
   return (
-    <li className={wide ? "md:col-span-2" : ""}><Link href={`/features/${f.slug}/`} className={`glass-card group flex h-full flex-col rounded-[26px] p-2 ${wide ? "md:grid md:grid-cols-[1fr_1fr] md:gap-2" : ""}`}>
+    <RevealItem as="li" className={wide ? "md:col-span-2" : ""}><Link href={`/features/${f.slug}/`} className={`glass-card group flex h-full flex-col rounded-[26px] p-2 ${wide ? "md:grid md:grid-cols-[1fr_1fr] md:gap-2" : ""}`}>
       <span className={`dark relative block overflow-hidden rounded-[20px] bg-[#1a1a1a] ${wide ? "aspect-[16/10] md:aspect-auto md:h-full md:min-h-[230px]" : "aspect-[16/10]"}`}>
         <Pic n={f.photo} sizes="(min-width:1024px) 30vw, 100vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]" />
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.4)_0%,rgb(17_17_17/0)_38%,rgb(17_17_17/0)_70%,rgb(17_17_17/0.3)_100%)]" />
@@ -164,7 +164,7 @@ function FeatureCard({ f, wide = false }: { f: Feature; wide?: boolean }) {
         <span className="mt-auto flex items-center justify-between pt-5 text-[13px] font-medium text-ink-faint transition-colors group-hover:text-ink">{t.how}
           <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted shadow-[inset_0_0_0_1px_var(--color-line)] transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-ink rtl:group-hover:-translate-x-0.5"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></span>
       </span>
-    </Link></li>);
+    </Link></RevealItem>);
 }
 
 /** The lead feature of a stage: copy on one side, the live product visual over its photograph on the other, in one glass card. */
@@ -172,7 +172,7 @@ function LeadCard({ f, d }: { f: Feature; d: FDict }) {
   const { locale, lang } = useLocale(); const t = FEAT_NAV[locale]; const c = d.common; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
   const it = d.items[f.slug as keyof FDict["items"]];
   return (
-    <li className="md:col-span-2"><Link href={`/features/${f.slug}/`} className="glass-card group grid gap-2 rounded-[30px] p-2 md:grid-cols-[0.85fr_1.15fr]">
+    <RevealItem as="li" className="md:col-span-2"><Link href={`/features/${f.slug}/`} className="glass-card group grid gap-2 rounded-[30px] p-2 md:grid-cols-[0.85fr_1.15fr]">
       <span className="flex flex-col p-5 md:p-7">
         <span className="flex flex-wrap items-center gap-2.5"><span className="grid h-10 w-10 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink shadow-[inset_0_0_0_1px_var(--color-line)]"><Ic size={19} /></span><Status f={f} c={c} /></span>
         <span className="mt-8 text-[clamp(24px,1rem+0.8vw,30px)] font-semibold leading-[1.1] tracking-[-0.03em]">{h}</span>
@@ -186,7 +186,7 @@ function LeadCard({ f, d }: { f: Feature; d: FDict }) {
         <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5 md:p-7"><FeatureVisual v={f.visual} mock={it?.mock ?? []} lang={lang} /></span>
         <span className="absolute bottom-3 start-3 rounded-full bg-[rgb(17_17_17/0.6)] px-3 py-1 text-[12px] text-white/70 backdrop-blur-md">{c.sample}</span>
       </span>
-    </Link></li>);
+    </Link></RevealItem>);
 }
 
 /* Closing card: the text on glass beside the iPhone and iPad on one stand with the live Flexlore screens in them (the same
@@ -275,7 +275,7 @@ export function FeaturesIndex() {
           <div className="grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
           <p className="inline-flex items-center gap-2 rounded-full bg-white/[.07] py-1 pe-3 ps-2 text-[13px] font-medium text-white/75 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.1)] backdrop-blur-md"><span className="grid h-5 w-5 place-items-center rounded-full bg-flame text-white"><CheckCircle size={12} weight="fill" /></span>{c.indexK} · {total()}</p>
-          <h1 className="mt-7 max-w-[17ch] text-[clamp(40px,1rem+4vw,88px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
+          <h1 className="mt-7 max-w-[17ch] text-[clamp(40px,1rem+4vw,88px)] !font-normal leading-[1] !tracking-[-0.04em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
           <p className="mt-6 max-w-[38rem] text-[18px] leading-[1.6] text-white/65">{c.indexP}</p>
           <div className="mt-8 flex flex-wrap items-center gap-2">
             <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.demo}</span></a>
@@ -337,7 +337,7 @@ export function FeaturesIndex() {
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4"><div className="lg:sticky lg:top-[calc(var(--header-h)+100px)]">
               <p className="text-[13px] font-semibold tabular-nums text-flame">0{k + 1}<span className="text-ink-faint"> / 03</span></p>
-              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] font-semibold leading-[1.02] tracking-[-0.04em]">{t.groups[g]}</h2>
+              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] font-normal leading-[1.02] tracking-[-0.035em]">{t.groups[g]}</h2>
               <p className="mt-4 max-w-[24rem] text-[17px] leading-[1.6] text-ink-muted">{t.lines[g]}</p>
               <div className="mt-6"><Dots g={g} /></div>
             </div></div>
@@ -345,10 +345,10 @@ export function FeaturesIndex() {
               {/* A soft glow of the stage's photograph behind the glass. */}
               <span aria-hidden="true" className="pointer-events-none absolute -inset-x-8 -inset-y-10 -z-10 overflow-hidden opacity-[.22] blur-[70px] [mask-image:radial-gradient(closest-side,#000,transparent)]"><Pic n={glow} sizes="400px" className="h-full w-full scale-110 object-cover" /></span>
               <span aria-hidden="true" className="pointer-events-none absolute -end-10 top-10 -z-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.16),transparent_65%)] blur-2xl" />
-              <ul className="grid gap-3 md:grid-cols-2 md:gap-4">
+              <Reveal as="ul" stagger={0.06} className="grid gap-3 md:grid-cols-2 md:gap-4">
                 {lead && <LeadCard f={lead} d={d} />}
                 {rest.map((f, i) => <FeatureCard key={f.slug} f={f} wide={rest.length % 2 === 1 && i === rest.length - 1} />)}
-              </ul>
+              </Reveal>
             </div>
           </div>
         </section>); })}
