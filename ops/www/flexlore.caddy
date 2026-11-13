@@ -1,6 +1,6 @@
-# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. www is the canonical host (SITE.url);
-# the bare domain redirects to it. Certificates are issued by Caddy once DNS points here.
-www.flexlore.com {
+# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. flexlore.com is the canonical host (SITE.url);
+# www redirects to it. Certificates are issued by Caddy once DNS points here.
+flexlore.com {
 	encode zstd gzip
 	header {
 		# Start HSTS short; raise to 31536000 after two calm weeks.
@@ -15,6 +15,6 @@ www.flexlore.com {
 	reverse_proxy flexlore-web:80
 }
 
-flexlore.com {
-	redir https://www.flexlore.com{uri} permanent
+www.flexlore.com {
+	redir https://flexlore.com{uri} permanent
 }

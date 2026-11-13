@@ -1,5 +1,5 @@
 {
-  "source": "https://www.flexlore.com/sitemap.xml and homepage links, read 2026-11-12",
+  "source": "https://flexlore.com/sitemap.xml and homepage links, read 2026-11-12",
   "redirects": [
     {
       "from": "/blog",
@@ -110,8 +110,8 @@
       "from": "/download",
       "to": "/",
       "status": 301,
-      "approved": false,
-      "note": "No download page; store badges are in every footer. Proposed: home page. Needs a decision."
+      "approved": true,
+      "note": "No download page; store badges are in every footer. Proposed: home page. Needs a decision. Approved by Ata 2026-11-14."
     },
     {
       "from": "/features",

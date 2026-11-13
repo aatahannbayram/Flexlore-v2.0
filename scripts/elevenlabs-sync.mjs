@@ -49,7 +49,7 @@ if (!branch || branch === live.main_branch_id) { console.error("push needs --bra
 const SKIP = new Set(["pricing-plans"]);
 function kbText(locale) {
   const { entries } = JSON.parse(readFileSync(ROOT + `public/knowledge/${locale}.json`, "utf8"));
-  const out = [`Flexlore website content (${locale}). Source: www.flexlore.com. Each section is one page or answer on the site.`];
+  const out = [`Flexlore website content (${locale}). Source: flexlore.com. Each section is one page or answer on the site.`];
   for (const e of entries) { if (!SKIP.has(e.id.split(":")[1])) out.push(`## ${e.title}\n${e.body}\nPage: ${e.url}`); }
   return out.join("\n\n");
 }

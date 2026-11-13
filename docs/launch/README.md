@@ -25,7 +25,7 @@ deployed. Merge, deploy and DNS changes need Ata's approval.
 1. **Turn indexing on:** `components/config.ts`, `SITE.noindex: false`. This changes `robots.txt` and the robots meta on every page. Do this only in the launch build, never on preprod.
 2. **Redirects:** load `redirects.json` into the host (nginx, Amplify or CloudFront, whichever is chosen in FLE-144). 23 entries only add the trailing slash, 3 go to the new careers page. `/download` needs a decision first (see section 3).
 3. **DNS:** lower the TTL a day ahead. Do not touch MX or TXT records (email and domain verification).
-4. **Search Console:** submit `https://www.flexlore.com/sitemap.xml`, then check for 404s daily for two weeks.
+4. **Search Console:** submit `https://flexlore.com/sitemap.xml`, then check for 404s daily for two weeks.
 5. **Framer:** cancel the subscription only after the new site has run for two weeks without problems.
 
 ## 3. Open decisions (not done, need an answer)
