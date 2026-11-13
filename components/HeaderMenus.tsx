@@ -47,7 +47,7 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
         </div>
       </div>
       <a href="/see-it/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
-        <picture className="absolute inset-0"><source srcSet="/media/v3/saha-eldiven-makro-m.avif" type="image/avif" /><img src="/media/v3/saha-eldiven-makro-m.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[35%_40%] transition-transform duration-700 group-hover:scale-[1.04]" /></picture>
+        <picture className="absolute inset-0"><source srcSet="/media/v3/saha-eldiven-makro-m.avif" type="image/avif" /><img src="/media/v3/saha-eldiven-makro-m.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[6%_45%] transition-transform duration-700 group-hover:scale-[1.04]" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.25)_0%,rgb(17_17_17/0.1)_35%,rgb(17_17_17/0.92)_100%)]" />
         <span className="relative text-[12px] text-white/70">{tt(d, "seeit", 1, "One real job, start to finish")}</span>
         <span className="relative mt-1 flex items-end justify-between gap-2 text-[15px] font-semibold leading-snug text-white">{tt(d, "seeit", 0, "See it in your business")}<ArrowRight size={14} aria-hidden="true" className="mb-0.5 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></span>
