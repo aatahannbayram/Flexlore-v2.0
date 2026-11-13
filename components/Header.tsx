@@ -97,15 +97,16 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             </a>{brand}
           </div>
 
-          <ul className={`hidden items-center gap-1 text-[15px] font-medium transition-[background-color,padding] duration-500 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2 ${pill && !lined && !open ? "rounded-full bg-white/10 p-1 backdrop-blur-lg" : ""}`} onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
+          <ul className={`hidden items-center gap-1 text-[15px] font-medium transition-[background-color,padding] duration-500 lg:flex xl:absolute xl:left-1/2 xl:-translate-x-1/2 ${pill && !lined && !open ? "rounded-full bg-white/10 p-1 backdrop-blur-lg" : ""}`} onMouseLeave={leave} onPointerEnter={() => { loadMenus(); }} onFocusCapture={() => { loadMenus(); }}>
             {NAV_LABELS.map((g) => (
               <li key={g.id} onMouseEnter={() => enter(g.id)}>
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
                   onClick={() => setMega(mega === g.id ? null : g.id)}
-                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-4 tracking-[-0.01em] transition-colors ${mega === g.id ? "bg-white/[.09] text-ink" : "text-ink/80 hover:bg-white/[.06] hover:text-ink"}`}>
+                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-3 xl:px-4 tracking-[-0.01em] transition-colors ${mega === g.id ? "bg-white/[.09] text-ink" : "text-ink/80 hover:bg-white/[.06] hover:text-ink"}`}>
                   {navLabel(g.id, g.label[lang])}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
                 </button>
-                {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. */}
+                {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. Below xl the list sits in the
+                    row (not centred over it) so it never runs under the theme and language controls at 1024 to 1279 px. */}
                 <AnimatePresence>
                   {mega === g.id && (
                     <m.div key="mega" id={`mega-${g.id}`} onMouseEnter={() => enter(g.id)} onMouseLeave={leave}
@@ -115,7 +116,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
+            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
           </ul>
 
           <div className="flex items-center gap-2">
