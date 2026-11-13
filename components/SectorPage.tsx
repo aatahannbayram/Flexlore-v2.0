@@ -95,7 +95,7 @@ export default function SectorPage({ i }: { i: number }) {
             <p className="sx-fade flex items-center gap-3 text-[13px] font-medium text-white/65">
               <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</p>
             <m.h1 style={{ y: reduce ? 0 : hy, opacity: reduce ? 1 : ho }} className="my-auto flex flex-wrap items-baseline gap-x-10 text-[clamp(44px,1rem+5vw,108px)] !font-normal leading-[0.98] !tracking-[-0.04em] text-white">
-              {split.map((w, k) => <span key={k} className={`inline-block overflow-hidden pb-[.08em] ${k ? "ms-auto" : ""}`}><span className="sx-word inline-block" style={{ animationDelay: `${250 + k * 160}ms` }}>{w}</span></span>)}
+              {split.map((w, k) => <span key={k} className={`inline-block overflow-hidden pb-[.08em] ${k ? "ms-auto" : ""}`}><span className="sx-word inline-block" style={{ animationDelay: `${250 + k * 160}ms` }}>{w}</span></span>).flatMap((el, k) => (k ? [" ", el] : [el]))}
             </m.h1>
             <m.div style={{ y: reduce ? 0 : by }} className="grid items-end gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10">
               <div className="sx-up max-w-[40rem]" style={{ animationDelay: "650ms" }}>
