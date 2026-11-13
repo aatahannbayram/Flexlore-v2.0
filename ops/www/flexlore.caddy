@@ -1,6 +1,8 @@
-# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. flexlore.com is the canonical host (SITE.url);
-# www redirects to it. Certificates are issued by Caddy once DNS points here.
-flexlore.com {
+# Installed as /opt/caddy/sites/flexlore.caddy on the shared VPS. flexlore.com is the canonical host (SITE.url, every page's
+# <link rel="canonical">). www serves the same site WITHOUT redirecting: the old Framer site sent flexlore.com -> www with a
+# permanent 308 that browsers remember, so a www -> apex redirect here loops for every returning visitor
+# (ERR_TOO_MANY_REDIRECTS, seen 2026-11-14). Revisit a www -> apex 301 only after those cached redirects have aged out.
+flexlore.com, www.flexlore.com {
 	encode zstd gzip
 	header {
 		# Start HSTS short; raise to 31536000 after two calm weeks.
@@ -13,8 +15,4 @@ flexlore.com {
 		-Server
 	}
 	reverse_proxy flexlore-web:80
-}
-
-www.flexlore.com {
-	redir https://flexlore.com{uri} permanent
 }
