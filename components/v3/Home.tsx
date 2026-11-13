@@ -179,10 +179,12 @@ export function StepsV3() {
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
                 {near && <div className={`absolute inset-0 ${reduce ? "" : "stage-zoom"}`}>{i === 0
                   /* Step 1: the stage is the same bright kitchen clip the phone is filming, softened, so phone and room match (and step 2 continues it).
-                     The clip is portrait; on wide stages it is drawn wider and shifted so the cook stands just left of centre, behind the phone. */
-                  ? (reduce ? <img src="/video/how-editor.webp" alt="" decoding="async" className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%]" />
-                    : <video className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%]" poster="/video/how-editor.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
-                        <source src="/video/how-editor.webm" type="video/webm" /><source src="/video/how-editor.mp4" type="video/mp4" /></video>)
+                     The clip is portrait; on wide stages it is drawn wider and shifted so the cook stands just left of centre, behind the phone.
+                     Dimmed, desaturated and darker toward the right so the bright kitchen reads as matte as the other stages. */
+                  ? <>{reduce ? <img src="/video/how-editor.webp" alt="" decoding="async" className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%] brightness-[0.78] saturate-[0.8]" />
+                    : <video className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%] brightness-[0.78] saturate-[0.8]" poster="/video/how-editor.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
+                        <source src="/video/how-editor.webm" type="video/webm" /><source src="/video/how-editor.mp4" type="video/mp4" /></video>}
+                    <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.1)_0%,rgb(17_17_17/0.2)_45%,rgb(17_17_17/0.7)_100%)] rtl:-scale-x-100" /></>
                   : <StageImg n={STAGE[i]} soft />}</div>}
               </m.div>
             </AnimatePresence>
