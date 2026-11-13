@@ -177,7 +177,12 @@ export function StepsV3() {
             className="dark card-pro relative aspect-[4/5] overflow-hidden rounded-[28px] bg-[#171717] sm:aspect-[16/11] lg:order-last lg:col-span-7 lg:aspect-auto lg:h-[600px]">
             <AnimatePresence initial={false}>
               <m.div key={STAGE[i]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: reduce ? 0 : 0.7, ease: EASE }}>
-                {near && <div className={`absolute inset-0 ${reduce ? "" : "stage-zoom"}`}><StageImg n={STAGE[i]} soft /></div>}
+                {near && <div className={`absolute inset-0 ${reduce ? "" : "stage-zoom"}`}>{i === 0
+                  /* Step 1: the stage is the same baker clip the phone is filming, softened, so phone and room match. */
+                  ? (reduce ? <img src="/video/gen-baker.webp" alt="" decoding="async" className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" />
+                    : <video className="absolute inset-0 h-full w-full scale-[1.06] object-cover blur-[6px]" poster="/video/gen-baker.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
+                        <source src="/video/gen-baker.webm" type="video/webm" /><source src="/video/gen-baker.mp4" type="video/mp4" /></video>)
+                  : <StageImg n={STAGE[i]} soft />}</div>}
               </m.div>
             </AnimatePresence>
             <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_70%_75%_at_50%_55%,rgb(16_16_16/0.05)_0%,rgb(16_16_16/0.55)_100%)]" />
