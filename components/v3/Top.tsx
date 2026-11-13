@@ -31,7 +31,7 @@ export const Kicker = ({ children, light = false }: { children: React.ReactNode;
 /** Two-tone heading: the set-up in ink, the result in orange. */
 export const H2 = ({ id, a, b, className = "" }: { id: string; a: string; b?: string; className?: string }) => (
   <h2 id={id} className={`v4-h2 mt-4 ${className}`}>{a}{b && <> <span className="text-ink-faint">{b}</span></>}</h2>);
-export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.22, ease: "easeOut" as const, delay: i * 0.06 } };
+export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: { opacity: 0, y: 12 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-8% 0px" }, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const, delay: i * 0.06 } };
 
 /* Over the headline: one quiet line naming the trade of the scene on screen (existing 8-language copy). */
 function Eyebrow({ word, k }: { word: string; k: number }) {
@@ -54,7 +54,7 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       {SCENES.map((s, i) => { const on = i === k; return (
         <div key={s.clip} className={`absolute inset-0 transition-opacity duration-700 ease-out ${on ? "opacity-100" : "opacity-0"}`}>
           {rest && !reduce
-            ? <video className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
+            ? <video onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 0.6; }} className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
             : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92]" />}
         </div>); })}
       {/* Darker and calmer than the clip: a deep wash from the text side, a vignette that closes the corners, one warm
@@ -109,8 +109,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
-              <a href={SITE.demo} className="btn btn-cta h-11 px-6 text-[15px]">{d.nav.cta}</a>
-              <button type="button" onClick={() => setDemo(true)} className="btn btn-glass-2 h-11 px-5 text-[15px]"><Play size={13} weight="fill" aria-hidden="true" />{h.watch}</button>
+              <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
+              <button type="button" onClick={() => setDemo(true)} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
             </div>
             <div className="hs-in mt-7 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-70 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />

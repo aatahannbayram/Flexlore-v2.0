@@ -359,7 +359,7 @@ html.splash-on .hs-word, html.splash-on .hs-ch, html.splash-on .hs-in, html.spla
 .chev-go { transition: translate .3s var(--ease-out-expo); }
 .group:hover .chev-go, .group:focus-visible .chev-go { translate: 3px 0; }
 [dir="rtl"] .group:hover .chev-go, [dir="rtl"] .group:focus-visible .chev-go { translate: -3px 0; }
-.v4-h2 { font-size: clamp(30px, 0.9rem + 2.1vw, 54px); font-weight: 600; letter-spacing: -0.05em; line-height: 1.02; text-wrap: balance; }
+.v4-h2 { font-size: clamp(30px, 0.9rem + 2.1vw, 54px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.02; text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .chev-go { transition: none; } }
 
 /* Workspaces network: a pulse runs from the office to the picked site; the active tab's timer fills over 5 s. */
@@ -438,7 +438,7 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 .h3 { font-weight: 560; }
 .v3-h1 { font-weight: 580; letter-spacing: -0.042em; }
 .v3-h2 { font-size: clamp(24px, 0.85rem + 1.2vw, 38px); font-weight: 560; letter-spacing: -0.032em; line-height: 1.1; }
-.v4-h2 { font-size: clamp(28px, 0.85rem + 1.75vw, 46px); font-weight: 560; letter-spacing: -0.042em; line-height: 1.05; }
+.v4-h2 { font-size: clamp(28px, 0.85rem + 1.75vw, 46px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.05; }
 .t-accent { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: rgb(244 240 235 / 0.42); }
 :root[data-theme="light"] .t-accent:not(.dark *) { background: none; color: rgb(22 22 22 / 0.42); }
 /* Orange payoff, kept for a few moments only (home hero). */

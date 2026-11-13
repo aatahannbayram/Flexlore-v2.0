@@ -59,18 +59,18 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
               <H2 id="facts-h" a={t.h} className="max-w-[16ch]" />
               <p className="rv intro mt-4 max-w-[26rem] !text-white/80">{t.p}</p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href={SITE.demo} target="_blank" rel="noopener" className="btn btn-cta h-12 px-6"><Play size={14} weight="fill" aria-hidden="true" />{d.nav.cta}</a>
-                <a href="/features/" className="btn btn-secondary h-12 px-5">{t.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+                <a href={SITE.demo} target="_blank" rel="noopener" className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
+                <a href="/features/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
               </div>
             </div>
             {/* Four things the page has not said yet, as a description list. */}
             <dl className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:col-span-6">
-              {t.tiles.map(([h, line], k) => { const I = icons[k]; const hot = k === 0; const soon = k === 3; return (
-                <m.div key={h} {...rise(reduce, k)} className={`flex min-h-[150px] flex-col justify-between rounded-[20px] p-5 ${hot ? "bg-[#EC6726] text-white" : "bg-[rgb(10_10_10/0.5)] ring-1 ring-white/12 backdrop-blur-md"}`}>
-                  <span className="flex items-center justify-between"><I size={20} aria-hidden="true" className={hot ? "text-white" : "text-white/75"} />{soon && <span className="rounded-full bg-white/15 px-2 py-0.5 text-[12px] font-medium text-white/85">{t.soon}</span>}</span>
+              {t.tiles.map(([h, line], k) => { const I = icons[k]; const soon = k === 3; /* all four tiles are equal glass cards (no solid orange highlight) */ return (
+                <m.div key={h} {...rise(reduce, k)} className="glass-card flex min-h-[150px] flex-col justify-between rounded-[20px] p-5">
+                  <span className="flex items-center justify-between"><I size={20} aria-hidden="true" className="text-white/75" />{soon && <span className="rounded-full bg-white/15 px-2 py-0.5 text-[12px] font-medium text-white/85">{t.soon}</span>}</span>
                   <div className="mt-4">
                     <dt className="text-[18px] font-semibold leading-[24px] tracking-[-0.015em]">{h}</dt>
-                    <dd className={`mt-1.5 text-[14px] leading-[20px] ${hot ? "text-white/90" : "text-white/70"}`}>{line}</dd>
+                    <dd className="mt-1.5 text-[14px] leading-[20px] text-white/70">{line}</dd>
                   </div>
                 </m.div>); })}
             </dl>

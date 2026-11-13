@@ -40,7 +40,7 @@ function H2({ id, a, b, className = "" }: { id: string; a: string; b?: string; c
       transition={{ staggerChildren: 0.045 }}>
       {words.map(([w, pay], k) => (
         <span key={k} aria-hidden="true" className="inline-block overflow-hidden pb-[0.08em] align-bottom">
-          <m.span className={`inline-block ${pay ? "t-accent" : "t-ink"}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.22, ease: "easeOut" as const }}>{w}</m.span>
+          <m.span className={`inline-block ${pay ? "t-accent" : "t-ink"}`} variants={{ h: { y: "105%" }, s: { y: 0 } }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}>{w}</m.span>
         </span>)).flatMap((el, k) => (k ? [" ", el] : [el]))}
     </m.h2>);
 }
@@ -259,7 +259,8 @@ export function WhyV3() {
     <div key="c" className={`${glass} flex flex-wrap gap-1.5 p-2`}>{c.c.map((t, k) => { const I = [Play, Translate, MapPin][k]; return (
       <span key={t} className="bx-rise inline-flex items-center gap-1.5 rounded-full bg-white/[.08] px-3 py-2 text-[13px] text-white" style={{ animationDelay: `${550 + k * 160}ms` }}><I size={13} aria-hidden="true" />{t}</span>); })}</div>,
   ];
-  const imgs: Media[] = ["problem-vardiya", "problem-kagitlar", "saha-iskele-pov"];
+  /* Third card: a crew looking at one phone together (on the phone, in their language, at the station). */
+  const imgs: string[] = ["problem-vardiya", "problem-kagitlar", "/photos/huddle-800.webp"];
   return (
     <section aria-labelledby="why-h" className="section-y pt-0">
       <div className="container-x">
@@ -271,13 +272,17 @@ export function WhyV3() {
         </div>
         <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
-            <m.li key={h} {...rise(reduce, k)} className="dark card-pro group relative aspect-[4/5] w-[calc(100%-32px)] shrink-0 snap-start overflow-hidden rounded-[24px] bg-[#171717] text-white md:aspect-auto md:min-h-[420px] md:w-auto">
-              <Photo n={imgs[k]} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]" />
-              <span aria-hidden="true" className={`absolute inset-0 ${fade}`} />
-              <div className="absolute inset-x-4 top-[24%] md:inset-x-5" aria-hidden="true">{frags[k]}</div>
-              <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
-                <h3 className="text-[20px] font-semibold leading-[26px] tracking-[-0.02em]">{h}</h3>
-                <p className="mt-2 text-[15px] leading-[22px] text-white/70">{p}</p>
+            <m.li key={h} {...rise(reduce, k)} className="glass-card group flex w-[calc(100%-32px)] shrink-0 snap-start flex-col rounded-[26px] p-2 md:w-auto">
+              {/* Standard card: the photograph inset in the glass, its story fragment on the photo, the words below. */}
+              <div className="dark relative aspect-[4/3.4] overflow-hidden rounded-[20px] bg-[#171717] text-white">
+                {imgs[k].startsWith("/") ? <img src={imgs[k]} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
+                  : <Photo n={imgs[k] as Media} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />}
+                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15),rgb(16_16_16/0.55))]" />
+                <div className="absolute inset-x-3 bottom-3 md:inset-x-4 md:bottom-4" aria-hidden="true">{frags[k]}</div>
+              </div>
+              <div className="flex flex-1 flex-col px-4 pb-4 pt-5 md:px-5">
+                <h3 className="text-[19px] font-semibold leading-[25px] tracking-[-0.02em]">{h}</h3>
+                <p className="mt-2 text-[15px] leading-[22px] text-ink-muted">{p}</p>
               </div>
             </m.li>))}
         </ul>
@@ -630,7 +635,7 @@ export function EndV3() {
           <div className="col-span-12 lg:col-span-5">
             <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
             <p className="intro mt-4 max-w-[28rem]">{c.p}</p>
-            <a href={SITE.demo} className="btn btn-cta group mt-8 h-11 px-5 text-[15px]">{c.cta}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+            <a href={SITE.demo} className="mt-7 inline-grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.cta}</span></a>
           </div>
           <div className="col-span-12 mx-auto w-full lg:col-span-7"><div dir="ltr" className="overflow-hidden rounded-[24px]"><CtaDuoInner lang={lang} /></div></div>
         </div>
@@ -658,7 +663,7 @@ export function SectorsV3() {
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[26ch]" /></div>
-          <Link href="/see-it/" className="btn btn-secondary hidden md:inline-flex">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+          <Link href="/see-it/" className="hidden min-h-11 place-items-center md:inline-grid"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         </div>
         {/* Large screens: four panels in a row; the one under the pointer (or keyboard focus) opens wide and tells its story,
             the others narrow to a photo strip with their number and name. */}
@@ -703,7 +708,7 @@ export function SectorsV3() {
             </m.li>))}
         </ul>
         <RowCount row={row} n={IND.length} className="lg:hidden" />
-        <Link href="/see-it/" className="btn btn-secondary mt-8 md:hidden">{c.more}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></Link>
+        <Link href="/see-it/" className="mt-6 inline-grid min-h-11 place-items-center md:hidden"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         {/* One slim glass strip: the other areas on one side, the site languages as round flags (a tap switches the site) on the other. */}
         <div className="mt-12 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
