@@ -18,7 +18,7 @@ export const nl: Dict = {
   },
   hero: {
     rotPre: "Video-werkinstructies voor ", rotPost: "", rot: ["restaurants", "productielijnen", "hotels", "franchiseketens", "magazijnen", "bakkerijen"],
-    h1a: "Film de taak één keer.", h1b: "Weet wie er klaar voor is.",
+    h1a: "Train uw team in minuten", h1b: "Niet in uren",
     sub: "Leg één keer vast hoe een taak wordt gedaan. Flexlore maakt er een stapsgewijze videotraining van met korte controlevragen, en laat per locatie zien wie er klaar voor is.",
     watch: "Bekijk de demo", watchTitle: "Flexlore in 2 minuten", app: "Download de app",
     chip: { t: "Openingsroutine", s: "Ochtenddienst", v: "12 van 14 afgerond" }, live: "Opname", step: "Stap 3 van 6", sample: "Voorbeelddata",

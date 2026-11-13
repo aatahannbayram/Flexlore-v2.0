@@ -178,7 +178,7 @@ function LeadCard({ f, d }: { f: Feature; d: FDict }) {
         <span className="mt-8 text-[clamp(24px,1rem+0.8vw,30px)] font-semibold leading-[1.1] tracking-[-0.03em]">{h}</span>
         <span className="mt-3 text-[16px] leading-[1.55] text-ink-muted">{it?.sub ?? line}</span>
         <span className="mt-auto flex items-center gap-2 pt-8 text-[14px] font-medium text-ink">{t.how}
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-flame text-white transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></span>
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted shadow-[inset_0_0_0_1px_var(--color-line)] transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-ink rtl:group-hover:-translate-x-0.5"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></span>
       </span>
       <span className="dark relative block min-h-[340px] overflow-hidden rounded-[24px] bg-[#161616] text-white md:min-h-[430px]">
         <Pic n={f.photo} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full scale-105 object-cover opacity-60 blur-[3px] transition-transform duration-700 group-hover:scale-[1.08]" />
@@ -274,7 +274,7 @@ export function FeaturesIndex() {
         <div className="container-x">
           <div className="grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
-          <p className="inline-flex items-center gap-2 rounded-full bg-white/[.07] py-1 pe-3 ps-2 text-[13px] font-medium text-white/75 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.1)] backdrop-blur-md"><span className="grid h-5 w-5 place-items-center rounded-full bg-flame text-white"><CheckCircle size={12} weight="fill" /></span>{c.indexK} · {total()}</p>
+          <p className="text-[14px] font-medium text-white/60">{c.indexK} <span className="text-white/35">·</span> {total()}</p>
           <h1 className="mt-7 max-w-[17ch] text-[clamp(40px,1rem+4vw,88px)] !font-normal leading-[1] !tracking-[-0.04em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
           <p className="mt-6 max-w-[38rem] text-[18px] leading-[1.6] text-white/65">{c.indexP}</p>
           <div className="mt-8 flex flex-wrap items-center gap-2">

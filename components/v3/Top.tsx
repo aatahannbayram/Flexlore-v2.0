@@ -72,6 +72,15 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
 
 /** Hero lines stand without a closing full stop (any language). */
 const bare = (t: string) => t.replace(/[.。]\s*$/, "");
+/** Letters that come into focus one after another (CSS only, .hs-ch). Words never break inside; RTL scripts keep
+ *  whole words so letters stay joined. */
+function Focus({ text, cls, start }: { text: string; cls: string; start: number }) {
+  let i = 0; const joined = /[\u0600-\u06FF]/.test(text);
+  return (<>{text.split(" ").map((w, k) => (<span key={k}>{k > 0 && " "}
+    <span className="inline-block whitespace-nowrap">{joined
+      ? <span className={`hs-ch ${cls}`} style={{ animationDelay: `${start + (i += w.length) * 26}ms` }}>{w}</span>
+      : [...w].map((c, j) => <span key={j} className={`hs-ch ${cls}`} style={{ animationDelay: `${start + i++ * 26}ms` }}>{c}</span>)}</span></span>))}</>);
+}
 const STEP_DONE: Record<string, string> = { en: "Step complete", tr: "Adım tamamlandı", de: "Schritt erledigt", ar: "اكتملت الخطوة", es: "Paso completado", pt: "Etapa concluída", nl: "Stap voltooid", fr: "Étape terminée", pl: "Krok ukończony" };
 export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false); const reduce = useReducedMotion();
@@ -91,9 +100,12 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
           {/* The promise, wide: each sentence on one line on large screens. */}
           <div className="relative z-10 col-span-12 lg:col-span-8">
             <Eyebrow word={word} k={k} />
-            <h1 id="hero-h" className="mt-5 text-[clamp(38px,0.8rem+3.3vw,62px)] font-bold leading-[1.02] tracking-[-0.04em]">
-              <span className="block lg:whitespace-nowrap"><span className="hs-word"><span className="hero-metal">{bare(h.h1a)}</span></span></span>
-              <span className="block pb-[0.06em] lg:whitespace-nowrap"><span className="hs-word" style={{ animationDelay: "90ms" }}><span className="hero-ember">{bare(h.h1b)}</span></span></span>
+            {/* "Train your team in minutes / not hours": the letters come into focus left to right (blur to sharp), the
+                second line in the ember gradient. Screen readers get the plain sentence once. */}
+            <h1 id="hero-h" className="mt-5 text-[clamp(38px,0.8rem+3.3vw,62px)] font-bold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">
+              <span className="sr-only">{`${bare(h.h1a)} ${bare(h.h1b)}`}</span>
+              <span aria-hidden="true" className={`block ${bare(h.h1a).length <= 28 ? "lg:whitespace-nowrap" : ""}`}><Focus text={bare(h.h1a)} cls="hero-metal" start={180} /></span>
+              <span aria-hidden="true" className="block pb-[0.06em]"><Focus text={bare(h.h1b)} cls="hero-ember" start={180 + [...bare(h.h1a)].length * 26 + 120} /></span>
             </h1>
             <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>

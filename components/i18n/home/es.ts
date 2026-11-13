@@ -18,7 +18,7 @@ export const es: Dict = {
   },
   hero: {
     rotPre: "Instrucciones de trabajo en video para ", rotPost: "", rot: ["restaurantes", "líneas de producción", "hoteles", "franquicias", "almacenes", "panaderías"],
-    h1a: "Grabe la tarea una vez.", h1b: "Sepa quién está listo para hacerla.",
+    h1a: "Capacite a su equipo en minutos", h1b: "No en horas",
     sub: "Grabe una vez cómo se hace una tarea. Flexlore la convierte en una formación en video paso a paso con comprobaciones rápidas y muestra quién está listo en cada ubicación.",
     watch: "Ver la demo", watchTitle: "Flexlore en 2 minutos", app: "Descargar la app",
     chip: { t: "Rutina de apertura", s: "Turno de mañana", v: "12 de 14 completados" }, live: "Grabando", step: "Paso 3 de 6", sample: "Datos de ejemplo",
