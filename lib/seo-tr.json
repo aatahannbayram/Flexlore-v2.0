@@ -1,0 +1,12 @@
+{
+  "/tr/": { "t": "Flexlore: Video İş Talimatı ve Personel Eğitim Uygulaması", "d": "İşi telefonla bir kez çekin. Flexlore onu adım adım video iş talimatına ve yapay zekâ quizine çevirir; kimin hazır olduğunu kişi, vardiya ve şube bazında gösterir." },
+  "/tr/features/": { "t": "Flexlore Özellikleri: Videodan SOP, Yapay Zekâ Quiz ve Daha Fazlası", "d": "Videodan adım adım SOP, telefonda video editörü, yapay zekâ ile quiz, yetki ve çalışma alanları. Bugün kullanılabilen özellikler ve yol haritası." },
+  "/tr/pricing/": { "t": "Flexlore Fiyatları: Video İş Talimatı Yazılımı", "d": "Kullanıcı sayısına göre fiyatlandırma: Free (3 kullanıcı), Pro (10), ProPlus (30), 30 ve üzeri kullanıcı için Enterprise. Aylık veya yıllık." },
+  "/tr/faq/": { "t": "Flexlore Sık Sorulan Sorular: Yapay Zekâ, Cihazlar, Diller ve Fiyat", "d": "Flexlore nasıl çalışır, hangi cihazlarda kullanılır, hangi dilleri destekler; fiyatlandırma ve faturalandırma hakkında sık sorulan sorular." },
+  "/tr/ai/": { "t": "Flexlore'da Yapay Zekâ: Bugün ve Yol Haritası", "d": "Flexlore'un yapay zekâsı bugün videoyu adımlara böler, talimat ve quiz taslağı hazırlar. Her taslağı ekibiniz onaylar. Yakında gelenler de burada." },
+  "/tr/integrations/": { "t": "Flexlore Entegrasyonları: Uygulamalar, Web ve Yol Haritası", "d": "Flexlore bugün iOS, Android ve web'de çalışır. BI araçları, MCP sunucusu, REST API ve webhook bağlantıları yol haritasında." },
+  "/tr/see-it/": { "t": "Flexlore'u Kendi İşinizde Görün", "d": "Sektörünüzü seçin: kafe ve restoran zincirleri, franchise, üretim, otel. Çekilen tek bir işin video eğitime, quize ve hazırlık takibine dönüşmesini görün." },
+  "/tr/company/": { "t": "Flexlore Hakkında: Hikâyemiz, Vizyonumuz ve Misyonumuz", "d": "Flexlore Inc., en iyi çalışanlarınızın işi nasıl yaptığını her yeni çalışanın izleyip uygulayabileceği kısa video adımlarına dönüştürür." },
+  "/tr/support/": { "t": "Flexlore Destek: Ekibimizle Konuşun", "d": "Hesabınız, planlar ve faturalandırma, ekip kurulumu ya da güvenlik ve veri konusunda yardım için support@flexlore.com adresine yazın." },
+  "/tr/careers/": { "t": "Flexlore'da Kariyer", "d": "Flexlore'da çalışmak: herkesin kendi alanının sahibi olduğu küçük bir ekip. Nasıl çalıştığımız, ilk haftanız, açık pozisyonlar ve başvuru." }
+}

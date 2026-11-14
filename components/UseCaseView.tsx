@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "./i18n/Link";
 import { I, Arr } from "./Icons";
 import { SITE } from "./config";
 import { Split } from "./ui/Split";

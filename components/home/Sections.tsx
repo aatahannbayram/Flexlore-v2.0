@@ -1,7 +1,7 @@
 "use client";
 import { sectorPath } from "../sectors";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import Link from "../i18n/Link";
 import dynamic from "next/dynamic";
 import { AnimatePresence, m, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {

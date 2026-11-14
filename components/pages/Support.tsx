@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import Link, { useHref } from "../i18n/Link";
 import { SITE } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { SUPPORT } from "./copy";
@@ -28,6 +28,7 @@ const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] t
  * we help with, the app and the legal pages; a band into the FAQ closes it. The site is static, so the form composes an
  * email to support@flexlore.com instead of posting to a server. */
 export function SupportPage() {
+  const lh = useHref();
   const { locale, lang } = useLocale(); const c = SUPPORT[locale]; const h = HELP[locale].sup; const [sent, setSent] = useState(false);
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); const f = new FormData(e.currentTarget); const v = (k: string) => String(f.get(k) || "").trim();
@@ -49,7 +50,7 @@ export function SupportPage() {
             <span className="min-w-0 flex-1"><span className="block text-[16px] font-medium text-ink">{t}</span><span className="block truncate text-[14px] text-ink-muted">{line}</span></span>
             <ArrowUpRight size={16} aria-hidden="true" className="shrink-0 text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink rtl:-scale-x-100" /></>);
             const cls = `group flex min-h-[92px] items-center gap-4 border-b border-line px-1 py-5 transition-colors last:border-b-0 sm:border-b-0 sm:px-6 sm:first:ps-0`;
-            return (<li key={t}>{ext ? <a href={href} className={cls}>{inner}</a> : <Link href={href} className={cls}>{inner}</Link>}</li>); })}
+            return (<li key={t}>{ext ? <a href={lh(href)} className={cls}>{inner}</a> : <Link href={href} className={cls}>{inner}</Link>}</li>); })}
         </ul>
         <TrustNote className="mt-4" />
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from "./i18n/Link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Undo2, Redo2, Play, ChevronLeft, ChevronRight, Sticker, Type, Scissors, ListOrdered, Check } from "lucide-react";
 import { Device } from "./AppScreens";

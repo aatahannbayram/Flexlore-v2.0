@@ -4,7 +4,7 @@
  * and the quote appear only when filled in components/v3/cases.ts; until then a "case study coming soon" card stands in
  * their place. Never invent a quote, a person or a number. Pages stay noindex until the case is approved and complete
  * (app/customers/[slug]/page.tsx). Frame copy is TR/EN; sector and descriptor follow the visitor's language. */
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import { useLocale } from "../i18n/LocaleProvider";

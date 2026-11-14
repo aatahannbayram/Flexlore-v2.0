@@ -2,7 +2,7 @@
 /* Careers (/careers/), written for people who might join: an ember hero with three facts and the programs that back us,
  * then why join, how we work (where information lives), the first week, and open roles with one general application
  * card. Roles come from ROLES (careers-copy.ts). Turkish visitors get the Turkish copy, everyone else English. */
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { useLocale } from "../i18n/LocaleProvider";
 import { CAREERS, CAREERS_EMAIL, ROLES } from "./careers-copy";
 import { TrustStrip } from "../home/TrustStrip";

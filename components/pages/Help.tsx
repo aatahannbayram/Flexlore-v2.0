@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { SITE, PRICING_FAQ, PRICING_FAQ_TR } from "../config";
 import { useLocale } from "../i18n/LocaleProvider";
 import { HELP } from "./copy-help";

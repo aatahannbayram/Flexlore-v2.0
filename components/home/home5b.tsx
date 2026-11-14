@@ -4,7 +4,7 @@
  * integrations, pricing, FAQ with the closing call to action. Same visual rules as home5.tsx. */
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link, { useHref } from "../i18n/Link";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE, PLANS, savePct } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
@@ -112,6 +112,7 @@ function GetApp({ checkout, label, cls }: { checkout: string | null; label: stri
     {open && <div className="absolute inset-x-0 top-full z-20 mt-2 flex flex-col items-center gap-2 rounded-[18px] bg-surface-1 p-3"><StoreButtons small lang={lang} /></div>}</div>);
 }
 export function PlanCard({ id, yearly, full = false, className = "" }: { id: string; yearly: boolean; full?: boolean; className?: string }) {
+  const lh = useHref();
   const { d, locale } = useLocale(); const c = d.pricing; const p = PLANS.find((x) => x.id === id)!; const rec = !!p.featured; const I = PLAN_IC[id];
   const [name, forWho] = c.plans[id as keyof typeof c.plans]; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
   const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
@@ -141,7 +142,7 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
         </> : <><p className="text-[34px] font-semibold leading-none tracking-[-.04em]">{c.custom}</p><p className="mt-2 text-[13px] text-ink-faint">{c.enterpriseUsers}</p></>}
       </div>
       {id === "enterprise"
-        ? <a href="/pricing/#quote" className="btn btn-secondary mt-5 w-full md:mt-6">{q.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+        ? <a href={lh("/pricing/#quote")} className="btn btn-secondary mt-5 w-full md:mt-6">{q.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-5 w-full md:mt-6 ${rec ? "btn-primary" : "btn-secondary"}`} />}
       <div className="mt-6 flex-1 border-t border-line pt-5 md:mt-7">
         <p className="flex items-center gap-2 text-[14px] font-semibold"><Users size={16} aria-hidden="true" />{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>

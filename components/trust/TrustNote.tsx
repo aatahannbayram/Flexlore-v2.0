@@ -1,6 +1,6 @@
 "use client";
 /* One calm line for visitors counted as in Türkiye (see ./config.ts): pricing and support pages. Renders nothing otherwise. */
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { useTrustTR } from "./flags";
 import { TRUST_TR_LABEL } from "./labels";
 import { ArrowRight } from "../ui/icons";

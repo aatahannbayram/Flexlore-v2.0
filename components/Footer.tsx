@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
+import Link, { useHref } from "./i18n/Link";
 import { Plus, EnvelopeSimple, ArrowUpRight, ArrowUp } from "./ui/icons";
 import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
@@ -97,6 +97,7 @@ const LEGAL_LABEL: Record<string, string[]> = {
 };
 
 export function Footer({ lang: _l }: { lang?: L } = {}) {
+  const lh = useHref();
   const { d, lang, locale } = useLocale(); const f = d.footer; const t = T[locale] ?? T.en; const [open, setOpen] = useState<string | null>(null); const trust = useTrustTR();
   return (
     <footer aria-labelledby="footer-h" className="ember ember-foot dark border-t border-[rgb(255_255_255/0.08)] text-[15px] text-white">
@@ -131,7 +132,7 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
                     return (
                       <li key={x.href + x.en}>
                         {x.ext || x.href.startsWith("/#")
-                          ? <a className={link} href={x.href}>{label}</a>
+                          ? <a className={link} href={lh(x.href)}>{label}</a>
                           : <Link className={link} href={x.href}>{label}</Link>}
                       </li>);
                   })}

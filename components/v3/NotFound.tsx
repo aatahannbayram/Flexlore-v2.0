@@ -1,6 +1,6 @@
 "use client";
 /* 404: header, one line, two ways back, footer. */
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import { useLocale } from "../i18n/LocaleProvider";

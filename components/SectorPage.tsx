@@ -7,7 +7,7 @@
 import { SITE } from "./config";
 import { useEffect, useRef, useState } from "react";
 import { Footer } from "./Footer";
-import Link from "next/link";
+import Link from "./i18n/Link";
 import { m, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion, useInView, AnimatePresence } from "framer-motion";
 import { sectors, sectorCopy, sectorPath } from "./sectors";
 import { useLocale } from "./i18n/LocaleProvider";

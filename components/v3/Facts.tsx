@@ -1,4 +1,5 @@
 "use client";
+import { useHref } from "../i18n/Link";
 /* At a glance: a framed photo of the floor (softened copy behind, sharp inside a glass frame), the promise on the start
  * side, four values the page has not said yet on the end side (from the approved FAQ and feature pages; AI agents
  * marked Coming soon). The photos change like a slide show. No user counts, ratings or invented numbers. */
@@ -34,6 +35,7 @@ const T = {
 const SLIDES = [["ws-j-vinc", "60% 40%"], ["ws-j-hat", "55% 45%"], ["ws-j-brifing", "50% 40%"], ["ws-mutfak", "55% 40%"]] as const;
 
 export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: string; className?: string }) => React.ReactNode; Ch: (p: { n: string; children: React.ReactNode }) => React.ReactNode }) {
+  const lh = useHref();
   const { locale, d } = useLocale(); const t = T[locale]; const reduce = useReducedMotion();
   const icons = [LockSimple, FilmSlate, CheckCircle, Robot];
   const [i, setI] = useState(0); const [hold, setHold] = useState(false);
@@ -60,7 +62,7 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
               <p className="rv intro mt-4 max-w-[26rem] !text-white/80">{t.p}</p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a href={SITE.demo} target="_blank" rel="noopener" className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
-                <a href="/features/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
+                <a href={lh("/features/")} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
               </div>
             </div>
             {/* Four things the page has not said yet, as a description list. */}

@@ -7,7 +7,7 @@
  * Layout: a dark hero with the three facts, then one narrow reading column. Each section is a small number, a heading
  * and plain text; no cards, no icons in the body, numbers stay neutral (orange only on the one request button).
  * Hero and request box use the .ember background (app/globals.css), piloted here before any wider use. */
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { C, SUBJECT, type L } from "./turkiye-copy";
 export { TURKIYE_TITLE } from "./turkiye-copy";
 import { EnvelopeSimple, ArrowRight, Plus } from "../ui/icons";

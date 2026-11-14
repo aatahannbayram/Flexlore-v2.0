@@ -1,5 +1,5 @@
 import { Picture } from "./ui/Picture";
-import Link from "next/link";
+import Link from "./i18n/Link";
 import { SITE } from "./config";
 import { Footer } from "./Footer";
 import { Header } from "./Header";

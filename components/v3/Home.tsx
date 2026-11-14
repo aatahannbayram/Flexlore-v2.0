@@ -7,7 +7,7 @@
  * Copy: d.process / d.bento / d.end / d.ind (main dictionary), HOME2 (steps, roles, why, sector lines, web chip), HOME4 (workspaces, web, customers). */
 import { useCallback, useEffect, useRef, useState, Fragment } from "react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link, { useHref } from "../i18n/Link";
 import { AnimatePresence, m, useInView, useReducedMotion } from "framer-motion";
 import { SITE } from "../config";
 import { useLocale, fmt } from "../i18n/LocaleProvider";
@@ -476,6 +476,7 @@ function DeskScene({ on, near }: { on: boolean; near: boolean }) {
     </div>);
 }
 export function WebV3() {
+  const lh = useHref();
   const { d, locale, lang } = useLocale(); const t = HOME4[locale].web; const w2 = HOME2[locale].web; const b = d.bento; const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "300px 0px", once: true }); const on = useInView(ref, { amount: 0.3 });
   const [beat, setBeat] = useState(0); // 0: the job goes out, 1: completion comes back
@@ -518,7 +519,7 @@ export function WebV3() {
           </figure>
         </div>
         <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
-          <a href="/features/web-panel/" className="group inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{w2.go}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
+          <a href={lh("/features/web-panel/")} className="group inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{w2.go}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></a>
           <p className="text-[12px] text-ink-faint">{t.sample}</p>
         </div>
       </div>

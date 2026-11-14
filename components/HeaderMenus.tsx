@@ -1,4 +1,5 @@
 "use client";
+import { useHref } from "./i18n/Link";
 import { m } from "framer-motion";
 import { useState } from "react";
 import { NAV, navHref } from "./nav";
@@ -24,6 +25,7 @@ const FEATURE: Record<string, { img: string; href: string; t: (d: Dict | undefin
 };
 /* Product menu: features in three groups (create, roll out, manage), quick links under them, one picture card. */
 function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
+  const lh = useHref();
   const { locale, d } = useLocale(); const t = FEAT_NAV[locale];
   return (
     <div className="grid grid-cols-[minmax(0,1fr)_200px] gap-2 rounded-[26px] bg-[rgb(20_20_20/0.985)] p-2 shadow-[0_40px_90px_-30px_rgb(0_0_0/0.95),0_0_0_1px_rgb(255_255_255/0.08),inset_0_1px_0_rgb(255_255_255/0.06)] backdrop-blur-2xl">
@@ -33,7 +35,7 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
             <div key={g}>
               <p className="px-2.5 pb-2 text-[12px] font-medium text-ink-faint">{t.groups[g]}</p>
               <ul className="space-y-0.5">{FEATURES.filter((f) => f.group === g).map((f) => { const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug]; return (
-                <li key={f.slug}><a href={`/features/${f.slug}/`} onClick={close} className="group flex items-start gap-2.5 rounded-xl px-2.5 py-2 transition-colors hover:bg-[var(--card-2)]">
+                <li key={f.slug}><a href={lh(`/features/${f.slug}/`)} onClick={close} className="group flex items-start gap-2.5 rounded-xl px-2.5 py-2 transition-colors hover:bg-[var(--card-2)]">
                   <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-[10px] bg-[var(--card-2)] text-ink transition-colors group-hover:bg-[var(--card)]"><Ic size={16} /></span>
                   <span className="min-w-0"><span className="flex items-center gap-1.5 text-[14px] font-semibold text-ink">{h}{f.status === "soon" && <span className="rounded-full bg-[var(--card-2)] px-1.5 py-px text-[10px] font-medium text-ink-faint">{t.soon}</span>}</span>
                     <span className="block text-[12.5px] leading-snug text-ink-faint">{line}</span></span>
@@ -43,10 +45,10 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
         <div className="mt-2 flex flex-wrap items-center gap-1 border-t border-line px-1 pt-2 text-[13px]">
           {[[home ? "#how" : "/#how", t.how], ["/integrations/", tt(d, "integrations", 0, "Integrations")]].map(([h, l]) => (
             <a key={h} href={h} onClick={close} className="rounded-full px-3 py-1.5 text-ink-muted transition-colors hover:bg-[var(--card-2)] hover:text-ink">{l}</a>))}
-          <a href="/features/" onClick={close} className="ms-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold text-ink hover:bg-[var(--card-2)]">{t.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          <a href={lh("/features/")} onClick={close} className="ms-auto inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-semibold text-ink hover:bg-[var(--card-2)]">{t.all}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
       </div>
-      <a href="/see-it/" onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
+      <a href={lh("/see-it/")} onClick={close} className="group dark relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
         <picture className="absolute inset-0"><source srcSet="/media/v3/saha-eldiven-makro-m.avif" type="image/avif" /><img src="/media/v3/saha-eldiven-makro-m.webp" alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[6%_45%] transition-transform duration-700 group-hover:scale-[1.04]" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.25)_0%,rgb(17_17_17/0.1)_35%,rgb(17_17_17/0.92)_100%)]" />
         <span className="relative text-[12px] text-white/70">{tt(d, "seeit", 1, "One real job, start to finish")}</span>
@@ -56,6 +58,7 @@ function ProductPanel({ close, home }: { close: () => void; home: boolean }) {
 }
 
 export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; lang: Lang; d?: Dict; home: boolean; close: () => void; reduce: boolean }) {
+  const lh = useHref();
   if (id === "product") return <ProductPanel close={close} home={home} />;
   const { locale } = useLocale(); const g = NAV.find((x) => x.id === id)!; const f = FEATURE[id];
   const href = f.href.startsWith("/#") && home ? f.href.slice(1) : f.href;
@@ -72,7 +75,7 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
             </a>
           </li>); })}
       </ul>
-      <a href={href} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
+      <a href={lh(href)} onClick={close} className="group dark relative flex min-h-[220px] flex-col justify-end overflow-hidden rounded-[18px] bg-[#1a1a1a] p-4">
         <picture className="absolute inset-0"><source srcSet={`/blog/${f.img}-800.avif`} type="image/avif" /><img src={`/blog/${f.img}-800.webp`} alt="" className="absolute inset-0 h-full w-full object-cover" /></picture>
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0)_30%,rgb(17_17_17/0.85)_100%)]" />
         <span className="relative text-[12px] text-white/70">{f.k(d, locale)}</span>
@@ -83,6 +86,7 @@ export function MegaPanel({ id, lang, d, home, close, reduce }: { id: string; la
 
 
 export function MobileMenuBody({ lang, d, home, close, openSearch, pricing }: { lang: Lang; d?: Dict; home: boolean; close: () => void; openSearch: () => void; pricing: string }) {
+  const lh = useHref();
   const tr = lang === "tr"; const [grp, setGrp] = useState<string | null>(null);
   return (
             <div className="container-x flex-1 overflow-y-auto pb-6">
@@ -104,19 +108,20 @@ export function MobileMenuBody({ lang, d, home, close, openSearch, pricing }: { 
                   </div>
                 </m.section>); })}
               </div>
-              <a href="/pricing/" onClick={close} className="flex min-h-14 items-center border-b border-line px-1 text-[18px] font-semibold">{pricing}</a>
+              <a href={lh("/pricing/")} onClick={close} className="flex min-h-14 items-center border-b border-line px-1 text-[18px] font-semibold">{pricing}</a>
             </div>
   );
 }
 
 function MobileFeatures({ close }: { close: () => void }) {
+  const lh = useHref();
   const { locale } = useLocale(); const t = FEAT_NAV[locale];
   return (<div className="mt-2 space-y-4">
     {GROUPS.map((g) => (<div key={g}><p className="px-1 text-[12px] text-ink-faint">{t.groups[g]}</p>
       <ul className="mt-1">{FEATURES.filter((f) => f.group === g).map((f) => { const Ic = FICON[f.icon]; return (
-        <li key={f.slug}><a href={`/features/${f.slug}/`} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
+        <li key={f.slug}><a href={lh(`/features/${f.slug}/`)} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
           <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--card)]"><Ic size={18} /></span>{t.items[f.slug][0]}
           {f.status === "soon" && <span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[12px] text-ink-faint">{t.soon}</span>}</a></li>); })}</ul></div>))}
-    <a href="/features/" onClick={close} className="flex min-h-12 items-center px-1 text-[15px] font-semibold">{t.all}</a>
+    <a href={lh("/features/")} onClick={close} className="flex min-h-12 items-center px-1 text-[15px] font-semibold">{t.all}</a>
   </div>);
 }

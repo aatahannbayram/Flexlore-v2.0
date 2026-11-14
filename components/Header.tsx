@@ -1,4 +1,5 @@
 "use client";
+import { useHref } from "./i18n/Link";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
 import { FlagPicker } from "./ui/FlagPicker";
@@ -23,6 +24,7 @@ const MobileMenuBody = dynamic(() => loadMenus().then((x) => x.MobileMenuBody), 
  *  on the right one capsule for theme and language, Log in and Book a demo (⌘K still opens search). Mobile: a full-screen menu grouped the same way.
  *  Hides on scroll down after 400 px, comes back on scroll up, and stays visible while focus or a menu is inside it. */
 export function Header({ lang: langProp, setLang, paused = false, setPaused, motionOk = false, home = false, overDark = false, pill = false, brand }: { overDark?: boolean; pill?: boolean; lang?: Lang; setLang?: (l: Lang) => void; paused?: boolean; setPaused?: (p: boolean) => void; motionOk?: boolean; home?: boolean; brand?: React.ReactNode }) {
+  const lh = useHref();
   const ctx = useLocale(); const lang: Lang = langProp ?? ctx.lang; const n = ctx.d.nav;
   // Pages with their own EN/TR switch (the Mikel demo) keep it; everywhere else the 8-language flag picker drives the site.
   const own = !!setLang; const t = own ? copy[lang] : { ...copy[lang], langLabel: n.language, navP: n.pricing, cta: n.cta, menu: n.menu, close: n.close }; const tr = lang === "tr";
@@ -116,7 +118,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><a href="/pricing/" className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
+            <li onMouseEnter={leave}><a href={lh("/pricing/")} className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
           </ul>
 
           <div className="flex items-center gap-2">
@@ -127,7 +129,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   <span aria-hidden="true" className="h-4 w-px bg-line-strong" />
                   <FlagPicker compact />
                 </div>}
-            <div className="flex items-center gap-2">{SITE.login && <a href="/login/" className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            <div className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
             <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.cta}</span></a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -149,7 +151,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
               {own ? LangSwitch : <FlagPicker up />}
               <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} />
-              <span className="flex items-center gap-2">{SITE.login && <a href="/login/" className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-cta">{t.cta}</a></span>
+              <span className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-cta">{t.cta}</a></span>
             </div>
           </m.div>)}
       </AnimatePresence>

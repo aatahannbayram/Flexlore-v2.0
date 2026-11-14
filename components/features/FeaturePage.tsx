@@ -1,11 +1,12 @@
 "use client";
 /* One template for every feature page and the /features/ index. Copy from components/i18n/features/<locale>.ts
  * (English ships with the page, other languages load when chosen). Responsive: stacked on phones, split on desktop. */
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { FeatPre } from "./featCtx";
 import { m, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { SmartVideo } from "../ui/SmartVideo";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
 import { useLocale } from "../i18n/LocaleProvider";
@@ -27,7 +28,12 @@ const LOAD: Record<Locale, () => Promise<FDict>> = {
   es: () => import("../i18n/features/es").then((m) => m.fes), nl: () => import("../i18n/features/nl").then((m) => m.fnl), pt: () => import("../i18n/features/pt").then((m) => m.fpt), fr: () => import("../i18n/features/fr").then((m) => m.ffr),
   pl: () => import("../i18n/features/pl").then((m) => m.fpl),
 };
-function useFeatDict() { const { locale } = useLocale(); const [d, setD] = useState<FDict>(fen); useEffect(() => { LOAD[locale]().then(setD).catch(() => setD(fen)); }, [locale]); return d; }
+function useFeatDict() {
+  const { locale } = useLocale(); const pre = useContext(FeatPre);
+  const [d, setD] = useState<FDict>(pre ?? fen);
+  useEffect(() => { if (pre) return; LOAD[locale]().then(setD).catch(() => setD(fen)); }, [locale, pre]);
+  return pre ?? d;
+}
 
 const card = "rounded-[28px] bg-[var(--card)]";
 /** A feature photograph: a /photos name, or "v3:<name>" for the /media/v3 set (both ship 800 and 1600 in AVIF and WebP). */

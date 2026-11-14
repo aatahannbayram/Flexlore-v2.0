@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "../i18n/Link";
 import { LEGAL, type LegalDoc } from "./docs";
 import { LegalLangNote } from "./LegalLangNote";
 import { Article, ArrowUpRight } from "../ui/icons";

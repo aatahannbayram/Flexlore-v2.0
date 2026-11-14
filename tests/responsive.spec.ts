@@ -62,6 +62,7 @@ for (const route of ROUTES) {
 }
 
 test("mobile menu: opens, locks scroll, traps focus, closes on Escape and on navigation", async ({ page }) => {
+  /* The suite runs as a visitor in Türkiye, so "/" leads to the Turkish home (/tr/) and menu links are its /tr/ twins. */
   await page.setViewportSize({ width: 390, height: 844 }); await page.goto("/", { waitUntil: "networkidle" });
   await page.click('button[aria-controls="menu"]');
   await expect(page.locator("#menu")).toBeVisible();
@@ -70,6 +71,6 @@ test("mobile menu: opens, locks scroll, traps focus, closes on Escape and on nav
   expect(await page.evaluate(() => !!document.getElementById("menu")?.contains(document.activeElement))).toBe(true);
   await page.keyboard.press("Escape"); await expect(page.locator("#menu")).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.style.overflow)).toBe("");
-  await page.click('button[aria-controls="menu"]'); await page.locator('#menu a[href="/pricing/"]:visible').first().click();
+  await page.click('button[aria-controls="menu"]'); await page.locator('#menu a[href$="/pricing/"]:visible').first().click();
   await page.waitForURL("**/pricing/"); await expect(page.locator("#menu")).toHaveCount(0);
 });
