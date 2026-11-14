@@ -1,5 +1,5 @@
 "use client";
-import { useHref } from "./i18n/Link";
+import Link, { useHref } from "./i18n/Link";
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ui/ThemeToggle";
 import { FlagPicker } from "./ui/FlagPicker";
@@ -118,7 +118,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><a href={lh("/pricing/")} className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</a></li>
+            <li onMouseEnter={leave}><Link prefetch={false} href={lh("/pricing/")} className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</Link></li>
           </ul>
 
           <div className="flex items-center gap-2">
