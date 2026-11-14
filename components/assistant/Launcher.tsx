@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
 import { useLocale } from "../i18n/LocaleProvider";
+import { track } from "../track";
 import type { Locale } from "../i18n/locales";
 
 /* Flex AI, part 1: the round glass button in the bottom corner, and once per visit a short greeting. This is all that
@@ -51,6 +52,7 @@ export function AssistantLauncher() {
   const toggle = useCallback(() => {
     dismiss(); setEver(true);
     if (open) { setOpen(false); return; }
+    track("assistant_open", { page: location.pathname });
     loadMod().then((m) => { setMod(m); setOpen(true); setErr(false); }).catch(() => setErr(true));
   }, [dismiss, open]);
   const close = useCallback(() => { setOpen(false); requestAnimationFrame(() => document.getElementById("flx-ai-btn")?.focus()); }, []);

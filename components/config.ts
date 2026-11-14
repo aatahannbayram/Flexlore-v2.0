@@ -10,7 +10,9 @@ export const SITE = {
   ga4: process.env.FLX_LAUNCH === "1" ? "G-7QNETL3VJ3" : "",
   hubspot: process.env.FLX_LAUNCH === "1" ? "147293209" : "",
   login: "https://app.flexlore.com",
-  demo: "https://app-eu1.hubspot.com/meetings/alper-kalip",
+  /* Every "Book a demo" button opens our own page (components/pages/Demo.tsx), which embeds the HubSpot scheduler below. */
+  demo: "/demo/",
+  meetings: "https://app-eu1.hubspot.com/meetings/alper-kalip",
   // Programs Flexlore is accepted into (confirmed by Ata, 2026-11-04). Shown in the home trust strip.
   // badge: path to the OFFICIAL badge file from each program's member kit, used unaltered under its usage rules.
   programs: [

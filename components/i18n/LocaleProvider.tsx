@@ -3,6 +3,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from "rea
 import { en, type Dict } from "./home/en";
 import { LOCALES, detectLocale, isLocale, base, type Locale } from "./locales";
 import { isTrPath, trOf, enOf } from "./routes";
+import { track } from "../track";
 
 /* One language for the whole site. English ships with the page (server HTML); other dictionaries load only when chosen.
    Order: the visitor's saved choice, then the country from the browser time zone, then the browser language.
@@ -52,6 +53,7 @@ export function LocaleProvider({ children, fixed, dict }: { children: React.Reac
     if (l !== "en") apply(l); else document.documentElement.classList.remove("i18n-wait"); setReady(true);
   }, [apply, fixed]);
   const setLocale = useCallback((l: Locale) => {
+    track("language_change", { to: l });
     try { localStorage.setItem(KEY, l); } catch {}
     const path = location.pathname;
     if (isTrPath(path)) { if (l !== "tr") go(enOf(path)); return; }

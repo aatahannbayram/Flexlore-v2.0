@@ -61,7 +61,7 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
               <H2 id="facts-h" a={t.h} className="max-w-[16ch]" />
               <p className="rv intro mt-4 max-w-[26rem] !text-white/80">{t.p}</p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a href={SITE.demo} target="_blank" rel="noopener" className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
+                <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
                 <a href={lh("/features/")} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></a>
               </div>
             </div>

@@ -1,7 +1,7 @@
 {
  "v": 1,
  "site": "https://www.flexlore.com",
- "demo": "https://app-eu1.hubspot.com/meetings/alper-kalip",
+ "demo": "/demo/",
  "support": "support@flexlore.com",
  "entries": [
   {
@@ -314,7 +314,7 @@
    "id": "en:contact",
    "locale": "en",
    "title": "Still have a question?",
-   "body": "We answer it on a 20-minute call, with one of your real jobs. Or write to support@flexlore.com support@flexlore.com. Book a demo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "We answer it on a 20-minute call, with one of your real jobs. Or write to support@flexlore.com support@flexlore.com. Book a demo: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -632,7 +632,7 @@
    "id": "tr:contact",
    "locale": "tr",
    "title": "Başka bir sorunuz mu var?",
-   "body": "Gerçek işlerinizden biriyle, 20 dakikalık bir görüşmede yanıtlayalım. Ya da support@flexlore.com adresine yazın support@flexlore.com. Demo isteyin: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Gerçek işlerinizden biriyle, 20 dakikalık bir görüşmede yanıtlayalım. Ya da support@flexlore.com adresine yazın support@flexlore.com. Demo isteyin: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -950,7 +950,7 @@
    "id": "de:contact",
    "locale": "de",
    "title": "Noch eine Frage?",
-   "body": "Wir beantworten sie in einem 20-minütigen Gespräch, mit einer Ihrer echten Aufgaben. Oder schreiben Sie an support@flexlore.com support@flexlore.com. Demo buchen: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Wir beantworten sie in einem 20-minütigen Gespräch, mit einer Ihrer echten Aufgaben. Oder schreiben Sie an support@flexlore.com support@flexlore.com. Demo buchen: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -1268,7 +1268,7 @@
    "id": "ar:contact",
    "locale": "ar",
    "title": "هل لديك سؤال آخر؟",
-   "body": "نجيب عنه في مكالمة مدتها 20 دقيقة، مع إحدى مهامك الحقيقية. أو راسلنا على support@flexlore.com support@flexlore.com. احجز عرضًا توضيحيًا: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "نجيب عنه في مكالمة مدتها 20 دقيقة، مع إحدى مهامك الحقيقية. أو راسلنا على support@flexlore.com support@flexlore.com. احجز عرضًا توضيحيًا: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -1586,7 +1586,7 @@
    "id": "es:contact",
    "locale": "es",
    "title": "¿Tiene alguna otra pregunta?",
-   "body": "Se la respondemos en una llamada de 20 minutos, con una de sus tareas reales. O escriba a support@flexlore.com support@flexlore.com. Solicitar una demo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Se la respondemos en una llamada de 20 minutos, con una de sus tareas reales. O escriba a support@flexlore.com support@flexlore.com. Solicitar una demo: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -1904,7 +1904,7 @@
    "id": "pt:contact",
    "locale": "pt",
    "title": "Ainda tem alguma dúvida?",
-   "body": "Respondemos em uma chamada de 20 minutos, com uma das suas tarefas reais. Ou escreva para support@flexlore.com support@flexlore.com. Agendar demo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Respondemos em uma chamada de 20 minutos, com uma das suas tarefas reais. Ou escreva para support@flexlore.com support@flexlore.com. Agendar demo: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -2222,7 +2222,7 @@
    "id": "nl:contact",
    "locale": "nl",
    "title": "Nog een vraag?",
-   "body": "We beantwoorden die in een gesprek van 20 minuten, met een van uw echte taken. Of schrijf naar support@flexlore.com support@flexlore.com. Demo boeken: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "We beantwoorden die in een gesprek van 20 minuten, met een van uw echte taken. Of schrijf naar support@flexlore.com support@flexlore.com. Demo boeken: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -2540,7 +2540,7 @@
    "id": "fr:contact",
    "locale": "fr",
    "title": "Une autre question?",
-   "body": "Nous y répondons lors d'un appel de 20 minutes, avec l'une de vos vraies tâches. Ou écrivez à support@flexlore.com support@flexlore.com. Demander une démo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Nous y répondons lors d'un appel de 20 minutes, avec l'une de vos vraies tâches. Ou écrivez à support@flexlore.com support@flexlore.com. Demander une démo: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",
@@ -2858,7 +2858,7 @@
    "id": "pl:contact",
    "locale": "pl",
    "title": "Masz jeszcze pytanie?",
-   "body": "Odpowiemy podczas 20-minutowej rozmowy, na przykładzie jednego z Twoich prawdziwych zadań. Lub napisz na support@flexlore.com support@flexlore.com. Umów demo: https://app-eu1.hubspot.com/meetings/alper-kalip",
+   "body": "Odpowiemy podczas 20-minutowej rozmowy, na przykładzie jednego z Twoich prawdziwych zadań. Lub napisz na support@flexlore.com support@flexlore.com. Umów demo: /demo/",
    "url": "https://www.flexlore.com/support/",
    "tags": [
     "contact",

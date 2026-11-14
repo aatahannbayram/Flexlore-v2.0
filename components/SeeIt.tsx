@@ -10,6 +10,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { SITE } from "./config";
 import { INDUSTRIES, Ind } from "./seeit-data";
+import { track } from "./track";
 import { playOnly } from "./media";
 import { ArrowRight } from "./ui/icons";
 import Link from "./i18n/Link";
@@ -24,7 +25,7 @@ export default function SeeIt() {
   const [wide, setWide] = useState(false);
   useEffect(() => { const q = matchMedia("(min-width: 768px)"); const f = () => setWide(q.matches); f(); q.addEventListener("change", f); return () => q.removeEventListener("change", f); }, []);
   useEffect(() => { const q = new URLSearchParams(location.search).get("industry"); if (INDUSTRIES.some((x) => x.id === q)) setId(q as Ind); }, []);
-  const pick = (n: Ind) => { setId(n); const u = new URL(location.href); u.searchParams.set("industry", n); history.replaceState(null, "", u); };
+  const pick = (n: Ind) => { setId(n); track("seeit_industry", { industry: n }); const u = new URL(location.href); u.searchParams.set("industry", n); history.replaceState(null, "", u); };
   const tr = lang === "tr";
   const o = INDUSTRIES.find((x) => x.id === id)!; const c = o[lang];
   return (<>

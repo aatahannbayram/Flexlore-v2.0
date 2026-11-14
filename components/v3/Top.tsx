@@ -9,6 +9,7 @@ import { useLocale } from "../i18n/LocaleProvider";
 import { StoreButtons } from "../Icons";
 import { VideoModal } from "../ui/VideoModal";
 import { Play } from "../ui/icons";
+import { track } from "../track";
 import M from "./media.json";
 
 export type Media = keyof typeof M;
@@ -126,7 +127,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             <p className="hs-in mt-6 hidden max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:block md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-7 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-8" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
-              <button type="button" onClick={() => setDemo(true)} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
+              <button type="button" onClick={() => { setDemo(true); track("watch_demo", { placement: "hero" }); }} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
             </div>
             <div className="hs-in mt-5 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-7" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-70 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
