@@ -18,7 +18,7 @@ import { Analytics } from "@/components/Analytics";
 const I18N_BOOT = `try{if(/^\\/tr(\\/|$)/.test(location.pathname)){document.documentElement.lang="tr";throw 0}var L=${JSON.stringify(LOCALES.map((l) => [l.code, l.dir]))},T=${JSON.stringify(TZ)},s=localStorage.getItem("flx-lang"),c=null,k=function(x){for(var i=0;i<L.length;i++)if(L[i][0]===x)return L[i];return null};if(k(s))c=s;else{var z=Intl.DateTimeFormat().resolvedOptions().timeZone;if(T[z])c=T[z];else{var n=navigator.languages||[navigator.language];for(var j=0;j<n.length;j++){var q=(n[j]||"").slice(0,2).toLowerCase();if(k(q)){c=q;break}}}}if(c&&c!=="en"){var e=document.documentElement;e.lang=c;e.dir=k(c)[1];e.classList.add("i18n-wait");setTimeout(function(){e.classList.remove("i18n-wait")},2500)}}catch(e){}`;
 /* Loading mark (globals.css .splash): shown on the first page of a visit only. Later pages and reduced motion skip it; while it
    plays, the hero's own entrance waits (splash-on), then runs as the mark fades. */
-const SPLASH = `try{var h=document.documentElement;if(sessionStorage.getItem("flx-sp")||matchMedia("(prefers-reduced-motion: reduce)").matches){h.classList.add("no-splash")}else{sessionStorage.setItem("flx-sp","1");var g=!navigator.webdriver&&"WebGL2RenderingContext" in window;h.classList.add("splash-on");if(g)h.classList.add("splash-glass");setTimeout(function(){h.classList.remove("splash-on")},g?4000:700)}}catch(e){document.documentElement.classList.add("no-splash")}`;
+const SPLASH = `try{var h=document.documentElement;if(sessionStorage.getItem("flx-sp")||matchMedia("(prefers-reduced-motion: reduce)").matches){h.classList.add("no-splash")}else{sessionStorage.setItem("flx-sp","1");var N=navigator,g=!N.webdriver&&"WebGL2RenderingContext" in window&&(N.deviceMemory||8)>=4&&(N.hardwareConcurrency||8)>=4&&!(N.connection&&N.connection.saveData);h.classList.add("splash-on");if(g)h.classList.add("splash-glass");setTimeout(function(){h.classList.remove("splash-on")},g?4000:700)}}catch(e){document.documentElement.classList.add("no-splash")}`;
 const title = seo["/"].t;
 const description = seo["/"].d;
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   keywords: ["video SOP", "video work instructions", "standard work instructions", "standard work", "frontline training", "AI quiz", "work instructions", "employee onboarding", "training readiness tracking", "restaurant training", "manufacturing work instructions", "franchise training"],
   alternates: { canonical: "/", languages: { en: "/", tr: "/tr/", "x-default": "/" } },
   robots, // driven by SITE.noindex in components/config.ts
-  openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 1200, height: 630, alt: "Film the job once. Know who is ready to do it. Flexlore video work instructions." }] },
+  openGraph: { type: "website", url: "/", siteName: "Flexlore", title, description, images: [{ url: "/og.png", width: 1200, height: 630, alt: "Train your team in minutes, not hours. Flexlore video work instructions." }] },
   twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
   icons: { icon: [{ url: "/brand/icon-32.png", sizes: "32x32" }, { url: "/icon.svg", type: "image/svg+xml" }], apple: "/brand/icon-180.png" },
 };

@@ -28,7 +28,7 @@ const Rise = ({ children, d = 0, className = "" }: { children: React.ReactNode; 
   return <m.div initial={reduce ? false : { opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-8%" }} transition={{ duration: 0.7, delay: d, ease }} className={className}>{children}</m.div>;
 };
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" />
+  <div className="flex items-center gap-2.5" data-n={n}><span aria-hidden="true" className="kick-line" />
     <p className="text-[14px] font-medium tracking-[-0.005em] text-ink-faint">{children}</p></div>);
 function H2({ text, className = "" }: { text: string; className?: string }) {
   const reduce = useReducedMotion(); const w = text.split(" ");

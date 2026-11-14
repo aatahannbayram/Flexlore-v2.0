@@ -25,7 +25,10 @@ type Kind = "intro" | "nav";
 
 const canAnimate = () => {
   try {
-    return !navigator.webdriver && "WebGL2RenderingContext" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const n = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+    /* Low-end devices and Save-Data keep the light CSS splash: the glass shader is the heaviest thing on the page. */
+    const weak = (n.deviceMemory ?? 8) < 4 || (n.hardwareConcurrency ?? 8) < 4 || !!n.connection?.saveData;
+    return !navigator.webdriver && !weak && "WebGL2RenderingContext" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches;
   } catch { return false; }
 };
 const theme = () => {
@@ -77,6 +80,7 @@ export function BrandMotion() {
       const url = new URL(a.href, location.href);
       if (url.origin !== location.origin || url.pathname === location.pathname) return;
       if (/\.(pdf|png|jpe?g|webp|avif|svg|mp4|zip|xml|txt)$/i.test(url.pathname)) return;
+      if (matchMedia("(max-width: 767px)").matches) return; // phones: a tap opens the page at once (no cover)
       clear();
       endSplash();
       nav.current = { from: location.pathname, at: performance.now(), arrived: false };

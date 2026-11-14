@@ -37,7 +37,7 @@ export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: 
 function Eyebrow({ word, k }: { word: string; k: number }) {
   const { d } = useLocale(); const h = d.hero;
   return (
-    <p className="hs-in flex items-center gap-3 text-[14px] text-white/60">
+    <p className="hs-in flex items-center gap-3 text-[14px] text-white/60 max-md:justify-center">
       <span aria-hidden="true" className="h-px w-8 bg-white/30" />
       <span className="truncate">{h.rotPre}<AnimatePresence mode="wait" initial={false}><m.span key={k} className="font-medium text-white/95" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.22, ease: "easeOut" }}>{word}</m.span></AnimatePresence>{h.rotPost}</span>
     </p>);
@@ -50,12 +50,13 @@ function Eyebrow({ word, k }: { word: string; k: number }) {
 const SCENES = [{ clip: "line", rot: 1 }, { clip: "warehouse", rot: 4 }, { clip: "steam", rot: 0 }] as const;
 function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean | null }) {
   return (
-    <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden">
+    <div aria-hidden="true" className="absolute inset-0 -z-10 hidden overflow-hidden md:block">
       {SCENES.map((s, i) => { const on = i === k; return (
         <div key={s.clip} className={`absolute inset-0 transition-opacity duration-700 ease-out ${on ? "opacity-100" : "opacity-0"}`}>
           {rest && !reduce
             ? <video onLoadedMetadata={(e) => { e.currentTarget.playbackRate = 0.6; }} className={`h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92] ${on ? "stage-zoom" : ""}`} src={`/video/${s.clip}.mp4`} poster={`/video/${s.clip}.webp`} muted loop playsInline autoPlay preload="auto" />
-            : (i === 0 || rest) && <img src={`/video/${s.clip}.webp`} alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92]" />}
+            /* The poster comes through <picture> with a media query, so phones never download it. */
+            : (i === 0 || rest) && <picture><source media="(min-width: 768px)" srcSet={`/video/${s.clip}.webp`} /><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" decoding="async" {...(i === 0 ? { fetchPriority: "high" as const } : {})} className="h-full w-full scale-[1.08] object-cover blur-[5px] saturate-[1.2] contrast-[1.06] brightness-[0.92]" /></picture>}
         </div>); })}
       {/* Darker and calmer than the clip: a deep wash from the text side, a vignette that closes the corners, one warm
           glow behind the phone, and a long fade into the ground so the strip below starts on #111. */}
@@ -67,6 +68,19 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       <span className="absolute inset-0 bg-[radial-gradient(40%_45%_at_18%_42%,rgb(236_103_38/0.035)_0%,rgb(236_103_38/0)_70%)]" />
       <span className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.85),rgb(12_12_12/0))]" />
       <span className="absolute inset-x-0 bottom-0 h-[45%] bg-[linear-gradient(to_top,#111111_8%,rgb(17_17_17/0.85)_35%,rgb(17_17_17/0))]" />
+    </div>);
+}
+
+/* Phones: no clip behind the phone (too small to read, costly on mobile data and battery). A drawn backdrop instead:
+ * a fine grid that fades out from the middle, a slow warm glow behind the phone and a soft light from the top.
+ * CSS only (globals.css .m-hero-*), transform and opacity animations, still under reduced motion. */
+function PhoneBackdrop() {
+  return (
+    <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden md:hidden">
+      <span className="m-hero-grid absolute inset-0" />
+      <span className="m-hero-glow absolute left-1/2 top-[58%] h-[520px] w-[520px] -translate-x-1/2 rounded-full" />
+      <span className="absolute inset-x-0 top-0 h-[40%] bg-[radial-gradient(70%_100%_at_50%_0%,rgb(244_240_235/0.07),transparent_70%)]" />
+      <span className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#111111,rgb(17_17_17/0))]" />
     </div>);
 }
 
@@ -89,16 +103,18 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
   useEffect(() => { if (!note) return; const id = window.setTimeout(() => setNote(false), 2200); return () => window.clearTimeout(id); }, [note, ticks]);
   /* The clips load once the page is idle, so the first paint stays light. */
   const [rest, setRest] = useState(false);
-  useEffect(() => { const go = () => setRest(true); const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+  useEffect(() => { if (!matchMedia("(min-width: 768px)").matches) return; // phones never load the clips
+    const go = () => setRest(true); const ric = (window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
     if (document.readyState === "complete") { ric ? ric(go, { timeout: 2500 }) : window.setTimeout(go, 1500); } else window.addEventListener("load", () => (ric ? ric(go, { timeout: 2500 }) : window.setTimeout(go, 1500)), { once: true }); }, []);
   const word = h.rot[SCENES[k].rot % h.rot.length];
   return (
     <section aria-labelledby="hero-h" className="dark relative isolate overflow-hidden bg-[#111111] pt-[var(--header-h)] text-ink">
       <Scene k={k} rest={rest} reduce={reduce} />
+      <PhoneBackdrop />
       <div className="container-x relative">
-        <div className="grid-12 items-center gap-y-10 pb-12 pt-10 lg:min-h-[min(calc(100svh-var(--header-h)-96px),760px)] lg:pb-14 lg:pt-6">
+        <div className="grid-12 items-center gap-y-9 pb-10 pt-8 md:gap-y-10 md:pb-12 md:pt-10 lg:min-h-[min(calc(100svh-var(--header-h)-96px),760px)] lg:pb-14 lg:pt-6">
           {/* The promise, wide: each sentence on one line on large screens. */}
-          <div className="relative z-10 col-span-12 lg:col-span-8">
+          <div className="relative z-10 col-span-12 max-md:text-center lg:col-span-8">
             <Eyebrow word={word} k={k} />
             {/* "Train your team in minutes / not hours": the letters come into focus left to right (blur to sharp), the
                 second line in the ember gradient. Screen readers get the plain sentence once. */}
@@ -107,12 +123,12 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
               <span aria-hidden="true" className={`block ${bare(h.h1a).length <= 28 ? "lg:whitespace-nowrap" : ""}`}><Focus text={bare(h.h1a)} cls="hero-metal" start={180} /></span>
               <span aria-hidden="true" className="block pb-[0.06em]"><Focus text={bare(h.h1b)} cls="hero-ember" start={180 + [...bare(h.h1a)].length * 26 + 120} /></span>
             </h1>
-            <p className="hs-in mt-6 max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
-            <div className="hs-in mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "250ms" }}>
+            <p className="hs-in mt-6 hidden max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:block md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
+            <div className="hs-in mt-7 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-8" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
               <button type="button" onClick={() => setDemo(true)} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
             </div>
-            <div className="hs-in mt-7 hidden flex-wrap items-center gap-3 sm:flex" style={{ animationDelay: "350ms" }}>
+            <div className="hs-in mt-5 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-7" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-70 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
             </div>
           </div>
@@ -123,7 +139,7 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
               <div className="hero-lift rounded-[42px] shadow-[0_60px_90px_-35px_rgb(0_0_0/0.85),0_20px_40px_-20px_rgb(0_0_0/0.6)]"><Device max label={h.chip.t}><WorkScreen active lang={lang} onStep={onStep} /></Device></div>
               <AnimatePresence>{note && (
                 <m.div key={ticks} aria-hidden="true" initial={reduce ? false : { opacity: 0, x: 12, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, x: -6 }} transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="absolute -start-[30%] top-[62%] flex items-center gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">
+                  className="absolute -start-[30%] top-[62%] flex items-center max-md:start-1/2 max-md:top-auto max-md:bottom-[14%] max-md:-translate-x-1/2 gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">
                   <span className="grid h-7 w-7 place-items-center [&>svg]:h-7 [&>svg]:w-7"><CheckRing on reduce={reduce} /></span>
                   <span className="leading-tight"><span className="block text-[14px] font-semibold">{STEP_DONE[locale] ?? STEP_DONE.en}</span><span className="block text-[12px] text-white/70">{ticks}/6</span></span>
                 </m.div>)}</AnimatePresence>

@@ -63,7 +63,7 @@ export default function Pricing() {
       <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgb(244_240_235/0.09)_0%,rgb(244_240_235/0)_70%)]" />
       <section className="container-x">
         <div className="mx-auto max-w-[52rem] text-center">
-          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><span className="ch-label">{t.k}</span></p>
+          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{t.k}</span></p>
           <h1 className="mx-auto mt-5 max-w-[22ch] text-[clamp(38px,0.9rem+3.3vw,64px)] leading-[1.04] [text-wrap:balance]"><Split text={t.h1} /></h1>
           <p className="intro mx-auto mt-5 max-w-[34rem]">{t.sub}</p>
           <div className="mt-10 flex justify-center"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
@@ -109,7 +109,7 @@ export default function Pricing() {
       <section id="quote" aria-labelledby="quote-h" className="container-x mt-6 scroll-mt-28">
         <div className="grid-12 gap-y-8 pt-14 md:pt-20">
           <div className="col-span-12 lg:col-span-5">
-            <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><span className="ch-label">{q.k}</span></p>
+            <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{q.k}</span></p>
             <h2 id="quote-h" className="v4-h2 mt-4 max-w-[16ch]"><Split text={q.h} /></h2>
             <p className="intro mt-4 max-w-[30rem]">{q.p}</p>
             <a href={SITE.demo} className="group mt-6 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{q.alt}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>

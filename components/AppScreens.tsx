@@ -29,19 +29,29 @@ export function useTick(active: boolean, ms: number, max: number) {
 /** A still close-up of the scene behind the phone, so the screen and the stage show the same place. `at` is the focus
  *  point (object-position and zoom origin); it drifts in slowly while active, like a handheld clip. */
 export type Still = { src: string; at: string };
-export function StillClip({ still, active, className = "" }: { still: Still; active: boolean; className?: string }) {
+export function StillClip({ still, active, className = "", soft = false }: { still: Still; active: boolean; className?: string; soft?: boolean }) {
   return (<div className="relative h-full w-full overflow-hidden">
-    <img src={still.src} alt="" decoding="async" className={`h-full w-full object-cover transition-transform ease-out motion-reduce:transition-none ${active ? "scale-[1.75] duration-[6000ms]" : "scale-[1.6] duration-0"} ${className}`}
+    <img src={still.src} alt="" decoding="async" className={`h-full w-full object-cover transition-transform ease-out motion-reduce:transition-none ${soft ? (active ? "scale-[1.1] duration-[6000ms]" : "scale-[1.02] duration-0") : active ? "scale-[1.75] duration-[6000ms]" : "scale-[1.6] duration-0"} ${className}`}
       style={{ objectPosition: still.at, transformOrigin: still.at }} /></div>);
 }
 export function Clip({ name, active, className = "", still }: { name: string; active: boolean; className?: string; still?: Still }) {
   if (still) return <StillClip still={still} active={active} className={className} />;
   return <VideoClip name={name} active={active} className={className} />;
 }
+/** Phones, Save-Data and slow connections: the phone mockups show the clip's still frame with a slow drift instead of
+ *  streaming the clip (on the home page that was about 1.7 MB of video in the first seconds on a phone). */
+function lite() {
+  try {
+    const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    return matchMedia("(max-width: 767px)").matches || !!c?.saveData || /(^|-)2g$|^3g$/.test(c?.effectiveType ?? "");
+  } catch { return false; }
+}
 function VideoClip({ name, active, className = "" }: { name: string; active: boolean; className?: string }) {
-  const r = useRef<HTMLVideoElement>(null); const [ready, setReady] = useState(false);
-  useEffect(() => { const v = r.current; if (!v) return; if (active) playOnly(v); else stopVideo(v); }, [active]);
+  const r = useRef<HTMLVideoElement>(null); const [ready, setReady] = useState(false); const [still, setStill] = useState(false);
+  useEffect(() => { setStill(lite()); }, []);
+  useEffect(() => { const v = r.current; if (!v) return; if (active && !lite()) playOnly(v); else stopVideo(v); }, [active]);
   useEffect(() => () => { const v = r.current; if (v) stopVideo(v); }, []);
+  if (still) return <StillClip still={{ src: `/video/${name}.webp`, at: "50% 45%" }} active={active} className={className} soft />;
   return (<div className="relative h-full w-full">
     <video ref={r} muted loop playsInline preload="none" poster={`/video/${name}.webp`} onLoadedData={() => setReady(true)} className={`h-full w-full object-cover ${className}`}>
       <source src={`/video/${name}.webm`} type="video/webm" /><source src={`/video/${name}.mp4`} type="video/mp4" /></video>

@@ -90,25 +90,25 @@ export function MobileMenuBody({ lang, d, home, close, openSearch, pricing }: { 
   const tr = lang === "tr"; const [grp, setGrp] = useState<string | null>(null);
   return (
             <div className="container-x flex-1 overflow-y-auto pb-6">
-              <button type="button" onClick={() => { close(); openSearch(); }} className="mt-2 flex h-12 w-full items-center gap-3 rounded-2xl bg-surface-1 px-4 text-ink-muted">
-                <MagnifyingGlass size={18} aria-hidden="true" />{d ? d.nav.searchSite : tr ? "Sitede ara" : "Search the site"}
+              <button type="button" onClick={() => { close(); openSearch(); }} className="mt-1 flex h-11 w-full items-center gap-2.5 rounded-full bg-white/[.06] px-4 text-[15px] text-ink-muted ring-1 ring-white/[.08] backdrop-blur-md">
+                <MagnifyingGlass size={16} aria-hidden="true" />{d ? d.nav.searchSite : tr ? "Sitede ara" : "Search the site"}
               </button>
               {/* Accordion: one group open at a time, headings are 48 px rows. */}
-              <div className="mt-4 divide-y divide-line border-y border-line">
+              <div className="mt-3 divide-y divide-white/[.07]">
               {NAV.map((g, gi) => { const label = d ? (d.nav as Record<string, unknown>)[g.id] as string ?? g.label[lang] : g.label[lang]; const on = grp === g.id; return (
                 <m.section key={g.id} aria-label={label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 + gi * 0.06, duration: 0.4, ease: EASE }}>
-                  <button type="button" aria-expanded={on} aria-controls={`mm-${g.id}`} onClick={() => setGrp(on ? null : g.id)} className="flex min-h-14 w-full items-center justify-between px-1 text-start text-[18px] font-semibold text-ink">
+                  <button type="button" aria-expanded={on} aria-controls={`mm-${g.id}`} onClick={() => setGrp(on ? null : g.id)} className="flex min-h-12 w-full items-center justify-between px-1 text-start text-[16px] font-semibold text-ink">
                     {label}<Plus size={16} aria-hidden="true" className={`text-ink-muted transition-transform duration-300 ${on ? "rotate-45" : ""}`} /></button>
-                  <div id={`mm-${g.id}`} hidden={!on} className="pb-3">
+                  <div id={`mm-${g.id}`} hidden={!on} className="pb-2.5">
                   {g.id === "product" ? <MobileFeatures close={close} /> : <ul>
                     {g.items.map((it) => { const Ic = it.icon; return (
-                      <li key={it.href}><a href={navHref(it, home)} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
-                        <span className="grid h-9 w-9 place-items-center rounded-xl bg-white/[.06]"><Ic size={18} /></span>{tt(d, it.k, 0, it.t[lang])}</a></li>); })}
+                      <li key={it.href}><a href={navHref(it, home)} onClick={close} className="flex min-h-11 items-center gap-3 rounded-xl px-1 text-[15px] text-ink/90">
+                        <span className="grid h-7 w-7 place-items-center rounded-lg bg-white/[.06] text-ink-muted"><Ic size={15} /></span>{tt(d, it.k, 0, it.t[lang])}</a></li>); })}
                   </ul>}
                   </div>
                 </m.section>); })}
               </div>
-              <Link prefetch={false} href={lh("/pricing/")} onClick={close} className="flex min-h-14 items-center border-b border-line px-1 text-[18px] font-semibold">{pricing}</Link>
+              <Link prefetch={false} href={lh("/pricing/")} onClick={close} className="flex min-h-12 items-center border-t border-white/[.07] px-1 text-[16px] font-semibold">{pricing}</Link>
             </div>
   );
 }
@@ -116,12 +116,12 @@ export function MobileMenuBody({ lang, d, home, close, openSearch, pricing }: { 
 function MobileFeatures({ close }: { close: () => void }) {
   const lh = useHref();
   const { locale } = useLocale(); const t = FEAT_NAV[locale];
-  return (<div className="mt-2 space-y-4">
-    {GROUPS.map((g) => (<div key={g}><p className="px-1 text-[12px] text-ink-faint">{t.groups[g]}</p>
+  return (<div className="mt-1 space-y-3">
+    {GROUPS.map((g) => (<div key={g}><p className="px-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint">{t.groups[g]}</p>
       <ul className="mt-1">{FEATURES.filter((f) => f.group === g).map((f) => { const Ic = FICON[f.icon]; return (
-        <li key={f.slug}><Link prefetch={false} href={lh(`/features/${f.slug}/`)} onClick={close} className="flex min-h-12 items-center gap-3.5 rounded-xl px-1 py-1.5 text-[17px] text-ink">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-[var(--card)]"><Ic size={18} /></span>{t.items[f.slug][0]}
-          {f.status === "soon" && <span className="rounded-full bg-[var(--card)] px-2 py-0.5 text-[12px] text-ink-faint">{t.soon}</span>}</Link></li>); })}</ul></div>))}
-    <Link prefetch={false} href={lh("/features/")} onClick={close} className="flex min-h-12 items-center px-1 text-[15px] font-semibold">{t.all}</Link>
+        <li key={f.slug}><Link prefetch={false} href={lh(`/features/${f.slug}/`)} onClick={close} className="flex min-h-11 items-center gap-3 rounded-xl px-1 text-[15px] text-ink/90">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-white/[.06] text-ink-muted"><Ic size={15} /></span>{t.items[f.slug][0]}
+          {f.status === "soon" && <span className="ms-auto text-[12px] text-ink-faint">{t.soon}</span>}</Link></li>); })}</ul></div>))}
+    <Link prefetch={false} href={lh("/features/")} onClick={close} className="flex min-h-11 items-center px-1 text-[14px] font-semibold">{t.all}</Link>
   </div>);
 }

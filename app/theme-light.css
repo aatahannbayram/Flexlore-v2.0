@@ -36,6 +36,7 @@
 :root[data-theme="light"] .decoration-white\/20:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .decoration-white\/40:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.4); }
 :root[data-theme="light"] .divide-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] .divide-white\/\[\.07\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .group:hover .group-hover\:text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .group:hover .group-hover\:text-white\/80:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
 :root[data-theme="light"] .group:hover .group-hover\:text-white\/90:not(.dark, .dark *) { color: rgb(22 22 22 / 0.9); }
@@ -69,8 +70,10 @@
 :root[data-theme="light"] .ring-white\/\[\.04\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.06\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.07\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
+:root[data-theme="light"] .ring-white\/\[\.08\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .ring-white\/\[\.09\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .ring-white\/\[\.1\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.1); }
+@media (min-width: 640px) { :root[data-theme="light"] .sm\:text-white\/45:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); } }
 :root[data-theme="light"] .text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .text-white\/25:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }
 :root[data-theme="light"] .text-white\/30:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); }

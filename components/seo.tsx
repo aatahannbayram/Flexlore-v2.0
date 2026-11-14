@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { SITE } from "./config";
 import { trOf, enOf, isTrPath } from "./i18n/routes";
 export const robots = SITE.noindex ? { index: false, follow: false, googleBot: { index: false, follow: false } } : { index: true, follow: true };
-export function meta({ title, description, path, image = "/og.png", type = "website" }: { title: string; description: string; path: string; image?: string; type?: "website" | "article" }): Metadata {
+export function meta({ title, description, path, image, type = "website" }: { title: string; description: string; path: string; image?: string; type?: "website" | "article" }): Metadata {
+  /* Share image: the Turkish card on Turkish pages, the English card elsewhere (both 1200 x 630). */
+  image ??= isTrPath(path) ? "/og-tr.png" : "/og.png";
   return { title: { absolute: title }, description, alternates: { canonical: path, ...langs(path) }, robots,
     openGraph: { type, url: path, siteName: "Flexlore", title, description, images: [{ url: image, alt: title }], locale: isTrPath(path) ? "tr_TR" : "en_US" },
     twitter: { card: "summary_large_image", title, description, images: [image] } };

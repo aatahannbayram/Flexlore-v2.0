@@ -142,7 +142,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
       <AnimatePresence>
         {open && (
           <m.div id="menu" role="dialog" aria-modal="true" aria-label={t.menu} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex flex-col bg-bg">
+            className="mm-bg fixed inset-0 z-50 flex flex-col">
             <div className="container-x flex h-[var(--header-h)] shrink-0 items-center justify-between">
               <><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width={110} height={24} className="logo-dark h-6 w-auto" /><img src="/brand/wordmark-light-main.svg" alt="Flexlore" width={110} height={24} className="logo-light h-6 w-auto" /></>
               <button type="button" onClick={() => setOpen(false)} aria-label={t.close} autoFocus className="grid h-11 w-11 place-items-center rounded-full"><X size={22} aria-hidden="true" /></button>

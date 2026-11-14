@@ -55,7 +55,7 @@ function RowCount({ row, n, className = "" }: { row: React.RefObject<HTMLElement
 }
 /** Chapter marker: the home page reads as one story, numbered 01 to 06. */
 const Ch = ({ n, children }: { n: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-2" data-n={n}><span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-flame" /><p className="ch-label">{children}</p></div>);
+  <div className="flex items-center gap-2" data-n={n}><span aria-hidden="true" className="kick-line" /><p className="ch-label">{children}</p></div>);
 /** Chapter head: number and heading on the left, the lead on the right (03 and 04 share it, so they read as a pair). */
 const Head = ({ n, k, id, h, h2, p, w = "max-w-[24ch]", extra }: { n: string; k: string; id: string; h: string; h2?: string; p: string; w?: string; extra?: React.ReactNode }) => (
   <div className="grid-12 items-end gap-y-4">
@@ -163,6 +163,9 @@ export function StepsV3() {
   /* Steps advance on their own every 6 s while the section is on screen; only the pause button stops them. */
   const [i, setI] = useState(0); const [paused, setPaused] = useState(false);
   const run = on && !paused && !reduce;
+  /* Phones: the blurred stage behind the phone is a picture, not a clip (it is soft and small there anyway). */
+  const [small, setSmall] = useState(false);
+  useEffect(() => { setSmall(matchMedia("(max-width: 767px)").matches); }, []);
   useEffect(() => { if (!run) return; const t = window.setTimeout(() => setI((k) => (k + 1) % 5), 6000); return () => window.clearTimeout(t); }, [run, i]);
   const screen = i === 0 ? <CameraScreen active={on && !reduce} lang={lang} /> : i === 1 ? <Editor active={on} lang={lang} clip="how-editor" />
     : i === 2 ? <StepPlayerScreen active={on} lang={lang} /> : i === 3 ? <Quiz active={on} lang={lang} q={d.bento.q} a={d.bento.qa} /> : <Ready active={on} lang={lang} />;
@@ -181,7 +184,7 @@ export function StepsV3() {
                   /* Step 1: the stage is the same bright kitchen clip the phone is filming, softened, so phone and room match (and step 2 continues it).
                      The clip is portrait; on wide stages it is drawn wider and shifted so the cook stands just left of centre, behind the phone.
                      Dimmed, desaturated and darker toward the right so the bright kitchen reads as matte as the other stages. */
-                  ? <>{reduce ? <img src="/video/how-editor.webp" alt="" decoding="async" className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%] brightness-[0.78] saturate-[0.8]" />
+                  ? <>{reduce || small ? <img src="/video/how-editor.webp" alt="" decoding="async" className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%] brightness-[0.78] saturate-[0.8]" />
                     : <video className="absolute inset-y-0 left-0 h-full w-full max-w-none scale-[1.06] object-cover object-[62%_50%] blur-[6px] lg:left-[-21%] lg:w-[130%] lg:object-[50%_20%] brightness-[0.78] saturate-[0.8]" poster="/video/how-editor.webp" muted loop playsInline autoPlay preload="auto" aria-hidden="true">
                         <source src="/video/how-editor.webm" type="video/webm" /><source src="/video/how-editor.mp4" type="video/mp4" /></video>}
                     <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(90deg,rgb(17_17_17/0.1)_0%,rgb(17_17_17/0.2)_45%,rgb(17_17_17/0.7)_100%)] rtl:-scale-x-100" /></>
@@ -210,7 +213,21 @@ export function StepsV3() {
             {/* Steps as quiet rows on a thin rail: the picked one lifts onto a card and opens its line. Every open line reserves
                 the height of the longest one (all five stacked in one grid cell), so the list never changes height and
                 nothing around it moves when the step changes. Numbers stay neutral: white for the open step, a tick once done. */}
-            <ol className="relative flex flex-col gap-1 before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
+            {/* Phones: one caption under the stage, all five stacked in one cell so the height never changes, and five
+                number taps. The full list is for wider screens. */}
+            <div className="md:hidden">
+              <div role="tablist" aria-label={c.k} className="-ms-1 flex items-center">
+                {s.map(([h], k) => <button key={h} type="button" role="tab" aria-selected={i === k} aria-label={h} onClick={() => setI(k)}
+                  className="grid h-11 w-11 place-items-center"><span className={`grid h-9 w-9 place-items-center rounded-full text-[13px] font-semibold tabular-nums transition-colors duration-300 ${i === k ? "bg-ink text-bg" : k < i ? "bg-white/[.08] text-ink-muted" : "bg-white/[.04] text-ink-faint"}`}>{k < i ? <Check size={13} aria-hidden="true" /> : k + 1}</span></button>)}
+                <span className="ms-auto rounded-full bg-white/[.06] px-2.5 py-1 text-[12.5px] font-medium text-ink-muted">{roles[ROLE[i]]}</span>
+              </div>
+              <div className="mt-4 grid" aria-live="polite">
+                {s.map(([h, q], k) => <div key={h} aria-hidden={k !== i} className={`[grid-area:1/1] transition-opacity duration-500 ${k === i ? "opacity-100" : "pointer-events-none opacity-0"}`}>
+                  <p className="text-[20px] font-semibold leading-tight tracking-[-0.02em]">{h}</p>
+                  <p className="mt-1.5 text-[15px] leading-[1.5] text-ink-muted">{q}</p></div>)}
+              </div>
+            </div>
+            <ol className="relative hidden flex-col gap-1 md:flex before:absolute before:bottom-6 before:start-[27px] before:top-6 before:w-px before:bg-line md:before:start-[31px]" role="tablist" aria-label={c.k}>
               {s.map(([h], k) => { const act = i === k; const done = k < i; return (
                 <li key={h}>
                   <button type="button" role="tab" aria-selected={act} onClick={() => setI(k)} onFocus={() => setI(k)}
@@ -230,7 +247,7 @@ export function StepsV3() {
             </ol>
           </div>
         </div>
-        <div className="mt-4 flex flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:mt-5">
+        <div className="mt-5 hidden flex-col gap-2 text-[13px] text-ink-faint sm:flex-row sm:justify-between md:flex">
           <p className="flex items-start gap-2"><ShieldCheck size={15} aria-hidden="true" className="mt-px shrink-0" />{c.note}</p><p>{c.sample}</p>
         </div>
       </div>
@@ -636,7 +653,7 @@ export function EndV3() {
         <div className="grid-12 items-center gap-y-8">
           <div className="col-span-12 lg:col-span-5">
             <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
-            <p className="intro mt-4 max-w-[28rem]">{c.p}</p>
+            <p className="intro m-keep mt-4 max-w-[28rem]">{c.p}</p>
             <a href={SITE.demo} className="mt-7 inline-grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.cta}</span></a>
           </div>
           <div className="col-span-12 mx-auto w-full lg:col-span-7"><div dir="ltr" className="overflow-hidden rounded-[24px]"><CtaDuoInner lang={lang} /></div></div>

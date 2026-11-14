@@ -15,11 +15,11 @@ export function TrustStrip({ label, lang = "en", as: T = "section" }: { label: s
               hover, still with reduced motion) with wide faded edges. Every tile is the same size (NVIDIA first, a touch brighter) so the row reads
               as one set; official plates (NVIDIA, Google) stay as supplied inside it. */}
           <div className="marquee relative w-full overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_18%,#000_82%,transparent)]">
-            <ul className="marquee-track flex w-max items-center gap-3">
+            <ul className="marquee-track flex w-max items-center gap-2 md:gap-3">
               {[0, 1].map((copy) => [...list.map((p) => ({ p })), ...(ph ? [{ p: null }] : [])].map(({ p }, k) => (
                 <li key={`${copy}-${k}`} aria-hidden={copy === 1 ? true : undefined}>
                   <a href={p ? p.href : "https://www.producthunt.com/products/flexlore-app"} target="_blank" rel="noopener" aria-label={p ? p.name : "Flexlore on Product Hunt"} tabIndex={copy === 1 ? -1 : undefined}
-                    className={`flex h-16 w-[184px] items-center justify-center rounded-[14px] px-4 ring-1 transition-colors duration-300 hover:bg-white/[.08] ${p?.org === "NVIDIA" ? "bg-white/[.06] ring-white/[.1]" : "bg-white/[.03] ring-white/[.04]"}`}>
+                    className={`flex h-12 w-[112px] items-center justify-center rounded-[12px] px-2 ring-1 md:h-16 md:w-[184px] md:rounded-[14px] md:px-4 transition-colors duration-300 hover:bg-white/[.08] ${p?.org === "NVIDIA" ? "bg-white/[.06] ring-white/[.1]" : "bg-white/[.03] ring-white/[.04]"}`}>
                     {!p ? <span className="flex items-center gap-2.5"><img src="/brand/programs/producthunt.svg" alt="" width={24} height={24} className="block h-6 w-6" /><span className="flex flex-col leading-tight"><span className="text-[14.5px] font-semibold tracking-[-0.02em] text-white">Product Hunt</span><span className="text-[12px] text-white/50">{lang === "tr" ? "Lansman" : "Launch"}</span></span></span>
                     : p.badge && (p.org === "NVIDIA" || p.org === "Google")
                       ? p.caption
