@@ -45,7 +45,7 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
       <img src={`/photos/${n}-1600.webp`} srcSet={`/photos/${n}-800.webp 800w, /photos/${n}-1600.webp 1600w`} sizes="100vw" alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className={cls} /></picture>);
   const stack = (cls: string) => SLIDES.map(([n, pos], k) => <div key={n} className={`absolute inset-0 transition-opacity duration-700 ease-out ${k === i ? "opacity-100" : "opacity-0"}`}>{pic(n, pos, cls)}</div>);
   return (
-    <section aria-labelledby="facts-h" className="section-y">
+    <section aria-labelledby="facts-h" className="section-y hidden md:block">
       <div className="dark relative isolate overflow-x-clip px-2 py-8 text-white sm:px-5 sm:py-12 lg:px-7 lg:py-16">
         {/* The blurred copy fades in and out at the top and bottom, so the band melts into the page instead of starting
             and ending in hard lines. */}

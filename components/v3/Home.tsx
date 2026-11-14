@@ -270,24 +270,25 @@ export function WhyV3() {
           <h2 id="why-h" className="rv v4-h2 mt-3" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
           <p className="rv intro mx-auto mt-4 max-w-[40rem]">{c.lead}</p>
         </div>
-        <ul ref={ref} className={`no-sb -mx-[var(--pad-x)] mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[var(--pad-x)] [scroll-padding-inline:var(--pad-x)] md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible md:px-0 ${go || reduce ? "bx-go" : ""}`}>
+        <ul ref={ref} className={`mt-8 flex flex-col gap-3 md:mt-12 md:grid md:grid-cols-3 md:gap-6 ${go || reduce ? "bx-go" : ""}`}>
           {c.cards.map(([h, p], k) => (
-            <m.li key={h} {...rise(reduce, k)} className="glass-card group flex w-[calc(100%-32px)] shrink-0 snap-start flex-col rounded-[26px] p-2 md:w-auto">
+            <m.li key={h} {...rise(reduce, k)} className="glass-card m-flat group flex flex-col md:rounded-[26px] md:p-2">
               {/* Standard card: the photograph inset in the glass, its story fragment on the photo, the words below. */}
-              <div className="dark relative aspect-[4/3.4] overflow-hidden rounded-[20px] bg-[#171717] text-white">
+              <div className="dark relative aspect-[16/10] overflow-hidden rounded-[22px] bg-[#171717] text-white md:aspect-[4/3.4] md:rounded-[20px]">
                 {imgs[k].startsWith("/") ? <img src={imgs[k]} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
                   : <Photo n={imgs[k] as Media} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15),rgb(16_16_16/0.55))]" />
-                <div className="absolute inset-x-3 bottom-3 md:inset-x-4 md:bottom-4" aria-hidden="true">{frags[k]}</div>
+                <div className="absolute inset-x-3 bottom-3 hidden md:inset-x-4 md:bottom-4 md:block" aria-hidden="true">{frags[k]}</div>
+                {/* Phones: the title sits on the photo; the card text is for wider screens. */}
+                <p aria-hidden="true" className="absolute inset-x-4 bottom-4 text-[19px] font-semibold leading-[24px] tracking-[-0.02em] [text-shadow:0_1px_14px_rgb(0_0_0/0.45)] md:hidden">{h}</p>
               </div>
-              <div className="flex flex-1 flex-col px-4 pb-4 pt-5 md:px-5">
+              <div className="sr-only flex-1 flex-col md:not-sr-only md:flex md:px-5 md:pb-4 md:pt-5">
                 <h3 className="text-[19px] font-semibold leading-[25px] tracking-[-0.02em]">{h}</h3>
                 <p className="mt-2 text-[15px] leading-[22px] text-ink-muted">{p}</p>
               </div>
             </m.li>))}
         </ul>
-        <RowCount row={ref} n={c.cards.length} className="md:hidden" />
-      </div>
+              </div>
     </section>);
 }
 function useCount(to: number, run: boolean) {
@@ -536,19 +537,19 @@ function CaseCard({ c, t, act, k, n, className }: { c: (typeof CASES)[number]; t
   const I = SEC_IC[c.sec];
   return (
     <article aria-roledescription="slide" aria-label={`${c.company}, ${k + 1} / ${n}`}
-      className={`group dark relative shrink-0 select-none overflow-hidden rounded-[24px] bg-[#171717] text-white transition-opacity duration-500 ${act ? "opacity-100" : "opacity-45"} ${className}`}>
+      className={`group dark relative shrink-0 select-none overflow-hidden rounded-[20px] bg-[#171717] text-white transition-opacity duration-500 md:rounded-[24px] ${act ? "opacity-100" : "max-md:opacity-100 opacity-45"} ${className}`}>
       <Link href={`/customers/${c.slug}/`} draggable={false} aria-label={`${c.company}: ${OPEN[useLocale().locale] ?? OPEN.en}`} className="absolute inset-0 z-10 rounded-[24px]" />
       <Photo n={c.img} portrait sizes="(min-width:768px) 70vw, 86vw" className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] ${act ? "scale-100" : "scale-[1.06]"}`} />
       <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,rgb(16_16_16/0.15)_0%,rgb(16_16_16/0.55)_60%,rgb(16_16_16/0.85)_100%)]" />
-      <div className="relative flex h-full flex-col items-center justify-between p-6 text-center md:p-8">
-        <span className={`${glass} inline-flex items-center gap-2 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90`}><I size={14} aria-hidden="true" />{t.sec[c.sec]}</span>
+      <div className="relative flex h-full flex-col items-center justify-center p-4 text-center md:justify-between md:p-8">
+        <span className={`${glass} hidden md:inline-flex items-center gap-2 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90`}><I size={14} aria-hidden="true" />{t.sec[c.sec]}</span>
         <div className="max-w-[92%] md:max-w-[80%]">
           {LOGOS[c.slug]
             ? <h3 className="flex justify-center drop-shadow-[0_2px_18px_rgb(16_16_16/0.45)]"><CaseLogo slug={c.slug} name={c.company} /></h3>
             : <h3 className="text-[clamp(30px,1rem+2.6vw,62px)] [text-wrap:balance] font-semibold leading-[0.98] tracking-[-0.045em]">{c.company}</h3>}
-          <p className="mt-3 text-[15px] text-white/80 md:text-[17px]">{t.desc[c.desc]}</p>
+          <p className="mt-3 hidden text-[15px] text-white/80 md:block md:text-[17px]">{t.desc[c.desc]}</p>
         </div>
-        <span className={`${glass} inline-flex items-center gap-1.5 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90 transition-colors group-hover:text-white`}>{OPEN[useLocale().locale] ?? OPEN.en}<Chev dir="end" className="h-2 w-3" /></span>
+        <span className={`${glass} hidden items-center gap-1.5 !rounded-full px-3.5 py-1.5 text-[13px] font-medium text-white/90 transition-colors group-hover:text-white md:inline-flex`}>{OPEN[useLocale().locale] ?? OPEN.en}<Chev dir="end" className="h-2 w-3" /></span>
       </div>
     </article>);
 }
@@ -605,7 +606,7 @@ function CasesCarousel() {
       <div className="container-x">
         <Ch n="06">{t.k}</Ch><H2 id="cases-h" a={t.h} b={t.h2} className="max-w-[32ch]" />
         <p className="intro mt-4">{t.soon}</p>
-        <div className="mt-6 flex items-center justify-between gap-4 border-b border-line">
+        <div className="mt-6 hidden items-center justify-between gap-4 border-b border-line md:flex">
           <CaseTabs t={t} secs={secs} cur={list[i]?.sec} go={go} list={list} />
           <Arrows i={i} n={list.length} go={go} />
         </div>
@@ -613,10 +614,10 @@ function CasesCarousel() {
       <div ref={track} role="region" aria-roledescription="carousel" aria-label={t.k} tabIndex={0}
         onKeyDown={(e) => { if (e.key === "ArrowRight") { e.preventDefault(); go(i + 1); } if (e.key === "ArrowLeft") { e.preventDefault(); go(i - 1); } }}
         onPointerDown={down} onPointerMove={move} onPointerUp={up} onPointerLeave={up} onClickCapture={(e) => { if (dragged.current) { e.preventDefault(); e.stopPropagation(); dragged.current = false; } }}
-        className={`no-sb relative mt-8 flex shrink-0 gap-4 md:mt-10 md:gap-6 ${pinned ? "overflow-x-hidden" : "cursor-grab snap-x snap-mandatory overflow-x-auto active:cursor-grabbing"} px-[max(var(--pad-x),calc((100vw-var(--container))/2))] [scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))]`}>
-        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-[4/5] w-[calc(100%-32px)] snap-start sm:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)] md:max-h-[min(52vh,480px)]" />)}
+        className={`no-sb relative mt-8 grid grid-cols-2 gap-3 px-[var(--pad-x)] md:mt-10 md:flex md:shrink-0 md:gap-6 ${pinned ? "md:overflow-x-hidden" : "md:cursor-grab md:snap-x md:snap-mandatory md:overflow-x-auto md:active:cursor-grabbing"} md:px-[max(var(--pad-x),calc((100vw-var(--container))/2))] md:[scroll-padding-inline:max(var(--pad-x),calc((100vw-var(--container))/2))]`}>
+        {list.map((c, k) => <CaseCard key={c.slug} c={c} t={t} act={k === i} k={k} n={list.length} className="aspect-square min-w-0 first:col-span-2 first:aspect-[16/10] md:aspect-[16/8] md:w-[min(1000px,84%)] md:max-h-[min(52vh,480px)] md:snap-start md:first:aspect-[16/8]" />)}
       </div>
-      <div className="mt-4 flex items-center justify-center gap-3" aria-hidden="true">
+      <div className="mt-4 hidden items-center justify-center gap-3 md:flex" aria-hidden="true">
         <span className="flex gap-1.5">{list.map((c, k) => <span key={c.slug} className={`h-1.5 rounded-full transition-all duration-200 ${k === i ? "w-6 bg-ink" : "w-1.5 bg-line-strong"}`} />)}</span>
         <span className="text-[12px] tabular-nums text-ink-faint">{i + 1} / {list.length}</span></div>
       </div></div>
@@ -695,23 +696,23 @@ export function SectorsV3() {
             </li>); })}
         </ul>
         {/* Phones and tablets: cards in a sideways row (snap, the next card peeks), each with its line and uses. */}
-        <ul ref={row} className="no-sb -mx-[var(--pad-x)] mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-[var(--pad-x)] px-[var(--pad-x)] lg:hidden">
+        <ul ref={row} className="no-sb mt-8 grid grid-cols-2 gap-3 md:-mx-[var(--pad-x)] md:flex md:snap-x md:snap-mandatory md:gap-4 md:overflow-x-auto md:scroll-px-[var(--pad-x)] md:px-[var(--pad-x)] lg:hidden">
           {IND.map(([href, img, Ic, pos], k) => (
-            <m.li key={href} className="w-[calc(100%-32px)] shrink-0 snap-start sm:w-[46%]"
+            <m.li key={href} className="min-w-0 md:w-[46%] md:shrink-0 md:snap-start"
               {...rise(reduce, k)}>
-              <Link href={href} className="group dark relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[22px] bg-[#171717] p-4 text-white">
+              <Link href={href} className="group dark relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-[20px] bg-[#171717] p-3.5 text-white md:aspect-[4/5] md:justify-between md:rounded-[22px] md:p-4">
                 {pic(img, "80vw", "absolute inset-0 h-full w-full object-cover", pos)}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.5)_0%,rgb(16_16_16/0)_26%,rgb(16_16_16/0)_42%,rgb(16_16_16/0.94)_100%)]" />
-                <span className="relative inline-flex h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
-                <span className="relative block"><span className="block text-[20px] font-semibold leading-tight tracking-[-0.02em]">{c.cards[k]}</span>
-                  <span className="mt-1.5 line-clamp-3 block text-[15px] leading-[22px] text-white/70">{tabs[k][0]}</span></span>
+                <span className="relative hidden h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold md:inline-flex"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
+                <span className="relative block"><span className="block text-[16px] font-semibold leading-tight tracking-[-0.02em] md:text-[20px]">{c.cards[k]}</span>
+                  <span className="mt-1.5 line-clamp-3 hidden text-[15px] md:block leading-[22px] text-white/70">{tabs[k][0]}</span></span>
               </Link>
             </m.li>))}
         </ul>
-        <RowCount row={row} n={IND.length} className="lg:hidden" />
+        <RowCount row={row} n={IND.length} className="hidden md:block lg:hidden" />
         <Link href="/see-it/" className="mt-6 inline-grid min-h-11 place-items-center md:hidden"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         {/* One slim glass strip: the other areas on one side, the site languages as round flags (a tap switches the site) on the other. */}
-        <div className="mt-12 grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
+        <div className="mt-12 hidden gap-5 md:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">
             <p className="text-[13.5px] font-medium text-ink-faint">{c.also}</p>
             <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2.5">

@@ -158,16 +158,16 @@ export function FeaturePage({ slug }: { slug: string }) {
 function FeatureCard({ f, wide = false }: { f: Feature; wide?: boolean }) {
   const { locale } = useLocale(); const t = FEAT_NAV[locale]; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
   return (
-    <RevealItem as="li" className={wide ? "md:col-span-2" : ""}><Link href={`/features/${f.slug}/`} className={`glass-card group flex h-full flex-col rounded-[26px] p-2 ${wide ? "md:grid md:grid-cols-[1fr_1fr] md:gap-2" : ""}`}>
-      <span className={`dark relative block overflow-hidden rounded-[20px] bg-[#1a1a1a] ${wide ? "aspect-[16/10] md:aspect-auto md:h-full md:min-h-[230px]" : "aspect-[16/10]"}`}>
+    <RevealItem as="li" className={`min-w-0 ${wide ? "md:col-span-2" : ""}`}><Link href={`/features/${f.slug}/`} className={`glass-card m-flat group flex h-full flex-col md:rounded-[26px] md:p-2 ${wide ? "md:grid md:grid-cols-[1fr_1fr] md:gap-2" : ""}`}>
+      <span className={`dark relative block overflow-hidden rounded-[18px] bg-[#1a1a1a] md:rounded-[20px] ${wide ? "aspect-[4/5] md:aspect-auto md:h-full md:min-h-[230px]" : "aspect-[4/5] md:aspect-[16/10]"}`}>
         <Pic n={f.photo} sizes="(min-width:1024px) 30vw, 100vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]" />
         <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(17_17_17/0.4)_0%,rgb(17_17_17/0)_38%,rgb(17_17_17/0)_70%,rgb(17_17_17/0.3)_100%)]" />
-        <span className="absolute start-3 top-3 grid h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.55)] text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.14)] backdrop-blur-md"><Ic size={17} /></span>
+        <span className="absolute start-3 top-3 hidden h-9 w-9 place-items-center rounded-[11px] bg-[rgb(17_17_17/0.55)] md:grid text-white shadow-[inset_0_0_0_1px_rgb(255_255_255/0.14)] backdrop-blur-md"><Ic size={17} /></span>
         {f.status === "soon" && <span className="absolute end-3 top-3 rounded-full bg-[rgb(17_17_17/0.55)] px-2.5 py-1 text-[12px] font-medium text-white/85 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.14)] backdrop-blur-md">{t.soon}</span>}
       </span>
-      <span className="flex flex-1 flex-col px-4 pb-4 pt-5 md:px-5">
-        <span className="text-[18px] font-semibold tracking-[-0.02em]">{h}</span><span className="mt-1.5 text-[15px] leading-[1.5] text-ink-muted">{line}</span>
-        <span className="mt-auto flex items-center justify-between pt-5 text-[13px] font-medium text-ink-faint transition-colors group-hover:text-ink">{t.how}
+      <span className="flex flex-1 flex-col px-1 pt-2.5 md:px-5 md:pb-4 md:pt-5">
+        <span className="text-[15px] font-semibold leading-snug tracking-[-0.02em] md:text-[18px]">{h}</span><span className="mt-1.5 hidden text-[15px] leading-[1.5] text-ink-muted md:block">{line}</span>
+        <span className="mt-auto hidden items-center md:flex justify-between pt-5 text-[13px] font-medium text-ink-faint transition-colors group-hover:text-ink">{t.how}
           <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted shadow-[inset_0_0_0_1px_var(--color-line)] transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-ink rtl:group-hover:-translate-x-0.5"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></span>
       </span>
     </Link></RevealItem>);
@@ -178,15 +178,15 @@ function LeadCard({ f, d }: { f: Feature; d: FDict }) {
   const { locale, lang } = useLocale(); const t = FEAT_NAV[locale]; const c = d.common; const Ic = FICON[f.icon]; const [h, line] = t.items[f.slug];
   const it = d.items[f.slug as keyof FDict["items"]];
   return (
-    <RevealItem as="li" className="md:col-span-2"><Link href={`/features/${f.slug}/`} className="glass-card group grid gap-2 rounded-[30px] p-2 md:grid-cols-[0.85fr_1.15fr]">
-      <span className="flex flex-col p-5 md:p-7">
+    <RevealItem as="li" className="col-span-2"><Link href={`/features/${f.slug}/`} className="glass-card group grid gap-2 rounded-[26px] p-2 md:grid-cols-[0.85fr_1.15fr] md:rounded-[30px]">
+      <span className="flex flex-col p-4 md:p-7">
         <span className="flex flex-wrap items-center gap-2.5"><span className="grid h-10 w-10 place-items-center rounded-[12px] bg-[var(--card-2)] text-ink shadow-[inset_0_0_0_1px_var(--color-line)]"><Ic size={19} /></span><Status f={f} c={c} /></span>
-        <span className="mt-8 text-[clamp(24px,1rem+0.8vw,30px)] font-semibold leading-[1.1] tracking-[-0.03em]">{h}</span>
-        <span className="mt-3 text-[16px] leading-[1.55] text-ink-muted">{it?.sub ?? line}</span>
-        <span className="mt-auto flex items-center gap-2 pt-8 text-[14px] font-medium text-ink">{t.how}
+        <span className="mt-5 text-[clamp(24px,1rem+0.8vw,30px)] md:mt-8 font-semibold leading-[1.1] tracking-[-0.03em]">{h}</span>
+        <span className="mt-3 hidden text-[16px] leading-[1.55] text-ink-muted md:block">{it?.sub ?? line}</span>
+        <span className="mt-auto hidden items-center gap-2 pt-8 md:flex text-[14px] font-medium text-ink">{t.how}
           <span className="grid h-8 w-8 place-items-center rounded-full bg-[var(--card-2)] text-ink-muted shadow-[inset_0_0_0_1px_var(--color-line)] transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-ink rtl:group-hover:-translate-x-0.5"><ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></span></span>
       </span>
-      <span className="dark relative block min-h-[340px] overflow-hidden rounded-[24px] bg-[#161616] text-white md:min-h-[430px]">
+      <span className="dark relative block min-h-[300px] overflow-hidden rounded-[20px] md:rounded-[24px] bg-[#161616] text-white md:min-h-[430px]">
         <Pic n={f.photo} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full scale-105 object-cover opacity-60 blur-[3px] transition-transform duration-700 group-hover:scale-[1.08]" />
         <span aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgb(17_17_17/0.15),rgb(17_17_17/0.75))]" />
         <span aria-hidden="true" className="absolute inset-0 flex items-center justify-center p-5 md:p-7"><FeatureVisual v={f.visual} mock={it?.mock ?? []} lang={lang} /></span>
@@ -301,7 +301,7 @@ export function FeaturesIndex() {
               </div>); })}
           </div>
           </div>
-          <ol className="mt-14 grid gap-3 md:mt-20 md:grid-cols-3 md:gap-4 lg:mt-24">
+          <ol className="mt-14 hidden gap-3 md:mt-20 md:grid md:grid-cols-3 md:gap-4 lg:mt-24">
             {GROUPS.map((g, k) => { const fs = FEATURES.filter((f) => f.group === g); return (
               <li key={g} className="relative">
                 <a href={`#g-${g}`} className="glass-card group relative flex h-full flex-col overflow-hidden rounded-[26px] p-6 md:p-7">
@@ -351,7 +351,7 @@ export function FeaturesIndex() {
               {/* A soft glow of the stage's photograph behind the glass. */}
               <span aria-hidden="true" className="pointer-events-none absolute -inset-x-8 -inset-y-10 -z-10 overflow-hidden opacity-[.22] blur-[70px] [mask-image:radial-gradient(closest-side,#000,transparent)]"><Pic n={glow} sizes="400px" className="h-full w-full scale-110 object-cover" /></span>
               <span aria-hidden="true" className="pointer-events-none absolute -end-10 top-10 -z-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.16),transparent_65%)] blur-2xl" />
-              <Reveal as="ul" stagger={0.06} className="grid gap-3 md:grid-cols-2 md:gap-4">
+              <Reveal as="ul" stagger={0.06} className="grid grid-cols-2 gap-x-3 gap-y-6 md:gap-4">
                 {lead && <LeadCard f={lead} d={d} />}
                 {rest.map((f, i) => <FeatureCard key={f.slug} f={f} wide={rest.length % 2 === 1 && i === rest.length - 1} />)}
               </Reveal>

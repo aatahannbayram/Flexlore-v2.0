@@ -52,6 +52,7 @@
 :root[data-theme="light"] .hover\:ring-white\/50:hover:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .hover\:text-white:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
 :root[data-theme="light"] .hover\:text-white\/80:hover:not(.dark, .dark *) { color: rgb(22 22 22 / 0.8); }
+@media (min-width: 768px) { :root[data-theme="light"] .md\:border-white\/15:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.15); } }
 :root[data-theme="light"] .ring-white:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .ring-white\/10:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .ring-white\/15:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.15); }

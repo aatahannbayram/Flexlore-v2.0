@@ -30,7 +30,7 @@ export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: str
   const ref = useRef<HTMLDivElement>(null); const near = useInView(ref, { margin: "400px 0px", once: true }); const on = useInView(ref, { amount: 0.25 });
   const icons = [MonitorPlay, Books, UsersThree, ChartBar];
   return (
-    <section id="desktop" aria-labelledby="desk-h" className="section-y overflow-x-clip [--bleed:calc(var(--pad-x)+max(0px,(100vw-var(--container)-2*var(--pad-x))/2))]">
+    <section id="desktop" aria-labelledby="desk-h" className="section-y hidden overflow-x-clip md:block [--bleed:calc(var(--pad-x)+max(0px,(100vw-var(--container)-2*var(--pad-x))/2))]">
       <div className="container-x grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
         {/* Start side: the promise, then the manager's week in four steps. */}
         <div className="lg:col-span-5">

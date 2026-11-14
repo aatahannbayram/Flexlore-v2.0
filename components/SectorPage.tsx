@@ -65,6 +65,10 @@ export default function SectorPage({ i }: { i: number }) {
   const { scrollYProgress: p } = useScroll({ target: hero, offset: ["start start", "end start"] });
   const vs = useTransform(p, [0, 1], [1, 1.1]); const hy = useTransform(p, [0, 1], [0, -160]); const by = useTransform(p, [0, 1], [0, -50]);
   const ho = useTransform(p, [0, 0.75], [1, 0]);
+  /* Phones: the hero stays put while the page scrolls (the rising headline read as the page jumping up). */
+  const [still, setStill] = useState(false);
+  useEffect(() => { const q = matchMedia("(max-width: 767px)"); const f = () => setStill(q.matches); f(); q.addEventListener("change", f); return () => q.removeEventListener("change", f); }, []);
+  const calm = reduce || still;
   const split = lang === "tr" ? ["Flexlore", `${s.tr} için`] : ["Flexlore for", s.en];
   const [pick, setPick] = useState<number | null>(null);
   const [sop, setSop] = useState(0);
@@ -86,7 +90,7 @@ export default function SectorPage({ i }: { i: number }) {
             Restaurants"), the sector line and lede bottom-left, one slim button bottom-right. On scroll the video zooms a
             little and the headline rises faster than the text below it (depth), nothing hijacks the scroll. */}
         <section ref={hero} className="dark relative h-svh min-h-[620px] overflow-hidden">
-          <m.div style={{ scale: reduce ? 1 : vs }} className="absolute inset-0"><Video name={s.v} eager /></m.div>
+          <m.div style={{ scale: calm ? 1 : vs }} className="absolute inset-0"><Video name={s.v} eager /></m.div>
           <div className="absolute inset-0 bg-[rgb(12_12_12/0.5)]" />
           <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_50%_45%,transparent_35%,rgb(10_10_10/0.75)_100%)]" />
           <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.8),transparent)]" />
@@ -94,10 +98,10 @@ export default function SectorPage({ i }: { i: number }) {
           <div className="container-x relative flex h-full flex-col pb-[max(7vh,112px)] pt-[calc(var(--header-h)+28px)]">
             <p className="sx-fade flex items-center gap-3 text-[13px] font-medium text-white/65">
               <span className="tabular-nums text-white">{s.idx}</span><span aria-hidden="true" className="h-px w-8 bg-white/30" />{s.kicker}</p>
-            <m.h1 style={{ y: reduce ? 0 : hy, opacity: reduce ? 1 : ho }} className="my-auto flex flex-wrap items-baseline gap-x-10 text-[clamp(44px,1rem+5vw,108px)] !font-normal leading-[0.98] !tracking-[-0.04em] text-white">
+            <m.h1 style={{ y: calm ? 0 : hy, opacity: calm ? 1 : ho }} className="my-auto flex flex-wrap items-baseline gap-x-10 text-[clamp(44px,1rem+5vw,108px)] !font-normal leading-[0.98] !tracking-[-0.04em] text-white">
               {split.map((w, k) => <span key={k} className={`inline-block overflow-hidden pb-[.08em] ${k ? "ms-auto" : ""}`}><span className="sx-word inline-block" style={{ animationDelay: `${250 + k * 160}ms` }}>{w}</span></span>).flatMap((el, k) => (k ? [" ", el] : [el]))}
             </m.h1>
-            <m.div style={{ y: reduce ? 0 : by }} className="grid items-end gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10">
+            <m.div style={{ y: calm ? 0 : by }} className="grid items-end gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10">
               <div className="sx-up max-w-[40rem]" style={{ animationDelay: "650ms" }}>
                 <p className="text-[clamp(20px,1rem+0.6vw,26px)] font-normal leading-[1.3] tracking-[-0.02em] text-white">{s.h}</p>
                 <p className="mt-3 text-[16px] leading-[1.55] text-white/70 md:text-[17px]">{s.lede}</p>
@@ -114,11 +118,11 @@ export default function SectorPage({ i }: { i: number }) {
         <section className="section-y">
           <div className="container-x grid-12 items-end gap-y-8">
             <div className="col-span-12 lg:col-span-6"><Ch n="01">{t.problem}</Ch><H2 text={s.problem.h} className="max-w-[16ch]" /></div>
-            <div className="col-span-12 grid gap-3 sm:grid-cols-2 lg:col-span-6">
+            <div className="col-span-12 grid gap-0 sm:grid-cols-2 sm:gap-3 lg:col-span-6">
               {s.problem.p.map((x, k) => (
-                <Rise key={k} d={k * 0.06} className="glass-card rounded-[24px] p-5 md:p-6">
-                  <span className="grid h-10 w-10 place-items-center rounded-[12px] bg-white/[.06] text-ink"><WarningCircle size={19} aria-hidden="true" /></span>
-                  <p className="mt-4 text-[16px] leading-[1.5] text-ink-muted">{x}</p>
+                <Rise key={k} d={k * 0.06} className="glass-card m-flat border-t border-line py-4 sm:rounded-[24px] sm:border-0 sm:p-5 md:p-6">
+                  <span className="hidden h-10 w-10 sm:grid place-items-center rounded-[12px] bg-white/[.06] text-ink"><WarningCircle size={19} aria-hidden="true" /></span>
+                  <p className="text-[16px] leading-[1.5] text-ink-muted sm:mt-4">{x}</p>
                 </Rise>))}
             </div>
           </div>
@@ -169,16 +173,16 @@ export default function SectorPage({ i }: { i: number }) {
         <section className="section-y pt-0">
           <div className="container-x"><PhotoBand img={howImg} className="p-5 sm:p-8 md:p-12">
             <Ch n="03">{t.how}</Ch><H2 text={t.howH} className="max-w-[20ch]" />
-            <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3">
+            <div className="mt-6 grid gap-0 md:mt-12 md:grid-cols-3 md:gap-3">
               {s.how.map((h, k) => { const Ic = HOW_IC[k] ?? Sparkle; return (
-                <Rise key={h.k} d={k * 0.06} className={`${glassTile} group relative overflow-hidden p-6 md:p-7`}>
+                <Rise key={h.k} d={k * 0.06} className={`${glassTile} group relative overflow-hidden max-md:!rounded-none max-md:!bg-transparent max-md:!shadow-none max-md:border-t max-md:border-white/15 max-md:px-0 max-md:py-5 md:p-7`}>
                   <div className="flex items-center justify-between">
-                    <span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[#F4F0EB] text-[#111] transition-transform duration-500 group-hover:-rotate-6"><Ic size={20} aria-hidden="true" /></span>
-                    <span className="text-[13px] font-semibold tabular-nums text-ink-faint">{String(k + 1).padStart(2, "0")}</span>
+                    <span className="hidden h-11 w-11 place-items-center rounded-[13px] bg-[#F4F0EB] text-[#111] transition-transform duration-500 group-hover:-rotate-6 md:grid"><Ic size={20} aria-hidden="true" /></span>
+                    <span className="text-[13px] font-semibold tabular-nums text-ink-faint max-md:hidden">{String(k + 1).padStart(2, "0")}</span>
                   </div>
-                  <p className="mt-8 text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{h.k}</p>
-                  <h3 className="mt-2 text-[22px] font-semibold leading-[1.15] tracking-[-0.025em]">{h.h}</h3>
-                  <p className="mt-3 text-[15px] leading-[1.55] text-white/70">{h.p}</p>
+                  <p className="mt-8 hidden text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-faint md:block">{h.k}</p>
+                  <h3 className="text-[20px] md:mt-2 md:text-[22px] font-semibold leading-[1.15] tracking-[-0.025em]">{h.h}</h3>
+                  <p className="mt-2 text-[15px] leading-[1.55] text-white/70 md:mt-3">{h.p}</p>
                   <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] origin-left scale-x-0 bg-ink transition-transform duration-700 group-hover:scale-x-100 rtl:origin-right" />
                 </Rise>); })}
             </div>
