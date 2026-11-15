@@ -1,31 +1,42 @@
 "use client";
 import { useState } from "react";
 import { TrustNote } from "./trust/TrustNote";
-import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS, savePct } from "./config";
+import { PLANS, COMPARE, SITE, savePct } from "./config";
+import { sendLead, leadDirect, type LeadType } from "./lead";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { useLocale, fmt } from "./i18n/LocaleProvider";
 import { GetApp } from "./home/home5b";
 import { QUOTE } from "./pages/copy-quote";
 import { PRICING2, type PricingCopy, type Cell } from "./pages/copy-pricing";
-import { ArrowRight, Check, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple } from "./ui/icons";
+import { ArrowRight, Check, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple, Users, Package, Wrench, Buildings } from "./ui/icons";
 
 const field = "block h-12 w-full rounded-[10px] border border-white/10 bg-[#262626] px-4 text-[16px] text-[#FAFAFA] outline-none transition-colors duration-150 placeholder:text-[#737373] focus:border-white/20";
 const glassCard = "k-card rounded-[16px] border border-white/10";
 
-function QuoteForm() {
+/* Request form: one form for the Enterprise quote and the add-ons. The type picked beside it (or by an add-on button)
+ * goes with the request; components/lead.ts sends it to HubSpot, PostHog, GA4 and Sentry, or to email as a fallback. */
+function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) {
   const { locale } = useLocale(); const q = QUOTE[locale];
   const [v, setV] = useState({ name: "", email: "", company: "", size: q.sizes[0], sector: q.sectors[0], sites: "", msg: "" });
+  const [state, setState] = useState<"idle" | "busy" | "hubspot" | "mail">("idle");
   const set = (k: keyof typeof v) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => setV({ ...v, [k]: e.target.value });
-  const send = (e: React.FormEvent) => {
-    e.preventDefault();
-    const body = [`${q.name}: ${v.name}`, `${q.email}: ${v.email}`, `${q.company}: ${v.company}`, `${q.size}: ${v.size}`, `${q.sector}: ${v.sector}`, `${q.sites}: ${v.sites}`, "", `${q.msg}`, v.msg].join("\n");
-    window.location.href = `mailto:support@flexlore.com?subject=${encodeURIComponent(`${q.subject}: ${v.company}`)}&body=${encodeURIComponent(body)}`;
+  const send = async (e: React.FormEvent) => {
+    e.preventDefault(); setState("busy");
+    const typeLabel = P ? P.opts[type][0] : q.subject;
+    const r = await sendLead({ ...v, type, typeLabel, subject: P ? typeLabel : q.subject, labels: { size: q.size, sector: q.sector, sites: q.sites, msg: q.msg } });
+    setState(r);
   };
   const L = ({ id, t, children }: { id: string; t: string; children: React.ReactNode }) => (
-    <label htmlFor={id} className="block"><span className="mb-1.5 block text-[13px] font-medium text-ink-muted">{t}</span>{children}</label>);
+    <label htmlFor={id} className="block"><span className="mb-1.5 block text-[13px] font-medium text-[#A3A3A3]">{t}</span>{children}</label>);
+  if (state === "hubspot" || state === "mail") return (
+    <div role="status" className={`${glassCard} flex min-h-[320px] flex-col items-start justify-center gap-3 p-6 md:p-8`}>
+      <CheckCircle size={28} aria-hidden="true" className="text-[#FAFAFA]" />
+      <p className="max-w-[30rem] text-[18px] font-medium leading-7">{state === "hubspot" ? (P?.sent ?? q.note) : (P?.sentMail ?? q.note)}</p>
+    </div>);
   return (
     <form onSubmit={send} className={`${glassCard} grid gap-4 p-5 sm:grid-cols-2 md:p-7`}>
+      {P && <p className="text-[18px] font-medium leading-7 sm:col-span-2">{P.formH}<span className="ms-2 text-[14px] font-normal text-[#A3A3A3]">{P.opts[type][0]}</span></p>}
       <L id="q-name" t={q.name}><input id="q-name" required autoComplete="name" value={v.name} onChange={set("name")} className={field} /></L>
       <L id="q-email" t={q.email}><input id="q-email" required type="email" autoComplete="email" value={v.email} onChange={set("email")} className={field} /></L>
       <L id="q-company" t={q.company}><input id="q-company" required autoComplete="organization" value={v.company} onChange={set("company")} className={field} /></L>
@@ -34,8 +45,8 @@ function QuoteForm() {
       <L id="q-sites" t={q.sites}><input id="q-sites" type="number" min={1} inputMode="numeric" value={v.sites} onChange={set("sites")} className={field} /></L>
       <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={4} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={`${field} h-auto py-3`} /></L></div>
       <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
-        <p className="flex items-center gap-2 text-[13px] text-ink-faint"><EnvelopeSimple size={15} aria-hidden="true" />{q.note}</p>
-        <button type="submit" className="inline-flex h-11 items-center gap-2 rounded-full bg-[#FAFAFA] px-5 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white">{q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
+        <p className="flex items-center gap-2 text-[13px] text-[#737373]"><EnvelopeSimple size={15} aria-hidden="true" />{leadDirect() && P ? P.direct : q.note}</p>
+        <button type="submit" disabled={state === "busy"} className="inline-flex h-11 items-center gap-2 rounded-full bg-[#FAFAFA] px-5 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white disabled:opacity-60">{P ? P.send : q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
       </div>
     </form>);
 }
@@ -56,16 +67,18 @@ const isUnl = (s: string) => /unlimited|sınırsız/i.test(s);
 
 export default function Pricing() {
   const { d, locale } = useLocale(); const c = d.pricing; const t = d.pricingPage; const q = QUOTE[locale];
-  const [yearly, setYearly] = useState(true); const [open, setOpen] = useState<number | null>(0);
+  const [yearly, setYearly] = useState(true); const [open, setOpen] = useState<number | null>(0); const [lead, setLead] = useState<LeadType>("enterprise");
+  const pick = (k: LeadType) => { setLead(k); document.getElementById("quote")?.scrollIntoView({ block: "start" }); };
   const best = Math.max(...PLANS.map((p) => savePct(p) ?? 0));
   const cellMap: Record<string, string> = { "By number of users": t.cells.byUsers, Unlimited: t.cells.unlimited, "3 quizzes": t.cells.q3, "10 quizzes": t.cells.q10, "Talk to sales": t.cells.talk, Standard: t.cells.standard, Premium: t.cells.premium };
-  const P: PricingCopy = PRICING2[locale] ?? {
+  const PC = PRICING2[locale]; void pick;
+  const P: PricingCopy = PC ?? ({
     h1: t.h1, sub: t.sub, help: "", see: t.compareH, badge: fmt(c.upTo, { pct: best }), saveAmt: "", includes: "", soonH: t.soon, soon: [], fair: "",
     for: Object.fromEntries(PLANS.map((p) => [p.id, c.plans[p.id as keyof typeof c.plans][1]])), points: t.points as unknown as Record<string, string[]>,
     addonsH: "", addons: [], addonsNote: "", teamsH: t.entK, entP: t.entP, entCta: q.cta, entAlt: q.alt, custom: c.custom,
     compareH: t.compareH, feature: t.feature, groups: [{ h: "", rows: COMPARE.map((r, k) => [t.rows[k] ?? r.f, ...r.v.map((v) => (typeof v === "string" ? cellMap[v] ?? v : v))] as [string, Cell, Cell, Cell, Cell]) }],
     faqH: t.faqH, faq: t.faq as [string, string][], endH: t.endH, endP: t.endP,
-  };
+  } as unknown as PricingCopy);
   const num = (x: string) => parseFloat(x.replace(/[^0-9.]/g, ""));
   const cell = (v: Cell) => v === true ? <Check size={16} aria-label="✓" className="mx-auto text-[#FAFAFA]" /> : v === false ? <span aria-label="–" className="text-[#737373]">–</span> : <span>{v}</span>;
   const featured = PLANS.findIndex((p) => p.featured);
@@ -116,7 +129,7 @@ export default function Pricing() {
               </div>
               <div className="mt-3">
                 {id === "enterprise"
-                  ? <a href="#quote" className={K.pillLight}>{P.entCta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+                  ? <a href="#quote" onClick={() => setLead("enterprise")} className={K.pillLight}>{P.entCta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
                   : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={rec ? K.pillAccent : K.pillDark} />}
               </div>
               <p className="mt-2.5 min-h-5 text-center text-[13px] text-[#737373]">{amt > 0 ? (P.saveAmt
@@ -140,44 +153,25 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* Add-ons (English and Turkish copy only). */}
-      {P.addons.length > 0 && <section aria-labelledby="addons-h" className="mx-auto mt-20 max-w-[1280px] px-4 md:px-8">
-        <h2 id="addons-h" className="text-[24px] font-medium leading-8">{P.addonsH}</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-2">{P.addons.map(([h, p]) => (
-          <div key={h} className={`${K.card} p-6`}><h3 className="text-[18px] font-medium leading-7">{h}</h3><p className="mt-1 text-[14px] leading-5 text-[#A3A3A3]">{p}</p></div>))}</div>
-        <p className="mt-3 text-[13px] text-[#737373]">{P.addonsNote}</p>
-      </section>}
-
-      {/* Teams and Enterprise: the tiers in one card, custom pricing with a warm light in the other. */}
-      <section id="enterprise" aria-labelledby="ent-h" className="mx-auto mt-20 max-w-[1280px] px-4 md:px-8">
-        <h2 id="ent-h" className="text-[24px] font-medium leading-8">{P.teamsH}</h2>
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          <div className={`${K.card} flex flex-col p-6 md:p-7`}>
-            <div className="flex flex-wrap items-start justify-between gap-4"><h3 className="text-[24px] font-medium leading-8">Enterprise</h3><p className="max-w-[20rem] text-[14px] leading-5 text-[#A3A3A3]">{P.entP}</p></div>
-            <ul className="mt-6 grid gap-2">{ENTERPRISE_TIERS.map((x) => (
-              <li key={x.id} className="flex items-center justify-between gap-4 rounded-[14px] bg-white/[.05] px-4 py-3.5 text-[14px]">
-                <span className="font-medium">Enterprise {x.name}<span className="ms-2 font-normal text-[#A3A3A3]">{fmt(t.entUsers, { n: x.users })}</span></span>
-                <span className="whitespace-nowrap">{x.custom ? P.custom : <>{x.price}<span className="text-[12px] text-[#737373]">{c.perMo}</span></>}</span></li>))}</ul>
-          </div>
-          <div className="relative flex min-h-[260px] flex-col overflow-hidden rounded-[16px] border border-white/10 p-6 md:p-7" style={{ background: "radial-gradient(90% 120% at 100% 100%, rgba(255,134,82,.55), rgba(236,103,38,.25) 40%, rgba(25,25,25,0) 75%), #191919" }}>
-            <h3 className="text-[24px] font-medium leading-8">{P.custom}</h3>
-            <ul className="mt-4 space-y-2 text-[14px] leading-5 text-[#FAFAFA]/90">{q.bullets.map((b) => <li key={b} className="flex items-start gap-2.5"><Check size={14} aria-hidden="true" className="mt-[3px] shrink-0 text-[#FAFAFA]/70" />{b}</li>)}</ul>
-            <div className="mt-auto flex flex-wrap gap-3 pt-8">
-              <a href="#quote" className={`${K.pillLight} !w-auto px-6`}>{P.entCta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-              <a href={SITE.demo} className={`${K.pillDark} !w-auto px-6`}>{P.entAlt}</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="quote" aria-labelledby="quote-h" className="mx-auto mt-20 max-w-[1280px] scroll-mt-28 px-4 md:px-8">
-        <div className="grid gap-8 lg:grid-cols-[5fr_7fr]">
+      {/* Add-ons and Enterprise in one place: pick what you need on the left, the request form on the right. */}
+      <section id="quote" aria-labelledby="quote-h" className="mx-auto mt-24 max-w-[1280px] scroll-mt-24 px-4 md:px-8">
+        <div className="grid gap-8 lg:grid-cols-[5fr_7fr] lg:gap-10">
           <div>
-            <h2 id="quote-h" className="text-[24px] font-medium leading-8">{q.h}</h2>
-            <p className="mt-2 max-w-[30rem] text-[14px] leading-5 text-[#A3A3A3]">{q.p}</p>
-            <TrustNote className="mt-3" />
+            <h2 id="quote-h" className="text-[24px] font-medium leading-8">{PC ? PC.addonsH : q.h}</h2>
+            <p className="mt-2 max-w-[30rem] text-[14px] leading-5 text-[#A3A3A3]">{PC ? PC.addonsP : q.p}</p>
+            {PC && <div role="radiogroup" aria-label={PC.addonsH} className="mt-6 grid gap-2">
+              {(["enterprise", "users", "storage", "setup"] as const).map((k) => { const on = lead === k; const I = { enterprise: Buildings, users: Users, storage: Package, setup: Wrench }[k]; return (
+                <button key={k} type="button" role="radio" aria-checked={on} onClick={() => setLead(k)}
+                  className={`flex min-h-[72px] items-center gap-4 rounded-[14px] border px-4 py-3 text-start transition-colors duration-150 ${on ? "border-[rgba(236,103,38,.6)] bg-[rgba(236,103,38,.08)]" : "border-white/10 bg-white/[.03] hover:bg-white/[.06]"}`}>
+                  <span aria-hidden="true" className={`grid h-10 w-10 shrink-0 place-items-center rounded-[10px] ${on ? "bg-[#EC6726] text-white" : "bg-white/[.06] text-[#FAFAFA]"}`}><I size={18} /></span>
+                  <span className="min-w-0 flex-1"><span className="block text-[15px] font-medium">{PC.opts[k][0]}</span><span className="block text-[13px] leading-5 text-[#A3A3A3]">{PC.opts[k][1]}</span></span>
+                  <span aria-hidden="true" className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border ${on ? "border-[#EC6726] bg-[#EC6726]" : "border-white/25"}`}>{on && <span className="h-2 w-2 rounded-full bg-white" />}</span>
+                </button>); })}
+            </div>}
+            {PC && <p className="mt-3 text-[12px] text-[#737373]">{PC.addonsNote}</p>}
+            <TrustNote className="mt-4" />
           </div>
-          <QuoteForm />
+          <QuoteForm type={lead} P={PC} />
         </div>
       </section>
 
@@ -215,11 +209,13 @@ export default function Pricing() {
       </section>
 
       <section className="mx-auto max-w-[1280px] px-4 pb-24 pt-24 md:px-8">
-        <div className={`${K.card} flex flex-col items-start gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-10`}>
-          <div><h2 className="text-[24px] font-medium leading-8">{P.endH}</h2><p className="mt-1 text-[14px] leading-5 text-[#A3A3A3]">{P.endP}</p></div>
+        <div className="relative isolate flex flex-col items-start gap-6 overflow-hidden rounded-[16px] border border-white/10 p-6 md:flex-row md:items-center md:justify-between md:p-10">
+          <img src="/photos/ws-mutfak-1600.webp" srcSet="/photos/ws-mutfak-800.webp 800w, /photos/ws-mutfak-1600.webp 1600w" sizes="(min-width:1280px) 1216px, 100vw" alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover object-[50%_40%]" />
+          <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(17,17,17,.92)_0%,rgba(17,17,17,.78)_50%,rgba(17,17,17,.55)_100%)] max-md:bg-[rgba(17,17,17,.8)]" />
+          <div><h2 className="text-[24px] font-medium leading-8">{P.endH}</h2><p className="mt-1 text-[14px] leading-5 text-[#FAFAFA]/80">{P.endP}</p></div>
           <div className="flex flex-wrap gap-3">
             <a href={SITE.demo} className={`${K.pillLight} !w-auto px-6`}>{d.nav.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-            <a href="#quote" className={`${K.pillDark} !w-auto px-6`}>{q.cta}</a>
+            <a href="#quote" onClick={() => setLead("enterprise")} className={`${K.pillDark} !w-auto px-6`}>{q.cta}</a>
           </div>
         </div>
       </section>

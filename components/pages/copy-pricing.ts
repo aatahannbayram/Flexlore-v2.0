@@ -8,6 +8,7 @@ export type PricingCopy = {
   badge: string; saveAmt: string; includes: string; soonH: string; soon: string[]; fair: string;
   for: Record<string, string>; points: Record<string, string[]>;
   addonsH: string; addons: [string, string][]; addonsNote: string;
+  addonsP: string; opts: Record<"enterprise" | "users" | "storage" | "setup", [string, string]>; formH: string; send: string; sent: string; sentMail: string; direct: string;
   teamsH: string; entP: string; entCta: string; entAlt: string; custom: string;
   compareH: string; feature: string; groups: { h: string; rows: [string, Cell, Cell, Cell, Cell][] }[];
   faqH: string; faq: [string, string][];
@@ -31,7 +32,10 @@ export const PRICING2: Partial<Record<string, PricingCopy>> = {
       proplus: ["Unlimited subtitle languages", "Unlimited AI quizzes", "Unlimited workspaces", "10 GB storage", "Premium support"],
       enterprise: ["Automatic translation on upload", "Use your own AI key", "All templates plus a custom pack for your business", "Storage and user count set with our team"],
     },
-    addonsH: "Add-ons", addonsNote: "Available on the web. Our team sets the price for your needs.",
+    addonsP: "Pick what you need and tell us about your team. Our team prices it for you and replies by email.",
+    opts: { enterprise: ["Enterprise quote", "30+ users, rolled out across your locations"], users: ["Extra users", "Add seats to your paid plan without changing plans"], storage: ["Extra storage", "Add space for more video to your paid plan"], setup: ["Setup service", "We prepare your first SOPs with you"] },
+    formH: "Send your request", send: "Send request", sent: "Thank you. Your request has reached our team and we will reply by email.", sentMail: "Your email app opened with the request. Send it from there and we will reply.", direct: "Your request goes straight to our team.",
+    addonsH: "Add-ons and Enterprise", addonsNote: "Available on the web. Our team sets the price for your needs.",
     addons: [["Extra users and extra storage", "Add seats or space to any paid plan without changing plans."], ["Setup service", "We prepare your first SOPs with you."]],
     teamsH: "For teams of 30 or more", entP: "Pricing by number of users, with support for rolling out across locations. Tell us about your teams and we will send a quote.",
     entCta: "Get a quote", entAlt: "Book a demo", custom: "Custom pricing",
@@ -72,7 +76,10 @@ export const PRICING2: Partial<Record<string, PricingCopy>> = {
       proplus: ["Sınırsız altyazı dili", "Sınırsız yapay zekâ quizi", "Sınırsız çalışma alanı", "10 GB depolama", "Premium destek"],
       enterprise: ["Yüklemede otomatik çeviri", "Kendi yapay zekâ anahtarınızı kullanın", "Tüm şablonlar ve işinize özel paket", "Depolama ve kullanıcı sayısı ekibimizle belirlenir"],
     },
-    addonsH: "Ek hizmetler", addonsNote: "Web üzerinden alınır. Fiyatı ihtiyacınıza göre ekibimiz belirler.",
+    addonsP: "İhtiyacınızı seçin, ekibinizi anlatın. Fiyatı ekibimiz sizin için çıkarır ve e-postayla döner.",
+    opts: { enterprise: ["Enterprise teklifi", "30+ kullanıcı, lokasyonlarınız arasında kurulum"], users: ["Ek kullanıcı", "Plan değiştirmeden ücretli planınıza kullanıcı ekleyin"], storage: ["Ek depolama", "Ücretli planınıza daha fazla video için alan ekleyin"], setup: ["Kurulum hizmeti", "İlk SOP'larınızı birlikte hazırlayalım"] },
+    formH: "Talebinizi iletin", send: "Talebi gönder", sent: "Teşekkürler. Talebiniz ekibimize ulaştı, size e-postayla döneceğiz.", sentMail: "E-posta uygulamanız talebinizle açıldı. Oradan gönderin, size dönelim.", direct: "Talebiniz doğrudan ekibimize iletilir.",
+    addonsH: "Ek hizmetler ve Enterprise", addonsNote: "Web üzerinden alınır. Fiyatı ihtiyacınıza göre ekibimiz belirler.",
     addons: [["Ek kullanıcı ve ek depolama", "Plan değiştirmeden ücretli planınıza kullanıcı veya alan ekleyin."], ["Kurulum hizmeti", "İlk SOP'larınızı birlikte hazırlayalım."]],
     teamsH: "30 ve üzeri kullanıcılı ekipler için", entP: "Kullanıcı sayısına göre fiyatlanır, lokasyonlar arası yaygınlaştırma desteğiyle. Ekiplerinizi anlatın, size teklif gönderelim.",
     entCta: "Teklif alın", entAlt: "Demo isteyin", custom: "Özel fiyat",

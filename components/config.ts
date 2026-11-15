@@ -9,6 +9,9 @@ export const SITE = {
      the launch build (FLX_LAUNCH=1) and only after the visitor allows analytics in the consent banner. */
   ga4: process.env.FLX_LAUNCH === "1" ? "G-7QNETL3VJ3" : "",
   hubspot: process.env.FLX_LAUNCH === "1" ? "147293209" : "",
+  /* HubSpot form that receives pricing-page requests (components/lead.ts). Paste the form GUID into NEXT_PUBLIC_HS_LEAD_FORM;
+     empty = requests open the visitor's email app instead. */
+  hsLeadForm: process.env.NEXT_PUBLIC_HS_LEAD_FORM || "",
   login: "https://app.flexlore.com",
   /* Every "Book a demo" button opens our own page (components/pages/Demo.tsx), which embeds the HubSpot scheduler below. */
   demo: "/demo/",

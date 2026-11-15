@@ -26,6 +26,7 @@
 :root[data-theme="light"] .border-white:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .border-white\/10:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .border-white\/20:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.2); }
+:root[data-theme="light"] .border-white\/25:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.25); }
 :root[data-theme="light"] .border-white\/\[\.04\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.05\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.06\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
