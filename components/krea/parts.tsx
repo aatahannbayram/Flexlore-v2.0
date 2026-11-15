@@ -93,6 +93,23 @@ export function Drum({ items, groups, before, beforeLabel, caption, captions = 1
     const f = (v: number) => v.toFixed(1); const x0 = L + r, x1 = L + w - r, xm = (x0 + x1) / 2;
     return `path('M0 ${f(yt(L) + r)} Q0 ${f(yt(L))} ${r} ${f(yt(x0))} Q${f(xm - L)} ${f(yt(x0) + st(x0) * (xm - x0))} ${f(w - r)} ${f(yt(x1))} Q${f(w)} ${f(yt(L + w))} ${f(w)} ${f(yt(L + w) + r)} L${f(w)} ${f(yb(L + w) - r)} Q${f(w)} ${f(yb(L + w))} ${f(w - r)} ${f(yb(x1))} Q${f(xm - L)} ${f(yb(x1) + sb(x1) * (xm - x1))} ${r} ${f(yb(x0))} Q0 ${f(yb(L))} 0 ${f(yb(L) - r)} Z')`; };
   const [inView, setIn] = useState(false); useEffect(() => { if (seen) setIn(true); }, [seen]);
+  /* Slide motion (2026-11-15): a CSS transition only blends the start and end clip shapes, so mid-slide the edges left the
+     arc. Instead one float offset is eased toward the target each frame and every card's position and clip are computed
+     from it, so the cards ride the same parabola at every moment of the move. */
+  const cards = useRef<(HTMLElement | null)[]>([]); const cur = useRef(0); const raf = useRef(0);
+  const place = (o: number) => { if (!geo) return; const { w, g } = geo;
+    cards.current.forEach((el, j) => { if (!el) return; let p = j - o; p = ((p % n) + n) % n; if (p > n / 2) p -= n; const a = Math.abs(p);
+      el.style.visibility = a > 2.6 ? "hidden" : ""; el.style.transform = `translateX(calc(-50% + ${(p * (w + g)).toFixed(2)}px))`;
+      el.style.clipPath = clip(p) ?? ""; el.style.zIndex = String(10 - Math.round(a)); }); };
+  useEffect(() => { if (!geo) return; cancelAnimationFrame(raf.current);
+    const from = cur.current; let d = i - from; d = ((d % n) + n) % n; if (d > n / 2) d -= n; const to = from + d;
+    if (still || Math.abs(d) < 0.001) { cur.current = to; place(to); return; }
+    const t0 = performance.now(), dur = 900, ease = (t: number) => 1 - Math.pow(1 - t, 4);
+    const step = (now: number) => { const t = Math.min(1, (now - t0) / dur); cur.current = from + d * ease(t); place(cur.current);
+      if (t < 1) raf.current = requestAnimationFrame(step); };
+    raf.current = requestAnimationFrame(step); return () => cancelAnimationFrame(raf.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i, geo, still, n]);
   return (
     <div ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} onTouchStart={() => setHold(true)} onFocus={() => setHold(true)}>
       <div className="flex justify-center px-5"><div role="tablist" className="no-sb flex max-w-full gap-1 overflow-x-auto rounded-full bg-white/[.06] p-1.5">
@@ -101,9 +118,9 @@ export function Drum({ items, groups, before, beforeLabel, caption, captions = 1
       </div></div>
       <div className="relative md:pb-40"> 
         <div ref={band} data-js={geo ? "" : undefined} data-in={inView || still ? "" : undefined} className="drum relative mt-6 h-[min(54vw,640px)] min-h-[340px] md:mt-8">
-          {items.map((it, j) => { let pos = j - i; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n; const a = Math.abs(pos); if (a > 2) return null; return (
-            <figure key={it.img} data-c={pos === 0 ? "" : undefined} className="drum-card absolute overflow-hidden rounded-[22px] bg-[#1a1a1a]" aria-hidden={pos !== 0}
-              style={{ ["--p" as string]: pos, ["--a" as string]: a, zIndex: 10 - a, clipPath: clip(pos) } as React.CSSProperties} onClick={() => pos !== 0 && go(j)}>
+          {items.map((it, j) => { let pos = j - i; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n; const a = Math.abs(pos); if (a > 2 && !geo) return null; return (
+            <figure key={it.img} ref={(el) => { cards.current[j] = el; }} data-c={pos === 0 ? "" : undefined} className="drum-card absolute overflow-hidden rounded-[22px] bg-[#1a1a1a]" aria-hidden={pos !== 0}
+              style={{ ["--p" as string]: pos, ["--a" as string]: Math.min(a, 3) } as React.CSSProperties} onClick={() => pos !== 0 && go(j)}>
               {/* The photo keeps the band's full height whatever the card's height, so a card growing or shrinking only
                   crops it: no rescaling, no jump. */}
               <img {...pic(it.img)} sizes="60vw" alt="" loading="lazy" className="drum-img" />

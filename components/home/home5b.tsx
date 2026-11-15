@@ -130,7 +130,8 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
   return (
     <li id={`plan-${id}`} className={`relative ${className || "flex"}`}>
       <div className={`group/plan relative flex w-full flex-col rounded-[28px] p-6 ring-1 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1 md:p-7 ${rec ? "bg-[linear-gradient(180deg,#242424,#191919_60%)] shadow-[0_30px_80px_-40px_rgb(0_0_0/0.9)] ring-white/[.16]" : "bg-[var(--card)] ring-white/[.06]"}`}>
-        <div className="flex min-h-8 items-center justify-between gap-3">
+        {rec && <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-44 rounded-t-[28px] bg-[radial-gradient(70%_100%_at_50%_0%,rgb(236_103_38/0.16),transparent_75%)]" />}
+        <div className="relative flex min-h-8 items-center justify-between gap-3">
           <h3 className="text-[24px] font-semibold tracking-[-0.035em]">{name}</h3>
           {rec && <span className="rounded-full bg-white/[.08] px-3 py-1 text-[12.5px] font-medium text-ink">{c.recommended}</span>}
         </div>

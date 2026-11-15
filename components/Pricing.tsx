@@ -60,35 +60,40 @@ export default function Pricing() {
   return (<>
     <Header />
     <main id="main" className="home-v3 relative pt-[calc(var(--header-h)+64px)]">
-      {/* Krea-style top (2026-11-15): a warm glow from the top right, the title on the left, the billing switch and two
-          quiet links in one row, then the plans. */}
-      <span aria-hidden="true" className="pointer-events-none absolute right-[-12%] top-[-8%] -z-10 h-[680px] w-[min(900px,90vw)] rounded-full bg-[radial-gradient(closest-side,rgb(236_103_38/0.32),rgb(236_103_38/0.08)_55%,transparent_75%)] max-md:hidden" />
-      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[420px] w-[120vw] -translate-x-1/2 bg-[radial-gradient(50%_60%_at_50%_0%,rgb(236_103_38/0.22),transparent_80%)] md:hidden" />
+      {/* Krea-style top, second pass (2026-11-15): everything centred under one warm glow from the top, the billing
+          switch alone under the title, then the plans. */}
+      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[620px] w-[min(1400px,130vw)] -translate-x-1/2 bg-[radial-gradient(50%_55%_at_50%_0%,rgb(236_103_38/0.26),rgb(236_103_38/0.06)_55%,transparent_80%)]" />
       <section className="container-x">
-        <div className="max-w-[48rem]">
-          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{t.k}</span></p>
+        <div className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
+          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{t.k}</span><span aria-hidden="true" className="kick-line" /></p>
           <h1 className="kh kh-md mt-5 max-w-[20ch]"><Split text={t.h1} /></h1>
           <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted">{t.sub}</p>
+          <div className="mt-8"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
         </div>
-        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" />
-          <a href="#enterprise" className="inline-flex min-h-11 items-center text-[15px] text-ink-muted transition-colors hover:text-ink">{t.entK}</a>
-          <a href="#faq" className="inline-flex min-h-11 items-center text-[15px] text-ink-muted transition-colors hover:text-ink">{d.faq.k}</a>
-        </div>
-        <ul className="plans mt-10 grid gap-4 md:grid-cols-2 lg:gap-5 xl:grid-cols-4" aria-label={c.k}>
+        <ul className="plans mx-auto mt-12 grid max-w-[1240px] gap-4 md:grid-cols-2 lg:gap-5 xl:grid-cols-4" aria-label={c.k}>
           {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} full />)}
         </ul>
-        <p className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">
+        <p className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">
           <span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} className="tick" />{c.cancel}</span><span>{c.appNote}</span>
         </p>
       </section>
 
+      <section aria-labelledby="cmp-h" className="container-x mt-[var(--sp-section)]">
+        <div className="mx-auto max-w-[1240px]"><h2 id="cmp-h" className="v4-h2 text-center"><Split text={t.compareH} /></h2>
+        <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mx-auto mt-6 flex md:hidden">{cmp ? t.hide : t.show}</button>
+        <div id="cmp-table" className={`no-sb mt-10 overflow-x-auto ${glassCard} p-2 ${cmp ? "block" : "hidden"} md:block`}>
+          <table className="w-full min-w-[680px] border-collapse text-start text-[14px]">
+            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p, i) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${i === featured ? "rounded-t-[16px] bg-white/[.05] text-ink" : "text-ink-muted"}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
+            <tbody>{COMPARE.map((r, k) => <tr key={r.f} className="border-t border-line"><td className="px-4 py-3.5 text-ink-muted">{t.rows[k] ?? r.f}</td>{r.v.map((v, i) => <td key={i} className={`py-3.5 text-center ${i === featured ? "bg-white/[.05]" : ""}`}>{cell(v)}</td>)}</tr>)}</tbody>
+          </table>
+        </div></div>
+      </section>
       {/* Enterprise: a photo band with the tiers, then the quote request. */}
       <section id="enterprise" aria-labelledby="ent-h" className="container-x mt-[var(--sp-section)]">
         <PhotoBand img="ws-ofis" pos="50% 40%" className="p-6 md:p-12">
           <div className="grid-12 items-end gap-y-8">
             <div className="col-span-12 lg:col-span-7">
-              <p className="inline-flex items-center gap-2.5 text-[14px] font-medium text-white/70"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-white/10"><Buildings size={16} /></span>{t.entK}</p>
+              <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{t.entK}</p>
               <h2 id="ent-h" className="v4-h2 mt-5 max-w-[20ch]"><Split text={t.entH} /></h2>
               <p className="mt-5 max-w-[34rem] text-[16px] leading-[1.6] text-white/70 md:text-[17px]">{t.entP}</p>
               <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-white/85">{q.bullets.map((b) => <li key={b} className="flex items-center gap-2"><Check size={16} aria-hidden="true" className="tick" />{b}</li>)}</ul>
@@ -126,16 +131,6 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section aria-labelledby="cmp-h" className="container-x mt-[var(--sp-section)]">
-        <h2 id="cmp-h" className="v4-h2"><Split text={t.compareH} /></h2>
-        <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mt-6 md:hidden">{cmp ? t.hide : t.show}</button>
-        <div id="cmp-table" className={`no-sb mt-10 overflow-x-auto ${glassCard} p-2 ${cmp ? "block" : "hidden"} md:block`}>
-          <table className="w-full min-w-[680px] border-collapse text-start text-[14px]">
-            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p, i) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${i === featured ? "rounded-t-[16px] bg-white/[.05] text-ink" : "text-ink-muted"}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
-            <tbody>{COMPARE.map((r, k) => <tr key={r.f} className="border-t border-line"><td className="px-4 py-3.5 text-ink-muted">{t.rows[k] ?? r.f}</td>{r.v.map((v, i) => <td key={i} className={`py-3.5 text-center ${i === featured ? "bg-white/[.05]" : ""}`}>{cell(v)}</td>)}</tr>)}</tbody>
-          </table>
-        </div>
-      </section>
     </main>
     <div className="mt-[var(--sp-section)]"><Copq lang={lang} /></div>
     <section aria-labelledby="pfaq-h" className="section-y">
