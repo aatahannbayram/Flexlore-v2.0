@@ -2881,8 +2881,8 @@
   {
    "id": "en:pricing-faq-0",
    "locale": "en",
-   "title": "How much does Flexlore cost?",
-   "body": "Plans are priced by number of users. Enterprise starts at 30+ users. Free covers 3 users, Pro 10 and ProPlus 30. Monthly and yearly prices are listed on this page.",
+   "title": "How is Flexlore priced?",
+   "body": "By number of users. Free covers 3 users, Pro 10 and ProPlus 30. Enterprise starts at 30+ users with custom pricing. Monthly and yearly prices are listed on this page.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2892,8 +2892,8 @@
   {
    "id": "en:pricing-faq-1",
    "locale": "en",
-   "title": "Do I pay per user?",
-   "body": "Plans are priced by number of users. Enterprise starts at 30+ users. Each plan covers a set number of users: Free 3, Pro 10, ProPlus 30.",
+   "title": "What does unlimited mean?",
+   "body": "Unlimited items are subject to fair use and are meant for your own team's normal use. If your usage is unusually high, our team will contact you to talk about the right plan.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2903,8 +2903,8 @@
   {
    "id": "en:pricing-faq-2",
    "locale": "en",
-   "title": "Can I try it before I commit?",
-   "body": "Ask us on the demo call. We will build one of your real jobs with you so you can see it working on your floor.",
+   "title": "Do AI features cost extra?",
+   "body": "The AI features listed for each plan are included in its price, within the limits shown, such as the number of quizzes and subtitle languages.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2914,8 +2914,8 @@
   {
    "id": "en:pricing-faq-3",
    "locale": "en",
-   "title": "Do I need technical skills to set it up?",
-   "body": "No. If you can film with a phone, you can create a step-by-step video SOP.",
+   "title": "Can I add users or storage?",
+   "body": "Yes. Extra users and extra storage are available on the web. Our team sets the price for your needs, so contact us.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2925,8 +2925,8 @@
   {
    "id": "en:pricing-faq-4",
    "locale": "en",
-   "title": "Which devices does it run on?",
-   "body": "iOS and Android for your team, plus a web platform for managers.",
+   "title": "Can I change plans later?",
+   "body": "Yes. Tell us which plan you want to move to. How a change is billed is set out in our Subscription & Billing policy.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2936,8 +2936,8 @@
   {
    "id": "en:pricing-faq-5",
    "locale": "en",
-   "title": "Who checks what the AI writes?",
-   "body": "You do. Steps, instructions and quizzes are drafts until your team approves them.",
+   "title": "How do I cancel?",
+   "body": "You can cancel at any time. How cancellation works for monthly and yearly billing is set out in our Subscription & Billing policy.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2947,8 +2947,8 @@
   {
    "id": "en:pricing-faq-6",
    "locale": "en",
-   "title": "Does it work across several locations?",
-   "body": "Yes. Assign jobs and see readiness by team, shift and location. Control who can view, edit or complete each job by role and location.",
+   "title": "Where is our data stored?",
+   "body": "Our Privacy Policy, Data Processing and Sub-processors pages list where data is processed and by whom. Still have questions? Ask us on the demo call.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -2958,41 +2958,8 @@
   {
    "id": "en:pricing-faq-7",
    "locale": "en",
-   "title": "Can it carry our branding?",
-   "body": "Custom branding is coming soon. Ask us on the demo call how it will fit your plan.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "en:pricing-faq-8",
-   "locale": "en",
-   "title": "Can we connect Flexlore to our own tools?",
-   "body": "An API, connections to the BI tools you already use and an MCP server for AI assistants are coming soon. Tell us what you would connect and we will keep you posted.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "en:pricing-faq-9",
-   "locale": "en",
-   "title": "How does billing and cancellation work?",
-   "body": "See our Subscription & Billing policy, or ask us on the demo call.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "en:pricing-faq-10",
-   "locale": "en",
-   "title": "Where can I read about data and security?",
-   "body": "Our Privacy Policy, Data Processing, Sub-processors and Security pages cover it. Still have questions? Ask on the demo call.",
+   "title": "Who checks what the AI writes?",
+   "body": "You do. Steps, instructions and quizzes stay drafts until your team approves them.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3002,8 +2969,8 @@
   {
    "id": "tr:pricing-faq-0",
    "locale": "tr",
-   "title": "Flexlore'un ücreti ne kadar?",
-   "body": "Planlar kullanıcı sayısına göre fiyatlanır. Enterprise 30+ kullanıcıdan başlar. Free 3, Pro 10, ProPlus 30 kullanıcıya kadar. Fiyatlar bu sayfada aylık ve yıllık olarak yer alır.",
+   "title": "Flexlore nasıl fiyatlanıyor?",
+   "body": "Kullanıcı sayısına göre. Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar ve özel fiyatlanır. Aylık ve yıllık fiyatlar bu sayfada yer alır.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3013,8 +2980,8 @@
   {
    "id": "tr:pricing-faq-1",
    "locale": "tr",
-   "title": "Kullanıcı başına mı ödüyorum?",
-   "body": "Planlar kullanıcı sayısına göre fiyatlanır. Enterprise 30+ kullanıcıdan başlar. Her plan belirli sayıda kullanıcıyı kapsar: Free 3, Pro 10, ProPlus 30.",
+   "title": "Sınırsız ne demek?",
+   "body": "Sınırsız kalemler adil kullanım koşuluna bağlıdır ve ekibinizin olağan kullanımı içindir. Kullanımınız olağandışı yüksekse ekibimiz uygun planı konuşmak için sizinle iletişime geçer.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3024,8 +2991,8 @@
   {
    "id": "tr:pricing-faq-2",
    "locale": "tr",
-   "title": "Karar vermeden önce deneyebilir miyim?",
-   "body": "Demo görüşmesinde bize sorun. Gerçek işlerinizden birini sizinle birlikte hazırlarız, sahada nasıl çalıştığını kendiniz görürsünüz.",
+   "title": "Yapay zekâ özellikleri ek ücretli mi?",
+   "body": "Her planda listelenen yapay zekâ özellikleri, gösterilen sınırlar içinde (örneğin quiz sayısı ve altyazı dili) plan fiyatına dahildir.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3035,8 +3002,8 @@
   {
    "id": "tr:pricing-faq-3",
    "locale": "tr",
-   "title": "Kurulum için teknik bilgi gerekir mi?",
-   "body": "Hayır. Telefonla video çekebiliyorsanız adım adım bir video SOP oluşturabilirsiniz.",
+   "title": "Ek kullanıcı veya depolama alabilir miyim?",
+   "body": "Evet. Ek kullanıcı ve ek depolama web üzerinden alınır. Fiyatı ihtiyacınıza göre ekibimiz belirler, bize ulaşın.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3046,8 +3013,8 @@
   {
    "id": "tr:pricing-faq-4",
    "locale": "tr",
-   "title": "Hangi cihazlarda çalışır?",
-   "body": "Ekibiniz için iOS ve Android, yöneticiler için web platformu.",
+   "title": "Planımı sonra değiştirebilir miyim?",
+   "body": "Evet. Hangi plana geçmek istediğinizi bize söyleyin. Değişikliğin nasıl faturalandığı Abonelik ve Faturalandırma politikamızda yer alır.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3057,8 +3024,8 @@
   {
    "id": "tr:pricing-faq-5",
    "locale": "tr",
-   "title": "Yapay zekânın yazdıklarını kim kontrol ediyor?",
-   "body": "Siz. Adımlar, talimatlar ve quizler ekibiniz onaylayana kadar taslak olarak kalır.",
+   "title": "Nasıl iptal ederim?",
+   "body": "İstediğiniz zaman iptal edebilirsiniz. Aylık ve yıllık faturalamada iptalin nasıl işlediği Abonelik ve Faturalandırma politikamızda yer alır.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3068,8 +3035,8 @@
   {
    "id": "tr:pricing-faq-6",
    "locale": "tr",
-   "title": "Birden fazla lokasyonda çalışır mı?",
-   "body": "Evet. İşleri atayın, hazırlığı ekip, vardiya ve lokasyon bazında görün. Her işi kimin görebileceğini, düzenleyebileceğini veya tamamlayabileceğini rol ve lokasyona göre belirleyin.",
+   "title": "Verilerimiz nerede saklanıyor?",
+   "body": "Verinin nerede ve kimler tarafından işlendiği Gizlilik Politikası, Veri İşleme ve Alt İşleyenler sayfalarımızda yer alır. Başka sorunuz varsa demo görüşmesinde sorun.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
@@ -3079,41 +3046,8 @@
   {
    "id": "tr:pricing-faq-7",
    "locale": "tr",
-   "title": "Kendi markamızı taşıyabilir mi?",
-   "body": "Özel marka yakında geliyor. Planınıza nasıl uyacağını demo görüşmesinde sorabilirsiniz.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "tr:pricing-faq-8",
-   "locale": "tr",
-   "title": "Flexlore'u kendi araçlarımıza bağlayabilir miyiz?",
-   "body": "API, kullandığınız BI araçlarına bağlantılar ve yapay zekâ asistanları için bir MCP sunucusu yakında geliyor. Neyi bağlamak istediğinizi söyleyin, sizi haberdar edelim.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "tr:pricing-faq-9",
-   "locale": "tr",
-   "title": "Faturalandırma ve iptal nasıl işliyor?",
-   "body": "Abonelik ve Faturalandırma politikamıza göz atın ya da demo görüşmesinde bize sorun.",
-   "url": "https://www.flexlore.com/pricing/",
-   "tags": [
-    "pricing",
-    "faq"
-   ]
-  },
-  {
-   "id": "tr:pricing-faq-10",
-   "locale": "tr",
-   "title": "Veri ve güvenlik hakkında nereden bilgi alabilirim?",
-   "body": "Gizlilik Politikası, Veri İşleme, Alt İşleyenler ve Güvenlik sayfalarımızda bulabilirsiniz. Başka sorunuz varsa demo görüşmesinde sorun.",
+   "title": "Yapay zekânın yazdıklarını kim kontrol ediyor?",
+   "body": "Siz. Adımlar, talimatlar ve quizler ekibiniz onaylayana kadar taslak olarak kalır.",
    "url": "https://www.flexlore.com/pricing/",
    "tags": [
     "pricing",
