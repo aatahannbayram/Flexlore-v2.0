@@ -2,8 +2,8 @@
  *
  * Where a request goes:
  *   1. HubSpot: posted to the HubSpot Forms API (EU portal SITE.hubspot) when NEXT_PUBLIC_HS_LEAD_FORM holds the form's
- *      GUID. The form needs five fields: email, firstname, lastname, company, message. The request type, team size,
- *      sector and locations go into `message`, so no custom HubSpot properties are needed. The HubSpot cookie (hutk) is
+ *      GUID (form "Website: pricing page requests"). The form has four fields: email, firstname, lastname, message. The
+ *      request type, company, team size, sector and locations go into `message`, so no custom HubSpot properties are needed. The HubSpot cookie (hutk) is
  *      sent when present, which ties the request to the visitor's page history in HubSpot.
  *   2. PostHog and GA4: `lead_submit` (type, team size, sector, page) and `lead_sent` (type, channel) through flxTrack,
  *      plus a PostHog identify by email so the request joins the visitor's earlier events. Both only run after the
@@ -16,7 +16,7 @@ import { track } from "./track";
 
 export type LeadType = "enterprise" | "users" | "storage" | "setup";
 export type Lead = { type: LeadType; typeLabel: string; name: string; email: string; company: string; size: string; sector: string; sites: string; msg: string;
-  labels: { size: string; sector: string; sites: string; msg: string }; subject: string };
+  labels: { company: string; size: string; sector: string; sites: string; msg: string }; subject: string };
 
 type W = Window & { posthog?: { identify?: (id: string, props?: Record<string, string>) => void }; Sentry?: { captureException?: (e: unknown, ctx?: unknown) => void } };
 const cookie = (k: string) => document.cookie.split("; ").find((c) => c.startsWith(k + "="))?.slice(k.length + 1);
@@ -39,7 +39,7 @@ async function toBackend(l: Lead): Promise<boolean> {
 export async function sendLead(l: Lead): Promise<"hubspot" | "mail"> {
   track("lead_submit", { type: l.type, size: l.size, sector: l.sector, page: location.pathname });
   try { (window as W).posthog?.identify?.(l.email.trim().toLowerCase(), { email: l.email.trim(), company: l.company, team_size: l.size, sector: l.sector, last_request: l.type }); } catch {}
-  const message = [`[${l.typeLabel}]`, `${l.labels.size}: ${l.size}`, `${l.labels.sector}: ${l.sector}`, l.sites ? `${l.labels.sites}: ${l.sites}` : "", "", l.msg].filter((x, i) => x || i === 4).join("\n").trim();
+  const message = [`[${l.typeLabel}]`, `${l.labels.company}: ${l.company}`, `${l.labels.size}: ${l.size}`, `${l.labels.sector}: ${l.sector}`, l.sites ? `${l.labels.sites}: ${l.sites}` : "", "", l.msg].filter((x, i) => x || i === 5).join("\n").trim();
   const backend = toBackend(l);
   if (SITE.hsLeadForm && SITE.hubspot) {
     try {
@@ -47,7 +47,7 @@ export async function sendLead(l: Lead): Promise<"hubspot" | "mail"> {
       const r = await fetch(`https://api-eu1.hsforms.com/submissions/v3/integration/submit/${SITE.hubspot}/${SITE.hsLeadForm}`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fields: [["email", l.email.trim()], ["firstname", first || ""], ["lastname", rest.join(" ")], ["company", l.company], ["message", message]].map(([name, value]) => ({ objectTypeId: "0-1", name, value })),
+          fields: [["email", l.email.trim()], ["firstname", first || ""], ["lastname", rest.join(" ")], ["message", message]].map(([name, value]) => ({ objectTypeId: "0-1", name, value })),
           context: { hutk: cookie("hubspotutk"), pageUri: location.href, pageName: document.title },
         }),
       });

@@ -24,7 +24,7 @@ function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) 
   const send = async (e: React.FormEvent) => {
     e.preventDefault(); setState("busy");
     const typeLabel = P ? P.opts[type][0] : q.subject;
-    const r = await sendLead({ ...v, type, typeLabel, subject: P ? typeLabel : q.subject, labels: { size: q.size, sector: q.sector, sites: q.sites, msg: q.msg } });
+    const r = await sendLead({ ...v, type, typeLabel, subject: P ? typeLabel : q.subject, labels: { company: q.company, size: q.size, sector: q.sector, sites: q.sites, msg: q.msg } });
     setState(r);
   };
   const L = ({ id, t, children }: { id: string; t: string; children: React.ReactNode }) => (
