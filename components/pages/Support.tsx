@@ -14,13 +14,13 @@ import { Lifebuoy, ArrowRight, ArrowUpRight, EnvelopeSimple, CalendarBlank, Chec
 
 /* Shared look for the help pages: glass cards on the page ground, pill buttons, big headings with one payoff word. */
 export const glass = "rounded-[28px] bg-[var(--card)]";
-export const h1 = "text-[clamp(40px,1rem+3.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]";
+/* Krea pass (2026-11-15): page titles on the shared headline scale. */
+export const h1 = "kh kh-md";
 export const pill = "btn !rounded-full";
 /** Bright orange tick: the one orange mark on these pages besides the heading word. */
 export const Tick = () => <Check size={16} aria-hidden="true" className="mt-[3px] shrink-0 text-[#FF8A4C]" />;
-export const Kicker = ({ icon: I, children }: { icon: typeof Lifebuoy; children: React.ReactNode }) => (
-  <p className="inline-flex items-center gap-2.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint">
-    <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><I size={15} aria-hidden="true" /></span>{children}</p>);
+export const Kicker = ({ children }: { icon: typeof Lifebuoy; children: React.ReactNode }) => (
+  <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{children}</p>);
 
 const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
 
@@ -93,7 +93,7 @@ export function SupportPage() {
             <p className="mt-1 text-[14px] text-ink-muted">{h.appP}</p>
             <StoreButtons lang={lang} className="mt-4" />
             <div className="mt-6 border-t border-line pt-5">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-ink-faint">{h.legalH}</p>
+              <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{h.legalH}</p>
               <ul className="mt-3 flex flex-wrap gap-2">{h.legal.map(([href, t]) => (
                 <li key={href}><Link href={href} className="inline-flex min-h-11 items-center rounded-full bg-[var(--card-2)] px-4 text-[14px] text-ink-muted transition-colors hover:text-ink">{t}</Link></li>))}</ul>
             </div>

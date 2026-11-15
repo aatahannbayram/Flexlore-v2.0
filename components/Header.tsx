@@ -41,9 +41,17 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
 
   // Always in view (fixed); it turns into a glass bar once the page moves. A passive listener that only sets state when
   // the 24 px threshold is crossed, so scrolling does not re-render the header.
+  /* Krea-style (2026-11-15): at the top the header is one with the hero (no bar); scrolling down hides it, scrolling up
+     brings it back as a translucent bar. State only changes when a threshold is crossed, so scrolling does not
+     re-render the header on every frame. */
+  const [away, setAway] = useState(false);
   useEffect(() => {
-    const f = () => setLined(window.scrollY > 24); f();
-    window.addEventListener("scroll", f, { passive: true }); return () => window.removeEventListener("scroll", f);
+    let last = window.scrollY, raf = 0;
+    const f = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => {
+      const y = window.scrollY; setLined(y > 24);
+      if (Math.abs(y - last) > 6) { setAway(y > last && y > 120); last = y; }
+    }); };
+    f(); window.addEventListener("scroll", f, { passive: true }); return () => { window.removeEventListener("scroll", f); cancelAnimationFrame(raf); };
   }, []);
   // Preload the menu content once the browser is idle after load (not on pointerdown: starting a chunk load mid-tap
   // cancelled the click on touch devices).
@@ -91,7 +99,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
     <>
       <header
         onBlurCapture={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setMega(null); }}
-        className={`fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-200 ease-out ${(home || overDark) && !(lined || mega || open) ? "dark" : ""} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.94)] shadow-[0_1px_0_rgb(255_255_255/0.06),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-[12px]" : "bg-transparent"}`}>
+        className={`fixed inset-x-0 top-0 z-40 transition-[translate,background-color,box-shadow,backdrop-filter] duration-300 ease-out ${(home || overDark) && !(lined || mega || open) ? "dark" : ""} ${away && !mega && !open ? "-translate-y-full" : "translate-y-0"} ${lined || mega || open ? "bg-[rgb(var(--bg-rgb)/0.78)] shadow-[0_1px_0_rgb(255_255_255/0.07),0_18px_40px_-28px_rgb(0_0_0/0.9)] backdrop-blur-xl" : "bg-transparent"}`}>
         <nav aria-label="Main" className="container-x relative flex h-[var(--header-h)] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <a href={home ? "#main" : "/"} className="flex h-11 shrink-0 items-center" aria-label="Flexlore">
@@ -113,7 +121,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                   {mega === g.id && (
                     <m.div key="mega" id={`mega-${g.id}`} onMouseEnter={() => enter(g.id)} onMouseLeave={leave}
                       initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: reduce ? 0 : 0.22, ease: EASE }}
-                      className={`absolute left-1/2 top-[calc(var(--header-h)-4px)] ${g.id === "product" ? "w-[min(1000px,calc(100vw-48px))]" : "w-[min(820px,calc(100vw-48px))]"} -translate-x-1/2`}>
+                      className={`absolute left-1/2 top-[calc(var(--header-h)-4px)] ${g.id === "product" ? "w-[min(1180px,calc(100vw-48px))]" : "w-[min(820px,calc(100vw-48px))]"} -translate-x-1/2`}>
                       <MegaPanel id={g.id} lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setMega(null)} reduce={!!reduce} />
                     </m.div>)}
                 </AnimatePresence>

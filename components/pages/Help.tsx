@@ -36,7 +36,7 @@ export function LoginPage() {
           <p className="mt-4 max-w-[28rem] text-[16px] leading-[1.55] text-ink-muted md:text-[17px]">{c.p}</p>
           <a href={SITE.login} className={`${pill} btn-primary mt-8 h-14 w-full justify-between px-6 text-[16px]`}>{c.web}<ArrowUpRight size={18} aria-hidden="true" className="rtl:-scale-x-100" /></a>
           <p className="mt-2.5 text-[13px] text-ink-faint">{c.webNote}</p>
-          <div className="mt-8 flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-ink-faint"><span className="h-px flex-1 bg-line" />{c.or}<span className="h-px flex-1 bg-line" /></div>
+          <div className="mt-8 flex items-center gap-3 text-[13px] font-medium text-ink-faint"><span className="h-px flex-1 bg-line" />{c.or}<span className="h-px flex-1 bg-line" /></div>
           <p className="mt-4 text-[14px] text-ink-muted">{c.appP}</p>
           <StoreButtons lang={lang} className="mt-3" />
           <div className="mt-10 grid gap-2 border-t border-line pt-6 text-[14px] sm:grid-cols-2">
@@ -99,7 +99,7 @@ export function FaqPage() {
           <div className="grid gap-10">
             {groups.filter((g) => shown.some((x) => x.g === g)).map((g) => (
               <div key={g} className="grid gap-4 lg:grid-cols-[240px_1fr] lg:gap-10">
-                <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint lg:pt-6">{c.groups[g]}</h2>
+                <h2 className="inline-flex items-center gap-2.5 text-[13px] font-medium self-start text-ink-faint lg:pt-6"><span aria-hidden="true" className="kick-line" />{c.groups[g]}</h2>
                 <ul className={`${glass} overflow-hidden`}>
                   {shown.filter((x) => x.g === g).map((x, i) => { const on = open === x.q; const id = `${g}-${i}`; return (
                     <li key={x.q} className="border-line [&:not(:first-child)]:border-t">

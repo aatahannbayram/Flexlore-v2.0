@@ -13,7 +13,8 @@ export const Pic = ({ n, sizes = "50vw", className = "", eager = false }: { n: s
   return (<picture><source srcSet={`${b}-800.avif 800w, ${b}-1600.avif 1600w`} sizes={sizes} type="image/avif" />
     <img src={`${b}-1600.webp`} srcSet={`${b}-800.webp 800w, ${b}-1600.webp 1600w`} sizes={sizes} alt="" loading={eager ? "eager" : "lazy"} className={className} /></picture>); };
 /** Section label: an icon chip and a word. Replaces the dot-and-rule eyebrows. */
-export const Label = ({ icon: I, children }: { icon: Ic; children: React.ReactNode }) => (
-  <p className="inline-flex items-center gap-2.5 text-[15px] font-medium text-ink-muted"><span className="grid h-8 w-8 place-items-center rounded-[10px] bg-[var(--card)] text-ink"><I size={16} /></span>{children}</p>);
+export const Label = ({ children }: { icon?: Ic; children: React.ReactNode }) => (
+  /* Krea pass (2026-11-15): a hairline label, no icon square (the icon prop stays for callers). */
+  <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{children}</p>);
 export const H2 = ({ id, children, className = "" }: { id: string; children: React.ReactNode; className?: string }) => <h2 id={id} className={`v3-h2 mt-4 md:mt-5 ${className}`}>{children}</h2>;
 export const card = "relative overflow-hidden rounded-[28px] bg-[var(--card)]";

@@ -22,19 +22,20 @@ export default function UseCaseView({ c: en, tr, band, rel }: { c: UC; tr?: UCTe
       <section className="dark relative flex min-h-[88svh] items-end overflow-hidden pb-14 pt-36">
         <img src={en.img} alt={c.alt} className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
+        <div aria-hidden="true" className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/80 to-transparent" />
         <div className="relative w-full container-x">
-          <nav aria-label={t.crumbs} className="mono text-xs uppercase tracking-[.18em] text-white/70"><Link href="/" className="inline-flex min-h-11 items-center hover:text-white">{t.home}</Link> / <span>{t.ucs}</span> / <span className="text-white/80">{c.crumb}</span></nav>
-          <p className="mono mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[.2em] text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-ice-100" />{c.k}</p>
-          <h1 className="display mt-4 max-w-[17ch] text-h1"><Split text={c.h1} /></h1>
-          <p className="mt-5 max-w-[58ch] text-lg leading-[1.4] text-white/80">{c.lede}</p>
-          <div className="mt-6 flex flex-wrap gap-3"><a href={SITE.demo} className="btn btn-cta">{t.demo} <Arr className="ml-1" /></a><Link href="/pricing/" className="btn-g">{t.pricing}</Link></div>
+          <nav aria-label={t.crumbs} className="text-[13px] font-medium text-white/55"><Link href="/" className="inline-flex min-h-11 min-w-11 items-center hover:text-white">{t.home}</Link> / <span>{t.ucs}</span> / <span className="text-white/80">{c.crumb}</span></nav>
+          <p className="mt-6 inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{c.k}</p>
+          <h1 className="kh kh-xl mt-4 max-w-[17ch]"><Split text={c.h1} /></h1>
+          <p className="mt-5 max-w-[40rem] text-[17px] leading-[1.6] text-white/75 md:text-[19px]">{c.lede}</p>
+          <div className="mt-8 flex flex-wrap gap-3"><a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[40px] !min-h-[40px] !px-5 !text-[14px]">{t.demo}</span></a><Link href="/pricing/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[40px] !min-h-[40px] !px-5 !text-[14px]">{t.pricing}</span></Link></div>
         </div>
       </section>
       <section className="section-y" aria-labelledby="uc-p">
         <div className="container-x">
           <p className="v4-h2 max-w-[22ch]"><span className="t-ink">{c.quote}</span></p>
           <PhotoBand img={band[0]} className="mt-12 p-5 sm:p-8 md:mt-16 md:p-12">
-            <h2 id="uc-p" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.problem}</h2>
+            <h2 id="uc-p" className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{t.problem}</h2>
             <ul className="mt-6 grid gap-3 md:grid-cols-3">{c.problem.map(([h, p], i) => <li key={h} className={`${glassTile} p-6 md:p-7`}><span className="text-[13px] font-semibold tabular-nums text-white/45">0{i + 1}</span><p className="mt-6 text-[19px] font-semibold tracking-[-0.02em]">{h}</p><p className="mt-2 text-[15px] leading-[1.55] text-white/70">{p}</p></li>)}</ul>
           </PhotoBand>
         </div>
@@ -42,7 +43,7 @@ export default function UseCaseView({ c: en, tr, band, rel }: { c: UC; tr?: UCTe
       <section className="section-y pt-0" aria-labelledby="uc-s">
         <div className="grid container-x gap-10 md:grid-cols-12">
           <div className="md:col-span-4"><h2 id="uc-s" className="v4-h2"><span className="t-ink">{t.how[0]}</span> <span className="t-accent">{t.how[1]}</span></h2><p className="mt-3 text-[16px] leading-[1.5] text-ink-muted">{t.howSub}</p></div>
-          <ol className="grid gap-2 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="grid grid-cols-[3rem_1fr] gap-4 rounded-[22px] bg-[var(--card)] p-5 md:p-6"><span className="grid h-11 w-11 place-items-center rounded-[13px] bg-[var(--card-2)] text-ink">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[18px] font-semibold tracking-[-0.015em]">{h}</p><p className="mt-1.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p></div></li>)}</ol>
+          <ol className="grid gap-3 sm:grid-cols-2 md:col-span-8">{c.steps.map(([h, p], i) => <li key={h} className="flex flex-col gap-4 rounded-[26px] bg-[var(--card)] p-6 ring-1 ring-white/[.06] md:p-7"><span className="grid h-11 w-11 place-items-center rounded-[30%] bg-[#EC6726] text-white">{[<I.record key="a" size={20} />, <I.split key="b" size={20} />, <I.quiz key="c" size={20} />, <I.ready key="d" size={20} />][i]}</span><div><p className="text-[18px] font-semibold tracking-[-0.015em]">{h}</p><p className="mt-1.5 text-[15px] leading-[1.55] text-ink-muted">{p}</p></div></li>)}</ol>
         </div>
       </section>
       <section className="section-y pt-0" aria-labelledby="uc-f">
@@ -51,9 +52,9 @@ export default function UseCaseView({ c: en, tr, band, rel }: { c: UC; tr?: UCTe
       </section>
       <section className="pb-[var(--section-y)]" aria-labelledby="uc-o"><div className="container-x">
         <PhotoBand img={band[1]} tone="center" className="px-5 py-12 text-center sm:px-10 md:py-20">
-          <h2 id="uc-o" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.out}</h2>
+          <h2 id="uc-o" className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{t.out}</h2>
           <ul className="mx-auto mt-6 grid max-w-[60rem] gap-3 text-start md:grid-cols-3">{c.out.map((o) => <li key={o} className={`${glassTile} flex gap-3 p-5 text-[17px] font-semibold leading-[1.3] tracking-[-0.01em]`}><I.check size={20} className="tick mt-0.5 shrink-0" />{o}</li>)}</ul>
-          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{t.demo} <Arr className="ms-1" /></a>
+          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{t.demo}</a>
             <Link href={`/use-cases/${r.slug}/`} className="btn btn-glass-2 h-11 px-5 text-[15px]">{r.crumb}</Link></div>
         </PhotoBand>
       </div></section>

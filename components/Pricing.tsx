@@ -60,15 +60,21 @@ export default function Pricing() {
   return (<>
     <Header />
     <main id="main" className="home-v3 relative pt-[calc(var(--header-h)+64px)]">
-      <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgb(244_240_235/0.09)_0%,rgb(244_240_235/0)_70%)]" />
+      {/* Krea-style top (2026-11-15): a warm glow from the top right, the title on the left, the billing switch and two
+          quiet links in one row, then the plans. */}
+      <span aria-hidden="true" className="pointer-events-none absolute right-[-12%] top-[-8%] -z-10 h-[680px] w-[min(900px,90vw)] rounded-full bg-[radial-gradient(closest-side,rgb(236_103_38/0.32),rgb(236_103_38/0.08)_55%,transparent_75%)]" />
       <section className="container-x">
-        <div className="mx-auto max-w-[52rem] text-center">
+        <div className="max-w-[48rem]">
           <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{t.k}</span></p>
-          <h1 className="mx-auto mt-5 max-w-[22ch] text-[clamp(38px,0.9rem+3.3vw,64px)] leading-[1.04] [text-wrap:balance]"><Split text={t.h1} /></h1>
-          <p className="intro mx-auto mt-5 max-w-[34rem]">{t.sub}</p>
-          <div className="mt-10 flex justify-center"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
+          <h1 className="kh kh-md mt-5 max-w-[20ch]"><Split text={t.h1} /></h1>
+          <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted">{t.sub}</p>
         </div>
-        <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:gap-6 xl:grid-cols-4" aria-label={c.k}>
+        <div className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" />
+          <a href="#enterprise" className="inline-flex min-h-11 items-center text-[15px] text-ink-muted transition-colors hover:text-ink">{t.entK}</a>
+          <a href="#faq" className="inline-flex min-h-11 items-center text-[15px] text-ink-muted transition-colors hover:text-ink">{d.faq.k}</a>
+        </div>
+        <ul className="mt-10 grid gap-x-4 gap-y-10 md:grid-cols-2 lg:gap-x-5 xl:grid-cols-4" aria-label={c.k}>
           {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} full />)}
         </ul>
         <p className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">

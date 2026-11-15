@@ -38,7 +38,7 @@ export const rise = (reduce: boolean | null, i = 0) => reduce ? {} : { initial: 
 function Eyebrow({ word, k }: { word: string; k: number }) {
   const { d } = useLocale(); const h = d.hero;
   return (
-    <p className="hs-in flex items-center gap-3 text-[14px] text-white/60 max-md:justify-center">
+    <p className="hs-in flex items-center justify-center gap-3 text-[14px] text-white/60">
       <span aria-hidden="true" className="h-px w-8 bg-white/30" />
       <span className="truncate">{h.rotPre}<AnimatePresence mode="wait" initial={false}><m.span key={k} className="font-medium text-white/95" initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} transition={{ duration: 0.22, ease: "easeOut" }}>{word}</m.span></AnimatePresence>{h.rotPost}</span>
     </p>);
@@ -62,10 +62,10 @@ function Scene({ k, rest, reduce }: { k: number; rest: boolean; reduce: boolean 
       {/* Darker and calmer than the clip: a deep wash from the text side, a vignette that closes the corners, one warm
           glow behind the phone, and a long fade into the ground so the strip below starts on #111. */}
       <span className="absolute inset-0 bg-[rgb(10_10_10/0.12)]" />
-      <span className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_10_10/0.98)_0%,rgb(10_10_10/0.94)_22%,rgb(10_10_10/0.8)_38%,rgb(10_10_10/0.55)_54%,rgb(10_10_10/0.3)_70%,rgb(10_10_10/0.16)_85%,rgb(10_10_10/0.1)_100%)] rtl:-scale-x-100" />
+      <span className="absolute inset-0 bg-[radial-gradient(60%_55%_at_50%_42%,rgb(10_10_10/0.72)_0%,rgb(10_10_10/0.55)_55%,rgb(10_10_10/0.82)_100%)]" />
       <span className="absolute inset-0 bg-[rgb(10_10_10/0.4)] md:hidden" />
       <span className="absolute inset-0 bg-[radial-gradient(120%_100%_at_70%_45%,transparent_50%,rgb(8_8_8/0.55)_100%)]" />
-      <span className="absolute inset-0 bg-[radial-gradient(38%_50%_at_76%_52%,rgb(236_103_38/0.2)_0%,rgb(236_103_38/0)_70%)] mix-blend-screen rtl:-scale-x-100" />
+      <span className="absolute inset-0 bg-[radial-gradient(75%_55%_at_50%_0%,rgb(236_103_38/0.30)_0%,rgb(236_103_38/0.12)_45%,rgb(236_103_38/0)_80%)] mix-blend-screen" />
       <span className="absolute inset-0 bg-[radial-gradient(40%_45%_at_18%_42%,rgb(236_103_38/0.035)_0%,rgb(236_103_38/0)_70%)]" />
       <span className="absolute inset-x-0 top-0 h-48 bg-[linear-gradient(to_bottom,rgb(12_12_12/0.85),rgb(12_12_12/0))]" />
       <span className="absolute inset-x-0 bottom-0 h-[45%] bg-[linear-gradient(to_top,#111111_8%,rgb(17_17_17/0.85)_35%,rgb(17_17_17/0))]" />
@@ -79,8 +79,7 @@ function PhoneBackdrop() {
   return (
     <div aria-hidden="true" className="absolute inset-0 -z-10 overflow-hidden md:hidden">
       <span className="m-hero-grid absolute inset-0" />
-      <span className="m-hero-glow absolute left-1/2 top-[58%] h-[520px] w-[520px] -translate-x-1/2 rounded-full" />
-      <span className="absolute inset-x-0 top-0 h-[40%] bg-[radial-gradient(70%_100%_at_50%_0%,rgb(244_240_235/0.07),transparent_70%)]" />
+      <span className="absolute inset-x-0 top-0 h-[75%] bg-[radial-gradient(90%_75%_at_50%_0%,rgb(236_103_38/0.30)_0%,rgb(236_103_38/0.12)_45%,transparent_80%)]" />
       <span className="absolute inset-x-0 bottom-0 h-40 bg-[linear-gradient(to_top,#111111,rgb(17_17_17/0))]" />
     </div>);
 }
@@ -89,13 +88,15 @@ function PhoneBackdrop() {
 const bare = (t: string) => t.replace(/[.。]\s*$/, "");
 /** Letters that come into focus one after another (CSS only, .hs-ch). Words never break inside; RTL scripts keep
  *  whole words so letters stay joined. */
-function Focus({ text, cls, start }: { text: string; cls: string; start: number }) {
+function Focus({ text, cls, start, hl, hlCls = "hero-ember" }: { text: string; cls: string; start: number; hl?: string; hlCls?: string }) {
   let i = 0; const joined = /[\u0600-\u06FF]/.test(text);
-  return (<>{text.split(" ").map((w, k) => (<span key={k}>{k > 0 && " "}
+  return (<>{text.split(" ").map((w, k) => { const c0 = hl && w.toLocaleLowerCase().includes(hl.toLocaleLowerCase()) ? hlCls : cls; return (<span key={k}>{k > 0 && " "}
     <span className="inline-block whitespace-nowrap">{joined
-      ? <span className={`hs-ch ${cls}`} style={{ animationDelay: `${start + (i += w.length) * 26}ms` }}>{w}</span>
-      : [...w].map((c, j) => <span key={j} className={`hs-ch ${cls}`} style={{ animationDelay: `${start + i++ * 26}ms` }}>{c}</span>)}</span></span>))}</>);
+      ? <span className={`hs-ch ${c0}`} style={{ animationDelay: `${start + (i += w.length) * 26}ms` }}>{w}</span>
+      : [...w].map((c, j) => <span key={j} className={`hs-ch ${c0}`} style={{ animationDelay: `${start + i++ * 26}ms` }}>{c}</span>)}</span></span>); })}</>);
 }
+/* The one word in the promise that carries the ember (Krea-style headline, 2026-11-15). */
+const HL: Record<string, string> = { en: "Minutes", tr: "dakikalar", de: "Minuten", nl: "minuten", fr: "minutes", es: "minutos", pt: "minutos", pl: "minut", ar: "دقائق" };
 const STEP_DONE: Record<string, string> = { en: "Step complete", tr: "Adım tamamlandı", de: "Schritt erledigt", ar: "اكتملت الخطوة", es: "Paso completado", pt: "Etapa concluída", nl: "Stap voltooid", fr: "Étape terminée", pl: "Krok ukończony" };
 export function HeroV3({ children }: { children?: React.ReactNode }) {
   const { d, lang, locale } = useLocale(); const h = d.hero; const [demo, setDemo] = useState(false); const reduce = useReducedMotion();
@@ -113,38 +114,34 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
       <Scene k={k} rest={rest} reduce={reduce} />
       <PhoneBackdrop />
       <div className="container-x relative">
-        <div className="grid-12 items-center gap-y-9 pb-10 pt-8 md:gap-y-10 md:pb-12 md:pt-10 lg:min-h-[min(calc(100svh-var(--header-h)-96px),760px)] lg:pb-14 lg:pt-6">
+        <div className="flex flex-col items-center gap-y-12 pb-10 pt-12 text-center md:pb-12 md:pt-20 lg:pt-24">
           {/* The promise, wide: each sentence on one line on large screens. */}
-          <div className="relative z-10 col-span-12 max-md:text-center lg:col-span-8">
+          <div className="relative z-10 flex w-full max-w-[1000px] flex-col items-center">
             <Eyebrow word={word} k={k} />
             {/* "Train your team in minutes / not hours": the letters come into focus left to right (blur to sharp), the
                 second line in the ember gradient. Screen readers get the plain sentence once. */}
-            <h1 id="hero-h" className="mt-5 text-[clamp(42px,0.9rem+3.6vw,68px)] font-bold leading-[1.02] tracking-[-0.045em] [text-wrap:balance]">
+            <h1 id="hero-h" className="kh kh-xl mt-6 [text-wrap:balance]">
               <span className="sr-only">{`${bare(h.h1a)} ${bare(h.h1b)}`}</span>
-              <span aria-hidden="true" className={`block ${bare(h.h1a).length <= 28 ? "lg:whitespace-nowrap" : ""}`}><Focus text={bare(h.h1a)} cls="hero-metal" start={180} /></span>
-              {/* The answer, smaller and lighter under the promise; once its letters land, a hairline draws under it. */}
-              <span aria-hidden="true" className="relative mt-2 inline-block pb-[0.18em] text-[0.62em] font-medium tracking-[-0.035em] md:mt-3">
-                <Focus text={bare(h.h1b)} cls="hero-ember" start={180 + [...bare(h.h1a)].length * 26 + 120} />
-                <span className="hero-underline absolute inset-x-0 bottom-0 h-[2px] rounded-full" style={{ animationDelay: `${180 + ([...bare(h.h1a)].length + [...bare(h.h1b)].length) * 26 + 520}ms` }} />
-              </span>
+              <span aria-hidden="true" className="block"><Focus text={bare(h.h1a)} cls="hero-cream" start={180} hl={HL[locale]} /></span>
+              <span aria-hidden="true" className="block"><Focus text={bare(h.h1b)} cls="hero-mute" start={180 + [...bare(h.h1a)].length * 26 + 120} /></span>
             </h1>
-            <p className="hs-in mt-6 hidden max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:block md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
-            <div className="hs-in mt-7 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-8" style={{ animationDelay: "250ms" }}>
+            <p className="hs-in mx-auto mt-6 hidden max-w-[36rem] text-[17px] leading-[1.6] text-white/70 md:block md:text-[19px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
+            <div className="hs-in mt-8 flex flex-wrap items-center justify-center gap-3" style={{ animationDelay: "250ms" }}>
               <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
               <button type="button" onClick={() => { setDemo(true); track("watch_demo", { placement: "hero" }); }} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
             </div>
-            <div className="hs-in mt-5 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-7" style={{ animationDelay: "350ms" }}>
+            <div className="hs-in mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-6" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-70 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />
             </div>
           </div>
           {/* The phone on the end side, playing the step the scene shows; a glass note pops beside it each time a
               step is ticked. */}
-          <div className="relative col-span-12 flex justify-center lg:col-span-4 lg:justify-end">
-            <div className="hs-device relative w-[66%] max-w-[300px] lg:w-[290px]" style={{ animationDelay: "200ms" }} dir="ltr">
+          <div className="relative flex w-full justify-center">
+            <div className="hs-device relative w-[66%] max-w-[300px] lg:w-[300px]" style={{ animationDelay: "200ms" }} dir="ltr">
               <div className="hero-lift rounded-[42px] shadow-[0_60px_90px_-35px_rgb(0_0_0/0.85),0_20px_40px_-20px_rgb(0_0_0/0.6)]"><Device max label={h.chip.t}><WorkScreen active lang={lang} onStep={onStep} /></Device></div>
               <AnimatePresence>{note && (
                 <m.div key={ticks} aria-hidden="true" initial={reduce ? false : { opacity: 0, x: 12, scale: 0.96 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={reduce ? undefined : { opacity: 0, x: -6 }} transition={{ duration: 0.22, ease: "easeOut" }}
-                  className="absolute -start-[30%] top-[62%] flex items-center max-md:start-1/2 max-md:top-auto max-md:bottom-[14%] max-md:-translate-x-1/2 gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">
+                  className="absolute -start-[46%] top-[58%] flex items-center max-md:start-1/2 max-md:top-auto max-md:bottom-[14%] max-md:-translate-x-1/2 gap-2.5 whitespace-nowrap rounded-[16px] bg-[rgb(17_17_17/0.78)] py-2.5 pe-4 ps-3 text-white shadow-[0_24px_50px_-24px_rgb(0_0_0/0.95)] ring-1 ring-white/15 backdrop-blur-md lg:-start-[46%]">
                   <span className="grid h-7 w-7 place-items-center [&>svg]:h-7 [&>svg]:w-7"><CheckRing on reduce={reduce} /></span>
                   <span className="leading-tight"><span className="block text-[14px] font-semibold">{STEP_DONE[locale] ?? STEP_DONE.en}</span><span className="block text-[12px] text-white/70">{ticks}/6</span></span>
                 </m.div>)}</AnimatePresence>

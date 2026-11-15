@@ -19,7 +19,7 @@ export function CompanyPage() {
       <div className="container-x grid items-end gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
         <div>
           <Label icon={Buildings}>{c.k}</Label>
-          <h1 id="co-h" className="v3-h1 mt-5 max-w-[16ch]"><span className="t-ink">{c.h[0]}</span> <span className="t-accent">{c.h[1]}</span></h1>
+          <h1 id="co-h" className="kh kh-md mt-5 max-w-[16ch]"><span className="t-ink">{c.h[0]}</span> <span className="t-accent">{c.h[1]}</span></h1>
           <p className="lead mt-5 max-w-[34rem]">{c.p}</p>
           <dl className="mt-8 flex flex-wrap gap-2">{c.facts.map(([k, v]) => (
             <div key={k} className="rounded-full bg-[var(--card)] px-4 py-2 text-[14px]"><dt className="sr-only">{k}</dt><dd>{v.includes("@") ? <a href={`mailto:${v}`} className="hover:underline">{v}</a> : v}</dd></div>))}</dl>
@@ -70,7 +70,7 @@ export function CompanyPage() {
     <section aria-label={c.programs} className="section-y pt-0">
       <div className="container-x">
         <PhotoBand img="saha-santiye-havadan" pos="50% 50%" className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-12">
-          <div><p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{c.programs}</p>
+          <div><p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{c.programs}</p>
             <ul className="mt-4 flex flex-wrap gap-2">{SITE.programs.map((p) => <li key={p.name}><a href={p.href} target="_blank" rel="noopener" className={`${glassTile} inline-flex min-h-11 items-center !rounded-full px-4 text-[14px] font-medium text-white/90 transition-colors hover:bg-white/[.12]`}>{p.name}</a></li>)}</ul></div>
           <a href={SITE.demo} className="btn btn-cta shrink-0">{d.end.cta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></a>
         </PhotoBand>

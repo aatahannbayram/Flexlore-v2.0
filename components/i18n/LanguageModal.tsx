@@ -3,7 +3,8 @@
  * then browser language; nothing leaves the device) suggests one, and a small dialog asks "Türkçe detected: continue or
  * change". The answer is remembered (flx-lang); closing keeps the page's language and is remembered too (flx-lang-asked).
  * Not shown to automated browsers (tests, crawlers), so the first paint for search engines is the page as served. */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Translate } from "../ui/icons";
 import { useLocale } from "./LocaleProvider";
 import { LOCALES, detectLocale, isLocale, type Locale } from "./locales";
 import { isTrPath } from "./routes";
@@ -23,7 +24,9 @@ const ASKED = "flx-lang-asked";
 
 export function LanguageModal() {
   const { setLocale } = useLocale();
-  const [sug, setSug] = useState<Locale | null>(null); const [list, setList] = useState(false);
+  const [sug, setSug] = useState<Locale | null>(null); const [list, setList] = useState(false); const card = useRef<HTMLDivElement>(null);
+  /* Focus goes to the dialog itself (not a button), so nothing looks pre-selected. */
+  useEffect(() => { if (sug) card.current?.focus({ preventScroll: true }); }, [sug]);
   useEffect(() => {
     try {
       if (navigator.webdriver) return;
@@ -46,10 +49,13 @@ export function LanguageModal() {
   return (
     <div className="lang-modal fixed inset-0 z-[60] grid place-items-end p-3 sm:place-items-center sm:p-6" role="dialog" aria-modal="true" aria-labelledby="lm-h" dir={cur.dir}>
       <button type="button" aria-label={t.close} onClick={close} className="absolute inset-0 cursor-default bg-[rgb(8_8_8/0.45)]" />
-      <div className="lang-card dark relative w-full max-w-[380px] overflow-hidden rounded-[28px] bg-[#1b1b1b] p-2 text-white shadow-[0_50px_100px_-30px_rgb(0_0_0/0.9)] ring-1 ring-white/[.07]">
+      <div ref={card} tabIndex={-1} className="lang-card dark relative w-full max-w-[380px] outline-none overflow-hidden rounded-[28px] bg-[#1b1b1b] p-2 text-white shadow-[0_50px_100px_-30px_rgb(0_0_0/0.9)] ring-1 ring-white/[.07]">
         <div className="px-4 pb-4 pt-4">
           <div className="flex items-center justify-between">
-            <span className="inline-flex h-7 items-center gap-2 rounded-full bg-white/[.06] pe-3 ps-1.5 text-[12.5px] font-medium text-white/75">{flag(cur.flag, 18)}{cur.name}</span>
+            <span className="flex items-center gap-2.5">
+              <span className="grid h-10 w-10 place-items-center rounded-[13px] bg-white/[.07] text-[#F4F0EB] ring-1 ring-white/[.08]"><Translate size={19} aria-hidden="true" /></span>
+              <span className="inline-flex h-7 items-center gap-1.5 rounded-full bg-white/[.06] pe-2.5 ps-1.5 text-[12.5px] font-medium text-white/70">{flag(cur.flag, 16)}{cur.code === "ar" ? "Arabic" : cur.name}</span>
+            </span>
             <button type="button" onClick={close} aria-label={t.close} className="-me-2 grid h-11 w-11 place-items-center rounded-full text-white/45 transition-colors hover:text-white">
               <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg></button>
           </div>
@@ -65,9 +71,9 @@ export function LanguageModal() {
           </ul>
         ) : (
           <div className="flex gap-1.5 p-1">
-            <button type="button" autoFocus onClick={() => pick(sug)} className="group inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-[#F4F0EB] text-[15px] font-semibold text-[#111] transition-colors hover:bg-white">
+            <button type="button" onClick={() => pick(sug)} className="btn group !h-11 !min-h-11 flex-1 gap-2 !rounded-full !bg-[#F4F0EB] !px-4 !text-[14px] !font-semibold !text-[#111] hover:!bg-white">
               {t.go}<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
-            <button type="button" onClick={() => setList(true)} className="inline-flex h-12 items-center justify-center rounded-full bg-white/[.07] px-5 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/[.12]">{t.change}</button>
+            <button type="button" onClick={() => setList(true)} className="btn btn-glass-2 !h-11 !min-h-11 !px-4 !text-[14px]">{t.change}</button>
           </div>
         )}
       </div>

@@ -350,7 +350,7 @@ export function FeaturesIndex() {
             <div className="relative lg:col-span-8">
               {/* A soft glow of the stage's photograph behind the glass. */}
               <span aria-hidden="true" className="pointer-events-none absolute -inset-x-8 -inset-y-10 -z-10 overflow-hidden opacity-[.22] blur-[70px] [mask-image:radial-gradient(closest-side,#000,transparent)]"><Pic n={glow} sizes="400px" className="h-full w-full scale-110 object-cover" /></span>
-              <span aria-hidden="true" className="pointer-events-none absolute -end-10 top-10 -z-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.16),transparent_65%)] blur-2xl" />
+              <span aria-hidden="true" className="pointer-events-none absolute -end-10 top-10 -z-10 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgb(236_103_38/0.16),transparent_65%)]" />
               <Reveal as="ul" stagger={0.06} className="grid grid-cols-2 gap-x-3 gap-y-6 md:gap-4">
                 {lead && <LeadCard f={lead} d={d} />}
                 {rest.map((f, i) => <FeatureCard key={f.slug} f={f} wide={rest.length % 2 === 1 && i === rest.length - 1} />)}

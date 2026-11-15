@@ -1,5 +1,7 @@
 "use client";
-import { useHref } from "../i18n/Link";
+import Link, { useHref } from "../i18n/Link";
+import { FEATURES, FEAT_NAV } from "../features/data";
+import { AppIcon } from "../krea/parts";
 /* At a glance: a framed photo of the floor (softened copy behind, sharp inside a glass frame), the promise on the start
  * side, four values the page has not said yet on the end side (from the approved FAQ and feature pages; AI agents
  * marked Coming soon). The photos change like a slide show. No user counts, ratings or invented numbers. */
@@ -82,6 +84,25 @@ export function FactsV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: strin
             {SLIDES.map(([n], k) => <button key={n} type="button" onClick={() => setI(k)} aria-label={`${t.slide} ${k + 1}`} aria-pressed={k === i} className="grid h-11 w-11 place-items-center"><span className={`h-1.5 rounded-full transition-all duration-200 ${k === i ? "w-6 bg-white" : "w-1.5 bg-white/45"}`} /></button>)}
           </div>
         </div>
+      </div>
+    </section>);
+}
+
+/* Every feature as a Krea-style app tile (2026-11-15): name, one line, a warm squircle icon; "soon" marked plainly. */
+export function AppGridV3() {
+  const { locale } = useLocale(); const t = FEAT_NAV[locale] ?? FEAT_NAV.en;
+  return (
+    <section aria-label={t.all} className="pb-[var(--section-y)]">
+      <div className="container-x">
+        <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3">
+          {FEATURES.map((f) => (
+            <li key={f.slug}><Link href={`/features/${f.slug}/`} className="group flex h-full min-h-[88px] flex-col-reverse items-start justify-between gap-3 rounded-[20px] bg-[var(--card)] p-4 ring-1 sm:flex-row sm:items-center sm:gap-4 sm:rounded-[22px] sm:p-5 ring-white/[.06] transition-colors hover:bg-[var(--card-2)]">
+              <span className="min-w-0"><span className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] font-semibold leading-snug tracking-[-0.025em] text-ink sm:text-[17px]">{t.items[f.slug][0]}{f.status === "soon" && <span className="rounded-full bg-white/[.07] px-2 py-0.5 text-[12px] font-medium text-ink-faint">{t.soon}</span>}</span>
+                <span className="mt-1 hidden truncate text-[14px] text-ink-muted sm:block">{t.items[f.slug][1]}</span></span>
+              <AppIcon slug={f.slug} icon={f.icon} size={48} />
+            </Link></li>))}
+        </ul>
+        <div className="mt-6 flex justify-center"><Link href="/features/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.all}</span></Link></div>
       </div>
     </section>);
 }

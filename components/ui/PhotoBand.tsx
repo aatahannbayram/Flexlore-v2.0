@@ -48,4 +48,5 @@ export function PhotoBand({ img, pos = "50% 50%", tone = "side", blur = false, d
 /** Glass tile for use on a PhotoBand. */
 export const glassTile = "rounded-[22px] bg-white/[.07] shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]";
 /** Small icon chip on glass. */
-export const glassIcon = "grid h-10 w-10 shrink-0 place-items-center rounded-[12px] bg-white/10 text-white";
+/* Krea pass (2026-11-15): warm app-style squircle instead of a grey glass square. */
+export const glassIcon = "grid h-11 w-11 shrink-0 place-items-center rounded-[30%] bg-[#EC6726] text-white";

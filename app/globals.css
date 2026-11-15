@@ -125,7 +125,7 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 :focus-visible { outline: 2px solid rgb(244 240 235 / 0.7); outline-offset: 3px; }
 :root[data-theme="light"] :focus-visible { outline-color: rgb(22 22 22 / 0.6); }
 /* The ⌘K search field sits inside an open dialog with a caret; the dialog itself is the focus cue. */
-.cmdk-input:focus-visible { outline: none; }
+.cmdk-input:focus-visible, .lang-card:focus-visible { outline: none; }
 section[id], [id]:target { scroll-margin-top: calc(var(--header-h) + 16px); }
 details summary::-webkit-details-marker { display:none; }
 .no-sb::-webkit-scrollbar{display:none}
@@ -486,7 +486,7 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 section[id], [id]:target { scroll-margin-top: 80px; }
 .home-v3 section.section-y { padding-top: var(--sp-section) !important; padding-bottom: 0 !important; }
 .home-v3 > section:last-child, .home-v3 section.section-y:last-of-type { padding-bottom: var(--sp-section) !important; }
-.home-v3 .v4-h2 { font-size: clamp(32px, 0.9rem + 2.4vw, 60px); line-height: 1.02; letter-spacing: -0.048em; font-weight: 600; text-wrap: balance; }
+.home-v3 .v4-h2 { font-size: clamp(32px, 0.9rem + 2.5vw, 56px); line-height: 1.04; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance; }
 .home-v3 .t-accent { color: rgb(242 242 240 / 0.55); }
 .home-v3 .t-ink { color: #F2F2F0; }
 :root[data-theme="light"] .home-v3 .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }
@@ -522,12 +522,13 @@ section[id], [id]:target { scroll-margin-top: 80px; }
 /* ---------- One heading system for every page (2026-11-12) ----------
    Page titles share the home hero's voice: bold, tight, the set-up in metal and the result in ember. Section headings
    everywhere use the home scale (44/50 to 30/36) with the second part at 55 %. */
-main h1 { font-weight: 700 !important; letter-spacing: -0.04em !important; }
-main h1 .t-ink { background: linear-gradient(180deg, #F2D2BE 0%, #FFFFFF 42%, #FBEEE6 58%, #E3AE8C 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-main h1 .t-accent { background: linear-gradient(180deg, #FF9A5C 0%, #EC6726 48%, #B9521F 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-:root[data-theme="light"] main h1 .t-ink:not(.dark *) { background-image: linear-gradient(180deg, #3A2A20 0%, #111111 60%, #4A3326 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-:root[data-theme="light"] main h1 .t-accent:not(.dark *) { background-image: linear-gradient(180deg, #EE7434 0%, #C2521A 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.v4-h2 { font-size: clamp(30px, 1.15rem + 1.55vw, 44px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: balance; }
+/* Krea pass (2026-11-15): page titles bold and tight, the set-up in clean cream, the result in soft grey. */
+main h1 { font-weight: 600 !important; letter-spacing: -0.045em !important; }
+main h1 .t-ink { background: none; color: #F4F0EB; }
+main h1 .t-accent { background: none; color: rgb(244 240 235 / 0.45); }
+:root[data-theme="light"] main h1 .t-ink:not(.dark *) { background: none; color: #111; }
+:root[data-theme="light"] main h1 .t-accent:not(.dark *) { background: none; color: rgb(17 17 17 / 0.45); }
+.v4-h2 { font-size: clamp(32px, 0.9rem + 2.5vw, 56px); font-weight: 600; line-height: 1.04; letter-spacing: -0.045em; text-wrap: balance; }
 .t-accent { color: rgb(242 242 240 / 0.55); }
 :root[data-theme="light"] .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }
 
@@ -659,3 +660,30 @@ footer.ember-foot { padding-bottom: env(safe-area-inset-bottom); }
 @keyframes hs-underline { to { transform: scaleX(1); } }
 html.splash-on .hero-underline { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .hero-underline { animation: none; transform: none; } }
+/* Krea headline scale (prototype, components/proto/KreaProto.tsx): very large, bold, tight. */
+.kh { font-size: clamp(34px, 0.9rem + 3vw, 64px); font-weight: 600; letter-spacing: -0.045em; line-height: 1.02; text-wrap: balance; }
+.kh-xl { font-size: clamp(40px, 1rem + 3.9vw, 78px); }
+.kh-md { font-size: clamp(32px, 0.9rem + 2.5vw, 56px); }
+/* Drum carousel (Krea): flat cards with a gap slide sideways on one smooth parabola (2026-11-15: every card, the centre
+   one too, is cut by the same deep curve, so the top edge reads as one continuous arc). The band is masked by a deep curved
+   top and bottom edge (the curve runs across the whole width), the side cards fill the band so their edges follow the
+   curve, and the centre card sits inside the curve's lowest point. Photos keep the band's height (container query
+   units), so a card that grows or shrinks only crops its photo. */
+.drum { --gap: 28px; --w: min(58vw, 880px); container-type: size;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 34 100 0 L100 100 Q50 80 0 100 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 34 100 0 L100 100 Q50 80 0 100 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+.drum-card { left: 50%; top: 0; width: var(--w); height: 100%; cursor: pointer;
+  transform: translateX(calc(-50% + var(--p) * (var(--w) + var(--gap))));
+  transition: transform .9s cubic-bezier(.22,1,.36,1), top .9s cubic-bezier(.22,1,.36,1), height .9s cubic-bezier(.22,1,.36,1); }
+.drum-card[data-c] { cursor: default; }
+.drum-img { position: absolute; left: 0; top: 50%; width: 100%; height: 100cqh; max-width: none; object-fit: cover; transform: translateY(-50%); }
+@media (max-width: 767px) { .drum { --gap: 12px; --w: 80vw; -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 18 100 0 L100 100 Q50 88 0 100 Z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 18 100 0 L100 100 Q50 88 0 100 Z'/%3E%3C/svg%3E"); }  }
+@media (prefers-reduced-motion: reduce) { .drum-card { transition: none; } }
+.arch-card { transition: transform .8s var(--ease-out-expo), opacity .6s ease; }
+@media (prefers-reduced-motion: reduce) { .arch-card { transition: none; } }
+/* Krea-style hero words: clean cream for the promise, soft grey for the answer (ember only on the one word). */
+.hero-cream { color: #F4F0EB; }
+.hero-mute { color: rgb(244 240 235 / 0.45); }
+:root[data-theme="light"] .hero-cream:not(.dark *) { color: #111; }
+:root[data-theme="light"] .hero-mute:not(.dark *) { color: rgb(17 17 17 / 0.45); }

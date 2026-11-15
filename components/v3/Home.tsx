@@ -16,7 +16,7 @@ import { HOME4, WS_LEVELS } from "../i18n/home4";
 import { EXTRA } from "../i18n/extra";
 import { Device, WorkScreen, Status, Nav, Player, Clip, CheckRing } from "../AppScreens";
 import { EASE } from "../ui/Reveal";
-import { Play, Pause, Check, CheckCircle, ShieldCheck, MapPin, Users, ForkKnife, Storefront, Factory, HardHat, Buildings, Bed, ArrowRight, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle, Lightning, ArrowCounterClockwise, Article, Translate } from "../ui/icons";
+import { Sparkle, Play, Pause, Check, CheckCircle, ShieldCheck, MapPin, Users, ForkKnife, Storefront, Factory, HardHat, Buildings, Bed, ArrowRight, FirstAid, GraduationCap, ChalkboardTeacher, Barbell, FilmSlate, DotsThreeCircle, Lightning, ArrowCounterClockwise, Article, Translate } from "../ui/icons";
 import { LOCALES } from "../i18n/locales";
 import { Chev } from "./Chevron";
 import { CASES } from "./cases";
@@ -24,7 +24,8 @@ import { LOGOS, CaseLogo } from "./logos";
 import { Photo, Kicker, rise, type Media } from "./Top";
 import M from "./media.json";
 import { DesktopV3 } from "./Desktop";
-import { FactsV3 } from "./Facts";
+import { FactsV3, AppGridV3 } from "./Facts";
+import { Drum, type DrumItem, BottomPillNav, GlyphIcon } from "../krea/parts";
 
 /** Section heading: words rise in one after another when the heading enters view (static under reduced motion).
  *  Two tones everywhere: a heading with two sentences splits after the first; otherwise the last third is the result.
@@ -258,56 +259,42 @@ export function StepsV3() {
  * What Flexlore is for, in its own words, without repeating the other chapters: the expert's know-how stays with the
  * company, short video steps replace paper, and it is made for people on the floor. A small glass fragment on each photo
  * shows the idea. Phones: one row that scrolls sideways (snap, the next card peeks). */
+/* Two facts under the drum caption (Ata, 2026-11-15): AI drafts the steps and the quiz, and teams can start from ready templates. */
+const DRUM_CHIPS: Record<string, [typeof Sparkle, string][]> = {
+  en: [[Sparkle, "AI drafts the steps and the quiz"], [Article, "Start from ready templates"]],
+  tr: [[Sparkle, "Yapay zekâ adımları ve quizi hazırlar"], [Article, "Hazır şablonlarla başlayın"]],
+  de: [[Sparkle, "KI entwirft Schritte und Quiz"], [Article, "Mit fertigen Vorlagen starten"]],
+  nl: [[Sparkle, "AI maakt de stappen en de quiz"], [Article, "Begin met kant-en-klare sjablonen"]],
+  fr: [[Sparkle, "L'IA prépare les étapes et le quiz"], [Article, "Partez de modèles prêts à l'emploi"]],
+  es: [[Sparkle, "La IA prepara los pasos y el cuestionario"], [Article, "Empiece con plantillas listas"]],
+  pt: [[Sparkle, "A IA prepara as etapas e o quiz"], [Article, "Comece com modelos prontos"]],
+  pl: [[Sparkle, "AI przygotowuje kroki i quiz"], [Article, "Zacznij od gotowych szablonów"]],
+  ar: [[Sparkle, "الذكاء الاصطناعي يعدّ الخطوات والاختبار"], [Article, "ابدأ من قوالب جاهزة"]],
+};
 export function WhyV3() {
-  const { locale } = useLocale(); const c = HOME2[locale].why; const reduce = useReducedMotion();
-  const ref = useRef<HTMLUListElement>(null); const go = useInView(ref, { amount: 0.3, once: true });
-  const row = "flex items-center gap-2.5 rounded-[10px] bg-white/[.06] px-3 py-2.5 text-[13px] text-white";
-  const frags = [
-    <div key="a" className={`${glass} p-2`}>
-      <div className={`${row} text-white/70`}><Users size={14} aria-hidden="true" className="shrink-0" /><span className="truncate">{c.a[0]}</span></div>
-      <div className="flex justify-center py-1 text-white/45"><ArrowRight size={13} aria-hidden="true" className="rotate-90" /></div>
-      <div className={`${row} bx-rise`} style={{ animationDelay: "650ms" }}><CheckCircle size={14} weight="fill" aria-hidden="true" className="tick shrink-0" /><span className="truncate font-semibold">{c.a[1]}</span></div>
-    </div>,
-    <div key="b" className={`${glass} space-y-1.5 p-2`}>
-      <div className={`${row} text-white/50`}><Article size={14} aria-hidden="true" className="shrink-0" /><span className="truncate line-through decoration-white/40">{c.b[0]}</span></div>
-      <div className={`${row} bx-rise`} style={{ animationDelay: "650ms" }}><Play size={13} weight="fill" aria-hidden="true" className="shrink-0 text-white" /><span className="min-w-0 flex-1 truncate font-semibold">{c.b[1]}</span>
-        <span aria-hidden="true" className="flex shrink-0 gap-[3px]">{[0, 1, 2, 3, 4, 5].map((k) => <span key={k} className="bx-in h-3 w-[3px] rounded-full bg-white/75" style={{ animationDelay: `${900 + k * 90}ms` }} />)}</span></div>
-    </div>,
-    <div key="c" className={`${glass} flex flex-wrap gap-1.5 p-2`}>{c.c.map((t, k) => { const I = [Play, Translate, MapPin][k]; return (
-      <span key={t} className="bx-rise inline-flex items-center gap-1.5 rounded-full bg-white/[.08] px-3 py-2 text-[13px] text-white" style={{ animationDelay: `${550 + k * 160}ms` }}><I size={13} aria-hidden="true" />{t}</span>); })}</div>,
-  ];
-  /* Third card: a crew looking at one phone together (on the phone, in their language, at the station). */
-  const imgs: string[] = ["problem-vardiya", "problem-kagitlar", "/photos/huddle-800.webp"];
+  /* Krea-style (2026-11-15): the statement, then the curved drum of real jobs (kitchen, production, site); the centre
+     card compares the paper manual with the filmed job; the caption cycles the three reasons. */
+  const { locale, d } = useLocale(); const c = HOME2[locale].why; const w = HOME4[locale].ws; const [prev, next] = ARROWS[locale] ?? ARROWS.en;
+  const pics = [["ws-j-acilis", "ws-j-alerjen", "ws-j-fritoz"], ["ws-j-hat", "ws-j-kalip", "ws-j-kkd"], ["ws-j-iskele", "ws-j-vinc", "ws-j-brifing"]];
+  const names = [d.bento.jobs, w.siteJobs[0], w.siteJobs[1]];
+  const items: DrumItem[] = pics.flatMap((row, g) => row.map((img, k) => ({ img, name: names[g][k] ?? "", group: g })));
   return (
     <section aria-labelledby="why-h" className="section-y pt-0">
       <div className="container-x">
-        {/* A statement, set apart: the line reveals word by word as it scrolls in (CSS scroll timeline, no JS). */}
         <div className="mx-auto max-w-[52rem] pt-6 text-center md:pt-10">
           <div className="flex justify-center"><Ch n="02">{c.k}</Ch></div>
-          <h2 id="why-h" className="rv v4-h2 mt-3" style={{ fontSize: "clamp(34px, 1rem + 2.9vw, 66px)" }}><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
+          <h2 id="why-h" className="rv v4-h2 mt-3"><Words text={c.h} /> <span className="text-ink-faint"><Words text={c.h2 ?? ""} from={c.h.split(" ").length} /></span></h2>
           <p className="rv intro mx-auto mt-4 max-w-[40rem]">{c.lead}</p>
         </div>
-        <ul ref={ref} className={`mt-8 flex flex-col gap-3 md:mt-12 md:grid md:grid-cols-3 md:gap-6 ${go || reduce ? "bx-go" : ""}`}>
-          {c.cards.map(([h, p], k) => (
-            <m.li key={h} {...rise(reduce, k)} className="glass-card m-flat group flex flex-col md:rounded-[26px] md:p-2">
-              {/* Standard card: the photograph inset in the glass, its story fragment on the photo, the words below. */}
-              <div className="dark relative aspect-[16/10] overflow-hidden rounded-[22px] bg-[#171717] text-white md:aspect-[4/3.4] md:rounded-[20px]">
-                {imgs[k].startsWith("/") ? <img src={imgs[k]} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />
-                  : <Photo n={imgs[k] as Media} sizes="(min-width:768px) 33vw, 82vw" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-[1.04]" />}
-                <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.15),rgb(16_16_16/0.55))]" />
-                <div className="absolute inset-x-3 bottom-3 hidden md:inset-x-4 md:bottom-4 md:block" aria-hidden="true">{frags[k]}</div>
-                {/* Phones: the title sits on the photo; the card text is for wider screens. */}
-                <p aria-hidden="true" className="absolute inset-x-4 bottom-4 text-[19px] font-semibold leading-[24px] tracking-[-0.02em] [text-shadow:0_1px_14px_rgb(0_0_0/0.45)] md:hidden">{h}</p>
-              </div>
-              <div className="sr-only flex-1 flex-col md:not-sr-only md:flex md:px-5 md:pb-4 md:pt-5">
-                <h3 className="text-[19px] font-semibold leading-[25px] tracking-[-0.02em]">{h}</h3>
-                <p className="mt-2 text-[15px] leading-[22px] text-ink-muted">{p}</p>
-              </div>
-            </m.li>))}
-        </ul>
-              </div>
+      </div>
+      <div className="mt-10 md:mt-12">
+        <Drum items={items} groups={[w.nodes[1], w.nodes[2], w.nodes[3]]} before="/media/v3/problem-kagitlar-1600.webp" beforeLabel={c.b[0]} prev={prev} next={next}
+          captions={c.cards.length} caption={(k) => { const [h, p] = c.cards[k]; return <><b className="font-semibold text-white">{h}.</b> {p}</>; }}
+          extra={DRUM_CHIPS[locale].map(([Ic, t]) => <span key={t} className="inline-flex items-center gap-2 rounded-full bg-white/[.07] px-3.5 py-1.5 text-[13.5px] text-white/85 ring-1 ring-white/[.06]"><Ic size={14} aria-hidden="true" className="text-[#FF9A5C]" />{t}</span>)} />
+      </div>
     </section>);
 }
+
 function useCount(to: number, run: boolean) {
   const [v, setV] = useState(to); const from = useRef(to);
   useEffect(() => { if (!run) { setV(to); from.current = to; return; } const a = from.current, t0 = performance.now(); let raf = 0;
@@ -650,7 +637,8 @@ export function EndV3() {
   return (
     <section aria-labelledby="end-h" className="section-y pt-0">
       <div className="container-x">
-        <div className="grid-12 items-center gap-y-8">
+        {/* Krea-style closing card: one solid dark panel, the words on one side, the devices on the other. */}
+        <div className="dark grid-12 items-center gap-y-8 overflow-hidden rounded-[36px] bg-[#161616] p-6 shadow-[0_50px_100px_-40px_rgb(0_0_0/0.9)] ring-1 ring-white/[.07] sm:p-10 lg:p-14">
           <div className="col-span-12 lg:col-span-5">
             <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
             <p className="intro m-keep mt-4 max-w-[28rem]">{c.p}</p>
@@ -678,7 +666,7 @@ export function SectorsV3() {
     <picture className="absolute inset-0"><source type="image/avif" srcSet={`/photos/${img}-800.avif 800w, /photos/${img}-1600.avif 1600w`} sizes={sizes} />
       <img src={`/photos/${img}-800.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes={sizes} alt="" loading="lazy" decoding="async" style={{ objectPosition: pos }} className={cls} /></picture>);
   return (
-    <section aria-labelledby="ind-h" className="section-y pt-0">
+    <section id="industries" aria-labelledby="ind-h" className="section-y scroll-mt-[var(--header-h)] pt-0">
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[26ch]" /></div>
@@ -695,8 +683,7 @@ export function SectorsV3() {
                 {pic(img, "(min-width:1024px) 50vw, 100vw", `absolute inset-0 h-full w-full object-cover transition-[transform,filter] duration-[1.2s] ease-[var(--ease-out-expo)] ${on ? "scale-100" : "scale-110 saturate-[0.85] group-hover:saturate-100"}`, pos)}
                 <span aria-hidden="true" className={`absolute inset-0 transition-opacity duration-700 ${on ? "bg-[linear-gradient(180deg,rgb(16_16_16/0.45)_0%,rgb(16_16_16/0)_28%,rgb(16_16_16/0.15)_50%,rgb(16_16_16/0.92)_100%)]" : "bg-[linear-gradient(180deg,rgb(16_16_16/0.1)_0%,rgb(16_16_16/0)_45%,rgb(16_16_16/0.7)_100%)]"}`} />
                 <span className="relative flex items-center justify-between">
-                  <span className="inline-flex h-9 items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold tabular-nums">
-                    <Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" /><span className="text-white/80">0{k + 1}</span></span>
+                  <GlyphIcon Icon={Ic} tone={k} size={42} flat />
                 </span>
                 <span className="relative block">
                   <span className={`block font-semibold leading-tight tracking-[-0.03em] transition-[font-size] duration-500 ${on ? "text-[30px]" : "text-[19px] [overflow-wrap:anywhere]"}`}>{c.cards[k]}</span>
@@ -720,7 +707,7 @@ export function SectorsV3() {
               <Link href={href} className="group dark relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-[20px] bg-[#171717] p-3.5 text-white md:aspect-[4/5] md:justify-between md:rounded-[22px] md:p-4">
                 {pic(img, "80vw", "absolute inset-0 h-full w-full object-cover", pos)}
                 <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(16_16_16/0.5)_0%,rgb(16_16_16/0)_26%,rgb(16_16_16/0)_42%,rgb(16_16_16/0.94)_100%)]" />
-                <span className="relative hidden h-9 w-max items-center gap-2 rounded-full bg-[rgb(16_16_16/0.72)] pe-3 ps-2.5 text-[13px] font-semibold md:inline-flex"><Ic size={16} aria-hidden="true" /><span aria-hidden="true" className="h-3 w-px bg-white/25" />0{k + 1}</span>
+                <span className="relative mb-auto"><GlyphIcon Icon={Ic} tone={k} size={36} flat /></span>
                 <span className="relative block"><span className="block text-[16px] font-semibold leading-tight tracking-[-0.02em] md:text-[20px]">{c.cards[k]}</span>
                   <span className="mt-1.5 line-clamp-3 hidden text-[15px] md:block leading-[22px] text-white/70">{tabs[k][0]}</span></span>
               </Link>
@@ -759,6 +746,11 @@ function useReveal() {
     const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
     els.forEach((el) => { el.classList.add("rv-js"); io.observe(el); }); return () => io.disconnect();
   }, []);
+}
+/* Floating section pills (Krea): how it works, industries, customers, pricing, and the demo call beside them. */
+function HomePillNav() {
+  const { d, locale } = useLocale(); const lh = useHref();
+  return <BottomPillNav cta={d.nav.cta} ctaHref={SITE.demo} items={[[d.process.k, "#how"], [d.ind.k, "#industries"], [HOME4[locale].cases.k, "#customers"], [d.nav.pricing, lh("/pricing/")]]} />;
 }
 export default function BelowV3() {
   useReveal();

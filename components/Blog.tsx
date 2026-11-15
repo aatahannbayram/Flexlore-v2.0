@@ -34,9 +34,11 @@ export function BlogIndex() {
   return (
     <>
       <Header />
-      <main id="main" className="container-x overflow-x-clip pt-[calc(var(--header-h)+48px)] md:pt-[calc(var(--header-h)+72px)]">
-        <h1 className="!text-[15px] font-medium !leading-normal !tracking-normal text-ink-faint">All articles</h1>
-        <div className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((p, k) => <Card key={p.slug} p={p} eager={k < 3} />)}</div>
+      <main id="main" className="container-x relative isolate overflow-x-clip pt-[calc(var(--header-h)+56px)] md:pt-[calc(var(--header-h)+88px)]">
+        <span aria-hidden="true" className="pointer-events-none absolute right-[-10%] top-0 -z-10 h-[560px] w-[min(820px,90vw)] rounded-full bg-[radial-gradient(closest-side,rgb(236_103_38/0.22),transparent_75%)]" />
+        <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />Blog</p>
+        <h1 className="kh kh-md mt-5 max-w-[18ch]"><span className="t-ink">Training on the floor,</span> <span className="t-accent">in practice.</span></h1>
+        <div className="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{posts.map((p, k) => <Card key={p.slug} p={p} eager={k < 3} />)}</div>
       </main>
       <Foot />
     </>
@@ -51,16 +53,18 @@ export function Article({ p }: { p: Post }) {
   return (
     <>
       <Bar />
-      <main id="main" className="pt-36">
+      <main id="main" className="relative isolate overflow-x-clip pt-[calc(var(--header-h)+48px)] md:pt-[calc(var(--header-h)+80px)]">
+        <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[520px] w-[min(900px,100vw)] -translate-x-1/2 bg-[radial-gradient(closest-side,rgb(236_103_38/0.18),transparent_75%)]" />
         <article className="mx-auto max-w-[calc(760px+2*var(--pad-x))] px-[var(--pad-x)]">
-          <Link href="/blog/" className="mono inline-flex min-h-11 items-center text-xs uppercase tracking-[.18em] text-white/70 hover:text-white"><Arr dir="l" className="mr-1.5" />Articles</Link>
-          {p.title && <h1 className="display mt-6 text-h2 leading-[1]">{p.title}</h1>}
-          <p className="mono mt-6 flex gap-4 text-xs uppercase tracking-[.18em] text-white/70"><span>{p.date}</span>{p.author && <span className="text-white/70">{p.author}</span>}</p>
+          <Link href="/blog/" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-medium text-ink-muted hover:text-ink"><Arr dir="l" />Blog</Link>
+          {p.title && <h1 className="kh kh-md mt-4 [text-wrap:balance]">{p.title}</h1>}
+          <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-ink-faint"><span>{p.date}</span>{p.author && <><span aria-hidden="true">·</span><span>{p.author}</span></>}<span aria-hidden="true">·</span><span>{mins(p)} min read</span></p>
         </article>
-        <div className="mx-auto mt-12 max-w-[1100px] overflow-hidden rounded-3xl"><Picture src={p.cover} alt={p.coverAlt || cardTitle(p)} sizes="(min-width: 1100px) 1100px, 100vw" className="w-full" priority /></div>
+        <div className="mx-auto mt-12 max-w-[calc(1100px+2*var(--pad-x))] px-[var(--pad-x)] md:mt-14"><div className="overflow-hidden rounded-[28px]"><Picture src={p.cover} alt={p.coverAlt || cardTitle(p)} sizes="(min-width: 1100px) 1100px, 100vw" className="block w-full" priority /></div></div>
         <div className="prose-blog mx-auto mt-16 max-w-[760px]" dangerouslySetInnerHTML={{ __html: body2 }} />
         <section className="mt-32 container-x">
-          <p className="mono mb-10 text-xs uppercase tracking-[.18em] text-white/70">Articles</p>
+          <p className="inline-flex items-center gap-2.5 text-[13px] font-medium mb-6 text-ink-faint"><span aria-hidden="true" className="kick-line" />Blog</p>
+          <h2 className="v4-h2 mb-10 max-w-[18ch]"><span className="t-ink">More from</span> <span className="t-accent">the floor.</span></h2>
           <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{more.map((x) => <Card key={x.slug} p={x} />)}</div>
         </section>
       </main>
