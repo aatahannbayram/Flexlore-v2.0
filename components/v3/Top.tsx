@@ -119,10 +119,14 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             <Eyebrow word={word} k={k} />
             {/* "Train your team in minutes / not hours": the letters come into focus left to right (blur to sharp), the
                 second line in the ember gradient. Screen readers get the plain sentence once. */}
-            <h1 id="hero-h" className="mt-5 text-[clamp(38px,0.8rem+3.3vw,62px)] font-bold leading-[1.04] tracking-[-0.04em] [text-wrap:balance]">
+            <h1 id="hero-h" className="mt-5 text-[clamp(42px,0.9rem+3.6vw,68px)] font-bold leading-[1.02] tracking-[-0.045em] [text-wrap:balance]">
               <span className="sr-only">{`${bare(h.h1a)} ${bare(h.h1b)}`}</span>
               <span aria-hidden="true" className={`block ${bare(h.h1a).length <= 28 ? "lg:whitespace-nowrap" : ""}`}><Focus text={bare(h.h1a)} cls="hero-metal" start={180} /></span>
-              <span aria-hidden="true" className="block pb-[0.06em]"><Focus text={bare(h.h1b)} cls="hero-ember" start={180 + [...bare(h.h1a)].length * 26 + 120} /></span>
+              {/* The answer, smaller and lighter under the promise; once its letters land, a hairline draws under it. */}
+              <span aria-hidden="true" className="relative mt-2 inline-block pb-[0.18em] text-[0.62em] font-medium tracking-[-0.035em] md:mt-3">
+                <Focus text={bare(h.h1b)} cls="hero-ember" start={180 + [...bare(h.h1a)].length * 26 + 120} />
+                <span className="hero-underline absolute inset-x-0 bottom-0 h-[2px] rounded-full" style={{ animationDelay: `${180 + ([...bare(h.h1a)].length + [...bare(h.h1b)].length) * 26 + 520}ms` }} />
+              </span>
             </h1>
             <p className="hs-in mt-6 hidden max-w-[30rem] text-[16px] leading-[1.6] text-white/80 md:block md:text-[17px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-7 flex flex-wrap items-center gap-3 max-md:justify-center md:mt-8" style={{ animationDelay: "250ms" }}>
