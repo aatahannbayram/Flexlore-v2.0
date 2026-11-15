@@ -36,7 +36,7 @@ export default function SeeIt() {
         <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_70%_at_50%_0%,rgb(236_103_38/0.12),transparent_70%)]" />
         <div className="container-x text-center">
           <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{tr ? "Kendi işinizde görün" : "See it in your business"}<span aria-hidden="true" className="kick-line" /></p>
-          <h1 id="see-h" className="mx-auto mt-5 max-w-[16ch] text-[clamp(40px,1rem+4.4vw,96px)] !font-normal leading-[1] tracking-[-0.045em] [text-wrap:balance]">
+          <h1 id="see-h" className="mx-auto mt-5 max-w-[16ch] text-[clamp(40px,1rem+4.4vw,96px)] !font-semibold leading-[1] tracking-[-0.045em] [text-wrap:balance]">
             <span className="t-ink">{tr ? "İşinizi seçin." : "Pick your work."}</span> <span className="text-ink-faint">{tr ? "Flexlore'da görün." : "See it in Flexlore."}</span></h1>
           {/* Slim glass pills; phones get a 2 x 2 grid so nothing scrolls sideways. */}
           <div role="radiogroup" aria-label={tr ? "Sektör" : "Industry"}

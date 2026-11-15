@@ -445,7 +445,8 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 .h3 { font-weight: 560; }
 .v3-h1 { font-weight: 580; letter-spacing: -0.042em; }
 .v3-h2 { font-size: clamp(24px, 0.85rem + 1.2vw, 38px); font-weight: 560; letter-spacing: -0.032em; line-height: 1.1; }
-.v4-h2 { font-size: clamp(28px, 0.85rem + 1.75vw, 46px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; }
+/* Krea-style headings (2026-11-15): bold, tight, large; second tone soft grey (.t-accent). */
+.v4-h2 { font-size: clamp(32px, 0.9rem + 2.4vw, 60px); font-weight: 600; letter-spacing: -0.048em; line-height: 1.02; }
 .t-accent { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: rgb(244 240 235 / 0.42); }
 :root[data-theme="light"] .t-accent:not(.dark *) { background: none; color: rgb(22 22 22 / 0.42); }
 /* Orange payoff, kept for a few moments only (home hero). */
@@ -485,7 +486,7 @@ input:focus, textarea:focus, select:focus, input:focus-visible, textarea:focus-v
 section[id], [id]:target { scroll-margin-top: 80px; }
 .home-v3 section.section-y { padding-top: var(--sp-section) !important; padding-bottom: 0 !important; }
 .home-v3 > section:last-child, .home-v3 section.section-y:last-of-type { padding-bottom: var(--sp-section) !important; }
-.home-v3 .v4-h2 { font-size: clamp(30px, 1.15rem + 1.55vw, 44px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: balance; }
+.home-v3 .v4-h2 { font-size: clamp(32px, 0.9rem + 2.4vw, 60px); line-height: 1.02; letter-spacing: -0.048em; font-weight: 600; text-wrap: balance; }
 .home-v3 .t-accent { color: rgb(242 242 240 / 0.55); }
 .home-v3 .t-ink { color: #F2F2F0; }
 :root[data-theme="light"] .home-v3 .t-accent:not(.dark *) { color: rgb(22 22 22 / 0.55); }

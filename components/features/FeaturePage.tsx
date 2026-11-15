@@ -281,7 +281,7 @@ export function FeaturesIndex() {
           <div className="grid items-center gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
           <p className="text-[14px] font-medium text-white/60">{c.indexK} <span className="text-white/35">·</span> {total()}</p>
-          <h1 className="mt-7 max-w-[17ch] text-[clamp(40px,1rem+4vw,88px)] !font-normal leading-[1] !tracking-[-0.04em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
+          <h1 className="mt-7 max-w-[17ch] text-[clamp(40px,1rem+4vw,88px)] !font-semibold leading-[1] !tracking-[-0.04em] [text-wrap:balance]"><Split text={c.indexH} /></h1>
           <p className="mt-6 max-w-[38rem] text-[18px] leading-[1.6] text-white/65">{c.indexP}</p>
           <div className="mt-8 flex flex-wrap items-center gap-2">
             <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.demo}</span></a>
@@ -343,7 +343,7 @@ export function FeaturesIndex() {
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4"><div className="lg:sticky lg:top-[calc(var(--header-h)+100px)]">
               <p className="text-[13px] font-semibold tabular-nums text-flame">0{k + 1}<span className="text-ink-faint"> / 03</span></p>
-              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] !font-medium leading-[1.02] tracking-[-0.035em]">{t.groups[g]}</h2>
+              <h2 id={`gh-${g}`} className="mt-3 text-[clamp(32px,1rem+2vw,52px)] !font-semibold leading-[1.02] tracking-[-0.045em]">{t.groups[g]}</h2>
               <p className="mt-4 max-w-[24rem] text-[17px] leading-[1.6] text-ink-muted">{t.lines[g]}</p>
               <div className="mt-6"><Dots g={g} /></div>
             </div></div>

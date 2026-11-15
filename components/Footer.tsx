@@ -4,6 +4,8 @@ import { EnvelopeSimple, ArrowUpRight, ArrowUp } from "./ui/icons";
 import { StoreButtons } from "./Icons";
 import { SITE } from "./config";
 import { useLocale } from "./i18n/LocaleProvider";
+import { FlagPicker } from "./ui/FlagPicker";
+import { ThemeToggle } from "./ui/ThemeToggle";
 import { consentNeeded, openConsent, CONSENT_SETTINGS } from "./consent";
 import { useTrustTR } from "./trust/flags";
 import { TRUST_TR_FOOTER } from "./trust/config";
@@ -165,7 +167,9 @@ export function Footer({ lang: _l }: { lang?: L } = {}) {
           </section>
         </div>
 
-        <div className="mt-8 border-t border-[rgb(255_255_255/0.08)] pt-3 text-[13px] md:mt-14 md:pt-4">
+        {/* Language and theme live here (not in the header): the language is asked once on arrival. */}
+        <div className="mt-8 flex items-center gap-1 md:mt-12"><FlagPicker up /><ThemeToggle lang={lang} className="!h-11 !w-11" /></div>
+        <div className="mt-4 border-t border-[rgb(255_255_255/0.08)] pt-3 text-[13px] md:pt-4">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
             <span className="flex flex-wrap items-center gap-x-5 gap-y-1 text-white/60">© 2026 Flexlore Inc. {f.rights}
               <a href="#" className="group inline-flex min-h-11 items-center gap-1.5 text-white/75 transition-colors hover:text-white">

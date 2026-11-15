@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { en, type Dict } from "./home/en";
-import { LOCALES, detectLocale, isLocale, base, type Locale } from "./locales";
+import { LOCALES, isLocale, base, type Locale } from "./locales";
 import { isTrPath, trOf, enOf } from "./routes";
 import { track } from "../track";
 
@@ -28,7 +28,7 @@ export const fmt = (s: string, v: Record<string, string | number>) => s.replace(
    wait for every non-English visitor. The provider picks the promise up below; nothing renders differently. */
 let early: { l: Locale; p: Promise<Dict> } | null = null;
 if (typeof window !== "undefined") {
-  try { if (!isTrPath(location.pathname)) { let s: string | null = null; try { s = localStorage.getItem(KEY); } catch {} const l = isLocale(s) ? s : detectLocale(); if (l !== "en" && !(l === "tr" && trOf(location.pathname))) early = { l, p: LOAD[l]() }; } } catch {}
+  try { if (!isTrPath(location.pathname)) { let s: string | null = null; try { s = localStorage.getItem(KEY); } catch {} if (isLocale(s) && s !== "en" && !(s === "tr" && trOf(location.pathname))) early = { l: s, p: LOAD[s]() }; } } catch {}
 }
 
 /** Go to another URL keeping the query and hash. */
@@ -47,7 +47,8 @@ export function LocaleProvider({ children, fixed, dict }: { children: React.Reac
     /* Root provider on a Turkish URL: the page itself is Turkish (nested provider); switch the chrome outside it too. */
     if (isTrPath(path)) { apply("tr"); setReady(true); return; }
     let saved: string | null = null; try { saved = localStorage.getItem(KEY); } catch {}
-    const l = isLocale(saved) ? saved : detectLocale();
+    /* Only a remembered choice switches the language (LanguageModal asks first-time visitors). */
+    const l: Locale = isLocale(saved) ? saved : "en";
     const twin = l === "tr" ? trOf(path) : null;
     if (twin) { go(twin); return; }
     if (l !== "en") apply(l); else document.documentElement.classList.remove("i18n-wait"); setReady(true);

@@ -34,7 +34,7 @@ export default function CasePage({ slug }: { slug: string }) {
           <div aria-hidden="true" className="absolute inset-0"><Photo n={c.img} portrait priority sizes="100vw" className="h-full w-full object-cover" /></div>
           <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(17_17_17/0.55)_45%,rgb(17_17_17/0.3)_80%,rgb(17_17_17/0.6)_100%)]" />
           <div className="container-x relative flex min-h-[min(78svh,720px)] flex-col justify-end pb-12 md:pb-16">
-            <nav aria-label={t.crumb} className="text-[14px] text-white/70"><Link href="/" className="inline-flex min-h-11 items-center hover:text-white">{t.home}</Link><span aria-hidden="true" className="px-2">/</span><Link href="/#customers" className="inline-flex min-h-11 items-center hover:text-white">{t.k}</Link></nav>
+            <nav aria-label={t.crumb} className="text-[14px] text-white/70"><Link href="/" className="inline-flex min-h-11 min-w-11 items-center hover:text-white">{t.home}</Link><span aria-hidden="true" className="px-2">/</span><Link href="/#customers" className="inline-flex min-h-11 items-center hover:text-white">{t.k}</Link></nav>
             <span className="mt-3 inline-flex w-max items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-[13px] font-medium text-white/90 backdrop-blur-md ring-1 ring-inset ring-white/15"><I size={14} aria-hidden="true" />{h4.sec[c.sec]}</span>
             <h1 id="case-h" className="mt-5 max-w-[18ch] text-[clamp(36px,1rem+3vw,72px)] font-semibold leading-[1.02] tracking-[-0.045em] text-white">
               {LOGOS[c.slug] ? <><span className="sr-only">{c.company}</span><span aria-hidden="true" className="flex"><CaseLogo slug={c.slug} name={c.company} /></span></> : c.company}</h1>

@@ -122,14 +122,9 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
           </ul>
 
           <div className="flex items-center gap-2">
-            {/* Theme and language sit side by side, no frame (44 px touch targets): sun or moon, a hairline, then the flag with its language code. */}
-            {own ? <><ThemeToggle lang={lang} className="hidden sm:grid" /><div className="hidden sm:block">{LangSwitch}</div></>
-              : <div className="hidden h-11 items-center sm:flex">
-                  <ThemeToggle lang={lang} labels={[n.lightMode, n.darkMode]} className="!h-11 !w-11" />
-                  <span aria-hidden="true" className="h-4 w-px bg-line-strong" />
-                  <FlagPicker compact />
-                </div>}
-            <div className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="hidden h-11 items-center rounded-full px-3.5 text-[14px] font-semibold text-ink transition-colors hover:bg-white/[.08] md:inline-flex">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}
+            {/* Krea-style pair (2026-11-15): orange demo pill and a dark log-in pill. Language is asked once in a dialog
+                (components/i18n/LanguageModal.tsx); language and theme can be changed in the footer. */}
+            <div className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="hidden min-h-11 place-items-center md:grid"><span className="inline-flex h-[38px] items-center rounded-full bg-white/[.08] px-4 text-[14px] font-semibold text-ink ring-1 ring-white/[.08] transition-colors hover:bg-white/[.14]">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</span></a>}
             <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.cta}</span></a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
@@ -149,9 +144,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
             </div>
             <MobileMenuBody lang={lang} d={own ? undefined : ctx.d} home={home} close={() => setOpen(false)} openSearch={() => setSearch(true)} pricing={t.navP} />
             <div className="container-x flex shrink-0 items-center justify-between gap-4 pb-8 pt-4">
-              {own ? LangSwitch : <FlagPicker up />}
-              <ThemeToggle lang={lang} labels={own ? undefined : [n.lightMode, n.darkMode]} />
-              <span className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="btn btn-secondary">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className="btn btn-cta">{t.cta}</a></span>
+              <span className="grid w-full grid-cols-2 gap-2">{SITE.login && <a href={lh("/login/")} className="btn btn-secondary w-full">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</a>}<a href={SITE.demo} onClick={() => setOpen(false)} className={`btn btn-cta w-full ${SITE.login ? "" : "col-span-2"}`}>{t.cta}</a></span>
             </div>
           </m.div>)}
       </AnimatePresence>

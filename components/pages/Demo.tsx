@@ -38,7 +38,7 @@ export function DemoPage() {
       <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(60%_70%_at_50%_0%,rgb(236_103_38/0.12),transparent_70%)]" />
       <div className="container-x text-center">
         <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{t.k}<span aria-hidden="true" className="kick-line" /></p>
-        <h1 id="demo-h" className="mx-auto mt-5 max-w-[18ch] text-[clamp(38px,1rem+3.6vw,80px)] !font-normal leading-[1.02] tracking-[-0.045em] [text-wrap:balance]">{c.h}</h1>
+        <h1 id="demo-h" className="mx-auto mt-5 max-w-[18ch] text-[clamp(38px,1rem+3.6vw,80px)] !font-semibold leading-[1.02] tracking-[-0.045em] [text-wrap:balance]">{c.h}</h1>
         <p className="mx-auto mt-5 max-w-[34rem] text-[16px] leading-[1.6] text-ink-muted md:text-[18px]">{c.p}</p>
       </div>
       <div className="container-x mt-10 md:mt-14">
