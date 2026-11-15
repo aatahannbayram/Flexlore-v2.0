@@ -701,4 +701,8 @@ html.splash-on .hero-underline { animation-play-state: paused; }
 .k-card { background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 100%), #191919; box-shadow: 0 24px 48px -20px rgba(0,0,0,.3); }
 .k-card.k-card-rec { border-color: rgba(236,103,38,.6); background: linear-gradient(180deg, rgba(236,103,38,.24) 0%, rgba(236,103,38,.05) 55%, rgba(25,25,25,0) 100%), #191919; box-shadow: 0 0 0 1px rgba(236,103,38,.15), 0 24px 48px -20px rgba(0,0,0,.3); }
 .k-grad { background: linear-gradient(42deg, #FF8652 20%, #EC6726 110%); }
-.k-glow { background: radial-gradient(60% 80% at 85% 0%, rgba(236,103,38,.55), rgba(255,134,82,.25) 40%, transparent 70%); }
+/* Warm light kept in the top-right corner only, fading out before the plan cards so their text stays clear. */
+.k-glow { height: 460px !important; background: radial-gradient(38% 70% at 100% 0%, rgba(236,103,38,.42), rgba(255,134,82,.14) 45%, transparent 72%); }
+@media (max-width: 767px) { .k-glow { height: 300px !important; background: radial-gradient(75% 60% at 100% 0%, rgba(236,103,38,.38), rgba(255,134,82,.12) 45%, transparent 72%); } }
+/* The pricing page has its own corner light; the site-wide moving glow behind the first screen is off here. */
+#main.k-page::before { display: none; }

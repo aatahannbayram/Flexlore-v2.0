@@ -74,7 +74,7 @@ export default function Pricing() {
 
   return (<>
     <Header />
-    <main id="main" className="relative isolate overflow-x-clip bg-[#111] pt-[calc(var(--header-h)+40px)] text-[#FAFAFA]">
+    <main id="main" className="k-page relative isolate overflow-x-clip bg-[#111] pt-[calc(var(--header-h)+40px)] text-[#FAFAFA]">
       <span aria-hidden="true" className="k-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px]" />
 
       {/* Hero: title on the left, billing switch with a help link on one row. */}
@@ -99,10 +99,13 @@ export default function Pricing() {
             return (
             <li key={id} id={`plan-${id}`} className="relative flex flex-col">
               {rec && <span className="absolute inset-x-0 -top-7 flex h-10 items-start justify-center rounded-t-[18px] k-grad pt-1.5 text-[12px] font-medium text-white">{c.recommended}</span>}
-              <div className={`${K.card} relative flex min-h-[248px] flex-col p-6 ${rec ? "k-card-rec" : ""}`}>
+              <div className={`${K.card} relative isolate flex min-h-[248px] flex-col overflow-hidden p-6 ${rec ? "k-card-rec" : ""}`}>
+                {/* Enterprise: an office photo under a dark scrim, so the white text on it stays easy to read. */}
+                {id === "enterprise" && <><img src="/photos/ws-ofis-800.webp" srcSet="/photos/ws-ofis-800.webp 800w, /photos/ws-ofis-1600.webp 1600w" sizes="(min-width:1280px) 300px, (min-width:768px) 50vw, 100vw" alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover object-[60%_35%]" />
+                  <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(17,17,17,.78)_0%,rgba(17,17,17,.62)_45%,rgba(17,17,17,.9)_100%)]" /></>}
                 <h2 className="text-[24px] font-medium leading-8">{c.plans[id as keyof typeof c.plans][0]}</h2>
                 <p className="text-[14px] leading-5 text-[#FAFAFA]">{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
-                <p className="mt-2 text-[14px] leading-5 text-[#A3A3A3]">{P.for[id]}</p>
+                <p className={`mt-2 text-[14px] leading-5 ${id === "enterprise" ? "text-[#FAFAFA]/80" : "text-[#A3A3A3]"}`}>{P.for[id]}</p>
                 <div className="mt-auto pt-8">
                   {pr ? <p className="flex flex-wrap items-baseline gap-x-2">
                       {yearly && save && p.monthly && <span className="text-[18px] text-[#737373] line-through">{p.monthly.now}</span>}
