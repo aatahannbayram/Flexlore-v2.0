@@ -1,23 +1,17 @@
 "use client";
-/* Pricing page. Glass plan cards (the recommended one lit from the top edge, not filled), yearly selected by default,
- * all copy from the locale dictionary. Enterprise gets its own photo section with the three tiers and a quote request
- * form (#quote) that opens the visitor's email app with a filled message. Checkout: each plan's `checkout` /
- * `checkoutYearly` in config.ts takes a Stripe Payment Link; until one is set, the button falls back to the app flow. */
 import { useState } from "react";
 import { TrustNote } from "./trust/TrustNote";
-import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS } from "./config";
+import { PLANS, COMPARE, SITE, ENTERPRISE_TIERS, savePct } from "./config";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import Copq from "./Copq";
 import { useLocale, fmt } from "./i18n/LocaleProvider";
-import { BillingSwitch, PlanCard } from "./home/home5b";
+import { GetApp } from "./home/home5b";
 import { QUOTE } from "./pages/copy-quote";
-import { ArrowRight, Check, Buildings, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple } from "./ui/icons";
-import { Split } from "./ui/Split";
-import { PhotoBand, glassTile } from "./ui/PhotoBand";
+import { PRICING2, type PricingCopy, type Cell } from "./pages/copy-pricing";
+import { ArrowRight, Check, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple } from "./ui/icons";
 
-const field = "block h-12 w-full rounded-[14px] bg-white/[.05] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
-const glassCard = "rounded-[28px] bg-[var(--card)]";
+const field = "block h-12 w-full rounded-[10px] border border-white/10 bg-[#262626] px-4 text-[16px] text-[#FAFAFA] outline-none transition-colors duration-150 placeholder:text-[#737373] focus:border-white/20";
+const glassCard = "k-card rounded-[16px] border border-white/10";
 
 function QuoteForm() {
   const { locale } = useLocale(); const q = QUOTE[locale];
@@ -41,120 +35,192 @@ function QuoteForm() {
       <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={4} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={`${field} h-auto py-3`} /></L></div>
       <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
         <p className="flex items-center gap-2 text-[13px] text-ink-faint"><EnvelopeSimple size={15} aria-hidden="true" />{q.note}</p>
-        <button type="submit" className="btn btn-primary h-11 px-5 text-[15px]">{q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
+        <button type="submit" className="inline-flex h-11 items-center gap-2 rounded-full bg-[#FAFAFA] px-5 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white">{q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
       </div>
     </form>);
 }
 
+/* Pricing page, Krea layout with Flexlore tokens (2026-11-15). Quiet and static: no entrance, no number animation, no
+ * hover lift; only 150ms colour changes. Background #111, cards #191919 with a faint top light and a 10% white hairline,
+ * one warm glow from the top right of the hero. The recommended plan has an orange tab and an orange hairline, and the
+ * only orange button. Content for English and Turkish comes from copy-pricing.ts; other locales fall back to their
+ * dictionary until translated. */
+const K = {
+  card: "k-card rounded-[16px] border border-white/10",
+  pillDark: "inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-[#262626] px-4 text-[14px] font-medium text-[#FAFAFA] transition-colors duration-150 hover:bg-[#2e2e2e]",
+  pillLight: "inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#FAFAFA] px-4 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white",
+  pillAccent: "inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#EC6726] px-4 text-[14px] font-medium text-white transition-[filter] duration-150 hover:brightness-[1.08]",
+};
+const money = (v: number) => { const r = Math.round(v * 100) / 100; return `$${Number.isInteger(r) ? r : r.toFixed(2)}`; };
+const isUnl = (s: string) => /unlimited|sınırsız/i.test(s);
+
 export default function Pricing() {
-  const { d, lang, locale } = useLocale(); const c = d.pricing; const t = d.pricingPage; const q = QUOTE[locale];
-  const [yearly, setYearly] = useState(true); const [cmp, setCmp] = useState(false); const [open, setOpen] = useState<number | null>(0);
-  const cell = (v: boolean | string) => {
-    if (v === true) return <Check size={18} aria-label="✓" className="tick mx-auto" />;
-    if (v === false) return <span className="text-ink-faint">–</span>;
-    const map: Record<string, string> = { "By number of users": t.cells.byUsers, Unlimited: t.cells.unlimited, "3 quizzes": t.cells.q3, "10 quizzes": t.cells.q10, "Talk to sales": t.cells.talk, Standard: t.cells.standard, Premium: t.cells.premium };
-    return <span>{map[v] ?? v}</span>;
+  const { d, locale } = useLocale(); const c = d.pricing; const t = d.pricingPage; const q = QUOTE[locale];
+  const [yearly, setYearly] = useState(true); const [open, setOpen] = useState<number | null>(0);
+  const best = Math.max(...PLANS.map((p) => savePct(p) ?? 0));
+  const cellMap: Record<string, string> = { "By number of users": t.cells.byUsers, Unlimited: t.cells.unlimited, "3 quizzes": t.cells.q3, "10 quizzes": t.cells.q10, "Talk to sales": t.cells.talk, Standard: t.cells.standard, Premium: t.cells.premium };
+  const P: PricingCopy = PRICING2[locale] ?? {
+    h1: t.h1, sub: t.sub, help: "", see: t.compareH, badge: fmt(c.upTo, { pct: best }), saveAmt: "", includes: "", soonH: t.soon, soon: [], fair: "",
+    for: Object.fromEntries(PLANS.map((p) => [p.id, c.plans[p.id as keyof typeof c.plans][1]])), points: t.points as unknown as Record<string, string[]>,
+    addonsH: "", addons: [], addonsNote: "", teamsH: t.entK, entP: t.entP, entCta: q.cta, entAlt: q.alt, custom: c.custom,
+    compareH: t.compareH, feature: t.feature, groups: [{ h: "", rows: COMPARE.map((r, k) => [t.rows[k] ?? r.f, ...r.v.map((v) => (typeof v === "string" ? cellMap[v] ?? v : v))] as [string, Cell, Cell, Cell, Cell]) }],
+    faqH: t.faqH, faq: t.faq as [string, string][], endH: t.endH, endP: t.endP,
   };
-  const tiers = ENTERPRISE_TIERS.map((x) => ({ ...x, pts: t.tiers[x.id as "starter" | "growth" | "scale"], soon: x.id === "scale" ? t.tiers.scaleSoon : [] }));
+  const num = (x: string) => parseFloat(x.replace(/[^0-9.]/g, ""));
+  const cell = (v: Cell) => v === true ? <Check size={16} aria-label="✓" className="mx-auto text-[#FAFAFA]" /> : v === false ? <span aria-label="–" className="text-[#737373]">–</span> : <span>{v}</span>;
   const featured = PLANS.findIndex((p) => p.featured);
+  const prevOf: Record<string, string> = { pro: "free", proplus: "pro", enterprise: "proplus" };
+  const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
+
   return (<>
     <Header />
-    <main id="main" className="home-v3 relative pt-[calc(var(--header-h)+64px)]">
-      {/* Krea-style top, second pass (2026-11-15): everything centred under one warm glow from the top, the billing
-          switch alone under the title, then the plans. */}
-      <span aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[620px] w-[min(1400px,130vw)] -translate-x-1/2 bg-[radial-gradient(50%_55%_at_50%_0%,rgb(236_103_38/0.26),rgb(236_103_38/0.06)_55%,transparent_80%)]" />
-      <section className="container-x">
-        <div className="mx-auto flex max-w-[48rem] flex-col items-center text-center">
-          <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{t.k}</span><span aria-hidden="true" className="kick-line" /></p>
-          <h1 className="kh kh-md mt-5 max-w-[20ch]"><Split text={t.h1} /></h1>
-          <p className="mt-4 max-w-[34rem] text-[17px] leading-[1.55] text-ink-muted">{t.sub}</p>
-          <div className="mt-8"><BillingSwitch yearly={yearly} setYearly={setYearly} id="pricing" /></div>
-        </div>
-        <ul className="plans mx-auto mt-12 grid max-w-[1240px] gap-4 md:grid-cols-2 lg:gap-5 xl:grid-cols-4" aria-label={c.k}>
-          {PLANS.map((p) => <PlanCard key={p.id} id={p.id} yearly={yearly} full />)}
-        </ul>
-        <p className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-ink-faint">
-          <span className="flex items-center gap-1.5"><LockSimple size={15} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={15} className="tick" />{c.cancel}</span><span>{c.appNote}</span>
-        </p>
-      </section>
+    <main id="main" className="relative isolate overflow-x-clip bg-[#111] pt-[calc(var(--header-h)+40px)] text-[#FAFAFA]">
+      <span aria-hidden="true" className="k-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px]" />
 
-      <section aria-labelledby="cmp-h" className="container-x mt-[var(--sp-section)]">
-        <div className="mx-auto max-w-[1240px]"><h2 id="cmp-h" className="v4-h2 text-center"><Split text={t.compareH} /></h2>
-        <button type="button" aria-expanded={cmp} aria-controls="cmp-table" onClick={() => setCmp(!cmp)} className="btn btn-secondary mx-auto mt-6 flex md:hidden">{cmp ? t.hide : t.show}</button>
-        <div id="cmp-table" className={`no-sb mt-10 overflow-x-auto ${glassCard} p-2 ${cmp ? "block" : "hidden"} md:block`}>
-          <table className="w-full min-w-[680px] border-collapse text-start text-[14px]">
-            <thead><tr><th className="px-4 py-4 text-start font-medium text-ink-muted">{t.feature}</th>{PLANS.map((p, i) => <th key={p.id} className={`w-[18%] py-4 text-center font-semibold ${i === featured ? "rounded-t-[16px] bg-white/[.05] text-ink" : "text-ink-muted"}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
-            <tbody>{COMPARE.map((r, k) => <tr key={r.f} className="border-t border-line"><td className="px-4 py-3.5 text-ink-muted">{t.rows[k] ?? r.f}</td>{r.v.map((v, i) => <td key={i} className={`py-3.5 text-center ${i === featured ? "bg-white/[.05]" : ""}`}>{cell(v)}</td>)}</tr>)}</tbody>
-          </table>
-        </div></div>
-      </section>
-      {/* Enterprise: a photo band with the tiers, then the quote request. */}
-      <section id="enterprise" aria-labelledby="ent-h" className="container-x mt-[var(--sp-section)]">
-        <PhotoBand img="ws-ofis" pos="50% 40%" className="p-6 md:p-12">
-          <div className="grid-12 items-end gap-y-8">
-            <div className="col-span-12 lg:col-span-7">
-              <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{t.entK}</p>
-              <h2 id="ent-h" className="v4-h2 mt-5 max-w-[20ch]"><Split text={t.entH} /></h2>
-              <p className="mt-5 max-w-[34rem] text-[16px] leading-[1.6] text-white/70 md:text-[17px]">{t.entP}</p>
-              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[15px] text-white/85">{q.bullets.map((b) => <li key={b} className="flex items-center gap-2"><Check size={16} aria-hidden="true" className="tick" />{b}</li>)}</ul>
-            </div>
-            <div className="col-span-12 flex flex-wrap gap-3 lg:col-span-5 lg:justify-self-end">
-              <a href="#quote" className="btn btn-primary h-11 px-5 text-[15px]">{q.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-              <a href={SITE.demo} className="btn btn-glass-2 h-11 px-5 text-[15px]">{q.alt}</a>
-            </div>
+      {/* Hero: title on the left, billing switch with a help link on one row. */}
+      <section className="mx-auto max-w-[1280px] px-4 md:px-8">
+        <h1 className="text-[30px] font-medium leading-[38px] tracking-[-0.025em] md:text-[36px] md:leading-[40px]">{P.h1}</h1>
+        <p className="mt-2 text-[14px] leading-5 text-[#FAFAFA]/85">{P.sub}</p>
+        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div role="group" aria-label={c.billing} className="inline-flex rounded-full border border-white/10 bg-white/[.06] p-1">
+            <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={`inline-flex h-11 items-center rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${!yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.monthly}</button>
+            <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={`inline-flex h-11 items-center gap-2 rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.yearly}
+              {best > 0 && <span className="rounded-full k-grad px-2 py-0.5 text-[12px] font-medium uppercase tracking-[.02em] text-white">{P.badge}</span>}</button>
           </div>
-          <ul className="mt-10 grid gap-3 md:grid-cols-3">
-            {tiers.map((x) => (
-              <li key={x.id} className={`flex flex-col ${glassTile} p-6`}>
-                <p className="text-[16px] font-semibold text-white/85">Enterprise {x.name}</p>
-                <p className="mt-4 text-[32px] font-semibold leading-none tracking-[-.04em]">{x.custom ? c.custom : <>{x.price}<span className="ms-1 text-[14px] font-normal text-white/60">{c.perMo}</span></>}</p>
-                <p className="mt-2 text-[14px] text-white/60">{fmt(t.entUsers, { n: x.users })}</p>
-                <ul className="mt-5 space-y-2 text-[14px] text-white/75">
-                  {x.pts.map((y) => <li key={y} className="flex items-start gap-2.5"><Check size={15} className="tick mt-0.5 shrink-0" />{y}</li>)}
-                  {x.soon.map((y) => <li key={y} className="flex flex-wrap items-center gap-2.5"><Lightning size={15} className="shrink-0 text-white/45" />{y}<span className="rounded-full bg-white/10 px-2 py-0.5 text-[12px] font-semibold text-white/70">{t.soon}</span></li>)}
-                </ul>
-              </li>))}
-          </ul>
-        </PhotoBand>
-      </section>
-
-      <section id="quote" aria-labelledby="quote-h" className="container-x mt-6 scroll-mt-28">
-        <div className="grid-12 gap-y-8 pt-14 md:pt-20">
-          <div className="col-span-12 lg:col-span-5">
-            <p className="inline-flex items-center gap-2"><span aria-hidden="true" className="kick-line" /><span className="ch-label">{q.k}</span></p>
-            <h2 id="quote-h" className="v4-h2 mt-4 max-w-[16ch]"><Split text={q.h} /></h2>
-            <p className="intro mt-4 max-w-[30rem]">{q.p}</p>
-            <a href={SITE.demo} className="group mt-6 inline-flex min-h-11 items-center gap-2 text-[15px] font-semibold">{q.alt}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>
-            <TrustNote className="mt-2" />
-          </div>
-          <div className="col-span-12 lg:col-span-7"><QuoteForm /></div>
+          {P.help && <a href={SITE.demo} className="inline-flex min-h-11 items-center text-[14px] font-medium text-[#FAFAFA]/85 transition-colors duration-150 hover:text-[#FAFAFA]">{P.help}</a>}
         </div>
-      </section>
 
-    </main>
-    <div className="mt-[var(--sp-section)]"><Copq lang={lang} /></div>
-    <section aria-labelledby="pfaq-h" className="section-y">
-      <div className="container-x grid-12 gap-y-10">
-        <h2 id="pfaq-h" className="v4-h2 col-span-12 lg:col-span-4"><Split text={t.faqH} /></h2>
-        <ul className="col-span-12 space-y-2 lg:col-span-7 lg:col-start-6">
-          {t.faq.map(([qq, a], i) => { const on = open === i; return (
-            <li key={qq} className={`rounded-[20px] transition-colors ${on ? "bg-[var(--card)]" : "hover:bg-white/[.03]"}`}>
-              <button type="button" aria-expanded={on} onClick={() => setOpen(on ? null : i)} className="flex min-h-16 w-full items-center justify-between gap-6 px-5 py-4 text-start text-[17px] font-semibold md:px-6">
-                {qq}<span className={`grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/[.07] text-ink-muted transition-transform ${on ? "rotate-45" : ""}`}><Plus size={15} aria-hidden="true" /></span></button>
-              {on && <p className="measure px-5 pb-6 text-[16px] leading-[1.6] text-ink-muted md:px-6">{a}</p>}
+        {/* Plans: card (name, users, who it is for, price at the foot), button under it, saving, then the list. */}
+        <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4" aria-label={c.k}>
+          {PLANS.map((p) => { const id = p.id; const rec = !!p.featured; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
+            const amt = pr && p.monthly && yearly && save ? (num(p.monthly.now) - num(pr.now)) * 12 : 0;
+            const checkout = (yearly ? (p as { checkoutYearly?: string | null }).checkoutYearly : p.checkout) ?? null;
+            const pts = P.points[id] ?? []; const prev = prevOf[id]; const fair = P.fair && (pts.some(isUnl) || id === "enterprise");
+            return (
+            <li key={id} id={`plan-${id}`} className="relative flex flex-col">
+              {rec && <span className="absolute inset-x-0 -top-7 flex h-10 items-start justify-center rounded-t-[18px] k-grad pt-1.5 text-[12px] font-medium text-white">{c.recommended}</span>}
+              <div className={`${K.card} relative flex min-h-[248px] flex-col p-6 ${rec ? "k-card-rec" : ""}`}>
+                <h2 className="text-[24px] font-medium leading-8">{c.plans[id as keyof typeof c.plans][0]}</h2>
+                <p className="text-[14px] leading-5 text-[#FAFAFA]">{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
+                <p className="mt-2 text-[14px] leading-5 text-[#A3A3A3]">{P.for[id]}</p>
+                <div className="mt-auto pt-8">
+                  {pr ? <p className="flex flex-wrap items-baseline gap-x-2">
+                      {yearly && save && p.monthly && <span className="text-[18px] text-[#737373] line-through">{p.monthly.now}</span>}
+                      <span className="text-[28px] font-medium leading-none tracking-[-0.02em]">{pr.now}</span><span className="text-[12px] text-[#737373]">{c.perMo}</span></p>
+                    : <p className="text-[28px] font-medium leading-none tracking-[-0.02em]">{P.custom}</p>}
+                  <p className="mt-2 min-h-4 text-[12px] text-[#737373]">{pr && id !== "free" ? (yearly && save ? fmt(c.yrNote, { total: money(num(pr.now) * 12) }) : c.moNote) : id === "free" ? c.free : c.contact}</p>
+                </div>
+              </div>
+              <div className="mt-3">
+                {id === "enterprise"
+                  ? <a href="#quote" className={K.pillLight}>{P.entCta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+                  : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={rec ? K.pillAccent : K.pillDark} />}
+              </div>
+              <p className="mt-2.5 min-h-5 text-center text-[13px] text-[#737373]">{amt > 0 ? (P.saveAmt
+                ? (() => { const [a, b] = P.saveAmt.split("{amt}"); return <>{a}<b className="font-medium text-[#FAFAFA]">{money(amt)}</b>{b}</>; })()
+                : <b className="font-medium text-[#FAFAFA]">{fmt(c.save, { pct: save ?? 0 })}</b>) : null}</p>
+              <div className="mt-5 px-1">
+                <p className="min-h-5 text-[13px] text-[#A3A3A3]">{prev ? fmt(c.plus, { plan: c.plans[prev as keyof typeof c.plans][0] }) : P.includes}</p>
+                <ul className="mt-3 space-y-2.5 text-[14px] leading-5">{pts.map((f) => <li key={f} className="flex items-start gap-2.5 text-[#FAFAFA]/90"><Check size={14} aria-hidden="true" className="mt-[3px] shrink-0 text-[#737373]" />
+                  <span>{f}{P.fair && isUnl(f) && <span aria-hidden="true" className="text-[#737373]"> *</span>}</span></li>)}</ul>
+                {id === "enterprise" && P.soon.length > 0 && <>
+                  <p className="mt-5 text-[13px] text-[#A3A3A3]">{P.soonH}</p>
+                  <ul className="mt-3 space-y-2.5 text-[14px] leading-5">{P.soon.map((f) => <li key={f} className="flex flex-wrap items-center gap-2 text-[#FAFAFA]/70"><Lightning size={14} aria-hidden="true" className="shrink-0 text-[#737373]" />{f}<span className="rounded-full bg-white/[.15] px-1.5 py-px text-[12px] font-medium uppercase tracking-[.02em] text-[#FAFAFA]">{t.soon}</span></li>)}</ul></>}
+                {fair && <p className="mt-4 text-[12px] text-[#737373]">* {P.fair}</p>}
+              </div>
             </li>); })}
         </ul>
-      </div>
-    </section>
-    <section className="pb-[var(--section-y)]"><div className="container-x">
-      <PhotoBand img="ws-mutfak" pos="50% 45%" tone="center" className="px-6 py-16 text-center md:py-24">
-        <p className="v4-h2 mx-auto max-w-[22ch]"><Split text={t.endH} /></p>
-        <p className="mt-4 text-[17px] text-white/75">{t.endP}</p>
-        <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{d.nav.cta}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-          <a href="#quote" className="btn btn-glass-2 h-11 px-5 text-[15px]">{q.cta}</a>
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <a href="#compare" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-medium text-[#A3A3A3] transition-colors duration-150 hover:text-[#FAFAFA]">{P.see}<ArrowRight size={14} aria-hidden="true" className="rotate-90" /></a>
+          <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#737373]">
+            <span className="flex items-center gap-1.5"><LockSimple size={14} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={14} />{c.cancel}</span><span>{c.appNote}</span></p>
         </div>
-      </PhotoBand></div></section>
+      </section>
+
+      {/* Add-ons (English and Turkish copy only). */}
+      {P.addons.length > 0 && <section aria-labelledby="addons-h" className="mx-auto mt-20 max-w-[1280px] px-4 md:px-8">
+        <h2 id="addons-h" className="text-[24px] font-medium leading-8">{P.addonsH}</h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">{P.addons.map(([h, p]) => (
+          <div key={h} className={`${K.card} p-6`}><h3 className="text-[18px] font-medium leading-7">{h}</h3><p className="mt-1 text-[14px] leading-5 text-[#A3A3A3]">{p}</p></div>))}</div>
+        <p className="mt-3 text-[13px] text-[#737373]">{P.addonsNote}</p>
+      </section>}
+
+      {/* Teams and Enterprise: the tiers in one card, custom pricing with a warm light in the other. */}
+      <section id="enterprise" aria-labelledby="ent-h" className="mx-auto mt-20 max-w-[1280px] px-4 md:px-8">
+        <h2 id="ent-h" className="text-[24px] font-medium leading-8">{P.teamsH}</h2>
+        <div className="mt-6 grid gap-4 lg:grid-cols-2">
+          <div className={`${K.card} flex flex-col p-6 md:p-7`}>
+            <div className="flex flex-wrap items-start justify-between gap-4"><h3 className="text-[24px] font-medium leading-8">Enterprise</h3><p className="max-w-[20rem] text-[14px] leading-5 text-[#A3A3A3]">{P.entP}</p></div>
+            <ul className="mt-6 grid gap-2">{ENTERPRISE_TIERS.map((x) => (
+              <li key={x.id} className="flex items-center justify-between gap-4 rounded-[14px] bg-white/[.05] px-4 py-3.5 text-[14px]">
+                <span className="font-medium">Enterprise {x.name}<span className="ms-2 font-normal text-[#A3A3A3]">{fmt(t.entUsers, { n: x.users })}</span></span>
+                <span className="whitespace-nowrap">{x.custom ? P.custom : <>{x.price}<span className="text-[12px] text-[#737373]">{c.perMo}</span></>}</span></li>))}</ul>
+          </div>
+          <div className="relative flex min-h-[260px] flex-col overflow-hidden rounded-[16px] border border-white/10 p-6 md:p-7" style={{ background: "radial-gradient(90% 120% at 100% 100%, rgba(255,134,82,.55), rgba(236,103,38,.25) 40%, rgba(25,25,25,0) 75%), #191919" }}>
+            <h3 className="text-[24px] font-medium leading-8">{P.custom}</h3>
+            <ul className="mt-4 space-y-2 text-[14px] leading-5 text-[#FAFAFA]/90">{q.bullets.map((b) => <li key={b} className="flex items-start gap-2.5"><Check size={14} aria-hidden="true" className="mt-[3px] shrink-0 text-[#FAFAFA]/70" />{b}</li>)}</ul>
+            <div className="mt-auto flex flex-wrap gap-3 pt-8">
+              <a href="#quote" className={`${K.pillLight} !w-auto px-6`}>{P.entCta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+              <a href={SITE.demo} className={`${K.pillDark} !w-auto px-6`}>{P.entAlt}</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="quote" aria-labelledby="quote-h" className="mx-auto mt-20 max-w-[1280px] scroll-mt-28 px-4 md:px-8">
+        <div className="grid gap-8 lg:grid-cols-[5fr_7fr]">
+          <div>
+            <h2 id="quote-h" className="text-[24px] font-medium leading-8">{q.h}</h2>
+            <p className="mt-2 max-w-[30rem] text-[14px] leading-5 text-[#A3A3A3]">{q.p}</p>
+            <TrustNote className="mt-3" />
+          </div>
+          <QuoteForm />
+        </div>
+      </section>
+
+      {/* Full comparison, grouped like Krea's feature table. */}
+      <section id="compare" aria-labelledby="cmp-h" className="mx-auto mt-24 max-w-[1280px] scroll-mt-24 px-4 md:px-8">
+        <h2 id="cmp-h" className="text-[24px] font-medium leading-8">{P.compareH}</h2>
+        <div className="no-sb mt-6 overflow-x-auto">
+          <table className="w-full min-w-[720px] border-collapse text-start text-[14px] leading-5">
+            <thead className="sticky top-0"><tr className="border-b border-white/10">
+              <th className="w-[32%] py-4 pe-4 text-start font-medium text-[#A3A3A3]">{P.feature}</th>
+              {PLANS.map((p, i) => <th key={p.id} className={`py-4 text-center text-[16px] font-medium ${i === featured ? "text-[#FAFAFA]" : "text-[#FAFAFA]/85"}`}>{c.plans[p.id as keyof typeof c.plans][0]}</th>)}</tr></thead>
+            {P.groups.map((g) => (
+              <tbody key={g.h || "all"}>
+                {g.h && <tr><th colSpan={5} scope="colgroup" className="pb-2 pt-8 text-start text-[18px] font-medium leading-7">{g.h}</th></tr>}
+                {g.rows.map(([f, ...v]) => <tr key={f} className="border-b border-white/[.07]"><td className="py-3.5 pe-4 text-[#A3A3A3]">{f}</td>
+                  {v.map((x, i) => <td key={i} className={`py-3.5 text-center ${i === featured ? "bg-white/[.03]" : ""}`}>{cell(x)}</td>)}</tr>)}
+              </tbody>))}
+          </table>
+        </div>
+        {P.fair && <p className="mt-3 text-[12px] text-[#737373]">{P.fair}</p>}
+      </section>
+
+      <section aria-labelledby="pfaq-h" className="mx-auto mt-24 max-w-[1280px] px-4 md:px-8">
+        <div className="grid gap-8 lg:grid-cols-[4fr_8fr]">
+          <h2 id="pfaq-h" className="text-[24px] font-medium leading-8">{P.faqH}</h2>
+          <ul className="border-t border-white/10">
+            {P.faq.map(([qq, a], i) => { const on = open === i; return (
+              <li key={qq} className="border-b border-white/10">
+                <button type="button" aria-expanded={on} onClick={() => setOpen(on ? null : i)} className="flex min-h-14 w-full items-center justify-between gap-6 py-4 text-start text-[16px] font-medium">
+                  {qq}<Plus size={15} aria-hidden="true" className={`shrink-0 text-[#A3A3A3] ${on ? "rotate-45" : ""}`} /></button>
+                {on && <p className="max-w-[44rem] pb-5 text-[14px] leading-[22px] text-[#A3A3A3]">{a}</p>}
+              </li>); })}
+          </ul>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1280px] px-4 pb-24 pt-24 md:px-8">
+        <div className={`${K.card} flex flex-col items-start gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-10`}>
+          <div><h2 className="text-[24px] font-medium leading-8">{P.endH}</h2><p className="mt-1 text-[14px] leading-5 text-[#A3A3A3]">{P.endP}</p></div>
+          <div className="flex flex-wrap gap-3">
+            <a href={SITE.demo} className={`${K.pillLight} !w-auto px-6`}>{d.nav.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+            <a href="#quote" className={`${K.pillDark} !w-auto px-6`}>{q.cta}</a>
+          </div>
+        </div>
+      </section>
+    </main>
     <Footer />
   </>);
 }

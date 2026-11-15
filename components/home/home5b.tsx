@@ -103,7 +103,7 @@ export function BillingSwitch({ yearly, setYearly, id }: { yearly: boolean; setY
 const PLAN_IC: Record<string, Ic> = { free: Sparkle, pro: Lightning, proplus: Users, enterprise: Buildings };
 /* Plans are bought in the app (or through a Stripe link once set). Phones go straight to their store; on a desktop the
    button opens a small panel with both store badges, so nobody lands on the same price cards again. */
-function GetApp({ checkout, label, cls }: { checkout: string | null; label: string; cls: string }) {
+export function GetApp({ checkout, label, cls }: { checkout: string | null; label: string; cls: string }) {
   const { lang } = useLocale(); const [open, setOpen] = useState(false); const box = useRef<HTMLDivElement>(null);
   useEffect(() => { if (!open) return; const off = (e: MouseEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); }; document.addEventListener("mousedown", off); return () => document.removeEventListener("mousedown", off); }, [open]);
   const go = (e: React.MouseEvent) => { if (checkout) return; e.preventDefault(); const ua = navigator.userAgent;
