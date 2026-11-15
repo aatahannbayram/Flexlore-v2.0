@@ -9,7 +9,8 @@
  *      plus a PostHog identify by email so the request joins the visitor's earlier events. Both only run after the
  *      visitor allows analytics (the scripts are not loaded before that).
  *   3. Sentry: a failed HubSpot post is reported (tag area=lead_form), then the visitor falls back to email.
- *   Without a form GUID (or if HubSpot fails) the request opens the visitor's email app to support@flexlore.com. */
+ *   4. Flexlore backend: also posted to SITE.leadApi (Django, admin panel) when set.
+ *   Without either (or if both fail) the request opens the visitor's email app to support@flexlore.com. */
 import { SITE } from "./config";
 import { track } from "./track";
 
@@ -21,13 +22,26 @@ type W = Window & { posthog?: { identify?: (id: string, props?: Record<string, s
 const cookie = (k: string) => document.cookie.split("; ").find((c) => c.startsWith(k + "="))?.slice(k.length + 1);
 const report = (e: unknown) => { try { (window as W).Sentry?.captureException?.(e, { tags: { area: "lead_form" } }); } catch {} };
 
-export const leadDirect = () => !!(SITE.hsLeadForm && SITE.hubspot);
+export const leadDirect = () => !!((SITE.hsLeadForm && SITE.hubspot) || SITE.leadApi);
+
+/* The Flexlore backend keeps its own copy of every request (admin panel, filter by type). The honeypot field is sent empty. */
+async function toBackend(l: Lead): Promise<boolean> {
+  if (!SITE.leadApi) return false;
+  try {
+    const r = await fetch(SITE.leadApi, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({
+      type: l.type, full_name: l.name.trim(), email: l.email.trim(), company: l.company, team_size: l.size, sector: l.sector,
+      locations: l.sites, message: l.msg, locale: document.documentElement.lang || "", page: location.pathname, website: "" }) });
+    if (!r.ok) throw new Error(`Lead API ${r.status}: ${(await r.text()).slice(0, 300)}`);
+    return true;
+  } catch (e) { report(e); return false; }
+}
 
 export async function sendLead(l: Lead): Promise<"hubspot" | "mail"> {
   track("lead_submit", { type: l.type, size: l.size, sector: l.sector, page: location.pathname });
   try { (window as W).posthog?.identify?.(l.email.trim().toLowerCase(), { email: l.email.trim(), company: l.company, team_size: l.size, sector: l.sector, last_request: l.type }); } catch {}
   const message = [`[${l.typeLabel}]`, `${l.labels.size}: ${l.size}`, `${l.labels.sector}: ${l.sector}`, l.sites ? `${l.labels.sites}: ${l.sites}` : "", "", l.msg].filter((x, i) => x || i === 4).join("\n").trim();
-  if (leadDirect()) {
+  const backend = toBackend(l);
+  if (SITE.hsLeadForm && SITE.hubspot) {
     try {
       const [first, ...rest] = l.name.trim().split(/\s+/);
       const r = await fetch(`https://api-eu1.hsforms.com/submissions/v3/integration/submit/${SITE.hubspot}/${SITE.hsLeadForm}`, {
@@ -38,10 +52,12 @@ export async function sendLead(l: Lead): Promise<"hubspot" | "mail"> {
         }),
       });
       if (!r.ok) throw new Error(`HubSpot form submit ${r.status}: ${(await r.text()).slice(0, 300)}`);
+      await backend;
       track("lead_sent", { type: l.type, via: "hubspot" });
       return "hubspot";
     } catch (e) { report(e); }
   }
+  if (await backend) { track("lead_sent", { type: l.type, via: "backend" }); return "hubspot"; }
   const body = [`${l.name}`, `${l.email}`, `${l.company}`, "", message].join("\n");
   window.location.href = `mailto:support@flexlore.com?subject=${encodeURIComponent(`${l.subject}: ${l.company}`)}&body=${encodeURIComponent(body)}`;
   track("lead_sent", { type: l.type, via: "mail" });

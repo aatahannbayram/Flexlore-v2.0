@@ -12,6 +12,9 @@ export const SITE = {
   /* HubSpot form that receives pricing-page requests (components/lead.ts). Paste the form GUID into NEXT_PUBLIC_HS_LEAD_FORM;
      empty = requests open the visitor's email app instead. */
   hsLeadForm: process.env.NEXT_PUBLIC_HS_LEAD_FORM || "",
+  /* Flexlore backend endpoint that stores pricing-page requests (Django pricing app, POST /pricing/api/website-lead/,
+     visible in the admin panel). Full URL, e.g. https://test-api.flexlore.com/pricing/api/website-lead/; empty = off. */
+  leadApi: process.env.NEXT_PUBLIC_LEAD_API || "",
   login: "https://app.flexlore.com",
   /* Every "Book a demo" button opens our own page (components/pages/Demo.tsx), which embeds the HubSpot scheduler below. */
   demo: "/demo/",

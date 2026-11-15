@@ -84,38 +84,18 @@ export default function Pricing() {
   const featured = PLANS.findIndex((p) => p.featured);
   const prevOf: Record<string, string> = { pro: "free", proplus: "pro", enterprise: "proplus" };
   const users: Record<string, string> = { free: "3", pro: "10", proplus: "30" };
-
-  return (<>
-    <Header />
-    <main id="main" className="k-page relative isolate overflow-x-clip bg-[#111] pt-[calc(var(--header-h)+40px)] text-[#FAFAFA]">
-      <span aria-hidden="true" className="k-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px]" />
-
-      {/* Hero: title on the left, billing switch with a help link on one row. */}
-      <section className="mx-auto max-w-[1280px] px-4 md:px-8">
-        <h1 className="text-[30px] font-medium leading-[38px] tracking-[-0.025em] md:text-[36px] md:leading-[40px]">{P.h1}</h1>
-        <p className="mt-2 text-[14px] leading-5 text-[#FAFAFA]/85">{P.sub}</p>
-        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
-          <div role="group" aria-label={c.billing} className="inline-flex rounded-full border border-white/10 bg-white/[.06] p-1">
-            <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={`inline-flex h-11 items-center rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${!yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.monthly}</button>
-            <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={`inline-flex h-11 items-center gap-2 rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.yearly}
-              {best > 0 && <span className="rounded-full k-grad px-2 py-0.5 text-[12px] font-medium uppercase tracking-[.02em] text-white">{P.badge}</span>}</button>
-          </div>
-          {P.help && <a href={SITE.demo} className="inline-flex min-h-11 items-center text-[14px] font-medium text-[#FAFAFA]/85 transition-colors duration-150 hover:text-[#FAFAFA]">{P.help}</a>}
-        </div>
-
-        {/* Plans: card (name, users, who it is for, price at the foot), button under it, saving, then the list. */}
-        <ul className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-4" aria-label={c.k}>
-          {PLANS.map((p) => { const id = p.id; const rec = !!p.featured; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
+  const [mPlan, setMPlan] = useState("proplus"); const [mAll, setMAll] = useState(false);
+  const renderPlan = (p: (typeof PLANS)[number], mobile = false) => { const id = p.id; const rec = !!p.featured; const pr = yearly ? p.yearly : p.monthly; const save = yearly ? savePct(p) : null;
             const amt = pr && p.monthly && yearly && save ? (num(p.monthly.now) - num(pr.now)) * 12 : 0;
             const checkout = (yearly ? (p as { checkoutYearly?: string | null }).checkoutYearly : p.checkout) ?? null;
             const pts = P.points[id] ?? []; const prev = prevOf[id]; const fair = P.fair && (pts.some(isUnl) || id === "enterprise");
             return (
-            <li key={id} id={`plan-${id}`} className="relative flex flex-col">
-              {rec && <span className="absolute inset-x-0 -top-7 flex h-10 items-start justify-center rounded-t-[18px] k-grad pt-1.5 text-[12px] font-medium text-white">{c.recommended}</span>}
+            <li key={id} id={mobile ? undefined : `plan-${id}`} className="relative flex list-none flex-col">
+              {rec && !mobile && <span className="absolute inset-x-0 -top-7 flex h-10 items-start justify-center rounded-t-[18px] k-grad pt-1.5 text-[12px] font-medium text-white">{c.recommended}</span>}
               <div className={`${K.card} relative isolate flex min-h-[248px] flex-col overflow-hidden p-6 ${rec ? "k-card-rec" : ""}`}>
                 {/* Enterprise: an office photo under a dark scrim, so the white text on it stays easy to read. */}
                 {id === "enterprise" && <><img src="/photos/ws-ofis-800.webp" srcSet="/photos/ws-ofis-800.webp 800w, /photos/ws-ofis-1600.webp 1600w" sizes="(min-width:1280px) 300px, (min-width:768px) 50vw, 100vw" alt="" loading="lazy" className="absolute inset-0 -z-10 h-full w-full object-cover object-[60%_35%]" />
-                  <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(17,17,17,.78)_0%,rgba(17,17,17,.62)_45%,rgba(17,17,17,.9)_100%)]" /></>}
+                  <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(17,17,17,.9)_0%,rgba(17,17,17,.74)_45%,rgba(17,17,17,.94)_100%)]" /></>}
                 <h2 className="text-[24px] font-medium leading-8">{c.plans[id as keyof typeof c.plans][0]}</h2>
                 <p className="text-[14px] leading-5 text-[#FAFAFA]">{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
                 <p className={`mt-2 text-[14px] leading-5 ${id === "enterprise" ? "text-[#FAFAFA]/80" : "text-[#A3A3A3]"}`}>{P.for[id]}</p>
@@ -144,10 +124,56 @@ export default function Pricing() {
                   <ul className="mt-3 space-y-2.5 text-[14px] leading-5">{P.soon.map((f) => <li key={f} className="flex flex-wrap items-center gap-2 text-[#FAFAFA]/70"><Lightning size={14} aria-hidden="true" className="shrink-0 text-[#737373]" />{f}<span className="rounded-full bg-white/[.15] px-1.5 py-px text-[12px] font-medium uppercase tracking-[.02em] text-[#FAFAFA]">{t.soon}</span></li>)}</ul></>}
                 {fair && <p className="mt-4 text-[12px] text-[#737373]">* {P.fair}</p>}
               </div>
-            </li>); })}
+            </li>); };
+
+  return (<>
+    <Header />
+    <main id="main" className="k-page relative isolate overflow-x-clip bg-[#111] pt-[calc(var(--header-h)+40px)] text-[#FAFAFA]">
+      <span aria-hidden="true" className="k-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[760px]" />
+
+      {/* Hero: title on the left, billing switch with a help link on one row. */}
+      <section className="mx-auto max-w-[1280px] px-4 md:px-8">
+        <h1 className="text-[30px] font-medium leading-[38px] tracking-[-0.025em] md:text-[36px] md:leading-[40px]">{P.h1}</h1>
+        <p className="mt-2 text-[14px] leading-5 text-[#FAFAFA]/85">{P.sub}</p>
+        <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <div role="group" aria-label={c.billing} className="inline-flex rounded-full border border-white/10 bg-white/[.06] p-1">
+            <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={`inline-flex h-11 items-center rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${!yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.monthly}</button>
+            <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={`inline-flex h-11 items-center gap-2 rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.yearly}
+              {best > 0 && <span className="rounded-full k-grad px-2 py-0.5 text-[12px] font-medium uppercase tracking-[.02em] text-white">{P.badge}</span>}</button>
+          </div>
+          {P.help && <a href={SITE.demo} className="inline-flex min-h-11 items-center text-[14px] font-medium text-[#FAFAFA]/85 transition-colors duration-150 hover:text-[#FAFAFA]">{P.help}</a>}
+        </div>
+
+        {/* Plans: card (name, users, who it is for, price at the foot), button under it, saving, then the list. */}
+        <ul className="mt-12 grid gap-4 max-md:hidden md:grid-cols-2 xl:grid-cols-4" aria-label={c.k}>
+          {PLANS.map((p) => renderPlan(p))}
         </ul>
+        {/* Mobile: an app-like view. One plan at a time picked from a segmented bar (ProPlus first), its card, button and
+            list, then its full feature list on demand instead of the wide comparison table. */}
+        <div className="mt-8 md:hidden">
+          <div role="tablist" aria-label={c.k} className="grid grid-cols-4 gap-1 rounded-[14px] border border-white/10 bg-white/[.04] p-1">
+            {PLANS.map((p) => { const on = mPlan === p.id; return (
+              <button key={p.id} type="button" role="tab" aria-selected={on} onClick={() => { setMPlan(p.id); setMAll(false); }}
+                className={`relative flex min-h-11 flex-col items-center justify-center rounded-[10px] px-1 text-[13px] font-medium transition-colors duration-150 ${on ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/75"}`}>
+                {c.plans[p.id as keyof typeof c.plans][0]}
+                {p.featured && <span aria-hidden="true" className={`absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full ${on ? "bg-[#EC6726]" : "bg-[#EC6726]/80"}`} />}
+              </button>); })}
+          </div>
+          {PLANS.find((p) => p.id === mPlan)?.featured && <p className="mt-3 text-center text-[13px] font-medium text-[#FF8652]">{c.recommended}</p>}
+          <ul className="mt-4" aria-label={c.plans[mPlan as keyof typeof c.plans][0]}>{renderPlan(PLANS.find((p) => p.id === mPlan)!, true)}</ul>
+          <div className="mt-6 border-t border-white/10 pt-2">
+            <button type="button" aria-expanded={mAll} onClick={() => setMAll(!mAll)} className="flex min-h-12 w-full items-center justify-between text-[15px] font-medium">
+              {P.see}<Plus size={15} aria-hidden="true" className={`text-[#A3A3A3] ${mAll ? "rotate-45" : ""}`} /></button>
+            {mAll && <div className="pb-2">{P.groups.map((g) => (
+              <div key={g.h || "all"} className="mt-3">
+                {g.h && <p className="pb-1 text-[13px] font-medium text-[#A3A3A3]">{g.h}</p>}
+                <ul>{g.rows.map(([f, ...v]) => { const x = v[PLANS.findIndex((p) => p.id === mPlan)]; return (
+                  <li key={f} className="flex min-h-11 items-center justify-between gap-4 border-b border-white/[.07] py-2 text-[14px]"><span className="text-[#FAFAFA]/85">{f}</span><span className="shrink-0 text-end">{x === true ? <Check size={16} aria-label="✓" /> : x === false ? <span aria-label="–" className="text-[#737373]">–</span> : x}</span></li>); })}</ul>
+              </div>))}</div>}
+          </div>
+        </div>
         <div className="mt-10 flex flex-col items-center gap-4">
-          <a href="#compare" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-medium text-[#A3A3A3] transition-colors duration-150 hover:text-[#FAFAFA]">{P.see}<ArrowRight size={14} aria-hidden="true" className="rotate-90" /></a>
+          <a href="#compare" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-medium text-[#A3A3A3] max-md:hidden transition-colors duration-150 hover:text-[#FAFAFA]">{P.see}<ArrowRight size={14} aria-hidden="true" className="rotate-90" /></a>
           <p className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[#737373]">
             <span className="flex items-center gap-1.5"><LockSimple size={14} />{c.secure}</span><span className="flex items-center gap-1.5"><CheckCircle size={14} />{c.cancel}</span><span>{c.appNote}</span></p>
         </div>
@@ -159,13 +185,14 @@ export default function Pricing() {
           <div>
             <h2 id="quote-h" className="text-[24px] font-medium leading-8">{PC ? PC.addonsH : q.h}</h2>
             <p className="mt-2 max-w-[30rem] text-[14px] leading-5 text-[#A3A3A3]">{PC ? PC.addonsP : q.p}</p>
-            {PC && <div role="radiogroup" aria-label={PC.addonsH} className="mt-6 grid gap-2">
+            {PC && <div role="radiogroup" aria-label={PC.addonsH} className="mt-6 grid grid-cols-2 gap-3">
               {(["enterprise", "users", "storage", "setup"] as const).map((k) => { const on = lead === k; const I = { enterprise: Buildings, users: Users, storage: Package, setup: Wrench }[k]; return (
                 <button key={k} type="button" role="radio" aria-checked={on} onClick={() => setLead(k)}
-                  className={`flex min-h-[72px] items-center gap-4 rounded-[14px] border px-4 py-3 text-start transition-colors duration-150 ${on ? "border-[rgba(236,103,38,.6)] bg-[rgba(236,103,38,.08)]" : "border-white/10 bg-white/[.03] hover:bg-white/[.06]"}`}>
-                  <span aria-hidden="true" className={`grid h-10 w-10 shrink-0 place-items-center rounded-[10px] ${on ? "bg-[#EC6726] text-white" : "bg-white/[.06] text-[#FAFAFA]"}`}><I size={18} /></span>
-                  <span className="min-w-0 flex-1"><span className="block text-[15px] font-medium">{PC.opts[k][0]}</span><span className="block text-[13px] leading-5 text-[#A3A3A3]">{PC.opts[k][1]}</span></span>
-                  <span aria-hidden="true" className={`grid h-5 w-5 shrink-0 place-items-center rounded-full border ${on ? "border-[#EC6726] bg-[#EC6726]" : "border-white/25"}`}>{on && <span className="h-2 w-2 rounded-full bg-white" />}</span>
+                  className={`relative flex min-h-[132px] flex-col items-start rounded-[16px] border p-4 text-start transition-colors duration-150 ${on ? "border-[rgba(236,103,38,.7)] bg-[linear-gradient(180deg,rgba(236,103,38,.14),rgba(236,103,38,.03))]" : "border-white/10 bg-white/[.03] hover:border-white/20 hover:bg-white/[.05]"}`}>
+                  <span aria-hidden="true" className={`grid h-9 w-9 place-items-center rounded-[10px] ${on ? "bg-[#EC6726] text-white" : "bg-white/[.07] text-[#FAFAFA]"}`}><I size={17} /></span>
+                  <span aria-hidden="true" className={`absolute right-3 top-3 grid h-5 w-5 place-items-center rounded-full ${on ? "bg-[#EC6726] text-white" : "border border-white/20"}`}>{on && <Check size={12} />}</span>
+                  <span className="mt-auto block pt-4 text-[15px] font-medium leading-5">{PC.opts[k][0]}</span>
+                  <span className="mt-1 block text-[13px] leading-[18px] text-[#A3A3A3]">{PC.opts[k][1]}</span>
                 </button>); })}
             </div>}
             {PC && <p className="mt-3 text-[12px] text-[#737373]">{PC.addonsNote}</p>}
@@ -176,7 +203,7 @@ export default function Pricing() {
       </section>
 
       {/* Full comparison, grouped like Krea's feature table. */}
-      <section id="compare" aria-labelledby="cmp-h" className="mx-auto mt-24 max-w-[1280px] scroll-mt-24 px-4 md:px-8">
+      <section id="compare" aria-labelledby="cmp-h" className="mx-auto mt-24 max-w-[1280px] scroll-mt-24 px-4 max-md:hidden md:px-8">
         <h2 id="cmp-h" className="text-[24px] font-medium leading-8">{P.compareH}</h2>
         <div className="no-sb mt-6 overflow-x-auto">
           <table className="w-full min-w-[720px] border-collapse text-start text-[14px] leading-5">
