@@ -157,6 +157,7 @@
         "llm": "gpt-5.4-nano",
         "reasoning_effort": "low",
         "service_tier": "standard",
+        "enable_prompt_caching": true,
         "opener": null,
         "thinking_budget": null,
         "enable_reasoning_summary": false,
@@ -1142,10 +1143,13 @@
           "y": 0
         },
         "edge_order": [],
-        "parent_subgraph_id": null
+        "parent_subgraph_id": null,
+        "parent_frame_id": null
       }
     },
     "subgraphs": {},
-    "prevent_subagent_loops": true
+    "frames": {},
+    "prevent_subagent_loops": true,
+    "version": 1
   }
 }
