@@ -122,30 +122,38 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
   const reduce = useReducedMotion();
   const q = QUOTE[locale];
   const num = (x: string) => parseFloat(x.replace(/[^0-9.]/g, ""));
-  /* Krea-style plan (2026-11-15): a tall card with the name and users at the top and the price at the foot (yearly shows
-     the monthly price struck through), the button outside under the card, the saving under the button, then the list. */
+  /* Plan card, second Krea pass (2026-11-15): one card holds everything, and every block has a fixed slot so the four
+     cards line up row by row: name (+ quiet "recommended" pill, no strip), users, a small line for the struck monthly
+     price and the saving, the big price with "/mo" on the same line, the billing note, who it is for, the button, then
+     the list. The recommended card is only a touch lighter with a brighter hairline; cards lift a little on hover. */
+  const note = pr && id !== "free" ? (yearly && save ? fmt(c.yrNote, { total: `$${(num(pr.now) * 12).toFixed(2)}` }) : c.moNote) : id === "free" ? c.free : c.contact;
   return (
-    <li id={`plan-${id}`} className={`relative flex-col ${className || "flex"}`}>
-      <div className={`relative flex min-h-[260px] flex-col overflow-hidden rounded-[28px] p-6 ring-1 md:min-h-[300px] md:p-7 ${rec ? "bg-[linear-gradient(180deg,#262626,#181818_70%)] ring-white/[.18]" : "bg-[var(--card)] ring-white/[.06]"}`}>
-        {rec && <span className="absolute inset-x-0 top-0 bg-white/[.07] py-1.5 text-center text-[12.5px] font-medium text-ink-muted">{c.recommended}</span>}
-        <h3 className={`text-[28px] font-semibold tracking-[-0.04em] ${rec ? "mt-6" : ""}`}>{name}</h3>
-        <p className="mt-1 text-[15px] text-ink-muted">{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
-        <p className="mt-2 max-w-[22rem] text-[14px] leading-snug text-ink-faint">{forWho}</p>
-        <div className="mt-auto pt-8">
-          {pr ? <div className="flex flex-wrap items-baseline gap-x-2">
-            {yearly && save && p.monthly && <span className="text-[22px] font-semibold tracking-[-0.03em] text-ink-faint line-through decoration-1">{p.monthly.now}</span>}
-            <AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[40px] font-semibold leading-none tracking-[-.045em]" initial={reduce ? false : { opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={reduce ? undefined : { opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>{pr.now}</m.span></AnimatePresence>
-            <span className="text-[15px] text-ink-faint">{c.perMo}</span>
-          </div> : <p className="text-[36px] font-semibold leading-none tracking-[-.045em]">{c.custom}</p>}
+    <li id={`plan-${id}`} className={`relative ${className || "flex"}`}>
+      <div className={`group/plan relative flex w-full flex-col rounded-[28px] p-6 ring-1 transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(.22,1,.36,1)] hover:-translate-y-1 md:p-7 ${rec ? "bg-[linear-gradient(180deg,#242424,#191919_60%)] shadow-[0_30px_80px_-40px_rgb(0_0_0/0.9)] ring-white/[.16]" : "bg-[var(--card)] ring-white/[.06]"}`}>
+        <div className="flex min-h-8 items-center justify-between gap-3">
+          <h3 className="text-[24px] font-semibold tracking-[-0.035em]">{name}</h3>
+          {rec && <span className="rounded-full bg-white/[.08] px-3 py-1 text-[12.5px] font-medium text-ink">{c.recommended}</span>}
         </div>
-      </div>
-      {id === "enterprise"
-        ? <a href={lh("/pricing/#quote")} className="btn mt-3 !h-12 w-full !bg-[#F4F0EB] !text-[#111] hover:!bg-white">{q.cta}<ArrowRight size={14} aria-hidden="true" className="rtl:-scale-x-100" /></a>
-        : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-3 !h-12 w-full ${rec ? "!bg-[#F4F0EB] !text-[#111] hover:!bg-white" : "btn-secondary"}`} />}
-      <p className="mt-3 min-h-5 text-center text-[14px] text-ink-faint">{pr && id !== "free" ? (yearly ? (save ? <><b className="font-semibold text-ink">{fmt(c.save, { pct: save })}</b> · {fmt(c.yrNote, { total: `$${(num(pr.now) * 12).toFixed(2)}` })}</> : c.moNote) : c.moNote) : id === "free" ? c.free : ""}</p>
-      <div className="mt-5 px-1">
-        {prev && <p className="text-[13px] text-ink-faint">{fmt(c.plus, { plan: c.plans[prev][0] })}</p>}
-        <ul className="mt-3 space-y-2.5 text-[14.5px]">{pts.map((f) => <li key={f} className="flex items-start gap-2.5 text-ink-muted"><Check size={15} aria-hidden="true" className="mt-0.5 shrink-0 text-ink-faint" />{f}</li>)}</ul>
+        <p className="mt-1 text-[14px] text-ink-muted">{id === "enterprise" ? c.enterpriseUsers : fmt(c.users, { n: users[id] })}</p>
+        <div className="mt-7">
+          <p className="flex min-h-6 items-center gap-2 text-[14px]">
+            {yearly && save && p.monthly ? <><span className="text-ink-faint line-through decoration-1">{p.monthly.now}</span><span className="rounded-full bg-white/[.07] px-2 py-0.5 text-[12.5px] font-medium text-ink">{fmt(c.save, { pct: save })}</span></> : null}
+          </p>
+          <div className="mt-1 flex min-h-[52px] items-baseline gap-1.5 whitespace-nowrap">
+            {pr ? <><AnimatePresence mode="popLayout" initial={false}><m.span key={pr.now} className="text-[44px] font-semibold leading-none tracking-[-.05em]" initial={reduce ? false : { opacity: 0, y: 10, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} exit={reduce ? undefined : { opacity: 0, y: -10, filter: "blur(4px)" }} transition={{ duration: 0.3, ease: EASE }}>{pr.now}</m.span></AnimatePresence>
+              <span className="text-[15px] text-ink-faint">{c.perMo}</span></>
+              : <span className="text-[40px] font-semibold leading-none tracking-[-.045em]">{c.custom}</span>}
+          </div>
+          <p className="mt-2 min-h-5 text-[13px] text-ink-faint">{note}</p>
+        </div>
+        <p className="mt-5 min-h-[42px] text-[14px] leading-snug text-ink-muted">{forWho}</p>
+        {id === "enterprise"
+          ? <a href={lh("/pricing/#quote")} className="btn mt-6 !h-12 w-full !bg-[#F4F0EB] !text-[#111] hover:!bg-white">{q.cta}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover/plan:translate-x-0.5 rtl:-scale-x-100" /></a>
+          : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-6 !h-12 w-full ${rec ? "!bg-[#F4F0EB] !text-[#111] hover:!bg-white" : "btn-secondary"}`} />}
+        <div className="mt-6 border-t border-white/[.07] pt-5">
+          <p className="min-h-5 text-[13px] text-ink-faint">{prev ? fmt(c.plus, { plan: c.plans[prev][0] }) : ""}</p>
+          <ul className="mt-3 space-y-2.5 text-[14.5px]">{pts.map((f) => <li key={f} className="flex items-start gap-2.5 text-ink-muted"><Check size={15} aria-hidden="true" className="mt-0.5 shrink-0 text-ink" />{f}</li>)}</ul>
+        </div>
       </div>
     </li>);
 }

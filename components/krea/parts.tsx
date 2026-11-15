@@ -78,16 +78,32 @@ export function Drum({ items, groups, before, beforeLabel, caption, captions = 1
     const io = new IntersectionObserver(([e]) => setSeen(e.isIntersecting), { threshold: 0.25 }); io.observe(el); return () => io.disconnect(); }, []);
   useEffect(() => { if (hold || still || !seen) return; const id = window.setTimeout(() => { if (!document.hidden) setI((k) => (k + 1) % n); }, 4600); return () => clearTimeout(id); }, [i, hold, still, seen, n]);
   const go = (k: number) => setI(((k % n) + n) % n);
+  /* Shape (2026-11-15): one deep parabola runs across the band (top) and a shallower one closes it (bottom). Each card is
+     clipped to its own slice of those curves with soft rounded corners, and the clip path animates with the slide, so the
+     edges stay one continuous arc while the cards move. Without JS the band falls back to the CSS mask. */
+  const band = useRef<HTMLDivElement>(null);
+  const [geo, setGeo] = useState<{ W: number; H: number; w: number; g: number; r: number; dt: number; db: number } | null>(null);
+  useEffect(() => { const el = band.current; if (!el) return;
+    const measure = () => { const card = el.querySelector<HTMLElement>(".drum-card"); if (!card) return; const sm = innerWidth < 768;
+      setGeo({ W: el.clientWidth, H: el.clientHeight, w: card.offsetWidth, g: parseFloat(getComputedStyle(el).getPropertyValue("--gap")) || 0, r: sm ? 18 : 28, dt: sm ? 0.09 : 0.17, db: sm ? 0.06 : 0.1 }); };
+    measure(); const ro = new ResizeObserver(measure); ro.observe(el); return () => ro.disconnect(); }, []);
+  const clip = (pos: number) => { if (!geo) return undefined; const { W, H, w, g, r, dt, db } = geo; const L = W / 2 - w / 2 + pos * (w + g);
+    const yt = (x: number) => 4 * dt * H * (x / W) * (1 - x / W), st = (x: number) => (4 * dt * H / W) * (1 - 2 * x / W);
+    const yb = (x: number) => H - 4 * db * H * (x / W) * (1 - x / W), sb = (x: number) => -(4 * db * H / W) * (1 - 2 * x / W);
+    const f = (v: number) => v.toFixed(1); const x0 = L + r, x1 = L + w - r, xm = (x0 + x1) / 2;
+    return `path('M0 ${f(yt(L) + r)} Q0 ${f(yt(L))} ${r} ${f(yt(x0))} Q${f(xm - L)} ${f(yt(x0) + st(x0) * (xm - x0))} ${f(w - r)} ${f(yt(x1))} Q${f(w)} ${f(yt(L + w))} ${f(w)} ${f(yt(L + w) + r)} L${f(w)} ${f(yb(L + w) - r)} Q${f(w)} ${f(yb(L + w))} ${f(w - r)} ${f(yb(x1))} Q${f(xm - L)} ${f(yb(x1) + sb(x1) * (xm - x1))} ${r} ${f(yb(x0))} Q0 ${f(yb(L))} 0 ${f(yb(L) - r)} Z')`; };
+  const [inView, setIn] = useState(false); useEffect(() => { if (seen) setIn(true); }, [seen]);
   return (
     <div ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} onTouchStart={() => setHold(true)} onFocus={() => setHold(true)}>
       <div className="flex justify-center px-5"><div role="tablist" className="no-sb flex max-w-full gap-1 overflow-x-auto rounded-full bg-white/[.06] p-1.5">
-        {groups.map((g, j) => { const on = items[i].group === j; return <button key={g} type="button" role="tab" aria-selected={on} onClick={() => go(items.findIndex((x) => x.group === j))} className={`min-h-11 shrink-0 rounded-full px-5 text-[15px] font-medium transition-colors md:px-6 ${on ? "bg-[#F4F0EB] text-[#111]" : "text-white/60 hover:text-white"}`}>{g}</button>; })}
+        {groups.map((g, j) => { const on = items[i].group === j; return <button key={g} type="button" role="tab" aria-selected={on} onClick={() => go(items.findIndex((x) => x.group === j))} className={`relative min-h-11 shrink-0 overflow-hidden rounded-full px-5 text-[15px] font-medium transition-colors duration-300 md:px-6 ${on ? "bg-[#F4F0EB] text-[#111]" : "text-white/60 hover:text-white"}`}>{g}
+          {on && !still && <span key={i} aria-hidden="true" className="drum-tick absolute inset-x-5 bottom-[7px] h-[2px] origin-left rounded-full bg-[#111]/25 rtl:origin-right" style={{ animationPlayState: hold || !seen ? "paused" : "running" }} />}</button>; })}
       </div></div>
       <div className="relative md:pb-40"> 
-        <div className="drum relative mt-6 h-[min(54vw,640px)] min-h-[340px] md:mt-8">
+        <div ref={band} data-js={geo ? "" : undefined} data-in={inView || still ? "" : undefined} className="drum relative mt-6 h-[min(54vw,640px)] min-h-[340px] md:mt-8">
           {items.map((it, j) => { let pos = j - i; if (pos > n / 2) pos -= n; if (pos < -n / 2) pos += n; const a = Math.abs(pos); if (a > 2) return null; return (
             <figure key={it.img} data-c={pos === 0 ? "" : undefined} className="drum-card absolute overflow-hidden rounded-[22px] bg-[#1a1a1a]" aria-hidden={pos !== 0}
-              style={{ ["--p" as string]: pos, zIndex: 10 - a } as React.CSSProperties} onClick={() => pos !== 0 && go(j)}>
+              style={{ ["--p" as string]: pos, ["--a" as string]: a, zIndex: 10 - a, clipPath: clip(pos) } as React.CSSProperties} onClick={() => pos !== 0 && go(j)}>
               {/* The photo keeps the band's full height whatever the card's height, so a card growing or shrinking only
                   crops it: no rescaling, no jump. */}
               <img {...pic(it.img)} sizes="60vw" alt="" loading="lazy" className="drum-img" />
@@ -97,11 +113,10 @@ export function Drum({ items, groups, before, beforeLabel, caption, captions = 1
           <button type="button" aria-label={next} onClick={() => go(i + 1)} className="absolute end-3 top-1/2 z-30 grid h-12 w-12 -translate-y-1/2 place-items-center rounded-full bg-[rgb(24_24_24/0.7)] text-white ring-1 ring-white/10 backdrop-blur-md md:end-8"><ArrowRight size={15} aria-hidden="true" className="rtl:rotate-180" /></button>
         </div>
         {/* Caption: every variant is stacked in one cell, so the box keeps one height and nothing below it moves. */}
-        <div className="dark relative z-30 mx-4 mt-4 rounded-[22px] md:absolute md:bottom-0 md:left-1/2 md:mx-0 md:mt-0 md:w-[min(90vw,680px)] md:-translate-x-1/2 md:rounded-[24px] bg-[rgb(30_30_30/0.9)] px-6 py-5 text-[15.5px] leading-[1.5] text-white/90 ring-1 ring-white/[.1] backdrop-blur-xl md:text-[16px]">
+        <div className="dark relative z-30 mx-4 mt-4 rounded-[22px] md:absolute md:bottom-0 md:left-1/2 md:mx-0 md:mt-0 md:w-[min(90vw,680px)] md:-translate-x-1/2 md:rounded-[24px] bg-[rgb(26_26_26/0.88)] px-6 py-5 text-[15.5px] leading-[1.5] text-white/90 ring-1 ring-white/[.06] backdrop-blur-xl md:text-[16px]">
           <div aria-live="polite" className="grid">{Array.from({ length: captions }, (_, k) => (
             <p key={k} aria-hidden={k !== i % captions} className={`[grid-area:1/1] transition-opacity duration-500 ${k === i % captions ? "opacity-100" : "opacity-0"}`}>{caption(k)}</p>))}</div>
           {extra && <div className="mt-4 flex flex-wrap gap-2">{extra}</div>}
-          <span className="mt-4 flex items-center gap-2 border-t border-white/[.08] pt-3 text-[13px] text-white/50"><img src="/brand/symbol-main.svg" alt="" width={14} height={14} className="h-3.5 w-3.5" />{items[i].name}</span>
         </div>
       </div>
     </div>);

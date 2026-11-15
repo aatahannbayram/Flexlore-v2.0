@@ -675,11 +675,21 @@ html.splash-on .hero-underline { animation-play-state: paused; }
   -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
 .drum-card { left: 50%; top: 0; width: var(--w); height: 100%; cursor: pointer;
   transform: translateX(calc(-50% + var(--p) * (var(--w) + var(--gap))));
-  transition: transform .9s cubic-bezier(.22,1,.36,1), top .9s cubic-bezier(.22,1,.36,1), height .9s cubic-bezier(.22,1,.36,1); }
+  transition: transform .9s cubic-bezier(.22,1,.36,1), clip-path .9s cubic-bezier(.22,1,.36,1),
+    opacity .9s cubic-bezier(.22,1,.36,1) calc(var(--a, 0) * .09s), translate 1.1s cubic-bezier(.22,1,.36,1) calc(var(--a, 0) * .09s); }
+.drum[data-js] { -webkit-mask-image: none; mask-image: none; }
+.drum[data-js] .drum-card { border-radius: 0; }
+/* Entrance: the cards rise into the arc one after another, centre first, the first time the band comes into view. */
+.drum:not([data-in]) .drum-card { opacity: 0; translate: 0 56px; }
+/* The centre photo settles with a slow push-out; the active group pill fills while the carousel turns on its own. */
+.drum-card[data-c] .drum-img { animation: drum-kb 5.5s cubic-bezier(.22,1,.36,1) both; }
+@keyframes drum-kb { from { scale: 1.08; } to { scale: 1; } }
+.drum-tick { animation: drum-tick 4.6s linear both; }
+@keyframes drum-tick { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 .drum-card[data-c] { cursor: default; }
 .drum-img { position: absolute; left: 0; top: 50%; width: 100%; height: 100cqh; max-width: none; object-fit: cover; transform: translateY(-50%); }
 @media (max-width: 767px) { .drum { --gap: 12px; --w: 80vw; -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 18 100 0 L100 100 Q50 88 0 100 Z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0 Q50 18 100 0 L100 100 Q50 88 0 100 Z'/%3E%3C/svg%3E"); }  }
-@media (prefers-reduced-motion: reduce) { .drum-card { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .drum-card { transition: none; } .drum-card[data-c] .drum-img { animation: none; } }
 .arch-card { transition: transform .8s var(--ease-out-expo), opacity .6s ease; }
 @media (prefers-reduced-motion: reduce) { .arch-card { transition: none; } }
 /* Krea-style hero words: clean cream for the promise, soft grey for the answer (ember only on the one word). */
@@ -687,3 +697,9 @@ html.splash-on .hero-underline { animation-play-state: paused; }
 .hero-mute { color: rgb(244 240 235 / 0.45); }
 :root[data-theme="light"] .hero-cream:not(.dark *) { color: #111; }
 :root[data-theme="light"] .hero-mute:not(.dark *) { color: rgb(17 17 17 / 0.45); }
+
+/* Pricing (2026-11-15): plan cards rise in one after another on load. */
+@keyframes plan-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.plans > li { animation: plan-in .8s cubic-bezier(.22,1,.36,1) both; }
+.plans > li:nth-child(2) { animation-delay: .07s; } .plans > li:nth-child(3) { animation-delay: .14s; } .plans > li:nth-child(4) { animation-delay: .21s; }
+@media (prefers-reduced-motion: reduce) { .plans > li { animation: none; } }

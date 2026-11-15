@@ -75,7 +75,6 @@
 :root[data-theme="light"] .ring-white\/\[\.09\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .ring-white\/\[\.12\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.12); }
 :root[data-theme="light"] .ring-white\/\[\.16\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.16); }
-:root[data-theme="light"] .ring-white\/\[\.18\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.18); }
 :root[data-theme="light"] .ring-white\/\[\.1\]:not(.dark, .dark *) { --tw-ring-color: rgb(22 22 22 / 0.1); }
 @media (min-width: 640px) { :root[data-theme="light"] .sm\:text-white\/45:not(.dark, .dark *) { color: rgb(22 22 22 / 0.66); } }
 :root[data-theme="light"] .text-white:not(.dark, .dark *) { color: rgb(22 22 22 / 1); }
