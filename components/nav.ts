@@ -2,7 +2,7 @@
 // Every item has an icon, a title and one plain line, in EN and TR.
 import {
   PlayCircle, Browser, Sparkle, PlugsConnected, Eye, ForkKnife, Factory, Bed, Storefront, Package, Coffee,
-  Article, Handshake, Wrench, Question, EnvelopeSimple, Buildings,
+  Article, Handshake, BookOpen, Wrench, Question, EnvelopeSimple, Buildings,
 } from "./ui/icons";
 
 type L = { en: string; tr: string };
@@ -35,6 +35,7 @@ export const NAV: NavGroup[] = [
   {
     id: "resources", label: { en: "Resources", tr: "Kaynaklar" },
     items: [
+      { k: "guides", href: "/guides/", icon: BookOpen, t: { en: "Guides and templates", tr: "Rehberler ve şablonlar" }, d: { en: "SOP, work instruction, skills matrix", tr: "SOP, iş talimatı, beceri matrisi" } },
       { k: "blog", href: "/blog/", icon: Article, t: { en: "Blog", tr: "Blog" }, d: { en: "Training on the floor, in practice", tr: "Sahada eğitim, pratikte" } },
       { k: "apprentice", href: "/use-cases/master-apprentice-skills-transfer/", icon: Handshake, t: { en: "Master to apprentice", tr: "Ustadan çırağa" }, d: { en: "Pass on skills before people leave", tr: "Bilgiyi insanlar gitmeden aktarın" } },
       { k: "installation", href: "/use-cases/installation-training-on-site-orientation/", icon: Wrench, t: { en: "Installation training", tr: "Kurulum eğitimi" }, d: { en: "Hand over machines with the know-how", tr: "Makineyi bilgisiyle teslim edin" } },

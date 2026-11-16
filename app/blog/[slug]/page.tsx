@@ -15,8 +15,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params; const p = posts.find((x) => x.slug === slug); if (!p) notFound();
   const path = `/blog/${p.slug}/`;
   const ld = [{ "@context": "https://schema.org", "@type": "BlogPosting", headline: cardTitle(p), description: S[path]?.d, image: abs(p.cover),
-    datePublished: new Date(p.date + " 12:00 UTC").toISOString().slice(0, 10), mainEntityOfPage: abs(path),
-    author: { "@type": "Organization", name: "Flexlore" }, publisher: { "@type": "Organization", name: "Flexlore", logo: { "@type": "ImageObject", url: abs("/brand/logo.png") } } },
+    datePublished: new Date(p.date + " 12:00 UTC").toISOString().slice(0, 10), dateModified: new Date(p.date + " 12:00 UTC").toISOString().slice(0, 10), inLanguage: "en", mainEntityOfPage: abs(path),
+    author: { "@type": "Organization", "@id": abs("/#org"), name: "Flexlore", url: abs("/") }, publisher: { "@type": "Organization", "@id": abs("/#org"), name: "Flexlore", logo: { "@type": "ImageObject", url: abs("/brand/logo.png") } } },
     crumbs([["Home", "/"], ["Blog", "/blog/"], [cardTitle(p), path]])];
   return (<><Ld data={ld} /><Article p={p} /></>);
 }

@@ -1,0 +1,91 @@
+{
+  "slug": "sop-yazilimi",
+  "lang": "tr",
+  "twin": "sop-software",
+  "kind": "guide",
+  "seoTitle": "SOP Yazılımı Nasıl Seçilir? Kontrol Listesi | Flexlore",
+  "description": "SOP yazılımı ve iş talimatı programı seçerken nelere bakılır? Saha ekipleri için kriterler, puanlama listesi, demo soruları ve ilk 30 gün planı.",
+  "h1": "SOP yazılımı nasıl seçilir? Saha ekipleri için rehber",
+  "kicker": "Rehber",
+  "answer": "SOP yazılımı, standart operasyon prosedürlerinin ve iş talimatlarının hazırlandığı, onaylandığı, ekibe dağıtıldığı ve güncellendiği; kimin öğrendiğinin takip edildiği programdır. Saha ekipleri için telefonda eksiksiz çalışan, videolu adımları destekleyen, kısa bir quizle anlamayı ölçen, şubeye göre yetki veren ve her değişikliği onaydan geçiren bir yazılım seçin.",
+  "sections": [
+    {
+      "id": "sop-yazilimi-ne-ise-yarar",
+      "h2": "SOP yazılımı ne işe yarar?",
+      "html": "<p>SOP yazılımı, bir işletmenin standart operasyon prosedürlerini ve iş talimatlarını hazırladığı, onayladığı, ekibe ulaştırdığı ve güncellediği; kimin öğrendiğini de takip ettiği programdır. Klasörlerin, ortak sürücülerin ve WhatsApp gruplarının yerini, sahada telefondan açılan tek bir kütüphane alır.</p>\n<p>Saha ekipleri için iyi bir SOP programı beş işi görür:</p>\n<ol>\n<li><strong>Hazırlama:</strong> video, fotoğraf ya da metinden, tasarım veya kurgu bilgisi olmadan prosedür oluşturmak.</li>\n<li><strong>Onay:</strong> taslağı doğru kişiye göndermek, neyin ne zaman onaylandığını kayıt altında tutmak.</li>\n<li><strong>Dağıtım:</strong> her prosedürü ona ihtiyacı olan role ve şubeye, çalışanın zaten cebinde olan telefona göndermek.</li>\n<li><strong>Kontrol:</strong> kimin açtığını ve kimin anladığını, genelde kısa bir quizle göstermek.</li>\n<li><strong>Güncelleme:</strong> bir adımı değiştirip yeni sürümü yayınlamak ve herkesin değişikliği gördüğünden emin olmak.</li>\n</ol>\n<p>Ofis için yapılmış doküman araçları ilk üç işi çoğu zaman iyi yapar. Son ikisinde ve hepsini istasyonda, telefonda yapabilmekte saha ekiplerinin ihtiyacı ayrılır.</p>"
+    },
+    {
+      "id": "yazilima-ihtiyaciniz-var-mi",
+      "h2": "SOP yazılımına ihtiyacınız var mı, Word ve PDF yetmez mi?",
+      "html": "<p>Her şeyi tek bir kişi aklında tutabildiği sürece doküman yeter. &quot;Güncel sürüm hangisi?&quot; ve &quot;bunu kim öğrendi?&quot; sorularını etrafa sormadan cevaplayamıyorsanız yazılıma ihtiyacınız vardır.</p>\n<p>Dokümanların yetmediğini gösteren işaretler:</p>\n<ul>\n<li>İki şube aynı işi farklı yapıyor ve ikisi de bir dokümanı gösteriyor.</li>\n<li>Yeni başlayanlar usta yanında öğreniyor ve sonuç hangi ustanın yanına düştüğüne bağlı.</li>\n<li>İstasyondaki çıktı, makineden daha eski.</li>\n<li>Yeni alerjen ya da iş güvenliği değişikliğini kimin gördüğünü kimse bilmiyor.</li>\n<li>Bir işi gerçekten bilen tek bir deneyimli kişi var.</li>\n</ul>\n<p>Bunların hiçbiri sizin için geçerli değilse, şimdilik iyi bir iş talimatı şablonu ve düzenli bir klasör yapısı yeterli olabilir.</p>"
+    },
+    {
+      "id": "secim-kriterleri",
+      "h2": "Personel eğitim yazılımı nasıl seçilir? Saha ekipleri için kriterler",
+      "html": "<p>SOP yazılımını masa başındaki kişiye göre değil, fritözün başındaki ya da 2 numaralı hattaki kişiye göre değerlendirin. En çok önem taşıyan kriterler şunlar.</p>\n<h3>Önce mobil</h3>\n<p>Saha çalışanı bilgisayar başında oturmaz. Hazırlama, izleme ve onay iOS ve Android telefonlarda eksiksiz çalışmalı; masaüstü aracın kırpılmış bir sürümü olmamalı.</p>\n<h3>Sadece yazı değil, video</h3>\n<p>Fiziksel işler izleyerek daha kolay öğrenilir. Telefonla çekip kırpabildiğiniz, videoyu adımlara bölüp her adıma yazı ekleyebildiğiniz bir araç arayın. İyi bir videolu iş talimatının neye benzediğini <a href=\"/tr/rehber/video-sop/\">video SOP rehberinde</a> anlattık.</p>\n<h3>Anlamayı ölçen bir kontrol</h3>\n<p>&quot;İzlendi&quot; demek &quot;anlaşıldı&quot; demek değildir. Her prosedürün ardından gelen kısa bir quiz, kimin ana noktaları kavradığını gösterir. Ama sahada sorumlunun verdiği yetkinlik onayının yerini tuttuğunu iddia etmemeli.</p>\n<h3>Dil desteği</h3>\n<p>Birçok saha ekibinde birden fazla dil konuşulur. Uygulamanın kendisinin hangi dillerde çalıştığını, ayrıca prosedür içeriğinin çevrilip çevrilemediğini ve çeviriyi kimin kontrol ettiğini ayrı ayrı sorun.</p>\n<h3>Şubeye göre rol ve yetki</h3>\n<p>Franchise merkezinin, şube müdürünün ve yeni başlayan kasiyerin göreceği şeyler farklıdır. Şubeye göre çalışma alanları ve kimin hazırlayıp kimin onaylayıp kimin sadece izleyeceğini belirleyen roller arayın.</p>\n<h3>Hazırlık takibi</h3>\n<p>Her prosedürü kimin tamamladığını ve kontrolünü geçtiğini kişi, ekip ve şube bazında görebilmelisiniz. Bölge müdürünün pazartesi sabahı açtığı ekran budur.</p>\n<h3>Sürüm kontrolü ve onay akışı</h3>\n<p>Her değişiklik onaydan geçmeli, kimin neyi onayladığı kayıtlı olmalı. Çalışanlar her zaman güncel sürümü görmeli, siz de eski sürümü kimin öğrendiğini bilmelisiniz.</p>\n<h3>Sahanın gerçekleri</h3>\n<p>Bodrum katta ya da soğuk odada zayıf çeken internet, ortak kullanılan cihazlar, eldiven, gürültü ve kurumsal e-postası olmayan çalışanlar hakkında soru sorun. Çevrimdışı kullanım sizin için önemliyse, bağlantı yokken tam olarak neyin çalıştığını sorun.</p>\n<h3>Kullanıcı sayısına göre fiyat</h3>\n<p>Çoğu araç kullanıcı sayısına göre fiyatlanır. Kimin kullanıcı sayıldığını, sezonluk personelin planınızı değiştirip değiştirmediğini ve depolama, quiz ya da yapay zekâ özelliklerinde hangi limitlerin olduğunu kontrol edin.</p>"
+    },
+    {
+      "id": "puanlama-kontrol-listesi",
+      "h2": "SOP yazılımı karşılaştırma ve puanlama listesi",
+      "html": "<p>Demo ya da deneme sırasında, kendi gerçek işlerinizden biriyle, her satıra 1 (zayıf) ile 5 (güçlü) arasında puan verin ve seçtiğiniz ağırlıkla çarpın. Aşağıdaki ağırlıklar çok şubeli bir saha ekibi için örnektir; kendinize göre değiştirin.</p>\n<table>\n<thead><tr><th>Kriter</th><th>Neye bakılır</th><th>Örnek ağırlık</th><th>Puan (1 ile 5 arası)</th></tr></thead>\n<tbody>\n<tr><td>Telefondan hazırlama</td><td>Vardiya sorumlusu telefondan prosedür çekip yayınlayabiliyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Videolu adımlar</td><td>Video kırpılıp her adıma yazı eklenerek adımlara bölünebiliyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Anlama kontrolü</td><td>Her prosedür için quiz var mı, sorular düzenlenebiliyor mu?</td><td>2</td><td></td></tr>\n<tr><td>Onay akışı</td><td>Çalışanlar görmeden önce her taslak onaydan geçiyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Sürüm geçmişi</td><td>Neyin değiştiği ve eski sürümü kimin öğrendiği görülebiliyor mu?</td><td>2</td><td></td></tr>\n<tr><td>Şubeye göre yetki</td><td>Erişim role ve şubeye göre sınırlanabiliyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Hazırlık görünümü</td><td>Tamamlama ve quiz sonuçları kişi, ekip ve şube bazında görülüyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Diller</td><td>Uygulama bugün hangi dillerde; içerik çevirisi var mı, planlanıyor mu?</td><td>2</td><td></td></tr>\n<tr><td>Saha koşulları</td><td>Çevrimdışı davranış, ortak cihaz, kurumsal e-posta olmadan giriş</td><td>2</td><td></td></tr>\n<tr><td>Çalışan için kolaylık</td><td>Yeni başlayan biri doğru prosedürü yardımsız bulup bitirebiliyor mu?</td><td>3</td><td></td></tr>\n<tr><td>Fiyat uyumu</td><td>Kullanıcı bazlı plan, kadronuza ve sezon yoğunluğuna uyuyor mu?</td><td>2</td><td></td></tr>\n<tr><td>Veri ve gizlilik</td><td>Gizlilik, güvenlik ve alt işleyen bilgileri yayınlanmış mı? KVKK açısından hukuk danışmanınıza da sorun.</td><td>2</td><td></td></tr>\n</tbody>\n</table>\n<p>Satıcının &quot;planlanıyor&quot; ya da &quot;yakında&quot; dediği her şeyi ayrıca işaretleyin. Bugün var olana puan verin; yol haritasını satın alma nedeni değil, artı olarak görün.</p>"
+    },
+    {
+      "id": "sektore-gore-sop-yazilimi",
+      "h2": "Restoran, üretim ve otel için SOP yazılımında ne değişir?",
+      "html": "<p>Kriterler aynı kalır, ağırlıkları işin kendisi belirler.</p>\n<ul>\n<li><strong>Restoran ve kafeler:</strong> yüksek personel devri ve çok şube, mobil erişimi, kısa videolu adımları ve şube bazında hazırlık takibini öne çıkarır. Reçeteler, açılış ve kapanış rutinleri, alerjen adımları genelde ilk içeriklerdir. Bkz. <a href=\"/tr/sektor/restoran/\">restoranlar</a>.</li>\n<li><strong>Üretim:</strong> ürün değişimi, makine devreye alma ve iş güvenliği adımları; onay akışını, sürüm geçmişini ve yakın çekim videoyu öne çıkarır. İş talimatı çoğu zaman makinenin yanında durur. Bkz. <a href=\"/tr/sektor/uretim/\">üretim</a>.</li>\n<li><strong>Oteller:</strong> kat hizmetleri ve resepsiyon standartları, net görsel standartları ve dil desteğini öne çıkarır.</li>\n<li><strong>Franchise zincirleri:</strong> merkez bir süreci bir kez yayınlayıp şubeler arasında tamamlanmayı karşılaştırmak ister; şubeye göre yetki ve hazırlık görünümü en önemli kriterdir.</li>\n</ul>"
+    },
+    {
+      "id": "demoda-sorulacak-sorular",
+      "h2": "SOP programı demosunda sorulacak sorular",
+      "html": "<p>Demoya kendi gerçek işlerinizden birini götürün ve satıcıdan onu sizinle birlikte hazırlamasını isteyin. Sonra şu soruları sorun.</p>\n<ol>\n<li>Bir vardiya sorumlusunun bu prosedürü baştan sona telefondan hazırladığını gösterebilir misiniz?</li>\n<li>Yapay zekâ tam olarak ne yapıyor, çalışanlar görmeden önce neyi bir insanın onaylaması gerekiyor?</li>\n<li>Yeni başlayan biri istasyondayken doğru prosedürü nasıl buluyor?</li>\n<li>Yönetici tek bir şube için ve bütün şubeler için ne görüyor?</li>\n<li>Bir adımı değiştirdiğimde eski sürümü öğrenmiş kişilere ne oluyor?</li>\n<li>Uygulama bugün hangi dillerde çalışıyor; hangi özellikler kullanılabilir, hangileri yol haritasında?</li>\n<li>İnternet yokken ne çalışıyor?</li>\n<li>Fiyatlandırmada kim kullanıcı sayılıyor, sezon yoğunluğunda ne oluyor?</li>\n<li>Verilerimiz nerede işleniyor, gizlilik ve güvenlik belgeleriniz nerede?</li>\n<li>Ayrılırsak içeriğimizi dışa aktarabilir miyiz?</li>\n</ol>"
+    },
+    {
+      "id": "ilk-30-gun-plani",
+      "h2": "SOP yazılımına geçişte ilk 30 gün planı",
+      "html": "<p>Küçük başlayın: gerçek işler, bir ya da iki şube. Düzen oturduktan sonra genişletin. Basit bir plan:</p>\n<h3>1. ile 7. gün: kurulum</h3>\n<ul>\n<li>Geçişten sorumlu bir kişi ve bir ya da iki pilot şube seçin.</li>\n<li>Şubeleri, rolleri ve onaylayacak kişileri tanımlayın.</li>\n<li>Yeni başlayanların en çok sorduğu işleri listeleyin, ilk beş ile on işi seçin.</li>\n</ul>\n<h3>8. ile 14. gün: içerik</h3>\n<ul>\n<li>İlk prosedürleri, o işi en iyi yapan kişilerle çekin ya da yazın.</li>\n<li>Her taslağı ustayla kontrol edin, standardın sahibi olan yöneticiyle onaylayın.</li>\n<li>Yeni ya da daha az deneyimli birine her prosedürü denetin, nerede takıldığını not edin.</li>\n</ul>\n<h3>15. ile 21. gün: atama ve takip</h3>\n<ul>\n<li>Pilot şubelerde prosedürleri role ve şubeye göre atayın.</li>\n<li>Tamamlama ve quiz sonuçlarına birkaç günde bir bakın. Çok kaçırılan soruların arkasındaki adımları düzeltin.</li>\n<li>Sorumlular sahadaki yetkinlik onayını eskisi gibi vermeye devam etsin.</li>\n</ul>\n<h3>22. ile 30. gün: değerlendirme</h3>\n<ul>\n<li>Pilot şubedeki çalışanlara ve yöneticilere neyin işe yaradığını, neyin zorladığını sorun.</li>\n<li>Güncelleme kuralında anlaşın: her prosedürün sahibi kim, ne zaman gözden geçirilecek.</li>\n<li>Sıradaki işleri ve şubeleri belirleyin. Kimin neye ihtiyacı olduğunu planlamak için <a href=\"/tr/rehber/beceri-matrisi/\">beceri matrisi</a> kullanın.</li>\n</ul>"
+    },
+    {
+      "id": "secimde-yapilan-hatalar",
+      "h2": "SOP yazılımı seçerken sık yapılan hatalar",
+      "html": "<p>Seçimlerin çoğu, aracın sahada değil toplantı odasında denenmesi yüzünden yanlış gider. Şunlara dikkat edin.</p>\n<ul>\n<li><strong>Demoyu satıcının örnek içeriğiyle izlemek.</strong> Kendi işinizi, kendi istasyonunuzda deneyin.</li>\n<li><strong>Sadece yöneticinin ekranına bakmak.</strong> Asıl kullanıcı, eldivenle telefon tutan yeni çalışandır. Ona denetin.</li>\n<li><strong>Yol haritasını bugünkü özellik saymak.</strong> &quot;Yakında&quot; denen şeyi bugün kullanamazsınız; kararı bugün çalışan özelliklere göre verin.</li>\n<li><strong>Onay akışını sonraya bırakmak.</strong> Kim hazırlar, kim onaylar, baştan belli olmazsa kütüphane kısa sürede güvenilmez hâle gelir.</li>\n<li><strong>Bütün şirketi aynı anda geçirmek.</strong> Bir iki pilot şubeyle başlamak, sorunları küçükken gösterir.</li>\n<li><strong>İçerik sahipliğini belirlememek.</strong> Yazılım ne kadar iyi olursa olsun, sahibi olmayan prosedür eskir.</li>\n</ul>"
+    },
+    {
+      "id": "flexlore-nerede-duruyor",
+      "h2": "Bunu Flexlore ile yapmak",
+      "html": "<p>Flexlore, saha ekipleri için video odaklı bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekmek, telefondaki editörde adımlara bölmek, talimatların ve kısa bir quizin taslağını yapay zekâya hazırlatıp ekibinizle düzenleyip onaylamak. Şubeye göre rol, yetki ve çalışma alanları; kişi, ekip ve şube bazında tamamlama ve quiz sonuçları. iOS ve Android uygulamaları, uygulama 8 dilde.</p>\n<p>Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.</p>\n<p>Planlar kullanıcı sayısına göre, Free'den Enterprise'a kadar; ayrıntılar <a href=\"/tr/pricing/\">fiyatlar</a> sayfasında. Yukarıdaki listeyi kendi işlerinizden biriyle denemek için <a href=\"/demo/\">demo</a> isteyin.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "SOP yazılımı ile LMS (eğitim yönetim sistemi) arasındaki fark nedir?",
+      "a": "LMS genelde kurslar etrafında kurulur; içerikler uzundur ve çoğu zaman masa başında izlenir. SOP yazılımı ise prosedürler etrafında kurulur: belirli bir işin nasıl yapıldığı, işin başında açılır ve iş değiştiğinde güncellenir. Bazı işletmeler ikisini birlikte kullanır. Saha işlerinde vardiyada gerçekten açılan şey, kısa iş talimatları ve hızlı bir kontroldür."
+    },
+    {
+      "q": "Ücretsiz SOP programı var mı?",
+      "a": "Flexlore dahil bazı araçlar, az sayıda kullanıcı için ücretsiz plan sunar. Ücretsiz plan, iş akışını gerçek işlerle denemek için kullanışlıdır. Kullanıcı, depolama, quiz ve yapay zekâ limitlerini, ücretli plana geçtiğinizde ya da ayrıldığınızda içeriğinize ne olacağını kontrol edin. Ücretsiz planı, pilot şubede gerçek bir işle denemek için kullanın."
+    },
+    {
+      "q": "SOP'larımızı yapay zekâ yazabilir mi?",
+      "a": "Yapay zekâ bir video ya da dokümandan adımların, metnin ve quiz sorularının taslağını hazırlayabilir, bu da zaman kazandırır. Ama ekipmanınızı, standartlarınızı ve size uygulanan kuralları bilemez. Her çıktıyı, işi bilen birinin okuyup düzelttiği ve çalışanlar görmeden önce onayladığı bir taslak olarak görün."
+    },
+    {
+      "q": "SOP yazılımı bizi HACCP ya da İSG açısından uyumlu hâle getirir mi?",
+      "a": "Hiçbir yazılım tek başına uyumluluk sağlamaz. Hangi prosedürlerin ve kayıtların gerektiğine yürürlükteki mevzuat karar verir; bunu danışmanınızla ya da ilgili kurumla kontrol edin. Onaylı, net prosedürler ve kimin eğitim aldığına dair kayıtlar denetimde işinize yarar, ama denetlenen şey sahadaki uygulamadır."
+    },
+    {
+      "q": "SOP yazılımına geçmek ne kadar sürer?",
+      "a": "Bir ya da iki şube ve birkaç gerçek işle yapılan bir pilot, sorumlusu belli olduğunda bir ay içinde yürütülebilir. Bütün kütüphaneyi kurmak daha uzun sürer; kaç işiniz olduğuna ve ustaların ne kadar zaman ayırabildiğine bağlıdır. En çok soru gelen işlerle başlayın."
+    },
+    {
+      "q": "SOP yazılımına ilk hangi işleri koymalıyız?",
+      "a": "Yeni başlayanların ilk hafta en çok sorduğu işlerle ve hata yapılmasının pahalı ya da tehlikeli olduğu işlerle başlayın. Açılış ve kapanış rutinleri, temizlik, makine devreye alma ve ürün değişimi sık seçilen ilk işlerdir. İyi hazırlanmış kısa bir liste, kimsenin açmadığı büyük bir kütüphaneden iyidir."
+    }
+  ],
+  "related": [
+    "/tr/rehber/video-sop/",
+    "/tr/rehber/is-talimati-sablonu/",
+    "/tr/rehber/beceri-matrisi/",
+    "/tr/pricing/"
+  ]
+}

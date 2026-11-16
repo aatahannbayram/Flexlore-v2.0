@@ -7,6 +7,9 @@
  * app/sitemap.ts (every sector and feature must resolve). */
 /** English URL slug per sector (the Turkish slug is the key and the Turkish page slug). */
 export const SECTOR_EN: Record<string, string> = {"restoran":"restaurants","uretim":"manufacturing","otel":"hotels","franchise":"franchises","depo":"warehouses","firin":"bakeries-cafes"};
+/** Guides and templates: English slug -> Turkish slug (/guides/<en>/ <-> /tr/rehber/<tr>/). Content: content/guides/. */
+export const GUIDE_TR: Record<string, string> = {"video-sop":"video-sop","sop-template":"sop-nedir","work-instruction-template":"is-talimati-sablonu","training-matrix-template":"beceri-matrisi","restaurant-onboarding-checklist":"restoran-oryantasyon-kontrol-listesi","sop-software":"sop-yazilimi"};
+const GUIDE_EN: Record<string, string> = Object.fromEntries(Object.entries(GUIDE_TR).map(([en, tr]) => [tr, en]));
 const FEATURE_SLUGS = ["video-to-sop", "pdf-to-steps", "video-editor", "screen-recording", "ai-quiz", "auto-translation", "qr-codes", "notifications", "permissions-workspaces", "web-panel", "ai-agents-mcp"];
 
 const STATIC = ["/", "/features/", "/pricing/", "/faq/", "/ai/", "/integrations/", "/see-it/", "/company/", "/support/", "/careers/"];
@@ -17,6 +20,7 @@ export const TR_MIRROR: string[] = [
   ...Object.values(SECTOR_EN).map((s) => `/industries/${s}/`),
   /* Use-case slugs are listed here (not imported from UseCase.tsx) to keep this module free of component imports. */
   "/use-cases/master-apprentice-skills-transfer/", "/use-cases/installation-training-on-site-orientation/",
+  "/guides/", ...Object.keys(GUIDE_TR).map((g) => `/guides/${g}/`),
 ];
 const SET = new Set(TR_MIRROR);
 const TR_SECTOR: Record<string, string> = Object.fromEntries(Object.entries(SECTOR_EN).map(([tr, en]) => [en, tr]));
@@ -32,6 +36,9 @@ export function trOf(path: string): string | null {
   if (!SET.has(p)) return null;
   const sec = p.match(/^\/industries\/([^/]+)\/$/);
   if (sec) return `/tr/sektor/${TR_SECTOR[sec[1]] ?? sec[1]}/`;
+  if (p === "/guides/") return "/tr/rehber/";
+  const g = p.match(/^\/guides\/([^/]+)\/$/);
+  if (g) return `/tr/rehber/${GUIDE_TR[g[1]] ?? g[1]}/`;
   return p === "/" ? "/tr/" : `/tr${p}`;
 }
 /** Turkish path -> its English twin. */
@@ -39,6 +46,9 @@ export function enOf(path: string): string {
   const p = slash(path);
   const sec = p.match(/^\/tr\/sektor\/([^/]+)\/$/);
   if (sec) return `/industries/${SECTOR_EN[sec[1]] ?? sec[1]}/`;
+  if (p === "/tr/rehber/") return "/guides/";
+  const g = p.match(/^\/tr\/rehber\/([^/]+)\/$/);
+  if (g) return `/guides/${GUIDE_EN[g[1]] ?? g[1]}/`;
   if (p === "/tr/") return "/";
   return isTrPath(p) ? p.slice(3) : p;
 }

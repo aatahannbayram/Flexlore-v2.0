@@ -1,0 +1,2226 @@
+# Flexlore guides and templates (full text)
+
+> Practical guides for frontline training from Flexlore (https://www.flexlore.com). English and Turkish.
+
+
+---
+
+# Video SOPs: what they are and how to make one
+URL: https://www.flexlore.com/guides/video-sop/
+Language: en
+
+A video SOP is a standard operating procedure shown as a short video of the real job, split into numbered steps with a line of text for each. To make one, film your best person doing one task on a phone, mark where each step starts, write the key values as text, add a short quiz and have it approved.
+
+## What is a video SOP?
+
+A video SOP is a standard operating procedure shown as a short video of the real job, split into numbered steps, with a line or two of text for each step. It answers the same question as a written SOP: how do we do this task here, every time. The difference is that people see the hands, the tools and the order instead of reading about them.
+
+A good video SOP has four parts:
+
+The video: one task, filmed where it happens, by the person who does it best.
+
+Steps: the video cut into clips, one clip per step, so a new hire can replay only the step they are stuck on.
+
+Text: a short instruction under each step with the details video cannot carry well: a temperature, a setting, a torque value, a warning.
+
+A check: a few questions at the end that show whether the person understood the steps.
+
+People also call these video work instructions, visual SOPs or video training procedures. On a production line the term is usually work instructions; in a kitchen or hotel it is more often SOP or standard. The format is the same.
+
+## Video SOP vs written SOP: what is the difference?
+
+Video shows how a task is done; text records exactly what must be true. Most teams need both, in one place, with video doing the showing and text holding the numbers and rules.
+
+Question | Video SOP | Written SOP | 
+
+Best at | Hand movements, order of work, what &quot;right&quot; looks like | Exact values, limits, sign-offs, policy wording | 
+
+Who it suits | New hires, people working in a second language, visual learners | Auditors, supervisors, people checking a detail | 
+
+Where it is used | On a phone, at the station, during the task | In a binder, a shared drive or printed at the station | 
+
+Time to make | Film in minutes, then cut into steps and review | Write, format, review; often slower for physical tasks | 
+
+Keeping it current | Re-film or replace only the step that changed | Edit text, reprint, collect old copies | 
+
+Weak spot | Hard to search, easy to miss a number spoken once | Hard to picture, often skipped on the floor | 
+
+If you already have written procedures, you do not need to throw them away. Use them as the script for what to film and keep the exact values as text on each step. Our SOP template is a useful starting structure.
+
+## When does a video SOP work best, and when is written enough?
+
+Use video when the hard part of the task is seeing it done. Stay with text when the hard part is remembering a rule or a number.
+
+Video works best for
+
+Physical tasks with a specific order: breaking down a slicer, threading a machine, making a bed to house standard.
+
+Tasks where &quot;done right&quot; is visual: plating, a weld bead, a pallet wrap, a folded towel.
+
+Safety steps where the movement matters: lockout, lifting, handling a hot fryer basket.
+
+Teams with many languages or mixed reading levels.
+
+Jobs one experienced person knows well and nobody has written down.
+
+Written is often enough for
+
+Policies and rules: dress code, break times, cash handling rules.
+
+Short reference lists: allergen tables, supplier contacts, par levels.
+
+Screen tasks with few steps, where a numbered list with screenshots does the job.
+
+A quick test: if a new hire reads the written version and still asks someone to show them, that task needs a video.
+
+## How to film a job on a phone: shot checklist
+
+Film the person who does the job best, doing the real task at the real station, one task per video. A phone is enough. Use this checklist before you press record.
+
+Before you film
+
+Pick the right person. The one others go to with questions, not the most senior title.
+
+Agree the steps first. Spend two minutes listing the steps out loud. That list becomes your step markers later.
+
+One task per video. &quot;Closing the fryer station&quot; is one video. &quot;Closing the kitchen&quot; is a series.
+
+Pick a quiet moment. Before opening, between rushes or during a planned changeover, not mid-service.
+
+Clean up the station. Remove anything that should not be copied: a wrong tool, an open chemical bottle, a shortcut.
+
+Ask permission. Tell the person and anyone in frame what the video is for and where it will be shown.
+
+Framing and light
+
+Hold the phone horizontal for wide stations, vertical if people will watch at a narrow station. Pick one and keep it.
+
+Film from the worker&#39;s point of view, over the shoulder, so the viewer sees what they will see.
+
+Get close for small details: dials, labels, the inside of a machine guard. Move the phone, do not zoom.
+
+Keep light behind the camera, not behind the worker. Turn off a window glare if you can.
+
+Lean on a shelf or use a small stand to keep the shot steady.
+
+Sound
+
+Ask the worker to say what they are doing and why, in plain words: &quot;I check the oil is at the line before I turn it on.&quot;
+
+Film in a quieter moment or stand closer. Kitchens and lines are loud; key facts should also go in the step text.
+
+Do not add music. It hides speech and adds nothing at the station.
+
+Marking the steps while filming
+
+Pause for a second between steps. Clean breaks make cutting easy.
+
+Have the worker say the step number or name at the start: &quot;Step 3, empty the oil.&quot;
+
+Show the finished result at the end of each step and of the task.
+
+If something goes wrong, keep filming and redo the step. You will cut the mistake out.
+
+## How to turn footage into steps, text and a short quiz
+
+Cut the video at each step, write one or two lines per step, then add three to five questions that check the points people get wrong. Keep each step short enough to replay at the station.
+
+Trim. Remove the start, the end and any waiting time.
+
+Mark the steps. Set where each step starts and stops, using the pauses you left while filming. A step should be one action with one result.
+
+Write the step text. Start with a verb: &quot;Turn the fryer off and wait until the oil is below the safe line.&quot; Put exact values here, not only in the speech.
+
+Add on-screen labels where it matters. A temperature, a setting, an arrow at the right valve, a warning.
+
+Write the quiz. Ask about the decisions, not trivia: &quot;What do you do before draining the oil?&quot; is better than &quot;What color is the bucket?&quot;. Three to five questions is usually enough for one task.
+
+Read it as a new hire. Watch each step with the sound off. If it is unclear, the text needs work.
+
+For tasks with tight tolerances or many settings, pair the video with a written work instruction that holds the full table of values.
+
+## Who should review and approve a video SOP?
+
+Two people: the expert who did the job checks that the steps are right, and the manager who owns the standard approves it for use. Nothing should go to the team until both are done.
+
+Accuracy check (the expert): is every step shown, in the right order, with the right values?
+
+Standard check (the owner): is this the way we want it done in every location, and does it match safety and hygiene rules that apply to you?
+
+Clarity check (a new person): ask someone who has never done the task to watch it and say what they would do. Their questions show the gaps.
+
+Record who approved it and when. Local rules decide what records you need for food safety or workplace safety, so check them. A written and approved procedure can support an audit, but it does not replace one.
+
+If AI drafts any part of the text or quiz, treat it as a draft. A person who knows the job reads and approves every line.
+
+## How to roll out video SOPs and keep them current
+
+Start with the few tasks that cause the most mistakes or the most questions, assign them to the people who do those tasks, and check who watched and understood them. Then set a simple rule for updates.
+
+Rollout
+
+List the tasks new hires ask about most in their first week. Film those first.
+
+Assign each video SOP by role and location, so a dishwasher does not wade through bar procedures.
+
+Ask people to watch at the station, before they do the task for the first time.
+
+Look at quiz results. A question many people miss usually points to a step that needs better text or a clearer shot.
+
+The supervisor still watches the person do the task and signs them off on the floor.
+
+Keeping it current
+
+Give each video SOP an owner. When the equipment, recipe or layout changes, the owner updates it.
+
+Replace only the step that changed. Re-filming one clip is faster than a full re-shoot.
+
+Publish the new version and make sure people who learned the old one see the change.
+
+Review each video SOP on a set schedule, for example every six months, even if nothing seems to have changed.
+
+A new task added to the library should go through the same review as the first one. Speed of updating is only useful if the update is right.
+
+## Video SOP mistakes to avoid
+
+Most video SOPs fail because they are too long, too general or out of date. These are the mistakes to watch for.
+
+Filming a whole shift in one video. Nobody replays minute 14 of a 20 minute clip. One task per video, cut into steps.
+
+Filming the manager instead of the expert. The person who does the job daily knows the small tricks that matter.
+
+Keeping numbers only in the speech. If the temperature is said once over the noise of a hood fan, it is lost. Put it in the text.
+
+Filming the ideal, not the real. Use the station, tools and layout people actually have.
+
+Showing a shortcut by accident. Watch for missing gloves, skipped checks or a guard left open. Re-film the step.
+
+No owner. Without one person responsible, the video drifts out of date and people stop trusting it.
+
+Treating a watched video as a trained person. A quiz shows understanding. Doing the job correctly under supervision is still the sign-off.
+
+## Doing this with Flexlore
+
+Flexlore is built for this workflow. You film the job on a phone, mark the steps in the phone video editor, and Flexlore drafts the step text and a short quiz. Your team edits and approves every draft before anything is published. You assign each video SOP by role and location, and see who watched it and passed the quiz, by person, team and location. Apps run on iOS and Android, and the app is available in 8 languages.
+
+Turning existing PDFs into steps, automatic translation and QR codes at the station are coming soon. See video to SOP for how it works, or book a demo and we will build one of your jobs with you.
+
+## Questions
+
+**How long should a video SOP be?**
+As long as one task takes, cut into short steps. Most steps should be short enough to replay at the station without scrolling, often under a minute. If the whole video runs long, check whether it is really two or three tasks and split it. The length of the task matters less than whether each step shows one action with one result.
+
+**Do I need professional equipment to make a video SOP?**
+No. A recent phone, steady hands or a small stand, and decent light are enough. Sound matters more than picture quality, so film in a quieter moment and put key facts in the step text. A professional shoot often looks better but is slower to update, which matters more over time.
+
+**Should a video SOP have narration?**
+Yes, if the worker can explain as they go in plain words. Their voice adds the why behind each step. Do not rely on narration alone: workplaces are loud and people may watch with the sound off, so every number, limit and warning should also appear as text on the step.
+
+**Can a video SOP replace hands-on training?**
+No. It replaces the repeated showing and explaining, so a trainer does not demonstrate the same task many times. The person still practices the task, and a supervisor still watches them do it and signs them off. A quiz shows who understood the steps, not who can do the job.
+
+**How often should video SOPs be updated?**
+Whenever the equipment, recipe, layout or rule changes, and on a fixed review schedule even if nothing seems to have changed. Give each video SOP an owner who is responsible for both. Update only the step that changed and make sure people who learned the old version see the new one.
+
+**Is a video SOP enough for a food safety or safety audit?**
+It depends on the rules that apply to you, so check them with your local authority or advisor. A clear, approved procedure with a record of who was trained can support an audit. Many auditors still expect written procedures with exact values, which is why each step should carry its key facts as text.
+
+
+---
+
+# SOP template and how to write an SOP (with example)
+URL: https://www.flexlore.com/guides/sop-template/
+Language: en
+
+An SOP (standard operating procedure) is an approved, step-by-step description of how one recurring task is done, so anyone trained on it gets the same result. To write one, watch the best person do the task, split it into single-action steps written as commands, add photos or video, test it with a new hire, approve it and schedule reviews.
+
+## What is an SOP?
+
+An SOP (standard operating procedure) is a written, approved description of how one recurring task is done in your business, step by step, so anyone trained on it gets the same result. It answers four questions: what the task is, who does it, what they need, and exactly what they do.
+An SOP is not a policy. A policy says what must be true ("the fryer station is cleaned every night"). An SOP says how to make it true ("turn off the fryer, wait for the oil to cool, drain it into the caddy"). Teams that mix the two end up with documents nobody can follow on a busy shift.
+Good SOPs share three traits. They cover one task with a clear start and end. They are written in the order the work happens, not the order someone remembered it. And they have an owner who keeps them current. If a new hire can open the SOP at 7am on their second day and close the station correctly without asking anyone, it works.
+
+## What sections does an SOP need?
+
+A usable SOP needs a short header and nine sections: purpose, scope, roles, materials and tools, safety notes, steps, quality check, records and revision history. Keep each section short. Most of the reader's attention should land on the steps.
+Section | What goes in it | Common mistake | 
+Header | Title, SOP number, area, version, owner, approver, effective date, next review date | No owner, so nobody updates it | 
+Purpose | One or two sentences on why the task matters | A paragraph of company values | 
+Scope | Where and when it applies, and what it does not cover | Leaving out exceptions (late close, holiday menu) | 
+Roles | Who does the task, who checks it, who to call when something is off | Names instead of roles, so it breaks when people leave | 
+Materials and tools | Everything needed before step 1 | Discovering a missing tool at step 6 | 
+Safety notes | Hazards, protective equipment, what never to do | Burying warnings inside steps | 
+Steps | Numbered actions in the order the work happens | Several actions packed into one step | 
+Quality check | What "done right" looks like, and how to check it | No standard, so "done" means "stopped" | 
+Records | What gets logged, where, and by whom | Logs that exist but nobody reads | 
+Revision history | Version, date, what changed, who approved | Silent edits nobody is told about | 
+If the task is short and low risk, you can merge purpose and scope into one line. Do not drop safety notes or the quality check, even on simple tasks. Those two sections are what make an SOP more than a to-do list.
+
+## How to write an SOP in 7 steps
+
+Write an SOP by watching the best person do the task, breaking it into steps, writing each step as a short command, adding photos or video, testing it with a new hire, getting it approved, and putting a review date on it. Here is each step in practice.
+1. Observe the person who does it best
+Do not write from memory or from an old binder. Stand next to your strongest cook, operator or housekeeper and watch them do the job from start to finish. Ask why they do things in that order. The small habits they no longer notice (wiping the gasket, checking the drain valve twice) are usually what separates a good result from a bad one.
+2. Break the task into steps
+List every action in order. Then group them so each step is one action with one visible result. If a step needs the word "and" twice, split it. Mark the steps where mistakes are expensive or dangerous; those get a key point or a warning.
+3. Write each step in the imperative
+Start each step with a verb: turn, check, drain, record. Use the words people use on the floor, not the words in the manual. Add the reason when the reason changes behavior ("Wait until the oil is below the temperature on the safety label, because hot oil splashes when drained").
+4. Add photos or video where words fall short
+Some steps are hard to describe: how full is "full", what a clean filter looks like, how a part clicks into place. Show them. A short clip of the actual station often replaces a paragraph of text. A video SOP takes this further and makes the video the main format.
+5. Test it with a new hire
+Give the draft to someone who has never done the task and watch them follow it without help. Every time they hesitate or ask a question, the SOP has a gap. Fix it and test again. This step is the one most teams skip, and it is the one that matters most.
+6. Get it approved
+The person responsible for the area signs off on the final version. Approval makes the SOP the standard, not one person's opinion. Record the approver and the date in the header.
+7. Set a review date
+Put a review date on every SOP when it is published. Review sooner when equipment, menu, product or layout changes. An SOP that describes last year's machine trains people to make mistakes.
+
+## Good vs bad SOP step wording
+
+A good step tells one person to do one thing they can see and check. A bad step is vague, passive or packs several actions together. Compare these rewrites.
+Bad step | Good step | Why it is better | 
+The fryer should be cleaned properly. | Scrub the inside walls of the fry pot with the long-handled brush. | Starts with a verb, names the tool, says where | 
+Make sure oil is cool. | Check that the oil is below the temperature on the fryer's safety label before you open the drain valve. | Gives a check, not a feeling | 
+Drain oil, filter it, refill and turn on. | Split into four steps: drain, filter, refill, switch on. | One action per step, easier to follow and to check | 
+Be careful with chemicals. | Wear gloves and goggles when you pour the degreaser. | Names the protection and the moment it is needed | 
+Log it. | Write the time and your initials on the closing log on the station clipboard. | Says what, where and who | 
+Read each step aloud. If you would not say it that way to a new hire standing at the station, rewrite it.
+
+## Which SOP format should you use?
+
+Use a simple numbered-step format for most frontline tasks, a checklist for routines people already know, a flowchart for tasks with decisions, and video for tasks that depend on hands and timing. Many teams combine two.
+Numbered steps: the default. Works for opening and closing routines, cleaning, prep and setup.
+Checklist: a short version for experienced staff who need a reminder, not training. Keep the full SOP behind it.
+Flowchart: for tasks with branches, such as "if the reading is out of range, do this".
+Video: for tasks where the hands matter more than the words, like folding, plating, threading a film or setting a blade.
+For a single machine task done at one station, a work instruction is often a better fit than a full SOP. It is narrower and more detailed at each step.
+
+## How do you keep SOPs up to date?
+
+Keep SOPs current by giving each one an owner, a review date and a simple change process, and by telling people when a procedure changes. Out-of-date SOPs are worse than none, because they teach the old way with authority.
+One owner per SOP. A role, not a name: "kitchen manager", "line 2 lead".
+Review on a schedule. Set the interval by risk: high-risk tasks more often, low-risk ones less.
+Review on change. New equipment, new supplier, new menu item, new layout, or an incident all trigger a review.
+Collect feedback from the floor. The people doing the task notice gaps first. Make it easy for them to flag a step.
+Retrain after changes. Updating the document is half the job. The team that learned the old version needs to see what changed, and you need to know who has.
+Remove old copies. One current version, in one place. Printed copies at stations should carry the version number so anyone can spot an outdated one.
+Track who has been trained on which version. A training matrix is the usual way to see that by person and task.
+
+## Should an SOP be written or filmed?
+
+Film the tasks that are hard to describe and keep a short written version for reference and audits. Most frontline jobs are physical, and people learn them faster by watching than by reading a page.
+A filmed SOP works best when it is split into short steps that match the written ones, so a new hire can replay just the step they are stuck on. Film the best person at the real station, in normal light, with the real tools. Keep the camera on the hands. Add a line of text to each step with the action and any key point.
+Written text still matters. It is searchable, quick to scan and easy to approve. The strongest setup is both: a video for each step, the written instruction beside it, and a short quiz at the end to check the steps were understood. Signing someone off as able to do the task on the floor stays with their supervisor.
+
+## Doing this with Flexlore
+
+Flexlore turns the 7 steps above into a phone workflow. You film the best person doing the task, and Flexlore splits the video into steps and drafts the written instructions and a short quiz. Your team reviews and approves every draft before it goes out (video to SOP, available now). You assign the SOP by role and location, and see who has watched it and passed the quiz, by person, team and location. Apps run on iOS and Android, in 8 languages. Turning existing PDF procedures into steps and automatic translation are coming soon. The Free plan covers up to 3 users if you want to try it on one task first.
+
+## SOP template: Closing the fryer station
+
+SOP TEMPLATE (example: Closing the fryer station)
+
+Field	Example entry
+SOP title	Closing the fryer station
+SOP number	SOP-KIT-014
+Area	Kitchen, fry station
+Version	3
+Owner	Kitchen manager
+Approved by	Operations manager
+Effective date	[date]
+Next review	[date]
+Time needed	About 25 minutes
+
+PURPOSE
+Leave the fryers clean, safe and ready for the opening shift, with oil that is filtered or changed on schedule.
+
+SCOPE
+Applies to both fryers at the end of every service. Does not cover deep cleaning (boil-out), which has its own SOP.
+
+ROLES
+Closing cook does the task. Shift lead checks it and signs the closing log. Call the kitchen manager if the oil looks dark or foamy before its scheduled change, or if a fryer shows a fault.
+
+MATERIALS AND TOOLS
+Oil caddy, filter paper, long-handled fryer brush, scraper, lint-free cloths, degreaser, heat-resistant gloves, goggles, apron, fryer covers, closing log.
+
+SAFETY NOTES
+Never drain hot oil. Never add water to a fryer with oil in it. Wear heat-resistant gloves, goggles and apron for steps 3 to 9. Keep the floor around the station dry; put a wet-floor sign out if anything spills.
+
+STEPS
+1. Switch both fryers off at the control panel and lift the baskets out.
+2. Let the oil cool until it is below the temperature on the fryer's safety label. Check the reading, do not guess.
+3. Put on heat-resistant gloves, goggles and apron.
+4. Remove the baskets and wash them at the pot sink.
+5. Skim crumbs from the surface of the oil with the skimmer.
+6. Place the oil caddy under the drain valve and check it is locked in position.
+7. Open the drain valve slowly and drain the oil into the caddy through fresh filter paper.
+8. Scrub the inside walls and heating elements with the long-handled brush. Scrape off any buildup at the bottom.
+9. Close the drain valve, then return the filtered oil to the fryer, or fill with fresh oil if today is a change day on the log.
+10. Wipe the outside, the control panel and the hood edge with degreaser and a clean cloth.
+11. Put the clean, dry baskets back and cover both fryers.
+12. Record the time, oil status (filtered or changed) and your initials on the closing log.
+
+QUALITY CHECK
+Drain valve closed, oil at the fill line, no crumbs in the oil, no grease on the outside or panel, covers on, floor dry. The shift lead checks and initials the log.
+
+RECORDS
+Closing log on the station clipboard. The kitchen manager reviews it weekly and keeps it for the period your local rules require.
+
+REVISION HISTORY
+Version	Date	Change	Approved by
+1	[date]	First version	Operations manager
+2	[date]	Added filter paper step after new caddy	Operations manager
+3	[date]	Split draining and scrubbing into separate steps after new-hire test	Operations manager
+
+
+## Questions
+
+**How long should an SOP be?**
+As long as the task needs and no longer. Most frontline SOPs fit on one or two pages with 8 to 15 steps. If yours runs much longer, it probably covers more than one task. Split it at natural break points, such as opening versus closing, or setup versus cleaning, and link the parts together.
+
+**What is the difference between an SOP and a work instruction?**
+An SOP describes a whole process: who is involved, when it happens, what it covers and the main steps. A work instruction zooms in on one task at one station, with more detail per step, such as key points, tool settings and the reason behind each action. Many teams keep both and link them.
+
+**Who should write an SOP?**
+The person who does the task best should shape the content, and the person responsible for the area should own and approve it. A trainer or manager often does the writing, but should do it while watching the real work, not from memory. A new hire then tests the draft before it is published.
+
+**How often should SOPs be reviewed?**
+Set a review date on every SOP and base the interval on risk: tasks involving safety, food handling or expensive equipment need more frequent reviews than low-risk routines. Review immediately when equipment, product, layout or local rules change, or after an incident or a near miss. Check your local regulations for any required interval.
+
+**Does a written SOP make my business compliant?**
+No document makes a business compliant by itself. A clear, approved, current SOP with training records can support an audit or inspection, because it shows what the standard is and who was trained on it. Which procedures you must document and keep depends on your industry and local rules, so check those directly.
+
+**Can an SOP be a video instead of a document?**
+Yes, and for physical tasks video often teaches faster than text. The best setup pairs short video steps with a written line for each, so the SOP is easy to watch, scan and approve. Keep a version number and approval record for the video just as you would for a document.
+
+
+---
+
+# Work instruction template: how to write standard work instructions
+URL: https://www.flexlore.com/guides/work-instruction-template/
+Language: en
+
+A work instruction is a step-by-step guide for one task at one station, such as a blade change or machine setup. Each step gives an action, a key point that decides quality or safety, and the reason. An SOP describes the wider process; the work instruction shows the operator exactly how to do one part of it.
+
+## What is a work instruction?
+
+A work instruction is a step-by-step guide for one task at one station, written so an operator can do it correctly the first time and the same way every time. It sits below an SOP: the SOP describes the process, the work instruction shows exactly how to do one part of it.
+Think of a changeover on packaging line 2 at the start of the night shift. The SOP says line changeovers follow lockout, are done by a trained operator, and are checked before restart. The work instruction says which guard to open, which bolts to loosen in which order, what the blade gap should look like and why you never skip the test cut.
+In many plants this format is called standard work instruction or job instruction. The name matters less than the content: one task, steps in order, the key points that make the result good or safe, and the reason behind each key point.
+
+## SOP vs work instruction vs checklist: what is the difference?
+
+An SOP covers a whole process and who is responsible for it, a work instruction details one task at one station, and a checklist reminds a trained person what to confirm. They work best as a set, each linked to the next.
+ | SOP | Work instruction | Checklist | 
+Answers | What happens, who does it, when | Exactly how to do this task | Did I do everything | 
+Scope | A process, often across roles | One task, one station or machine | One routine or inspection | 
+Detail per step | Medium | High: key points, settings, reasons | Low: one line per item | 
+Main reader | Managers, leads, auditors, trainees | Operator at the station | Trained operator | 
+Used for training | Context and overview | Yes, the main training tool | No, a reminder after training | 
+Example | Line changeover procedure | Changing the cutting blade on line 2 | Pre-start check on line 2 | 
+A simple rule: if a new operator could follow the document alone at the machine, it is a work instruction. If they would still need someone to show them, it is an SOP or a checklist. For the process-level document, see our SOP template.
+
+## What does a good work instruction include?
+
+A good work instruction covers one task at one station, lists everything needed before the first step, and gives each step an action, a key point and the reason for that key point. Quality and safety steps are marked so nobody misses them.
+One task, one station. "Changing the cutting blade on line 2", not "Line 2 maintenance". If the task changes stations, start a new instruction.
+A header. Part or product, station, tools, protective equipment, expected time, revision number, owner and approver.
+Steps in order. Each one an action the operator can see and check.
+Key points. The detail that decides whether the step is done right: the bolt order, the gap, the click, the torque setting on your tool.
+Reasons. Why the key point matters. People who know the reason remember the step and handle the unusual case better.
+Marks for quality and safety. Label the steps where a mistake causes scrap, a defect or an injury, for example with "Safety" or "Quality" at the start of the key point.
+A finish check. What the operator confirms before handing the machine back: a test cut, a first-piece check, a sign-off.
+
+## How to write work instructions for the shop floor
+
+Write each step as a verb first, one action per step, and put the key point and its reason next to it. Use the words operators use at the machine, and test the draft with someone who has never done the task.
+Start each step with a verb
+"Loosen the four blade bolts" beats "The blade bolts should be loosened". Verb first tells the operator what to do before they finish reading.
+One action per step
+If a step needs two verbs, it is usually two steps. This makes the instruction longer on paper and faster on the floor, because nobody loses their place.
+Show the key point and the why
+Split the step into three parts: the action (what), the key point (how to do it well or safely) and the reason (why). Operators who understand why the bolts are tightened in a cross pattern stop skipping it when the line is behind.
+Watch the best operator first
+Write from what the best person actually does, not from the machine manual. Ask them what they check without thinking about it. Those habits often become key points. This is the same idea behind master-to-apprentice skills transfer: capture the expert's method before it walks out the door.
+Test it at the machine
+Give the draft to an operator who has not done the task, and watch. Every pause or question is a missing key point. Fix it before you approve it.
+
+## Visual and video work instructions
+
+Use photos or video for any step where position, movement or feel matters more than words. A short clip of the real machine often shows a key point faster than a sentence can describe it.
+Photos work for positions and end states: where the guard latch is, what a correct blade gap looks like, how the label should sit. Video works for movement and timing: how to feed film through the rollers, how hard to push a part until it seats, the order of hand movements in a changeover.
+Keep each clip to one step and match it to the written step, so an operator can replay only the part they need. Film at the actual station, with the real tools and normal lighting, and keep the camera on the hands. A video SOP uses the same approach for full procedures.
+
+## Work instructions for changeovers and machine setups
+
+Changeovers and setups are where work instructions pay off most, because they happen often enough to matter and rarely enough that people forget the details. Write one instruction per changeover type and keep the steps in the order the work is done at the machine.
+Split preparation from machine-stopped work. List what can be done while the line is still running (fetching tools, staging the new blade or die, reading the job sheet) separately from what needs the machine stopped.
+Start with your lockout steps. Refer to your site's lockout procedure by name and mark the step as safety. Do not paraphrase it in a way that could drift from the original.
+Record settings, not memories. Put the settings for each product in a table in the instruction or the job sheet, so the next shift does not rely on whoever set it last.
+End with a first-piece check. Define what a good first part looks like and who approves it before the line goes back to full speed.
+Changeovers are also a good place to cross-train: an operator who has done the same changeover from a clear instruction a few times can cover a shift when the usual person is out.
+
+## How to manage versions at the station
+
+Keep one current version of each work instruction, show the revision number where operators can see it, and retrain people when it changes. An old copy taped to the machine is the most common reason operators follow the wrong steps.
+Revision number on every page or screen. Operators and leads should be able to check it at a glance.
+One owner. Usually the area lead or process engineer. They approve every change.
+Change triggers. New tooling, a new product, a quality issue, a near miss or operator feedback all prompt a review.
+Pull old copies. When a new version is approved, remove printed copies of the old one from the station the same day.
+Track who learned which version. After a change, you need to know which operators have seen the new steps before they run the machine again.
+
+## Doing this with Flexlore
+
+With Flexlore you film the best operator doing the task on a phone, mark the steps in the phone video editor, and AI drafts the written step instructions and a short quiz. Your team reviews and approves the draft before anyone sees it. Operators watch the steps on their own phone, replay the one they need, and take the quiz; you see who has watched and passed, by person, team and location. Roles and workspaces keep each site's instructions separate. Signing an operator off on the machine stays with their supervisor. QR codes on the machine that open the right instruction, and automatic translation, are coming soon. See how it fits manufacturing teams.
+
+## Work instruction template: Changing the cutting blade on packaging line 2
+
+WORK INSTRUCTION TEMPLATE (example: Changing the cutting blade on packaging line 2)
+
+Field	Example entry
+Work instruction	Changing the cutting blade on packaging line 2
+Document number	WI-PK2-005
+Part / product	Flow-wrap knife blade, all film types
+Station	Packaging line 2, cutting unit
+Tools	10 mm hex key, torque wrench, feeler gauge, guard key, lint-free cloth, blade box
+PPE	Cut-resistant gloves, safety glasses, safety shoes
+Time	About 15 minutes
+Revision	Rev 4, [date]
+Owner / approved by	Line 2 lead / Production manager
+
+Step	Action	Key point	Why
+1	Stop the line at the control panel and wait until the knife drum stops turning.	Safety: never open the guard while the drum is moving.	The drum keeps turning for several seconds after stop.
+2	Apply your lock and tag at the main disconnect, following the site lockout procedure.	Safety: use your own lock. Try the start button to confirm zero energy.	Someone else could restart the line while your hands are inside.
+3	Put on cut-resistant gloves and safety glasses.	Gloves stay on until the old blade is in the blade box.	Blade edges cut through normal work gloves.
+4	Open the knife guard with the guard key.	Lift the guard until the latch clicks open.	A half-open guard can drop onto your hands.
+5	Loosen the four blade bolts with the 10 mm hex key, outside bolts first.	Do not remove the inside bolts yet.	The inside bolts hold the blade while you work.
+6	Remove the inside bolts and lift the old blade out by the spine.	Hold the blade by the spine, never the edge.	The edge is still sharp even when it no longer cuts film cleanly.
+7	Put the old blade straight into the blade box.	Never leave a blade on the machine frame.	A loose blade can fall into the drum or injure the next person.
+8	Wipe the blade seat with a lint-free cloth.	Check there is no film or adhesive left on the seat.	Dirt under the blade changes the cutting gap.
+9	Fit the new blade with the bevel facing the drum.	Quality: check the bevel direction against the sticker on the guard.	A reversed blade tears film instead of cutting it.
+10	Fit all four bolts by hand, then tighten them in a cross pattern with the torque wrench at the setting on the job sheet.	Quality: cross pattern, two passes.	Uneven tightening bends the blade and gives a ragged cut.
+11	Check the blade gap with the feeler gauge at both ends.	Quality: the gauge slides with light drag at both ends.	An uneven gap cuts one side and tears the other.
+12	Close the guard, remove your lock and tag, and restart the line at crawl speed.	Safety: check everyone is clear before removing the lock.	The line restarts with whoever is closest to it.
+13	Run 5 test cuts and check the edges.	Quality: clean, straight edges with no strings or tears.	Confirms the blade and gap before full-speed production.
+14	Record the blade change, time and your initials on the line 2 log, and tell the shift lead.	Write the blade lot number from the box.	Lets quality trace a cutting problem back to a blade.
+
+FINISH CHECK
+Guard closed and latched, lock removed, 5 clean test cuts, log filled in, shift lead informed. If any test cut tears, stop the line and repeat steps 1, 2 and 11.
+
+
+## Questions
+
+**What is the difference between an SOP and a work instruction?**
+An SOP describes a process: what happens, who is responsible, when and in what order. A work instruction details one task inside that process at one station, with key points, settings and reasons for each step. An SOP might say changeovers follow lockout and a first-piece check; the work instruction shows how to change the blade on line 2.
+
+**What is a key point in a work instruction?**
+A key point is the detail that decides whether a step is done well or safely: the bolt order, the gap, the click when a part seats, the side a bevel faces. Most steps have one at most. Writing them down, with the reason, is what turns an expert's habits into something a new operator can repeat.
+
+**How detailed should a work instruction be?**
+Detailed enough that a trained but new operator can do the task alone at the machine. Every action gets a step, every step that affects quality or safety gets a key point, and the key point gets a reason. If an operator still needs someone beside them to finish the task, something is missing.
+
+**Should work instructions include photos or video?**
+Yes, for any step where position, movement or feel matters. Photos are good for end states such as a correct gap or a seated part. Short video clips are better for movement, like threading film or the order of hand movements. Match each image or clip to one written step so operators can find it quickly.
+
+**Who approves a work instruction?**
+The person responsible for the area, usually the line lead, process engineer or production manager, approves each version. The best operator should review it for accuracy, and a new operator should test it at the machine first. Record the approver and revision number in the header so anyone can check they have the current version.
+
+**Where should work instructions be kept?**
+Where the operator needs them: at the station, on a screen or on their phone, always as the current version. Keep the master copy in one controlled place, show the revision number on every copy, and remove old printed copies when a new version is approved. Out-of-date copies at the machine cause more mistakes than missing ones.
+
+
+---
+
+# Training matrix template: build a skills matrix your shifts can use
+URL: https://www.flexlore.com/guides/training-matrix-template/
+Language: en
+
+A training matrix (also called a skills or competency matrix) is a grid with people in rows and jobs in columns. Each cell holds a skill level, usually 0 to 4, so a manager can see who can run each station, where a shift has no cover, and who is ready to train others.
+
+## What is a training matrix?
+
+A training matrix is a table that shows who can do which job, and how well. People go down the side, jobs or skills go across the top, and each cell holds a level from a fixed scale.
+You will see it called a skills matrix, a competency matrix or a cross training matrix. The names overlap. In practice, a training matrix often tracks whether training happened, while a skills or competency matrix tracks whether the person can actually do the work. The useful version does both: it records the level and the proof behind it.
+On a restaurant line the columns are stations: grill, fryer, prep, expo, dish, opening and closing. On a production line they are machines and tasks: start-up, changeover, quality check, packing. In a hotel they are room turn, public areas, check-in and night audit. The structure is the same everywhere.
+
+## What is a skills matrix used for?
+
+A skills matrix answers the questions a manager asks before every rota: can this shift run if one person calls in sick, and who should learn what next.
+Coverage per shift. Count how many independent people each station has on each shift. If the PM shift has one person who can run expo, you know where the risk sits before Friday night shows it to you.
+Cross-training. The matrix shows who is one level away from covering a second station. That is your cheapest training: a line cook at level 2 on fryer needs a few supervised shifts, not a full course.
+Single points of failure. Any column with only one person at level 3 or above is a job that stops when that person is on leave or moves on.
+Who can train whom. Level 4 marks the people a new hire should shadow. Without it, new staff learn from whoever is free, and the job drifts a little with every handover.
+Scheduling and hiring. When a gap will not close with cross-training, the matrix tells you which skill to hire for.
+If shift resilience is the main reason you are building one, the post on cross-training for shift resilience covers how to choose which people to cross-train first.
+
+## How to build a training matrix in 7 steps
+
+Start with one location and one team, keep the columns to the jobs that actually stop the operation, and fill it in with the shift leads, not from the office.
+List the jobs, not the job titles. Write down the tasks someone must be able to do for a shift to run: stations, machines, opening, closing, cash, deliveries. Ten to fifteen columns is a workable size for one team.
+Make sure each job has a written standard. A level only means something if everyone agrees what "to standard" looks like. If a job has no SOP yet, note it and use a simple SOP template to write one.
+List the people and their shifts. Add role and usual shift to each row. Shift is what lets you read coverage later.
+Agree the level scale. Use five levels, 0 to 4, with the definitions below. Print them at the top of the sheet so every rater uses the same words.
+Rate with the person who watches the work. The shift lead or supervisor rates each cell. Where you are unsure, rate lower and plan an observation.
+Add coverage rows. Under each column, count the people at level 3 or 4 per shift and set a target, for example two per shift for every station.
+Turn gaps into a training plan. For each column below target, pick one person at level 1 or 2, name a trainer at level 4 and set a date to check again.
+A spreadsheet is enough to start. Use one tab per location, freeze the first three columns, and add color by level so gaps stand out when you scroll.
+
+## Which skill level scale should you use?
+
+Use a five-step scale from 0 (not trained) to 4 (can train others), and tie each level to a piece of evidence. Levels without evidence turn into opinions.
+Level | Definition | How it is earned | 
+0 Not trained | Has not been shown the job. | Starting point for every new job. | 
+1 In training | Has seen the job and is learning it next to a trainer. | Watched the job and did it with a trainer beside them. | 
+2 Can do with support | Does the job on a live shift; someone trained checks it. | Passed a short quiz on the steps and worked supervised shifts. | 
+3 Independent | Does the job alone, to standard, at normal pace. | Supervisor watched them do it on a real shift and signed off. | 
+4 Can train others | Independent and able to teach and check the job. | Chosen by the manager; has trained someone to level 3. | 
+Keep the gap between 2 and 3 strict. Level 3 means you would leave that person alone on the station during a rush. If the honest answer is "not yet", it is a 2.
+Some teams add a date to each cell, or a letter for "due for refresh". That is useful for jobs that change often or are done rarely, like deep cleaning a fryer or a quarterly machine check.
+
+## How to read a training matrix: gaps and coverage per shift
+
+Read the matrix by column first, then by row. Columns show where the operation is fragile; rows show who to develop next.
+Read the columns
+Count level 3 and 4 per shift. Below target is a coverage gap.
+A column with one name at 3 or above is a single point of failure.
+A column with no level 4 has nobody to train the next person. Fix this before the next hire arrives.
+Read the rows
+Level 2 cells are your quickest wins: a few supervised shifts and a sign-off.
+A row full of 3s and 4s is a strong candidate for trainer or shift lead.
+A row that has not moved in months may point to a scheduling issue (always on the same station) rather than a training one.
+In the example template below, the kitchen looks well staffed, but expo has only one independent person per shift, prep on the PM shift depends on one cook, and nobody can train the cold station. Those three gaps are the training plan for the next month.
+
+## How do you keep a skills matrix current?
+
+Link every level to proof that is recorded when it happens: watched the job, passed the quiz, signed off by the supervisor. A matrix updated once a year from memory is out of date within weeks.
+Watched the job. The person has seen the current version of the job, step by step. This supports level 1.
+Passed the quiz. A short quiz on the steps shows they understood the standard: temperatures, order of steps, what not to skip. This supports level 2. A quiz drafted from the job itself keeps the questions tied to how the work is really done.
+Signed off on the floor. A supervisor watches them do the job on a real shift and confirms it. Only this supports level 3. A quiz shows understanding; it does not replace watching someone work.
+Update the matrix at a fixed moment, for example at the weekly rota meeting. When a job changes (a new recipe, a new machine setting), drop affected people back to level 2 until they have seen the new version and been checked again.
+
+## How to run a training matrix across several locations
+
+Use the same columns and the same level scale in every location, and keep one matrix per location. Then you can compare sites line by line.
+When columns differ between sites, comparisons stop working: one store calls it "fry station", another splits it into "fries" and "chicken". Agree the job list centrally, and let a location add a column only for equipment it alone has.
+For a franchise or multi-site group, roll the coverage rows up into one summary: for each location, which stations are below target on which shift. That summary is what an area manager needs before a visit. People who work at more than one site should appear in each matrix where they cover shifts, with the same levels.
+Access matters too. Store managers should edit their own matrix, and the area manager should see all of them. Tools with roles and workspaces by location make this easier than a shared spreadsheet that everyone can overwrite.
+
+## Common training matrix mistakes
+
+Too many columns. Forty skills per person means nobody updates it. Track the jobs that stop a shift; keep the rest in the job description.
+Levels without definitions. "3" means something different to every shift lead unless the scale is written down with examples.
+Rating from the office. The person who sees the work every day should rate it.
+No evidence behind a level. When someone asks "why is she a 3 on grill", the answer should be a date and a supervisor name.
+Never lowering a level. When the job changes or someone has not done it in months, the honest level is lower.
+Treating it as paperwork. The matrix should change the rota and the training plan. If it never does, it is not being read.
+
+## Doing this with Flexlore
+
+Flexlore covers the evidence side of a training matrix. A team member films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft before it goes out.
+Once a job is assigned, you see who has watched it and who passed its quiz, by person, team and location. That covers levels 1 and 2. Level 3 stays with your supervisor, who signs people off on the floor. Roles and workspaces keep each location to its own jobs. Apps run on iOS and Android, in 8 languages. A web panel for managers and notifications are coming soon. Plans are by number of users; see pricing.
+
+## Training matrix template (kitchen example)
+
+LEVEL LEGEND
+Level	Name	What it means on the floor	Evidence to record
+0	Not trained	Has not been shown the job. Should not work the station.	None
+1	In training	Has watched the job and is learning it with a trainer next to them.	Watched the job video or demo
+2	Can do with support	Does the job on a real shift, but a trained person checks the work and steps in when needed.	Passed the short quiz on the steps
+3	Independent	Does the job alone, to standard, at normal pace, on a busy shift.	Signed off by a supervisor after watching them work
+4	Can train others	Independent, and can teach and check the job for someone else.	Picked by the manager as a trainer for this job
+
+EXAMPLE: KITCHEN SKILLS MATRIX, ONE LOCATION
+Person	Role	Shift	Grill	Fryer	Prep	Cold station	Expo / pass	Dish	Opening	Closing
+Cook A	Lead cook	AM	4	4	3	3	4	3	4	2
+Cook B	Line cook	AM	3	3	2	1	2	3	3	0
+Cook E	Prep cook	AM	0	1	4	3	0	3	3	0
+Cook C	Line cook	PM	3	2	3	3	1	3	0	3
+Cook D	Line cook	PM	1	3	2	2	0	3	0	2
+Shift lead H	Shift lead	PM	3	3	2	3	3	3	2	4
+Dishwasher F	Dishwasher	PM	0	0	1	0	0	4	0	3
+New hire G	Line cook (week 2)	PM	0	1	1	0	0	2	0	0
+
+COVERAGE ROWS (count the 3s and 4s per shift)
+Coverage check			Grill	Fryer	Prep	Cold station	Expo / pass	Dish	Opening	Closing
+Level 3+ on AM			2	2	2	2	1	3	3	n/a
+Level 3+ on PM			2	2	1	2	1	4	n/a	3
+Level 4 (trainers)			1	1	1	0	1	1	1	1
+Target per shift			2	2	2	2	2	2	2	2
+
+What this example shows: expo has only one independent person per shift, prep on PM depends on Cook C alone, and nobody can train the cold station yet. Those are the next three training priorities.
+
+## Questions
+
+**What is the difference between a training matrix and a skills matrix?**
+The terms are used for the same grid. A training matrix often records whether training was delivered, while a skills or competency matrix records whether the person can do the job to standard. The most useful version records both: the level, and the evidence behind it, such as a passed quiz or a supervisor sign-off.
+
+**How many skill levels should a competency matrix have?**
+Four or five levels work for most frontline teams. A 0 to 4 scale (not trained, in training, can do with support, independent, can train others) is easy to explain on the floor. Fewer levels hide progress, and more levels make raters disagree about the difference between neighboring scores.
+
+**How often should a skills matrix be updated?**
+Update it whenever a level changes, and review it at a fixed moment such as the weekly rota meeting. When a job changes, for example a new recipe or machine setting, move the people affected back a level until they have seen the new version and been checked again.
+
+**Can I make a training matrix in Excel or Google Sheets?**
+Yes. Put people and shifts in the first columns, jobs across the top, and a number from 0 to 4 in each cell. Add color by level, freeze the first columns, and add coverage rows that count level 3 and 4 per shift. Use one tab per location with the same columns.
+
+**Who should fill in the training matrix?**
+The supervisor or shift lead who sees the work every day should rate each cell, ideally after watching the person do the job. HR or the manager can own the file and the level definitions, but ratings made from the office tend to be too generous and go out of date fast.
+
+**Does passing a quiz mean someone is competent?**
+No. A quiz shows a person understood the steps and the standard. Competence on the job is confirmed when a supervisor watches them do it on a real shift and signs them off. In the matrix, a passed quiz supports level 2, and a sign-off supports level 3.
+
+
+---
+
+# Restaurant onboarding checklist: the first 30 days for new hires
+URL: https://www.flexlore.com/guides/restaurant-onboarding-checklist/
+Language: en
+
+A restaurant onboarding checklist lists what a new hire must see, do and prove before working a station alone. Split it into before day one, day one, the first week and days 8 to 30, give every item an owner, and close each station with a short quiz and a supervisor sign-off on the floor.
+
+## What should a restaurant onboarding checklist include?
+
+A restaurant onboarding checklist should cover four stages (before day one, day one, the first week and days 8 to 30), name an owner for every item, and end each station with a check: a short quiz on the steps and a supervisor sign-off on the floor.
+Most restaurant onboarding fails in a predictable way. The new hire gets a quick tour, gets put on a station next to whoever is free, and learns that person's version of the job. Three weeks later nobody is sure what they were shown. A checklist fixes that by making the first month the same for every new hire, whatever shift they start on.
+Good checklists share a few traits:
+Owners, not just tasks. "Allergen procedure" with no name next to it does not happen on a Saturday.
+Station by station. Front of house, kitchen and dish learn different jobs at different speeds.
+A check at the end of each stage. Watching is not the same as understanding, and understanding is not the same as doing it at 8pm with twelve tickets on the rail.
+For why programs without these break down, see why new hire onboarding programs fail.
+
+## Before day one: paperwork, schedule and a buddy
+
+Everything that can be done before the first shift should be done before it, so day one is spent on the floor and not in the office.
+Send the start date, the first shift time, where to enter and who to ask for. A new hire waiting at the front door during service is a bad first hour.
+Finish hiring paperwork and any eligibility checks your location requires.
+Check which food handler training, health certificates or permits your local rules require for this role, and whether they must be done before the first shift. Requirements differ by country, state and city, so follow your local authority rather than a generic list.
+Get uniform, apron and name badge ready. Tell them what footwear to bring.
+Pick a buddy: someone who does the first station well and can explain it. Put both on the same shifts for the first week.
+
+## Day one: what a new hire needs to see first
+
+Day one is for safety, hygiene and one station, not the whole menu. Keep it to what they need to work safely next to others.
+Welcome and the team. Introduce them to whoever is on shift, including the dish and FOH crew.
+Tour. Staff entrance, lockers, toilets, fire exits, first aid kit, fire extinguishers, where chemicals are kept.
+Handwashing. Where the sinks are, when to wash and how, to your house standard.
+Food safety and allergens. The basics your local rules and your own standard require: holding temperatures, labeling, storage order and exactly how an allergen order is flagged and handled.
+Safety on the floor. Knives, hot oil, wet floors, lifting, and who to tell when something goes wrong. New staff are more exposed in their first weeks; the post on the first-month safety gap covers why.
+Shadow the first station. Part of a shift next to the buddy, watching and helping.
+Check-in before they leave. Five minutes: what was confusing, what is next.
+
+## First week: shadow, then do it with support
+
+In week one the new hire learns one station properly: watch the job, do it beside the buddy, then answer a few questions on it.
+A typical week for a new line cook: day two watching the fryer jobs (oil check, basket loads, holding times) and running baskets with the buddy calling the tickets. Day three and four, the same station on a busier shift. By day five they run the station with the buddy nearby, and take a short quiz on each job they have watched.
+Also in week one:
+One opening or closing routine, shadowed.
+How tickets reach their station and how calls on the pass work.
+The station's cleaning schedule and end-of-shift breakdown.
+A day 7 check-in with the manager, and an update of their row in the training matrix.
+
+## Days 8 to 30: station by station
+
+From week two, each role follows its own track. The goal by day 30 is a supervisor sign-off on the first station and a clear plan for the second.
+Front of house
+Greeting, seating and table maintenance to your standard.
+Taking an order, menu and allergen questions, passing allergen orders to the kitchen.
+POS: modifiers, voids, split bills, payments.
+Running food and talking to the pass.
+Handling a complaint and when to call a manager.
+Kitchen
+Prep list and par levels.
+Every recipe and plating on the station, to spec.
+Temperature checks and logs.
+Labeling, dating and stock rotation.
+Equipment start-up, cleaning and shutdown.
+Dish
+Dish machine set-up, chemical and temperature checks.
+Sorting, racking, pots and putting away.
+Safe handling of cleaning chemicals and where the safety information is kept.
+Waste, recycling and grease.
+Dish is often the first job new kitchen staff learn, and the one most often trained by whoever is free. Treat it as a station with its own checklist.
+
+## What should you film once and reuse?
+
+Film the jobs that every new hire needs and that are done the same way every time. Your best person does it once, on a phone, at the station, and every later hire learns that exact version.
+Handwashing and glove use to your standard.
+Allergen order handling, from order to plate.
+Opening and closing for each station.
+Recipes and plating for each item, one short video per dish.
+Fryer oil check and filtering, grill clean-down.
+Dish machine set-up and chemical check.
+POS basics for FOH.
+Keep each video to one job and split it into steps, so a cook can replay the one step they are unsure about. A one-time welcome is quickly forgotten without something to come back to; see the forgetting curve. Do not film what changes weekly, such as specials; a short note at line-up works better.
+
+## How do you check that a new hire understood?
+
+Use two checks: a short quiz right after each job, and a supervisor sign-off on the floor before they work a station alone.
+The quiz should ask about what goes wrong in real life: "Which ticket marker means an allergen order?", "What do you do if the oil is below the line?", "Which shelf does raw chicken go on?" Three to five questions per job is enough. A quiz shows who understood the steps; it does not show who can do them under pressure.
+The sign-off does that. A supervisor watches the new hire run the station on a real shift and confirms it in writing, with a date. Until that happens, the person works the station with support. Record both checks in your training matrix so the next manager can see where each person stands.
+
+## How to keep onboarding the same across locations
+
+Use one checklist, one set of job videos and one level scale for every location, and compare completion by location each month.
+The central team owns the checklist and the job content. A location can add items for its own equipment, not change the shared ones.
+Every new hire, in every store, watches the same version of each job.
+Area managers look at completion and sign-offs by location to see which store needs a visit.
+For high-volume or seasonal hiring, running several starts at once, see onboarding at speed.
+
+## Common restaurant onboarding mistakes
+
+Starting on the busiest shift. A Friday night start teaches survival, not the standard.
+No named buddy. Learning from whoever is free gives a different version of the job each shift.
+Everything on day one. A full menu, the POS and three stations in one shift does not stick.
+Allergens covered verbally. This procedure needs to be shown, written down and checked.
+No sign-off. "He seems fine" is not a check. Use a dated supervisor sign-off.
+No day 30 review. The first month is when people decide whether to stay.
+
+## Doing this with Flexlore
+
+Flexlore handles the "film once and reuse" part of this checklist. Your best cook films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft.
+You assign jobs by role and location, and new hires watch on their own phone and replay any step. You see who watched each job and passed its quiz, by person, team and location. The sign-off on the floor stays with the supervisor. The app runs on iOS and Android in 8 languages. Automatic translation, QR codes at the station and notifications are coming soon. See how it fits a kitchen on the restaurants page.
+
+## Restaurant new hire onboarding checklist
+
+BEFORE DAY 1
+Item	Owner	Done
+Confirm start date, first shift time, where to enter and who to ask for	Manager	
+Complete hiring paperwork and any work eligibility checks your location requires	Manager / HR	
+Check which food handler training or health certificates local rules require, and by when	Manager	
+Prepare uniform, apron, name badge and footwear guidance	Manager	
+Set up rota access, app logins and a locker	Manager	
+Pick a buddy who can train others on the first station	Kitchen or FOH lead	
+Assign the first-week jobs: welcome, hygiene basics, first station	Trainer	
+Put the new hire and the buddy on the same shifts for week 1	Manager	
+
+DAY 1
+Item	Owner	Done
+Welcome and introductions to the team on shift	Manager	
+Tour: staff entrance, lockers, toilets, fire exits, first aid kit, extinguishers	Buddy	
+Handwashing: where, when and how, as your house standard sets it	Buddy	
+Food safety basics as local rules and your standard require: temperatures, labeling, storage	Trainer	
+Allergen procedure: how an allergen order is taken, flagged and handled	Trainer	
+Safety basics: knives, hot oil, wet floors, lifting, cleaning chemicals	Trainer	
+Who to tell about an injury, a spill or broken equipment	Manager	
+Shadow the first station for part of the shift	Buddy	
+End-of-shift check-in: questions and how the day went	Manager	
+
+WEEK 1 (DAYS 2 TO 7)
+Item	Owner	Done
+Watch the jobs for the first station, step by step	New hire	
+Do first-station tasks with the buddy beside them	Buddy	
+Short quiz on each job watched	New hire	
+Shadow one opening or one closing routine	Buddy	
+Ticket flow: how orders arrive, calls on the pass, POS basics for FOH	Trainer	
+Station cleaning schedule and end-of-shift breakdown	Buddy	
+Day 7 check-in: what is clear, what is not; update training matrix	Manager	
+
+DAYS 8 TO 30: FRONT OF HOUSE
+Item	Owner	Done
+Greeting, seating and table maintenance to your standard	FOH lead	
+Taking an order, menu questions, allergen questions	Trainer	
+POS: modifiers, voids, split bills, payments	Manager	
+Running food, table numbers, talking to the pass	FOH lead	
+Handling a complaint and when to call a manager	Manager	
+Opening and closing side work	FOH lead	
+
+DAYS 8 TO 30: KITCHEN
+Item	Owner	Done
+Prep list and par levels for the station	Kitchen lead	
+Recipes and plating for every item on the station	Kitchen lead	
+Temperature checks and logs	Kitchen lead	
+Labeling, dating and stock rotation	Kitchen lead	
+Equipment start-up, cleaning and shutdown	Kitchen lead	
+Work the station on a busy shift with support	Buddy	
+
+DAYS 8 TO 30: DISH
+Item	Owner	Done
+Dish machine set-up, chemical and temperature checks	Kitchen lead	
+Sorting, racking, pot washing and putting away	Buddy	
+Chemical handling and where the safety information is kept	Manager	
+Waste, recycling and grease handling	Buddy	
+
+DAYS 8 TO 30: ALL ROLES
+Item	Owner	Done
+Supervisor sign-off on each station before working it alone	Supervisor	
+Second station started if the first is signed off	Manager	
+Day 30 review: training matrix levels, next station, feedback both ways	Manager	
+
+## Questions
+
+**How long should restaurant onboarding take?**
+Plan for about 30 days until a new hire is signed off on their first station, with the first week focused on safety, hygiene and one station. Simple roles can move faster and complex stations slower. What matters is that each station ends with a supervisor sign-off, not a fixed number of days.
+
+**What should a new restaurant employee do on the first day?**
+Meet the team on shift, tour the building including exits and first aid, learn handwashing and the basic food safety and allergen rules your location requires, hear who to tell when something goes wrong, and shadow one station for part of the shift. End with a short check-in with the manager.
+
+**Who should train new restaurant staff?**
+A named buddy who does the station well and can explain it, working the same shifts for the first week. The manager owns the checklist and the check-ins, and a supervisor signs off each station. Learning from whoever happens to be free gives a slightly different version of the job every shift.
+
+**Does this checklist cover food safety requirements?**
+It lists where food safety belongs in onboarding, but requirements such as food handler training, certificates and health checks are set by local rules and differ by country, state and city. Check with your local authority what applies to each role and when it must be completed, and add those items to the checklist.
+
+**How do you check that new hires understood their training?**
+Use a short quiz right after each job to check they understood the steps, then have a supervisor watch them run the station on a real shift and sign them off with a date. The quiz shows understanding; only the sign-off shows they can do the job under real conditions.
+
+**How do you keep onboarding consistent across restaurant locations?**
+Use one shared checklist, one set of job videos and one skill level scale everywhere. Let locations add items for their own equipment but not change shared ones, and compare completion and sign-offs by location each month so you can see which store needs support.
+
+
+---
+
+# SOP software: how to choose one for frontline teams
+URL: https://www.flexlore.com/guides/sop-software/
+Language: en
+
+SOP software is a tool for creating, approving, sharing and updating standard operating procedures, and checking who has learned them. For frontline teams, choose one that works fully on a phone, supports video steps, checks understanding with a short quiz, controls access by role and location, tracks readiness and keeps every change approved.
+
+## What does SOP software do?
+
+SOP software is where a team creates, approves, shares and updates its standard operating procedures, and checks who has learned them. It replaces binders, shared folders and group chats with one library that people open on the job.
+
+For frontline teams, good SOP software covers five jobs:
+
+Create: build a procedure from video, photos or text without design or editing skills.
+
+Approve: route drafts to the right person and keep a record of what was approved and when.
+
+Share: send each procedure to the roles and locations that need it, on the phones people already carry.
+
+Check: show who opened a procedure and who understood it, usually through a short quiz.
+
+Update: change a step, publish a new version and make sure people see the change.
+
+Office-focused document tools often do the first three well. The last two, and doing all of it on a phone at a station, are where frontline needs differ.
+
+## Do you need SOP software, or will documents do?
+
+Documents are enough while one person can keep everything in their head. You need SOP software when you cannot answer &quot;which version is current&quot; and &quot;who has been trained on it&quot; without asking around.
+
+Signs you have outgrown documents:
+
+Two locations do the same task differently, and both point to a document.
+
+New hires learn by shadowing, and the result depends on who they shadow.
+
+Printed procedures at the station are older than the equipment.
+
+Nobody can say who has seen the new allergen or safety change.
+
+One experienced person is the only one who really knows a job.
+
+If none of these apply, a solid SOP template and a clear folder structure may be all you need for now.
+
+## What to look for in SOP software for frontline teams
+
+Judge SOP software by how well it works for the person at the fryer or on line 2, not the person at a desk. These are the criteria that matter most.
+
+Mobile first
+
+Frontline staff do not sit at computers. Creating, watching and approving should work fully on iOS and Android phones, not as a reduced version of a desktop tool.
+
+Video, not only text
+
+Physical tasks are easier to learn by watching. Look for the ability to film on a phone, trim, and split a video into steps with text on each. See our video SOP guide for what good looks like.
+
+A check for understanding
+
+&quot;Viewed&quot; is not &quot;understood&quot;. A short quiz after each procedure shows who got the key points. It should not pretend to replace a supervisor signing someone off on the floor.
+
+Language support
+
+Many frontline teams work in several languages. Check which languages the app itself runs in, and separately whether procedure content can be translated, and who checks the translation.
+
+Roles and permissions by location
+
+A franchise head office, a store manager and a new cashier need different access. Look for workspaces or groups by location, and roles that control who creates, approves and only views.
+
+Readiness tracking
+
+You should see, by person, team and location, who has completed each procedure and passed its check. This is the view an area manager opens on Monday morning.
+
+Version control and approvals
+
+Every change should go through approval, with a record of who approved what. People should always see the current version, and you should know who learned an older one.
+
+Shop floor realities
+
+Ask about weak signal in basements and cold rooms, shared devices, gloves, noise, and staff without company email addresses. If offline access matters to you, ask exactly what works without a connection.
+
+Pricing by users
+
+Most tools price by the number of users. Check what counts as a user, whether seasonal staff change your plan, and what limits apply to storage, quizzes or AI features.
+
+## SOP software scoring checklist
+
+Score each tool from 1 (poor) to 5 (strong) on every line, during a demo or trial, using one of your real tasks. Multiply by the weight you choose. The weights below are an example for a multi-location frontline team; change them to fit you.
+
+Criterion | What to check | Example weight | Score (1 to 5) | 
+
+Mobile creation | Can a shift lead film and publish a procedure from a phone? | 3 |  | 
+
+Video steps | Can you trim and split a video into steps with text on each? | 3 |  | 
+
+Understanding check | Is there a quiz per procedure, and can you edit the questions? | 2 |  | 
+
+Approval flow | Does every draft need approval before staff see it? | 3 |  | 
+
+Version history | Can you see what changed and who learned the old version? | 2 |  | 
+
+Roles by location | Can access be limited by role and site? | 3 |  | 
+
+Readiness view | Can you see completion and quiz results by person, team and location? | 3 |  | 
+
+Languages | Which app languages exist today; is content translation available or planned? | 2 |  | 
+
+Floor conditions | Offline behavior, shared devices, sign-in without company email | 2 |  | 
+
+Ease for staff | Can a new hire find and finish a procedure without help? | 3 |  | 
+
+Pricing fit | Does the user-based plan match your headcount and seasonal peaks? | 2 |  | 
+
+Data and privacy | Are privacy, security and sub-processor details published? | 2 |  | 
+
+Mark anything a vendor calls &quot;planned&quot; or &quot;coming soon&quot; separately. Score what exists today and treat the roadmap as a bonus, not a reason to buy.
+
+## SOP software for restaurants, manufacturing and hotels: what changes?
+
+The criteria stay the same; the weights change with the work.
+
+Restaurants and cafés: high turnover and many locations put weight on mobile access, short video steps and readiness by location. Recipes, opening and closing routines and allergen steps are the usual first content. See restaurants.
+
+Manufacturing: changeovers, machine start-up and safety steps put weight on approvals, version history and close-up video. Work instructions often sit next to the machine. See manufacturing.
+
+Hotels: housekeeping and front desk standards put weight on clear visual standards and language support.
+
+Franchises: head office needs to launch a process once and compare completion across locations, so roles by location and a readiness view matter most.
+
+## Questions to ask in an SOP software demo
+
+Bring one real task and ask the vendor to build it with you. Then ask these questions.
+
+Can you show me a shift lead creating this procedure on a phone, start to finish?
+
+What does the AI do, and what has to be approved by a person before staff see it?
+
+How does a new hire find the right procedure at the station?
+
+What does a manager see for one location, and for all locations together?
+
+What happens to people who learned the old version when I change a step?
+
+Which languages does the app run in today, and which features are on the roadmap rather than available?
+
+What works without a connection?
+
+Who counts as a user for pricing, and what happens in a seasonal peak?
+
+Where is our data processed, and where are your privacy and security documents?
+
+Can we export our content if we leave?
+
+## How to roll out SOP software in the first 30 days
+
+Start small, with real tasks and one or two locations, and only widen once the routine works. A simple plan:
+
+Days 1 to 7: set up
+
+Choose one owner for the rollout and one or two pilot locations.
+
+Set up locations, roles and who approves.
+
+List the tasks new hires ask about most. Pick the first five to ten.
+
+Days 8 to 14: build
+
+Film or write the first procedures with the people who do the work best.
+
+Review each draft with the expert and approve it with the manager who owns the standard.
+
+Have one new or junior person try each procedure and note where they get stuck.
+
+Days 15 to 21: assign and watch
+
+Assign procedures by role and location in the pilot sites.
+
+Check completion and quiz results every few days. Fix steps behind the questions people miss.
+
+Supervisors keep signing people off on the floor as before.
+
+Days 22 to 30: review and decide
+
+Ask pilot staff and managers what helped and what got in the way.
+
+Agree the update rule: who owns each procedure and when it is reviewed.
+
+Decide the next tasks and locations. Use a training matrix to plan who needs what.
+
+## How Flexlore fits
+
+Flexlore is SOP software for frontline teams, built around video. Available now: film a job on a phone, split it into steps in the phone editor, and let AI draft the instructions and a short quiz that your team edits and approves. Roles, permissions and workspaces by location, and completion and quiz results by person, team and location. iOS and Android apps, with the app in 8 languages.
+
+Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, notifications, a web panel for managers, and AI agents and MCP.
+
+Plans are by number of users, from Free up to Enterprise; see pricing. To test it against the checklist above with one of your own tasks, book a demo.
+
+## Questions
+
+**What is the difference between SOP software and an LMS?**
+An LMS is built around courses, often long and taken at a desk. SOP software is built around procedures: how a specific task is done, opened on the job and updated when the task changes. Some teams use both. For frontline work, short task procedures with a quick check are usually what people actually use on shift.
+
+**Is there free SOP software?**
+Some tools, including Flexlore, offer a free plan for a small number of users. Free plans are useful to test the workflow with real tasks. Check the limits on users, storage, quizzes and AI features, and what happens to your content if you move to a paid plan or leave.
+
+**Can AI write our SOPs?**
+AI can draft steps, text and quiz questions from a video or document, which saves time. It cannot know your equipment, your standards or local rules. Treat every AI output as a draft that someone who knows the job reads, corrects and approves before staff see it.
+
+**Does SOP software make us compliant with food safety or safety rules?**
+No software makes you compliant by itself. Local rules decide what procedures and records you need, so check them with your authority or advisor. Clear, approved procedures with a record of who was trained can support an audit, but the practice on the floor is what is inspected.
+
+**How long does it take to roll out SOP software?**
+A pilot with one or two locations and a handful of real tasks can run within a month if someone owns it. Building a full library takes longer and depends on how many tasks you have and how much time experts can give. Start with the tasks that cause the most questions.
+
+**What should we put in SOP software first?**
+Start with the tasks new hires ask about most in their first week, plus any task where a mistake is costly or unsafe. Opening and closing routines, cleaning, machine start-up and changeovers are common first picks. A short list done well beats a large library nobody opens.
+
+
+---
+
+# Video SOP nedir, nasıl hazırlanır?
+URL: https://www.flexlore.com/tr/rehber/video-sop/
+Language: tr
+
+Video SOP, bir işin standart operasyon prosedürünün kısa bir video olarak hazırlanmış hâlidir: gerçek iş çekilir, numaralı adımlara bölünür ve her adıma kısa bir yazılı talimat eklenir. Hazırlamak için işi en iyi yapan kişiyi telefonla çekin, adımları işaretleyin, kesin değerleri yazın, kısa bir quiz ekleyin ve onaya gönderin.
+
+## Video SOP nedir?
+
+Video SOP, bir işin nasıl yapılacağını anlatan standart operasyon prosedürünün kısa bir video olarak hazırlanmış hâlidir. Video numaralı adımlara bölünür, her adımın altında bir iki satırlık yazılı talimat olur. Yazılı SOP ile aynı soruya cevap verir: bu işi burada, her seferinde nasıl yapıyoruz? Farkı, çalışanın okumak yerine eli, aleti ve sırayı görmesidir.
+
+İyi bir video SOP dört parçadan oluşur:
+
+Video: tek bir iş, yapıldığı yerde, o işi en iyi yapan kişi tarafından çekilmiş.
+
+Adımlar: her adım ayrı bir klip. Yeni başlayan kişi sadece takıldığı adımı tekrar açar.
+
+Yazılı talimat: videonun iyi taşıyamadığı bilgiler: sıcaklık, makine ayarı, sıkma torku, uyarı.
+
+Kontrol: sonda birkaç soru. Kişinin adımları anlayıp anlamadığını gösterir.
+
+Sahada buna videolu iş talimatı, görsel iş talimatı ya da video eğitim içeriği de deniyor. Üretimde genelde &quot;iş talimatı&quot;, mutfakta ve otelde &quot;standart&quot; ya da &quot;SOP&quot; denir. Yazılı tarafın temellerini merak ediyorsanız SOP nedir rehberine bakabilirsiniz.
+
+## Video SOP ile yazılı SOP arasındaki fark nedir?
+
+Video işin nasıl yapıldığını gösterir; yazı neyin tam olarak doğru olması gerektiğini kayda geçirir. Çoğu işletmenin ikisine de ihtiyacı var: gösterme işini video, sayıları ve kuralları yazı taşımalı.
+
+Konu | Video SOP | Yazılı SOP | 
+
+En iyi olduğu yer | El hareketi, iş sırası, &quot;doğru&quot;nun neye benzediği | Kesin değerler, limitler, onaylar, kural metni | 
+
+Kime uygun | Yeni başlayanlar, Türkçesi zayıf çalışanlar, görerek öğrenenler | Denetçiler, sorumlular, bir detayı kontrol edenler | 
+
+Nerede kullanılır | Telefonda, istasyonda, iş sırasında | Klasörde, ortak klasörde, istasyona asılı çıktıda | 
+
+Hazırlama süresi | Dakikalar içinde çekilir, sonra adımlara bölünüp incelenir | Yazılır, düzenlenir, onaylanır; fiziksel işlerde genelde daha yavaş | 
+
+Güncelleme | Sadece değişen adım yeniden çekilir | Metin düzeltilir, yeniden basılır, eski çıktılar toplanır | 
+
+Zayıf yanı | Arama yapmak zor, bir kez söylenen sayı kaçabilir | Gözde canlandırmak zor, sahada çoğu zaman okunmaz | 
+
+Elinizde yazılı prosedürler varsa çöpe atmayın. Neyin çekileceğine dair senaryo olarak kullanın, kesin değerleri her adımın yazısına taşıyın. Yapı için iş talimatı şablonu iyi bir başlangıç.
+
+## Video ne zaman işe yarar, yazı ne zaman yeterlidir?
+
+İşin zor kısmı görmekse video çekin. Zor kısım bir kuralı ya da sayıyı hatırlamaksa yazı yeterli.
+
+Videonun fark yarattığı işler
+
+Sırası önemli fiziksel işler: dilimleme makinesini sökmek, makineye malzeme sürmek, yatağı otel standardında yapmak.
+
+&quot;Doğru&quot;nun gözle anlaşıldığı işler: tabak sunumu, kaynak dikişi, palet streçleme, havlu katlama.
+
+Hareketin önemli olduğu iş güvenliği adımları: kilitleme ve etiketleme, yük kaldırma, sıcak fritöz sepetini tutmak.
+
+Farklı dillerden ya da farklı okuma seviyelerinden çalışanların olduğu ekipler.
+
+Tek bir ustanın bildiği, kimsenin yazıya dökmediği işler.
+
+Yazının çoğu zaman yettiği işler
+
+Kurallar ve politikalar: kıyafet kuralı, mola saatleri, kasa kuralları.
+
+Kısa başvuru listeleri: alerjen tablosu, tedarikçi iletişimleri, minimum stok seviyeleri.
+
+Az adımlı ekran işleri: ekran görüntülü numaralı bir liste yeterli olur.
+
+Basit bir test: yeni başlayan kişi yazılı talimatı okuyup yine de &quot;bir gösterir misin&quot; diyorsa o işin videoya ihtiyacı var.
+
+## Telefonla iş nasıl çekilir? Çekim kontrol listesi
+
+İşi en iyi yapan kişiyi, gerçek istasyonda, gerçek işi yaparken çekin. Her video tek bir iş. Telefon yeterli. Kayda basmadan önce bu listeye bakın.
+
+Çekimden önce
+
+Doğru kişiyi seçin. Unvanı en büyük olanı değil, herkesin soru sormaya gittiği kişiyi.
+
+Adımları önce konuşun. İki dakika ayırıp adımları sesli sayın. Bu liste sonra adım işaretleriniz olacak.
+
+Bir video, bir iş. &quot;Fritöz istasyonunu kapatmak&quot; bir videodur. &quot;Mutfağı kapatmak&quot; bir seridir.
+
+Sakin bir anı seçin. Açılıştan önce, iki yoğunluk arasında ya da planlı bir ürün değişiminde. Servisin ortasında değil.
+
+İstasyonu toparlayın. Kopyalanmaması gereken her şeyi kaldırın: yanlış alet, açık kimyasal şişesi, kestirme bir yöntem.
+
+İzin alın. Çekilen kişiye ve kadrajdaki herkese videonun ne için çekildiğini ve kimlere gösterileceğini söyleyin. Kişisel verilerle ilgili şirket kurallarınızı kontrol edin.
+
+Kadraj ve ışık
+
+Geniş istasyonlarda telefonu yatay, dar bir istasyonda izlenecekse dikey tutun. Birini seçin ve bütün videoda koruyun.
+
+Çalışanın bakış açısından, omzunun üstünden çekin. İzleyen kişi, işi yaparken göreceği görüntüyü görsün.
+
+Küçük detaylara yaklaşın: gösterge, etiket, makine koruyucusunun içi. Zoom yapmayın, telefonu yaklaştırın.
+
+Işık kameranın arkasında olsun, çalışanın arkasında değil. Pencereden gelen parlamayı engelleyin.
+
+Görüntü titremesin diye telefonu bir rafa dayayın ya da küçük bir stant kullanın.
+
+Ses
+
+Çalışandan ne yaptığını ve nedenini sade cümlelerle söylemesini isteyin: &quot;Fritözü açmadan önce yağın çizgide olduğuna bakıyorum.&quot;
+
+Daha sessiz bir anda çekin ya da yaklaşın. Mutfak ve üretim hattı gürültülüdür; önemli bilgiler adımın yazısında da olmalı.
+
+Müzik eklemeyin. Konuşmayı bastırır, istasyonda bir işe yaramaz.
+
+Çekerken adımları işaretlemek
+
+Adımlar arasında bir saniye durun. Temiz geçişler kesmeyi kolaylaştırır.
+
+Çalışan her adımın başında adımın adını ya da numarasını söylesin: &quot;Adım 3, yağı boşaltıyorum.&quot;
+
+Her adımın ve işin sonunda bitmiş hâli gösterin.
+
+Bir şey ters giderse çekime devam edin ve adımı baştan yapın. Hatalı kısmı sonra kesersiniz.
+
+## Görüntüden adımlar, yazılı talimat ve kısa bir quiz nasıl hazırlanır?
+
+Videoyu her adımda kesin, her adıma bir iki satır yazın, sonra en çok yanlış yapılan noktaları soran üç beş soru ekleyin. Her adım istasyonda tekrar izlenebilecek kadar kısa olmalı.
+
+Kırpın. Başı, sonu ve bekleme anlarını çıkarın.
+
+Adımları işaretleyin. Çekimde bıraktığınız duraklamaları kullanarak her adımın başladığı ve bittiği yeri belirleyin. Bir adım, tek sonucu olan tek bir harekettir.
+
+Adım yazısını yazın. Fiille başlayın: &quot;Fritözü kapatın, yağ güvenli seviyenin altına inene kadar bekleyin.&quot; Kesin değerleri sadece konuşmada bırakmayın, buraya yazın.
+
+Gereken yere ekran üstü not ekleyin. Bir sıcaklık, bir ayar, doğru vanayı gösteren bir ok, bir uyarı.
+
+Quizi hazırlayın. Ezber değil karar sorun: &quot;Yağı boşaltmadan önce ne yaparsınız?&quot; sorusu, &quot;Kova ne renk?&quot; sorusundan çok daha iyidir. Tek bir iş için üç beş soru çoğu zaman yeterlidir.
+
+Yeni başlayan gözüyle izleyin. Her adımı sessiz izleyin. Anlaşılmıyorsa yazının düzeltilmesi gerekir.
+
+## Video SOP'u kim inceler, kim onaylar?
+
+İki kişi: işi çeken usta adımların doğru olduğunu kontrol eder, standardın sahibi olan yönetici kullanıma onay verir. İkisi de bitmeden ekibe gönderilmemeli.
+
+Doğruluk kontrolü (usta): her adım var mı, sırası doğru mu, değerler doğru mu?
+
+Standart kontrolü (sorumlu yönetici): bütün şubelerde bu şekilde yapılmasını istiyor muyuz, sizin için geçerli hijyen ve iş sağlığı ve güvenliği kurallarıyla uyumlu mu?
+
+Anlaşılırlık kontrolü (yeni biri): işi hiç yapmamış birine izletin ve ne yapacağını anlatmasını isteyin. Sorduğu sorular eksikleri gösterir.
+
+Kimin, ne zaman onayladığını kaydedin. Gıda güvenliği ya da İSG açısından hangi kayıtların gerektiğine yürürlükteki mevzuat ve danışmanınız karar verir, bunu kontrol edin. Yazılı ve onaylı bir prosedür denetimde işinize yarar, ama denetimin yerini tutmaz.
+
+Metnin ya da quizin bir kısmını yapay zekâ hazırladıysa onu taslak sayın. İşi bilen biri her satırı okuyup onaylamalı.
+
+## Video SOP'lar nasıl yayına alınır ve güncel tutulur?
+
+En çok hataya ya da en çok soruya yol açan birkaç işle başlayın, bunları o işi yapan kişilere atayın, kimin izleyip anladığına bakın. Sonra güncelleme için basit bir kural koyun.
+
+Yayına alma
+
+Yeni başlayanların ilk haftada en çok sorduğu işleri listeleyin. Önce bunları çekin.
+
+Her video SOP'u role ve şubeye göre atayın. Bulaşıkçı, bar prosedürleri arasında kaybolmasın.
+
+Çalışandan videoyu işi ilk kez yapmadan önce, istasyonda izlemesini isteyin.
+
+Quiz sonuçlarına bakın. Çok kişinin kaçırdığı bir soru genelde yazısı ya da çekimi zayıf bir adıma işaret eder.
+
+Sahada yetkinlik onayı yine sorumludadır: kişinin işi yaparken izlenmesi ve onaylanması devam eder. Kimin hangi işte hazır olduğunu takip etmek için beceri matrisi kullanabilirsiniz.
+
+Güncel tutma
+
+Her video SOP'un bir sahibi olsun. Ekipman, reçete ya da yerleşim değiştiğinde güncellemeyi o yapar.
+
+Sadece değişen adımı değiştirin. Tek bir klibi yeniden çekmek, her şeyi baştan çekmekten çok daha hızlıdır.
+
+Yeni sürümü yayınlayın ve eski sürümü öğrenmiş kişilerin değişikliği gördüğünden emin olun.
+
+Hiçbir şey değişmemiş gibi görünse de her video SOP'u belirli aralıklarla, örneğin altı ayda bir, gözden geçirin.
+
+## Video SOP hazırlarken yapılan hatalar
+
+Video SOP'ların çoğu çok uzun, çok genel ya da eski olduğu için tutmaz. Dikkat edilmesi gerekenler şunlar.
+
+Bütün vardiyayı tek videoya sığdırmak. Kimse yirmi dakikalık bir videonun on dördüncü dakikasını aramaz. Bir video, bir iş, adımlara bölünmüş.
+
+Ustayı değil müdürü çekmek. İşi her gün yapan kişi, farkı yaratan küçük püf noktalarını bilir.
+
+Sayıları sadece konuşmada bırakmak. Davlumbaz gürültüsünde bir kez söylenen sıcaklık kaybolur. Yazıya geçirin.
+
+Gerçeği değil ideali çekmek. Çalışanların gerçekten kullandığı istasyonu, aleti ve yerleşimi çekin.
+
+Yanlışlıkla kestirme göstermek. Eldivensiz el, atlanan bir kontrol, açık bırakılan bir koruyucu. Adımı yeniden çekin.
+
+Sahipsiz içerik. Sorumlusu olmayan video zamanla eskir, ekip de ona güvenmeyi bırakır.
+
+İzlenen videoyu eğitim tamamlandı saymak. Quiz anlamayı gösterir. İşi sorumlunun gözetiminde doğru yapmak hâlâ asıl onaydır.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore tam olarak bu iş akışı için yapıldı. İşi telefonla çekersiniz, telefon video editöründe adımları işaretlersiniz; Flexlore adım yazılarının ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı düzenleyip onaylamadan hiçbir şey yayınlanmaz. Her video SOP'u role ve şubeye göre atar, kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Uygulama iOS ve Android'de çalışır, 8 dilde kullanılabilir.
+
+PDF'ten adım çıkarma, otomatik çeviri ve istasyona asılan QR kodlar yakında geliyor. Nasıl çalıştığını videodan SOP'a sayfasında görebilir ya da demo isteyip işlerinizden birini bizimle birlikte hazırlayabilirsiniz.
+
+## Sorular
+
+**Bir video SOP ne kadar uzun olmalı?**
+İş ne kadar sürüyorsa o kadar, ama kısa adımlara bölünmüş olarak. Adımların çoğu istasyonda kolayca tekrar izlenebilecek kadar kısa olmalı, çoğu zaman bir dakikanın altında. Video çok uzuyorsa aslında iki üç ayrı iş olup olmadığına bakın ve bölün. Toplam süreden çok, her adımın tek bir hareket ve tek bir sonuç göstermesi önemlidir.
+
+**Video SOP için profesyonel ekipman gerekir mi?**
+Hayır. Güncel bir telefon, sabit bir el ya da küçük bir stant ve yeterli ışık yeter. Ses, görüntü kalitesinden daha önemlidir; bu yüzden sakin bir anda çekin ve önemli bilgileri adım yazısına ekleyin. Profesyonel çekim daha şık görünür ama güncellemesi daha yavaştır, uzun vadede bu daha çok önem taşır.
+
+**Videolu iş talimatında anlatım sesi olmalı mı?**
+Usta işi yaparken sade cümlelerle anlatabiliyorsa evet. Sesi, her adımın nedenini ekler. Ama sadece sese güvenmeyin: işyerleri gürültülüdür ve çalışanlar videoyu sessiz izleyebilir. Her sayı, limit ve uyarı adımın üzerinde yazılı olarak da yer almalı. Ustanın anlatımı akıcı değilse sesi kapatıp yalnızca yazıyla ilerlemek de olur; önemli olan adımların net olması.
+
+**Video SOP usta yanında eğitimin yerini tutar mı?**
+Hayır. Aynı işi tekrar tekrar göstermenin ve anlatmanın yerini tutar, böylece usta aynı şeyi defalarca göstermez. Kişi yine işi pratik yapar, sorumlu yine işi yaparken izleyip onay verir. Quiz adımları kimin anladığını gösterir, işi kimin yapabildiğini değil. Video, ustanın zamanını tekrar yerine asıl önemli olana, yani sahada izleyip düzeltmeye ayırmasını sağlar.
+
+**Video SOP'lar ne sıklıkla güncellenmeli?**
+Ekipman, reçete, yerleşim ya da kural değiştiğinde hemen; hiçbir şey değişmemiş gibi görünse de belirli aralıklarla. Her video SOP'a ikisinden de sorumlu bir sahip atayın. Sadece değişen adımı güncelleyin ve eski sürümü öğrenenlerin yenisini gördüğünden emin olun. Sahibi belli olmayan içerik zamanla eskir ve ekip ona güvenmeyi bırakır.
+
+**Video SOP gıda güvenliği ya da İSG denetimi için yeterli mi?**
+Bu, sizin için geçerli mevzuata bağlıdır; danışmanınızla ya da ilgili kurumla kontrol edin. Onaylı, net bir prosedür ve kimin eğitim aldığına dair kayıt denetimde işinize yarar. Ancak birçok denetçi kesin değerleri içeren yazılı prosedür de bekler. Bu yüzden her adımın önemli bilgileri yazılı olarak da bulunmalı.
+
+
+---
+
+# SOP nedir? Standart operasyon prosedürü nasıl yazılır (ücretsiz şablon)
+URL: https://www.flexlore.com/tr/rehber/sop-nedir/
+Language: tr
+
+SOP (standart operasyon prosedürü), tekrarlanan bir işin nasıl yapılacağını adım adım anlatan onaylı belgedir; amacı işi kim yaparsa yapsın aynı sonucu almaktır. SOP yazmak için işi en iyi yapan kişiyi izleyin, işi tek eylemlik adımlara bölün, emir kipinde yazın, görsel ekleyin, yeni çalışanla deneyin, onaylatın ve gözden geçirme tarihi koyun.
+
+## SOP nedir?
+
+SOP, İngilizce "standard operating procedure" ifadesinin kısaltmasıdır; Türkçede standart operasyon prosedürü ya da standart çalışma prosedürü denir. Tekrarlanan bir işin işletmenizde nasıl yapılacağını adım adım anlatan, onaylı bir belgedir. Amacı basit: işi kim yaparsa yapsın, sonuç aynı olsun.
+İyi bir SOP dört soruyu cevaplar: Bu iş nedir, kim yapar, ne gerekir ve tam olarak hangi sırayla yapılır? Sabah 7'de açılışa gelen yeni barista, kimseye sormadan SOP'u açıp makineyi doğru şekilde servise hazırlayabiliyorsa o SOP işini yapıyordur.
+SOP bir politika ya da yönetmelik değildir. Politika neyin olması gerektiğini söyler ("espresso makinesi her sabah servis öncesi kontrol edilir"). SOP bunun nasıl yapılacağını söyler ("grup başlığından 5 saniye su akıtın, ilk shotu tadın"). İkisi karıştığında ortaya yoğun bir vardiyada kimsenin uygulayamadığı uzun belgeler çıkar.
+
+## Standart operasyon prosedürü hangi bölümlerden oluşur?
+
+Kullanışlı bir SOP'ta kısa bir başlık alanı ve dokuz bölüm bulunur: amaç, kapsam, sorumlular, malzeme ve ekipman, güvenlik notları, adımlar, kalite kontrolü, kayıtlar ve revizyon geçmişi. Bölümleri kısa tutun; okuyanın dikkati adımlarda olmalı.
+Bölüm | İçinde ne olur | Sık yapılan hata | 
+Başlık alanı | SOP adı, numarası, bölüm, revizyon no, sahibi, onaylayan, yürürlük ve gözden geçirme tarihi | Sahibi belli değil, kimse güncellemiyor | 
+Amaç | İşin neden önemli olduğunu anlatan bir iki cümle | Paragraflarca şirket vizyonu | 
+Kapsam | Nerede, ne zaman geçerli; neyi kapsamıyor | İstisnaları yazmamak (geç kapanış, sezon menüsü) | 
+Sorumlular | İşi kim yapar, kim kontrol eder, sorun olursa kime haber verilir | Rol yerine isim yazmak; kişi ayrılınca belge eskir | 
+Malzeme ve ekipman | 1. adımdan önce hazır olması gereken her şey | Eksik aleti 6. adımda fark etmek | 
+Güvenlik notları | Tehlikeler, kişisel koruyucu donanım, asla yapılmayacaklar | Uyarıları adımların arasına gömmek | 
+Adımlar | İşin yapılış sırasına göre numaralı eylemler | Tek adıma birkaç iş sıkıştırmak | 
+Kalite kontrolü | "Doğru yapıldı" ne demek, nasıl kontrol edilir | Ölçüt yok; "bitti" sadece "durdum" demek | 
+Kayıtlar | Ne, nereye, kim tarafından kaydedilir | Kimsenin bakmadığı formlar | 
+Revizyon geçmişi | Revizyon no, tarih, ne değişti, kim onayladı | Kimseye haber verilmeden yapılan değişiklikler | 
+Kısa ve düşük riskli işlerde amaç ile kapsamı tek satırda birleştirebilirsiniz. Güvenlik notlarını ve kalite kontrolünü ise basit işlerde bile atlamayın. SOP'u bir yapılacaklar listesinden ayıran bu iki bölümdür.
+
+## SOP nasıl yazılır? 7 adımda standart operasyon prosedürü hazırlama
+
+SOP yazmak için işi en iyi yapan kişiyi izleyin, işi tek eylemlik adımlara bölün, her adımı emir kipinde yazın, fotoğraf ya da video ekleyin, yeni bir çalışanla deneyin, onaylatın ve gözden geçirme tarihi koyun. Her adım sahada şöyle görünür.
+1. İşi en iyi yapan kişiyi izleyin
+Hafızadan ya da eski klasördeki belgeden yazmayın. En iyi baristanızın, operatörünüzün ya da kat görevlinizin yanında durun ve işi baştan sona izleyin. Neden o sırayla yaptığını sorun. Ustanın artık fark etmediği küçük alışkanlıklar (contayı silmek, ilk shotu dökmek) çoğu zaman iyi sonuçla kötü sonuç arasındaki farktır.
+2. İşi adımlara bölün
+Yapılan her eylemi sırayla yazın. Sonra her adım tek bir eylem ve görünür bir sonuç olacak şekilde gruplayın. Bir adımda iki kez "ve" geçiyorsa bölün. Hatanın pahalı ya da tehlikeli olduğu adımları işaretleyin; onlara bir kritik nokta ya da uyarı eklenecek.
+3. Her adımı emir kipinde yazın
+Her adım bir fiille başlasın: açın, kontrol edin, boşaltın, kaydedin. Kılavuzdaki terimleri değil, mutfakta ya da hatta kullanılan kelimeleri kullanın. Sebebi davranışı değiştiriyorsa ekleyin: "Portafiltreyi takmadan önce grubu yıkayın, çünkü önceki günden kalan kahve tadı bozar."
+4. Kelimelerin yetmediği yere görsel ekleyin
+Bazı adımları anlatmak zordur: Süt ne kadar köpürmeli, temiz bir filtre nasıl görünür, parça yerine oturduğunda nasıl ses çıkarır? Bunları gösterin. Gerçek istasyonda çekilmiş kısa bir video çoğu zaman bir paragraf metnin yerini tutar. Video SOP bu fikri bir adım öteye taşır ve videoyu ana format yapar.
+5. Yeni bir çalışanla deneyin
+Taslağı işi hiç yapmamış birine verin ve yardım etmeden uygulamasını izleyin. Duraksadığı ya da soru sorduğu her yer SOP'taki bir boşluktur. Düzeltin, tekrar deneyin. Ekiplerin en sık atladığı adım budur ve en çok işe yarayan da budur.
+6. Onaylatın
+Bölümden sorumlu kişi son hali onaylar. Onay, SOP'u bir kişinin görüşü olmaktan çıkarıp standart hale getirir. Onaylayanı ve tarihi başlık alanına yazın.
+7. Gözden geçirme tarihi koyun
+Her SOP'a yayımlandığı gün bir gözden geçirme tarihi verin. Ekipman, menü, ürün ya da yerleşim değişirse daha erken bakın. Geçen yılın makinesini anlatan bir SOP, insanlara hata yapmayı öğretir.
+
+## Hangi işler için SOP yazılmalı?
+
+Önce sık tekrarlanan, hatası pahalı ya da tehlikeli olan ve farklı kişilerin farklı yaptığı işler için SOP yazın. Her şeyi bir anda belgelemeye çalışmayın; ilk on işi seçmek yeterli bir başlangıçtır.
+Restoran ve kafe: açılış ve kapanış, fritöz ve espresso makinesi bakımı, alerjen adımları, soğuk zincir kontrolü.
+Otel: oda hazırlığı, ön büroda giriş işlemi, kayıp eşya süreci.
+Üretim ve depo: makine devreye alma, kalıp ya da format değişimi, kilitleme ve etiketleme, sevkiyat hazırlığı.
+Franchise: mağaza açılış kontrolü, yeni ürün lansmanı, kasa kapanışı.
+Seçerken şu soruyu sorun: Bu işi en iyi yapan kişi yarın izne çıksa, işi aynı kalitede kim yapar? Cevap net değilse o iş listenin başına yazılmalı. Sektöre göre örnekler için restoranlarda eğitim sayfasına bakabilirsiniz.
+
+## İyi ve kötü SOP adımı örnekleri
+
+İyi bir adım, bir kişiye görebileceği ve kontrol edebileceği tek bir şeyi yaptırır. Kötü adım ise belirsizdir, edilgen yazılmıştır ya da birkaç işi bir arada söyler. Aşağıdaki düzeltmeleri karşılaştırın.
+Kötü adım | İyi adım | Neden daha iyi | 
+Makine düzgünce temizlenmelidir. | Grup başlığını fırçayla ovun, sonra 5 saniye su akıtın. | Fiille başlıyor, aleti ve yeri söylüyor | 
+Basınç uygun olsun. | Manometrenin ibresinin yeşil alanda olduğunu kontrol edin. | His değil, kontrol edilebilir bir ölçüt veriyor | 
+Değirmeni ayarla, shot çek, tadına bak ve kaydet. | Dört ayrı adıma bölün: ayarla, çek, tat, kaydet. | Her adımda tek eylem; takip etmek ve kontrol etmek kolay | 
+Kimyasallara dikkat edin. | Temizlik tozunu dökerken eldiven takın. | Korumayı ve gerektiği anı söylüyor | 
+Kayıt alınız. | Saati ve parafınızı tezgâhtaki açılış formuna yazın. | Ne, nereye, kim belli | 
+Her adımı sesli okuyun. İstasyonda yanınızda duran yeni çalışana böyle söylemeyecekseniz yeniden yazın.
+
+## SOP formatı nasıl seçilir?
+
+Saha işlerinin çoğu için numaralı adımlar yeterlidir. İşi zaten bilen ekip için kontrol listesi, karar içeren işler için akış şeması, el becerisi ve zamanlama isteyen işler için video kullanın. Birçok işletme ikisini birlikte kullanır.
+Numaralı adımlar: Varsayılan format. Açılış ve kapanış rutinleri, temizlik, hazırlık ve kurulum için uygundur.
+Kontrol listesi: Deneyimli personel için kısa hatırlatma. Arkasında tam SOP durmalı.
+Akış şeması: "Değer aralık dışındaysa şunu yapın" gibi dallanan işler için.
+Video: Sözden çok elin önemli olduğu işler için: süt köpürtme, katlama, tabak düzeni, bıçak ayarı.
+Tek bir istasyonda yapılan tek bir makine işi için tam bir SOP yerine iş talimatı çoğu zaman daha uygundur. Daha dar kapsamlıdır ama her adımda daha fazla ayrıntı verir.
+
+## SOP'lar nasıl güncel tutulur?
+
+Her SOP'a bir sahip, bir gözden geçirme tarihi ve basit bir değişiklik süreci verin; prosedür değiştiğinde de ekibe haber verin. Güncel olmayan SOP hiç olmamasından kötüdür, çünkü eski yöntemi resmi bir belge diliyle öğretir.
+Her SOP'un bir sahibi olsun. İsim değil rol: "mutfak şefi", "2 numaralı hat sorumlusu".
+Takvime göre gözden geçirin. Aralığı riske göre belirleyin: Riskli işlere daha sık, düşük riskli işlere daha seyrek bakın.
+Değişiklikte gözden geçirin. Yeni ekipman, yeni tedarikçi, yeni ürün, yeni yerleşim ya da bir olay hemen gözden geçirme gerektirir.
+Sahadan geri bildirim toplayın. Boşlukları ilk fark eden işi yapan kişidir. Bir adımı işaretlemesini kolaylaştırın.
+Değişiklikten sonra yeniden eğitin. Belgeyi güncellemek işin yarısıdır. Eski sürümü öğrenen ekip neyin değiştiğini görmeli, siz de kimin gördüğünü bilmelisiniz.
+Eski kopyaları kaldırın. Tek güncel sürüm, tek yerde. İstasyondaki çıktıların üzerinde revizyon numarası olsun ki eskisi hemen fark edilsin.
+Kimin hangi SOP'un hangi sürümüyle eğitildiğini takip edin. Bunu kişi ve iş bazında görmenin yaygın yolu bir beceri matrisi ya da yetkinlik matrisidir.
+
+## SOP yazılı mı olmalı, videolu mu?
+
+Anlatması zor işleri videoya çekin; başvuru ve denetim için kısa bir yazılı sürümü de tutun. Saha işlerinin çoğu fiziksel bir iştir ve insanlar bunu okuyarak değil, izleyerek daha hızlı öğrenir.
+Videolu SOP, yazılı adımlarla eşleşen kısa parçalara bölündüğünde en iyi sonucu verir; yeni çalışan sadece takıldığı adımı tekrar açar. İşi en iyi yapan kişiyi gerçek istasyonda, normal ışıkta, gerçek aletlerle çekin. Kamerayı ellerde tutun. Her adıma eylemi ve varsa kritik noktayı anlatan bir satır metin ekleyin.
+Yazılı metin yine de önemlidir: Aranabilir, hızlı taranır ve onaylaması kolaydır. En güçlü düzen ikisinin birlikte olduğu düzendir: her adım için bir video, yanında yazılı talimat ve sonunda adımların anlaşıldığını kontrol eden kısa bir quiz. Kişinin işi sahada tek başına yapabileceğine dair onay yine sorumlusundadır.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore yukarıdaki adımları telefondan yürütülen bir sürece çevirir. İşi en iyi yapan kişiyi telefonla çekersiniz; Flexlore videoyu adımlara böler, yazılı talimatları ve kısa bir quizi taslak olarak hazırlar. Ekibiniz her taslağı inceleyip onaylar (videodan SOP, şu an kullanılabilir). SOP'u role ve şubeye göre atarsınız; kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Uygulama iOS ve Android'de, Türkçe dahil 8 dilde çalışır. Mevcut PDF prosedürlerini adımlara çevirme ve otomatik çeviri yakında geliyor. Önce tek bir işte denemek isterseniz Free plan 3 kullanıcıya kadar yeterli.
+
+## SOP şablonu: Espresso makinesinin sabah açılışı
+
+SOP ŞABLONU (örnek: Espresso makinesinin sabah açılışı)
+
+Alan	Örnek giriş
+SOP adı	Espresso makinesinin sabah açılışı
+SOP no	SOP-BAR-007
+Bölüm	Bar, espresso istasyonu
+Revizyon no	2
+SOP sahibi	Bar sorumlusu
+Onaylayan	Şube müdürü
+Yürürlük tarihi	[tarih]
+Gözden geçirme tarihi	[tarih]
+Tahmini süre	Yaklaşık 20 dakika
+
+AMAÇ
+Espresso makinesini ve değirmeni ilk müşteri gelmeden servise hazır hale getirmek; ilk fincandan itibaren reçeteye uygun kahve sunmak.
+
+KAPSAM
+Her sabah açılışta bardaki espresso makinesi ve değirmen için geçerlidir. Haftalık kimyasal temizlik (backflush) bu SOP'un kapsamında değildir; ayrı SOP'u vardır.
+
+SORUMLULAR
+Açılış baristası uygular. Vardiya sorumlusu ilk shotu tadarak kontrol eder ve formu imzalar. Makinede kaçak, hata ışığı ya da anormal ses varsa bar sorumlusuna haber verin.
+
+MALZEME VE EKİPMAN
+Temiz portafiltreler, tamper, grup fırçası, temiz bezler, süt pitcherları, terazi, kronometre, reçete kartı, açılış formu.
+
+GÜVENLİK NOTLARI
+Buhar çubuğunu ve grup başlığını çıplak elle tutmayın. Buhar açarken çubuğun ucunu kendinize ve başkasına doğrultmayın. Makinenin iç kısmına müdahale etmeyin; arızada servisi arayın.
+
+ADIMLAR
+1. Makinenin ana şalterini açın ve ısınması için kullanım kılavuzunda yazan süre kadar bekleyin.
+2. Beklerken değirmenin haznesine günün çekirdeğini doldurun ve kapağı kapatın.
+3. Manometrenin ibresinin yeşil alanda olduğunu kontrol edin.
+4. Her grup başlığını fırçayla ovun ve 5 saniye su akıtın.
+5. Portafiltreleri gruplara takarak ısıtın.
+6. Buhar çubuğunu bir bezle sarın ve 2 saniye boş buhar verin; sonra silin.
+7. Değirmenden ilk birkaç gram kahveyi atın.
+8. Reçete kartındaki doz ile bir shot çekin; teraziyi ve kronometreyi kullanın.
+9. Shotun ağırlığını ve süresini reçete kartıyla karşılaştırın. Aralık dışındaysa değirmen ayarını bir kademe değiştirip 8. adımı tekrarlayın.
+10. Reçeteye uyan shotu tadın; ekşi ya da acıysa vardiya sorumlusuna haber verin.
+11. Tezgâhı silin, temiz pitcherları ve bezleri yerine koyun.
+12. Saati, değirmen ayarını ve parafınızı açılış formuna yazın.
+
+KALİTE KONTROLÜ
+Manometre yeşil alanda, gruplar temiz, buhar çubuğu temiz ve kuru, shot reçete kartındaki aralıkta, tezgâh düzenli. Vardiya sorumlusu ilk shotu tadar ve formu paraflar.
+
+KAYITLAR
+Açılış formu bar tezgâhındaki klasörde durur. Bar sorumlusu haftada bir kontrol eder ve yerel mevzuatın ya da şirket kurallarının öngördüğü süre boyunca saklar.
+
+REVİZYON GEÇMİŞİ
+Revizyon no	Tarih	Değişiklik	Onaylayan
+1	[tarih]	İlk yayın	Şube müdürü
+2	[tarih]	Yeni çalışan denemesinden sonra shot kontrolü iki adıma bölündü	Şube müdürü
+
+
+## Sorular
+
+**SOP ne demek, Türkçesi nedir?**
+SOP, İngilizce "standard operating procedure" ifadesinin kısaltmasıdır. Türkçede standart operasyon prosedürü, standart çalışma prosedürü ya da kısaca çalışma talimatı denir. Hepsi aynı şeyi anlatır: sahada tekrarlanan bir işin işletmede nasıl yapılacağını adım adım tarif eden, sahibi, revizyon numarası ve onayı olan belge.
+
+**SOP ile iş talimatı arasındaki fark nedir?**
+SOP bir süreci bütün olarak anlatır: kimler dahil, ne zaman yapılır, neyi kapsar ve ana adımlar neler. İş talimatı ise tek bir istasyondaki tek bir işe odaklanır ve her adımda daha fazla ayrıntı verir: kritik nokta, makine ayarı, adımın nedeni. Çoğu işletme ikisini birlikte kullanır ve birbirine bağlar.
+
+**Bir SOP kaç sayfa olmalı?**
+İşin gerektirdiği kadar, daha fazla değil. Saha işlerine ait SOP'ların çoğu bir iki sayfaya ve 8 ile 15 arası adıma sığar. Sizinki çok daha uzunsa büyük ihtimalle birden fazla işi anlatıyordur. Açılış ve kapanış ya da kurulum ve temizlik gibi doğal kırılma noktalarından bölün.
+
+**SOP'u kim yazmalı?**
+İçeriği işi en iyi yapan kişi şekillendirmeli; belgenin sahibi ve onaylayanı ise o bölümden sorumlu kişi olmalı. Yazma işini çoğu zaman eğitim sorumlusu ya da yönetici yapar, ama hafızadan değil, gerçek işi izleyerek yazmalıdır. Yayına almadan önce taslağı işi hiç yapmamış bir çalışan denemelidir.
+
+**SOP'lar ne sıklıkla gözden geçirilmeli?**
+Her SOP'a bir gözden geçirme tarihi verin ve aralığı riske göre belirleyin. İş güvenliği, gıda ya da pahalı ekipman içeren işlere daha sık bakın. Ekipman, ürün, yerleşim ya da mevzuat değiştiğinde, bir olay ya da ramak kala yaşandığında hemen gözden geçirin. Zorunlu bir aralık olup olmadığını kendi mevzuatınızdan kontrol edin.
+
+**Yazılı SOP denetimden geçmemi sağlar mı?**
+Tek başına hiçbir belge bir işletmeyi mevzuata uygun hale getirmez. Açık, onaylı, güncel bir SOP ve eğitim kayıtları bir denetimde destek olabilir, çünkü standardın ne olduğunu ve kimin eğitildiğini gösterir. Hangi prosedürleri yazmanız ve saklamanız gerektiği sektörünüze ve mevzuata bağlıdır; bunu doğrudan kontrol edin.
+
+
+---
+
+# İş talimatı nedir, nasıl hazırlanır? (örnekli şablon)
+URL: https://www.flexlore.com/tr/rehber/is-talimati-sablonu/
+Language: tr
+
+İş talimatı, tek bir istasyonda yapılan tek bir işin (rulo değişimi, kalıp değişimi, makine ayarı gibi) adım adım nasıl yapılacağını gösteren belgedir. Her adımda işlem, kaliteyi ya da güvenliği belirleyen kritik nokta ve nedeni yazılır. SOP süreci anlatır; iş talimatı operatöre işin tam olarak nasıl yapılacağını gösterir.
+
+## İş talimatı nedir?
+
+İş talimatı, tek bir istasyonda yapılan tek bir işin adım adım nasıl yapılacağını gösteren belgedir. Operatörün işi ilk seferde doğru ve her seferinde aynı şekilde yapmasını sağlar. SOP'un bir alt katmanıdır: SOP süreci anlatır, iş talimatı o sürecin bir parçasının elle nasıl yapıldığını gösterir.
+Gece vardiyasının başında 3 numaralı hatta etiket rulosu bitti diyelim. SOP, hat duruşlarının kim tarafından, hangi kontrollerle yapılacağını söyler. İş talimatı ise rulonun hangi yönde takılacağını, etiketin hangi makaradan geçeceğini, sensörün nasıl ayarlanacağını ve ilk ürünün neden kontrol edilmeden hattın hızlandırılmayacağını anlatır.
+Sahada bu belgeye çalışma talimatı, standart iş talimatı ya da operatör talimatı da denir. Adı ne olursa olsun içeriği aynıdır: tek iş, sıralı adımlar, sonucu iyi ya da güvenli yapan kritik noktalar ve her kritik noktanın nedeni.
+
+## SOP ile iş talimatı arasındaki fark nedir?
+
+SOP bir süreci ve sorumluları anlatır, iş talimatı tek bir istasyondaki tek işi ayrıntısıyla gösterir, kontrol listesi ise işi bilen kişiye neyi teyit edeceğini hatırlatır. Üçü birlikte ve birbirine bağlı kullanıldığında en iyi sonucu verir.
+ | SOP | İş talimatı | Kontrol listesi | 
+Cevapladığı soru | Ne olur, kim yapar, ne zaman | Bu iş tam olarak nasıl yapılır | Her şeyi yaptım mı | 
+Kapsam | Bir süreç, çoğu zaman birden fazla rol | Tek iş, tek istasyon ya da makine | Tek rutin ya da kontrol | 
+Adım başına ayrıntı | Orta | Yüksek: kritik nokta, ayar, neden | Düşük: madde başına bir satır | 
+Asıl okuyucu | Yönetici, sorumlu, denetçi, yeni çalışan | İstasyondaki operatör | Eğitimini almış operatör | 
+Eğitimde rolü | Çerçeve ve genel bakış | Asıl eğitim aracı | Eğitimden sonra hatırlatma | 
+Örnek | Hat duruşu ve ürün değişimi prosedürü | Hat 3 etiketleme makinesinde rulo değişimi | Hat 3 vardiya başı kontrolü | 
+Basit bir ölçüt: Yeni bir operatör belgeyi makinenin başında tek başına uygulayabiliyorsa o bir iş talimatıdır. Hâlâ birinin göstermesi gerekiyorsa SOP ya da kontrol listesidir. Süreç düzeyindeki belge için SOP nedir ve nasıl yazılır rehberine bakın.
+
+## İyi bir iş talimatında neler olur?
+
+İyi bir iş talimatı tek istasyondaki tek işi anlatır, ilk adımdan önce gereken her şeyi listeler ve her adımda bir işlem, bir kritik nokta ve o kritik noktanın nedenini verir. Kalite ve iş güvenliği açısından önemli adımlar işaretlenir.
+Tek iş, tek istasyon. "Hat 3 bakımı" değil, "Hat 3 etiketleme makinesinde rulo değişimi". İş başka istasyona geçiyorsa yeni bir talimat açın.
+Başlık alanı. Ürün ya da parça, istasyon, aletler, kişisel koruyucu donanım (KKD), tahmini süre, revizyon numarası, sahibi ve onaylayan.
+Sıralı adımlar. Her biri operatörün görebileceği ve kontrol edebileceği bir işlem.
+Kritik noktalar. Adımın doğru yapılıp yapılmadığını belirleyen ayrıntı: sıkma sırası, boşluk, yerine oturma sesi, makaranın yönü.
+Nedenler. Kritik noktanın neden önemli olduğu. Nedeni bilen operatör adımı hatırlar ve alışılmadık durumda daha doğru karar verir.
+Kalite ve güvenlik işaretleri. Hatanın fire, kusur ya da yaralanmaya yol açtığı adımlarda kritik noktanın başına "Güvenlik" ya da "Kalite" yazın.
+Bitiş kontrolü. Makineyi teslim etmeden önce teyit edilecekler: deneme ürünü, ilk ürün kontrolü, paraf.
+
+## İş talimatı nasıl hazırlanır?
+
+Her adımı fiille başlatın, her adımda tek işlem yazın, kritik noktayı ve nedenini yanına koyun. Operatörlerin makinenin başında kullandığı kelimeleri kullanın ve taslağı işi hiç yapmamış biriyle deneyin.
+1. İşi en iyi yapan operatörü izleyin
+Makine kılavuzundan değil, en iyi operatörün gerçekte yaptığından yola çıkın. Düşünmeden kontrol ettiği şeyleri sorun; bu alışkanlıklar çoğu zaman kritik nokta olur. Ustadan çırağa beceri aktarımı da aynı fikre dayanır: ustanın yöntemini, o kişi işten ayrılmadan kayda almak.
+2. Her adımı fiille başlatın
+"Dört cıvatayı gevşetin" cümlesi, "Cıvataların gevşetilmesi gerekmektedir" cümlesinden iyidir. Fiil başta olunca operatör ne yapacağını cümlenin sonunu okumadan anlar.
+3. Her adımda tek işlem yazın
+Bir adımda iki fiil varsa çoğu zaman iki adımdır. Talimat kâğıtta uzar ama sahada hızlanır, çünkü kimse nerede kaldığını kaybetmez.
+4. Kritik noktayı ve nedenini gösterin
+Adımı üç parçaya ayırın: işlem (ne), kritik nokta (nasıl doğru ya da güvenli yapılır) ve neden. Cıvataların neden çapraz sırayla sıkıldığını bilen operatör, hat geride kaldığında bu adımı atlamaz.
+5. Makinenin başında deneyin
+Taslağı işi daha önce yapmamış bir operatöre verin ve izleyin. Her duraksama ya da soru eksik bir kritik noktadır. Onaylamadan önce düzeltin.
+
+## Görsel ve videolu iş talimatı
+
+Konumun, hareketin ya da elin hissinin sözden daha önemli olduğu her adımda fotoğraf ya da video kullanın. Gerçek makinede çekilmiş kısa bir video, kritik noktayı bir cümleden daha hızlı anlatır.
+Fotoğraf konum ve son durum için iyidir: koruyucu kapağın mandalı nerede, doğru boşluk nasıl görünür, etiket ürünün neresine oturmalı. Video hareket ve zamanlama için iyidir: etiket bandının makaralardan nasıl geçirileceği, parçanın yerine oturana kadar ne kadar itileceği, bir format değişimindeki el hareketlerinin sırası.
+Her videoyu tek bir adıma ayırın ve yazılı adımla eşleştirin; operatör sadece ihtiyacı olan kısmı tekrar açsın. Gerçek istasyonda, gerçek aletlerle, normal ışıkta çekin ve kamerayı ellerde tutun. Aynı yaklaşımın tüm prosedürlere uygulanmış hali için video SOP rehberine bakın.
+
+## Ürün değişimi ve makine ayarı için iş talimatı
+
+İş talimatının en çok işe yaradığı yer ürün değişimi, kalıp değişimi ve makine ayarıdır. Bu işler önemli olacak kadar sık, ayrıntıların unutulacağı kadar seyrek yapılır. Her değişim türü için ayrı bir talimat yazın ve adımları makinedeki yapılış sırasıyla dizin.
+Hazırlığı duruştan ayırın. Hat çalışırken yapılabilecekleri (aletleri getirmek, yeni ruloyu ya da kalıbı hazırlamak, iş emrini okumak) makine dururken yapılacaklardan ayrı listeleyin.
+Enerji kesme adımıyla başlayın. İşletmenizin kilitleme ve etiketleme prosedürüne adıyla atıf yapın ve adımı "Güvenlik" olarak işaretleyin. Asıl prosedürden sapabilecek şekilde yeniden yazmayın.
+Ayarları hafızaya değil kâğıda bırakın. Her ürünün ayarlarını talimattaki ya da iş emrindeki bir tabloya yazın; bir sonraki vardiya en son kimin ayarladığına bağlı kalmasın.
+İlk ürün kontrolüyle bitirin. İyi bir ilk ürünün nasıl görüneceğini ve hat tam hıza çıkmadan kimin onaylayacağını tanımlayın.
+Ürün değişimleri çapraz eğitim için de iyi bir başlangıçtır. Aynı değişimi açık bir talimatla birkaç kez yapmış operatör, asıl kişi izinliyken vardiyayı karşılayabilir.
+
+## İstasyonda revizyon takibi nasıl yapılır?
+
+Her iş talimatının tek bir güncel sürümü olsun, revizyon numarası operatörün göreceği yerde dursun ve talimat değiştiğinde ekip yeniden eğitilsin. Makineye bantlanmış eski bir kopya, operatörlerin yanlış adımları izlemesinin en yaygın nedenidir.
+Her sayfada ya da ekranda revizyon numarası. Operatör ve vardiya sorumlusu bir bakışta kontrol edebilmeli.
+Tek sahip. Genellikle hat sorumlusu ya da proses mühendisi. Her değişikliği o onaylar.
+Değişiklik tetikleyicileri. Yeni aparat, yeni ürün, kalite sorunu, ramak kala olay ya da operatör geri bildirimi gözden geçirme gerektirir.
+Eski kopyaları toplayın. Yeni sürüm onaylandığı gün eski çıktıları istasyondan kaldırın.
+Kimin hangi sürümü öğrendiğini takip edin. Değişiklikten sonra, makineyi tekrar çalıştırmadan önce hangi operatörlerin yeni adımları gördüğünü bilmeniz gerekir.
+İş talimatları iş sağlığı ve güvenliği (İSG) dokümantasyonunuzu ve denetim hazırlığınızı destekleyebilir; hangi belgelerin zorunlu olduğunu ise kendi mevzuatınız ve İSG uzmanınız belirler.
+
+## İş talimatı örnekleri: hangi işler için yazılır?
+
+Sık tekrarlanan, hatası fire, kusur ya da yaralanmaya yol açan ve farklı operatörlerin farklı yaptığı işler için önce iş talimatı yazın. Bir hattın tamamını bir anda belgelemeye çalışmak yerine en çok sorun çıkan işlerden başlayın.
+Üretim: kalıp ve format değişimi, bıçak ya da nozul değişimi, makine devreye alma, ilk ürün kontrolü.
+Depo: forklift vardiya başı kontrolü, palet streçleme, sevkiyat etiketleme.
+Gıda üretimi ve fırın: hamur makinesinin temizliği, fırın programının ayarı, alerjen geçişinde hat temizliği.
+Bakım: filtre değişimi, yağlama turu, sensör ayarı.
+Listeyi seçerken iki soru sorun: Bu işi en iyi yapan operatör yarın izne çıksa, işi aynı kalitede kim yapar? Son üç ayda fire ya da duruşun nedeni hangi adımdı? İki sorunun cevabında da geçen işler, ilk yazılacak talimatlardır. Her talimatı yazdıktan sonra vardiya ekibine gösterin ve ilk hafta gelen soruları toplayın; ikinci revizyon çoğu zaman bu sorulardan çıkar.
+
+## İş talimatında sık yapılan hatalar
+
+En yaygın hatalar, birden fazla işi tek talimata sıkıştırmak, nedeni yazmamak ve eski sürümü istasyonda bırakmaktır. Aşağıdaki tablo hatayı ve düzeltmesini yan yana gösterir.
+Hata | Düzeltme | 
+"Makineyi hazırlayın" gibi belirsiz adımlar | Her adımda görülebilir tek işlem: "Ruloyu mile takın" | 
+Kritik noktası olmayan riskli adımlar | Kalite ya da güvenliği etkileyen her adıma kritik nokta ve neden | 
+Kılavuzdan kopyalanmış teknik dil | Operatörün makinenin başında kullandığı kelimeler | 
+Ayarların bir kişinin hafızasında olması | Ürün bazında ayar tablosu | 
+Revizyon numarası olmayan çıktılar | Her kopyada revizyon numarası, eskisi aynı gün toplanır |
+
+## Bunu Flexlore ile yapmak
+
+Flexlore ile işi en iyi yapan operatörü telefonla çekersiniz, telefon video editöründe adımları işaretlersiniz; yapay zekâ yazılı talimatları ve kısa bir quizi taslak olarak hazırlar. Ekibiniz taslağı yayımlanmadan önce inceler ve onaylar. Operatörler adımları kendi telefonunda izler, takıldığı adımı tekrar açar ve quizi çözer; siz kimin izlediğini ve geçtiğini kişi, ekip ve şube bazında görürsünüz. Roller ve çalışma alanları her tesisin talimatlarını ayrı tutar. Operatörün makinede yetkin olduğunu onaylamak yine sorumlusundadır. Makineye yapıştırılan QR kodla doğru talimatı açma ve otomatik çeviri yakında geliyor. Üretim ekipleri için ayrıntılar üretim sayfasında.
+
+## İş talimatı şablonu: Hat 3 etiketleme makinesinde rulo değişimi
+
+İŞ TALİMATI ŞABLONU (örnek: Hat 3 etiketleme makinesinde etiket rulosu değişimi)
+
+Alan	Örnek giriş
+İş talimatı	Hat 3 etiketleme makinesinde etiket rulosu değişimi
+Doküman no	İT-H3-012
+Ürün / parça	Ön etiket rulosu, tüm 500 ml şişe ürünleri
+İstasyon	Hat 3, etiketleme makinesi
+Aletler	Yeni etiket rulosu, iş emri, makas, temiz bez, hat 3 formu
+KKD	İş eldiveni, iş ayakkabısı
+Tahmini süre	Yaklaşık 10 dakika
+Revizyon	Rev. 3, [tarih]
+Sahibi / onaylayan	Hat 3 sorumlusu / Üretim müdürü
+
+Adım	İşlem	Kritik nokta	Neden
+1	Hattı kumanda panelinden durdurun ve aplikatörün tamamen durmasını bekleyin.	Güvenlik: Makaralar dönerken koruyucu kapağı açmayın.	Makaralar durdurma tuşundan sonra birkaç saniye dönmeye devam eder.
+2	Ana şalterde kendi kilidinizi ve etiketinizi takın; işletmenin kilitleme prosedürünü uygulayın.	Güvenlik: Çalıştırma tuşuna basarak enerjinin kesildiğini doğrulayın.	Elleriniz içerideyken başka biri hattı çalıştırabilir.
+3	Koruyucu kapağı açın ve kapak mandalının yerine oturduğunu kontrol edin.	Kapak mandal sesi gelene kadar kaldırılır.	Yarım açık kapak ellerinizin üzerine düşebilir.
+4	Boş rulo göbeğini mile tutturan kelebek somunu gevşetin ve göbeği çıkarın.	Atık etiket bandını da makaralardan sökün.	Eski banttan kalan parçalar yeni bandın kaymasına yol açar.
+5	Yeni ruloyu, iş emrindeki ürün koduyla karşılaştırın.	Kalite: Rulo etiketindeki kod ile iş emri aynı olmalı.	Yanlış etiketli ürün, partinin tamamının ayrılmasına neden olur.
+6	Yeni ruloyu, etiketler dışa bakacak ve bant saat yönünde açılacak şekilde mile takın.	Kalite: Yönü koruyucu kapaktaki şemayla karşılaştırın.	Ters takılan rulo etiketi ürüne ters basar.
+7	Bandı şemadaki sırayla makaralardan geçirin ve soyma plakasına kadar getirin.	Bant her makarada ortalanmış ve gergin olmalı.	Gevşek bant etiketin kaymasına ve kırışmasına yol açar.
+8	Atık bandı sarım miline sarın ve kelebek somunu sıkın.	En az iki tur sarın.	Atık bant kayarsa etiketler soyulmaz.
+9	Koruyucu kapağı kapatın, kilidinizi ve etiketinizi çıkarın.	Güvenlik: Kilidi çıkarmadan önce makinenin etrafında kimse olmadığını kontrol edin.	Hat, en yakında duran kişinin yanında çalışmaya başlar.
+10	Panelden "etiket öğret" komutunu çalıştırın.	Sensör ışığının her etiket aralığında yanıp söndüğünü izleyin.	Sensör öğrenmezse etiketler kayık ya da çift basılır.
+11	Hattı yavaş hızda başlatın ve 5 deneme ürünü alın.	Kalite: Etiket düz, ortalı ve kabarcıksız olmalı.	Tam hıza çıkmadan önce yön ve konumu doğrular.
+12	Rulo değişimini, saati, rulo parti numarasını ve parafınızı hat 3 formuna yazın; vardiya sorumlusuna haber verin.	Rulo parti numarasını kutudan alın.	Bir etiket sorunu çıkarsa kalite ekibi ruloyu geriye doğru izleyebilir.
+
+BİTİŞ KONTROLÜ
+Kapak kapalı ve mandallı, kilit çıkarılmış, 5 deneme ürününde etiket düz ve ortalı, form doldurulmuş, vardiya sorumlusu bilgilendirilmiş. Deneme ürünlerinden biri hatalıysa hattı durdurun ve 1, 2, 6 ve 7. adımları tekrarlayın.
+
+
+## Sorular
+
+**SOP ile iş talimatı aynı şey mi?**
+Hayır. SOP bir süreci anlatır: ne olur, kim sorumludur, ne zaman ve hangi sırayla yapılır. İş talimatı bu süreç içindeki tek bir işi, tek bir istasyonda, kritik nokta, ayar ve nedenleriyle ayrıntılı gösterir. SOP ürün değişiminin kilitleme ve ilk ürün kontrolüyle yapılacağını söyler; iş talimatı rulonun nasıl değiştirileceğini gösterir.
+
+**İş talimatında kritik nokta ne demek?**
+Kritik nokta, bir adımın doğru ya da güvenli yapılıp yapılmadığını belirleyen ayrıntıdır: cıvataların sıkma sırası, boşluk, parçanın yerine oturma sesi, rulonun yönü. Çoğu adımda en fazla bir tane olur. Kritik noktayı nedeniyle birlikte yazmak, ustanın alışkanlıklarını yeni operatörün tekrarlayabileceği bir standarda dönüştürür.
+
+**İş talimatı ne kadar ayrıntılı olmalı?**
+Eğitimini almış ama işi ilk kez yapan bir operatörün makinenin başında tek başına uygulayabileceği kadar. Her işlem bir adım olur, kaliteyi ya da güvenliği etkileyen her adıma bir kritik nokta, her kritik noktaya bir neden eklenir. Operatör hâlâ yanında birine ihtiyaç duyuyorsa talimatta bir şey eksiktir.
+
+**İş talimatını kim hazırlar ve onaylar?**
+İçeriği işi en iyi yapan operatörün yöntemi belirler; yazmayı genellikle hat sorumlusu, proses mühendisi ya da eğitim sorumlusu yapar. Onay, bölümden sorumlu kişiye, çoğu zaman üretim müdürüne aittir. Yayına almadan önce talimatı yeni bir operatör makinenin başında denemeli. Onaylayanı ve revizyon numarasını başlık alanına yazın.
+
+**İş talimatı İSG mevzuatına uyum sağlar mı?**
+Tek başına hiçbir belge mevzuata uyumu garanti etmez. Açık, onaylı ve güncel iş talimatları ile eğitim kayıtları, iş sağlığı ve güvenliği dokümantasyonunuzu ve denetimlere hazırlığınızı destekleyebilir. Hangi işler için yazılı talimat gerektiğini ve nasıl saklanacağını kendi mevzuatınız belirler; bunu İSG uzmanınızla kontrol edin.
+
+**İş talimatına fotoğraf ya da video eklemek gerekir mi?**
+Konumun, hareketin ya da elin hissinin önemli olduğu her adımda evet. Fotoğraf doğru boşluk ya da yerine oturmuş parça gibi son durumları göstermek için iyidir. Kısa video ise bant geçirme ya da el hareketlerinin sırası gibi hareketleri anlatır. Her görseli tek bir yazılı adımla eşleştirin ki operatör hemen bulsun.
+
+
+---
+
+# Beceri matrisi şablonu: vardiyanızda işe yarayan yetkinlik matrisi
+URL: https://www.flexlore.com/tr/rehber/beceri-matrisi/
+Language: tr
+
+Yetkinlik matrisi (beceri matrisi), satırlarda çalışanları, sütunlarda işleri gösteren bir tablodur. Her hücreye genellikle 0 ile 4 arası bir seviye yazılır. Böylece hangi istasyonu kimin bağımsız yapabildiğini, hangi vardiyada açık olduğunu ve kimin başkasına öğretebileceğini tek bakışta görürsünüz. Vardiya planı, çapraz eğitim ve işe alım kararları bu tablodan çıkar.
+
+## Yetkinlik matrisi (beceri matrisi) nedir?
+
+Yetkinlik matrisi, kimin hangi işi ne düzeyde yapabildiğini tek tabloda gösteren bir araçtır. Satırlarda çalışanlar, sütunlarda işler yer alır; her hücrede sabit bir ölçeğe göre verilmiş seviye bulunur.
+Aynı tabloya beceri matrisi, eğitim matrisi veya çapraz eğitim matrisi de denir. Küçük bir fark var: eğitim matrisi çoğu zaman eğitimin verilip verilmediğini izler, yetkinlik matrisi ise kişinin işi gerçekten yapıp yapamadığını. Sahada işe yarayan matris ikisini birleştirir: seviyeyi ve o seviyenin arkasındaki kanıtı birlikte tutar.
+Bir üretim hattında sütunlar makine devreye alma, kalıp değişimi, montaj, kalite kontrol ve paketlemedir. Bir restoranda ızgara, fritöz, hazırlık, pas ve bulaşık. Otelde oda hazırlığı, genel alanlar ve ön büro. Yapı her yerde aynıdır.
+
+## Beceri matrisi ne işe yarar?
+
+Beceri matrisi, vardiya planı yapılırken sorulan iki soruya cevap verir: biri gelmezse bu vardiya döner mi, ve kim sırada neyi öğrenmeli.
+Vardiya kapsaması. Her istasyonda, her vardiyada işi bağımsız yapabilen kaç kişi olduğunu görürsünüz. Gece vardiyasında kalıp değişimini yapabilen tek kişi varsa, risk hat durmadan önce ortaya çıkar.
+Çapraz eğitim. Matris, ikinci bir istasyonu karşılamaya bir seviye uzaklıkta olan kişileri gösterir. En hızlı ve en ucuz eğitim budur: seviye 2 olan birine birkaç gözetimli vardiya yeter.
+Tek kişiye bağlı işler. Seviye 3 ve üstünde tek ismin bulunduğu her sütun, o kişi izne çıktığında ya da ayrıldığında duran bir iştir. Usta gidince bilginin de gitmesi tam olarak burada görünür.
+Kim kime öğretir. Seviye 4, yeni gelenin yanına kimin verileceğini gösterir. Bu yoksa yeni personel o an boşta olandan öğrenir ve iş her aktarımda biraz değişir. Ustadan çırağa beceri aktarımı bu yüzden matrisle birlikte planlanmalıdır.
+Yeni personelin yol haritası. Yeni gelen bir operatörün satırı, ilk haftalarda hangi işi hangi sırayla öğreneceğini gösterir. Oryantasyon planı ile matris aynı dili konuşur.
+İşe alım. Bir boşluk çapraz eğitimle kapanmıyorsa, hangi beceri için eleman aramanız gerektiğini matris söyler.
+
+## Yetkinlik matrisi nasıl hazırlanır? 7 adımda
+
+Tek bir şube veya tek bir hatla başlayın, sadece vardiyayı durduran işleri sütuna yazın ve puanlamayı ofisten değil, işi her gün gören amirle birlikte yapın.
+Unvanları değil, işleri listeleyin. Vardiyanın dönmesi için birinin yapabilmesi gereken işleri yazın: istasyonlar, makineler, açılış, kapanış, vardiya devri. Bir ekip için 10 ile 15 sütun yönetilebilir bir boyuttur.
+Her işin yazılı bir standardı olsun. "Standarda uygun" ifadesinin herkes için aynı şeyi anlatması gerekir. Standardı yazılmamış işler için önce bir standart operasyon prosedürü (SOP) hazırlayın.
+Kişileri ve vardiyalarını yazın. Her satıra görev ve olağan vardiyayı ekleyin. Kapsamayı okuyabilmeniz vardiya bilgisine bağlıdır.
+Seviye ölçeğinde anlaşın. 0 ile 4 arası beş seviye kullanın ve tanımlarını tablonun en üstüne yazın.
+Puanlamayı işi gören kişi yapsın. Vardiya amiri veya ustabaşı her hücreyi puanlar. Emin olunmayan hücreye düşük puan verin ve bir gözlem planlayın.
+Kapsama satırlarını ekleyin. Her sütunun altına, vardiya başına seviye 3 ve 4 olan kişi sayısını yazın ve bir hedef koyun; örneğin her istasyonda vardiya başına iki kişi.
+Boşlukları eğitim planına çevirin. Hedefin altında kalan her sütun için seviye 1 veya 2 olan bir kişi seçin, seviye 4 olan bir eğitmen atayın ve tekrar kontrol tarihi belirleyin.
+
+## Yetkinlik seviyeleri nasıl tanımlanır?
+
+0 (eğitim almadı) ile 4 (başkasına öğretir) arasında beş seviyeli bir ölçek kullanın ve her seviyeyi bir kanıta bağlayın. Kanıtı olmayan seviye, kişisel görüşe dönüşür.
+Seviye | Tanım | Nasıl kazanılır | 
+0 Eğitim almadı | İşi hiç görmedi. | Her yeni iş için başlangıç noktası. | 
+1 Eğitimde | İşi gördü, eğitmenin yanında öğreniyor. | İşi izledi ve eğitmenle birlikte yaptı. | 
+2 Destekle yapar | Gerçek vardiyada yapar, eğitimli biri kontrol eder. | Adımlarla ilgili kısa quizi geçti, gözetimli vardiyalarda çalıştı. | 
+3 Bağımsız yapar | İşi tek başına, standarda uygun ve normal hızda yapar. | Amiri onu gerçek bir vardiyada izledi ve onay verdi. | 
+4 Başkasına öğretir | Bağımsız yapar, işi öğretip kontrol edebilir. | Yönetici seçti; en az bir kişiyi seviye 3'e taşıdı. | 
+2 ile 3 arasındaki çizgiyi sıkı tutun. Seviye 3, yoğun bir vardiyada o kişiyi istasyonda yalnız bırakabileceğiniz anlamına gelir. Dürüst cevap "henüz değil" ise seviye 2'dir.
+Seyrek yapılan veya sık değişen işler (yıllık bakım, mevsimlik menü) için hücreye bir tarih ya da "tazeleme gerekli" notu eklemek işe yarar.
+
+## Excel'de yetkinlik matrisi nasıl kurulur?
+
+Başlamak için Excel veya Google E-Tablolar yeterlidir. Aşağıdaki şablonu kopyalayıp yapıştırdığınızda sütunlar doğru yere oturur.
+İlk üç sütuna kişi, görev ve vardiyayı yazın, bu sütunları dondurun.
+İşleri üst satıra yazın. Her hücreye 0 ile 4 arası bir sayı girin.
+Koşullu biçimlendirme ile seviyelere renk verin; 0 ve 1 boş görünsün, 3 ve 4 belirgin olsun. Boşluklar tabloyu kaydırırken hemen göze çarpar.
+Kapsama satırlarında EĞERSAY ile her vardiyada 3 ve üstü olan kişileri sayın, hedefin altındaki hücreleri işaretleyin.
+Her şube veya hat için ayrı bir sekme açın, sütun başlıkları her sekmede birebir aynı olsun.
+Kanıt için ayrı bir sekme tutun: kişi, iş, seviye, tarih, onaylayan amir.
+Dosyayı tek bir kişi sahiplensin, örneğin üretim şefi veya insan kaynakları. Amirler hücreleri günceller, sahibi ise ayda bir sütunların ve seviye tanımlarının hâlâ doğru olup olmadığını kontrol eder. Herkesin her şeyi değiştirebildiği bir dosyada seviyeler zamanla şişer ve kimse hangi puanın ne zaman verildiğini bilemez.
+Tablo büyüdükçe en zor kısım hücreleri doldurmak değil, kanıtı güncel tutmaktır. Bunu aşağıda ele alıyoruz.
+
+## Matris nasıl okunur: boşluklar ve vardiya kapsaması
+
+Önce sütunları, sonra satırları okuyun. Sütunlar operasyonun nerede kırılgan olduğunu, satırlar kimin sırada gelişmesi gerektiğini gösterir.
+Sütunları okuyun
+Her vardiyada seviye 3 ve 4 olanları sayın. Hedefin altı bir kapsama açığıdır.
+3 ve üstünde tek isim olan sütun, tek kişiye bağlı bir iştir.
+Seviye 4 olmayan sütunda bir sonraki kişiyi yetiştirecek kimse yoktur. Yeni personel gelmeden bunu kapatın.
+Satırları okuyun
+Seviye 2 hücreleri en hızlı kazanımdır: birkaç gözetimli vardiya ve bir onay.
+3 ve 4'lerle dolu bir satır, eğitmen veya vardiya amiri adayıdır.
+Aylardır değişmeyen bir satır çoğu zaman eğitim değil, planlama sorunudur: kişi hep aynı istasyona yazılıyordur.
+Aşağıdaki örnekte hat kalabalık görünür ama kalıp değişimi her vardiyada tek kişiye bağlıdır, 2. vardiyada paketlemeyi bağımsız yapan tek kişi vardır ve paketleme ile hat temizliğini öğretebilecek kimse yoktur.
+
+## Yetkinlik matrisini nasıl güncel tutarsınız?
+
+Her seviyeyi, gerçekleştiği anda kaydedilen bir kanıta bağlayın: işi izledi, quizi geçti, amiri sahada onayladı. Yılda bir kez hafızadan doldurulan matris birkaç hafta içinde eskir.
+İşi izledi. Kişi işin güncel halini adım adım gördü. Seviye 1'i destekler.
+Quizi geçti. Adımlarla ilgili kısa bir quiz, standardı anladığını gösterir: ayarlar, sıra, atlanmaması gereken kontrol. Seviye 2'yi destekler. İşin kendisinden hazırlanan bir quiz, soruları işin gerçekte nasıl yapıldığına bağlı tutar.
+Sahada onaylandı. Amir, kişiyi gerçek bir vardiyada işi yaparken izler ve onaylar. Seviye 3 yalnızca bununla verilir. Quiz anlamayı gösterir, işi izlemenin yerini tutmaz.
+Matrisi sabit bir anda güncelleyin, örneğin haftalık vardiya planı toplantısında. Bir iş değiştiğinde (yeni kalıp, yeni reçete, yeni makine ayarı) etkilenen kişileri yeni hali görüp tekrar kontrol edilene kadar seviye 2'ye çekin. Kalite denetimlerinde yetkinlik kaydı sorulduğunda bu kanıtlar işinize yarar; neyin istendiğine ilgili standart ve denetçiniz karar verir.
+
+## Çok şubeli ve çok tesisli ekiplerde beceri matrisi
+
+Her şubede aynı sütunları ve aynı seviye ölçeğini kullanın, her şube için ayrı bir matris tutun. Böylece şubeleri satır satır karşılaştırabilirsiniz.
+Sütunlar şubeden şubeye değişirse karşılaştırma bozulur: bir şube "sıcak hat" der, diğeri bunu üç istasyona böler. İş listesini merkez belirlesin; şube yalnızca kendine özgü bir ekipman için sütun ekleyebilsin.
+Franchise veya çok tesisli yapılarda kapsama satırlarını tek bir özette toplayın: hangi şubede, hangi vardiyada, hangi istasyon hedefin altında. Bölge müdürünün ziyaret öncesi görmesi gereken tablo budur. Birden fazla şubede çalışan kişi, vardiya aldığı her şubenin matrisinde aynı seviyelerle yer almalıdır.
+Erişim de önemlidir: şube müdürü kendi matrisini düzenlemeli, bölge müdürü hepsini görmelidir. Şubeye göre rol ve çalışma alanı sunan bir araç, herkesin üzerine yazabildiği ortak bir dosyadan daha güvenlidir.
+
+## Beceri matrisinde sık yapılan hatalar
+
+Çok fazla sütun. Kişi başına kırk beceri olursa kimse güncellemez. Vardiyayı durduran işleri izleyin.
+Tanımsız seviyeler. Ölçek örnekleriyle yazılmazsa "3" her amir için başka bir şey ifade eder.
+Ofisten puanlama. Puanı, işi her gün gören kişi vermelidir.
+Kanıtsız seviye. "Neden kalıp değişiminde 3?" sorusunun cevabı bir tarih ve bir amir adı olmalıdır.
+Seviyeyi hiç düşürmemek. İş değiştiğinde veya kişi aylardır yapmadığında dürüst seviye daha düşüktür.
+Matrisi evrak saymak. Matris vardiya planını ve eğitim planını değiştirmiyorsa okunmuyor demektir.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore, yetkinlik matrisinin kanıt tarafını üstlenir. İşi en iyi yapan kişi işi telefonla, işin yapıldığı yerde çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.
+İş atandıktan sonra kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Bu, seviye 1 ve 2'yi karşılar. Seviye 3, yani sahada yetkinlik onayı, yine amirinizdedir. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. Uygulama iOS ve Android'de, 8 dilde çalışır. Yöneticiler için web paneli ve bildirimler yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+
+## Yetkinlik matrisi şablonu (üretim hattı örneği)
+
+SEVİYE AÇIKLAMASI
+Seviye	Adı	Sahada ne anlama gelir	Kaydedilecek kanıt
+0	Eğitim almadı	İşi hiç görmedi. Bu istasyonda çalıştırılmaz.	Yok
+1	Eğitimde	İşi izledi, yanında bir eğitmenle öğreniyor.	İş videosunu veya gösterimi izledi
+2	Destekle yapar	Gerçek vardiyada işi yapar; eğitimli biri kontrol eder, gerekirse müdahale eder.	Adımlarla ilgili kısa quizi geçti
+3	Bağımsız yapar	İşi tek başına, standarda uygun ve normal hızda yapar.	Sorumlu, sahada izleyip onay verdi
+4	Başkasına öğretir	Bağımsız yapar; işi başkasına öğretip kontrol edebilir.	Yönetici bu iş için eğitmen olarak seçti
+
+ÖRNEK: ÜRETİM HATTI YETKİNLİK MATRİSİ (HAT 2)
+Kişi	Görev	Vardiya	Makine devreye alma	Kalıp değişimi	Montaj	Görsel kalite kontrol	Paketleme	Hat temizliği ve 5S	Vardiya devri
+Operatör A	Kıdemli operatör	1. vardiya	4	4	3	3	3	3	4
+Operatör B	Operatör	1. vardiya	3	2	3	2	3	3	2
+Operatör C	Operatör	1. vardiya	1	0	4	3	3	3	1
+Operatör D	Operatör	2. vardiya	3	3	3	1	2	3	3
+Operatör E	Operatör	2. vardiya	2	1	3	3	3	3	1
+Vardiya amiri F	Vardiya amiri	2. vardiya	3	2	2	4	2	3	4
+Yeni operatör G	Operatör (2. hafta)	2. vardiya	0	0	1	0	2	1	0
+
+KAPSAMA SATIRLARI (her vardiyada 3 ve 4 olanları sayın)
+Kapsama kontrolü			Makine devreye alma	Kalıp değişimi	Montaj	Görsel kalite kontrol	Paketleme	Hat temizliği ve 5S	Vardiya devri
+1. vardiyada 3 ve üstü			2	1	3	2	3	3	1
+2. vardiyada 3 ve üstü			2	1	2	2	1	3	2
+Seviye 4 (eğitmen)			1	1	1	1	0	0	2
+Vardiya başına hedef			2	2	2	2	2	2	2
+
+Bu örnek ne gösteriyor: kalıp değişimi her iki vardiyada da tek kişiye bağlı, 2. vardiyada paketlemeyi bağımsız yapan tek kişi var ve paketleme ile hat temizliğini öğretebilecek kimse yok. Önümüzdeki ayın eğitim önceliği bu üç boşluk.
+
+## Sorular
+
+**Yetkinlik matrisi ile eğitim matrisi arasındaki fark nedir?**
+İkisi de aynı tabloyu anlatmak için kullanılır. Eğitim matrisi çoğunlukla eğitimin verilip verilmediğini kaydeder, yetkinlik matrisi ise kişinin işi standarda uygun yapıp yapamadığını. En kullanışlı hali ikisini birleştirir: seviyeyi ve onun arkasındaki kanıtı, yani geçilen quizi veya amir onayını birlikte tutar.
+
+**Yetkinlik matrisinde kaç seviye olmalı?**
+Sahada çalışan ekipler için dört veya beş seviye yeterlidir. 0 ile 4 arası ölçek (eğitim almadı, eğitimde, destekle yapar, bağımsız yapar, başkasına öğretir) vardiyada kolay anlatılır. Daha az seviye ilerlemeyi gizler, daha fazlası ise puanlayanların komşu seviyeler arasındaki farkta anlaşamamasına yol açar.
+
+**Yetkinlik matrisi örneği Excel'de nasıl hazırlanır?**
+İlk sütunlara kişi, görev ve vardiyayı, üst satıra işleri yazın; her hücreye 0 ile 4 arası bir sayı girin. Koşullu biçimlendirme ile renk verin, EĞERSAY ile her vardiyada 3 ve üstü olanları sayan kapsama satırları ekleyin. Her şube veya hat için aynı başlıklarla ayrı bir sekme açın.
+
+**Beceri matrisi ne sıklıkla güncellenmeli?**
+Bir seviye değiştiği anda güncellenmeli ve haftalık vardiya toplantısı gibi sabit bir anda gözden geçirilmelidir. Yeni kalıp, reçete veya makine ayarı gibi bir değişiklik olduğunda etkilenen kişileri, yeni hali görüp tekrar kontrol edilene kadar bir seviye aşağı çekin. Böylece matris, hattın bugünkü halini gösterir.
+
+**Çapraz eğitim için kimi seçmeliyim?**
+Önce tek kişiye bağlı veya hedefin altında kalan sütunlara bakın, sonra o sütunda seviye 1 veya 2 olan kişileri seçin. Bir seviye uzaktaki kişi birkaç gözetimli vardiyayla bağımsız hale gelebilir. Yanına o işte seviye 4 olan birini eğitmen olarak verin ve kontrol tarihi koyun.
+
+**Quizi geçen çalışan yetkin sayılır mı?**
+Hayır. Quiz, kişinin adımları ve standardı anladığını gösterir. Sahada yetkinlik, amirin onu gerçek bir vardiyada işi yaparken izleyip onaylamasıyla belirlenir. Matriste geçilen quiz seviye 2'yi, amir onayı ise seviye 3'ü destekler. İkisini birbirinin yerine kullanmayın; biri anlamayı, diğeri işi gösterir.
+
+
+---
+
+# Restoran personel oryantasyonu: ilk 30 gün için kontrol listesi
+URL: https://www.flexlore.com/tr/rehber/restoran-oryantasyon-kontrol-listesi/
+Language: tr
+
+Restoran oryantasyon kontrol listesi, yeni personelin bir istasyonda yalnız çalışmadan önce görmesi, yapması ve kanıtlaması gerekenleri sıralar. Listeyi ilk günden önce, ilk gün, ilk hafta ve 8 ile 30. günler olarak dörde bölün, her maddeye bir sorumlu yazın ve her istasyonu kısa bir quiz ile sahada sorumlu onayıyla kapatın.
+
+## Restoran oryantasyon kontrol listesi neleri içermeli?
+
+İyi bir restoran oryantasyon listesi dört aşamadan oluşur: ilk günden önce, ilk gün, ilk hafta ve 8 ile 30. günler arası. Her maddenin bir sorumlusu olur ve her istasyon iki kontrolle kapanır: kısa bir quiz ve sorumlunun sahadaki onayı.
+Restoranlarda oryantasyon çoğu zaman aynı şekilde aksar. Yeni gelen kısa bir tur atar, o an boşta olan birinin yanına verilir ve işi o kişinin yaptığı haliyle öğrenir. Üç hafta sonra kimse ona tam olarak neyin gösterildiğini bilmez. Kontrol listesi, hangi vardiyada başlarsa başlasın her yeni personelin ilk ayını aynı yapar.
+İşe yarayan listelerin ortak özellikleri:
+Sadece görev değil, sorumlu. Yanında isim olmayan "alerjen prosedürü" maddesi cumartesi akşamı yapılmaz.
+İstasyon bazında ilerleme. Salon, mutfak ve bulaşıkhane farklı işleri farklı hızda öğrenir.
+Her aşamanın sonunda kontrol. İzlemek anlamak değildir; anlamak da akşam sekizde rayda on iki adisyon varken işi yapabilmek değildir.
+
+## Restoran personel eğitimi programı nasıl kurulur?
+
+Önce işleri, sonra sırayı, en son kontrolleri belirleyin. Program, "hangi rol ilk 30 günde hangi işleri hangi sırayla öğrenir ve bunu kim onaylar" sorusunun yazılı cevabıdır.
+Rolleri ayırın. Garson, komi, aşçı yardımcısı, aşçı ve bulaşıkhane için ayrı listeler çıkarın. Ortak maddeler (hijyen, alerjen, güvenlik) herkeste aynı kalır.
+Her rol için istasyon sırasını yazın. Örneğin aşçı yardımcısı önce hazırlık, sonra fritöz, sonra soğuk istasyon.
+Her istasyonun işlerini standarda bağlayın. Her işin yazılı veya videolu bir standardı olsun; yoksa önce onu hazırlayın.
+Mentorları belirleyin. Her istasyon için öğretebilecek en az bir kişi olsun. Beceri matrisi kimin öğretebileceğini gösterir.
+Kontrol noktalarını koyun. 1. gün sonu, 7. gün ve 30. gün görüşmeleri; her istasyon sonunda quiz ve sorumlu onayı.
+Aşağıdaki şablon bu yapının doldurulmuş bir örneğidir. Kendi menünüze ve istasyonlarınıza göre maddeleri değiştirin, sorumlu sütununu kendi ekibinizin unvanlarıyla doldurun.
+
+## İlk günden önce: evrak, vardiya ve mentor
+
+İlk vardiyadan önce yapılabilecek her şeyi önceden yapın; ilk gün ofiste değil, sahada geçsin.
+Başlangıç tarihini, ilk vardiya saatini, hangi kapıdan gireceğini ve kimi soracağını yazılı gönderin. Servis sırasında ön kapıda bekleyen yeni personel kötü bir ilk saattir.
+İşe giriş evrakını ve yasal bildirimleri işe başlamadan tamamlayın. Süreler ve kurallar değişebildiği için muhasebeciniz veya İK ile teyit edin.
+Pozisyon için hangi belgelerin istendiğini kontrol edin: hijyen eğitimi belgesi, sağlık raporu veya belediyenin istediği diğer belgeler. Hangilerinin ilk vardiyadan önce gerektiğini belediyenizden ve güncel mevzuattan teyit edin; genel bir listeye güvenmeyin.
+Kıyafet, önlük ve isim kartını hazırlayın, nasıl ayakkabıyla gelmesi gerektiğini söyleyin.
+Bir mentor seçin: ilk istasyonu iyi yapan ve anlatabilen biri. İlk hafta ikisini aynı vardiyalara yazın.
+
+## İlk gün: yeni personelin önce görmesi gerekenler
+
+İlk gün bütün menü için değil; güvenlik, hijyen ve tek bir istasyon içindir. Başkalarının yanında güvenle çalışması için gerekenle sınırlı tutun.
+Karşılama ve ekip. Bulaşıkhane ve salon dahil, vardiyadaki herkesle tanıştırın.
+Tur. Personel girişi, soyunma odası, tuvaletler, acil çıkışlar, ilk yardım dolabı, yangın tüpleri, kimyasalların durduğu yer.
+El yıkama. Lavabolar nerede, ne zaman ve nasıl yıkanır, işletmenizin standardına göre.
+Gıda güvenliği ve alerjenler. Mevzuatın ve kendi standardınızın istediği temeller: sıcak ve soğuk muhafaza, etiketleme, depolama sırası ve alerjenli bir siparişin tam olarak nasıl işaretlenip hazırlandığı.
+Sahada güvenlik. Bıçak, kızgın yağ, ıslak zemin, yük kaldırma ve bir şey ters gittiğinde kime haber verileceği.
+İlk istasyonda gözlem. Vardiyanın bir kısmı mentorun yanında, izleyerek ve yardım ederek.
+Çıkmadan önce kısa görüşme. Beş dakika: neler kafasını karıştırdı, yarın ne var.
+
+## İlk hafta: önce izle, sonra destekle yap
+
+İlk haftada yeni personel tek bir istasyonu doğru öğrenir: işi izler, mentorun yanında yapar, sonra birkaç soruyla kendini kontrol eder.
+Fritöze verilen yeni bir aşçı yardımcısı için örnek bir hafta: ikinci gün fritöz işlerini izler (yağ kontrolü, sepet doldurma, bekletme süreleri) ve mentor adisyonları okurken sepetleri çalıştırır. Üçüncü ve dördüncü gün aynı istasyon, daha yoğun bir vardiyada. Beşinci gün istasyonu mentor yakındayken kendisi yürütür ve izlediği her iş için kısa bir quiz çözer.
+Mentor her gün sonunda iki şeyi not etsin: neyi tek başına yaptı, neyi hâlâ destekle yapıyor. Bu notlar 7. gün görüşmesinin konusu olur.
+İlk hafta ayrıca:
+Bir açılış veya kapanış rutini, gözlemle.
+Adisyonun istasyona nasıl geldiği ve pasta nasıl seslenildiği.
+İstasyonun temizlik planı ve vardiya sonu toplama.
+7. gün müdürle görüşme ve beceri matrisinde kendi satırının güncellenmesi.
+
+## 8 ile 30. günler: istasyon istasyon
+
+İkinci haftadan itibaren her rol kendi yolunda ilerler. 30. günün hedefi, ilk istasyonda sorumlu onayı ve ikinci istasyon için net bir plandır.
+Salon (servis)
+Karşılama, masaya oturtma ve masa düzeni, standardınıza göre.
+Sipariş alma, menü ve alerjen soruları, alerjenli siparişi mutfağa doğru iletme.
+POS: ekleme, iptal, hesap bölme, ödeme.
+Servis ve pas ile iletişim.
+Şikâyeti karşılama ve ne zaman müdürün çağrılacağı.
+Mutfak
+Hazırlık listesi ve stok seviyeleri.
+İstasyondaki her ürünün reçetesi ve sunumu.
+Sıcaklık kontrolleri ve kayıtları.
+Etiketleme, tarihleme, ilk giren ilk çıkar.
+Ekipmanı açma, temizleme ve kapatma.
+Bulaşıkhane
+Bulaşık makinesi kurulumu, kimyasal ve sıcaklık kontrolü.
+Ayırma, rafa dizme, kazan yıkama ve yerine kaldırma.
+Temizlik kimyasallarının güvenli kullanımı.
+Atık, geri dönüşüm ve yağ atığı.
+Bulaşıkhane çoğu zaman mutfağa yeni gelenin ilk işidir ve en sık "boşta kim varsa" ona öğretilen iştir. Onu da kendi listesi olan bir istasyon gibi ele alın.
+
+## Neleri bir kez çekip her yeni personelde kullanmalısınız?
+
+Her yeni personelin öğrenmesi gereken ve her seferinde aynı yapılan işleri çekin. İşi en iyi yapan kişi bir kez, telefonla, istasyonda çeker; sonra gelen herkes aynı hali öğrenir. Bunun nasıl yapıldığını video SOP rehberinde adım adım anlattık.
+Standardınıza göre el yıkama ve eldiven kullanımı.
+Alerjenli siparişin siparişten tabağa kadar akışı.
+Her istasyon için açılış ve kapanış.
+Her ürün için reçete ve sunum, ürün başına kısa bir video.
+Fritöz yağ kontrolü ve süzme, ızgara temizliği.
+Bulaşık makinesi kurulumu ve kimyasal kontrolü.
+Salon için POS temelleri.
+Her video tek bir iş olsun ve adımlara bölünsün; aşçı emin olmadığı tek adımı yeniden açabilsin. Haftalık değişen şeyleri (günün spesiyalleri gibi) çekmeyin, vardiya öncesi kısa toplantıda anlatmak daha iyi çalışır.
+
+## Yeni personelin anladığını nasıl kontrol edersiniz?
+
+İki kontrol kullanın: her işten hemen sonra kısa bir quiz ve istasyonda yalnız çalışmadan önce sorumlunun sahada onayı.
+Quiz, gerçekte ters giden şeyleri sormalı: "Alerjenli sipariş adisyonda nasıl işaretlenir?", "Yağ çizginin altındaysa ne yaparsın?", "Çiğ tavuk hangi rafa konur?" İş başına üç ile beş soru yeterlidir. İşin kendisinden hazırlanan bir quiz, soruları gerçek adımlara bağlı tutar. Quiz adımları kimin anladığını gösterir; yoğun bir vardiyada işi kimin yapabildiğini göstermez.
+Onu sorumlunun onayı gösterir. Vardiya sorumlusu yeni personeli gerçek bir vardiyada istasyonu yürütürken izler ve tarihiyle onaylar. Bu olana kadar kişi istasyonda destekle çalışır. İki kontrolü de beceri matrisine işleyin ki bir sonraki müdür herkesin nerede olduğunu görebilsin.
+
+## Şubeler arasında oryantasyonu nasıl aynı tutarsınız?
+
+Her şubede aynı listeyi, aynı iş videolarını ve aynı seviye ölçeğini kullanın; tamamlanmayı her ay şube bazında karşılaştırın.
+Liste ve iş içerikleri merkezin sorumluluğundadır. Şube kendi ekipmanı için madde ekleyebilir, ortak maddeleri değiştiremez.
+Her şubedeki her yeni personel her işin aynı halini izler.
+Bölge müdürü tamamlanma ve onayları şube bazında görür, hangi şubeye gitmesi gerektiğini buradan anlar.
+Zincir ve franchise yapılarında bu düzenin nasıl kurulduğunu restoranlar sayfasında görebilirsiniz.
+
+## Sezonluk ve toplu işe alımda oryantasyon
+
+Aynı hafta birden fazla kişi başlıyorsa ortak kısmı toplu, istasyon kısmını tek tek yapın. Tur, hijyen, alerjen ve güvenlik temelleri bir grup halinde anlatılabilir; istasyon eğitimi ise her zaman bir mentorla birebir kalmalıdır.
+Sezon açılışlarında en sık yapılan hata, mentor sayısını hesaba katmadan işe alım yapmaktır. Bir mentora aynı anda iki kişiden fazlasını vermeyin. İlk haftanın ortak işlerini videoyla verirseniz yeni gelenler bu kısmı kendi telefonunda izler, mentorun zamanı istasyondaki uygulamaya kalır.
+
+## Restoran oryantasyonunda sık yapılan hatalar
+
+En yoğun vardiyada başlatmak. Cuma akşamı başlayan kişi standardı değil, hayatta kalmayı öğrenir.
+İsmi belli bir mentor olmaması. Boşta olandan öğrenmek, her vardiyada işin başka bir halini öğretir.
+Her şeyi ilk güne sığdırmak. Tüm menü, POS ve üç istasyon tek vardiyada akılda kalmaz.
+Alerjenleri sözlü geçmek. Bu prosedür gösterilmeli, yazılı olmalı ve kontrol edilmelidir.
+Onay olmaması. "İdare ediyor" bir kontrol değildir. Tarihli bir sorumlu onayı kullanın.
+30. gün görüşmesini atlamak. İnsanlar kalıp kalmayacağına çoğu zaman ilk ayda karar verir.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore, bu listedeki "bir kez çek, herkese aynı öğret" kısmını üstlenir. Şefiniz işi istasyonda telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.
+İşleri role ve şubeye göre atarsınız; yeni personel kendi telefonunda izler, takıldığı adımı yeniden açar. Kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahada onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır. Otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+
+## Restoran yeni personel oryantasyon kontrol listesi
+
+İlk günden önce
+Madde	Sorumlu	Tamam
+Başlangıç tarihi, ilk vardiya saati, hangi kapıdan girileceği ve kimi soracağı bildirildi	Müdür	
+İşe giriş evrakı ve yasal bildirimler tamamlandı (güncel kuralları muhasebe veya İK ile teyit edin)	Müdür / İK	
+Pozisyon için istenen belgeler kontrol edildi (ör. hijyen eğitimi belgesi, sağlık raporu); hangilerinin işe başlamadan gerektiği belediye ve güncel mevzuattan teyit edildi	Müdür	
+Kıyafet, önlük, isim kartı hazırlandı; ayakkabı bilgisi verildi	Müdür	
+Vardiya planı erişimi, uygulama girişi ve dolap ayarlandı	Müdür	
+İlk istasyonu iyi bilen ve öğretebilen bir mentor seçildi	Mutfak şefi / salon sorumlusu	
+İlk haftanın işleri atandı: tanışma, hijyen temelleri, ilk istasyon	Eğitmen	
+Yeni personel ve mentor ilk hafta aynı vardiyalara yazıldı	Müdür	
+
+1. gün
+Madde	Sorumlu	Tamam
+Karşılama ve vardiyadaki ekiple tanışma	Müdür	
+Tur: personel girişi, soyunma odası, tuvaletler, acil çıkışlar, ilk yardım dolabı, yangın tüpleri	Mentor	
+El yıkama: nerede, ne zaman, nasıl (işletme standardınıza göre)	Mentor	
+Gıda güvenliği temelleri: sıcaklıklar, etiketleme, depolama sırası	Eğitmen	
+Alerjen prosedürü: alerjenli sipariş nasıl alınır, işaretlenir ve hazırlanır	Eğitmen	
+İş güvenliği temelleri: bıçak, kızgın yağ, ıslak zemin, yük kaldırma, temizlik kimyasalları	Eğitmen	
+Yaralanma, dökülme veya arızada kime haber verileceği	Müdür	
+Vardiyanın bir kısmında ilk istasyonda gözlem	Mentor	
+Vardiya sonu kısa görüşme: sorular, gün nasıl geçti	Müdür	
+
+1. hafta (2. ile 7. gün)
+Madde	Sorumlu	Tamam
+İlk istasyonun işleri adım adım izlendi	Yeni personel	
+İlk istasyon işleri mentorun yanında yapıldı	Mentor	
+İzlenen her iş için kısa quiz çözüldü	Yeni personel	
+Bir açılış veya bir kapanış rutini gözlemlendi	Mentor	
+Adisyon akışı: sipariş istasyona nasıl gelir, pasta nasıl seslenilir, salon için POS temelleri	Eğitmen	
+İstasyonun temizlik planı ve vardiya sonu toplama	Mentor	
+7. gün görüşmesi: neler net, neler değil; yetkinlik matrisi güncellendi	Müdür	
+
+8. ile 30. gün: salon
+Madde	Sorumlu	Tamam
+Karşılama, masaya oturtma ve masa düzeni standardınıza göre	Salon sorumlusu	
+Sipariş alma, menü ve alerjen soruları	Eğitmen	
+POS: ekleme, iptal, hesap bölme, ödeme	Müdür	
+Servis, masa numaraları, pas ile iletişim	Salon sorumlusu	
+Şikâyet karşılama ve ne zaman müdür çağrılacağı	Müdür	
+Açılış ve kapanış yan görevleri	Salon sorumlusu	
+
+8. ile 30. gün: mutfak
+Madde	Sorumlu	Tamam
+İstasyonun hazırlık listesi ve stok seviyeleri	Mutfak şefi	
+İstasyondaki her ürünün reçetesi ve tabak sunumu	Mutfak şefi	
+Sıcaklık kontrolleri ve kayıtları	Mutfak şefi	
+Etiketleme, tarihleme ve ilk giren ilk çıkar	Mutfak şefi	
+Ekipmanı açma, temizleme ve kapatma	Mutfak şefi	
+Yoğun vardiyada istasyonu destekle çalıştırma	Mentor	
+
+8. ile 30. gün: bulaşıkhane
+Madde	Sorumlu	Tamam
+Bulaşık makinesi kurulumu, kimyasal ve sıcaklık kontrolü	Mutfak şefi	
+Ayırma, rafa dizme, kazan yıkama ve yerine kaldırma	Mentor	
+Temizlik kimyasallarının güvenli kullanımı ve güvenlik bilgilerinin yeri	Müdür	
+Atık, geri dönüşüm ve yağ atığı	Mentor	
+
+8. ile 30. gün: tüm roller
+Madde	Sorumlu	Tamam
+İstasyonda yalnız çalışmadan önce sorumlu onayı	Vardiya sorumlusu	
+İlk istasyon onaylandıysa ikinci istasyona başlandı	Müdür	
+30. gün görüşmesi: matris seviyeleri, sonraki istasyon, iki yönlü geri bildirim	Müdür	
+
+## Sorular
+
+**Restoranda oryantasyon ne kadar sürmeli?**
+Yeni personelin ilk istasyonda onay alması için yaklaşık 30 gün planlayın; ilk hafta güvenlik, hijyen ve tek bir istasyona ayrılsın. Basit roller daha hızlı, karmaşık istasyonlar daha yavaş ilerleyebilir. Önemli olan belli bir gün sayısı değil, her istasyonun tarihli bir sorumlu onayıyla kapanmasıdır.
+
+**Yeni personel ilk gün ne yapmalı?**
+Vardiyadaki ekiple tanışmalı, acil çıkışlar ve ilk yardım dahil işletmeyi gezmeli, el yıkamayı ve işletmenizin gıda güvenliği ile alerjen kurallarını öğrenmeli, bir sorun olduğunda kime haber vereceğini bilmeli ve vardiyanın bir kısmında ilk istasyonu gözlemlemelidir. Gün, müdürle kısa bir görüşmeyle bitmelidir.
+
+**Restoran personel eğitimini kim vermeli?**
+İlk istasyonu iyi yapan ve anlatabilen, ilk hafta aynı vardiyalarda çalışan, ismi belli bir mentor. Listeden ve görüşmelerden müdür sorumludur, her istasyonun onayını vardiya sorumlusu verir. O an boşta olandan öğrenmek, her vardiyada işin biraz farklı bir halini öğretir ve standart zamanla kayar.
+
+**Hijyen eğitimi belgesi ve sağlık raporu bu listeye dahil mi?**
+Listede bu belgeler için bir kontrol maddesi var, ancak hangi belgenin hangi pozisyon için ve ne zamana kadar gerektiğini mevzuat ve belediyeniz belirler; kurallar değişebilir. Güncel gereklilikleri belediyenizden, muhasebecinizden veya İK danışmanınızdan teyit edin ve listeye o şekilde ekleyin. Bu sayfa hukuki danışmanlık yerine geçmez.
+
+**Oryantasyon programı örneği nasıl hazırlanır?**
+Bu sayfadaki kontrol listesini başlangıç olarak kullanın: dört aşamaya bölün, her maddeye sorumlu yazın, salon, mutfak ve bulaşıkhane için ayrı istasyon listeleri çıkarın. Her istasyonun sonuna kısa bir quiz ve sorumlu onayı koyun, 7. ve 30. günlere birer görüşme ekleyin.
+
+**Şubeler arasında oryantasyonu nasıl aynı tutarım?**
+Her şubede aynı listeyi, aynı iş videolarını ve aynı seviye ölçeğini kullanın. Şubeler kendi ekipmanları için madde ekleyebilsin ama ortak maddeleri değiştirmesin. Tamamlanmayı ve sorumlu onaylarını her ay şube bazında karşılaştırın; desteğe ihtiyacı olan şube buradan görünür ve bölge ziyaretleri buna göre planlanır.
+
+
+---
+
+# SOP yazılımı nasıl seçilir? Saha ekipleri için rehber
+URL: https://www.flexlore.com/tr/rehber/sop-yazilimi/
+Language: tr
+
+SOP yazılımı, standart operasyon prosedürlerinin ve iş talimatlarının hazırlandığı, onaylandığı, ekibe dağıtıldığı ve güncellendiği; kimin öğrendiğinin takip edildiği programdır. Saha ekipleri için telefonda eksiksiz çalışan, videolu adımları destekleyen, kısa bir quizle anlamayı ölçen, şubeye göre yetki veren ve her değişikliği onaydan geçiren bir yazılım seçin.
+
+## SOP yazılımı ne işe yarar?
+
+SOP yazılımı, bir işletmenin standart operasyon prosedürlerini ve iş talimatlarını hazırladığı, onayladığı, ekibe ulaştırdığı ve güncellediği; kimin öğrendiğini de takip ettiği programdır. Klasörlerin, ortak sürücülerin ve WhatsApp gruplarının yerini, sahada telefondan açılan tek bir kütüphane alır.
+
+Saha ekipleri için iyi bir SOP programı beş işi görür:
+
+Hazırlama: video, fotoğraf ya da metinden, tasarım veya kurgu bilgisi olmadan prosedür oluşturmak.
+
+Onay: taslağı doğru kişiye göndermek, neyin ne zaman onaylandığını kayıt altında tutmak.
+
+Dağıtım: her prosedürü ona ihtiyacı olan role ve şubeye, çalışanın zaten cebinde olan telefona göndermek.
+
+Kontrol: kimin açtığını ve kimin anladığını, genelde kısa bir quizle göstermek.
+
+Güncelleme: bir adımı değiştirip yeni sürümü yayınlamak ve herkesin değişikliği gördüğünden emin olmak.
+
+Ofis için yapılmış doküman araçları ilk üç işi çoğu zaman iyi yapar. Son ikisinde ve hepsini istasyonda, telefonda yapabilmekte saha ekiplerinin ihtiyacı ayrılır.
+
+## SOP yazılımına ihtiyacınız var mı, Word ve PDF yetmez mi?
+
+Her şeyi tek bir kişi aklında tutabildiği sürece doküman yeter. &quot;Güncel sürüm hangisi?&quot; ve &quot;bunu kim öğrendi?&quot; sorularını etrafa sormadan cevaplayamıyorsanız yazılıma ihtiyacınız vardır.
+
+Dokümanların yetmediğini gösteren işaretler:
+
+İki şube aynı işi farklı yapıyor ve ikisi de bir dokümanı gösteriyor.
+
+Yeni başlayanlar usta yanında öğreniyor ve sonuç hangi ustanın yanına düştüğüne bağlı.
+
+İstasyondaki çıktı, makineden daha eski.
+
+Yeni alerjen ya da iş güvenliği değişikliğini kimin gördüğünü kimse bilmiyor.
+
+Bir işi gerçekten bilen tek bir deneyimli kişi var.
+
+Bunların hiçbiri sizin için geçerli değilse, şimdilik iyi bir iş talimatı şablonu ve düzenli bir klasör yapısı yeterli olabilir.
+
+## Personel eğitim yazılımı nasıl seçilir? Saha ekipleri için kriterler
+
+SOP yazılımını masa başındaki kişiye göre değil, fritözün başındaki ya da 2 numaralı hattaki kişiye göre değerlendirin. En çok önem taşıyan kriterler şunlar.
+
+Önce mobil
+
+Saha çalışanı bilgisayar başında oturmaz. Hazırlama, izleme ve onay iOS ve Android telefonlarda eksiksiz çalışmalı; masaüstü aracın kırpılmış bir sürümü olmamalı.
+
+Sadece yazı değil, video
+
+Fiziksel işler izleyerek daha kolay öğrenilir. Telefonla çekip kırpabildiğiniz, videoyu adımlara bölüp her adıma yazı ekleyebildiğiniz bir araç arayın. İyi bir videolu iş talimatının neye benzediğini video SOP rehberinde anlattık.
+
+Anlamayı ölçen bir kontrol
+
+&quot;İzlendi&quot; demek &quot;anlaşıldı&quot; demek değildir. Her prosedürün ardından gelen kısa bir quiz, kimin ana noktaları kavradığını gösterir. Ama sahada sorumlunun verdiği yetkinlik onayının yerini tuttuğunu iddia etmemeli.
+
+Dil desteği
+
+Birçok saha ekibinde birden fazla dil konuşulur. Uygulamanın kendisinin hangi dillerde çalıştığını, ayrıca prosedür içeriğinin çevrilip çevrilemediğini ve çeviriyi kimin kontrol ettiğini ayrı ayrı sorun.
+
+Şubeye göre rol ve yetki
+
+Franchise merkezinin, şube müdürünün ve yeni başlayan kasiyerin göreceği şeyler farklıdır. Şubeye göre çalışma alanları ve kimin hazırlayıp kimin onaylayıp kimin sadece izleyeceğini belirleyen roller arayın.
+
+Hazırlık takibi
+
+Her prosedürü kimin tamamladığını ve kontrolünü geçtiğini kişi, ekip ve şube bazında görebilmelisiniz. Bölge müdürünün pazartesi sabahı açtığı ekran budur.
+
+Sürüm kontrolü ve onay akışı
+
+Her değişiklik onaydan geçmeli, kimin neyi onayladığı kayıtlı olmalı. Çalışanlar her zaman güncel sürümü görmeli, siz de eski sürümü kimin öğrendiğini bilmelisiniz.
+
+Sahanın gerçekleri
+
+Bodrum katta ya da soğuk odada zayıf çeken internet, ortak kullanılan cihazlar, eldiven, gürültü ve kurumsal e-postası olmayan çalışanlar hakkında soru sorun. Çevrimdışı kullanım sizin için önemliyse, bağlantı yokken tam olarak neyin çalıştığını sorun.
+
+Kullanıcı sayısına göre fiyat
+
+Çoğu araç kullanıcı sayısına göre fiyatlanır. Kimin kullanıcı sayıldığını, sezonluk personelin planınızı değiştirip değiştirmediğini ve depolama, quiz ya da yapay zekâ özelliklerinde hangi limitlerin olduğunu kontrol edin.
+
+## SOP yazılımı karşılaştırma ve puanlama listesi
+
+Demo ya da deneme sırasında, kendi gerçek işlerinizden biriyle, her satıra 1 (zayıf) ile 5 (güçlü) arasında puan verin ve seçtiğiniz ağırlıkla çarpın. Aşağıdaki ağırlıklar çok şubeli bir saha ekibi için örnektir; kendinize göre değiştirin.
+
+Kriter | Neye bakılır | Örnek ağırlık | Puan (1 ile 5 arası) | 
+
+Telefondan hazırlama | Vardiya sorumlusu telefondan prosedür çekip yayınlayabiliyor mu? | 3 |  | 
+
+Videolu adımlar | Video kırpılıp her adıma yazı eklenerek adımlara bölünebiliyor mu? | 3 |  | 
+
+Anlama kontrolü | Her prosedür için quiz var mı, sorular düzenlenebiliyor mu? | 2 |  | 
+
+Onay akışı | Çalışanlar görmeden önce her taslak onaydan geçiyor mu? | 3 |  | 
+
+Sürüm geçmişi | Neyin değiştiği ve eski sürümü kimin öğrendiği görülebiliyor mu? | 2 |  | 
+
+Şubeye göre yetki | Erişim role ve şubeye göre sınırlanabiliyor mu? | 3 |  | 
+
+Hazırlık görünümü | Tamamlama ve quiz sonuçları kişi, ekip ve şube bazında görülüyor mu? | 3 |  | 
+
+Diller | Uygulama bugün hangi dillerde; içerik çevirisi var mı, planlanıyor mu? | 2 |  | 
+
+Saha koşulları | Çevrimdışı davranış, ortak cihaz, kurumsal e-posta olmadan giriş | 2 |  | 
+
+Çalışan için kolaylık | Yeni başlayan biri doğru prosedürü yardımsız bulup bitirebiliyor mu? | 3 |  | 
+
+Fiyat uyumu | Kullanıcı bazlı plan, kadronuza ve sezon yoğunluğuna uyuyor mu? | 2 |  | 
+
+Veri ve gizlilik | Gizlilik, güvenlik ve alt işleyen bilgileri yayınlanmış mı? KVKK açısından hukuk danışmanınıza da sorun. | 2 |  | 
+
+Satıcının &quot;planlanıyor&quot; ya da &quot;yakında&quot; dediği her şeyi ayrıca işaretleyin. Bugün var olana puan verin; yol haritasını satın alma nedeni değil, artı olarak görün.
+
+## Restoran, üretim ve otel için SOP yazılımında ne değişir?
+
+Kriterler aynı kalır, ağırlıkları işin kendisi belirler.
+
+Restoran ve kafeler: yüksek personel devri ve çok şube, mobil erişimi, kısa videolu adımları ve şube bazında hazırlık takibini öne çıkarır. Reçeteler, açılış ve kapanış rutinleri, alerjen adımları genelde ilk içeriklerdir. Bkz. restoranlar.
+
+Üretim: ürün değişimi, makine devreye alma ve iş güvenliği adımları; onay akışını, sürüm geçmişini ve yakın çekim videoyu öne çıkarır. İş talimatı çoğu zaman makinenin yanında durur. Bkz. üretim.
+
+Oteller: kat hizmetleri ve resepsiyon standartları, net görsel standartları ve dil desteğini öne çıkarır.
+
+Franchise zincirleri: merkez bir süreci bir kez yayınlayıp şubeler arasında tamamlanmayı karşılaştırmak ister; şubeye göre yetki ve hazırlık görünümü en önemli kriterdir.
+
+## SOP programı demosunda sorulacak sorular
+
+Demoya kendi gerçek işlerinizden birini götürün ve satıcıdan onu sizinle birlikte hazırlamasını isteyin. Sonra şu soruları sorun.
+
+Bir vardiya sorumlusunun bu prosedürü baştan sona telefondan hazırladığını gösterebilir misiniz?
+
+Yapay zekâ tam olarak ne yapıyor, çalışanlar görmeden önce neyi bir insanın onaylaması gerekiyor?
+
+Yeni başlayan biri istasyondayken doğru prosedürü nasıl buluyor?
+
+Yönetici tek bir şube için ve bütün şubeler için ne görüyor?
+
+Bir adımı değiştirdiğimde eski sürümü öğrenmiş kişilere ne oluyor?
+
+Uygulama bugün hangi dillerde çalışıyor; hangi özellikler kullanılabilir, hangileri yol haritasında?
+
+İnternet yokken ne çalışıyor?
+
+Fiyatlandırmada kim kullanıcı sayılıyor, sezon yoğunluğunda ne oluyor?
+
+Verilerimiz nerede işleniyor, gizlilik ve güvenlik belgeleriniz nerede?
+
+Ayrılırsak içeriğimizi dışa aktarabilir miyiz?
+
+## SOP yazılımına geçişte ilk 30 gün planı
+
+Küçük başlayın: gerçek işler, bir ya da iki şube. Düzen oturduktan sonra genişletin. Basit bir plan:
+
+1. ile 7. gün: kurulum
+
+Geçişten sorumlu bir kişi ve bir ya da iki pilot şube seçin.
+
+Şubeleri, rolleri ve onaylayacak kişileri tanımlayın.
+
+Yeni başlayanların en çok sorduğu işleri listeleyin, ilk beş ile on işi seçin.
+
+8. ile 14. gün: içerik
+
+İlk prosedürleri, o işi en iyi yapan kişilerle çekin ya da yazın.
+
+Her taslağı ustayla kontrol edin, standardın sahibi olan yöneticiyle onaylayın.
+
+Yeni ya da daha az deneyimli birine her prosedürü denetin, nerede takıldığını not edin.
+
+15. ile 21. gün: atama ve takip
+
+Pilot şubelerde prosedürleri role ve şubeye göre atayın.
+
+Tamamlama ve quiz sonuçlarına birkaç günde bir bakın. Çok kaçırılan soruların arkasındaki adımları düzeltin.
+
+Sorumlular sahadaki yetkinlik onayını eskisi gibi vermeye devam etsin.
+
+22. ile 30. gün: değerlendirme
+
+Pilot şubedeki çalışanlara ve yöneticilere neyin işe yaradığını, neyin zorladığını sorun.
+
+Güncelleme kuralında anlaşın: her prosedürün sahibi kim, ne zaman gözden geçirilecek.
+
+Sıradaki işleri ve şubeleri belirleyin. Kimin neye ihtiyacı olduğunu planlamak için beceri matrisi kullanın.
+
+## SOP yazılımı seçerken sık yapılan hatalar
+
+Seçimlerin çoğu, aracın sahada değil toplantı odasında denenmesi yüzünden yanlış gider. Şunlara dikkat edin.
+
+Demoyu satıcının örnek içeriğiyle izlemek. Kendi işinizi, kendi istasyonunuzda deneyin.
+
+Sadece yöneticinin ekranına bakmak. Asıl kullanıcı, eldivenle telefon tutan yeni çalışandır. Ona denetin.
+
+Yol haritasını bugünkü özellik saymak. &quot;Yakında&quot; denen şeyi bugün kullanamazsınız; kararı bugün çalışan özelliklere göre verin.
+
+Onay akışını sonraya bırakmak. Kim hazırlar, kim onaylar, baştan belli olmazsa kütüphane kısa sürede güvenilmez hâle gelir.
+
+Bütün şirketi aynı anda geçirmek. Bir iki pilot şubeyle başlamak, sorunları küçükken gösterir.
+
+İçerik sahipliğini belirlememek. Yazılım ne kadar iyi olursa olsun, sahibi olmayan prosedür eskir.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore, saha ekipleri için video odaklı bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekmek, telefondaki editörde adımlara bölmek, talimatların ve kısa bir quizin taslağını yapay zekâya hazırlatıp ekibinizle düzenleyip onaylamak. Şubeye göre rol, yetki ve çalışma alanları; kişi, ekip ve şube bazında tamamlama ve quiz sonuçları. iOS ve Android uygulamaları, uygulama 8 dilde.
+
+Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
+
+Planlar kullanıcı sayısına göre, Free'den Enterprise'a kadar; ayrıntılar fiyatlar sayfasında. Yukarıdaki listeyi kendi işlerinizden biriyle denemek için demo isteyin.
+
+## Sorular
+
+**SOP yazılımı ile LMS (eğitim yönetim sistemi) arasındaki fark nedir?**
+LMS genelde kurslar etrafında kurulur; içerikler uzundur ve çoğu zaman masa başında izlenir. SOP yazılımı ise prosedürler etrafında kurulur: belirli bir işin nasıl yapıldığı, işin başında açılır ve iş değiştiğinde güncellenir. Bazı işletmeler ikisini birlikte kullanır. Saha işlerinde vardiyada gerçekten açılan şey, kısa iş talimatları ve hızlı bir kontroldür.
+
+**Ücretsiz SOP programı var mı?**
+Flexlore dahil bazı araçlar, az sayıda kullanıcı için ücretsiz plan sunar. Ücretsiz plan, iş akışını gerçek işlerle denemek için kullanışlıdır. Kullanıcı, depolama, quiz ve yapay zekâ limitlerini, ücretli plana geçtiğinizde ya da ayrıldığınızda içeriğinize ne olacağını kontrol edin. Ücretsiz planı, pilot şubede gerçek bir işle denemek için kullanın.
+
+**SOP'larımızı yapay zekâ yazabilir mi?**
+Yapay zekâ bir video ya da dokümandan adımların, metnin ve quiz sorularının taslağını hazırlayabilir, bu da zaman kazandırır. Ama ekipmanınızı, standartlarınızı ve size uygulanan kuralları bilemez. Her çıktıyı, işi bilen birinin okuyup düzelttiği ve çalışanlar görmeden önce onayladığı bir taslak olarak görün.
+
+**SOP yazılımı bizi HACCP ya da İSG açısından uyumlu hâle getirir mi?**
+Hiçbir yazılım tek başına uyumluluk sağlamaz. Hangi prosedürlerin ve kayıtların gerektiğine yürürlükteki mevzuat karar verir; bunu danışmanınızla ya da ilgili kurumla kontrol edin. Onaylı, net prosedürler ve kimin eğitim aldığına dair kayıtlar denetimde işinize yarar, ama denetlenen şey sahadaki uygulamadır.
+
+**SOP yazılımına geçmek ne kadar sürer?**
+Bir ya da iki şube ve birkaç gerçek işle yapılan bir pilot, sorumlusu belli olduğunda bir ay içinde yürütülebilir. Bütün kütüphaneyi kurmak daha uzun sürer; kaç işiniz olduğuna ve ustaların ne kadar zaman ayırabildiğine bağlıdır. En çok soru gelen işlerle başlayın.
+
+**SOP yazılımına ilk hangi işleri koymalıyız?**
+Yeni başlayanların ilk hafta en çok sorduğu işlerle ve hata yapılmasının pahalı ya da tehlikeli olduğu işlerle başlayın. Açılış ve kapanış rutinleri, temizlik, makine devreye alma ve ürün değişimi sık seçilen ilk işlerdir. İyi hazırlanmış kısa bir liste, kimsenin açmadığı büyük bir kütüphaneden iyidir.

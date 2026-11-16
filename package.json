@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/llms.mjs && node scripts/knowledge.mjs && node scripts/theme-light-css.mjs && node scripts/check-brand.mjs && node scripts/contrast.mjs",
     "build": "next build",
-    "postbuild": "node scripts/budget.mjs",
+    "postbuild": "node scripts/lang-tr.mjs && node scripts/budget.mjs",
     "start": "next start -p 3217",
     "check:brand": "node scripts/check-brand.mjs",
     "check:contrast": "node scripts/contrast.mjs"

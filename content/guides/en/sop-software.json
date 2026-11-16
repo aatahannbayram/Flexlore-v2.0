@@ -1,0 +1,86 @@
+{
+  "slug": "sop-software",
+  "lang": "en",
+  "twin": "sop-yazilimi",
+  "kind": "guide",
+  "seoTitle": "SOP Software: How to Choose for Frontline Teams | Flexlore",
+  "description": "How to choose SOP software for restaurants, manufacturing and hotels: must-have criteria, a scoring checklist, demo questions and a 30-day rollout plan.",
+  "h1": "SOP software: how to choose one for frontline teams",
+  "kicker": "Guide",
+  "answer": "SOP software is a tool for creating, approving, sharing and updating standard operating procedures, and checking who has learned them. For frontline teams, choose one that works fully on a phone, supports video steps, checks understanding with a short quiz, controls access by role and location, tracks readiness and keeps every change approved.",
+  "sections": [
+    {
+      "id": "what-does-sop-software-do",
+      "h2": "What does SOP software do?",
+      "html": "<p>SOP software is where a team creates, approves, shares and updates its standard operating procedures, and checks who has learned them. It replaces binders, shared folders and group chats with one library that people open on the job.</p>\n<p>For frontline teams, good SOP software covers five jobs:</p>\n<ol>\n<li><strong>Create:</strong> build a procedure from video, photos or text without design or editing skills.</li>\n<li><strong>Approve:</strong> route drafts to the right person and keep a record of what was approved and when.</li>\n<li><strong>Share:</strong> send each procedure to the roles and locations that need it, on the phones people already carry.</li>\n<li><strong>Check:</strong> show who opened a procedure and who understood it, usually through a short quiz.</li>\n<li><strong>Update:</strong> change a step, publish a new version and make sure people see the change.</li>\n</ol>\n<p>Office-focused document tools often do the first three well. The last two, and doing all of it on a phone at a station, are where frontline needs differ.</p>"
+    },
+    {
+      "id": "do-you-need-sop-software",
+      "h2": "Do you need SOP software, or will documents do?",
+      "html": "<p>Documents are enough while one person can keep everything in their head. You need SOP software when you cannot answer &quot;which version is current&quot; and &quot;who has been trained on it&quot; without asking around.</p>\n<p>Signs you have outgrown documents:</p>\n<ul>\n<li>Two locations do the same task differently, and both point to a document.</li>\n<li>New hires learn by shadowing, and the result depends on who they shadow.</li>\n<li>Printed procedures at the station are older than the equipment.</li>\n<li>Nobody can say who has seen the new allergen or safety change.</li>\n<li>One experienced person is the only one who really knows a job.</li>\n</ul>\n<p>If none of these apply, a solid SOP template and a clear folder structure may be all you need for now.</p>"
+    },
+    {
+      "id": "must-have-criteria",
+      "h2": "What to look for in SOP software for frontline teams",
+      "html": "<p>Judge SOP software by how well it works for the person at the fryer or on line 2, not the person at a desk. These are the criteria that matter most.</p>\n<h3>Mobile first</h3>\n<p>Frontline staff do not sit at computers. Creating, watching and approving should work fully on iOS and Android phones, not as a reduced version of a desktop tool.</p>\n<h3>Video, not only text</h3>\n<p>Physical tasks are easier to learn by watching. Look for the ability to film on a phone, trim, and split a video into steps with text on each. See our <a href=\"/guides/video-sop/\">video SOP guide</a> for what good looks like.</p>\n<h3>A check for understanding</h3>\n<p>&quot;Viewed&quot; is not &quot;understood&quot;. A short quiz after each procedure shows who got the key points. It should not pretend to replace a supervisor signing someone off on the floor.</p>\n<h3>Language support</h3>\n<p>Many frontline teams work in several languages. Check which languages the app itself runs in, and separately whether procedure content can be translated, and who checks the translation.</p>\n<h3>Roles and permissions by location</h3>\n<p>A franchise head office, a store manager and a new cashier need different access. Look for workspaces or groups by location, and roles that control who creates, approves and only views.</p>\n<h3>Readiness tracking</h3>\n<p>You should see, by person, team and location, who has completed each procedure and passed its check. This is the view an area manager opens on Monday morning.</p>\n<h3>Version control and approvals</h3>\n<p>Every change should go through approval, with a record of who approved what. People should always see the current version, and you should know who learned an older one.</p>\n<h3>Shop floor realities</h3>\n<p>Ask about weak signal in basements and cold rooms, shared devices, gloves, noise, and staff without company email addresses. If offline access matters to you, ask exactly what works without a connection.</p>\n<h3>Pricing by users</h3>\n<p>Most tools price by the number of users. Check what counts as a user, whether seasonal staff change your plan, and what limits apply to storage, quizzes or AI features.</p>"
+    },
+    {
+      "id": "sop-software-scoring-checklist",
+      "h2": "SOP software scoring checklist",
+      "html": "<p>Score each tool from 1 (poor) to 5 (strong) on every line, during a demo or trial, using one of your real tasks. Multiply by the weight you choose. The weights below are an example for a multi-location frontline team; change them to fit you.</p>\n<table>\n<thead><tr><th>Criterion</th><th>What to check</th><th>Example weight</th><th>Score (1 to 5)</th></tr></thead>\n<tbody>\n<tr><td>Mobile creation</td><td>Can a shift lead film and publish a procedure from a phone?</td><td>3</td><td></td></tr>\n<tr><td>Video steps</td><td>Can you trim and split a video into steps with text on each?</td><td>3</td><td></td></tr>\n<tr><td>Understanding check</td><td>Is there a quiz per procedure, and can you edit the questions?</td><td>2</td><td></td></tr>\n<tr><td>Approval flow</td><td>Does every draft need approval before staff see it?</td><td>3</td><td></td></tr>\n<tr><td>Version history</td><td>Can you see what changed and who learned the old version?</td><td>2</td><td></td></tr>\n<tr><td>Roles by location</td><td>Can access be limited by role and site?</td><td>3</td><td></td></tr>\n<tr><td>Readiness view</td><td>Can you see completion and quiz results by person, team and location?</td><td>3</td><td></td></tr>\n<tr><td>Languages</td><td>Which app languages exist today; is content translation available or planned?</td><td>2</td><td></td></tr>\n<tr><td>Floor conditions</td><td>Offline behavior, shared devices, sign-in without company email</td><td>2</td><td></td></tr>\n<tr><td>Ease for staff</td><td>Can a new hire find and finish a procedure without help?</td><td>3</td><td></td></tr>\n<tr><td>Pricing fit</td><td>Does the user-based plan match your headcount and seasonal peaks?</td><td>2</td><td></td></tr>\n<tr><td>Data and privacy</td><td>Are privacy, security and sub-processor details published?</td><td>2</td><td></td></tr>\n</tbody>\n</table>\n<p>Mark anything a vendor calls &quot;planned&quot; or &quot;coming soon&quot; separately. Score what exists today and treat the roadmap as a bonus, not a reason to buy.</p>"
+    },
+    {
+      "id": "sop-software-by-industry",
+      "h2": "SOP software for restaurants, manufacturing and hotels: what changes?",
+      "html": "<p>The criteria stay the same; the weights change with the work.</p>\n<ul>\n<li><strong>Restaurants and cafés:</strong> high turnover and many locations put weight on mobile access, short video steps and readiness by location. Recipes, opening and closing routines and allergen steps are the usual first content. See <a href=\"/industries/restaurants/\">restaurants</a>.</li>\n<li><strong>Manufacturing:</strong> changeovers, machine start-up and safety steps put weight on approvals, version history and close-up video. Work instructions often sit next to the machine. See <a href=\"/industries/manufacturing/\">manufacturing</a>.</li>\n<li><strong>Hotels:</strong> housekeeping and front desk standards put weight on clear visual standards and language support.</li>\n<li><strong>Franchises:</strong> head office needs to launch a process once and compare completion across locations, so roles by location and a readiness view matter most.</li>\n</ul>"
+    },
+    {
+      "id": "questions-to-ask-in-a-demo",
+      "h2": "Questions to ask in an SOP software demo",
+      "html": "<p>Bring one real task and ask the vendor to build it with you. Then ask these questions.</p>\n<ol>\n<li>Can you show me a shift lead creating this procedure on a phone, start to finish?</li>\n<li>What does the AI do, and what has to be approved by a person before staff see it?</li>\n<li>How does a new hire find the right procedure at the station?</li>\n<li>What does a manager see for one location, and for all locations together?</li>\n<li>What happens to people who learned the old version when I change a step?</li>\n<li>Which languages does the app run in today, and which features are on the roadmap rather than available?</li>\n<li>What works without a connection?</li>\n<li>Who counts as a user for pricing, and what happens in a seasonal peak?</li>\n<li>Where is our data processed, and where are your privacy and security documents?</li>\n<li>Can we export our content if we leave?</li>\n</ol>"
+    },
+    {
+      "id": "first-30-days-rollout-plan",
+      "h2": "How to roll out SOP software in the first 30 days",
+      "html": "<p>Start small, with real tasks and one or two locations, and only widen once the routine works. A simple plan:</p>\n<h3>Days 1 to 7: set up</h3>\n<ul>\n<li>Choose one owner for the rollout and one or two pilot locations.</li>\n<li>Set up locations, roles and who approves.</li>\n<li>List the tasks new hires ask about most. Pick the first five to ten.</li>\n</ul>\n<h3>Days 8 to 14: build</h3>\n<ul>\n<li>Film or write the first procedures with the people who do the work best.</li>\n<li>Review each draft with the expert and approve it with the manager who owns the standard.</li>\n<li>Have one new or junior person try each procedure and note where they get stuck.</li>\n</ul>\n<h3>Days 15 to 21: assign and watch</h3>\n<ul>\n<li>Assign procedures by role and location in the pilot sites.</li>\n<li>Check completion and quiz results every few days. Fix steps behind the questions people miss.</li>\n<li>Supervisors keep signing people off on the floor as before.</li>\n</ul>\n<h3>Days 22 to 30: review and decide</h3>\n<ul>\n<li>Ask pilot staff and managers what helped and what got in the way.</li>\n<li>Agree the update rule: who owns each procedure and when it is reviewed.</li>\n<li>Decide the next tasks and locations. Use a <a href=\"/guides/training-matrix-template/\">training matrix</a> to plan who needs what.</li>\n</ul>"
+    },
+    {
+      "id": "how-flexlore-fits",
+      "h2": "How Flexlore fits",
+      "html": "<p>Flexlore is SOP software for frontline teams, built around video. Available now: film a job on a phone, split it into steps in the phone editor, and let AI draft the instructions and a short quiz that your team edits and approves. Roles, permissions and workspaces by location, and completion and quiz results by person, team and location. iOS and Android apps, with the app in 8 languages.</p>\n<p>Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, notifications, a web panel for managers, and AI agents and MCP.</p>\n<p>Plans are by number of users, from Free up to Enterprise; see <a href=\"/pricing/\">pricing</a>. To test it against the checklist above with one of your own tasks, book a <a href=\"/demo/\">demo</a>.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "What is the difference between SOP software and an LMS?",
+      "a": "An LMS is built around courses, often long and taken at a desk. SOP software is built around procedures: how a specific task is done, opened on the job and updated when the task changes. Some teams use both. For frontline work, short task procedures with a quick check are usually what people actually use on shift."
+    },
+    {
+      "q": "Is there free SOP software?",
+      "a": "Some tools, including Flexlore, offer a free plan for a small number of users. Free plans are useful to test the workflow with real tasks. Check the limits on users, storage, quizzes and AI features, and what happens to your content if you move to a paid plan or leave."
+    },
+    {
+      "q": "Can AI write our SOPs?",
+      "a": "AI can draft steps, text and quiz questions from a video or document, which saves time. It cannot know your equipment, your standards or local rules. Treat every AI output as a draft that someone who knows the job reads, corrects and approves before staff see it."
+    },
+    {
+      "q": "Does SOP software make us compliant with food safety or safety rules?",
+      "a": "No software makes you compliant by itself. Local rules decide what procedures and records you need, so check them with your authority or advisor. Clear, approved procedures with a record of who was trained can support an audit, but the practice on the floor is what is inspected."
+    },
+    {
+      "q": "How long does it take to roll out SOP software?",
+      "a": "A pilot with one or two locations and a handful of real tasks can run within a month if someone owns it. Building a full library takes longer and depends on how many tasks you have and how much time experts can give. Start with the tasks that cause the most questions."
+    },
+    {
+      "q": "What should we put in SOP software first?",
+      "a": "Start with the tasks new hires ask about most in their first week, plus any task where a mistake is costly or unsafe. Opening and closing routines, cleaning, machine start-up and changeovers are common first picks. A short list done well beats a large library nobody opens."
+    }
+  ],
+  "related": [
+    "/guides/video-sop/",
+    "/guides/sop-template/",
+    "/guides/training-matrix-template/",
+    "/pricing/"
+  ]
+}

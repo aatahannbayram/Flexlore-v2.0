@@ -1,0 +1,91 @@
+{
+  "slug": "video-sop",
+  "lang": "tr",
+  "twin": "video-sop",
+  "kind": "guide",
+  "seoTitle": "Video SOP Nedir? Videolu İş Talimatı Rehberi | Flexlore",
+  "description": "Video SOP nedir, yazılı talimattan farkı ne, telefonla iş nasıl çekilir ve adımlara, yazıya ve quize nasıl dönüştürülür? Çekim kontrol listesi içeride.",
+  "h1": "Video SOP nedir, nasıl hazırlanır?",
+  "kicker": "Rehber",
+  "answer": "Video SOP, bir işin standart operasyon prosedürünün kısa bir video olarak hazırlanmış hâlidir: gerçek iş çekilir, numaralı adımlara bölünür ve her adıma kısa bir yazılı talimat eklenir. Hazırlamak için işi en iyi yapan kişiyi telefonla çekin, adımları işaretleyin, kesin değerleri yazın, kısa bir quiz ekleyin ve onaya gönderin.",
+  "sections": [
+    {
+      "id": "video-sop-nedir",
+      "h2": "Video SOP nedir?",
+      "html": "<p>Video SOP, bir işin nasıl yapılacağını anlatan standart operasyon prosedürünün kısa bir video olarak hazırlanmış hâlidir. Video numaralı adımlara bölünür, her adımın altında bir iki satırlık yazılı talimat olur. Yazılı SOP ile aynı soruya cevap verir: bu işi burada, her seferinde nasıl yapıyoruz? Farkı, çalışanın okumak yerine eli, aleti ve sırayı görmesidir.</p>\n<p>İyi bir video SOP dört parçadan oluşur:</p>\n<ul>\n<li><strong>Video:</strong> tek bir iş, yapıldığı yerde, o işi en iyi yapan kişi tarafından çekilmiş.</li>\n<li><strong>Adımlar:</strong> her adım ayrı bir klip. Yeni başlayan kişi sadece takıldığı adımı tekrar açar.</li>\n<li><strong>Yazılı talimat:</strong> videonun iyi taşıyamadığı bilgiler: sıcaklık, makine ayarı, sıkma torku, uyarı.</li>\n<li><strong>Kontrol:</strong> sonda birkaç soru. Kişinin adımları anlayıp anlamadığını gösterir.</li>\n</ul>\n<p>Sahada buna videolu iş talimatı, görsel iş talimatı ya da video eğitim içeriği de deniyor. Üretimde genelde &quot;iş talimatı&quot;, mutfakta ve otelde &quot;standart&quot; ya da &quot;SOP&quot; denir. Yazılı tarafın temellerini merak ediyorsanız <a href=\"/tr/rehber/sop-nedir/\">SOP nedir</a> rehberine bakabilirsiniz.</p>"
+    },
+    {
+      "id": "video-sop-ile-yazili-sop-farki",
+      "h2": "Video SOP ile yazılı SOP arasındaki fark nedir?",
+      "html": "<p>Video işin nasıl yapıldığını gösterir; yazı neyin tam olarak doğru olması gerektiğini kayda geçirir. Çoğu işletmenin ikisine de ihtiyacı var: gösterme işini video, sayıları ve kuralları yazı taşımalı.</p>\n<table>\n<thead><tr><th>Konu</th><th>Video SOP</th><th>Yazılı SOP</th></tr></thead>\n<tbody>\n<tr><td>En iyi olduğu yer</td><td>El hareketi, iş sırası, &quot;doğru&quot;nun neye benzediği</td><td>Kesin değerler, limitler, onaylar, kural metni</td></tr>\n<tr><td>Kime uygun</td><td>Yeni başlayanlar, Türkçesi zayıf çalışanlar, görerek öğrenenler</td><td>Denetçiler, sorumlular, bir detayı kontrol edenler</td></tr>\n<tr><td>Nerede kullanılır</td><td>Telefonda, istasyonda, iş sırasında</td><td>Klasörde, ortak klasörde, istasyona asılı çıktıda</td></tr>\n<tr><td>Hazırlama süresi</td><td>Dakikalar içinde çekilir, sonra adımlara bölünüp incelenir</td><td>Yazılır, düzenlenir, onaylanır; fiziksel işlerde genelde daha yavaş</td></tr>\n<tr><td>Güncelleme</td><td>Sadece değişen adım yeniden çekilir</td><td>Metin düzeltilir, yeniden basılır, eski çıktılar toplanır</td></tr>\n<tr><td>Zayıf yanı</td><td>Arama yapmak zor, bir kez söylenen sayı kaçabilir</td><td>Gözde canlandırmak zor, sahada çoğu zaman okunmaz</td></tr>\n</tbody>\n</table>\n<p>Elinizde yazılı prosedürler varsa çöpe atmayın. Neyin çekileceğine dair senaryo olarak kullanın, kesin değerleri her adımın yazısına taşıyın. Yapı için <a href=\"/tr/rehber/is-talimati-sablonu/\">iş talimatı şablonu</a> iyi bir başlangıç.</p>"
+    },
+    {
+      "id": "video-ne-zaman-ise-yarar",
+      "h2": "Video ne zaman işe yarar, yazı ne zaman yeterlidir?",
+      "html": "<p>İşin zor kısmı görmekse video çekin. Zor kısım bir kuralı ya da sayıyı hatırlamaksa yazı yeterli.</p>\n<h3>Videonun fark yarattığı işler</h3>\n<ul>\n<li>Sırası önemli fiziksel işler: dilimleme makinesini sökmek, makineye malzeme sürmek, yatağı otel standardında yapmak.</li>\n<li>&quot;Doğru&quot;nun gözle anlaşıldığı işler: tabak sunumu, kaynak dikişi, palet streçleme, havlu katlama.</li>\n<li>Hareketin önemli olduğu iş güvenliği adımları: kilitleme ve etiketleme, yük kaldırma, sıcak fritöz sepetini tutmak.</li>\n<li>Farklı dillerden ya da farklı okuma seviyelerinden çalışanların olduğu ekipler.</li>\n<li>Tek bir ustanın bildiği, kimsenin yazıya dökmediği işler.</li>\n</ul>\n<h3>Yazının çoğu zaman yettiği işler</h3>\n<ul>\n<li>Kurallar ve politikalar: kıyafet kuralı, mola saatleri, kasa kuralları.</li>\n<li>Kısa başvuru listeleri: alerjen tablosu, tedarikçi iletişimleri, minimum stok seviyeleri.</li>\n<li>Az adımlı ekran işleri: ekran görüntülü numaralı bir liste yeterli olur.</li>\n</ul>\n<p>Basit bir test: yeni başlayan kişi yazılı talimatı okuyup yine de &quot;bir gösterir misin&quot; diyorsa o işin videoya ihtiyacı var.</p>"
+    },
+    {
+      "id": "telefonla-is-nasil-cekilir",
+      "h2": "Telefonla iş nasıl çekilir? Çekim kontrol listesi",
+      "html": "<p>İşi en iyi yapan kişiyi, gerçek istasyonda, gerçek işi yaparken çekin. Her video tek bir iş. Telefon yeterli. Kayda basmadan önce bu listeye bakın.</p>\n<h3>Çekimden önce</h3>\n<ul>\n<li><strong>Doğru kişiyi seçin.</strong> Unvanı en büyük olanı değil, herkesin soru sormaya gittiği kişiyi.</li>\n<li><strong>Adımları önce konuşun.</strong> İki dakika ayırıp adımları sesli sayın. Bu liste sonra adım işaretleriniz olacak.</li>\n<li><strong>Bir video, bir iş.</strong> &quot;Fritöz istasyonunu kapatmak&quot; bir videodur. &quot;Mutfağı kapatmak&quot; bir seridir.</li>\n<li><strong>Sakin bir anı seçin.</strong> Açılıştan önce, iki yoğunluk arasında ya da planlı bir ürün değişiminde. Servisin ortasında değil.</li>\n<li><strong>İstasyonu toparlayın.</strong> Kopyalanmaması gereken her şeyi kaldırın: yanlış alet, açık kimyasal şişesi, kestirme bir yöntem.</li>\n<li><strong>İzin alın.</strong> Çekilen kişiye ve kadrajdaki herkese videonun ne için çekildiğini ve kimlere gösterileceğini söyleyin. Kişisel verilerle ilgili şirket kurallarınızı kontrol edin.</li>\n</ul>\n<h3>Kadraj ve ışık</h3>\n<ul>\n<li>Geniş istasyonlarda telefonu yatay, dar bir istasyonda izlenecekse dikey tutun. Birini seçin ve bütün videoda koruyun.</li>\n<li>Çalışanın bakış açısından, omzunun üstünden çekin. İzleyen kişi, işi yaparken göreceği görüntüyü görsün.</li>\n<li>Küçük detaylara yaklaşın: gösterge, etiket, makine koruyucusunun içi. Zoom yapmayın, telefonu yaklaştırın.</li>\n<li>Işık kameranın arkasında olsun, çalışanın arkasında değil. Pencereden gelen parlamayı engelleyin.</li>\n<li>Görüntü titremesin diye telefonu bir rafa dayayın ya da küçük bir stant kullanın.</li>\n</ul>\n<h3>Ses</h3>\n<ul>\n<li>Çalışandan ne yaptığını ve nedenini sade cümlelerle söylemesini isteyin: &quot;Fritözü açmadan önce yağın çizgide olduğuna bakıyorum.&quot;</li>\n<li>Daha sessiz bir anda çekin ya da yaklaşın. Mutfak ve üretim hattı gürültülüdür; önemli bilgiler adımın yazısında da olmalı.</li>\n<li>Müzik eklemeyin. Konuşmayı bastırır, istasyonda bir işe yaramaz.</li>\n</ul>\n<h3>Çekerken adımları işaretlemek</h3>\n<ul>\n<li>Adımlar arasında bir saniye durun. Temiz geçişler kesmeyi kolaylaştırır.</li>\n<li>Çalışan her adımın başında adımın adını ya da numarasını söylesin: &quot;Adım 3, yağı boşaltıyorum.&quot;</li>\n<li>Her adımın ve işin sonunda bitmiş hâli gösterin.</li>\n<li>Bir şey ters giderse çekime devam edin ve adımı baştan yapın. Hatalı kısmı sonra kesersiniz.</li>\n</ul>"
+    },
+    {
+      "id": "goruntuden-adim-yazi-ve-quiz",
+      "h2": "Görüntüden adımlar, yazılı talimat ve kısa bir quiz nasıl hazırlanır?",
+      "html": "<p>Videoyu her adımda kesin, her adıma bir iki satır yazın, sonra en çok yanlış yapılan noktaları soran üç beş soru ekleyin. Her adım istasyonda tekrar izlenebilecek kadar kısa olmalı.</p>\n<ol>\n<li><strong>Kırpın.</strong> Başı, sonu ve bekleme anlarını çıkarın.</li>\n<li><strong>Adımları işaretleyin.</strong> Çekimde bıraktığınız duraklamaları kullanarak her adımın başladığı ve bittiği yeri belirleyin. Bir adım, tek sonucu olan tek bir harekettir.</li>\n<li><strong>Adım yazısını yazın.</strong> Fiille başlayın: &quot;Fritözü kapatın, yağ güvenli seviyenin altına inene kadar bekleyin.&quot; Kesin değerleri sadece konuşmada bırakmayın, buraya yazın.</li>\n<li><strong>Gereken yere ekran üstü not ekleyin.</strong> Bir sıcaklık, bir ayar, doğru vanayı gösteren bir ok, bir uyarı.</li>\n<li><strong>Quizi hazırlayın.</strong> Ezber değil karar sorun: &quot;Yağı boşaltmadan önce ne yaparsınız?&quot; sorusu, &quot;Kova ne renk?&quot; sorusundan çok daha iyidir. Tek bir iş için üç beş soru çoğu zaman yeterlidir.</li>\n<li><strong>Yeni başlayan gözüyle izleyin.</strong> Her adımı sessiz izleyin. Anlaşılmıyorsa yazının düzeltilmesi gerekir.</li>\n</ol>"
+    },
+    {
+      "id": "inceleme-ve-onay",
+      "h2": "Video SOP'u kim inceler, kim onaylar?",
+      "html": "<p>İki kişi: işi çeken usta adımların doğru olduğunu kontrol eder, standardın sahibi olan yönetici kullanıma onay verir. İkisi de bitmeden ekibe gönderilmemeli.</p>\n<ul>\n<li><strong>Doğruluk kontrolü (usta):</strong> her adım var mı, sırası doğru mu, değerler doğru mu?</li>\n<li><strong>Standart kontrolü (sorumlu yönetici):</strong> bütün şubelerde bu şekilde yapılmasını istiyor muyuz, sizin için geçerli hijyen ve iş sağlığı ve güvenliği kurallarıyla uyumlu mu?</li>\n<li><strong>Anlaşılırlık kontrolü (yeni biri):</strong> işi hiç yapmamış birine izletin ve ne yapacağını anlatmasını isteyin. Sorduğu sorular eksikleri gösterir.</li>\n</ul>\n<p>Kimin, ne zaman onayladığını kaydedin. Gıda güvenliği ya da İSG açısından hangi kayıtların gerektiğine yürürlükteki mevzuat ve danışmanınız karar verir, bunu kontrol edin. Yazılı ve onaylı bir prosedür denetimde işinize yarar, ama denetimin yerini tutmaz.</p>\n<p>Metnin ya da quizin bir kısmını yapay zekâ hazırladıysa onu taslak sayın. İşi bilen biri her satırı okuyup onaylamalı.</p>"
+    },
+    {
+      "id": "yayina-alma-ve-guncel-tutma",
+      "h2": "Video SOP'lar nasıl yayına alınır ve güncel tutulur?",
+      "html": "<p>En çok hataya ya da en çok soruya yol açan birkaç işle başlayın, bunları o işi yapan kişilere atayın, kimin izleyip anladığına bakın. Sonra güncelleme için basit bir kural koyun.</p>\n<h3>Yayına alma</h3>\n<ol>\n<li>Yeni başlayanların ilk haftada en çok sorduğu işleri listeleyin. Önce bunları çekin.</li>\n<li>Her video SOP'u role ve şubeye göre atayın. Bulaşıkçı, bar prosedürleri arasında kaybolmasın.</li>\n<li>Çalışandan videoyu işi ilk kez yapmadan önce, istasyonda izlemesini isteyin.</li>\n<li>Quiz sonuçlarına bakın. Çok kişinin kaçırdığı bir soru genelde yazısı ya da çekimi zayıf bir adıma işaret eder.</li>\n<li>Sahada yetkinlik onayı yine sorumludadır: kişinin işi yaparken izlenmesi ve onaylanması devam eder. Kimin hangi işte hazır olduğunu takip etmek için <a href=\"/tr/rehber/beceri-matrisi/\">beceri matrisi</a> kullanabilirsiniz.</li>\n</ol>\n<h3>Güncel tutma</h3>\n<ul>\n<li>Her video SOP'un bir sahibi olsun. Ekipman, reçete ya da yerleşim değiştiğinde güncellemeyi o yapar.</li>\n<li>Sadece değişen adımı değiştirin. Tek bir klibi yeniden çekmek, her şeyi baştan çekmekten çok daha hızlıdır.</li>\n<li>Yeni sürümü yayınlayın ve eski sürümü öğrenmiş kişilerin değişikliği gördüğünden emin olun.</li>\n<li>Hiçbir şey değişmemiş gibi görünse de her video SOP'u belirli aralıklarla, örneğin altı ayda bir, gözden geçirin.</li>\n</ul>"
+    },
+    {
+      "id": "kacinilmasi-gereken-hatalar",
+      "h2": "Video SOP hazırlarken yapılan hatalar",
+      "html": "<p>Video SOP'ların çoğu çok uzun, çok genel ya da eski olduğu için tutmaz. Dikkat edilmesi gerekenler şunlar.</p>\n<ul>\n<li><strong>Bütün vardiyayı tek videoya sığdırmak.</strong> Kimse yirmi dakikalık bir videonun on dördüncü dakikasını aramaz. Bir video, bir iş, adımlara bölünmüş.</li>\n<li><strong>Ustayı değil müdürü çekmek.</strong> İşi her gün yapan kişi, farkı yaratan küçük püf noktalarını bilir.</li>\n<li><strong>Sayıları sadece konuşmada bırakmak.</strong> Davlumbaz gürültüsünde bir kez söylenen sıcaklık kaybolur. Yazıya geçirin.</li>\n<li><strong>Gerçeği değil ideali çekmek.</strong> Çalışanların gerçekten kullandığı istasyonu, aleti ve yerleşimi çekin.</li>\n<li><strong>Yanlışlıkla kestirme göstermek.</strong> Eldivensiz el, atlanan bir kontrol, açık bırakılan bir koruyucu. Adımı yeniden çekin.</li>\n<li><strong>Sahipsiz içerik.</strong> Sorumlusu olmayan video zamanla eskir, ekip de ona güvenmeyi bırakır.</li>\n<li><strong>İzlenen videoyu eğitim tamamlandı saymak.</strong> Quiz anlamayı gösterir. İşi sorumlunun gözetiminde doğru yapmak hâlâ asıl onaydır.</li>\n</ul>"
+    },
+    {
+      "id": "bunu-flexlore-ile-yapmak",
+      "h2": "Bunu Flexlore ile yapmak",
+      "html": "<p>Flexlore tam olarak bu iş akışı için yapıldı. İşi telefonla çekersiniz, <a href=\"/tr/features/video-editor/\">telefon video editöründe</a> adımları işaretlersiniz; Flexlore adım yazılarının ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı düzenleyip onaylamadan hiçbir şey yayınlanmaz. Her video SOP'u role ve şubeye göre atar, kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Uygulama iOS ve Android'de çalışır, 8 dilde kullanılabilir.</p>\n<p>PDF'ten adım çıkarma, otomatik çeviri ve istasyona asılan QR kodlar yakında geliyor. Nasıl çalıştığını <a href=\"/tr/features/video-to-sop/\">videodan SOP'a</a> sayfasında görebilir ya da <a href=\"/demo/\">demo</a> isteyip işlerinizden birini bizimle birlikte hazırlayabilirsiniz.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "Bir video SOP ne kadar uzun olmalı?",
+      "a": "İş ne kadar sürüyorsa o kadar, ama kısa adımlara bölünmüş olarak. Adımların çoğu istasyonda kolayca tekrar izlenebilecek kadar kısa olmalı, çoğu zaman bir dakikanın altında. Video çok uzuyorsa aslında iki üç ayrı iş olup olmadığına bakın ve bölün. Toplam süreden çok, her adımın tek bir hareket ve tek bir sonuç göstermesi önemlidir."
+    },
+    {
+      "q": "Video SOP için profesyonel ekipman gerekir mi?",
+      "a": "Hayır. Güncel bir telefon, sabit bir el ya da küçük bir stant ve yeterli ışık yeter. Ses, görüntü kalitesinden daha önemlidir; bu yüzden sakin bir anda çekin ve önemli bilgileri adım yazısına ekleyin. Profesyonel çekim daha şık görünür ama güncellemesi daha yavaştır, uzun vadede bu daha çok önem taşır."
+    },
+    {
+      "q": "Videolu iş talimatında anlatım sesi olmalı mı?",
+      "a": "Usta işi yaparken sade cümlelerle anlatabiliyorsa evet. Sesi, her adımın nedenini ekler. Ama sadece sese güvenmeyin: işyerleri gürültülüdür ve çalışanlar videoyu sessiz izleyebilir. Her sayı, limit ve uyarı adımın üzerinde yazılı olarak da yer almalı. Ustanın anlatımı akıcı değilse sesi kapatıp yalnızca yazıyla ilerlemek de olur; önemli olan adımların net olması."
+    },
+    {
+      "q": "Video SOP usta yanında eğitimin yerini tutar mı?",
+      "a": "Hayır. Aynı işi tekrar tekrar göstermenin ve anlatmanın yerini tutar, böylece usta aynı şeyi defalarca göstermez. Kişi yine işi pratik yapar, sorumlu yine işi yaparken izleyip onay verir. Quiz adımları kimin anladığını gösterir, işi kimin yapabildiğini değil. Video, ustanın zamanını tekrar yerine asıl önemli olana, yani sahada izleyip düzeltmeye ayırmasını sağlar."
+    },
+    {
+      "q": "Video SOP'lar ne sıklıkla güncellenmeli?",
+      "a": "Ekipman, reçete, yerleşim ya da kural değiştiğinde hemen; hiçbir şey değişmemiş gibi görünse de belirli aralıklarla. Her video SOP'a ikisinden de sorumlu bir sahip atayın. Sadece değişen adımı güncelleyin ve eski sürümü öğrenenlerin yenisini gördüğünden emin olun. Sahibi belli olmayan içerik zamanla eskir ve ekip ona güvenmeyi bırakır."
+    },
+    {
+      "q": "Video SOP gıda güvenliği ya da İSG denetimi için yeterli mi?",
+      "a": "Bu, sizin için geçerli mevzuata bağlıdır; danışmanınızla ya da ilgili kurumla kontrol edin. Onaylı, net bir prosedür ve kimin eğitim aldığına dair kayıt denetimde işinize yarar. Ancak birçok denetçi kesin değerleri içeren yazılı prosedür de bekler. Bu yüzden her adımın önemli bilgileri yazılı olarak da bulunmalı."
+    }
+  ],
+  "related": [
+    "/tr/features/video-to-sop/",
+    "/tr/rehber/sop-nedir/",
+    "/tr/rehber/is-talimati-sablonu/",
+    "/tr/rehber/sop-yazilimi/"
+  ]
+}

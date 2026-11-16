@@ -43,6 +43,7 @@ const GROUPS: { g: "product" | "cases" | "industries" | "company"; en: string; t
     { k: "bakeries", en: "Bakeries & cafés", tr: "Fırın ve kafeler", href: "/industries/bakeries-cafes/" },
   ] },
   { g: "company", en: "Company", tr: "Şirket", items: [
+    { k: "guides", en: "Guides and templates", tr: "Rehberler ve şablonlar", href: "/guides/" },
     { k: "blog", en: "Blog", href: "/blog/" },
     { k: "company", en: "About us", tr: "Hakkımızda", href: "/company/" },
     { k: "careers", en: "Careers", tr: "Kariyer", href: "/careers/" },

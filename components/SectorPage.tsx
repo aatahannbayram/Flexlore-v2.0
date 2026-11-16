@@ -7,6 +7,7 @@
 import { SITE } from "./config";
 import { useEffect, useRef, useState } from "react";
 import { Footer } from "./Footer";
+import { GuideLinks } from "./guides/GuideLinks";
 import Link from "./i18n/Link";
 import { m, LazyMotion, domAnimation, useScroll, useTransform, useReducedMotion, useInView, AnimatePresence } from "framer-motion";
 import { sectors, sectorCopy, sectorPath } from "./sectors";
@@ -243,6 +244,7 @@ export default function SectorPage({ i }: { i: number }) {
           </div>
         </section>
 
+        <GuideLinks topic={s.slug} />
         <Link href={sectorPath(next.slug)} className="dark group relative flex h-[56svh] min-h-[380px] items-end overflow-hidden pb-12 md:pb-16">
           <div className="absolute inset-0 opacity-50 transition duration-700 group-hover:scale-105 group-hover:opacity-75"><Video name={next.v} /></div>
           <div className="absolute inset-0 bg-[linear-gradient(0deg,#111111_0%,rgb(16_16_16/0.55)_55%,transparent_100%)]" />

@@ -4,6 +4,7 @@ import { SITE } from "./config";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Arr } from "@/components/Icons";
+import { GuideLinks } from "./guides/GuideLinks";
 import posts from "@/lib/blog.json";
 export type Post = (typeof posts)[number];
 export { posts };
@@ -67,6 +68,7 @@ export function Article({ p }: { p: Post }) {
           <h2 className="v4-h2 mb-10 max-w-[18ch]"><span className="t-ink">More from</span> <span className="t-accent">the floor.</span></h2>
           <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">{more.map((x) => <Card key={x.slug} p={x} />)}</div>
         </section>
+        <div className="mt-16"><GuideLinks /></div>
       </main>
       <Foot />
     </>

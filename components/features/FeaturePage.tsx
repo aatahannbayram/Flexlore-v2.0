@@ -9,6 +9,7 @@ import dynamic from "next/dynamic";
 import Link from "../i18n/Link";
 import { Header } from "../Header";
 import { Footer } from "../Footer";
+import { GuideLinks } from "../guides/GuideLinks";
 import { useLocale } from "../i18n/LocaleProvider";
 import type { Locale } from "../i18n/locales";
 import { fen, type FDict } from "../i18n/features/en";
@@ -148,6 +149,7 @@ export function FeaturePage({ slug }: { slug: string }) {
       </section>
 
       <End c={c} />
+      <GuideLinks topic={slug} />
     </main>
     <Footer />
   </>);
@@ -360,6 +362,7 @@ export function FeaturesIndex() {
         </section>); })}
       <div className="pt-[var(--section-y)]"><Compare5 /></div>
       <End c={c} />
+      <GuideLinks />
     </main>
     <Footer />
   </>);
