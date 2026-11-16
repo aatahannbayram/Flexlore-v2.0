@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ConversationProvider, useConversation } from "@elevenlabs/react";
 import type { Locale } from "../i18n/locales";
+import { SECTOR_EN, localHref, isTrPath } from "../i18n/routes";
 
 const AGENT = process.env.NEXT_PUBLIC_ELEVENLABS_AGENT_ID || "";
 const TERMS_KEY = "flx-ai-terms-v1";
@@ -112,7 +113,12 @@ function Panel({ locale, open, onClose, onActive }: { locale: Locale; open: bool
   const [terms, setTerms] = useState(true); const pending = useRef<string | null>(null); const skipFirst = useRef(false); const nid = useRef(1); const list = useRef<HTMLDivElement>(null); const field = useRef<HTMLTextAreaElement>(null);
   useEffect(() => { try { setTerms(localStorage.getItem(TERMS_KEY) === "1"); } catch { setTerms(false); } }, []);
   const add = useCallback((role: Msg["role"], text: string) => setMsgs((m) => [...m, { id: nid.current++, role, text }]), []);
-  const go = useCallback((path: string) => {
+  const go = useCallback((raw: string) => {
+    /* The agent names English paths. Old sector paths (/sektor/<tr>/) become /industries/<en>/, and on a Turkish page or
+       for a Turkish visitor every path with a Turkish twin opens in Turkish (/pricing/ -> /tr/pricing/). */
+    const sec = raw.match(/^\/sektor\/([^/#]+)\/(#.*)?$/);
+    const en = sec ? `/industries/${SECTOR_EN[sec[1]] ?? sec[1]}/${sec[2] ?? ""}` : raw;
+    const path = localHref(en, lang === "tr" || isTrPath(location.pathname));
     const [route, hash] = path.split("#");
     if (location.pathname === route && hash) document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" }); else router.push(path, { scroll: !hash });
   }, [router]);

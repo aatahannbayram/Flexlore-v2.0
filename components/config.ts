@@ -9,6 +9,10 @@ export const SITE = {
      the launch build (FLX_LAUNCH=1) and only after the visitor allows analytics in the consent banner. */
   ga4: process.env.FLX_LAUNCH === "1" ? "G-7QNETL3VJ3" : "",
   hubspot: process.env.FLX_LAUNCH === "1" ? "147293209" : "",
+  /* Ad measurement (2026-11-17): LinkedIn Insight Tag partner id and Google Ads tag (AW-...). Empty = off. They load only in the
+     launch build and only after the visitor also allows marketing cookies (a separate, unticked choice in the consent banner). */
+  linkedin: process.env.FLX_LAUNCH === "1" ? process.env.NEXT_PUBLIC_LINKEDIN_PARTNER || "" : "",
+  gads: process.env.FLX_LAUNCH === "1" ? process.env.NEXT_PUBLIC_GADS_ID || "" : "",
   /* HubSpot form that receives pricing-page requests (components/lead.ts). Paste the form GUID into NEXT_PUBLIC_HS_LEAD_FORM;
      empty = requests open the visitor's email app instead. */
   hsLeadForm: process.env.NEXT_PUBLIC_HS_LEAD_FORM || "",

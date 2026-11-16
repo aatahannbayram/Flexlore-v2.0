@@ -35,7 +35,7 @@ function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) 
       <p className="max-w-[30rem] text-[18px] font-medium leading-7">{state === "hubspot" ? (P?.sent ?? q.note) : (P?.sentMail ?? q.note)}</p>
     </div>);
   return (
-    <form onSubmit={send} className={`${glassCard} grid gap-4 p-5 sm:grid-cols-2 md:p-7`}>
+    <form onSubmit={send} data-hs-do-not-collect="true" className={`${glassCard} grid gap-4 p-5 sm:grid-cols-2 md:p-7`}>
       {P && <p className="text-[18px] font-medium leading-7 sm:col-span-2">{P.formH}<span className="ms-2 text-[14px] font-normal text-[#A3A3A3]">{P.opts[type][0]}</span></p>}
       <L id="q-name" t={q.name}><input id="q-name" required autoComplete="name" value={v.name} onChange={set("name")} className={field} /></L>
       <L id="q-email" t={q.email}><input id="q-email" required type="email" autoComplete="email" value={v.email} onChange={set("email")} className={field} /></L>

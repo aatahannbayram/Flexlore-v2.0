@@ -12,3 +12,9 @@ export const CONSENT_T: Record<Locale, S> = {
   fr: { label: "Choix des cookies", p: "Nous utilisons des statistiques pour voir quelles pages aident, seulement si vous l'acceptez. Le thème et la langue restent toujours sur votre appareil.", yes: "Autoriser les statistiques", no: "Refuser", more: "Politique cookies", settings: "Paramètres des cookies" },
   pl: { label: "Wybór cookies", p: "Używamy analityki, aby sprawdzić, które strony pomagają, tylko za Twoją zgodą. Motyw i język zawsze zostają na Twoim urządzeniu.", yes: "Zezwól na analitykę", no: "Odrzuć", more: "Polityka cookies", settings: "Ustawienia cookies" },
 };
+
+/* Marketing choice (shown only when LinkedIn or Google Ads tags are in the build). Wording to be confirmed by counsel. */
+export const CONSENT_MK: Partial<Record<Locale, string>> & { en: string } = {
+  en: "Also allow marketing cookies (LinkedIn and Google Ads), so we can measure visits that come from our ads.",
+  tr: "Reklamlarımızdan gelen ziyaretleri ölçebilmemiz için pazarlama çerezlerine de (LinkedIn ve Google Ads) izin veriyorum.",
+};

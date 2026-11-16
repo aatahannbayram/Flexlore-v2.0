@@ -2,7 +2,7 @@
  * language preferences are needed for the site to work, and the assistant only runs after the visitor opens it and
  * accepts its own notice. The banner (ConsentBanner) shows only when an analytics tool is configured at build time, so a
  * build without analytics asks nothing. Analytics.tsx reads the same record and listens for CONSENT_EVENT. */
-export type Consent = { v: 1; analytics: boolean; at: number };
+export type Consent = { v: 1; analytics: boolean; marketing?: boolean; at: number };
 export const CONSENT_KEY = "flx-consent";
 export const CONSENT_EVENT = "flx-consent";
 export const CONSENT_OPEN_EVENT = "flx-consent-open";
@@ -12,8 +12,11 @@ export const consentNeeded = !!process.env.NEXT_PUBLIC_POSTHOG_KEY || !!process.
 export function readConsent(): Consent | null {
   try { const c = JSON.parse(localStorage.getItem(CONSENT_KEY) || "null"); return c && c.v === 1 ? c : null; } catch { return null; }
 }
-export function writeConsent(analytics: boolean) {
-  const c: Consent = { v: 1, analytics, at: Date.now() };
+/** True when an ad measurement tag (LinkedIn, Google Ads) is in the build: the banner then offers a separate marketing choice. */
+export const marketingNeeded = process.env.FLX_LAUNCH === "1" && (!!process.env.NEXT_PUBLIC_LINKEDIN_PARTNER || !!process.env.NEXT_PUBLIC_GADS_ID);
+/** Marketing is only ever on together with analytics (declining clears both). */
+export function writeConsent(analytics: boolean, marketing = false) {
+  const c: Consent = { v: 1, analytics, marketing: analytics && marketing, at: Date.now() };
   try { localStorage.setItem(CONSENT_KEY, JSON.stringify(c)); } catch {}
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: c }));
 }

@@ -64,7 +64,7 @@ export function SupportPage() {
           {sent ? (
             <p role="status" className="mt-8 flex items-start gap-3 rounded-[16px] bg-[var(--card-2)] p-5 text-[16px]"><CheckCircle size={20} weight="fill" className="mt-0.5 shrink-0 text-ink" />{c.sent}</p>
           ) : (
-            <form onSubmit={submit} className="mt-8 grid gap-3 sm:grid-cols-2">
+            <form onSubmit={submit} data-hs-do-not-collect="true" className="mt-8 grid gap-3 sm:grid-cols-2">
               <label className="sm:col-span-2"><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.name}</span><input name="name" required autoComplete="name" className={`${field} h-12`} /></label>
               <label><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.email}</span><input name="email" type="email" required autoComplete="email" className={`${field} h-12`} /></label>
               <label><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.phone}</span><input name="phone" type="tel" autoComplete="tel" className={`${field} h-12`} /></label>
