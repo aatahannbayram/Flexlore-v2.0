@@ -14,6 +14,11 @@ import { ArrowRight, Check, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSi
 const field = "block h-12 w-full rounded-[10px] border border-white/10 bg-[#262626] px-4 text-[16px] text-[#FAFAFA] outline-none transition-colors duration-150 placeholder:text-[#737373] focus:border-white/20";
 const glassCard = "k-card rounded-[16px] border border-white/10";
 
+/* Field label. Defined at module level on purpose: a component created inside QuoteForm's render is a new type on every
+   render, so React remounted each input on every keystroke and focus jumped out after the first letter (2026-11-17). */
+const L = ({ id, t, children }: { id: string; t: string; children: React.ReactNode }) => (
+  <label htmlFor={id} className="block"><span className="mb-1.5 block text-[13px] font-medium text-[#A3A3A3]">{t}</span>{children}</label>);
+
 /* Request form: one form for the Enterprise quote and the add-ons. The type picked beside it (or by an add-on button)
  * goes with the request; components/lead.ts sends it to HubSpot, PostHog, GA4 and Sentry, or to email as a fallback. */
 function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) {
@@ -27,8 +32,6 @@ function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) 
     const r = await sendLead({ ...v, type, typeLabel, subject: P ? typeLabel : q.subject, labels: { company: q.company, size: q.size, sector: q.sector, sites: q.sites, msg: q.msg } });
     setState(r);
   };
-  const L = ({ id, t, children }: { id: string; t: string; children: React.ReactNode }) => (
-    <label htmlFor={id} className="block"><span className="mb-1.5 block text-[13px] font-medium text-[#A3A3A3]">{t}</span>{children}</label>);
   if (state === "hubspot" || state === "mail") return (
     <div role="status" className={`${glassCard} flex min-h-[320px] flex-col items-start justify-center gap-3 p-6 md:p-8`}>
       <CheckCircle size={28} aria-hidden="true" className="text-[#FAFAFA]" />
