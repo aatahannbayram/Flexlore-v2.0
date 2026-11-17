@@ -7,8 +7,8 @@ import { base } from "@/components/i18n/locales";
 
 /* Visible copy of /integrations/ (English and Turkish; other locales show English). Metadata stays in page.tsx. */
 const T = {
-  en: { k: "Integrations", h: ["Works where your team", "already is."], lead: "Phones for the people doing the job, web for the people running it. Data connections are on the roadmap and labelled as such.", cta: "Book a demo" },
-  tr: { k: "Entegrasyonlar", h: ["Ekibinizin zaten", "olduğu yerde çalışır."], lead: "İşi yapanlar için telefon, işi yönetenler için web. Veri bağlantıları yol haritamızda ve sayfada da öyle belirtiliyor.", cta: "Demo isteyin" },
+  en: { k: "Integrations", h: ["Works where your team", "already is."], lead: "Phones for the people doing the job; a web panel for managers is coming soon. Data connections are on the roadmap and labelled as such.", cta: "Book a demo" },
+  tr: { k: "Entegrasyonlar", h: ["Ekibinizin zaten", "olduğu yerde çalışır."], lead: "İşi yapanlar için telefon; yöneticiler için web paneli yakında. Veri bağlantıları yol haritamızda ve sayfada da öyle belirtiliyor.", cta: "Demo isteyin" },
 };
 export default function Body() {
   const t = T[base(useLocale().locale)];

@@ -80,7 +80,8 @@ export function AIDetail() {
 const Pill = ({ live }: { live: boolean }) => (
   <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[12px] font-semibold ${live ? "bg-[#F4F0EB] text-[#111]" : "bg-white/10 text-white/75"}`}>{live ? "Live" : "Coming soon"}</span>);
 
-// Directory by category. Only what Linear/Notion verify: apps + web are live; FLE-124 covers API, webhooks,
+// Directory by category. Only what Linear/Notion verify: the iOS and Android apps are live; the manager web panel is
+// coming soon (Ata, 2026-11-17); FLE-124 covers API, webhooks,
 // BI connections and an MCP server. HRIS, LMS and MES/ERP have no named connector on the roadmap, so they are
 // listed as "through the API, coming soon" with no partner names or logos.
 type It = { i: (p: { className?: string }) => React.ReactNode; h: string; p: string; live: boolean; href?: string };
@@ -88,21 +89,21 @@ const DIR: { cat: string; items: It[] }[] = [
   { cat: "Apps", items: [
     { i: I.phone, h: "iOS", p: "Film and learn on iPhone.", live: true, href: SITE.appStore },
     { i: I.phone, h: "Android", p: "Film and learn on Android.", live: true, href: SITE.googlePlay },
-    { i: I.web, h: "Web platform", p: "Managers assign jobs and track readiness.", live: true } ] },
+    { i: I.web, h: "Web panel", p: "Managers assign jobs and track readiness.", live: false } ] },
   { cat: "BI & reporting", items: [ { i: I.chart, h: "BI tools", p: "Connect training data to the BI tools you already use.", live: false } ] },
   { cat: "AI assistants (MCP)", items: [ { i: I.chat, h: "MCP server", p: "Ask your AI assistant which location isn’t ready.", live: false } ] },
   { cat: "API & webhooks", items: [ { i: I.plug, h: "REST API", p: "Read people, jobs, quiz results and readiness.", live: false }, { i: I.hook, h: "Webhooks", p: "Events when a quiz is passed or readiness changes.", live: false } ] },
   { cat: "HRIS · LMS · MES/ERP", items: [ { i: I.plug, h: "Through the API", p: "No named connectors yet. Tell us what you run.", live: false } ] },
 ];
 export function Integrations() {
-  const live = DIR[0].items; const soon = DIR.slice(1).flatMap((c) => c.items).filter((x) => x.h !== "Through the API");
+  const all = DIR.flatMap((c) => c.items); const live = all.filter((x) => x.live); const soon = all.filter((x) => !x.live && x.h !== "Through the API");
   return (
     <section id="integrations" className="py-14 md:py-20" aria-labelledby="int-h">
       <div className="container-x">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <div className="md:col-span-8"><p className="eyebrow">Integrations</p>
             <h2 id="int-h" className="display mt-4 text-h1">Works where your team already is.</h2></div>
-          <p className="text-base leading-[1.4] text-white/70 md:col-span-4">Phones for the people doing the job, web for the people running it.</p>
+          <p className="text-base leading-[1.4] text-white/70 md:col-span-4">Phones for the people doing the job. A web panel for managers is coming soon.</p>
         </div>
         <ul className="mt-12 grid gap-4 md:grid-cols-3">
           {live.map((x) => { const body = (<div className="flex h-full flex-col justify-between rounded-2xl bg-white/[.05] p-7 transition hover:bg-white/[.08]"><Tag live /><div className="mt-10"><p className="text-h3 font-semibold tracking-tight">{x.h}</p><p className="mt-1 text-sm leading-[1.4] text-white/70">{x.p}</p></div></div>);
@@ -120,7 +121,7 @@ export function Integrations() {
 /* Integrations page body: every category as a glass tile over the dimmed web dashboard mockup.
    DIR_TR mirrors DIR by index (category name, then [title, text] per item). */
 const DIR_TR: { cat: string; items: [string, string][] }[] = [
-  { cat: "Uygulamalar", items: [["iOS", "iPhone'da çekin ve öğrenin."], ["Android", "Android'de çekin ve öğrenin."], ["Web platformu", "Yöneticiler iş atar ve kimin hazır olduğunu takip eder."]] },
+  { cat: "Uygulamalar", items: [["iOS", "iPhone'da çekin ve öğrenin."], ["Android", "Android'de çekin ve öğrenin."], ["Web paneli", "Yöneticiler iş atar ve kimin hazır olduğunu takip eder."]] },
   { cat: "BI ve raporlama", items: [["BI araçları", "Eğitim verilerini zaten kullandığınız BI araçlarına bağlayın."]] },
   { cat: "Yapay zekâ asistanları (MCP)", items: [["MCP sunucusu", "Yapay zekâ asistanınıza hangi şubenin hazır olmadığını sorun."]] },
   { cat: "API ve webhook'lar", items: [["REST API", "Kişileri, işleri, quiz sonuçlarını ve kimin hazır olduğunu okuyun."], ["Webhook'lar", "Bir quiz geçildiğinde ya da hazır olma durumu değiştiğinde olay bildirimi."]] },
