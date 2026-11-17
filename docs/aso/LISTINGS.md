@@ -10,14 +10,16 @@ compliance claims, no competitor names, no em dash, no emoji. Coming-soon featur
 |---|---|---|
 | Name is only "Flexlore": no search words in the strongest field | yes | yes |
 | No Turkish localization (Turkish searchers see English text) | yes, EN only | TR text exists but machine-like ("işe alım" means hiring, not onboarding) |
-| Lists notifications ("Smart Notices" / "Smart notifications"), which the site calls coming soon | yes | yes |
+| "Smart Notices" wording is vague; the app does send push notifications (confirmed by Ata 2026-11-17), but the site still calls notifications coming soon | yes | yes |
 | Healthcare and "compliance & patient safety training": compliance claim, not a target sector | yes | yes |
 | Unproven claims: "train baristas in minutes", "lower training costs", "in minutes, not hours" | yes | yes |
 | Em dashes and emoji | yes | yes |
 | No update since first release (App Store 1.0, Dec 2025) | yes | last update Jul 2026 |
 
-Open question for Ata: does the app today send any in-app notice or push? If yes, we can name exactly what it does.
-Until confirmed, notifications stay out of the copy.
+Notifications (confirmed by Ata 2026-11-17, checked in code): push when a new training is added for you, announcements
+and urgent announcements from managers, with the Flexlore notification sound. Videos also resume where you stopped.
+Before submitting, fix the delivery bug (push reaches only the first person; announcements target all users): see the
+bug note in Linear / report of 2026-11-17.
 
 ## Apple App Store
 
@@ -46,6 +48,8 @@ WHAT YOU CAN DO TODAY
 • Phone video editor: trim, mark the steps, add text and stickers to point at the detail that matters.
 • AI quiz: questions drafted from the steps you approved, answered right after the video.
 • Readiness tracking: who watched, who passed and which question people miss most.
+• Notifications: your team gets a push when a new training is added, plus announcements and urgent announcements from managers.
+• Pick up where you stopped: videos resume at the point you left them.
 • Roles, permissions and workspaces: people see only the jobs meant for their role and site.
 • 8 languages: English, Turkish, German, Arabic, Spanish, Russian, French and Polish.
 
@@ -86,6 +90,8 @@ BUGÜN NELER YAPABİLİRSİNİZ
 • Telefonda video editörü: Kırpın, adımları işaretleyin, önemli detayı yazı ve çıkartmayla gösterin.
 • Yapay zekâ ile quiz: Onayladığınız adımlardan hazırlanan sorular, videodan hemen sonra.
 • Hazırlık takibi: Kim izledi, kim geçti, en çok hangi soruda hata yapılıyor.
+• Bildirimler: Yeni eğitim eklendiğinde ekibinize bildirim gider; yöneticiler duyuru ve acil duyuru gönderir.
+• Kaldığınız yerden devam: Video, bıraktığınız noktadan açılır.
 • Roller, yetkiler ve çalışma alanları: Herkes yalnızca kendi rolü ve şubesi için olan işleri görür.
 • 8 dil: Türkçe, İngilizce, Almanca, Arapça, İspanyolca, Rusça, Fransızca ve Lehçe.
 
@@ -125,8 +131,9 @@ One message per screenshot, large caption on top, real app screen below, brand c
 4. Watch step by step / Adım adım izleyin
 5. A short quiz after the video / Videodan sonra kısa quiz
 6. See who is ready, by location / Kim hazır, şube şube görün
-7. Each role sees its own jobs / Herkes kendi işini görür
-8. 8 languages / 8 dil
+7. Announcements and urgent notices / Duyuru ve acil duyuru
+8. Each role sees its own jobs / Herkes kendi işini görür
+9. 8 languages / 8 dil
 
 ## Other ASO steps
 - Ask happy customers for a rating inside the app after a positive moment (for example after a passed quiz),
