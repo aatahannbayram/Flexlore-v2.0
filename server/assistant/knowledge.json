@@ -130,7 +130,7 @@
    "id": "en:faq-4",
    "locale": "en",
    "title": "Which devices does it run on?",
-   "body": "iOS and Android for your team, plus a web platform for managers.",
+   "body": "iOS and Android for your team. A web panel for managers is coming soon.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -448,7 +448,7 @@
    "id": "tr:faq-4",
    "locale": "tr",
    "title": "Hangi cihazlarda çalışır?",
-   "body": "Ekibiniz için iOS ve Android, yöneticiler için web platformu.",
+   "body": "Ekibiniz için iOS ve Android. Yöneticiler için web paneli yakında.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -766,7 +766,7 @@
    "id": "de:faq-4",
    "locale": "de",
    "title": "Auf welchen Geräten läuft es?",
-   "body": "iOS und Android für Ihr Team, dazu eine Web-Plattform für Führungskräfte.",
+   "body": "iOS und Android für Ihr Team. Ein Web-Panel für Führungskräfte kommt bald.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -1084,7 +1084,7 @@
    "id": "ar:faq-4",
    "locale": "ar",
    "title": "على أي أجهزة يعمل؟",
-   "body": "على iOS وAndroid لفريقك، إضافة إلى منصة ويب للمديرين.",
+   "body": "على iOS وAndroid لفريقك. لوحة ويب للمديرين قريبًا.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -1402,7 +1402,7 @@
    "id": "es:faq-4",
    "locale": "es",
    "title": "¿En qué dispositivos funciona?",
-   "body": "iOS y Android para su equipo, y una plataforma web para los responsables.",
+   "body": "iOS y Android para su equipo. Un panel web para responsables llegará pronto.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -1720,7 +1720,7 @@
    "id": "pt:faq-4",
    "locale": "pt",
    "title": "Em quais dispositivos funciona?",
-   "body": "iOS e Android para sua equipe, além de uma plataforma web para gestores.",
+   "body": "iOS e Android para sua equipe. Um painel web para gestores chega em breve.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -2038,7 +2038,7 @@
    "id": "nl:faq-4",
    "locale": "nl",
    "title": "Op welke apparaten werkt het?",
-   "body": "iOS en Android voor uw team, plus een webplatform voor leidinggevenden.",
+   "body": "iOS en Android voor uw team. Een webpaneel voor leidinggevenden komt binnenkort.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -2356,7 +2356,7 @@
    "id": "fr:faq-4",
    "locale": "fr",
    "title": "Sur quels appareils fonctionne Flexlore?",
-   "body": "iOS et Android pour votre équipe, ainsi qu'une plateforme web pour les managers.",
+   "body": "iOS et Android pour votre équipe. Un panneau web pour les managers arrive bientôt.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
@@ -2674,7 +2674,7 @@
    "id": "pl:faq-4",
    "locale": "pl",
    "title": "Na jakich urządzeniach działa Flexlore?",
-   "body": "iOS i Android dla Twojego zespołu oraz platforma webowa dla kierowników.",
+   "body": "iOS i Android dla Twojego zespołu. Panel webowy dla kierowników wkrótce.",
    "url": "https://www.flexlore.com/#faq",
    "tags": [
     "faq"
