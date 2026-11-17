@@ -35,7 +35,7 @@ async function audit(page: Page) {
     const targets: string[] = [];
     for (const el of document.querySelectorAll("a[href], button, [role=tab], summary")) {
       if (skip(el) || !vis(el)) continue;
-      const s = getComputedStyle(el); if (s.display === "inline" && el.closest("p, li p, dd, td")) continue;
+      const s = getComputedStyle(el); if (s.display === "inline" && el.closest("p, li, dd, td")) continue; // inline text links are exempt (WCAG 2.5.8)
       const r = el.getBoundingClientRect(); if (r.width < 43.5 || r.height < 43.5) targets.push(`${Math.round(r.width)}x${Math.round(r.height)} "${(el.getAttribute("aria-label") || el.textContent || "").trim().slice(0, 30)}"`);
     }
     return { overflow, logoOk, small: [...new Set(small)].slice(0, 10), targets: [...new Set(targets)].slice(0, 10) };

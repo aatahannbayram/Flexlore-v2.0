@@ -34,31 +34,41 @@ const pic = (n: string) => ({ src: `/photos/${n}-1600.webp`, srcSet: `/photos/${
 function Compare({ img, name, beforeLabel, label }: { img: string; name: string; beforeLabel: string; label: string }) {
   const [x, setX] = useState(50); const box = useRef<HTMLDivElement>(null); const drag = useRef(false);
   const at = (cx: number) => { const r = box.current!.getBoundingClientRect(); const v = ((cx - r.left) / r.width) * 100; setX(Math.max(6, Math.min(94, getComputedStyle(box.current!).direction === "rtl" ? 100 - v : v))); };
-  const bar = (w: string, k: number) => <span key={k} className="block h-[7px] rounded-full bg-[#2a2622]/25" style={{ width: w }} />;
+  const bar = (w: string, k: number) => <span key={k} className="block h-[6px] rounded-full bg-[#2a2622]/22" style={{ width: w }} />;
   return (
     <div ref={box} dir="ltr" className="absolute inset-0 touch-pan-y select-none" onPointerDown={(e) => { drag.current = true; (e.target as Element).setPointerCapture?.(e.pointerId); at(e.clientX); }}
       onPointerMove={(e) => drag.current && at(e.clientX)} onPointerUp={() => { drag.current = false; }} onPointerCancel={() => { drag.current = false; }}>
-      {/* After: the step player over the scene in colour. */}
-      <div className="absolute right-[7%] top-1/2 w-[min(42%,300px)] -translate-y-1/2 rounded-[20px] bg-[rgb(17_17_17/0.72)] p-3.5 text-white ring-1 ring-white/15 backdrop-blur-xl max-md:hidden">
-        <div className="flex items-center gap-2.5"><span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#111]"><svg width="10" height="12" viewBox="0 0 10 12"><path d="M1 1l8 5-8 5z" fill="currentColor" /></svg></span>
-          <span className="min-w-0 flex-1"><span className="block truncate text-[13.5px] font-semibold">{name}</span><span className="mt-1.5 block h-1 overflow-hidden rounded-full bg-white/15"><span className="block h-full w-1/2 rounded-full bg-[#EC6726]" /></span></span></div>
-        <div className="mt-3 space-y-1.5">{[0, 1, 2].map((k) => <div key={k} className="flex items-center gap-2.5 rounded-[11px] bg-white/[.07] px-2.5 py-2">
-          <span className={`grid h-4 w-4 place-items-center rounded-full ${k < 2 ? "bg-[#EC6726]" : "ring-1 ring-white/40"}`}>{k < 2 && <svg width="8" height="8" viewBox="0 0 8 8"><path d="M1.5 4l1.7 1.7L6.5 2.3" stroke="#fff" strokeWidth="1.4" fill="none" strokeLinecap="round" /></svg>}</span>
-          <span className="h-[6px] flex-1 rounded-full bg-white/30" style={{ maxWidth: ["70%", "85%", "60%"][k] }} /></div>)}</div>
+      {/* After: the Flexlore step player over the scene in colour: a short clip of the job on top, step progress, then
+          the steps (two done, one playing, one next). Bars stand in for step text. */}
+      <div aria-hidden="true" className="absolute right-[7%] top-1/2 w-[min(40%,284px)] -translate-y-1/2 overflow-hidden rounded-[18px] bg-[rgb(22_22_22/0.8)] text-white ring-1 ring-white/[.12] backdrop-blur-xl max-md:hidden">
+        <div className="relative h-[92px] overflow-hidden">
+          <img src={`/photos/${img}-800.webp`} alt="" loading="lazy" className="h-full w-full object-cover" />
+          <span aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(22_22_22/0)_25%,rgb(22_22_22/0.9)_100%)]" />
+          <span className="absolute left-3 top-3 grid h-7 w-7 place-items-center rounded-full bg-white/95 text-[#111]"><svg width="9" height="10" viewBox="0 0 10 12"><path d="M1 1l8 5-8 5z" fill="currentColor" /></svg></span>
+          <span className="absolute inset-x-3 bottom-2.5 block truncate text-[13.5px] font-semibold tracking-[-0.01em]">{name}</span>
+        </div>
+        <div className="flex gap-1 px-3 pt-2">{[0, 1, 2, 3].map((k) => <span key={k} className={`h-[3px] flex-1 rounded-full ${k < 2 ? "bg-[#EC6726]" : k === 2 ? "bg-[linear-gradient(90deg,#EC6726_45%,rgb(255_255_255/0.16)_45%)]" : "bg-white/[.16]"}`} />)}</div>
+        <ol className="space-y-1 p-2">{[0, 1, 2, 3].map((k) => <li key={k} className={`flex items-center gap-2.5 rounded-[11px] px-2 py-[7px] ${k === 2 ? "bg-white/[.09] ring-1 ring-inset ring-white/10" : ""}`}>
+          <span className={`grid h-[18px] w-[18px] shrink-0 place-items-center rounded-full text-[10px] font-semibold ${k < 2 ? "bg-[#EC6726] text-white" : k === 2 ? "bg-white text-[#111]" : "text-white/55 ring-1 ring-inset ring-white/25"}`}>
+            {k < 2 ? <svg width="8" height="8" viewBox="0 0 8 8"><path d="M1.5 4l1.7 1.7L6.5 2.3" stroke="#fff" strokeWidth="1.4" fill="none" strokeLinecap="round" /></svg> : k === 2 ? <svg width="6" height="7" viewBox="0 0 10 12"><path d="M1 1l8 5-8 5z" fill="currentColor" /></svg> : k + 1}</span>
+          <span className="min-w-0 flex-1 space-y-[5px]"><span className={`block h-[5px] rounded-full ${k === 3 ? "bg-white/25" : "bg-white/50"}`} style={{ width: ["72%", "86%", "64%", "78%"][k] }} /><span className="block h-[4px] w-[34%] rounded-full bg-white/[.16]" /></span>
+        </li>)}</ol>
       </div>
       {/* Before: the same scene faded with a paper sheet, revealed up to the handle. */}
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - x}% 0 0)` }}>
         <img src={`/photos/${img}-1600.webp`} srcSet={`/photos/${img}-800.webp 800w, /photos/${img}-1600.webp 1600w`} sizes="60vw" alt="" loading="lazy" className="drum-img grayscale-[1] brightness-[0.62] contrast-[0.9]" />
-        <div className="absolute left-[8%] top-1/2 w-[min(38%,270px)] -translate-y-1/2 -rotate-[3deg] rounded-[6px] bg-[#EFE9DF] p-4 shadow-[0_24px_50px_-18px_rgb(0_0_0/0.8)] max-md:left-[6%] max-md:w-[46%] max-md:p-3">
-          <span className="block truncate text-[12px] font-semibold uppercase tracking-[0.08em] text-[#2a2622]/70">{name}</span>
-          <span className="mt-3 block space-y-2">{["92%", "78%", "88%", "64%", "84%", "72%", "90%", "58%"].map(bar)}</span>
+        <div aria-hidden="true" className="absolute left-[8%] top-1/2 w-[min(36%,260px)] -translate-y-1/2 -rotate-[2.5deg] rounded-[4px] bg-[#EFE9DF] px-4 pb-4 pt-5 shadow-[0_24px_50px_-18px_rgb(0_0_0/0.8)] max-md:left-[6%] max-md:w-[46%] max-md:px-3 max-md:pb-3">
+          <span aria-hidden="true" className="absolute -top-2 left-1/2 h-4 w-14 -translate-x-1/2 rounded-[3px] bg-[#9B948A] ring-1 ring-black/10" />
+          <span className="block truncate text-[12px] font-semibold uppercase tracking-[0.1em] text-[#2a2622]/75">{name}</span>
+          <span className="mt-2 block h-px bg-[#2a2622]/20" />
+          <span className="mt-3 block space-y-[9px]">{["88%", "74%", "92%", "60%", "82%", "70%", "86%"].map((w, k) => <span key={k} className="flex items-center gap-2"><span className="w-3 shrink-0 text-[9px] font-semibold text-[#2a2622]/45">{k + 1}</span>{bar(w, k)}</span>)}</span>
         </div>
       </div>
       <span className="absolute inset-y-0 w-px bg-white/80" style={{ left: `${x}%` }} />
       <span aria-hidden="true" className="absolute top-1/2 grid h-12 w-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white text-[#111] shadow-[0_8px_24px_rgb(0_0_0/0.4)]" style={{ left: `${x}%` }}>
         <svg width="18" height="12" viewBox="0 0 18 12"><path d="M5 1L1 6l4 5M13 1l4 5-4 5" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg></span>
-      <span className="absolute left-5 top-[15%] rounded-full bg-[rgb(17_17_17/0.55)] px-3.5 py-1.5 text-[14px] font-medium text-white backdrop-blur-md">{beforeLabel}</span>
-      <span className="absolute right-5 top-[15%] flex items-center gap-2 rounded-full bg-[rgb(17_17_17/0.55)] px-3.5 py-1.5 text-[14px] font-medium text-white backdrop-blur-md"><img src="/brand/symbol-main.svg" alt="" width={16} height={16} className="h-4 w-4" />{label}</span>
+      <span className="absolute left-5 top-[15%] inline-flex h-8 items-center rounded-full bg-[rgb(17_17_17/0.55)] px-3.5 text-[13.5px] font-medium text-white ring-1 ring-white/10 backdrop-blur-md">{beforeLabel}</span>
+      <span className="absolute right-5 top-[15%] inline-flex h-8 items-center rounded-full bg-[rgb(17_17_17/0.55)] px-3.5 ring-1 ring-white/10 backdrop-blur-md"><img src="/brand/wordmark-dark-main.svg" alt={label} width={72} height={16} className="h-[15px] w-auto" /></span>
     </div>);
 }
 

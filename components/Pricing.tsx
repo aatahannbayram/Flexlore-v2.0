@@ -11,13 +11,13 @@ import { QUOTE } from "./pages/copy-quote";
 import { PRICING2, type PricingCopy, type Cell } from "./pages/copy-pricing";
 import { ArrowRight, Check, LockSimple, CheckCircle, Plus, Lightning, EnvelopeSimple, Users, Package, Wrench, Buildings } from "./ui/icons";
 
-const field = "block h-12 w-full rounded-[10px] border border-white/10 bg-[#262626] px-4 text-[16px] text-[#FAFAFA] outline-none transition-colors duration-150 placeholder:text-[#737373] focus:border-white/20";
+const field = "fx-field";
 const glassCard = "k-card rounded-[16px] border border-white/10";
 
 /* Field label. Defined at module level on purpose: a component created inside QuoteForm's render is a new type on every
    render, so React remounted each input on every keystroke and focus jumped out after the first letter (2026-11-17). */
 const L = ({ id, t, children }: { id: string; t: string; children: React.ReactNode }) => (
-  <label htmlFor={id} className="block"><span className="mb-1.5 block text-[13px] font-medium text-[#A3A3A3]">{t}</span>{children}</label>);
+  <label htmlFor={id} className="block"><span className="fx-label">{t}</span>{children}</label>);
 
 /* Request form: one form for the Enterprise quote and the add-ons. The type picked beside it (or by an add-on button)
  * goes with the request; components/lead.ts sends it to HubSpot, PostHog, GA4 and Sentry, or to email as a fallback. */
@@ -38,15 +38,15 @@ function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) 
       <p className="max-w-[30rem] text-[18px] font-medium leading-7">{state === "hubspot" ? (P?.sent ?? q.note) : (P?.sentMail ?? q.note)}</p>
     </div>);
   return (
-    <form onSubmit={send} data-hs-do-not-collect="true" className={`${glassCard} grid gap-4 p-5 sm:grid-cols-2 md:p-7`}>
-      {P && <p className="text-[18px] font-medium leading-7 sm:col-span-2">{P.formH}<span className="ms-2 text-[14px] font-normal text-[#A3A3A3]">{P.opts[type][0]}</span></p>}
+    <form onSubmit={send} data-hs-do-not-collect="true" className={`${glassCard} grid gap-x-3 gap-y-4 p-5 sm:grid-cols-2 md:p-6`}>
+      {P && <div className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-white/[.07] pb-4 sm:col-span-2"><p className="text-[16px] font-semibold leading-6 tracking-[-0.01em]">{P.formH}</p><span className="inline-flex h-6 items-center rounded-full border border-white/10 bg-white/[.04] px-2.5 text-[12px] text-[#CFCFCF]">{P.opts[type][0]}</span></div>}
       <L id="q-name" t={q.name}><input id="q-name" required autoComplete="name" value={v.name} onChange={set("name")} className={field} /></L>
       <L id="q-email" t={q.email}><input id="q-email" required type="email" autoComplete="email" value={v.email} onChange={set("email")} className={field} /></L>
       <L id="q-company" t={q.company}><input id="q-company" required autoComplete="organization" value={v.company} onChange={set("company")} className={field} /></L>
-      <L id="q-size" t={q.size}><select id="q-size" value={v.size} onChange={set("size")} className={`${field} appearance-none`}>{q.sizes.map((x) => <option key={x} className="bg-[#171717]">{x}</option>)}</select></L>
-      <L id="q-sector" t={q.sector}><select id="q-sector" value={v.sector} onChange={set("sector")} className={`${field} appearance-none`}>{q.sectors.map((x) => <option key={x} className="bg-[#171717]">{x}</option>)}</select></L>
+      <L id="q-size" t={q.size}><select id="q-size" value={v.size} onChange={set("size")} className={field}>{q.sizes.map((x) => <option key={x}>{x}</option>)}</select></L>
+      <L id="q-sector" t={q.sector}><select id="q-sector" value={v.sector} onChange={set("sector")} className={field}>{q.sectors.map((x) => <option key={x}>{x}</option>)}</select></L>
       <L id="q-sites" t={q.sites}><input id="q-sites" type="number" min={1} inputMode="numeric" value={v.sites} onChange={set("sites")} className={field} /></L>
-      <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={4} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={`${field} h-auto py-3`} /></L></div>
+      <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={3} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={field} /></L></div>
       <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
         <p className="flex items-center gap-2 text-[13px] text-[#737373]"><EnvelopeSimple size={15} aria-hidden="true" />{leadDirect() && P ? P.direct : q.note}</p>
         <button type="submit" disabled={state === "busy"} className="inline-flex h-11 items-center gap-2 rounded-full bg-[#FAFAFA] px-5 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white disabled:opacity-60">{P ? P.send : q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>

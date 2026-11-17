@@ -22,7 +22,7 @@ export const Tick = () => <Check size={16} aria-hidden="true" className="mt-[3px
 export const Kicker = ({ children }: { icon: typeof Lifebuoy; children: React.ReactNode }) => (
   <p className="inline-flex items-center gap-2.5 text-[13px] font-medium text-ink-faint"><span aria-hidden="true" className="kick-line" />{children}</p>);
 
-const field = "block w-full rounded-[14px] bg-[var(--card-2)] px-4 text-[16px] text-ink outline-none transition-shadow placeholder:text-ink-faint";
+const field = "fx-field";
 
 /* Support: a big heading, three quick routes (email, FAQ, demo), then the message form beside a photo card listing what
  * we help with, the app and the legal pages; a band into the FAQ closes it. The site is static, so the form composes an
@@ -64,17 +64,17 @@ export function SupportPage() {
           {sent ? (
             <p role="status" className="mt-8 flex items-start gap-3 rounded-[16px] bg-[var(--card-2)] p-5 text-[16px]"><CheckCircle size={20} weight="fill" className="mt-0.5 shrink-0 text-ink" />{c.sent}</p>
           ) : (
-            <form onSubmit={submit} data-hs-do-not-collect="true" className="mt-8 grid gap-3 sm:grid-cols-2">
-              <label className="sm:col-span-2"><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.name}</span><input name="name" required autoComplete="name" className={`${field} h-12`} /></label>
-              <label><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.email}</span><input name="email" type="email" required autoComplete="email" className={`${field} h-12`} /></label>
-              <label><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.phone}</span><input name="phone" type="tel" autoComplete="tel" className={`${field} h-12`} /></label>
-              <label className="sm:col-span-2"><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.topic}</span>
-                <select name="topic" required defaultValue="" className={`${field} h-12 appearance-none bg-[length:16px] bg-[right_1rem_center] bg-no-repeat rtl:bg-[left_1rem_center]`} style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='%238A8A8A'%3E%3Cpath d='M213.66 101.66l-80 80a8 8 0 0 1-11.32 0l-80-80a8 8 0 0 1 11.32-11.32L128 164.69l74.34-74.35a8 8 0 0 1 11.32 11.32z'/%3E%3C/svg%3E\")" }}>
+            <form onSubmit={submit} data-hs-do-not-collect="true" className="mt-7 grid gap-x-3 gap-y-4 sm:grid-cols-2">
+              <label className="sm:col-span-2"><span className="fx-label">{c.name}</span><input name="name" required autoComplete="name" className={field} /></label>
+              <label><span className="fx-label">{c.email}</span><input name="email" type="email" required autoComplete="email" className={field} /></label>
+              <label><span className="fx-label">{c.phone}</span><input name="phone" type="tel" autoComplete="tel" className={field} /></label>
+              <label className="sm:col-span-2"><span className="fx-label">{c.topic}</span>
+                <select name="topic" required defaultValue="" className={field}>
                   <option value="" disabled>{c.topicPh}</option>{c.topics.map((t) => <option key={t} value={t}>{t}</option>)}</select></label>
-              <label className="sm:col-span-2"><span className="mb-1.5 block text-[14px] font-medium text-ink-muted">{c.message}</span><textarea name="message" required rows={5} className={`${field} resize-y py-3`} /></label>
+              <label className="sm:col-span-2"><span className="fx-label">{c.message}</span><textarea name="message" required rows={4} className={field} /></label>
               <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-[13px] text-ink-faint">{c.note}</p>
-                <button type="submit" className={`${pill} btn-primary h-12 shrink-0 px-6`}>{c.send}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></button>
+                <button type="submit" className={`${pill} btn-primary h-11 shrink-0 px-5`}>{c.send}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></button>
               </div>
             </form>)}
         </div>
