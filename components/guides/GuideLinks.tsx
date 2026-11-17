@@ -14,19 +14,24 @@ const T: Record<string, { en: string; tr: string; k: { en: string; tr: string } 
   "training-matrix-template": { en: "Training and skills matrix template", tr: "Beceri (yetkinlik) matrisi şablonu", k: { en: "Template", tr: "Şablon" } },
   "restaurant-onboarding-checklist": { en: "Restaurant onboarding checklist", tr: "Restoran oryantasyon kontrol listesi", k: { en: "Checklist", tr: "Kontrol listesi" } },
   "sop-software": { en: "How to choose SOP software", tr: "SOP yazılımı nasıl seçilir?", k: { en: "Guide", tr: "Rehber" } },
+  "lms-vs-sop-software": { en: "LMS vs SOP software for frontline teams", tr: "LMS mi, SOP yazılımı mı?", k: { en: "Guide", tr: "Rehber" } },
+  "employee-training-tracker": { en: "Employee training tracker template", tr: "Personel eğitim takip tablosu", k: { en: "Template", tr: "Şablon" } },
+  "on-the-job-training": { en: "On-the-job training: how to run it", tr: "İş başı eğitim nasıl yapılır?", k: { en: "Guide", tr: "Rehber" } },
+  "microlearning-for-frontline-workers": { en: "Microlearning for shift workers", tr: "Mikro öğrenme nedir?", k: { en: "Guide", tr: "Rehber" } },
+  "digital-checklists": { en: "Paper vs digital checklists", tr: "Dijital kontrol listesi", k: { en: "Checklist", tr: "Kontrol listesi" } },
 };
 /** Topic -> guides. Keys: sector slugs (Turkish, as in sectors.ts) and feature slugs. */
 const PICK: Record<string, string[]> = {
-  restoran: ["restaurant-onboarding-checklist", "sop-template", "training-matrix-template"],
-  uretim: ["work-instruction-template", "training-matrix-template", "video-sop"],
-  otel: ["sop-template", "video-sop", "training-matrix-template"],
-  franchise: ["sop-software", "sop-template", "restaurant-onboarding-checklist"],
-  depo: ["work-instruction-template", "training-matrix-template", "video-sop"],
-  firin: ["sop-template", "restaurant-onboarding-checklist", "video-sop"],
+  restoran: ["restaurant-onboarding-checklist", "digital-checklists", "on-the-job-training"],
+  uretim: ["work-instruction-template", "on-the-job-training", "training-matrix-template"],
+  otel: ["sop-template", "microlearning-for-frontline-workers", "digital-checklists"],
+  franchise: ["sop-software", "lms-vs-sop-software", "employee-training-tracker"],
+  depo: ["work-instruction-template", "on-the-job-training", "employee-training-tracker"],
+  firin: ["sop-template", "digital-checklists", "microlearning-for-frontline-workers"],
   "video-to-sop": ["video-sop", "sop-template", "sop-software"],
   "video-editor": ["video-sop", "work-instruction-template", "sop-template"],
-  "ai-quiz": ["training-matrix-template", "restaurant-onboarding-checklist", "video-sop"],
-  "permissions-workspaces": ["training-matrix-template", "sop-software", "sop-template"],
+  "ai-quiz": ["microlearning-for-frontline-workers", "employee-training-tracker", "training-matrix-template"],
+  "permissions-workspaces": ["employee-training-tracker", "lms-vs-sop-software", "sop-software"],
   "pdf-to-steps": ["sop-template", "work-instruction-template", "video-sop"],
 };
 const DEF = ["video-sop", "sop-template", "sop-software"];

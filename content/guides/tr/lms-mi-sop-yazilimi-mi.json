@@ -1,0 +1,90 @@
+{
+  "slug": "lms-mi-sop-yazilimi-mi",
+  "lang": "tr",
+  "twin": "lms-vs-sop-software",
+  "kind": "guide",
+  "seoTitle": "LMS mi SOP Yazılımı mı? Saha Ekipleri İçin | Flexlore",
+  "description": "LMS nedir, SOP yazılımından farkı ne? Saha personeli eğitimi için karşılaştırma tablosu, karar listesi, ikisini birlikte kullanma ve sektöre göre farklar.",
+  "h1": "LMS mi, SOP yazılımı mı? Saha personeli eğitimi için doğru seçim",
+  "kicker": "Rehber",
+  "answer": "LMS (öğrenme yönetim sistemi) eğitim kurslarını atar, tamamlanmayı izler ve sertifikaları yönetir. SOP yazılımı ise belirli bir işin nasıl yapıldığını adım adım tutar; çalışan onu işin başında açar, iş değişince prosedür güncellenir. Masa başı ekipler ve uzun zorunlu eğitimler için LMS, işi yaparak öğrenen saha ekipleri için önce SOP yazılımı uygundur.",
+  "sections": [
+    {
+      "id": "lms-nedir",
+      "h2": "LMS nedir, SOP yazılımı nedir?",
+      "html": "<p>LMS <strong>kurs</strong> etrafında, SOP yazılımı <strong>iş</strong> etrafında kuruludur. Bu tek fark; içeriğin nasıl hazırlandığını, çalışanın onu nerede açtığını ve birinin işe hazır olduğunu nasıl anladığınızı belirler.</p>\n<p>LMS, İngilizce learning management system ifadesinin kısaltmasıdır; Türkçede öğrenme yönetim sistemi ya da eğitim yönetim sistemi denir. Klasik bir LMS'te bir kurs hazırlar veya satın alırsınız, bir gruba atarsınız, çalışanlar modülleri sırayla tamamlar, sistem de puanları, tamamlanma tarihlerini ve sertifikaları kaydeder. Cevapladığı soru şudur: &quot;Bu kişi zorunlu eğitimi tamamladı mı?&quot;</p>\n<p>SOP yazılımı ise işin nasıl yapıldığını saklar. Her kayıt tek bir standart operasyon prosedürüdür: fritöz istasyonunu kapatmak, 2 numaralı hatta kalıp değiştirmek, bir otel odasını hazırlamak. Çalışan ona ihtiyaç duyduğu anda, çoğu zaman telefondan açar; iş değişince prosedür de güncellenir. Cevapladığı soru şudur: &quot;Bu kişi bu işi bizde, bugün nasıl yapıyorsak öyle biliyor mu?&quot;</p>\n<p>Çoğu işletmede zaten olan üçüncü seçenek <strong>ortak klasör ve dokümanlardır</strong>: Word dosyaları, PDF'ler, basılı klasörler, WhatsApp gruplarındaki fotoğraflar. Ek maliyeti yoktur ama hangi sürümün güncel olduğunu ve kimin okuduğunu kimse bilemez.</p>"
+    },
+    {
+      "id": "karsilastirma-tablosu",
+      "h2": "LMS, SOP yazılımı ve ortak klasör karşılaştırması",
+      "html": "<p>Her biri farklı bir işte güçlüdür. Tabloda, ekibinizin gerçekte yaptığı işe hangi sütunun uyduğuna bakın.</p>\n<table>\n<thead><tr><th>Soru</th><th>Klasik LMS</th><th>SOP yazılımı</th><th>Ortak klasör / dokümanlar</th></tr></thead>\n<tbody>\n<tr><td>İçeriğin temel birimi</td><td>Birden fazla dersten oluşan kurs veya modül</td><td>Tek bir iş için tek bir prosedür</td><td>Bir dosya</td></tr>\n<tr><td>Tipik uzunluk</td><td>Kurs başına dakikalar ile saatler arası</td><td>Birkaç kısa adım</td><td>Tek sayfadan kalın bir kılavuza kadar</td></tr>\n<tr><td>İçeriği kim hazırlar</td><td>Eğitim ekibi, eğitim tasarımcıları veya hazır kurs kütüphaneleri</td><td>İşi en iyi yapan kişi; sorumlusu onaylar</td><td>Vakti olan kim varsa</td></tr>\n<tr><td>Nerede kullanılır</td><td>Çoğunlukla bilgisayar başında veya eğitim salonunda</td><td>İstasyonda, telefonda, vardiya sırasında</td><td>Masa başında ya da istasyona asılı çıktı olarak</td></tr>\n<tr><td>Ne zaman kullanılır</td><td>Planlı eğitim saatinde, oryantasyon haftasında, yıllık tekrarlarda</td><td>İşten önce, iş sırasında ve bir adım unutulduğunda</td><td>Birisi varlığını hatırladığında</td></tr>\n<tr><td>Anlama nasıl ölçülür</td><td>Puanlı sınavlar, sertifikalar</td><td>Her prosedürden sonra kısa bir quiz ve sahada sorumlunun yetkinlik onayı</td><td>Genelde ölçülmez</td></tr>\n<tr><td>Güncelleme çalışana nasıl ulaşır</td><td>Kurs revizyonu, çoğu zaman ayrı bir proje</td><td>Bir adımı değiştir, onayla, yeni sürümü yayınla</td><td>Yeni dosya çıkar, eski kopyalar dolaşmaya devam eder</td></tr>\n<tr><td>Yönetici ne görür</td><td>Kurs ve kişi bazında tamamlanma ve puan</td><td>Her işi kimin öğrendiği, kişi, ekip ve şube bazında</td><td>Güvenilir bir şey görmez</td></tr>\n<tr><td>En iyi uyduğu durum</td><td>Zorunlu eğitimler, sertifika takibi, ofis çalışanları</td><td>El işi gerektiren görevler, yüksek personel devri, çok şube, vardiyalı çalışma</td><td>Az işi olan çok küçük ekipler</td></tr>\n</tbody>\n</table>\n<p>İki yazılım türünden biri genel olarak diğerinden üstün değildir. Farklı sorunları çözerler; doğru seçim neyi düzeltmek istediğinize bağlıdır.</p>"
+    },
+    {
+      "id": "lms-ne-zaman-dogru-secim",
+      "h2": "LMS ne zaman doğru seçimdir?",
+      "html": "<p>Eğitim bir kurs ise, yani yapılandırılmış, sıralı ve aynı roldeki herkes için aynıysa LMS doğru araçtır. Şu alanlarda gerçekten güçlüdür:</p>\n<ul>\n<li><strong>Uzun zorunlu eğitimler ve politika eğitimleri.</strong> Kişisel verilerin korunması, etik kurallar, işyeri politikaları gibi konular sonunda sınavı olan kurslar olarak verilir. LMS tam olarak bunun için tasarlanmıştır.</li>\n<li><strong>Sertifika takibi.</strong> Çalışanlarınızın süresi dolan ve yenilenmesi gereken belgeleri varsa, LMS bitiş tarihlerini izleyip tekrar eğitimlerini atayabilir.</li>\n<li><strong>Masa başı çalışanlar.</strong> Ofis, satış, çağrı merkezi ve yönetim kadroları bilgisayar başındadır, eğitime ayrılmış zamanları vardır ve modülleri sırayla tamamlayabilir.</li>\n<li><strong>Hazır içerik kütüphaneleri.</strong> Liderlik, iletişim, ofis programları gibi genel konular çoğu zaman hazır kurs olarak bulunur ve LMS içinde çalışır.</li>\n<li><strong>Kariyer ve gelişim programları.</strong> Vardiya amiri ya da müdür adayları için çok kurslu programlar, kurs ve eğitim yolu yapısına iyi oturur.</li>\n</ul>\n<p>Eğitim ihtiyacınızın büyük kısmı bu listeye benziyorsa ana sisteminiz muhtemelen LMS olmalı; prosedürler küçük bir ek olarak kalabilir.</p>"
+    },
+    {
+      "id": "saha-ekipleri-neden-farkli",
+      "h2": "Saha personeli eğitiminde neden farklı bir araç gerekir?",
+      "html": "<p>Saha işi yaparak, istasyonda ve vardiya içinde öğrenilir. Kurs formatı bu ortam düşünülerek tasarlanmadığı için, LMS'in kendisi iyi olsa bile uyum çoğu zaman zayıf kalır.</p>\n<p>Sabah 7'de fritöz başına geçen yeni bir çalışanı düşünün. Ona mutfak güvenliği üzerine uzun bir slayt modülü değil, bu mutfaktaki bu fritözde yağın nasıl kontrol edilip süzüldüğünü gösteren beş kısa adım lazım. Perşembe günü 3. adımı unuttuğunda da onu yeniden açabilmesi.</p>\n<p>Kurs odaklı yaklaşım saha işiyle karşılaşınca sık görülen sürtünmeler:</p>\n<ul>\n<li><strong>Masa yok, eğitim saati yok.</strong> Çalışan iki iş arasında, kendi telefonunda, çoğu zaman gürültüde ya da eldivenle öğrenir.</li>\n<li><strong>Bilgi sahadan gelir.</strong> İşi en iyi bilen usta ya da şeftir. Bunu resmi bir kursa çevirmek genelde araya bir eğitim ekibi girmesini gerektirir.</li>\n<li><strong>İşler sık değişir.</strong> Yeni bir menü ürünü, yeni bir makine ayarı ya da yeni bir temizlik ürünü tek bir adımı değiştirir. Prosedürü güncellemek hızlıdır; kursu revize etmek genelde daha büyük bir iştir.</li>\n<li><strong>Tamamlamak, hazır olmak demek değildir.</strong> Modülü bitirmek, kişinin onu baştan sona geçtiğini gösterir. Müdür ise cumartesi bulaşık makinesini kimin çalıştırabileceğini bilmek ister.</li>\n</ul>\n<p>Kısa, iş büyüklüğünde içeriğin burada daha iyi çalışmasının nedenlerini ve nasıl yazılacağını <a href=\"/tr/rehber/mikro-ogrenme/\">saha ekipleri için mikro öğrenme rehberinde</a> anlattık.</p>"
+    },
+    {
+      "id": "karar-listesi",
+      "h2": "LMS mi, SOP yazılımı mı, ikisi birden mi? Karar listesi",
+      "html": "<p>Yazılım türünden değil, çözmek istediğiniz sorundan başlayın. Önce tabloya bakın, sonra aşağıdaki soruları cevaplayın.</p>\n<table>\n<thead><tr><th>LMS seçin, eğer...</th><th>SOP yazılımı seçin, eğer...</th><th>İkisini birlikte kullanın, eğer...</th></tr></thead>\n<tbody>\n<tr><td>Çalışanlarınızın çoğu masa başında ve eğitime ayrılmış zamanları var</td><td>Çalışanlarınızın çoğu sahada, vardiyalı ve bilgisayarsız çalışıyor</td><td>Hem büyük bir merkez ofis ekibiniz hem büyük bir saha ekibiniz var</td></tr>\n<tr><td>Ana ihtiyacınız uzun zorunlu eğitimler ve politika eğitimleri</td><td>Ana ihtiyacınız belirli işlerin her şubede aynı şekilde yapılması</td><td>Hem resmi kurslar vermeniz hem günlük işleri standartlaştırmanız gerekiyor</td></tr>\n<tr><td>Sertifikaları ve yenileme tarihlerini takip etmeniz gerekiyor</td><td>Her işi kimin öğrendiğini kişi ve şube bazında görmeniz gerekiyor</td><td>Sertifikalar bir sistemde, işe hazırlık diğerinde duruyor</td></tr>\n<tr><td>İçeriği eğitim ekibi hazırlıyor ya da hazır kütüphaneden alıyorsunuz</td><td>İçeriğin işi en iyi yapan kişiden gelmesini istiyorsunuz</td><td>Kurslar İK'nın veya eğitim ekibinin, prosedürler operasyonun sorumluluğunda</td></tr>\n<tr><td>İçerik yılda bir iki kez değişiyor</td><td>İşler, tarifler, makineler veya standartlar birkaç haftada bir değişiyor</td><td>Politikalar yavaş, sahadaki iş hızlı değişiyor</td></tr>\n</tbody>\n</table>\n<p>Şimdi şu soruları dürüstçe cevaplayın. Her &quot;evet&quot; SOP yazılımına işaret eder.</p>\n<ol>\n<li>Yeni başlayanlar işi çoğunlukla bir ustanın yanında öğreniyor ve sonuç hangi ustanın yanına düştüklerine mi bağlı?</li>\n<li>İki şube aynı işi farklı mı yapıyor?</li>\n<li>İstasyondaki çıktı, makineden daha mı eski?</li>\n<li>Çalışanlarınız eğitimi bilgisayardan değil, vardiya içinde telefondan mı açar?</li>\n<li>Bir işi gerçekten bilen tek bir deneyimli kişi mi var?</li>\n<li>Bir adım değiştiğinde değişikliği kimin gördüğünü bilmekte zorlanıyor musunuz?</li>\n</ol>\n<p>Şunlar ise LMS'e işaret eder:</p>\n<ol>\n<li>Belirli aralıklarla tekrarlanması gereken, resmi sınavı olan zorunlu eğitimleriniz var mı?</li>\n<li>Süresi dolan sertifikaları yönetmeniz gerekiyor mu?</li>\n<li>Kendi içeriğinizi hazırlamak yerine genel konularda hazır kurs satın almak mı istiyorsunuz?</li>\n</ol>\n<p>İki listede de çok sayıda &quot;evet&quot; varsa genelde ikisine de ihtiyacınız vardır. Neredeyse hepsine &quot;hayır&quot; dediyseniz, şimdilik düzenli bir klasör yapısı ve iyi bir iş talimatı şablonu yeterli olabilir. Araçları karşılaştırmaya hazır olduğunuzda <a href=\"/tr/rehber/sop-yazilimi/\">SOP yazılımı seçme rehberimizde</a> puanlama listesi ve demo soruları var.</p>"
+    },
+    {
+      "id": "ikisini-birlikte-kullanmak",
+      "h2": "LMS ve SOP yazılımı birlikte nasıl kullanılır?",
+      "html": "<p>İşi içerik türüne göre bölün: kurslar LMS'te, iş prosedürleri SOP yazılımında. Sonra her birinin sahibini ve yöneticilerin işe hazırlığa nereden bakacağını netleştirin.</p>\n<h3>Basit bir ayrım</h3>\n<ul>\n<li><strong>LMS:</strong> şirkete giriş eğitimi, politikalar, zorunlu eğitimler, yenileme tarihi olan sertifikalar, liderlik ve ofis becerileri.</li>\n<li><strong>SOP yazılımı:</strong> açılış ve kapanış rutinleri, tarifler, temizlik, makineyi devreye alma ve kalıp değişimi, oda standartları; istasyonda elle yapılan her iş.</li>\n</ul>\n<h3>Düzeni koruyan kurallar</h3>\n<ul>\n<li><strong>Her içeriğin tek bir yeri olsun.</strong> Aynı prosedürü iki yerde tutmayın. Bir kursun bir işe ihtiyacı varsa, kopyalamak yerine prosedüre yönlendirsin.</li>\n<li><strong>Sahipler belli olsun.</strong> Kursların sahibi genelde İK veya eğitim ekibidir. Prosedürlerin sahibi ve değişiklikleri onaylayan ise operasyon, mutfak şefi ya da üretim sorumlusudur.</li>\n<li><strong>Her sorunun tek bir cevabı olsun.</strong> &quot;Kimin sertifikası geçerli?&quot; sorusunun cevabı LMS'tedir. &quot;Cumartesi bu işi kim yapabilir?&quot; sorusunun cevabı SOP yazılımında ve sahada sorumlunun verdiği yetkinlik onayındadır.</li>\n<li><strong>Oryantasyon ikisini de kullanır.</strong> İlk gün politika eğitimleri olabilir; 2. ile 10. gün arası ise rolün işleri, istasyonda ve yakında bir sorumluyla öğrenilir.</li>\n</ul>\n<p>Bugün bunların hepsini bir Excel tablosunda tutuyorsanız, kişileri, işleri ve onayları tek ekranda nasıl düzenleyeceğinizi <a href=\"/tr/rehber/egitim-takip-tablosu/\">eğitim takip tablosu rehberinde</a> bulabilirsiniz.</p>"
+    },
+    {
+      "id": "sektore-gore-farklar",
+      "h2": "Restoran, üretim, otel ve franchise'larda ne değişir?",
+      "html": "<p>Karar mantığı aynı kalır; kurs ile prosedür arasındaki denge işin türüne göre kayar.</p>\n<ul>\n<li><strong>Restoran ve kafeler:</strong> öğrenmenin çoğu işe dayalıdır (tarif, sunum, açılış ve kapanış, temizlik, alerjen adımları) ve personel devri genelde yüksektir. Günlük yükü çoğu zaman SOP yazılımı taşır. Resmi gıda hijyeni eğitimi ise yerel mevzuata göre kurs olarak ya da dış bir kurum tarafından verilebilir.</li>\n<li><strong>Üretim:</strong> kalıp değişimi, makineyi devreye alma, KKD ve kilitleme adımları iş prosedürüdür; yakın çekim video ve sıkı onay akışı ister. Resmi İSG eğitimleri ve periyodik tekrarlar çoğu zaman LMS'e ya da yetkili bir eğitim kurumuna uyar. Birçok tesis ikisine de ihtiyaç duyar; ayrıca kimse sorumlusunun onayı olmadan makineyi tek başına çalıştırmamalıdır.</li>\n<li><strong>Oteller:</strong> kat hizmetlerinde oda hazırlığı ve ön büroda giriş işlemi, görsel standartlara dayalı işlerdir ve prosedüre uygundur. Misafir ilişkileri, marka değerleri ve politika eğitimleri ise çoğu zaman kurs olarak verilir.</li>\n<li><strong>Franchise'lar:</strong> merkezin yeni bir menü ürününü ya da süreci bir kez yayınlayıp tamamlanmayı şube bazında görmesi gerekir. Şube bazında hazırlık takibi olan prosedürler bunu doğrudan karşılar. Franchise alanların oryantasyonu ve marka politikaları ise kurs olarak kalabilir.</li>\n</ul>\n<p>Sektör ne olursa olsun, saha öğrenmesinin büyük kısmı yine deneyimli bir çalışanın yanında olur. Prosedürlerin ve sorumlu onayının bunu nasıl desteklediğini <a href=\"/tr/rehber/is-basi-egitim/\">iş başı eğitim rehberinde</a> anlattık.</p>"
+    },
+    {
+      "id": "bunu-flexlore-ile-yapmak",
+      "h2": "Bunu Flexlore ile yapmak",
+      "html": "<p>Flexlore bir LMS değil, saha ekipleri için bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekin, telefondaki editörle adımlara bölün; yapay zekâ talimatların ve kısa bir quizin taslağını hazırlasın, ekibiniz düzenleyip onaylasın. İşleri role ve şubeye göre atayın, tamamlanmayı ve quiz sonuçlarını kişi, ekip ve şube bazında görün. iOS ve Android uygulaması var, uygulama 8 dilde kullanılabiliyor. Quiz, adımları kimin anladığını gösterir; sahada yetkinlik onayı yine çalışanın sorumlusundadır.</p>\n<p>Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, iş başında QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.</p>\n<p>Zaten bir LMS kullanıyorsanız Flexlore, el işi gerektiren görevler için onun yanında çalışabilir. Planlar kullanıcı sayısına göredir; <a href=\"/tr/pricing/\">fiyatlara</a> bakın ya da kendi işlerinizden birini birlikte hazırlamak için <a href=\"/demo/\">demo isteyin</a>.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "SOP yazılımı LMS'in yerini tutar mı?",
+      "a": "Eğitimi neredeyse tamamen el işi gerektiren görevlerden oluşan ve resmi sertifika ihtiyacı olmayan bazı saha ekipleri için evet. Uzun zorunlu eğitimler vermeniz, süresi dolan sertifikaları yönetmeniz ya da büyük ofis ekiplerini eğitmeniz gerekiyorsa bu işi LMS daha iyi yapar. Birçok işletme işler için SOP yazılımını, kurslar için LMS'i kullanır."
+    },
+    {
+      "q": "Saha personeli için LMS kullanılır mı?",
+      "a": "Politika, zorunlu eğitim ve sertifika gibi kurslar için kullanılabilir. Günlük işlerin istasyonda öğrenilmesi için ise uyumu daha zayıftır, çünkü kurslar planlı eğitim saati ve çoğu zaman bilgisayar başı düşünülerek tasarlanır. Saha çalışanı genelde vardiya içinde telefondan açıp tekrar izleyebileceği kısa, iş büyüklüğünde adımlara ihtiyaç duyar."
+    },
+    {
+      "q": "Personel eğitim platformu seçerken ilk neye bakmalıyım?",
+      "a": "Önce çalışanlarınızın nerede ve nasıl öğrendiğine bakın. Çoğu masa başındaysa ve resmi kurslar ağırlıktaysa LMS'e, çoğu sahada ve vardiyalıysa telefonda çalışan, videolu adımları ve kısa quizi olan bir SOP yazılımına yönelin. Karar vermeden önce kendi gerçek işlerinizden biriyle, sahadaki bir çalışanla birlikte deneme yapın."
+    },
+    {
+      "q": "Küçük bir işletmenin LMS'e ihtiyacı var mı?",
+      "a": "Başlangıçta genelde yok. Küçük bir restoran, kafe ya da atölyenin asıl ihtiyacı günlük işlerin açıkça yazılması veya çekilmesi ve kimin öğrendiğinin görülmesidir. LMS; vermeniz gereken resmi kurslar, takip etmeniz gereken sertifikalar ya da eğitim saati olan büyüyen bir ofis ekibiniz olduğunda anlam kazanır."
+    },
+    {
+      "q": "Elimizdeki PDF ve Word dokümanlarını kullanabilir miyiz?",
+      "a": "Evet, başlangıç noktası olarak. Mevcut dokümanlar standardın ne olması gerektiğini gösterir. Saha işleri için bir sonraki adım, her dokümanı kısa adımlara bölmek ve görmenin önemli olduğu yerlere video eklemektir. Her dokümanı işi bugün yapan kişiyle birlikte gözden geçirin, çünkü yazılı prosedürler zamanla sahadaki uygulamadan uzaklaşır."
+    },
+    {
+      "q": "LMS ve SOP yazılımını birlikte kullanırsak eğitimi nasıl takip ederiz?",
+      "a": "Hangi sistemin hangi soruyu cevapladığına karar verin. Kurs tamamlama ve sertifikalar LMS'te izlenir. İşe hazırlık, yani her prosedürü kimin öğrendiği ve quizini geçtiği SOP yazılımında, sahada sorumlunun yetkinlik onayıyla birlikte izlenir. Her birinin tek bir sahibi olsun ve aynı içeriği iki yere kopyalamayın."
+    },
+    {
+      "q": "LMS ya da SOP yazılımı bizi mevzuata uygun hale getirir mi?",
+      "a": "Hiçbir yazılım tek başına mevzuata uygunluk sağlamaz. Hangi eğitim, prosedür ve kayıtların gerektiğini ilgili mevzuat belirler; bunu yetkili kurumla ya da danışmanınızla kontrol edin. Onaylı prosedürler ve kimin eğitildiğine dair kayıtlar bir denetimi destekleyebilir, ama denetçi sahada gerçekte ne yapıldığına bakar."
+    }
+  ],
+  "related": [
+    "/tr/rehber/sop-yazilimi/",
+    "/tr/rehber/is-basi-egitim/",
+    "/tr/rehber/egitim-takip-tablosu/",
+    "/tr/rehber/mikro-ogrenme/"
+  ]
+}

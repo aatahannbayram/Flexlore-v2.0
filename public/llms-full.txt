@@ -5,6 +5,859 @@
 
 ---
 
+# Paper vs digital checklists: how to build one your team follows
+URL: https://www.flexlore.com/guides/digital-checklists/
+Language: en
+
+Use paper checklists when you run one site, the manager reads every sheet and the list rarely changes. Use digital checklists when you need timestamps, photos, one current version and a view across locations. Most operations do best with a hybrid. Either way, a checklist confirms a routine; it does not teach the task.
+
+## What is an operations checklist for?
+
+An operations checklist makes sure a trained person does not skip a step in a routine they already know: opening the kitchen, closing the bar, changing over a line, turning a hotel room. It is a memory aid and a record. It does not teach anyone how to do the task.
+Picture a cook opening alone at 6am. The list says "Fryer oil checked and filtered". If she has filtered oil many times, that line keeps her from forgetting it on a busy morning. If she has never done it, the line tells her nothing about how to drain the fryer safely, where the filter paper goes or what tired oil looks like. That knowledge has to come from training, a work instruction or someone showing her.
+So a checklist does three jobs well: it keeps a routine the same across shifts and people, it shows the next person what was done, and it gives a manager something to check. It does one job badly: training. For the full difference between the three document types, see SOP vs work instruction vs checklist.
+
+## Paper vs digital checklists: what is the difference?
+
+Paper is fast, cheap and works anywhere, but it is hard to check from another location and easy to fill in after the fact. Digital adds timestamps, photos, a view across locations and one current version, but it depends on a working device and people willing to use it. Neither wins in every case.
+ | Paper checklist | Digital checklist | 
+Cost to start | Close to nothing: a printer and a clipboard | A device per station or per person, plus the software | 
+Speed at the station | A pen tick, no login, no battery | Fast when the device is close and the list is short; slow with wet gloves or a login screen | 
+Works without power or signal | Always | Needs a charged device and often a connection | 
+Proof of when it was done | A handwritten time, if anyone writes it | A timestamp on each item | 
+Photos | No | Yes, for things like a clean fryer or a closed-down line | 
+Seeing results from another site | Someone has to collect the sheet or send a picture of it | Same day, by location | 
+Changing an item | Reprint and replace every copy; old copies linger | Change once; every location gets the new version | 
+Missed items | Visible only when someone reads the sheet | Can be flagged, or required before the list closes | 
+Storing records | Binders and boxes; sheets get wet, greasy or lost | Searchable history | 
+Typical failure | Everything ticked in one go at the end of the shift | Everything tapped through without looking | 
+Look at the last row. Both formats fail the same way: people confirm things they did not check. Changing the format does not fix that. Clear items, and a manager who actually reads the results, do.
+
+## Paper or digital: how do you decide?
+
+Decide by who needs to see the result, how quickly, and how often the list changes. One site with a manager on the floor can run well on paper. Several sites, frequent changes or a need for timed proof usually point to digital, and most operations end up with a mix.
+Paper fits when you have one location, the manager sees the sheet every day, the list rarely changes and the station is wet, hot or greasy where a phone does not belong.
+Digital fits when you run several locations, head office or an area manager needs to see what happened without calling, items need a photo or a time, or the list changes often enough that old printouts cause mistakes.
+A hybrid fits most kitchens, plants and hotels. Keep paper where hands are busy, such as a temperature sheet on the walk-in door, and go digital for the end-of-shift sign-off, the photo of the closed-down line and anything a manager at another site needs. Another common split: paper for the daily routine, digital for weekly deep cleans and internal audits.
+Whatever you pick, decide who reviews the results and when. A digital checklist nobody opens is a paper checklist that needs charging.
+
+## How to write checklist items people actually follow
+
+Write each item as one observable action with the standard stated in the line, so anyone can tell whether it is done. "Walk-in at 0 to 4 °C, logged" works. "Check the walk-in" does not, because it never says what good looks like.
+One action per item
+"Clean and sanitise the slicer and the prep tables" is two or three items, with a chance to skip one each time. Split them.
+Make it observable
+Someone else should be able to walk up and see whether the item is done. "Hand-wash sink stocked: soap, paper towels, warm water" is observable. "Hygiene OK" is not.
+State the standard in the line
+Put the number, the setting or the end state where people read it: the temperature, the test strip result, the fill level, the photo it should match. Temperatures in this guide are examples only. Your local food safety rules and your own food safety plan decide the exact limits, so check them before you print anything.
+Say what to do when it fails
+A reading outside the standard needs a next step, for example "If above the limit, tell the shift lead before using any product". Without one, people tick the box and move on.
+Follow the route people walk
+Order items the way the person moves through the kitchen, the line or the room, not the order someone thought of them. Backtracking is where items get skipped.
+Keep it short
+List the things that get missed, or that matter if they are missed. Items everyone does without fail add length and teach people to skim. If one routine needs more than a page, split it by area or by role.
+
+## What goes on a restaurant opening and closing checklist?
+
+An opening checklist confirms the kitchen is safe and ready before the first order: temperatures, hand-wash stations, sanitiser, equipment up to heat, mise en place and dated labels. A closing checklist confirms food is stored, equipment is off and clean, cash is secured and the next shift can open without surprises.
+The example below is split into opening and closing, with a standard for every item and columns for time and initials. Adapt it to your menu, your equipment and your local rules. Then walk it with a cook who will use it, in the order they actually move, and cut anything that never gets missed.
+Before anyone opens or closes alone for the first time, teach the tasks behind each line. The restaurant onboarding checklist shows where these routines fit in a new hire's first weeks.
+
+## Changeover and room turnover checklist examples
+
+The same rules work outside the kitchen: one action per item, the standard in the line and the order people actually move. Two short examples to adapt.
+Manufacturing changeover checklist
+Line stopped, lockout applied per site procedure
+Previous product, labels and packaging removed from the line
+Product contact parts cleaned, no visible residue
+Change parts fitted for the new product; settings match the setup sheet
+First-piece check passed and signed by the line lead
+Lockout removed by the person who applied it; line released
+The checklist confirms the changeover happened in full. How to fit each change part belongs in a work instruction or a video, as covered on our manufacturing page.
+Hotel room turnover checklist
+Linen stripped, bed made to the house standard
+Bathroom cleaned and sanitised; towels and amenities set as shown in the standard photo
+Minibar checked and restocked, used items recorded
+Lost property bagged, labelled and logged
+Lights, TV, air conditioning and safe tested
+Room marked ready for inspection
+
+## How to roll out a digital checklist across locations
+
+Start with one routine at one or two pilot locations, fix the list with the people who use it, then roll it out with a named owner and a daily review at each site. Moving every checklist to digital on the same day is a reliable way to have none of them used.
+Pick one routine. Closing is a good first choice: the result can be checked by the opener next morning.
+Pilot it. Run it at one or two sites. Ask staff which items are unclear, slow or pointless, and fix them before anyone else sees the list.
+Settle the devices. Decide whether there is a shared tablet at the station or people use their own phones, where it charges and what happens when it is dead. Keep a printed backup.
+Name an owner per location. One person checks results every day and follows up on missed or failed items.
+Let people see the review. When the area manager comments on last night's closing photos, everyone learns the list is read.
+Control versions centrally. One person approves changes, every location gets the same version, and local additions are agreed rather than improvised.
+Train the tasks, not only the app. Showing someone where to tap is quick. Showing them how to do each item right is the real work, and it is where on-the-job training comes in.
+
+## Common checklist mistakes
+
+Most checklists fail because they are vague, too long or never reviewed, not because of the format. Watch for these.
+Using the checklist to train. A new hire handed the closing list on day one learns what to do, not how to do it.
+Vague items. "Clean kitchen", "Check fridges". No standard, no way to verify.
+Lists that only grow. Every incident adds a line and nothing is removed. Review the list on a fixed schedule and delete what is never missed.
+No response to a failed item. The log shows the walk-in ran warm three nights running and nobody acted. A record without a response protects nobody.
+Old versions in use. Last year's sheet is still taped inside a cupboard door. Remove old copies every time the list changes.
+Ticks after the fact. Every item signed at the same minute. Ask for times on items where timing matters, and look at them.
+Treating the checklist as proof of compliance. A written, dated checklist can support an inspection or audit, but your local rules decide what you must record and keep. Check them.
+
+## Doing this with Flexlore
+
+Flexlore is not a checklist app. It covers the part a checklist cannot: how to do each item right. Film your best person doing the items that take skill, such as filtering fryer oil, probing the walk-in or breaking down the slicer, and mark the steps in the phone editor. AI drafts the instructions and a short quiz, and your team approves them before anything goes out. Keep your checklist on paper or in the tool you already use, and next to each item write the name of its Flexlore job, so anyone unsure can watch it on their phone. You see who watched and passed each job by person and location. Signing someone off on the floor stays with their supervisor. QR codes at the station that open the right job are coming soon.
+
+## Restaurant opening and closing checklist
+
+Restaurant opening and closing checklist
+
+Location: [Location name]
+Date: [Date]
+Opening lead: [Name]
+Closing lead: [Name]
+Version: Rev 1, approved by [kitchen manager]
+
+OPENING (before the first order)
+#	Item	Standard (what done looks like)	Time	Initials
+O1	Walk-in temperature read and logged	0 to 4 °C (example; use your local limit). Above the limit: tell the shift lead before using product		
+O2	Reach-in fridges and freezers read and logged	Fridges 0 to 4 °C, freezers -18 °C or colder (examples)		
+O3	Hand-wash sinks stocked	Soap, paper towels and warm water at every sink		
+O4	Sanitiser made up and tested	Test strip shows the strength on the product label		
+O5	Fryer oil checked	Level at the fill line; colour and smell acceptable, or filtered or changed per the oil SOP		
+O6	Grill, ovens and fryers on	At set temperature before the first order		
+O7	Mise en place checked by station	Matches the prep list; every container labelled and dated		
+O8	Use-by dates checked	Anything past date removed and recorded as waste		
+O9	Dish machine ready	Filled, chemicals connected, test cycle run		
+O10	Front of house ready	Floor clean and dry, tables set, toilets checked and stocked		
+O11	Till ready	Float counted and signed		
+O12	Pre-shift briefing done	Specials, sold-out items and allergen changes told to the team		
+
+CLOSING (after the last order)
+#	Item	Standard (what done looks like)	Time	Initials
+C1	All food stored	Covered, labelled and dated; raw below ready-to-eat		
+C2	Final fridge and walk-in temperatures logged	Within your limit; doors fully closed		
+C3	Fryers off	Oil filtered or covered		
+C4	Grill, ovens and burners off	Gas valves closed where your procedure requires		
+C5	Surfaces cleaned and sanitised	Prep tables, boards and slicer: no visible residue		
+C6	Floors and drains done	Swept, mopped, drain covers cleared		
+C7	Bins emptied	New liners in; outside bin lid closed		
+C8	Dish machine drained and cleaned	Filters out, rinsed and replaced		
+C9	Hand-wash sinks restocked for opening	Soap and paper towels full		
+C10	Cash secured	Counted, in the safe, end-of-day report signed		
+C11	Building secured	Extraction and lights off, doors locked, alarm set		
+
+Sign-off
+Opening lead: [signature]
+Closing lead: [signature]
+Manager review next day: [signature]
+Failed items, action taken and who was told: [notes]
+
+Temperatures are examples. Your local food safety rules and your food safety plan decide the limits.
+
+## Questions
+
+**Is a digital checklist better than a paper one?**
+Not always. Digital is better when you need timestamps, photos, one current version and results from several locations without calling. Paper is better at a wet or greasy station, with no battery or login to fail. Many restaurants and plants use both: paper where hands are busy, digital for sign-offs and anything a manager needs to see remotely.
+
+**What should be on a restaurant opening and closing checklist?**
+Opening: fridge and walk-in temperatures, hand-wash sinks stocked, sanitiser tested, equipment at temperature, mise en place and date labels checked, and a pre-shift briefing. Closing: food stored and labelled, final temperatures, equipment off and cleaned, floors, drains and bins done, cash secured and the building locked. Adapt the list to your menu and local rules.
+
+**How do I get staff to actually follow a checklist?**
+Keep it short, write each item as one observable action with the standard in the line, and order it the way people walk. Then make sure someone reviews the results every day and acts on failed items. Staff follow lists they know are read. Teach the tasks behind the items before handing the list over.
+
+**How long should an operations checklist be?**
+As short as it can be while covering what gets missed or matters if missed. If one routine runs over a page, split it by area or by role, such as kitchen closing and front-of-house closing. Remove items that are never missed, because long lists teach people to skim and tick without looking.
+
+**Can a checklist replace training?**
+No. A checklist reminds a trained person what to confirm. It does not show how to filter fryer oil, set up a machine or make a bed to the house standard. Teach each task first, with a work instruction, a short video or someone showing it, and use the checklist afterwards to keep the routine consistent.
+
+**Do digital checklists help with food safety inspections?**
+A written, dated checklist with times and initials can support an inspection or internal audit, whether it is on paper or digital. Digital records are easier to search and harder to lose. Neither format makes you compliant on its own. Your local food safety rules decide what you must record, how and for how long, so check them.
+
+**How often should I update an operations checklist?**
+Review it on a fixed schedule, for example each quarter, and whenever equipment, the menu or the process changes. After any incident, check whether an item was missing or unclear. When you change the list, remove every old copy so only the current version is in use at every location.
+
+
+---
+
+# Employee training tracker: a free template, and when to outgrow the spreadsheet
+URL: https://www.flexlore.com/guides/employee-training-tracker/
+Language: en
+
+Track employee training with one record per person per training: who was trained, on which procedure and version, when, by whom, how it was checked and when the refresher is due. A shared spreadsheet works for a few sites and trainings. Move to software when versions, locations or missed refreshers outgrow it.
+
+## What is an employee training tracker?
+
+An employee training tracker is a log of who was trained on what, when, by whom and how it was checked. It is the record you open when someone asks "has the new cashier done allergen training?" or "who still needs the updated fryer procedure?"
+It is not the same as a skills matrix. A training matrix shows coverage: who can run each station on each shift, at what level. A tracker is the history behind it: each training event, dated, with the version of the procedure and the proof. Most teams need both, and the tracker feeds the matrix.
+Picture a café with three sites. The owner rewrites the espresso cleaning routine in March. In June, a barista at the second site is still doing it the old way. A good tracker shows that she was trained in January, on version 3, and never saw version 4. Without it, you find out from the machine.
+
+## What should a training record include?
+
+Record one row per person per training, with enough detail that someone who was not there can see what happened. These columns cover it:
+Employee, role and location. Role decides which trainings are required. Location lets you filter by site.
+Training or SOP name. Use the exact name of the written procedure, picked from a list, so "Allergens" and "Allergen training" do not become two trainings.
+Version. The version of the procedure the person learned. This is the column most trackers skip and the one that matters most when a job changes.
+Date trained. A real date, not text, so you can calculate from it.
+Trained by. The person who showed the job. It tells you who to ask, and who trains well.
+Check method. Quiz, observed on shift, or both. A signature on a sheet shows someone attended; it does not show they understood.
+Result. Pass, Not yet, or Retrain.
+Refresher due. The date the training should be repeated, if the job needs a refresher.
+Keep one row per person per training, never one row per person with trainings in columns. When Sam does his fryer refresher, add a new row. The old row stays, so the history stays.
+
+## How to set up a training tracker in Excel or Google Sheets
+
+Use two tabs: a training list that defines each training once, and a records tab that logs every training event. Then let formulas and color do the checking.
+Build the training list first. One row per training: name, current version, roles that need it, refresher interval in months, and an owner who keeps the procedure up to date.
+Create the records tab. Use the columns from the template above, with headers in row 1. Format it as a table so filters and formulas extend to new rows.
+Add data validation. Make Training a dropdown that pulls from the training list. Do the same for Location, Check method (Quiz, Observed, Quiz + observed) and Result (Pass, Not yet, Retrain). Set Date trained to accept dates only.
+Calculate the refresher date. Use EDATE on the date trained plus the interval from the training list, so nobody types refresher dates by hand.
+Add a Status column. The formula in the template returns Not started, Retake quiz, Retrain: old version, Overdue, Due soon or OK.
+Add conditional formatting. Color the row red when Refresher due is before TODAY(), amber when it is within 30 days, and grey when the version is older than the current one.
+Freeze and protect. Freeze the header row and the first column. Lock the formula columns and the training list so only the owner can change them.
+Enter training on the day it happens. A shift lead who logs sessions on Friday from memory will get dates and names wrong.
+
+## How to report from a training tracker
+
+A tracker is only useful if it answers a few questions quickly. Set up these views once and check them at the same time each week, for example before the rota is published.
+What is overdue? Filter Status to Overdue and sort by location. This is the list for each site manager.
+Who is on an old version? Filter Status to "Retrain: old version". After any change to a procedure, this list is the follow-up plan.
+Completion by location. A pivot table with locations in rows, trainings in columns and a count of Pass shows which site is behind.
+Who has not started? This is the hard one. A tracker only holds trainings that happened. To see gaps, you need a roster tab that lists every person and role, then compare it with the trainings each role requires. Many teams add one placeholder row per required training for each new hire, with Status "Not started", as Chris has in the example.
+Keep the weekly report short: overdue, old version and not started, per location. A manager can act on three lists. A dashboard with twelve charts usually gets ignored.
+
+## Spreadsheet vs training software: which do you need?
+
+A spreadsheet is enough while one person owns it, there are a handful of trainings and the team works at one or two sites. Software starts to earn its place when the training itself, not just the record, needs to reach people on the floor.
+What you need | Spreadsheet | Training software | 
+Cost to start | Usually nothing extra | A subscription | 
+Setup | An afternoon with the template | Account setup, roles, importing people | 
+Recording a training | Someone types each row | Recorded when the person finishes the training or quiz | 
+Proof it was understood | Whatever you write in Check method | Quiz results stored with the record | 
+Procedure changes | You update the version and find who to retrain | Depends on the tool; check that it can re-assign the new version to the people affected | 
+Several locations | Shared file or one copy per site, merged by hand | One system, filtered by location and role | 
+Reminders | Conditional formatting you have to open to see | Depends on the tool; check for due-date notifications | 
+Who can see and edit | File sharing settings | Roles and permissions by person and site | 
+Flexibility | Any column, any format | Limited to what the tool supports | 
+Neither option signs someone off on the floor. That stays with the supervisor who watched them work. If you are also weighing what kind of software fits, the guide on LMS vs SOP software compares the two main types.
+
+## Signs you have outgrown the spreadsheet
+
+You have outgrown the spreadsheet when keeping it right takes more time than the training it records. These are the usual signs:
+Each site keeps its own copy and nobody is sure which file is current.
+Rows are entered days or weeks after the training, from paper sign-in sheets.
+You cannot answer "who has not seen the new version?" without an hour of filtering.
+The tracker records that training happened, but the training itself lives somewhere else: a binder, a folder of videos, or one experienced person.
+Refreshers are missed because nobody opened the file that week.
+New hires start faster than anyone can add them to the sheet, as in seasonal hiring.
+Frontline staff never see the tracker, so they do not know what they still need to do.
+One or two of these can be fixed with better habits. When most of them are true, the problem is the tool, not the people using it.
+
+## How to track training across several locations
+
+Use one tracker with a Location column, not one file per site. Separate files drift apart: different training names, different columns, different ideas of what "Pass" means.
+One training list for everyone. Head office or the operations lead owns the names, versions and refresher intervals. Sites add rows to the records tab; they do not invent new trainings.
+Location-specific trainings are still on the list. If only the airport site has a certain dish machine, add that training with "Airport" in a Location column on the training list.
+A named owner per site. One person at each location enters records and works the weekly overdue list.
+Compare sites on the same three numbers. Overdue, old version and not started. Avoid ranking sites on total trainings logged; a site with high turnover will always log more.
+People who work at two sites get one row per training, not one per site. Record where they were trained.
+
+## Common training tracker mistakes
+
+No version column. The record says trained, but on a procedure that has since changed.
+Attendance as proof. A signature shows presence. Add a quiz or an observation to show understanding.
+Free-text training names. Typos split one training into several and break every count.
+Overwriting old rows. When a refresher replaces the original date, the history is gone.
+Tracking training that does not exist in writing. If there is no written or filmed standard, "trained" means whatever the trainer showed that day. Write the procedure first, then track it.
+Logging only classroom sessions. Most frontline learning happens at the station. Record on-the-job training the same way, with the trainer and the check.
+
+## Doing this with Flexlore
+
+Flexlore keeps the training and the record in the same place. Your best person films the job on a phone, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves each draft before it is assigned.
+When people watch the job and take the quiz, you see who has watched and who passed, by person, team and location, without anyone typing a row. Roles and workspaces keep each site to its own jobs. When a job changes, you edit the steps and publish the new version. The apps run on iOS and Android, in 8 languages. Notifications and a web panel for managers are coming soon. Signing people off on the floor stays with your supervisor. Plans are by number of users; see pricing.
+
+## Employee training tracker template (with example rows)
+
+TAB 1: TRAINING RECORDS (one row per person per training)
+Employee	Role	Location	Training / SOP	Version	Date trained	Trained by	Check method	Result	Refresher due	Status
+Sam R.	Line cook	Downtown	Fryer start-up and oil check	v3	2026-03-02	Lead cook Ana P.	Quiz + observed	Pass	2026-09-02	Overdue
+Sam R.	Line cook	Downtown	Allergen handling	v2	2026-10-06	Lead cook Ana P.	Quiz + observed	Pass	2027-04-06	OK
+Priya K.	Prep cook	Downtown	Knife safety and cut-glove use	v1	2026-06-15	Shift lead Tom B.	Observed	Pass	2026-12-15	Due soon
+Jordan M.	Cashier	Riverside	Opening the till and cash count	v2	2026-11-03	Manager Lee H.	Observed	Pass	2027-11-03	OK
+Jordan M.	Cashier	Riverside	Allergen handling	v1	2026-02-10	Manager Lee H.	Quiz	Pass	2026-08-10	Retrain: old version
+Elif D.	Barista	Riverside	Espresso machine daily clean	v4	2026-11-10	Barista lead Nora S.	Quiz	Not yet	2027-11-10	Retake quiz
+Chris T.	Dishwasher	Airport	Chemical dilution and dish machine	v2	2026-09-21	Shift lead Omar F.	Quiz + observed	Pass	2027-03-21	OK
+Chris T.	Dishwasher	Airport	Closing routine	v1						Not started
+
+TAB 2: TRAINING LIST (one row per training)
+Training / SOP	Current version	Required for roles	Refresher every (months)	Owner
+Fryer start-up and oil check	v3	Line cook, Lead cook	6	Head chef
+Allergen handling	v2	All roles	6	Operations manager
+Knife safety and cut-glove use	v1	Prep cook, Line cook	6	Head chef
+Opening the till and cash count	v2	Cashier, Shift lead	12	Store manager
+Espresso machine daily clean	v4	Barista	12	Barista lead
+Chemical dilution and dish machine	v2	Dishwasher	6	Operations manager
+Closing routine	v1	All roles	12	Store manager
+
+FORMULAS (row 2 of the records tab)
+Refresher due (J2)	=IF(F2="","",EDATE(F2,VLOOKUP(D2,'Training list'!A:D,4,FALSE)))
+Status (K2)	=IF(F2="","Not started",IF(I2<>"Pass","Retake quiz",IF(E2<>VLOOKUP(D2,'Training list'!A:B,2,FALSE),"Retrain: old version",IF(J2<TODAY(),"Overdue",IF(J2-TODAY()<=30,"Due soon","OK")))))
+
+What this example shows: Sam's fryer refresher is overdue, Jordan was trained on an old allergen version, Elif needs to retake the espresso quiz, and Chris has not started the closing routine.
+
+## Questions
+
+**How do I make a training tracker in Excel?**
+Create two tabs. The first lists each training with its current version and refresher interval. The second logs one row per person per training: employee, role, location, training, version, date, trainer, check method, result and refresher due. Use dropdowns for names, EDATE for refresher dates and conditional formatting to turn overdue rows red.
+
+**What is the difference between a training tracker and a training matrix?**
+A training tracker is a dated log of each training event: who, what, which version, when and how it was checked. A training matrix is a grid of people and jobs that shows skill levels and coverage per shift. The tracker is the evidence; the matrix is the summary a manager uses to plan shifts and cross-training.
+
+**How often should employees repeat training?**
+It depends on the job and on local rules. Set a refresher interval per training on your training list, shorter for safety and hygiene tasks and longer for routine ones, and check what your local regulations or industry standards require. Also retrain whenever the procedure changes, regardless of the interval.
+
+**What should a training record include for an audit?**
+At minimum: the person, the training or procedure name and version, the date, who delivered it, how understanding was checked and the result. Keep the written or filmed procedure the record refers to. Auditors and local rules differ, so check what your inspector or standard expects before relying on any template.
+
+**Can Google Sheets work as a training tracker for several locations?**
+Yes, for a while. Use one shared file with a Location column, one training list owned by head office and a named person per site who enters records. It starts to strain when sites keep separate copies, records are entered late, or you cannot quickly see who still needs an updated procedure.
+
+**Is a signed attendance sheet enough proof of training?**
+It proves someone was present, not that they understood or can do the job. Add a check: a short quiz shows they understood the steps, and a supervisor watching them work on a real shift confirms they can do it. Record which check was used in the tracker.
+
+**When is it worth paying for training tracking software?**
+When keeping the spreadsheet right costs more time than it saves: several sites with their own copies, frequent procedure changes, many new hires, or missed refreshers. If the training content also lives in binders or one person's head, software that holds both the training and the record usually solves more than a better sheet.
+
+
+---
+
+# LMS vs SOP software: which one does a frontline team need?
+URL: https://www.flexlore.com/guides/lms-vs-sop-software/
+Language: en
+
+An LMS (learning management system) manages courses: assigning them, tracking completion and certifying people. SOP software manages procedures: how one specific task is done, opened on the job and updated when the task changes. Desk-based teams with long compliance courses usually need an LMS; frontline teams learning hands-on tasks usually need SOP software first.
+
+## What is the difference between an LMS and SOP software?
+
+An LMS is built around courses. SOP software is built around tasks. That one difference shapes everything else: how content is made, where people open it, and how you know someone is ready.
+
+A traditional LMS (learning management system) is designed to deliver structured learning. You build or buy a course, assign it to a group, people complete modules in order, and the system records scores, completion dates and certificates. It answers the question &quot;has this person completed the required training?&quot;
+
+SOP software is designed to hold the way work is done. Each item is one procedure, such as closing the fryer station, changing over line 2 or turning a hotel room. People open it at the moment they need it, often on a phone, and the procedure is updated when the task changes. It answers the question &quot;does this person know how we do this job here, today?&quot;
+
+The third option most teams already have is a shared drive or documents: Word files, PDFs, printed binders and photos in a group chat. It costs nothing extra, but nobody can tell which version is current or who has read it.
+
+## LMS vs SOP software vs shared drive: side by side
+
+Each category is good at different things. Use the table to see which column matches the work your people actually do.
+
+Question | Traditional LMS | SOP software | Shared drive / documents | 
+
+Main unit of content | Course or module, often with several lessons | One procedure for one task | A file | 
+
+Typical length | Minutes to hours per course | A few short steps | Anything from one page to a full manual | 
+
+Who usually creates content | Training team, instructional designers or bought-in course libraries | The people who do the job, approved by their manager | Whoever has time | 
+
+Where it is used | Mostly at a desk or in a training room | At the station, on a phone, during the shift | At a desk, or printed at the station | 
+
+When it is used | Scheduled training time, onboarding week, annual refreshers | Before and during the task, and whenever someone forgets a step | When someone remembers it exists | 
+
+How understanding is checked | Graded assessments, exams, certificates | A short quiz per procedure, plus a supervisor sign-off on the floor | Usually not checked | 
+
+How updates reach people | Course revision, often a larger project | Change one step, approve, publish the new version | New file, old copies keep circulating | 
+
+What managers see | Completion and scores by course and learner | Who learned each task, by person, team and location | Nothing reliable | 
+
+Strongest fit | Compliance courses, certification tracking, office and knowledge roles | Hands-on tasks, high turnover, many locations, shift work | Very small teams with few tasks | 
+
+Neither software column is better in general. They solve different problems, and the right choice depends on what you are trying to fix.
+
+## When is an LMS the right tool?
+
+An LMS is the right tool when the training is a course: structured, sequential, and the same for everyone in a role. It is genuinely strong in several areas.
+
+Long compliance and policy courses. Topics like anti-harassment, data protection or code of conduct are taught as courses with a final assessment. An LMS is designed for exactly this.
+
+Certification tracking. If people hold certificates that expire and must be renewed, an LMS can track expiry dates and assign refreshers.
+
+Desk-based staff. Office, sales, support and management roles sit at computers, have scheduled learning time and can work through modules.
+
+Bought-in content libraries. Generic skills such as leadership, software training or communication are often available as ready-made courses that run in an LMS.
+
+Learning paths and career development. Multi-course programs for supervisors or future managers fit the course-and-path model well.
+
+If most of your training need looks like this list, an LMS is probably your main system, and procedures may only be a small addition.
+
+## Why do frontline teams often need something different?
+
+Frontline work is learned by doing, at the station, during a shift. The course format was not designed around that setting, so the fit is often weaker even when the LMS itself is good.
+
+Picture a new hire on the fryer at 7am. They do not need a long slide module on kitchen safety. They need to see how oil is checked and filtered on this fryer, in this kitchen, in five short steps, and to replay step 3 when they forget it on Thursday.
+
+Common friction points when a course-first approach meets frontline work:
+
+No desk, no scheduled learning time. People learn between tasks, on their own phone, often in noise or with gloves on.
+
+Content comes from the floor. The best operator or chef knows the job. Turning that into a formal course usually needs a training team in the middle.
+
+Tasks change often. A new menu item, a new machine setting or a new cleaning product means one step changes. Updating a procedure is quick; revising a course is usually a bigger job.
+
+Completion is not the same as readiness. Finishing a module shows someone sat through it. A manager wants to know who can run the dish machine on Saturday.
+
+This is where short, task-sized content works better. Our guide to microlearning for frontline workers covers why short steps stick and how to write them.
+
+## Do I need an LMS, SOP software, or both? A decision checklist
+
+Start from the problem you want to fix, not the software category. Use the table first, then answer the checklist questions.
+
+Choose an LMS when... | Choose SOP software when... | Use both when... | 
+
+Most of your staff work at desks and have scheduled learning time | Most of your staff work on the floor, on shifts, without a computer | You have a large office or head office team and a large frontline team | 
+
+Your main need is long compliance or policy courses | Your main need is showing how specific tasks are done the same way everywhere | You must deliver formal courses and also standardize daily tasks | 
+
+You must track certificates and renewal dates | You need to see who learned each task, by person and location | Certificates live in one system, task readiness in the other | 
+
+Content is built by a training team or bought as a library | Content should come from the people who do the job best | The training team owns courses; operations owns procedures | 
+
+Content changes once or twice a year | Tasks, recipes, machines or standards change every few weeks | Policies change slowly, but the work on the floor changes often | 
+
+Then answer these questions honestly. Each &quot;yes&quot; points toward SOP software.
+
+Do new hires mainly learn by shadowing someone, with results that depend on who they shadow?
+
+Do two locations do the same task differently?
+
+Are the printed procedures at the station older than the equipment?
+
+Would your staff open training on a phone during a shift rather than at a computer?
+
+Is there one experienced person who is the only one who really knows a job?
+
+When a step changes, do you struggle to know who has seen the change?
+
+And these point toward an LMS:
+
+Do you have mandatory courses with formal assessments that must be repeated on a schedule?
+
+Do you need to manage certificates with expiry dates?
+
+Do you want to buy ready-made courses on general topics rather than create your own?
+
+Many &quot;yes&quot; answers in both lists usually means you need both. If you answered &quot;no&quot; to almost everything, a clear folder structure and a solid SOP template may be enough for now. When you are ready to compare tools, our guide to choosing SOP software has a scoring checklist and demo questions.
+
+## How do you use an LMS and SOP software together?
+
+Split the work by content type: courses in the LMS, task procedures in SOP software. Then agree who owns each and where managers look for readiness.
+
+A simple split
+
+LMS: company induction, policies, compliance courses, certifications with renewal dates, leadership and office skills.
+
+SOP software: opening and closing routines, recipes, cleaning, machine start-up and changeovers, room standards, anything done with the hands at a station.
+
+Rules that keep it clean
+
+One home per piece of content. Do not keep the same procedure in both places. If a course needs a task, it points to the procedure instead of copying it.
+
+Clear owners. The training or HR team usually owns courses. Operations, a head chef or a production lead usually owns procedures and approves changes.
+
+One readiness view per question. &quot;Who is certified?&quot; is answered in the LMS. &quot;Who can run this task on Saturday?&quot; is answered in SOP software, with the supervisor's sign-off on the floor.
+
+Onboarding uses both. Day 1 may be policy courses; days 2 to 10 are the tasks for the role, learned at the station with a supervisor nearby.
+
+If you only track all of this in a spreadsheet today, our employee training tracker guide shows how to lay out people, tasks and sign-offs in one view.
+
+## What changes for restaurants, manufacturing, hotels and franchises?
+
+The decision logic stays the same; the balance between courses and procedures shifts with the work.
+
+Restaurants and cafés: most learning is task-based (recipes, plating, opening and closing, cleaning, allergen steps) and turnover is often high. SOP software usually carries the daily load. Formal food safety training may still be delivered as a course or by an external provider, depending on local rules.
+
+Manufacturing: changeovers, machine start-up, PPE and lockout steps are task procedures and benefit from close-up video and strict approvals. Formal safety certificates and periodic refresher courses often fit an LMS. Many plants need both, plus a supervisor sign-off before someone runs a machine alone.
+
+Hotels: housekeeping room turns and front desk check-in are visual, standard-driven tasks that suit procedures. Guest service, brand values and policy training are often delivered as courses.
+
+Franchises: head office needs to launch a new menu item or process once and see completion by location. Procedures with readiness by location answer that directly. Franchisee onboarding and brand policies may still run as courses.
+
+Whatever the industry, a large part of frontline learning still happens next to an experienced colleague. Our on-the-job training guide shows how to structure that so procedures and supervisor sign-off work together.
+
+## Doing this with Flexlore
+
+Flexlore is SOP software for frontline teams, not an LMS. Available now: film a job on a phone, split it into steps in the phone editor, and let AI draft the instructions and a short quiz that your team edits and approves. Assign by role and location, and see completion and quiz results by person, team and location. iOS and Android apps, with the app in 8 languages. A quiz shows who understood the steps; signing someone off on the floor stays with their supervisor.
+
+Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, notifications, a web panel for managers, and AI agents and MCP.
+
+If you already run an LMS, Flexlore can sit beside it for the hands-on tasks. Plans are by number of users; see pricing, or book a demo and build one of your own tasks with us.
+
+## Questions
+
+**Can SOP software replace an LMS?**
+For some frontline teams, yes, if their training is almost all hands-on tasks and they have no formal certification needs. If you must deliver long compliance courses, manage certificates with expiry dates or train large office teams, an LMS still does that job better. Many organizations use SOP software for tasks and an LMS for courses.
+
+**Is an LMS a good fit for frontline workers?**
+It can be, for courses such as policies, compliance and certifications. It is a weaker fit for learning daily tasks at the station, because courses are built for scheduled learning time, often at a desk. Frontline staff usually need short, task-sized steps on a phone they can replay during a shift.
+
+**What is the difference between SOP software and a knowledge base?**
+A knowledge base stores articles people can search. SOP software adds what a manager needs for procedures: approval before anything goes live, version control, assignment by role and location, a check for understanding, and a view of who has learned each task. A knowledge base answers questions; SOP software also tracks readiness.
+
+**Do small businesses need an LMS?**
+Usually not at first. A small restaurant, café or workshop mostly needs its daily tasks written or filmed clearly and a way to see who has learned them. An LMS starts to make sense when you have formal courses to deliver, certificates to track or a growing office team with scheduled learning time.
+
+**Can we use our existing PDFs and documents?**
+Yes, as a starting point. Existing documents show what the standard should be. For frontline tasks, the usual next step is to break each document into short steps and add video where seeing the task matters. Review every document with the person who does the job today, because written procedures often drift from real practice.
+
+**How do I track training if we use both an LMS and SOP software?**
+Decide which system answers which question. Course completion and certificates are tracked in the LMS. Task readiness, meaning who has learned each procedure and passed its quiz, is tracked in SOP software, with the supervisor's sign-off on the floor. Keep one owner for each and avoid copying the same content into both.
+
+**Does an LMS or SOP software make us compliant?**
+No software makes you compliant by itself. Local rules decide which training, procedures and records you need, so check them with your authority or advisor. Clear, approved procedures and records of who was trained can support an audit, but inspectors look at what actually happens on the floor.
+
+
+---
+
+# Microlearning vs classroom training for shift workers
+URL: https://www.flexlore.com/guides/microlearning-for-frontline-workers/
+Language: en
+
+Microlearning is training delivered in short, focused lessons, each teaching one task or one idea that a person can finish in a few minutes, often on a phone. For shift workers it usually means one short video of one job, split into a few steps, followed by a quick quiz and watched close to when the task is done.
+
+## What is microlearning?
+
+Microlearning is training split into short lessons, each covering one task or one idea, that people can finish in a few minutes. Instead of a half-day course on &quot;kitchen closing&quot;, a cook gets one lesson on closing the fryer, another on cleaning the flat top and another on labeling and storing prep.
+
+For frontline and shift teams, a good micro lesson has four parts:
+
+One task. Something a person does with their hands at a station, from start to finish.
+
+One short video. The task filmed where it happens, by the person who does it best.
+
+A few steps. The video cut into steps with a line of text each, so people can replay only the part they need.
+
+A short quiz. A handful of questions about the decisions that matter, to show who understood.
+
+The format fits shift work because it matches how the work is organized. People start at different times, rarely sit together in one room, and learn a station at a time. A lesson they can watch on their own phone before a shift, or at the station right before the task, works with that schedule instead of against it. If you are new to filming jobs, our guide on how to make a video SOP covers the basics.
+
+## Microlearning vs classroom training: which is better?
+
+Neither is better on its own. Classroom training is the right tool for culture, group practice and topics that need discussion. Microlearning is the right tool for single tasks, refreshers and teams that never sit in one room at the same time. Most teams need both.
+
+Question | Microlearning | Classroom training | 
+
+Best for | One task at a time: a machine setting, a cleaning routine, a station closing | Culture, values, service style, topics that need questions and discussion | 
+
+Hands-on practice | Shows the task; practice still happens at the station with a supervisor | Group practice with a trainer watching, role play, drills | 
+
+Complex topics | Weak on its own; works as the reference after the session | Strong: a trainer can explain, answer and adjust | 
+
+Shift schedules | Fits any shift; each person watches when they can | Hard to gather night, weekend and part-time staff together | 
+
+Refreshers | Easy to rewatch one step before doing the task | Rarely repeated; people forget between sessions | 
+
+Consistency across locations | Every location sees the same lesson | Depends on who runs the session at each site | 
+
+Updating | Replace the one lesson or step that changed | Update the slides and retrain everyone in a new session | 
+
+Team connection | Low; people learn alone | High; new hires meet each other and the managers | 
+
+A simple rule: if the goal is for someone to do one thing correctly, a micro lesson plus practice is usually enough. If the goal is for a group to understand, agree or feel part of the team, bring them together.
+
+## When should you not use microlearning?
+
+Do not use microlearning for topics that need judgment built through conversation, for skills that need supervised practice before anyone is safe, or as a way to skip the first day of welcome. Short lessons support these, but they do not replace them.
+
+Culture and welcome. A new hire&#39;s first hours should include a real person showing them around, introducing the team and explaining how things work here.
+
+High-risk tasks. Forklift driving, lockout on a large machine, handling hazardous chemicals. A video can prepare someone, but supervised practice and a formal sign-off come first. Local rules may also require a specific course, so check them.
+
+Complex judgment. Handling an angry guest, deciding when to stop a line, managing a team. These need discussion, examples and feedback from someone experienced.
+
+Long connected processes. Cutting a full process into pieces can hide how the pieces fit. Give the big picture first, then the micro lessons for each part.
+
+Topics where the answer is &quot;it depends&quot;. If every case is different, a fixed lesson will mislead more than it helps.
+
+## How to create microlearning: turn one job into micro lessons
+
+Pick one task, film it once, cut it into a few steps, add a short quiz, and have it approved. Repeat for the next task. Here is the process in order.
+
+List the tasks in the job. Walk through a shift and write down every task a new person must learn at one station. Each line on that list is a candidate lesson.
+
+Start with the tasks that cause questions. The ones new hires ask about most, or where mistakes are costly. Film those first.
+
+Film one task per video. Film the person who does it best, at the real station, saying what they do and why.
+
+Cut it into a few steps. Each step is one action with one result. If a lesson has many steps, it is probably two tasks.
+
+Write one or two lines per step. Start with a verb. Put exact values, limits and warnings in the text, not only in the speech.
+
+Add a short quiz. A few questions about decisions people get wrong, not trivia.
+
+Have it checked and approved. The expert confirms the steps, the manager who owns the standard approves it.
+
+Assign it by role. A server does not need the dish machine lesson in week one.
+
+## Microlearning examples from the floor
+
+The best examples are tasks with a clear start, a clear end and a right way to do them. Here is one worked through in full, and two shorter ones.
+
+Worked example: closing the fryer
+
+Lesson title: Closing the fryer station. Filmed by the most experienced line cook at the end of a quiet evening.
+
+Turn the fryer off and let the oil cool to the safe level set in your kitchen.
+
+Put on heat-resistant gloves and an apron before touching the drain.
+
+Remove the baskets and place them in the sink for washing.
+
+Filter or drain the oil following your house procedure; check the container is in place first.
+
+Wipe the fryer surfaces and the area around it, then check the floor for spills.
+
+Quiz questions:
+
+What do you check before you open the drain valve?
+
+When is the oil cool enough to drain in this kitchen?
+
+What do you do if oil spills on the floor?
+
+Short example: a machine changeover
+
+On a packaging line, a format change is a series of lessons, not one: stopping and isolating the machine, swapping the change parts, setting the guides, running and checking the first pieces. Each one gets its own video, steps with the exact settings as text, and a few questions on the checks before restart.
+
+Short example: turning down a hotel room
+
+Evening turndown is one lesson: dim the lights, fold back the bed to house standard, place the amenity, close the curtains, tidy the bathroom and leave the room as the guest expects. The quiz asks about the house details people get wrong, such as which side the bed is folded from and what to do if the guest is in the room.
+
+## A blended training plan for a new hire's first two weeks
+
+A blended plan uses classroom or face-to-face time for welcome, culture and supervised practice, and micro lessons for each task as it comes up. Here is an example for a new line cook. Adapt the tasks to your own role.
+
+When | Face to face | Micro lessons | Check | 
+
+Day 1 | Welcome, tour, team introductions, safety and hygiene basics with a manager | Handwashing, uniform and personal hygiene | Manager walks through the kitchen with them | 
+
+Days 2 to 3 | Shadow a trainer at the prep station | Knife safety, labeling and dating prep, cold storage | Quiz on each lesson; trainer watches prep | 
+
+Days 4 to 5 | Work the prep station with the trainer nearby | Opening the line, temperature checks | Supervisor watches one opening | 
+
+Week 2, early | Shadow the fry and grill stations during a quiet service | Fryer use, closing the fryer, cleaning the flat top | Quiz; supervisor watches each task once | 
+
+Week 2, late | Short group session with the head chef on service standards and questions | Allergen steps, plating for the main dishes | Supervisor sign-off on each station | 
+
+End of week 2 | One-to-one review with the manager | Rewatch any lesson with missed quiz questions | Agree what to practice next | 
+
+The micro lessons do not replace the trainer; they mean the trainer spends time on practice and feedback instead of repeating the same explanation. For how the supervised part works, see our guide to on-the-job training.
+
+## Refreshers and spaced repetition, in plain words
+
+People forget what they learned once and never used again. Spaced repetition means bringing the same lesson back a few times, with growing gaps in between, so it sticks. Micro lessons make this practical because each one is short.
+
+Repeat close to use. The best refresher is watching the steps right before doing a task you have not done for a while.
+
+Space it out. Bring a lesson back after a few days, then after a few weeks, instead of repeating it many times in one sitting.
+
+Use the quiz as the refresher. Answering the questions again is a quick way to check what has faded.
+
+Refresh rare tasks on purpose. Deep cleaning, a rare changeover, an emergency procedure. These are the ones people forget first.
+
+Refresh after changes. When a recipe, setting or rule changes, send the updated lesson to everyone who learned the old one.
+
+For more on why one-time onboarding fades, read why one-time onboarding does not hold.
+
+## How do you know if microlearning is working?
+
+Look at three things together: who completed each lesson, how they did on the quiz, and what supervisors see on the floor. Any one of them alone can mislead.
+
+Completion. Who has watched each lesson assigned to them, by person, team and location. Gaps show who has not been trained yet, not who is failing.
+
+Quiz results. Which questions people miss. If many people miss the same one, the step or the question needs fixing, not the people.
+
+Supervisor observation. Does the person do the task correctly at the station? This is the real test, and the sign-off stays with the supervisor.
+
+Floor signals. Fewer repeated questions about the same task, fewer redone jobs, fewer notes in handover about the same mistake. Track these in your own operation rather than relying on outside benchmarks.
+
+Keep all of this in one place so you can see who is ready for which station. Our employee training tracker guide shows a simple way to set it up.
+
+## Common microlearning mistakes
+
+Most microlearning fails because the lessons are not really micro, not tied to a real task, or never checked on the floor.
+
+Cutting a long course into short clips. Ten short pieces of a lecture are still a lecture. Build each lesson around one task.
+
+Lessons nobody can find at the station. If people cannot open the lesson on a phone when they need it, it will not be used.
+
+Using micro lessons to skip the welcome. New hires still need a person, a tour and a team.
+
+Treating a finished lesson as a trained person. A quiz shows understanding. Doing the task correctly under supervision is the sign-off.
+
+Assigning everything to everyone. A long list of irrelevant lessons teaches people to click through.
+
+No owner and no updates. A lesson that shows the old setting is worse than no lesson.
+
+Trivia quizzes. Ask about decisions and checks, not the color of a bucket.
+
+## Doing this with Flexlore
+
+Flexlore is built around this kind of micro lesson. You film one job on a phone, mark the steps in the editor, and Flexlore drafts the step text and a short AI quiz. Your team edits and approves every draft before it is published. You assign lessons by role and location, and see who watched each one and passed its quiz, by person, team and location. Your team watches on iOS or Android, and the app is available in 8 languages.
+
+Notifications for refreshers and new lessons, QR codes at the station and automatic translation are coming soon. Signing someone off on the floor stays with their supervisor. Book a demo and we will build one of your jobs with you.
+
+## Questions
+
+**What is an example of microlearning?**
+A short video showing a line cook how to close the fryer station, cut into a few steps with a line of text each, followed by three quiz questions. Other examples are a machine changeover on a packaging line or a hotel room turndown. Each lesson covers one task from start to finish and can be watched on a phone.
+
+**How long should a microlearning lesson be?**
+As long as one task takes to show, and no longer. Most lessons for shift workers can be watched in a few minutes. If a lesson keeps growing, it usually covers two or three tasks and should be split. What matters more than length is that each step shows one action with one result.
+
+**Can microlearning replace classroom training?**
+Not fully. Microlearning works well for single tasks, refreshers and teams on different shifts. Classroom or face-to-face time is still better for welcome and culture, group practice, and complex topics that need discussion. Most frontline teams get the best result from a blend of both, with supervised practice on the floor.
+
+**Is microlearning effective for frontline workers?**
+It suits frontline work because lessons are short, tied to one task and can be watched on a phone around shift schedules. Whether it works in your operation is something to check yourself: look at completion, which quiz questions people miss, and whether supervisors see the task done correctly on the floor.
+
+**How do I create microlearning content without a training team?**
+Start with the tasks new hires ask about most. Film the person who does each task best on a phone, one task per video, cut it into a few steps, write a line of text for each and add three to five quiz questions. Have the expert check it and the manager approve it.
+
+**How often should employees repeat micro lessons?**
+Repeat a lesson a few times with growing gaps between, rather than many times at once. Refresh rare tasks before people need them, and resend a lesson whenever the task changes. Watching the steps again right before doing a task that has not been done for a while is often the most useful refresher.
+
+**What is the difference between microlearning and an LMS?**
+Microlearning is a way of designing training: short lessons, one task each. An LMS is a type of software for managing courses, often built around longer desk-based modules. Short task lessons can live in many tools. What matters for shift teams is that people can open them on a phone at the station.
+
+
+---
+
+# On-the-job training: how to structure it so every new hire learns the same job
+URL: https://www.flexlore.com/guides/on-the-job-training/
+Language: en
+
+On-the-job training is training done at the real workstation, during real work, with an experienced person teaching the job. Structured on-the-job training follows a written plan: the trainer shows each task, the new hire does it with support, then alone while watched, and a supervisor signs it off.
+
+## What is on-the-job training?
+
+On-the-job training (OJT) is training that happens at the real workstation, during real work, with an experienced person teaching the job step by step. The new hire learns on the actual fryer, line or cart, not in a classroom.
+For frontline work, most of the job is learned this way anyway. A cook learns the grill on the grill. An operator learns a changeover on the machine. The question is not whether to do on-the-job training, but whether it is planned or left to chance.
+Unplanned OJT usually sounds like "stand next to Sam and watch." Planned OJT has a named trainer, a list of tasks for the station, a set order, a check of understanding and a dated sign-off. Both happen on the floor. Only one gives every new hire the same job.
+
+## Job shadowing vs structured on-the-job training
+
+Job shadowing means the new hire watches an experienced worker do the job. Structured OJT adds a plan, practice under supervision and a check at the end. Shadowing is one step inside structured OJT, not a replacement for it.
+ | Job shadowing | Structured OJT | 
+What the new hire does | Mostly watches and helps | Watches, does the task with support, then does it alone | 
+Plan | Usually none; follows whatever the shift brings | A written task list and order for the station | 
+Trainer | Whoever is on shift | A named, prepared trainer | 
+What gets taught | That person's version of the job | The agreed standard for the job | 
+Check at the end | Rarely | Questions on the steps and a supervisor sign-off | 
+Record | Memory | Date, trainer and sign-off per task | 
+Best for | Seeing the pace of a shift, meeting the team, getting a feel for a role | Learning a station well enough to work it alone | 
+Shadowing has real uses. A day watching a busy service shows a new hire the rhythm of the job in a way no checklist can. It is also a good way to let someone try a role before moving into it. It just should not be the whole program, because what gets learned depends on who happened to be on shift.
+
+## How to run on-the-job training: show, do together, do alone, check
+
+Run each task through the same four steps: the trainer shows it, the new hire does it with the trainer beside them, the new hire does it alone while the trainer watches, and then the task is checked and signed off.
+Show. The trainer does the task at normal speed once, then slowly, saying each step and why it matters ("basket out before the timer, or the oil drips onto the board"). Point out the one or two places where people usually go wrong.
+Do together. The new hire does the task while the trainer stands beside them and talks them through it. The trainer corrects on the spot, but does not take over the task.
+Do alone, watched. The new hire does the task without prompts, on a real shift, with the trainer nearby. Ask them to say the key steps out loud. If they skip a step, go back to step 2 for that task only.
+Check and sign off. A few questions on the steps confirm they understood. A supervisor watches them do it on a normal shift and signs it off with a date.
+Keep each pass to one task. "Learn the grill" is too big. "Light and season the grill at opening" is a task you can show, practice and check in one shift. Before you start, make sure the task has a written or filmed standard; a work instruction template is a quick way to write one.
+
+## On-the-job training plan template: one station example
+
+An OJT plan lists the tasks for one station in the order they should be learned, with the trainer, the target day and the sign-off for each. Here is a filled example for a new line cook on the fry station. Copy the structure and replace the tasks with your own.
+Order | Task | Trainer | Target | Check | Signed off (supervisor, date) | 
+1 | Station safety: hot oil, burns, where the fire blanket and extinguisher are | Fry lead | Day 1 | Questions |  | 
+2 | Opening: switch on, oil level and quality check | Fry lead | Day 2 | Questions + watched |  | 
+3 | Basket loading and cook times for each item | Fry lead | Day 2 to 3 | Questions + watched |  | 
+4 | Holding times and when to throw product away | Fry lead | Day 3 | Questions |  | 
+5 | Allergen orders on the fry station: separate fryer or procedure | Kitchen manager | Day 3 | Questions + watched |  | 
+6 | Running the station on a busy shift with the trainer nearby | Fry lead | Day 4 to 6 | Watched |  | 
+7 | Oil filtering and changing | Fry lead | Day 5 | Questions + watched |  | 
+8 | Closing: shutdown, cleaning, end-of-shift checks | Fry lead | Day 6 | Watched |  | 
+9 | Station sign-off: full shift alone, supervisor watching | Supervisor | Day 7 to 10 | Sign-off |  | 
+The same shape works on a production line (start-up, quality checks, changeover, stoppages, shutdown) or in housekeeping (cart set-up, room order, bathroom, bed, final check). Keep the plan on one page and record the result in your training matrix, so the next shift lead can see who can work which station.
+
+## How to choose and prepare the trainer
+
+Pick someone who does the job to standard and can explain it patiently. The fastest worker on the line is not always that person.
+Your best worker often does the job by feel. They skip steps in their head, use shortcuts that work for them, and get impatient with someone slow. That does not make them a bad trainer, but it means they need a little preparation. Look for:
+Does it the standard way. If their version differs from the written one, agree which is right before they teach it.
+Can say why. "Because the oil drips" sticks better than "just do it like this."
+Lets people make small mistakes. Takes over only when safety or a customer is at risk.
+Has the time. Training a new hire on the Saturday rush while running the station alone does not work. Plan the shifts.
+Train the trainer briefly: walk them through the four-step method, the station plan and how sign-off works. Agree that they teach the written standard, not their personal variation. A skills matrix also shows who is able to train others on each station, which helps when cross-training staff across shifts.
+
+## How to capture an expert's know-how before they leave
+
+Film the expert doing the job once, split the video into steps, write a short note for each step and add a few questions. Then their method survives a holiday, a shift change or a resignation.
+In many teams the real standard lives in one person: the operator who knows the sound of a bad changeover, the baker who knows when the dough is ready. When they leave, the next person learns a weaker copy from someone who watched them once.
+Film them at the real station, on a phone, at normal working speed. No script.
+Ask them to say out loud what they check and why, especially the small signals.
+Split the video into short steps, one action each, so a learner can replay only the step they need.
+Write a line or two under each step, with the key value or warning.
+Add three to five questions about what goes wrong in real life.
+Have the expert and a supervisor approve the result before it is used.
+The video does not replace the trainer. It makes the "show" step the same for everyone, and gives the new hire something to come back to on day 4 when they forget. This is the core of master to apprentice skills transfer.
+
+## How to check understanding and sign off OJT
+
+Use two checks: questions to confirm the new hire understood the steps, and a supervisor watching them do the job on a real shift. Only the second one is a sign-off.
+Questions should match the floor: "What do you do if the oil is below the line?", "Which check comes before you restart after a changeover?" Short and specific beats long and general. Questions show understanding; they do not prove the person can do it with a queue building.
+The sign-off does that. A supervisor, not the trainer alone, watches the full task, confirms it is done to the standard and records the date. Until then, the person works the task with support. For safety-related tasks (machines, chemicals, lifting, hot oil), local rules decide what training and records are required, so check them and add those items to the plan. Keep sign-offs in one place, for example an employee training tracker, so nobody relies on memory.
+
+## How to keep on-the-job training the same across locations
+
+Use one task list, one filmed standard per task and one sign-off rule for every site, and compare progress by location.
+Head office or the central team owns the shared task list and the standard for each task.
+Each location names its own trainers but teaches the shared version. Local additions (a different oven, a different line) are added, not swapped in.
+Every new hire watches the same filmed "show" step before the trainer works with them.
+Area managers look at sign-offs by location to see which site is behind or where one trainer is carrying everything.
+
+## Common on-the-job training mistakes
+
+Shadowing only. Watching for a week without doing, checking or signing off.
+The busiest shift as the classroom. Nobody has time to explain during a rush. Start on a quieter shift.
+Whoever is free trains. Every shift teaches a slightly different job.
+Too much at once. A whole station on day one. Go task by task.
+The trainer signs off their own trainee. Keep the sign-off with a supervisor.
+No record. Six months later nobody knows who was trained on what.
+The expert's method is never written down. When they leave, it leaves with them.
+
+## Doing this with Flexlore
+
+Flexlore covers the "show" step and the record. Your expert films a task on a phone at the station and marks the steps in the phone editor. AI drafts the written steps and a short quiz, and your team reviews and approves them before anything goes out.
+You assign tasks by role and location. New hires watch on their own phone, replay any step and take the quiz. You see who watched each task and passed its quiz, by person, team and location. Signing someone off on the floor stays with their supervisor. The app runs on iOS and Android in 8 languages; automatic translation, QR codes at the station and notifications are coming soon. Plans are by number of users, see pricing.
+
+## Questions
+
+**What is the difference between job shadowing and on-the-job training?**
+Job shadowing means watching an experienced worker do the job. On-the-job training includes shadowing but adds a plan, practice with support, doing the task alone while being watched, and a check at the end. Shadowing helps a new hire see the pace of a role; structured OJT is how they learn to work a station alone.
+
+**How long should on-the-job training take?**
+It depends on the station, not a fixed number of days. Plan it task by task: simple tasks can be signed off in a shift, complex stations take longer. Write a target day for each task in the plan, and treat the station as done only when a supervisor has signed off every task.
+
+**What should an on-the-job training plan include?**
+List the tasks for one station in learning order, and for each one name the trainer, set a target day, say how it will be checked (questions, watched, or both) and leave space for the supervisor's sign-off with a date. Keep it to one page per station.
+
+**Who should do on-the-job training?**
+A named trainer who does the job to the agreed standard and can explain why each step matters. The best performer is not always the best trainer. Give the trainer the station plan and the method, plan their shifts so they have time, and keep the final sign-off with a supervisor.
+
+**How do you train the trainer for frontline staff?**
+Keep it short and practical. Walk the trainer through the show, do together, do alone, check method, agree that they teach the written standard rather than their own shortcuts, show them the station plan and explain who signs off. Then watch them train one task and give feedback.
+
+**Can video replace on-the-job training?**
+No, but it improves it. A filmed standard makes the show step the same for every new hire and gives them something to replay later. The new hire still needs to practise the task on the real station with a trainer and be signed off by a supervisor.
+
+**Is on-the-job training enough for safety training?**
+It is often where safety is taught in practice, but local rules decide what safety training, certificates and records are required for each role. Check the rules that apply to your location and add those items to the plan, with their own sign-off.
+
+
+---
+
 # Video SOPs: what they are and how to make one
 URL: https://www.flexlore.com/guides/video-sop/
 Language: en
@@ -1081,6 +1934,866 @@ A pilot with one or two locations and a handful of real tasks can run within a m
 
 **What should we put in SOP software first?**
 Start with the tasks new hires ask about most in their first week, plus any task where a mistake is costly or unsafe. Opening and closing routines, cleaning, machine start-up and changeovers are common first picks. A short list done well beats a large library nobody opens.
+
+
+---
+
+# Dijital kontrol listesi: kağıt formdan farkı ve açılış kapanış örneği
+URL: https://www.flexlore.com/tr/rehber/dijital-kontrol-listesi/
+Language: tr
+
+Tek şubeniz varsa, yönetici her formu okuyorsa ve liste nadiren değişiyorsa kağıt kontrol listesi yeterlidir. Saat kaydı, fotoğraf, tek güncel sürüm ve şubeler arası görünürlük gerekiyorsa dijital kontrol listesi daha uygundur. Çoğu işletme ikisini birlikte kullanır. Her durumda liste rutini doğrular; işi öğretmez.
+
+## Kontrol listesi ne işe yarar, ne işe yaramaz?
+
+Kontrol listesi, işi zaten bilen birinin rutin bir işte adım atlamamasını sağlar: mutfağın açılışı, barın kapanışı, hatta ürün değişimi, otelde oda hazırlığı. Bir hatırlatıcıdır ve bir kayıttır. İşin nasıl yapılacağını öğretmez.
+Sabah 6'da mutfağı tek başına açan bir aşçı düşünün. Listede "Fritöz yağı kontrol edildi, süzüldü" yazıyor. Bu işi daha önce defalarca yaptıysa, satır yoğun bir sabahta unutmamasını sağlar. Hiç yapmadıysa, satır ona fritözü nasıl güvenle boşaltacağını, filtre kâğıdının nereye takıldığını ya da yorulmuş yağın neye benzediğini söylemez. Bunu eğitim, iş talimatı ya da gösteren biri öğretir.
+Kısacası kontrol listesi üç işte iyidir: rutini vardiyadan vardiyaya aynı tutar, bir sonraki kişiye neyin yapıldığını gösterir ve yöneticiye kontrol edeceği bir şey verir. Bir işte kötüdür: eğitimde. SOP, iş talimatı ve kontrol listesinin farkını iş talimatı şablonu rehberimizde tablo halinde anlattık.
+
+## Kağıt mı dijital kontrol listesi mi? Farkları neler?
+
+Kağıt hızlı, ucuz ve her yerde çalışır; ama başka bir şubeden takip etmek zordur ve sonradan doldurulması kolaydır. Dijital kontrol listesi saat kaydı, fotoğraf, şubeler arası görünürlük ve tek bir güncel sürüm getirir; ama çalışan bir cihaza ve onu kullanmaya istekli bir ekibe bağlıdır. Her durumda kazanan tek bir yöntem yok.
+ | Kağıt form | Dijital kontrol listesi | 
+Başlangıç maliyeti | Neredeyse yok: yazıcı ve bir pano | İstasyon ya da kişi başına cihaz, artı yazılım | 
+İstasyonda hız | Kalemle bir işaret; şifre yok, şarj yok | Cihaz yakındaysa ve liste kısaysa hızlı; eldivenle ya da giriş ekranıyla yavaş | 
+Elektrik ya da internet olmadan | Her zaman çalışır | Şarjlı cihaz, çoğu zaman bağlantı gerekir | 
+Ne zaman yapıldığının kanıtı | Biri yazarsa elle yazılmış saat | Her maddede otomatik saat | 
+Fotoğraf | Yok | Var: temizlenmiş fritöz, kapatılmış hat gibi | 
+Başka şubeden görmek | Biri formu toplamalı ya da fotoğrafını göndermeli | Aynı gün, şube bazında | 
+Bir maddeyi değiştirmek | Yeniden yazdır, her kopyayı değiştir; eskiler ortada kalır | Bir kez değiştir, her şube yeni sürümü görür | 
+Atlanan maddeler | Ancak biri formu okuyunca fark edilir | İşaretlenebilir ya da liste kapanmadan zorunlu tutulabilir | 
+Arşiv | Klasörler; formlar ıslanır, yağlanır, kaybolur | Aranabilir geçmiş | 
+Tipik bozulma | Vardiya sonunda hepsi tek seferde işaretlenir | Bakmadan hepsine dokunup geçilir | 
+Son satıra dikkat edin. İki yöntem de aynı şekilde bozulur: insanlar kontrol etmedikleri şeyi onaylar. Kağıt form yerine dijitale geçmek bunu tek başına çözmez. Açık yazılmış maddeler ve sonuçlara gerçekten bakan bir yönetici çözer.
+
+## Hangisini seçmelisiniz: kağıt, dijital ya da ikisi birden?
+
+Kararı üç soruya göre verin: sonucu kim görecek, ne kadar hızlı görmesi gerekiyor ve liste ne sıklıkla değişiyor. Yöneticinin her gün sahada olduğu tek bir şube kağıtla iyi işler. Birden fazla şube, sık değişen liste ya da saatli kanıt ihtiyacı genelde dijitali gösterir. Çoğu işletme ise ikisini birlikte kullanır.
+Kağıt uygundur: tek şubeniz varsa, yönetici formu her gün görüyorsa, liste nadiren değişiyorsa ve istasyon telefonun yeri olmayan ıslak, sıcak ya da yağlı bir yerse.
+Dijital uygundur: birden fazla şubeniz varsa, merkez ya da bölge müdürü telefon açmadan ne olduğunu görmek istiyorsa, bazı maddeler fotoğraf ya da saat gerektiriyorsa veya liste eski çıktıların hataya yol açacağı kadar sık değişiyorsa.
+Karma kullanım çoğu mutfak, fabrika ve otel için en iyisidir. Ellerin dolu olduğu yerde kağıdı tutun, örneğin soğuk oda kapısındaki sıcaklık formu. Vardiya sonu onayını, kapatılmış hattın fotoğrafını ve başka şubedeki bir yöneticinin görmesi gereken her şeyi dijitale alın. Bir başka yaygın ayrım: günlük rutin kağıtta, haftalık derin temizlik ve iç denetim dijitalde.
+Hangisini seçerseniz seçin, sonuçlara kimin ne zaman bakacağını baştan belirleyin. Kimsenin açmadığı dijital kontrol listesi, şarj edilmesi gereken bir kağıt formdan farksızdır.
+
+## Kontrol listesi nasıl hazırlanır? Uygulanan maddeler yazmanın yolu
+
+Her maddeyi tek bir, gözle görülebilen işlem olarak yazın ve standardı aynı satıra koyun; böylece herkes maddenin yapılıp yapılmadığını anlayabilir. "Soğuk oda 0 ile 4 °C arasında, kaydedildi" işe yarar. "Soğuk odayı kontrol et" işe yaramaz, çünkü doğrunun neye benzediğini söylemez.
+Her maddede tek işlem
+"Dilimleme makinesini ve hazırlık tezgahlarını temizle, dezenfekte et" aslında iki ya da üç maddedir ve her seferinde birinin atlanma ihtimali vardır. Ayırın.
+Gözle kontrol edilebilir yazın
+Başka biri gelip baktığında maddenin yapılıp yapılmadığını görebilmeli. "El yıkama lavabosu tam: sabun, kağıt havlu, ılık su" kontrol edilebilir. "Hijyen tamam" edilemez.
+Standardı satıra yazın
+Sayıyı, ayarı ya da olması gereken son hali okunacağı yere koyun: sıcaklık, test şeridi sonucu, doluluk seviyesi, eşleşmesi gereken fotoğraf. Bu rehberdeki sıcaklıklar yalnızca örnektir. Kesin sınırları yürürlükteki gıda mevzuatı ve kendi gıda güvenliği planınız belirler; listeyi basmadan önce kontrol edin.
+Uymazsa ne yapılacağını yazın
+Standardın dışındaki bir ölçümün bir sonraki adımı olmalı: "Sınırın üstündeyse ürünü kullanmadan önce vardiya sorumlusuna haber ver" gibi. Bu yazmazsa kişi kutucuğu işaretler ve geçer.
+Çalışanın yürüdüğü sırayla dizin
+Maddeleri kişinin mutfakta, hatta ya da odada ilerlediği sıraya göre yazın, aklınıza geldiği sıraya göre değil. Geri dönmek gereken yerde madde atlanır.
+Kısa tutun
+Yalnızca unutulan ya da unutulursa sorun çıkaran maddeleri yazın. Herkesin zaten hiç atlamadığı maddeler listeyi uzatır ve göz gezdirmeyi alışkanlık yapar. Bir rutin bir sayfayı aşıyorsa alana ya da role göre bölün.
+
+## Restoran açılış ve kapanış kontrol listesinde neler olmalı?
+
+Açılış kontrol listesi, ilk siparişten önce mutfağın güvenli ve hazır olduğunu doğrular: sıcaklıklar, el yıkama noktaları, dezenfektan, ekipmanın ısınması, mizanplas ve tarih etiketleri. Kapanış kontrol listesi ise yiyeceklerin saklandığını, ekipmanın kapatılıp temizlendiğini, kasanın güvenceye alındığını ve ertesi vardiyanın sürprizsiz açabileceğini doğrular.
+Aşağıdaki örnek açılış ve kapanış olarak ikiye ayrıldı; her maddenin bir standardı, saat ve paraf sütunu var. Menünüze, ekipmanınıza ve yerel kurallara göre uyarlayın. Sonra listeyi kullanacak bir aşçıyla, gerçekten yürüdüğü sırayla birlikte uygulayın ve hiç atlanmayan maddeleri çıkarın.
+Birine mutfağı ilk kez tek başına açtırmadan ya da kapattırmadan önce her satırın arkasındaki işi öğretin. Bu rutinlerin yeni çalışanın ilk haftalarındaki yerini restoran oryantasyon kontrol listesinde bulabilirsiniz.
+
+## Üretimde ürün değişimi ve otelde oda hazırlığı için kontrol listesi
+
+Aynı kurallar mutfak dışında da geçerlidir: her maddede tek işlem, standart satırda ve çalışanın gerçekten ilerlediği sıra. Uyarlayabileceğiniz iki kısa örnek:
+Ürün değişimi (changeover) kontrol listesi
+Hat durduruldu, tesis prosedürüne göre kilitleme yapıldı
+Önceki ürün, etiket ve ambalaj hattan kaldırıldı
+Ürüne temas eden parçalar temizlendi, görünür kalıntı yok
+Yeni ürünün değişim parçaları takıldı; ayarlar ayar formuyla aynı
+İlk ürün kontrolü geçti, hat sorumlusu imzaladı
+Kilidi takan kişi kilidi söktü; hat devreye alındı
+Kontrol listesi değişimin eksiksiz yapıldığını doğrular. Her parçanın nasıl takılacağı ise bir iş talimatının ya da videonun konusudur; ayrıntılar üretim sayfamızda.
+Otel oda hazırlığı kontrol listesi
+Çarşaflar toplandı, yatak otelin standardına göre yapıldı
+Banyo temizlendi ve dezenfekte edildi; havlu ve buklet malzemeler standart fotoğraftaki gibi yerleştirildi
+Minibar kontrol edildi, tamamlandı, tüketilenler kaydedildi
+Unutulan eşyalar poşetlendi, etiketlendi, kayda geçti
+Işıklar, televizyon, klima ve kasa denendi
+Oda kontrole hazır olarak işaretlendi
+
+## Dijital kontrol listesini şubelere nasıl yaygınlaştırırsınız?
+
+Tek bir rutinle ve bir iki pilot şubeyle başlayın, listeyi onu kullanan kişilerle düzeltin, sonra her şubede adı belli bir sorumlu ve günlük kontrolle yayın. Bütün formları aynı gün dijitale taşımak, hiçbirinin kullanılmamasının en kestirme yoludur.
+Bir rutin seçin. Kapanış iyi bir başlangıçtır: sonucunu ertesi sabah açan kişi kontrol edebilir.
+Pilot yapın. Bir iki şubede uygulayın. Hangi maddenin belirsiz, yavaş ya da gereksiz olduğunu ekibe sorun ve başka şubeler görmeden düzeltin.
+Cihaz konusunu netleştirin. İstasyonda ortak bir tablet mi olacak, herkes kendi telefonunu mu kullanacak; nerede şarj olacak, şarjı bitince ne yapılacak? Basılı bir yedek liste bulundurun.
+Her şubeye bir sorumlu atayın. Bir kişi sonuçlara her gün bakar ve atlanan ya da uymayan maddelerin peşine düşer.
+Kontrol edildiğini gösterin. Bölge müdürü dün geceki kapanış fotoğraflarına yorum yazdığında herkes listenin okunduğunu anlar.
+Sürümü merkezden yönetin. Değişiklikleri tek kişi onaylar, her şube aynı sürümü kullanır, şubeye özel eklemeler doğaçlama değil, konuşularak yapılır.
+Uygulamayı değil, işi öğretin. Nereye dokunulacağını göstermek kısa sürer. Her maddenin doğru nasıl yapılacağını göstermek asıl iştir; burada iş başı eğitim devreye girer.
+
+## Kontrol listesinde sık yapılan hatalar
+
+Çoğu kontrol listesi formatı yüzünden değil; belirsiz, fazla uzun ya da hiç okunmadığı için işe yaramaz. Şunlara dikkat edin:
+Listeyi eğitim yerine kullanmak. İlk gün eline kapanış listesi verilen yeni çalışan neyin yapılacağını öğrenir, nasıl yapılacağını değil.
+Belirsiz maddeler. "Mutfağı temizle", "Dolapları kontrol et". Standart yok, doğrulamanın yolu yok.
+Sadece büyüyen listeler. Her olayda bir satır eklenir, hiçbiri çıkarılmaz. Listeyi belli aralıklarla gözden geçirin, hiç atlanmayanları silin.
+Uymayan maddeye tepki vermemek. Kayıtlar soğuk odanın üç gece üst üste sınırın üstünde olduğunu gösteriyor ve kimse bir şey yapmamış. Tepkisiz kayıt kimseyi korumaz.
+Eski sürümün dolaşımda kalması. Geçen yılın formu hâlâ bir dolap kapağının içinde asılı. Liste her değiştiğinde eski kopyaları toplayın.
+Sonradan işaretleme. Bütün maddeler aynı dakikada imzalanmış. Zamanın önemli olduğu maddelerde saat isteyin ve bakın.
+Listeyi mevzuata uygunluğun kanıtı saymak. Yazılı ve tarihli bir kontrol listesi bir denetimde ya da iç denetimde destek olabilir; ama neyi, ne kadar süre kaydetmeniz gerektiğine yürürlükteki mevzuat karar verir. Kontrol edin.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore bir kontrol listesi uygulaması değildir. Kontrol listesinin yapamadığı kısmı üstlenir: her maddenin doğru nasıl yapılacağını. Beceri isteyen maddeleri, örneğin fritöz yağını süzmeyi, soğuk odada prob ile ölçümü ya da dilimleme makinesini sökmeyi, işi en iyi yapan kişiyi telefonla çekerek kaydedersiniz ve adımları telefon editöründe işaretlersiniz. Yapay zekâ talimatları ve kısa bir quiz taslağı hazırlar, ekibiniz yayımlanmadan önce onaylar. Kontrol listenizi kağıtta ya da kullandığınız araçta tutun, her maddenin yanına ilgili Flexlore işinin adını yazın; emin olmayan kişi videoyu kendi telefonunda açar. Kimin izlediğini ve quizi geçtiğini kişi ve şube bazında görürsünüz. Sahada yetkin olduğunu onaylamak yine sorumlusundadır. İstasyondaki QR kodla doğru işi açmak yakında geliyor.
+
+## Restoran açılış ve kapanış kontrol listesi
+
+Restoran açılış ve kapanış kontrol listesi
+
+Şube: [Şube adı]
+Tarih: [Tarih]
+Açılış sorumlusu: [Ad soyad]
+Kapanış sorumlusu: [Ad soyad]
+Sürüm: Rev 1, onaylayan: [mutfak şefi]
+
+AÇILIŞ (ilk siparişten önce)
+No	Madde	Standart (doğru yapıldığında ne görülür)	Saat	Paraf
+A1	Soğuk oda sıcaklığı okundu ve kaydedildi	0 ile 4 °C arası (örnek; sınırı mevzuat ve gıda güvenliği planınız belirler). Sınırın üstündeyse ürünü kullanmadan vardiya sorumlusuna haber verin		
+A2	Buzdolapları ve dondurucular okundu ve kaydedildi	Buzdolabı 0 ile 4 °C, dondurucu -18 °C veya altı (örnek değerler)		
+A3	El yıkama lavaboları tam	Her lavaboda sabun, kağıt havlu ve ılık su		
+A4	Dezenfektan hazırlandı ve test edildi	Test şeridi ürün etiketindeki konsantrasyonu gösteriyor		
+A5	Fritöz yağı kontrol edildi	Seviye çizgide; renk ve koku uygun, değilse yağ talimatına göre süzüldü ya da değiştirildi		
+A6	Izgara, fırın ve fritözler açıldı	İlk siparişten önce ayarlı sıcaklıkta		
+A7	Mizanplas istasyon istasyon kontrol edildi	Hazırlık listesiyle aynı; her kap etiketli ve tarihli		
+A8	Son kullanma tarihleri kontrol edildi	Tarihi geçen ürün ayrıldı ve fire olarak kaydedildi		
+A9	Bulaşık makinesi hazır	Su dolu, kimyasallar bağlı, deneme yıkaması yapıldı		
+A10	Salon hazır	Zemin temiz ve kuru, masalar kurulu, tuvaletler kontrol edildi ve tamamlandı		
+A11	Kasa hazır	Bozuk para sayıldı ve imzalandı		
+A12	Vardiya öncesi brifing yapıldı	Günün önerileri, biten ürünler ve alerjen değişiklikleri ekibe söylendi		
+
+KAPANIŞ (son siparişten sonra)
+No	Madde	Standart (doğru yapıldığında ne görülür)	Saat	Paraf
+K1	Tüm yiyecekler kaldırıldı	Üstü kapalı, etiketli, tarihli; çiğ ürün hazır yiyeceğin altında		
+K2	Soğuk oda ve dolapların son sıcaklığı kaydedildi	Sınır içinde; kapılar tam kapalı		
+K3	Fritözler kapatıldı	Yağ süzüldü ya da üstü kapatıldı		
+K4	Izgara, fırın ve ocaklar kapatıldı	Prosedürünüz gerektiriyorsa gaz vanaları kapalı		
+K5	Yüzeyler temizlendi ve dezenfekte edildi	Tezgahlar, kesme tahtaları, dilimleme makinesi: görünür kalıntı yok		
+K6	Zemin ve giderler temizlendi	Süpürüldü, paspaslandı, gider ızgaraları temizlendi		
+K7	Çöpler boşaltıldı	Yeni poşetler takıldı, dış konteyner kapağı kapalı		
+K8	Bulaşık makinesi boşaltıldı ve temizlendi	Filtreler çıkarıldı, durulandı, yerine takıldı		
+K9	El yıkama lavaboları açılış için tamamlandı	Sabun ve kağıt havlu dolu		
+K10	Kasa kapatıldı	Sayıldı, kasaya kondu, gün sonu raporu imzalandı		
+K11	İşyeri kapatıldı	Davlumbaz ve ışıklar kapalı, kapılar kilitli, alarm kurulu		
+
+Onay
+Açılış sorumlusu: [imza]
+Kapanış sorumlusu: [imza]
+Ertesi gün yönetici kontrolü: [imza]
+Uymayan maddeler, yapılan işlem ve kime haber verildiği: [not]
+
+Sıcaklıklar örnektir. Sınırları yürürlükteki gıda mevzuatı ve gıda güvenliği planınız belirler.
+
+## Sorular
+
+**Dijital kontrol listesi kağıttan daha mı iyi?**
+Her zaman değil. Saat kaydı, fotoğraf, tek güncel sürüm ve telefon açmadan birden fazla şubenin sonucunu görmek gerekiyorsa dijital daha iyidir. Islak ya da yağlı bir istasyonda, şarjı ve şifresi olmayan kağıt daha pratiktir. Pek çok restoran ve fabrika ikisini birlikte kullanır: elin dolu olduğu yerde kağıt, onay ve uzaktan takip için dijital.
+
+**Restoran kapanış kontrol listesinde neler olmalı?**
+Yiyeceklerin üstü kapalı, etiketli ve tarihli kaldırılması, soğuk oda ve dolapların son sıcaklık kaydı, fritöz, ızgara ve ocakların kapatılması, yüzeylerin temizlenip dezenfekte edilmesi, zemin, gider ve çöpler, kasanın kapatılması ve işyerinin kilitlenmesi. Listeyi kendi menünüze, ekipmanınıza ve yürürlükteki kurallara göre uyarlayın.
+
+**Kontrol listesi nasıl hazırlanır?**
+Önce rutini işi en iyi yapan kişiyle birlikte yürüyün ve atlanan ya da önemli olan adımları not edin. Her maddeyi tek, gözle kontrol edilebilir bir işlem olarak yazın, standardı aynı satıra koyun ve uymazsa ne yapılacağını belirtin. Maddeleri yürünen sıraya dizin, listeyi kullanacak kişiyle deneyin ve gereksiz maddeleri çıkarın.
+
+**Çalışanların kontrol listesine gerçekten uymasını nasıl sağlarım?**
+Listeyi kısa tutun, maddeleri açık ve standardıyla yazın, sonra sonuçlara her gün birinin baktığından ve uymayan maddelere tepki verildiğinden emin olun. Ekip, okunduğunu bildiği listeye uyar. Listeyi teslim etmeden önce her maddenin arkasındaki işi de öğretin; nasıl yapılacağını bilmeyen kişi kutucuğu işaretleyip geçer.
+
+**Kontrol listesi eğitimin yerini tutar mı?**
+Hayır. Kontrol listesi, işi bilen birine neyi doğrulaması gerektiğini hatırlatır. Fritöz yağının nasıl süzüleceğini, makinenin nasıl ayarlanacağını ya da yatağın otel standardına göre nasıl yapılacağını göstermez. Önce işi iş talimatı, kısa bir video ya da gösteren biriyle öğretin, sonra rutini aynı tutmak için listeyi kullanın.
+
+**Dijital kontrol listesi gıda denetiminde işe yarar mı?**
+Saatli ve paraflı, yazılı bir kontrol listesi, kağıtta da dijitalde de bir denetimde ya da iç denetimde destek olabilir. Dijital kayıtları aramak daha kolaydır ve kaybolmaları daha zordur. Ancak hiçbir format tek başına mevzuata uygunluk sağlamaz. Neyi, nasıl ve ne kadar süre kaydetmeniz gerektiğini yürürlükteki mevzuat belirler; kontrol edin.
+
+**Kontrol listesi ne sıklıkla güncellenmeli?**
+Belli aralıklarla, örneğin üç ayda bir, ve ekipman, menü ya da süreç her değiştiğinde gözden geçirin. Bir olaydan sonra bir maddenin eksik ya da belirsiz olup olmadığına bakın. Listeyi değiştirdiğinizde eski kopyaların hepsini toplayın; her şubede yalnızca güncel sürüm kullanılsın.
+
+
+---
+
+# Personel eğitim takip tablosu: Excel şablonu ve tablonun yetmediği an
+URL: https://www.flexlore.com/tr/rehber/egitim-takip-tablosu/
+Language: tr
+
+Personel eğitimi, her kişi ve her eğitim için tutulan bir kayıtla takip edilir: kim, hangi talimatın hangi sürümüyle, ne zaman, kimden eğitim aldı, nasıl kontrol edildi ve tekrar ne zaman gerekiyor. Birkaç şube ve az sayıda eğitim için Excel yeterlidir. Sürümler, şubeler ve kaçan tekrarlar artınca yazılıma geçilir.
+
+## Personel eğitim takip tablosu nedir?
+
+Personel eğitim takip tablosu, kimin hangi eğitimi ne zaman, kimden aldığını ve nasıl kontrol edildiğini gösteren kayıttır. "Yeni kasiyer alerjen eğitimini aldı mı?" ya da "Güncellenen fırın açılış talimatını kim henüz görmedi?" diye sorulduğunda açılan dosya budur.
+Yetkinlik matrisiyle karıştırılır ama aynı şey değildir. Beceri matrisi bugünün resmini verir: hangi vardiyada hangi istasyonu kim, hangi seviyede yapabiliyor. Eğitim takip tablosu ise o resmin arkasındaki geçmiştir: her eğitim, tarihiyle, talimatın sürümüyle ve kanıtıyla. Çoğu işletmenin ikisine de ihtiyacı vardır; takip tablosu matrisi besler.
+Üç şubeli bir fırın-kafe düşünün. Mart ayında espresso makinesi temizlik talimatı değişiyor. Haziranda ikinci şubedeki barista hâlâ eski usulle temizliyor. İyi tutulmuş bir tablo, bu kişinin ocakta v3 ile eğitildiğini ve v4'ü hiç görmediğini gösterir. Tablo yoksa bunu makine arızasından öğrenirsiniz.
+
+## Çalışan eğitim kayıt formunda hangi bilgiler olmalı?
+
+Her kişi ve her eğitim için ayrı bir satır açın ve o gün orada olmayan biri bile ne olduğunu anlayabilsin. Şu sütunlar yeterlidir:
+Personel, görev ve şube. Görev, hangi eğitimlerin zorunlu olduğunu belirler. Şube, filtrelemeyi sağlar.
+Eğitim veya SOP adı. Yazılı talimatın tam adını açılır listeden seçin. Elle yazılırsa "Alerjen" ile "Alerjen eğitimi" iki ayrı eğitim gibi sayılır.
+Sürüm. Kişinin öğrendiği talimatın sürümü. Çoğu tablonun atladığı ve iş değiştiğinde en çok aranan sütun budur.
+Eğitim tarihi. Metin değil, gerçek tarih biçiminde. Hesaplama ancak böyle yapılır.
+Eğitimi veren. İşi gösteren usta veya amir. Kime soracağınızı ve kimin iyi öğrettiğini gösterir.
+Kontrol yöntemi. Quiz, sahada gözlem veya ikisi birden. Katılım formundaki imza, kişinin orada olduğunu gösterir; anladığını göstermez.
+Sonuç. Geçti, Henüz değil veya Yeniden eğitim.
+Tekrar tarihi. İş periyodik tekrar gerektiriyorsa eğitimin yenilenmesi gereken tarih.
+Kural basit: kişi başına bir satır ve eğitimler yan yana sütunlarda değil, her eğitim olayı için yeni bir satır. Mert tekrar eğitimini aldığında yeni satır eklenir, eski satır silinmez. Geçmiş böylece korunur.
+
+## Excel'de eğitim takip tablosu nasıl hazırlanır?
+
+İki sekme kullanın: her eğitimi bir kez tanımlayan bir eğitim listesi ve her eğitim olayını kaydeden bir kayıt sekmesi. Kontrolü formüllere ve renklere bırakın.
+Önce eğitim listesini kurun. Her eğitim için bir satır: ad, güncel sürüm, zorunlu olduğu görevler, ay cinsinden tekrar sıklığı ve talimatı güncel tutan sorumlu.
+Kayıt sekmesini açın. Yukarıdaki şablonun sütunlarını 1. satıra başlık olarak yazın. Aralığı tablo olarak biçimlendirin ki filtreler ve formüller yeni satırlara kendiliğinden uzasın.
+Veri doğrulama ekleyin. Eğitim sütununu, eğitim listesinden beslenen bir açılır liste yapın. Şube, Kontrol yöntemi (Quiz, Gözlem, Quiz + gözlem) ve Sonuç (Geçti, Henüz değil, Yeniden eğitim) için de aynısını yapın. Eğitim tarihi sütunu yalnızca tarih kabul etsin.
+Tekrar tarihini hesaplatın. SERİAY fonksiyonu, eğitim tarihine listedeki ay sayısını ekler. Kimse tekrar tarihini elle yazmaz.
+Durum sütunu ekleyin. Şablondaki formül Başlamadı, Quizi tekrarla, Eski sürüm, Süresi geçti, Yaklaşıyor veya Tamam döndürür. Türkçe Excel'de ayraç noktalı virgüldür; İngilizce Excel'de aynı formül IF, EDATE, VLOOKUP, TODAY ve virgülle yazılır.
+Koşullu biçimlendirme ekleyin. Tekrar tarihi BUGÜN() değerinden önceyse satırı kırmızı, 30 gün içindeyse sarı, sürüm güncel değilse gri yapın.
+Dondurun ve koruyun. Başlık satırını ve ilk sütunu dondurun. Formül sütunlarını ve eğitim listesini kilitleyin; yalnızca sorumlu değiştirebilsin.
+Kaydı eğitimin yapıldığı gün girin. Cuma günü hafızadan doldurulan tablo, yanlış tarih ve yanlış isimle dolar.
+
+## Personel eğitimi nasıl takip edilir: haftalık rapor
+
+Tablo, birkaç soruya hızlı cevap verdiği sürece işe yarar. Aşağıdaki görünümleri bir kez kurun ve her hafta aynı anda bakın, örneğin vardiya planı yayınlanmadan önce.
+Süresi geçenler. Durum sütununu "Süresi geçti" olarak filtreleyip şubeye göre sıralayın. Bu, her şube müdürünün iş listesidir.
+Eski sürümle eğitilenler. Bir talimat değiştiğinde "Eski sürüm" filtresi, kimin yeniden eğitileceğini gösterir.
+Şube bazında tamamlanma. Satırlarda şubeler, sütunlarda eğitimler ve değer olarak "Geçti" sayısı olan bir pivot tablo, hangi şubenin geride kaldığını gösterir.
+Hiç başlamayanlar. En zor soru budur, çünkü tablo yalnızca yapılmış eğitimleri tutar. Açıkları görmek için her kişiyi ve görevini listeleyen bir personel sekmesi gerekir; bunu görevlerin zorunlu eğitimleriyle karşılaştırırsınız. Pratik çözüm: yeni gelen her personel için zorunlu her eğitime "Başlamadı" durumunda bir satır açmak. Örnekteki Burak'ın son satırı böyle açılmıştır.
+Haftalık raporu kısa tutun: şube başına süresi geçenler, eski sürümdekiler ve başlamayanlar. Üç listeyle müdür harekete geçer. On iki grafikli bir pano çoğu zaman açılmaz.
+
+## Eğitim takip tablosunu kim tutmalı?
+
+Tabloyu insan kaynakları veya operasyon sahiplenir, ama kayıtları işi gören kişi girer. Ofisten tutulan tablo kısa sürede gerçeklikten kopar.
+Dosyanın sahibi. Eğitim listesini, sürümleri ve tekrar sıklıklarını yöneten tek kişi. Genellikle operasyon müdürü veya İK sorumlusu.
+Kaydı giren. Eğitimi veren usta, vardiya amiri veya şube müdürü. Eğitim bittiği gün, aynı vardiyada girer.
+Talimatın sorumlusu. Her eğitimin bir sahibi olur. Talimat değiştiğinde sürümü o günceller; böylece eski sürümle eğitilenler tabloda kendiliğinden ortaya çıkar.
+Bu üç rolü baştan yazın. Herkesin tablosu olan şey zamanla kimsenin tablosu olmaz; eksikler de genellikle bir denetimde ya da bir şikâyetten sonra, en kötü zamanda ortaya çıkar. Rolleri yazmak bir sayfa sürer ve tablonun ömrünü uzatır.
+
+## Excel mi, eğitim takip yazılımı mı?
+
+Tabloyu tek kişi tutuyorsa, eğitim sayısı azsa ve ekip bir iki şubedeyse Excel veya Google E-Tablolar yeterlidir. Yazılım, yalnızca kaydın değil eğitimin kendisinin de sahadaki çalışana ulaşması gerektiğinde anlam kazanır.
+İhtiyaç | Excel veya Google E-Tablolar | Eğitim takip yazılımı | 
+Başlangıç maliyeti | Çoğunlukla ek maliyet yok | Abonelik | 
+Kurulum | Şablonla bir öğleden sonra | Hesap, roller, personelin eklenmesi | 
+Kaydın girilmesi | Her satırı biri elle yazar | Kişi eğitimi veya quizi bitirdiğinde kaydedilir | 
+Anlaşıldığının kanıtı | Kontrol yöntemi sütununa ne yazılırsa | Quiz sonucu kayıtla birlikte saklanır | 
+Talimat değişince | Sürümü güncellersiniz, kimin yeniden eğitileceğini siz bulursunuz | Araca göre değişir; yeni sürümü ilgili kişilere atayabildiğine bakın | 
+Birden fazla şube | Ortak dosya ya da şube başına kopya, elle birleştirme | Tek sistem, şube ve göreve göre filtre | 
+Hatırlatma | Dosyayı açınca görünen renkler | Araca göre değişir; tarih yaklaşınca bildirim olup olmadığına bakın | 
+Kim görür, kim değiştirir | Dosya paylaşım ayarları | Kişi ve şube bazında rol ve yetkiler | 
+Esneklik | İstediğiniz sütun, istediğiniz biçim | Aracın desteklediği kadar | 
+İkisi de sahada yetkinlik onayı vermez; o, çalışanı iş başında izleyen amirin işidir. Hangi tür yazılımın uygun olduğunu tartıyorsanız LMS mi, SOP yazılımı mı rehberi iki ana yaklaşımı karşılaştırır.
+
+## Excel tablosunun artık yetmediğini gösteren işaretler
+
+Tabloyu doğru tutmak, kaydettiği eğitimden daha çok zaman almaya başladıysa sınıra gelmişsiniz demektir. Sık görülen işaretler:
+Her şube kendi kopyasını tutuyor ve hangi dosyanın güncel olduğunu kimse bilmiyor.
+Satırlar, kâğıt katılım formlarından günler hatta haftalar sonra giriliyor.
+"Yeni sürümü kim görmedi?" sorusu bir saatlik filtreleme gerektiriyor.
+Tablo eğitimin yapıldığını kaydediyor ama eğitimin kendisi başka yerde duruyor: bir klasörde, bir telefonun galerisinde ya da tek bir ustanın kafasında.
+O hafta dosyayı kimse açmadığı için tekrar eğitimleri kaçıyor.
+Sezonluk işe alımlarda yeni personel, tabloya eklenebileceğinden hızlı geliyor.
+Sahadaki çalışan tabloyu hiç görmüyor, bu yüzden neyi eksik olduğunu bilmiyor.
+Bunlardan bir ikisi daha iyi alışkanlıklarla çözülür. Çoğu doğruysa sorun tabloyu tutanlarda değil, araçtadır.
+
+## Çok şubeli işletmelerde eğitim takibi
+
+Şube başına ayrı dosya değil, Şube sütunu olan tek bir tablo kullanın. Ayrı dosyalar zamanla birbirinden kopar: farklı eğitim adları, farklı sütunlar, "Geçti"nin farklı anlamları.
+Herkes için tek eğitim listesi. Adları, sürümleri ve tekrar sıklıklarını merkez veya operasyon sorumlusu belirler. Şubeler kayıt ekler, yeni eğitim icat etmez.
+Şubeye özel eğitimler de listede. Belirli bir bulaşık makinesi yalnızca AVM şubesindeyse, o eğitimi listeye ekleyip şube bilgisini yazın.
+Her şubede bir sorumlu. Kayıtları giren ve haftalık süresi geçenler listesini takip eden belli bir kişi olsun.
+Şubeleri aynı üç ölçüyle karşılaştırın. Süresi geçen, eski sürümde kalan, başlamayan. Toplam kayıt sayısına göre sıralamayın; personel devri yüksek şube her zaman daha çok kayıt girer.
+İki şubede çalışan personel için her eğitime tek satır açın, şube başına değil. Eğitimin nerede verildiğini not edin.
+İSG gibi mevzuatla belirlenen eğitimlerde içerik, süre ve yenileme aralığını ilgili mevzuat belirler. Tablodaki tekrar sıklıklarını buna göre kontrol edin; şablon bu konuda bir uygunluk garantisi değildir.
+
+## Eğitim takibinde sık yapılan hatalar
+
+Sürüm sütunu yok. Kayıt "eğitildi" diyor ama o talimat çoktan değişti.
+İmzayı kanıt saymak. İmza katılımı gösterir. Anlaşıldığını göstermek için quiz veya gözlem ekleyin.
+Eğitim adını elle yazmak. Yazım farkları bir eğitimi birkaçına böler ve tüm sayımları bozar.
+Eski satırın üzerine yazmak. Tekrar eğitim tarihi ilk tarihin yerine yazılınca geçmiş kaybolur.
+Yazılı olmayan bir eğitimi takip etmek. Yazılı veya videoya çekilmiş bir standart yoksa "eğitildi", eğitmenin o gün ne gösterdiği anlamına gelir. Önce talimatı yazın; SOP nedir ve nasıl yazılır rehberi bunun için iyi bir başlangıç.
+Yalnızca sınıf eğitimlerini kaydetmek. Sahada öğrenmenin çoğu istasyonda olur. İş başı eğitimi de aynı şekilde, eğitmeni ve kontrolüyle kaydedin.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore, eğitimi ve kaydını aynı yerde tutar. İşi en iyi yapan kişi işi telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylamadan hiçbir şey atanmaz.
+Çalışan işi izleyip quizi çözdüğünde, kimin izlediğini ve kimin geçtiğini kişi, ekip ve şube bazında görürsünüz; kimsenin satır yazmasına gerek kalmaz. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. İş değiştiğinde adımları düzenleyip yeni sürümü yayınlarsınız. Uygulama iOS ve Android'de, 8 dilde çalışır. Bildirimler ve yöneticiler için web paneli yakında. Sahada yetkinlik onayı yine amirinizdedir. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+
+## Personel eğitim takip tablosu şablonu (örnek satırlarla)
+
+SEKME 1: EĞİTİM KAYITLARI (her kişi ve her eğitim için bir satır)
+Personel	Görev	Şube	Eğitim / SOP	Sürüm	Eğitim tarihi	Eğitimi veren	Kontrol yöntemi	Sonuç	Tekrar tarihi	Durum
+Mert A.	Fırıncı	Merkez	Fırın açılışı ve sıcaklık kontrolü	v3	02.03.2026	Usta fırıncı Hasan Ö.	Quiz + gözlem	Geçti	02.09.2026	Süresi geçti
+Mert A.	Fırıncı	Merkez	Alerjen yönetimi	v2	06.10.2026	Usta fırıncı Hasan Ö.	Quiz + gözlem	Geçti	06.04.2027	Tamam
+Zeynep K.	Hazırlık	Merkez	Bıçak güvenliği ve kesilmez eldiven	v1	15.06.2026	Vardiya amiri Can B.	Gözlem	Geçti	15.12.2026	Yaklaşıyor
+Emre Y.	Kasiyer	Sahil	Kasa açılışı ve gün sonu sayımı	v2	03.11.2026	Şube müdürü Aylin T.	Gözlem	Geçti	03.11.2027	Tamam
+Emre Y.	Kasiyer	Sahil	Alerjen yönetimi	v1	10.02.2026	Şube müdürü Aylin T.	Quiz	Geçti	10.08.2026	Eski sürüm: yeniden eğitim
+Selin D.	Barista	Sahil	Espresso makinesi günlük temizlik	v4	10.11.2026	Barista sorumlusu Deniz S.	Quiz	Henüz değil	10.11.2027	Quizi tekrarla
+Burak T.	Bulaşıkçı	AVM	Kimyasal dozajlama ve bulaşık makinesi	v2	21.09.2026	Vardiya amiri Ozan F.	Quiz + gözlem	Geçti	21.03.2027	Tamam
+Burak T.	Bulaşıkçı	AVM	Kapanış rutini	v1						Başlamadı
+
+SEKME 2: EĞİTİM LİSTESİ (her eğitim için bir satır)
+Eğitim / SOP	Güncel sürüm	Zorunlu görevler	Tekrar sıklığı (ay)	Sorumlu
+Fırın açılışı ve sıcaklık kontrolü	v3	Fırıncı, Usta fırıncı	6	Üretim şefi
+Alerjen yönetimi	v2	Tüm görevler	6	Operasyon müdürü
+Bıçak güvenliği ve kesilmez eldiven	v1	Hazırlık, Fırıncı	6	Üretim şefi
+Kasa açılışı ve gün sonu sayımı	v2	Kasiyer, Vardiya amiri	12	Şube müdürü
+Espresso makinesi günlük temizlik	v4	Barista	12	Barista sorumlusu
+Kimyasal dozajlama ve bulaşık makinesi	v2	Bulaşıkçı	6	Operasyon müdürü
+Kapanış rutini	v1	Tüm görevler	12	Şube müdürü
+
+FORMÜLLER (kayıt sekmesinin 2. satırı, Türkçe Excel)
+Tekrar tarihi (J2)	=EĞER(F2="";"";SERİAY(F2;DÜŞEYARA(D2;'Eğitim listesi'!A:D;4;YANLIŞ)))
+Durum (K2)	=EĞER(F2="";"Başlamadı";EĞER(I2<>"Geçti";"Quizi tekrarla";EĞER(E2<>DÜŞEYARA(D2;'Eğitim listesi'!A:B;2;YANLIŞ);"Eski sürüm: yeniden eğitim";EĞER(J2<BUGÜN();"Süresi geçti";EĞER(J2-BUGÜN()<=30;"Yaklaşıyor";"Tamam")))))
+
+Bu örnek ne gösteriyor: Mert'in fırın açılışı tekrar eğitiminin süresi geçmiş, Emre alerjen eğitimini eski sürümden almış, Selin espresso quizini tekrar etmeli, Burak ise kapanış rutinine hiç başlamamış.
+
+## Sorular
+
+**Excel'de personel eğitim takip tablosu nasıl yapılır?**
+İki sekme açın. İlki her eğitimi güncel sürümü ve tekrar sıklığıyla listeler. İkincisi her kişi ve her eğitim için bir satır tutar: personel, görev, şube, eğitim, sürüm, tarih, eğitimi veren, kontrol yöntemi, sonuç ve tekrar tarihi. Açılır listeler, SERİAY formülü ve süresi geçenleri kırmızıya boyayan koşullu biçimlendirme ekleyin.
+
+**Eğitim takip tablosu ile yetkinlik matrisi arasındaki fark nedir?**
+Eğitim takip tablosu her eğitim olayının tarihli kaydıdır: kim, hangi eğitim, hangi sürüm, ne zaman ve nasıl kontrol edildi. Yetkinlik matrisi ise kişileri ve işleri bir tabloda gösterip seviyeleri ve vardiya kapsamasını özetler. Takip tablosu kanıttır, matris ise vardiya ve çapraz eğitim planlamak için kullanılan özettir.
+
+**Personel eğitimleri ne sıklıkla tekrarlanmalı?**
+İşe ve mevzuata göre değişir. Eğitim listesinde her eğitim için bir tekrar sıklığı belirleyin: hijyen ve güvenlik işlerinde daha kısa, rutin işlerde daha uzun. İSG gibi yasal eğitimlerde aralığı mevzuat belirler, bunu kontrol edin. Talimat değiştiğinde ise süreyi beklemeden yeniden eğitim yapın.
+
+**Eğitim katılım formu tek başına yeterli mi?**
+Hayır. Katılım formundaki imza, kişinin eğitimde bulunduğunu gösterir; konuyu anladığını ya da işi kendi başına yapabildiğini göstermez. Bir kontrol ekleyin: kısa bir quiz adımların anlaşıldığını, amirin çalışanı gerçek bir vardiyada izlemesi ise işin yapılabildiğini gösterir. Hangi kontrolün kullanıldığını tabloda ayrı bir sütuna yazın ve imzalı formu da saklayın.
+
+**Denetim için eğitim kaydında neler bulunmalı?**
+En azından kişi, eğitimin veya talimatın adı ve sürümü, tarih, eğitimi veren, anlaşıldığının nasıl kontrol edildiği ve sonuç. Kaydın dayandığı yazılı veya videolu talimatı da saklayın. Denetçiler ve mevzuat farklı şeyler isteyebilir; bir şablona güvenmeden önce sizden ne beklendiğini kontrol edin.
+
+**Google E-Tablolar çok şubeli bir işletmede eğitim takibi için yeterli mi?**
+Bir süre için evet. Şube sütunu olan tek bir ortak dosya, merkezin yönettiği tek bir eğitim listesi ve her şubede kaydı giren bir sorumlu ile çalışır. Şubeler kendi kopyalarını tutmaya başladığında, kayıtlar geç girildiğinde ya da güncellenen talimatı kimin görmediği hızlıca görülemediğinde zorlanır.
+
+**Eğitim takip yazılımına ne zaman geçmek gerekir?**
+Tabloyu doğru tutmak, kazandırdığından fazla zaman almaya başladığında: kendi kopyasını tutan şubeler, sık değişen talimatlar, çok sayıda yeni personel veya kaçan tekrar eğitimleri. Eğitim içeriği de klasörlerde ya da tek bir ustanın kafasındaysa, eğitimi ve kaydı birlikte tutan bir yazılım daha iyi bir tablodan fazlasını çözer.
+
+
+---
+
+# İş başı eğitim: her yeni çalışana aynı işi öğreten planlı yöntem
+URL: https://www.flexlore.com/tr/rehber/is-basi-egitim/
+Language: tr
+
+İş başı eğitim, çalışanın işi gerçek iş yerinde ve gerçek iş sırasında deneyimli birinin yanında öğrenmesidir. Planlı iş başı eğitimde eğitmen her görevi gösterir, yeni personel önce eğitmenle birlikte, sonra izlenirken tek başına yapar ve görev bir sorumlunun tarihli onayıyla kapanır.
+
+## İş başı eğitim nedir?
+
+İş başı eğitim, çalışanın işi gerçek iş yerinde, gerçek iş sırasında, deneyimli birinin yanında adım adım öğrenmesidir. Yeni personel sınıfta değil; fritözün, hattın, kat arabasının başında öğrenir.
+Sahada çalışan ekiplerde işin büyük kısmı zaten böyle öğrenilir. Aşçı ızgarayı ızgarada, operatör kalıp değişimini makinede öğrenir. Asıl soru iş başı eğitim yapılıp yapılmayacağı değil, planlı mı yoksa şansa mı bırakıldığıdır.
+Plansız iş başı eğitim genelde "Mehmet ustanın yanında dur, izle" cümlesiyle başlar. Planlı iş başı eğitimde ise belli bir eğitmen, istasyonun görev listesi, bir öğrenme sırası, anlama kontrolü ve tarihli bir onay vardır. İkisi de sahada olur; ama yalnızca ikincisi her yeni çalışana aynı işi öğretir.
+İş başı eğitim oryantasyonla aynı şey değildir. Oryantasyon ilk günlerde işletmeyi, kuralları ve ekibi tanıtır; iş başı eğitim ise belirli bir istasyonun işini öğretir ve o istasyonda tek başına çalışma onayıyla biter. İyi bir başlangıç ikisini de içerir.
+Not: Türkiye'de "İşbaşı Eğitim Programı" aynı zamanda İŞKUR'un yürüttüğü bir devlet programının adıdır. Bu rehber o programla ilgili değildir; şirket içinde çalışanlara işin sahada nasıl öğretileceğini anlatır. İŞKUR programının koşulları için İŞKUR'un kendi sitesine bakın.
+
+## Usta yanında izleme mi, planlı iş başı eğitim mi?
+
+Usta yanında izleme (gölge eğitim), yeni personelin deneyimli birini izlemesidir. Planlı iş başı eğitim buna bir plan, gözetim altında uygulama ve sonunda bir kontrol ekler. İzleme, planlı eğitimin bir adımıdır; yerine geçmez.
+ | Usta yanında izleme | Planlı iş başı eğitim | 
+Yeni personel ne yapar? | Çoğunlukla izler, yardım eder | İzler, eğitmenle birlikte yapar, sonra tek başına yapar | 
+Plan | Genelde yok; vardiya ne getirirse | İstasyon için yazılı görev listesi ve sıra | 
+Eğitmen | O an vardiyada kim varsa | Belirlenmiş ve hazırlanmış bir kişi | 
+Öğrenilen | O kişinin işi yapış biçimi | İşletmenin kabul ettiği standart | 
+Sondaki kontrol | Nadiren | Adımlarla ilgili sorular ve sorumlu onayı | 
+Kayıt | Hafıza | Her görev için tarih, eğitmen ve onay | 
+En uygun olduğu durum | Vardiyanın temposunu görmek, ekiple tanışmak, bir rolü denemek | Bir istasyonda tek başına çalışacak kadar öğrenmek | 
+Usta çırak usulünün gerçek bir değeri var. Yoğun bir serviste bir gün izlemek, işin ritmini hiçbir listenin anlatamayacağı şekilde gösterir. Bir pozisyona geçmeden önce o rolü denemek için de iyi bir yoldur. Ama programın tamamı bu olursa, kimin ne öğrendiği o gün vardiyada kimin olduğuna bağlı kalır. Usta iyiyse çırak iyi öğrenir; usta izindeyse çırak, o gün boşta olan kişinin yöntemini öğrenir.
+
+## İş başı eğitimi nasıl yapılır? Göster, birlikte yap, tek başına yap, kontrol et
+
+Her görevi aynı dört adımdan geçirin: eğitmen gösterir, yeni personel eğitmen yanındayken yapar, sonra eğitmen izlerken tek başına yapar, en son görev kontrol edilip onaylanır.
+Göster. Eğitmen görevi bir kez normal hızında, bir kez de yavaşça yapar; her adımı ve nedenini söyler ("sepeti süre bitmeden kaldır, yoksa yağ tezgâha damlar"). İnsanların en çok hata yaptığı bir iki noktayı özellikle gösterir.
+Birlikte yap. Yeni personel görevi yapar, eğitmen yanında durup yönlendirir. Hatayı anında düzeltir ama işi elinden almaz.
+Tek başına yap. Yeni personel görevi gerçek bir vardiyada, yönlendirme olmadan yapar; eğitmen yakındadır. Kritik adımları sesli söylemesini isteyin. Bir adım atlanırsa sadece o görev için ikinci adıma dönün.
+Kontrol et ve onayla. Birkaç soru adımların anlaşıldığını gösterir. Sorumlu, personeli normal bir vardiyada izler ve tarih atarak onaylar.
+Her seferde tek bir görev çalışın. "Izgarayı öğren" çok büyük. "Açılışta ızgarayı yak ve hazırla" ise bir vardiyada gösterilip denenip kontrol edilebilir. Başlamadan önce görevin yazılı ya da videolu bir standardı olsun; yoksa iş talimatı şablonu ile hızlıca yazın.
+
+## İş başında eğitim planı: bir istasyon için doldurulmuş örnek
+
+İş başı eğitim planı, bir istasyonun görevlerini öğrenilme sırasıyla listeler; her görev için eğitmeni, hedef günü, kontrol şeklini ve onayı yazar. Aşağıda üretim hattında yeni bir operatör için doldurulmuş bir örnek var. Yapıyı kopyalayın, görevleri kendi işinizle değiştirin.
+Sıra | Görev | Eğitmen | Hedef | Kontrol | Onay (sorumlu, tarih) | 
+1 | İstasyon güvenliği: koruyucu ekipman, acil stop, sıkışma noktaları | Hat şefi | 1. gün | Soru |  | 
+2 | Vardiya başı makine kontrolleri ve devreye alma | Kıdemli operatör | 2. gün | Soru + izleme |  | 
+3 | Malzeme besleme ve parça yerleştirme | Kıdemli operatör | 2. ile 3. gün | İzleme |  | 
+4 | İlk ürün kontrolü ve ölçüm | Kalite sorumlusu | 3. gün | Soru + izleme |  | 
+5 | Hatalı parçayı ayırma ve kime haber verileceği | Hat şefi | 3. gün | Soru |  | 
+6 | Kalıp veya ürün değişimi | Kıdemli operatör | 4. ile 6. gün | Soru + izleme |  | 
+7 | Duruş anında yapılacaklar | Hat şefi | 5. gün | Soru |  | 
+8 | Vardiya sonu temizlik, kapatma ve devir | Kıdemli operatör | 6. gün | İzleme |  | 
+9 | İstasyon onayı: tam vardiya tek başına, sorumlu izliyor | Vardiya amiri | 7. ile 10. gün | Onay |  | 
+Aynı yapı mutfakta (açılış, hazırlık, pişirme süreleri, alerjen, kapanış) ya da otelde katta (araba hazırlığı, oda sırası, banyo, yatak, son kontrol) da çalışır. Planı istasyon başına tek sayfada tutun. İşletmeler bu sayfayı çoğu zaman işbaşı eğitim formu olarak çıktı alıp istasyona asar; sonuçları ise beceri matrisine işler, böylece bir sonraki vardiya şefi kimin hangi istasyonda çalışabileceğini görür.
+
+## Eğitmeni kim olmalı, nasıl hazırlanmalı?
+
+İşi standarda göre yapan ve sabırla anlatabilen birini seçin. Hattın en hızlı çalışanı her zaman bu kişi değildir.
+En iyi ustanız işi çoğu zaman eli alışık olduğu için yapar. Bazı adımları kafasında atlar, kendine göre kestirmeler kullanır, yavaş birine sabrı tükenebilir. Bu onu kötü eğitmen yapmaz; sadece biraz hazırlık ister. Şunlara bakın:
+İşi standart şekilde yapıyor mu? Onun yöntemi yazılı olandan farklıysa, öğretmeden önce hangisinin doğru olduğunda anlaşın.
+Nedenini söyleyebiliyor mu? "Çünkü yağ damlar" demek, "böyle yap işte" demekten daha kalıcıdır.
+Küçük hatalara izin veriyor mu? İşi sadece güvenlik ya da müşteri risk altındaysa elinden almalı.
+Zamanı var mı? Cumartesi yoğunluğunda istasyonu tek başına çevirirken yeni birini yetiştirmek olmaz. Vardiyaları buna göre planlayın.
+Eğitmene kısa bir hazırlık verin: dört adımlı yöntemi, istasyon planını ve onayın nasıl işlediğini anlatın. Kendi alışkanlığını değil, yazılı standardı öğreteceğinde anlaşın. Sonra bir görevi öğretirken izleyip geri bildirim verin.
+
+## Ustanın bilgisi, usta gitmeden nasıl kayda alınır?
+
+Ustayı işi yaparken bir kez çekin, videoyu adımlara bölün, her adıma kısa bir not ve birkaç soru ekleyin. Böylece yöntemi izne, vardiya değişikliğine ya da ayrılığa rağmen şirkette kalır.
+Birçok işletmede gerçek standart tek bir kişinin elindedir: kötü giden kalıp değişimini sesinden anlayan operatör, hamurun ne zaman hazır olduğunu bilen fırıncı. O kişi ayrılınca yerine gelen, onu bir kez izlemiş birinden zayıf bir kopyasını öğrenir.
+Ustayı gerçek istasyonda, telefonla, normal çalışma hızında çekin. Senaryo gerekmez.
+Neyi kontrol ettiğini ve nedenini sesli anlatmasını isteyin; özellikle küçük işaretleri.
+Videoyu her biri tek bir hareket olan kısa adımlara bölün; öğrenen sadece takıldığı adımı tekrar izlesin.
+Her adımın altına kritik değeri ya da uyarıyı içeren bir iki satır yazın.
+Sahada gerçekten ters giden şeylerle ilgili üç beş soru ekleyin.
+Kullanmadan önce sonucu usta ve sorumlu birlikte onaylasın.
+Video eğitmenin yerini almaz. "Göster" adımını herkes için aynı yapar ve yeni personele dördüncü gün unuttuğunda dönebileceği bir kaynak verir. Ustadan çırağa bilgi aktarımı tam olarak budur.
+
+## Öğrenildiği nasıl kontrol edilir, onayı kim verir?
+
+İki kontrol kullanın: adımların anlaşıldığını gösteren sorular ve sorumlunun personeli gerçek bir vardiyada işi yaparken izlemesi. Onay sayılan yalnızca ikincisidir.
+Sorular sahaya uygun olsun: "Kalıp değişiminden sonra makineyi çalıştırmadan önce hangi kontrolü yaparsın?", "Ölçü toleransın dışındaysa parçayı nereye koyarsın?" Kısa ve net sorular, uzun ve genel sorulardan iyidir. Sorular anlamayı gösterir; hat hızlanırken işi yapabildiğini kanıtlamaz.
+Bunu onay gösterir. Yalnızca eğitmen değil, bir sorumlu görevi baştan sona izler, standarda uygun yapıldığını teyit eder ve tarihi yazar. O zamana kadar personel o görevi destekle yapar. Makine, kimyasal, yük kaldırma gibi güvenlikle ilgili görevlerde hangi eğitimin ve kaydın gerektiğini ilgili mevzuat belirler; bunları iş güvenliği uzmanınızla teyit edip plana ekleyin. Onayları tek bir yerde tutun, örneğin bir eğitim takip tablosunda; kimse hafızasına güvenmek zorunda kalmasın.
+
+## Birden fazla şubede iş başı eğitim nasıl aynı tutulur?
+
+Her şube için tek görev listesi, her görev için tek bir videolu standart ve tek bir onay kuralı kullanın; ilerlemeyi şube bazında karşılaştırın.
+Ortak görev listesi ve her görevin standardı merkezdedir.
+Her şube kendi eğitmenlerini seçer ama ortak versiyonu öğretir. Farklı fırın, farklı hat gibi yerel maddeler eklenir; ortak olanların yerine konmaz.
+Her yeni personel, eğitmenle çalışmadan önce aynı videolu "göster" adımını izler.
+Eğitmenler aynı dört adımlı yöntemi ve aynı plan formunu kullanır; bir şubede "tamam" sayılan iş, diğerinde de tamam sayılır.
+Bölge müdürü onayları şube bazında izler; hangi şubenin geride kaldığını, hangisinde tüm yükün tek bir eğitmende olduğunu görür.
+
+## İş başı eğitimde sık yapılan hatalar
+
+Sadece izletmek. Bir hafta izleme; yapma, kontrol ve onay yok.
+Sınıf olarak en yoğun vardiya. Yoğunlukta kimsenin anlatacak vakti olmaz. Daha sakin bir vardiyada başlayın.
+Boşta kim varsa o öğretir. Her vardiya biraz farklı bir iş öğretir.
+Bir günde her şey. Bütün istasyon ilk gün. Görev görev ilerleyin.
+Eğitmen kendi çırağını onaylar. Onay bir sorumluda kalsın.
+Kayıt yok. Altı ay sonra kimin neyi öğrendiğini kimse bilmez.
+Ustanın yöntemi hiç kayda alınmaz. Usta giderse bilgi de onunla gider.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore bu sürecin "göster" adımını ve kaydını üstlenir. Ustanız görevi istasyonda telefonla çeker, telefondaki editörde adımları işaretler. Yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar; ekibiniz yayından önce inceleyip onaylar.
+Görevleri role ve şubeye göre atarsınız. Yeni personel kendi telefonunda izler, istediği adımı tekrar açar ve quizi çözer. Kimin hangi görevi izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahadaki onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır; otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir, ayrıntılar fiyatlandırma sayfasında.
+
+## Sorular
+
+**İş başı eğitim ile usta yanında izleme arasındaki fark nedir?**
+Usta yanında izleme, deneyimli birini işi yaparken izlemektir. İş başı eğitim izlemeyi de içerir ama üstüne bir plan, eğitmenle birlikte uygulama, izlenirken tek başına yapma ve sonunda bir kontrol ekler. İzleme işin temposunu gösterir; planlı eğitim ise istasyonda tek başına çalışmayı öğretir.
+
+**İş başı eğitim ne kadar sürmeli?**
+Sabit bir gün sayısı yerine istasyona göre planlayın. Basit görevler bir vardiyada onaylanabilir, kalıp değişimi gibi karmaşık işler ve çok görevli istasyonlar daha uzun sürer. Plandaki her görev için hedef bir gün yazın ve istasyonu ancak sorumlu her görevi onayladığında tamamlanmış sayın.
+
+**İşbaşı eğitim formunda neler olmalı?**
+Bir istasyonun görevleri öğrenilme sırasıyla yazılmalı. Her görev için eğitmen, hedef gün, kontrol şekli (soru, izleme ya da ikisi) ve sorumlunun tarihli onayı için bir alan olmalı. Formu istasyon başına tek sayfada tutun, istasyonun yanında erişilebilir yerde bulundurun ve sonuçları beceri matrisine işleyin.
+
+**Usta çırak eğitimi hâlâ işe yarar mı?**
+Evet, özellikle el becerisi ve tecrübe isteyen işlerde. Zayıf yanı, öğrenilenin ustaya ve o günkü vardiyaya bağlı kalmasıdır. Ustanın yöntemini bir kez videoya alıp adımlara bölmek, soru eklemek ve sonunda sorumlu onayı koymak, usta çırak usulünü herkes için aynı hale getirir.
+
+**İş başı eğitimi kim vermeli?**
+İşi kabul edilen standarda göre yapan ve her adımın nedenini anlatabilen, adı belli bir eğitmen. En hızlı çalışan her zaman en iyi eğitmen değildir. Eğitmene istasyon planını ve yöntemi verin, vardiyasını eğitime zaman kalacak şekilde planlayın, son onayı bir sorumluda bırakın.
+
+**Video, iş başı eğitimin yerini alır mı?**
+Hayır, ama onu güçlendirir. Videolu standart, "göster" adımını her yeni personel için aynı yapar ve sonradan tekrar izlenebilir. Yeni personel takıldığı adımı eğitmeni beklemeden tekrar açabilir. Yine de görevi gerçek istasyonda eğitmenle uygulaması ve bir sorumludan tarihli onay alması gerekir.
+
+**Bu rehber İŞKUR İşbaşı Eğitim Programı hakkında mı?**
+Hayır. Bu rehber, şirket içinde mevcut ve yeni çalışanlara işin sahada, gerçek istasyonda nasıl öğretileceğini anlatır: plan, eğitmen, uygulama ve onay. İŞKUR'un İşbaşı Eğitim Programı ayrı bir devlet programıdır; başvuru, süre ve koşulları için İŞKUR'un kendi sitesine bakın. Bu sayfa o programın kuralları hakkında bilgi vermez.
+
+
+---
+
+# LMS mi, SOP yazılımı mı? Saha personeli eğitimi için doğru seçim
+URL: https://www.flexlore.com/tr/rehber/lms-mi-sop-yazilimi-mi/
+Language: tr
+
+LMS (öğrenme yönetim sistemi) eğitim kurslarını atar, tamamlanmayı izler ve sertifikaları yönetir. SOP yazılımı ise belirli bir işin nasıl yapıldığını adım adım tutar; çalışan onu işin başında açar, iş değişince prosedür güncellenir. Masa başı ekipler ve uzun zorunlu eğitimler için LMS, işi yaparak öğrenen saha ekipleri için önce SOP yazılımı uygundur.
+
+## LMS nedir, SOP yazılımı nedir?
+
+LMS kurs etrafında, SOP yazılımı iş etrafında kuruludur. Bu tek fark; içeriğin nasıl hazırlandığını, çalışanın onu nerede açtığını ve birinin işe hazır olduğunu nasıl anladığınızı belirler.
+
+LMS, İngilizce learning management system ifadesinin kısaltmasıdır; Türkçede öğrenme yönetim sistemi ya da eğitim yönetim sistemi denir. Klasik bir LMS'te bir kurs hazırlar veya satın alırsınız, bir gruba atarsınız, çalışanlar modülleri sırayla tamamlar, sistem de puanları, tamamlanma tarihlerini ve sertifikaları kaydeder. Cevapladığı soru şudur: &quot;Bu kişi zorunlu eğitimi tamamladı mı?&quot;
+
+SOP yazılımı ise işin nasıl yapıldığını saklar. Her kayıt tek bir standart operasyon prosedürüdür: fritöz istasyonunu kapatmak, 2 numaralı hatta kalıp değiştirmek, bir otel odasını hazırlamak. Çalışan ona ihtiyaç duyduğu anda, çoğu zaman telefondan açar; iş değişince prosedür de güncellenir. Cevapladığı soru şudur: &quot;Bu kişi bu işi bizde, bugün nasıl yapıyorsak öyle biliyor mu?&quot;
+
+Çoğu işletmede zaten olan üçüncü seçenek ortak klasör ve dokümanlardır: Word dosyaları, PDF'ler, basılı klasörler, WhatsApp gruplarındaki fotoğraflar. Ek maliyeti yoktur ama hangi sürümün güncel olduğunu ve kimin okuduğunu kimse bilemez.
+
+## LMS, SOP yazılımı ve ortak klasör karşılaştırması
+
+Her biri farklı bir işte güçlüdür. Tabloda, ekibinizin gerçekte yaptığı işe hangi sütunun uyduğuna bakın.
+
+Soru | Klasik LMS | SOP yazılımı | Ortak klasör / dokümanlar | 
+
+İçeriğin temel birimi | Birden fazla dersten oluşan kurs veya modül | Tek bir iş için tek bir prosedür | Bir dosya | 
+
+Tipik uzunluk | Kurs başına dakikalar ile saatler arası | Birkaç kısa adım | Tek sayfadan kalın bir kılavuza kadar | 
+
+İçeriği kim hazırlar | Eğitim ekibi, eğitim tasarımcıları veya hazır kurs kütüphaneleri | İşi en iyi yapan kişi; sorumlusu onaylar | Vakti olan kim varsa | 
+
+Nerede kullanılır | Çoğunlukla bilgisayar başında veya eğitim salonunda | İstasyonda, telefonda, vardiya sırasında | Masa başında ya da istasyona asılı çıktı olarak | 
+
+Ne zaman kullanılır | Planlı eğitim saatinde, oryantasyon haftasında, yıllık tekrarlarda | İşten önce, iş sırasında ve bir adım unutulduğunda | Birisi varlığını hatırladığında | 
+
+Anlama nasıl ölçülür | Puanlı sınavlar, sertifikalar | Her prosedürden sonra kısa bir quiz ve sahada sorumlunun yetkinlik onayı | Genelde ölçülmez | 
+
+Güncelleme çalışana nasıl ulaşır | Kurs revizyonu, çoğu zaman ayrı bir proje | Bir adımı değiştir, onayla, yeni sürümü yayınla | Yeni dosya çıkar, eski kopyalar dolaşmaya devam eder | 
+
+Yönetici ne görür | Kurs ve kişi bazında tamamlanma ve puan | Her işi kimin öğrendiği, kişi, ekip ve şube bazında | Güvenilir bir şey görmez | 
+
+En iyi uyduğu durum | Zorunlu eğitimler, sertifika takibi, ofis çalışanları | El işi gerektiren görevler, yüksek personel devri, çok şube, vardiyalı çalışma | Az işi olan çok küçük ekipler | 
+
+İki yazılım türünden biri genel olarak diğerinden üstün değildir. Farklı sorunları çözerler; doğru seçim neyi düzeltmek istediğinize bağlıdır.
+
+## LMS ne zaman doğru seçimdir?
+
+Eğitim bir kurs ise, yani yapılandırılmış, sıralı ve aynı roldeki herkes için aynıysa LMS doğru araçtır. Şu alanlarda gerçekten güçlüdür:
+
+Uzun zorunlu eğitimler ve politika eğitimleri. Kişisel verilerin korunması, etik kurallar, işyeri politikaları gibi konular sonunda sınavı olan kurslar olarak verilir. LMS tam olarak bunun için tasarlanmıştır.
+
+Sertifika takibi. Çalışanlarınızın süresi dolan ve yenilenmesi gereken belgeleri varsa, LMS bitiş tarihlerini izleyip tekrar eğitimlerini atayabilir.
+
+Masa başı çalışanlar. Ofis, satış, çağrı merkezi ve yönetim kadroları bilgisayar başındadır, eğitime ayrılmış zamanları vardır ve modülleri sırayla tamamlayabilir.
+
+Hazır içerik kütüphaneleri. Liderlik, iletişim, ofis programları gibi genel konular çoğu zaman hazır kurs olarak bulunur ve LMS içinde çalışır.
+
+Kariyer ve gelişim programları. Vardiya amiri ya da müdür adayları için çok kurslu programlar, kurs ve eğitim yolu yapısına iyi oturur.
+
+Eğitim ihtiyacınızın büyük kısmı bu listeye benziyorsa ana sisteminiz muhtemelen LMS olmalı; prosedürler küçük bir ek olarak kalabilir.
+
+## Saha personeli eğitiminde neden farklı bir araç gerekir?
+
+Saha işi yaparak, istasyonda ve vardiya içinde öğrenilir. Kurs formatı bu ortam düşünülerek tasarlanmadığı için, LMS'in kendisi iyi olsa bile uyum çoğu zaman zayıf kalır.
+
+Sabah 7'de fritöz başına geçen yeni bir çalışanı düşünün. Ona mutfak güvenliği üzerine uzun bir slayt modülü değil, bu mutfaktaki bu fritözde yağın nasıl kontrol edilip süzüldüğünü gösteren beş kısa adım lazım. Perşembe günü 3. adımı unuttuğunda da onu yeniden açabilmesi.
+
+Kurs odaklı yaklaşım saha işiyle karşılaşınca sık görülen sürtünmeler:
+
+Masa yok, eğitim saati yok. Çalışan iki iş arasında, kendi telefonunda, çoğu zaman gürültüde ya da eldivenle öğrenir.
+
+Bilgi sahadan gelir. İşi en iyi bilen usta ya da şeftir. Bunu resmi bir kursa çevirmek genelde araya bir eğitim ekibi girmesini gerektirir.
+
+İşler sık değişir. Yeni bir menü ürünü, yeni bir makine ayarı ya da yeni bir temizlik ürünü tek bir adımı değiştirir. Prosedürü güncellemek hızlıdır; kursu revize etmek genelde daha büyük bir iştir.
+
+Tamamlamak, hazır olmak demek değildir. Modülü bitirmek, kişinin onu baştan sona geçtiğini gösterir. Müdür ise cumartesi bulaşık makinesini kimin çalıştırabileceğini bilmek ister.
+
+Kısa, iş büyüklüğünde içeriğin burada daha iyi çalışmasının nedenlerini ve nasıl yazılacağını saha ekipleri için mikro öğrenme rehberinde anlattık.
+
+## LMS mi, SOP yazılımı mı, ikisi birden mi? Karar listesi
+
+Yazılım türünden değil, çözmek istediğiniz sorundan başlayın. Önce tabloya bakın, sonra aşağıdaki soruları cevaplayın.
+
+LMS seçin, eğer... | SOP yazılımı seçin, eğer... | İkisini birlikte kullanın, eğer... | 
+
+Çalışanlarınızın çoğu masa başında ve eğitime ayrılmış zamanları var | Çalışanlarınızın çoğu sahada, vardiyalı ve bilgisayarsız çalışıyor | Hem büyük bir merkez ofis ekibiniz hem büyük bir saha ekibiniz var | 
+
+Ana ihtiyacınız uzun zorunlu eğitimler ve politika eğitimleri | Ana ihtiyacınız belirli işlerin her şubede aynı şekilde yapılması | Hem resmi kurslar vermeniz hem günlük işleri standartlaştırmanız gerekiyor | 
+
+Sertifikaları ve yenileme tarihlerini takip etmeniz gerekiyor | Her işi kimin öğrendiğini kişi ve şube bazında görmeniz gerekiyor | Sertifikalar bir sistemde, işe hazırlık diğerinde duruyor | 
+
+İçeriği eğitim ekibi hazırlıyor ya da hazır kütüphaneden alıyorsunuz | İçeriğin işi en iyi yapan kişiden gelmesini istiyorsunuz | Kurslar İK'nın veya eğitim ekibinin, prosedürler operasyonun sorumluluğunda | 
+
+İçerik yılda bir iki kez değişiyor | İşler, tarifler, makineler veya standartlar birkaç haftada bir değişiyor | Politikalar yavaş, sahadaki iş hızlı değişiyor | 
+
+Şimdi şu soruları dürüstçe cevaplayın. Her &quot;evet&quot; SOP yazılımına işaret eder.
+
+Yeni başlayanlar işi çoğunlukla bir ustanın yanında öğreniyor ve sonuç hangi ustanın yanına düştüklerine mi bağlı?
+
+İki şube aynı işi farklı mı yapıyor?
+
+İstasyondaki çıktı, makineden daha mı eski?
+
+Çalışanlarınız eğitimi bilgisayardan değil, vardiya içinde telefondan mı açar?
+
+Bir işi gerçekten bilen tek bir deneyimli kişi mi var?
+
+Bir adım değiştiğinde değişikliği kimin gördüğünü bilmekte zorlanıyor musunuz?
+
+Şunlar ise LMS'e işaret eder:
+
+Belirli aralıklarla tekrarlanması gereken, resmi sınavı olan zorunlu eğitimleriniz var mı?
+
+Süresi dolan sertifikaları yönetmeniz gerekiyor mu?
+
+Kendi içeriğinizi hazırlamak yerine genel konularda hazır kurs satın almak mı istiyorsunuz?
+
+İki listede de çok sayıda &quot;evet&quot; varsa genelde ikisine de ihtiyacınız vardır. Neredeyse hepsine &quot;hayır&quot; dediyseniz, şimdilik düzenli bir klasör yapısı ve iyi bir iş talimatı şablonu yeterli olabilir. Araçları karşılaştırmaya hazır olduğunuzda SOP yazılımı seçme rehberimizde puanlama listesi ve demo soruları var.
+
+## LMS ve SOP yazılımı birlikte nasıl kullanılır?
+
+İşi içerik türüne göre bölün: kurslar LMS'te, iş prosedürleri SOP yazılımında. Sonra her birinin sahibini ve yöneticilerin işe hazırlığa nereden bakacağını netleştirin.
+
+Basit bir ayrım
+
+LMS: şirkete giriş eğitimi, politikalar, zorunlu eğitimler, yenileme tarihi olan sertifikalar, liderlik ve ofis becerileri.
+
+SOP yazılımı: açılış ve kapanış rutinleri, tarifler, temizlik, makineyi devreye alma ve kalıp değişimi, oda standartları; istasyonda elle yapılan her iş.
+
+Düzeni koruyan kurallar
+
+Her içeriğin tek bir yeri olsun. Aynı prosedürü iki yerde tutmayın. Bir kursun bir işe ihtiyacı varsa, kopyalamak yerine prosedüre yönlendirsin.
+
+Sahipler belli olsun. Kursların sahibi genelde İK veya eğitim ekibidir. Prosedürlerin sahibi ve değişiklikleri onaylayan ise operasyon, mutfak şefi ya da üretim sorumlusudur.
+
+Her sorunun tek bir cevabı olsun. &quot;Kimin sertifikası geçerli?&quot; sorusunun cevabı LMS'tedir. &quot;Cumartesi bu işi kim yapabilir?&quot; sorusunun cevabı SOP yazılımında ve sahada sorumlunun verdiği yetkinlik onayındadır.
+
+Oryantasyon ikisini de kullanır. İlk gün politika eğitimleri olabilir; 2. ile 10. gün arası ise rolün işleri, istasyonda ve yakında bir sorumluyla öğrenilir.
+
+Bugün bunların hepsini bir Excel tablosunda tutuyorsanız, kişileri, işleri ve onayları tek ekranda nasıl düzenleyeceğinizi eğitim takip tablosu rehberinde bulabilirsiniz.
+
+## Restoran, üretim, otel ve franchise'larda ne değişir?
+
+Karar mantığı aynı kalır; kurs ile prosedür arasındaki denge işin türüne göre kayar.
+
+Restoran ve kafeler: öğrenmenin çoğu işe dayalıdır (tarif, sunum, açılış ve kapanış, temizlik, alerjen adımları) ve personel devri genelde yüksektir. Günlük yükü çoğu zaman SOP yazılımı taşır. Resmi gıda hijyeni eğitimi ise yerel mevzuata göre kurs olarak ya da dış bir kurum tarafından verilebilir.
+
+Üretim: kalıp değişimi, makineyi devreye alma, KKD ve kilitleme adımları iş prosedürüdür; yakın çekim video ve sıkı onay akışı ister. Resmi İSG eğitimleri ve periyodik tekrarlar çoğu zaman LMS'e ya da yetkili bir eğitim kurumuna uyar. Birçok tesis ikisine de ihtiyaç duyar; ayrıca kimse sorumlusunun onayı olmadan makineyi tek başına çalıştırmamalıdır.
+
+Oteller: kat hizmetlerinde oda hazırlığı ve ön büroda giriş işlemi, görsel standartlara dayalı işlerdir ve prosedüre uygundur. Misafir ilişkileri, marka değerleri ve politika eğitimleri ise çoğu zaman kurs olarak verilir.
+
+Franchise'lar: merkezin yeni bir menü ürününü ya da süreci bir kez yayınlayıp tamamlanmayı şube bazında görmesi gerekir. Şube bazında hazırlık takibi olan prosedürler bunu doğrudan karşılar. Franchise alanların oryantasyonu ve marka politikaları ise kurs olarak kalabilir.
+
+Sektör ne olursa olsun, saha öğrenmesinin büyük kısmı yine deneyimli bir çalışanın yanında olur. Prosedürlerin ve sorumlu onayının bunu nasıl desteklediğini iş başı eğitim rehberinde anlattık.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore bir LMS değil, saha ekipleri için bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekin, telefondaki editörle adımlara bölün; yapay zekâ talimatların ve kısa bir quizin taslağını hazırlasın, ekibiniz düzenleyip onaylasın. İşleri role ve şubeye göre atayın, tamamlanmayı ve quiz sonuçlarını kişi, ekip ve şube bazında görün. iOS ve Android uygulaması var, uygulama 8 dilde kullanılabiliyor. Quiz, adımları kimin anladığını gösterir; sahada yetkinlik onayı yine çalışanın sorumlusundadır.
+
+Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, iş başında QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
+
+Zaten bir LMS kullanıyorsanız Flexlore, el işi gerektiren görevler için onun yanında çalışabilir. Planlar kullanıcı sayısına göredir; fiyatlara bakın ya da kendi işlerinizden birini birlikte hazırlamak için demo isteyin.
+
+## Sorular
+
+**SOP yazılımı LMS'in yerini tutar mı?**
+Eğitimi neredeyse tamamen el işi gerektiren görevlerden oluşan ve resmi sertifika ihtiyacı olmayan bazı saha ekipleri için evet. Uzun zorunlu eğitimler vermeniz, süresi dolan sertifikaları yönetmeniz ya da büyük ofis ekiplerini eğitmeniz gerekiyorsa bu işi LMS daha iyi yapar. Birçok işletme işler için SOP yazılımını, kurslar için LMS'i kullanır.
+
+**Saha personeli için LMS kullanılır mı?**
+Politika, zorunlu eğitim ve sertifika gibi kurslar için kullanılabilir. Günlük işlerin istasyonda öğrenilmesi için ise uyumu daha zayıftır, çünkü kurslar planlı eğitim saati ve çoğu zaman bilgisayar başı düşünülerek tasarlanır. Saha çalışanı genelde vardiya içinde telefondan açıp tekrar izleyebileceği kısa, iş büyüklüğünde adımlara ihtiyaç duyar.
+
+**Personel eğitim platformu seçerken ilk neye bakmalıyım?**
+Önce çalışanlarınızın nerede ve nasıl öğrendiğine bakın. Çoğu masa başındaysa ve resmi kurslar ağırlıktaysa LMS'e, çoğu sahada ve vardiyalıysa telefonda çalışan, videolu adımları ve kısa quizi olan bir SOP yazılımına yönelin. Karar vermeden önce kendi gerçek işlerinizden biriyle, sahadaki bir çalışanla birlikte deneme yapın.
+
+**Küçük bir işletmenin LMS'e ihtiyacı var mı?**
+Başlangıçta genelde yok. Küçük bir restoran, kafe ya da atölyenin asıl ihtiyacı günlük işlerin açıkça yazılması veya çekilmesi ve kimin öğrendiğinin görülmesidir. LMS; vermeniz gereken resmi kurslar, takip etmeniz gereken sertifikalar ya da eğitim saati olan büyüyen bir ofis ekibiniz olduğunda anlam kazanır.
+
+**Elimizdeki PDF ve Word dokümanlarını kullanabilir miyiz?**
+Evet, başlangıç noktası olarak. Mevcut dokümanlar standardın ne olması gerektiğini gösterir. Saha işleri için bir sonraki adım, her dokümanı kısa adımlara bölmek ve görmenin önemli olduğu yerlere video eklemektir. Her dokümanı işi bugün yapan kişiyle birlikte gözden geçirin, çünkü yazılı prosedürler zamanla sahadaki uygulamadan uzaklaşır.
+
+**LMS ve SOP yazılımını birlikte kullanırsak eğitimi nasıl takip ederiz?**
+Hangi sistemin hangi soruyu cevapladığına karar verin. Kurs tamamlama ve sertifikalar LMS'te izlenir. İşe hazırlık, yani her prosedürü kimin öğrendiği ve quizini geçtiği SOP yazılımında, sahada sorumlunun yetkinlik onayıyla birlikte izlenir. Her birinin tek bir sahibi olsun ve aynı içeriği iki yere kopyalamayın.
+
+**LMS ya da SOP yazılımı bizi mevzuata uygun hale getirir mi?**
+Hiçbir yazılım tek başına mevzuata uygunluk sağlamaz. Hangi eğitim, prosedür ve kayıtların gerektiğini ilgili mevzuat belirler; bunu yetkili kurumla ya da danışmanınızla kontrol edin. Onaylı prosedürler ve kimin eğitildiğine dair kayıtlar bir denetimi destekleyebilir, ama denetçi sahada gerçekte ne yapıldığına bakar.
+
+
+---
+
+# Mikro öğrenme nedir? Vardiyalı çalışanlar için sınıf eğitimi ile karşılaştırma
+URL: https://www.flexlore.com/tr/rehber/mikro-ogrenme/
+Language: tr
+
+Mikro öğrenme, eğitimin her biri tek bir işi ya da tek bir konuyu anlatan, birkaç dakikada bitirilebilen kısa derslere bölünmesidir. Vardiyalı çalışanlar için genelde şu anlama gelir: tek bir işin kısa videosu, birkaç adım ve kısa bir quiz. Çalışan bunu telefonundan, işi yapmadan hemen önce izleyebilir.
+
+## Mikro öğrenme nedir?
+
+Mikro öğrenme, eğitimi her biri tek bir işi anlatan kısa derslere bölmektir. Mikro eğitim ya da kısa eğitim içeriği olarak da geçer. Yarım günlük bir &quot;mutfak kapanışı&quot; eğitimi yerine aşçı önce fritözün kapatılmasını, sonra ızgaranın temizlenmesini, sonra hazırlık malzemelerinin etiketlenip kaldırılmasını ayrı ayrı öğrenir.
+
+Sahada çalışan ekipler için iyi bir mikro ders dört parçadan oluşur:
+
+Tek bir iş. Bir istasyonda baştan sona yapılan somut bir görev.
+
+Kısa bir video. İşin yapıldığı yerde, o işi en iyi yapan kişiyle çekilmiş.
+
+Birkaç adım. Video adımlara bölünmüş, her adımın altında bir iki satır yazı. Çalışan sadece takıldığı adımı tekrar açar.
+
+Kısa bir quiz. Önemli kararlarla ilgili birkaç soru. Kimin anladığını gösterir.
+
+Bu yapı vardiyalı işe uyar, çünkü iş zaten böyle akar. Herkes farklı saatte başlar, ekip nadiren aynı odada toplanır ve insanlar istasyon istasyon öğrenir. Vardiyadan önce telefondan ya da işin hemen başında izlenen bir ders bu düzeni bozmaz. İşi videoya almaya yeni başlıyorsanız video SOP nasıl hazırlanır rehberi temel adımları anlatıyor.
+
+## Sınıf eğitimi mi, mikro öğrenme mi?
+
+İkisinin de yeri var. Sınıf eğitimi şirket kültürü, birlikte uygulama ve tartışma gerektiren konular için doğru araç. Mikro öğrenme ise tek tek işler, hatırlatmalar ve hiç aynı anda bir araya gelemeyen vardiyalı ekipler için. Çoğu işletme ikisini birlikte kullanır.
+
+Konu | Mikro öğrenme | Sınıf eğitimi | 
+
+En iyi olduğu yer | Tek bir iş: makine ayarı, temizlik rutini, istasyon kapanışı | Kültür, değerler, servis anlayışı, soru ve tartışma isteyen konular | 
+
+Uygulama | İşi gösterir; uygulama yine istasyonda, sorumlunun yanında yapılır | Eğitmen gözetiminde grup uygulaması, canlandırma, tatbikat | 
+
+Karmaşık konular | Tek başına zayıf; eğitimden sonra başvuru kaynağı olarak iyi | Güçlü: eğitmen anlatır, soruları cevaplar, gerekirse anlatımı değiştirir | 
+
+Vardiya düzeni | Her vardiyaya uyar; herkes uygun olduğunda izler | Gece, hafta sonu ve yarı zamanlı çalışanları toplamak zor | 
+
+Hatırlatma | Bir adımı işten hemen önce yeniden izlemek kolay | Nadiren tekrarlanır; iki eğitim arasında unutulur | 
+
+Şubeler arası tutarlılık | Her şube aynı dersi görür | Her şubede eğitimi kimin verdiğine bağlı | 
+
+Güncelleme | Sadece değişen ders ya da adım yenilenir | Sunum güncellenir, herkes yeniden toplanır | 
+
+Ekip bağı | Zayıf; herkes tek başına öğrenir | Güçlü; yeni gelenler birbirini ve yöneticileri tanır | 
+
+Basit bir ölçü: amaç birinin tek bir işi doğru yapması ise mikro ders ve sahada uygulama çoğu zaman yeter. Amaç bir grubun anlaması, aynı fikirde olması ya da ekibe ait hissetmesi ise insanları bir araya getirin. &quot;Online eğitim mi, yüz yüze mi&quot; sorusunun cevabı da çoğu zaman konuya göre ikisi birden olur.
+
+## Mikro öğrenme ne zaman doğru seçim değildir?
+
+Konuşarak gelişen muhakeme gerektiren konularda, güvenli hâle gelmeden önce gözetimli uygulama isteyen becerilerde ve ilk gün karşılamanın yerine mikro öğrenmeyi kullanmayın. Kısa dersler bunları destekler ama yerlerini tutmaz.
+
+Karşılama ve kültür. Yeni gelen kişinin ilk saatlerinde onu gezdiren, ekiple tanıştıran ve burada işlerin nasıl yürüdüğünü anlatan gerçek bir insan olmalı.
+
+Yüksek riskli işler. Forklift kullanımı, büyük bir makinede kilitleme ve etiketleme, tehlikeli kimyasallarla çalışma. Video hazırlık sağlar, ama önce gözetimli uygulama ve resmi onay gelir. Mevzuat ayrıca belirli bir eğitim isteyebilir; iş sağlığı ve güvenliği tarafında neyin zorunlu olduğunu kontrol edin.
+
+Karmaşık kararlar. Kızgın bir misafirle konuşmak, hattı ne zaman durduracağına karar vermek, ekip yönetmek. Bunlar tartışma, örnek ve deneyimli birinden geri bildirim ister.
+
+Birbirine bağlı uzun süreçler. Bütün bir süreci parçalara bölmek, parçaların nasıl birleştiğini gizleyebilir. Önce genel resmi verin, sonra her parça için mikro dersleri.
+
+Cevabı &quot;duruma göre değişir&quot; olan konular. Her durum farklıysa sabit bir ders yol göstermekten çok yanıltır.
+
+## Mikro eğitim içeriği nasıl hazırlanır? Bir işi kısa derslere bölmek
+
+Bir iş seçin, bir kez çekin, birkaç adıma bölün, kısa bir quiz ekleyin ve onaya gönderin. Sonra bir sonraki işe geçin. Sırasıyla şöyle:
+
+Pozisyondaki işleri listeleyin. Bir vardiyayı baştan sona düşünün ve yeni gelen birinin bir istasyonda öğrenmesi gereken her işi yazın. Listedeki her satır bir ders adayıdır.
+
+En çok soru sorulan işlerden başlayın. Yeni gelenlerin en sık sorduğu ya da hatanın pahalıya patladığı işler önce çekilir.
+
+Her video tek bir iş olsun. İşi en iyi yapan kişiyi, gerçek istasyonda, ne yaptığını ve neden yaptığını anlatırken çekin.
+
+Birkaç adıma bölün. Her adım tek bir hareket ve tek bir sonuç. Adım sayısı çok uzuyorsa elinizde muhtemelen iki ayrı iş vardır.
+
+Her adıma bir iki satır yazın. Fiille başlayın. Kesin değerleri, limitleri ve uyarıları sadece konuşmada bırakmayın, yazıya geçirin.
+
+Kısa bir quiz ekleyin. İnsanların yanlış yaptığı kararlarla ilgili birkaç soru. Ayrıntı ezberi değil.
+
+Kontrol ve onay. İşi bilen kişi adımları doğrular, standardın sahibi olan yönetici onaylar.
+
+Role göre atayın. Garsonun ilk haftasında bulaşık makinesi dersine ihtiyacı yok.
+
+## Sahadan mikro öğrenme örnekleri
+
+En iyi örnekler başı, sonu ve doğru bir yapılış şekli belli olan işlerdir. Biri ayrıntılı, ikisi kısa olmak üzere üç örnek:
+
+Ayrıntılı örnek: fritöz kapanışı
+
+Ders adı: Fritöz istasyonunun kapatılması. Sakin bir akşam kapanışında, mutfağın en deneyimli aşçısıyla çekildi.
+
+Fritözü kapatın ve yağın mutfağınızda belirlenen güvenli seviyeye kadar soğumasını bekleyin.
+
+Boşaltma vanasına dokunmadan önce ısıya dayanıklı eldiven ve önlük takın.
+
+Sepetleri çıkarın, yıkanmak üzere evyeye koyun.
+
+Yağı işletmenizin prosedürüne göre süzün ya da boşaltın; önce kabın yerinde olduğunu kontrol edin.
+
+Fritözün yüzeylerini ve çevresini silin, sonra zeminde yağ damlası olup olmadığına bakın.
+
+Quiz soruları:
+
+Boşaltma vanasını açmadan önce neyi kontrol edersiniz?
+
+Bu mutfakta yağ ne zaman boşaltılacak kadar soğumuş sayılır?
+
+Zemine yağ dökülürse ne yaparsınız?
+
+Kısa örnek: hatta kalıp ya da format değişimi
+
+Bir paketleme hattında format değişimi tek bir ders değil, bir dizi derstir: makineyi durdurmak ve enerjisini kesmek, değişim parçalarını takmak, kılavuzları ayarlamak, ilk ürünleri çalıştırıp kontrol etmek. Her biri ayrı bir video, kesin ayarların yazıyla verildiği adımlar ve yeniden çalıştırmadan önceki kontrollerle ilgili birkaç soru alır.
+
+Kısa örnek: otelde akşam oda hazırlığı
+
+Akşam servisi (turndown) tek bir derstir: ışıkları kısın, yatağı otel standardına göre açın, ikram ürününü yerleştirin, perdeleri kapatın, banyoyu toparlayın ve odayı misafirin beklediği gibi bırakın. Quiz, insanların en çok karıştırdığı otel ayrıntılarını sorar: yatak hangi taraftan açılır, misafir odadaysa ne yapılır.
+
+## Yeni çalışanın ilk iki haftası için karma eğitim planı
+
+Karma (harmanlanmış) bir plan, yüz yüze zamanı karşılama, kültür ve gözetimli uygulama için; mikro dersleri ise her iş sırası geldiğinde kullanır. Aşağıda yeni başlayan bir aşçı için örnek bir plan var. İşleri kendi pozisyonunuza göre uyarlayın.
+
+Ne zaman | Yüz yüze | Mikro dersler | Kontrol | 
+
+1. gün | Karşılama, mutfak turu, ekiple tanışma, yöneticiyle hijyen ve güvenlik temelleri | El yıkama, kıyafet ve kişisel hijyen | Yönetici mutfağı birlikte dolaşır | 
+
+2. ve 3. gün | Hazırlık istasyonunda eğitmenin yanında çalışma | Bıçak güvenliği, hazırlık malzemesini etiketleme ve tarihleme, soğuk depolama | Her ders için quiz; eğitmen hazırlığı izler | 
+
+4. ve 5. gün | Eğitmen yakındayken hazırlık istasyonunda tek başına çalışma | Hattın açılışı, sıcaklık kontrolleri | Sorumlu bir açılışı baştan sona izler | 
+
+2. haftanın başı | Sakin bir serviste fritöz ve ızgara istasyonunda gözlem | Fritöz kullanımı, fritöz kapanışı, ızgara temizliği | Quiz; sorumlu her işi bir kez izler | 
+
+2. haftanın sonu | Şefle servis standartları ve sorular üzerine kısa grup oturumu | Alerjen adımları, ana yemeklerin sunumu | Her istasyon için sorumlu onayı | 
+
+2. haftanın son günü | Yöneticiyle birebir değerlendirme | Quizde yanlış yapılan soruların derslerini yeniden izleme | Sırada neyin çalışılacağına birlikte karar verilir | 
+
+Mikro dersler eğitmenin yerini almaz; eğitmenin aynı anlatımı tekrar tekrar yapmak yerine uygulamaya ve geri bildirime vakit ayırmasını sağlar. Gözetimli kısmın nasıl kurulacağı için iş başı eğitim rehberine bakın.
+
+## Hatırlatma ve aralıklı tekrar: sade bir anlatım
+
+İnsan bir kez öğrenip sonra hiç kullanmadığı şeyi unutur. Aralıklı tekrar, aynı dersi aralarında giderek uzayan boşluklarla birkaç kez yeniden önüne getirmek demektir; böylece bilgi kalıcı olur. Mikro dersler kısa olduğu için bunu sahada uygulanabilir kılar.
+
+Kullanıma yakın tekrar edin. En iyi hatırlatma, uzun süredir yapmadığınız bir işten hemen önce adımları yeniden izlemektir.
+
+Aralıklı yayın. Bir dersi aynı gün defalarca izletmek yerine birkaç gün sonra, ardından birkaç hafta sonra yeniden gönderin.
+
+Quizi hatırlatma olarak kullanın. Soruları yeniden cevaplamak, neyin unutulduğunu hızlıca gösterir.
+
+Seyrek yapılan işleri bilerek tazeleyin. Derin temizlik, nadir yapılan bir kalıp değişimi, acil durum prosedürü. İlk unutulanlar bunlardır.
+
+Değişiklikten sonra tazeleyin. Bir tarif, ayar ya da kural değiştiğinde güncel dersi eski hâlini öğrenmiş herkese gönderin.
+
+## Mikro öğrenmenin işe yarayıp yaramadığını nasıl anlarsınız?
+
+Üç şeye birlikte bakın: dersi kimin tamamladığı, quizde nasıl sonuç aldığı ve sorumluların sahada ne gördüğü. Bunlardan biri tek başına yanıltabilir.
+
+Tamamlanma. Kişi, ekip ve şube bazında, atanan her dersi kimin izlediği. Boşluklar kimin henüz eğitilmediğini gösterir, kimin başarısız olduğunu değil.
+
+Quiz sonuçları. Hangi sorular yanlış cevaplanıyor. Çok kişi aynı soruyu kaçırıyorsa düzeltilmesi gereken insanlar değil, adım ya da sorudur.
+
+Sorumlunun gözlemi. Kişi işi istasyonda doğru yapıyor mu? Asıl test budur ve yetkinlik onayı sorumluda kalır.
+
+Sahadaki işaretler. Aynı iş hakkında daha az tekrar eden soru, daha az yeniden yapılan iş, vardiya devrinde aynı hatayla ilgili daha az not. Bunları dışarıdaki karşılaştırmalara değil, kendi işletmenizdeki gidişata göre izleyin.
+
+Hepsini tek yerde tutarsanız kimin hangi istasyona hazır olduğunu görürsünüz. Basit bir düzen için eğitim takip tablosu rehberine, kimin hangi işi yapabildiğini görmek için beceri matrisi rehberine bakabilirsiniz.
+
+## Mikro öğrenmede sık yapılan hatalar
+
+Mikro öğrenme çoğu zaman şu yüzden tutmaz: dersler aslında kısa değildir, gerçek bir işe bağlı değildir ya da sahada hiç kontrol edilmez.
+
+Uzun bir eğitimi kısa kliplere doğramak. Bir sunumun on kısa parçası hâlâ bir sunumdur. Her dersi tek bir işin etrafında kurun.
+
+İstasyonda bulunamayan dersler. Çalışan gerektiğinde dersi telefonundan açamıyorsa ders kullanılmaz.
+
+Mikro dersle karşılamayı atlamak. Yeni gelenin yine bir insana, bir tura ve bir ekibe ihtiyacı var.
+
+Biten dersi eğitilmiş kişi saymak. Quiz anlamayı gösterir. İşi gözetim altında doğru yapmak ise onaydır.
+
+Herkese her şeyi atamak. Uzun ve ilgisiz bir ders listesi, insanlara sadece tıklayıp geçmeyi öğretir.
+
+Sahibi olmayan, güncellenmeyen dersler. Eski ayarı gösteren bir ders, hiç ders olmamasından kötüdür.
+
+Ezber soruları. Kovanın rengini değil, kararları ve kontrolleri sorun.
+
+## Bunu Flexlore ile yapmak
+
+Flexlore tam bu tür kısa derslerin etrafında kuruldu. Bir işi telefonla çekersiniz, editörde adımları işaretlersiniz; Flexlore adım yazılarının ve kısa bir yapay zekâ quizinin taslağını hazırlar. Ekibiniz her taslağı düzenleyip onaylamadan hiçbir şey yayınlanmaz. Dersleri role ve şubeye göre atar, kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Ekibiniz iOS ya da Android'de izler, uygulama 8 dilde kullanılabilir.
+
+Hatırlatmalar ve yeni dersler için bildirimler, istasyona asılan QR kodlar ve otomatik çeviri yakında geliyor. Sahada yetkinlik onayı yine sorumlunuzdadır. Demo isteyin, işlerinizden birini sizinle birlikte hazırlayalım.
+
+## Sorular
+
+**Mikro öğrenmeye örnek nedir?**
+Bir aşçıya fritöz istasyonunun nasıl kapatılacağını gösteren, birkaç adıma bölünmüş, her adımında bir satır yazı olan ve sonunda üç soruluk quiz bulunan kısa bir video. Paketleme hattında format değişimi ya da otelde akşam oda hazırlığı da iyi örneklerdir. Her ders tek bir işi baştan sona anlatır ve telefonda izlenir.
+
+**Bir mikro eğitim videosu kaç dakika olmalı?**
+Tek bir işi göstermek ne kadar sürüyorsa o kadar, daha fazla değil. Vardiyalı çalışanlar için çoğu ders birkaç dakikada izlenir. Ders sürekli uzuyorsa genelde iki üç ayrı iş anlatıyordur ve bölünmelidir. Süreden daha önemli olan, her adımın tek bir hareketi ve tek bir sonucu göstermesidir.
+
+**Mikro öğrenme sınıf eğitiminin yerini alır mı?**
+Tamamen almaz. Mikro öğrenme tek tek işler, hatırlatmalar ve farklı vardiyalarda çalışan ekipler için iyi sonuç verir. Karşılama ve kültür, grup uygulaması ve tartışma isteyen karmaşık konular için yüz yüze eğitim hâlâ daha iyidir. Saha ekipleri için en iyi sonuç genelde ikisinin karışımı ve sahada gözetimli uygulamadır.
+
+**Vardiyalı çalışanlara eğitim nasıl verilir?**
+Herkesi aynı saatte toplamaya çalışmak yerine eğitimi parçalara bölün. Karşılama ve kültürü küçük yüz yüze oturumlarla, tek tek işleri telefonda izlenen kısa derslerle verin. Uygulamayı vardiya içinde sorumlunun yanında yaptırın, kimin hangi dersi bitirdiğini ve quizde nasıl sonuç aldığını kişi ve şube bazında takip edin.
+
+**Eğitim ekibim yoksa mikro eğitim içeriği nasıl hazırlarım?**
+Yeni gelenlerin en çok sorduğu işlerden başlayın. Her işi en iyi yapan kişiyi telefonla çekin, her video tek bir iş olsun. Videoyu birkaç adıma bölün, her adıma bir satır yazı ve sonuna üç beş quiz sorusu ekleyin. İşi bilen kişi kontrol etsin, standardın sahibi yönetici onaylasın.
+
+**Mikro dersler ne sıklıkla tekrar edilmeli?**
+Bir dersi aynı gün defalarca izletmek yerine, aralarında giderek uzayan boşluklarla birkaç kez yeniden gönderin. Seyrek yapılan işleri ihtiyaç doğmadan önce tazeleyin, iş değiştiğinde dersi yeniden gönderin. Uzun süredir yapılmayan bir işten hemen önce adımları yeniden izlemek çoğu zaman en işe yarayan hatırlatmadır.
 
 
 ---

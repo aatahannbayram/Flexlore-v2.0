@@ -23,7 +23,9 @@ Read before writing: `public/knowledge/en.json`, `public/knowledge/tr.json`, `pu
 - No em dash (—) or en dash used as a dash. Use commas, colons, periods or parentheses.
 - No hype: revolutionary, game-changing, cutting-edge, unlock, supercharge, seamless, empower, leverage, ultimate,
   "in today's fast-paced world". No exclamation marks, no emoji.
-- Do not name or compare competitors.
+- Do not name or compare competitors (no rival product names, marks or logos, not even as examples). Category
+  comparisons (LMS vs SOP software, paper vs digital) are fine if fair, verifiable and without unprovable superiority
+  claims. Decision 2026-11-17: rival-named pages need counsel approval first; Turkish rival-named pages are never made.
 - Internal links: only these paths (EN pages link EN paths, TR pages link TR paths where a TR twin exists, otherwise EN):
   EN: / /pricing/ /see-it/ /ai/ /integrations/ /features/ /features/video-to-sop/ /features/pdf-to-steps/
   /features/video-editor/ /features/screen-recording/ /features/ai-quiz/ /features/auto-translation/ /features/qr-codes/
@@ -36,11 +38,14 @@ Read before writing: `public/knowledge/en.json`, `public/knowledge/tr.json`, `pu
   /blog/why-new-hire-onboarding-programs-fail/ /blog/the-first-90-days-decide-retention/
   Guides (EN): /guides/video-sop/ /guides/sop-template/ /guides/work-instruction-template/
   /guides/training-matrix-template/ /guides/restaurant-onboarding-checklist/ /guides/sop-software/
+  /guides/lms-vs-sop-software/ /guides/employee-training-tracker/ /guides/on-the-job-training/
+  /guides/microlearning-for-frontline-workers/ /guides/digital-checklists/
   TR: /tr/ /tr/pricing/ /tr/see-it/ /tr/ai/ /tr/features/ /tr/features/<same slugs>/ /tr/sektor/restoran/
   /tr/sektor/uretim/ /tr/sektor/otel/ /tr/sektor/franchise/ /tr/sektor/depo/ /tr/sektor/firin/ /tr/faq/
   /tr/use-cases/master-apprentice-skills-transfer/ /tr/use-cases/installation-training-on-site-orientation/
   Guides (TR): /tr/rehber/video-sop/ /tr/rehber/sop-nedir/ /tr/rehber/is-talimati-sablonu/ /tr/rehber/beceri-matrisi/
-  /tr/rehber/restoran-oryantasyon-kontrol-listesi/ /tr/rehber/sop-yazilimi/
+  /tr/rehber/restoran-oryantasyon-kontrol-listesi/ /tr/rehber/sop-yazilimi/ /tr/rehber/lms-mi-sop-yazilimi-mi/
+  /tr/rehber/egitim-takip-tablosu/ /tr/rehber/is-basi-egitim/ /tr/rehber/mikro-ogrenme/ /tr/rehber/dijital-kontrol-listesi/
   Demo booking: /demo/ (both languages).
 - External links: none, unless to an official standards body page you are sure exists. Prefer none.
 

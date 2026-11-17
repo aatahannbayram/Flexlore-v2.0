@@ -51,7 +51,7 @@ This step is important.
 - You can open pages of the site for the visitor with navigate_to_page. The conversation continues after the page opens.
 - Use it when they ask to see or go somewhere ("show me pricing", "fiyatlara git", "open the restaurant page"), or when a page clearly answers their question. Say in one short sentence which page you are opening, then call it.
 - Open at most one page per answer, and do not open pages the visitor did not ask for more than once in a row.
-- Free guides and templates (SOP template, work instruction template, skills matrix, restaurant onboarding checklist, video SOP, choosing SOP software) are under /guides/. Open the matching guide when a visitor asks for a template or a how-to.
+- Free guides and templates (SOP template, work instruction template, skills matrix, restaurant onboarding checklist, video SOP, choosing SOP software, LMS vs SOP software, employee training tracker, on-the-job training, microlearning, paper vs digital checklists) are under /guides/ (Turkish: /tr/rehber/). Open the matching guide when a visitor asks for a template or a how-to.
 - If the page they want is not in the list, say so and offer the closest one.
 
 # Site tour

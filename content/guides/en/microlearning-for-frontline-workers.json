@@ -1,0 +1,100 @@
+{
+  "slug": "microlearning-for-frontline-workers",
+  "lang": "en",
+  "twin": "mikro-ogrenme",
+  "kind": "guide",
+  "seoTitle": "Microlearning for Frontline Workers: A Guide | Flexlore",
+  "description": "What microlearning is, how it compares to classroom training for shift workers, and how to turn one job into short lessons, with examples and a two-week plan.",
+  "h1": "Microlearning vs classroom training for shift workers",
+  "kicker": "Guide",
+  "answer": "Microlearning is training delivered in short, focused lessons, each teaching one task or one idea that a person can finish in a few minutes, often on a phone. For shift workers it usually means one short video of one job, split into a few steps, followed by a quick quiz and watched close to when the task is done.",
+  "sections": [
+    {
+      "id": "what-is-microlearning",
+      "h2": "What is microlearning?",
+      "html": "<p>Microlearning is training split into short lessons, each covering one task or one idea, that people can finish in a few minutes. Instead of a half-day course on &quot;kitchen closing&quot;, a cook gets one lesson on closing the fryer, another on cleaning the flat top and another on labeling and storing prep.</p>\n<p>For frontline and shift teams, a good micro lesson has four parts:</p>\n<ul>\n<li><strong>One task.</strong> Something a person does with their hands at a station, from start to finish.</li>\n<li><strong>One short video.</strong> The task filmed where it happens, by the person who does it best.</li>\n<li><strong>A few steps.</strong> The video cut into steps with a line of text each, so people can replay only the part they need.</li>\n<li><strong>A short quiz.</strong> A handful of questions about the decisions that matter, to show who understood.</li>\n</ul>\n<p>The format fits shift work because it matches how the work is organized. People start at different times, rarely sit together in one room, and learn a station at a time. A lesson they can watch on their own phone before a shift, or at the station right before the task, works with that schedule instead of against it. If you are new to filming jobs, our guide on <a href=\"/guides/video-sop/\">how to make a video SOP</a> covers the basics.</p>"
+    },
+    {
+      "id": "microlearning-vs-classroom-training",
+      "h2": "Microlearning vs classroom training: which is better?",
+      "html": "<p>Neither is better on its own. Classroom training is the right tool for culture, group practice and topics that need discussion. Microlearning is the right tool for single tasks, refreshers and teams that never sit in one room at the same time. Most teams need both.</p>\n<table>\n<thead><tr><th>Question</th><th>Microlearning</th><th>Classroom training</th></tr></thead>\n<tbody>\n<tr><td>Best for</td><td>One task at a time: a machine setting, a cleaning routine, a station closing</td><td>Culture, values, service style, topics that need questions and discussion</td></tr>\n<tr><td>Hands-on practice</td><td>Shows the task; practice still happens at the station with a supervisor</td><td>Group practice with a trainer watching, role play, drills</td></tr>\n<tr><td>Complex topics</td><td>Weak on its own; works as the reference after the session</td><td>Strong: a trainer can explain, answer and adjust</td></tr>\n<tr><td>Shift schedules</td><td>Fits any shift; each person watches when they can</td><td>Hard to gather night, weekend and part-time staff together</td></tr>\n<tr><td>Refreshers</td><td>Easy to rewatch one step before doing the task</td><td>Rarely repeated; people forget between sessions</td></tr>\n<tr><td>Consistency across locations</td><td>Every location sees the same lesson</td><td>Depends on who runs the session at each site</td></tr>\n<tr><td>Updating</td><td>Replace the one lesson or step that changed</td><td>Update the slides and retrain everyone in a new session</td></tr>\n<tr><td>Team connection</td><td>Low; people learn alone</td><td>High; new hires meet each other and the managers</td></tr>\n</tbody>\n</table>\n<p>A simple rule: if the goal is for someone to <em>do one thing correctly</em>, a micro lesson plus practice is usually enough. If the goal is for a group to <em>understand, agree or feel part of the team</em>, bring them together.</p>"
+    },
+    {
+      "id": "when-not-to-use-microlearning",
+      "h2": "When should you not use microlearning?",
+      "html": "<p>Do not use microlearning for topics that need judgment built through conversation, for skills that need supervised practice before anyone is safe, or as a way to skip the first day of welcome. Short lessons support these, but they do not replace them.</p>\n<ul>\n<li><strong>Culture and welcome.</strong> A new hire&#39;s first hours should include a real person showing them around, introducing the team and explaining how things work here.</li>\n<li><strong>High-risk tasks.</strong> Forklift driving, lockout on a large machine, handling hazardous chemicals. A video can prepare someone, but supervised practice and a formal sign-off come first. Local rules may also require a specific course, so check them.</li>\n<li><strong>Complex judgment.</strong> Handling an angry guest, deciding when to stop a line, managing a team. These need discussion, examples and feedback from someone experienced.</li>\n<li><strong>Long connected processes.</strong> Cutting a full process into pieces can hide how the pieces fit. Give the big picture first, then the micro lessons for each part.</li>\n<li><strong>Topics where the answer is &quot;it depends&quot;.</strong> If every case is different, a fixed lesson will mislead more than it helps.</li>\n</ul>"
+    },
+    {
+      "id": "how-to-create-microlearning",
+      "h2": "How to create microlearning: turn one job into micro lessons",
+      "html": "<p>Pick one task, film it once, cut it into a few steps, add a short quiz, and have it approved. Repeat for the next task. Here is the process in order.</p>\n<ol>\n<li><strong>List the tasks in the job.</strong> Walk through a shift and write down every task a new person must learn at one station. Each line on that list is a candidate lesson.</li>\n<li><strong>Start with the tasks that cause questions.</strong> The ones new hires ask about most, or where mistakes are costly. Film those first.</li>\n<li><strong>Film one task per video.</strong> Film the person who does it best, at the real station, saying what they do and why.</li>\n<li><strong>Cut it into a few steps.</strong> Each step is one action with one result. If a lesson has many steps, it is probably two tasks.</li>\n<li><strong>Write one or two lines per step.</strong> Start with a verb. Put exact values, limits and warnings in the text, not only in the speech.</li>\n<li><strong>Add a short quiz.</strong> A few questions about decisions people get wrong, not trivia.</li>\n<li><strong>Have it checked and approved.</strong> The expert confirms the steps, the manager who owns the standard approves it.</li>\n<li><strong>Assign it by role.</strong> A server does not need the dish machine lesson in week one.</li>\n</ol>"
+    },
+    {
+      "id": "microlearning-examples",
+      "h2": "Microlearning examples from the floor",
+      "html": "<p>The best examples are tasks with a clear start, a clear end and a right way to do them. Here is one worked through in full, and two shorter ones.</p>\n<h3>Worked example: closing the fryer</h3>\n<p>Lesson title: Closing the fryer station. Filmed by the most experienced line cook at the end of a quiet evening.</p>\n<ol>\n<li>Turn the fryer off and let the oil cool to the safe level set in your kitchen.</li>\n<li>Put on heat-resistant gloves and an apron before touching the drain.</li>\n<li>Remove the baskets and place them in the sink for washing.</li>\n<li>Filter or drain the oil following your house procedure; check the container is in place first.</li>\n<li>Wipe the fryer surfaces and the area around it, then check the floor for spills.</li>\n</ol>\n<p>Quiz questions:</p>\n<ul>\n<li>What do you check before you open the drain valve?</li>\n<li>When is the oil cool enough to drain in this kitchen?</li>\n<li>What do you do if oil spills on the floor?</li>\n</ul>\n<h3>Short example: a machine changeover</h3>\n<p>On a packaging line, a format change is a series of lessons, not one: stopping and isolating the machine, swapping the change parts, setting the guides, running and checking the first pieces. Each one gets its own video, steps with the exact settings as text, and a few questions on the checks before restart.</p>\n<h3>Short example: turning down a hotel room</h3>\n<p>Evening turndown is one lesson: dim the lights, fold back the bed to house standard, place the amenity, close the curtains, tidy the bathroom and leave the room as the guest expects. The quiz asks about the house details people get wrong, such as which side the bed is folded from and what to do if the guest is in the room.</p>"
+    },
+    {
+      "id": "blended-plan-first-two-weeks",
+      "h2": "A blended training plan for a new hire's first two weeks",
+      "html": "<p>A blended plan uses classroom or face-to-face time for welcome, culture and supervised practice, and micro lessons for each task as it comes up. Here is an example for a new line cook. Adapt the tasks to your own role.</p>\n<table>\n<thead><tr><th>When</th><th>Face to face</th><th>Micro lessons</th><th>Check</th></tr></thead>\n<tbody>\n<tr><td>Day 1</td><td>Welcome, tour, team introductions, safety and hygiene basics with a manager</td><td>Handwashing, uniform and personal hygiene</td><td>Manager walks through the kitchen with them</td></tr>\n<tr><td>Days 2 to 3</td><td>Shadow a trainer at the prep station</td><td>Knife safety, labeling and dating prep, cold storage</td><td>Quiz on each lesson; trainer watches prep</td></tr>\n<tr><td>Days 4 to 5</td><td>Work the prep station with the trainer nearby</td><td>Opening the line, temperature checks</td><td>Supervisor watches one opening</td></tr>\n<tr><td>Week 2, early</td><td>Shadow the fry and grill stations during a quiet service</td><td>Fryer use, closing the fryer, cleaning the flat top</td><td>Quiz; supervisor watches each task once</td></tr>\n<tr><td>Week 2, late</td><td>Short group session with the head chef on service standards and questions</td><td>Allergen steps, plating for the main dishes</td><td>Supervisor sign-off on each station</td></tr>\n<tr><td>End of week 2</td><td>One-to-one review with the manager</td><td>Rewatch any lesson with missed quiz questions</td><td>Agree what to practice next</td></tr>\n</tbody>\n</table>\n<p>The micro lessons do not replace the trainer; they mean the trainer spends time on practice and feedback instead of repeating the same explanation. For how the supervised part works, see our guide to <a href=\"/guides/on-the-job-training/\">on-the-job training</a>.</p>"
+    },
+    {
+      "id": "refreshers-and-spaced-repetition",
+      "h2": "Refreshers and spaced repetition, in plain words",
+      "html": "<p>People forget what they learned once and never used again. Spaced repetition means bringing the same lesson back a few times, with growing gaps in between, so it sticks. Micro lessons make this practical because each one is short.</p>\n<ul>\n<li><strong>Repeat close to use.</strong> The best refresher is watching the steps right before doing a task you have not done for a while.</li>\n<li><strong>Space it out.</strong> Bring a lesson back after a few days, then after a few weeks, instead of repeating it many times in one sitting.</li>\n<li><strong>Use the quiz as the refresher.</strong> Answering the questions again is a quick way to check what has faded.</li>\n<li><strong>Refresh rare tasks on purpose.</strong> Deep cleaning, a rare changeover, an emergency procedure. These are the ones people forget first.</li>\n<li><strong>Refresh after changes.</strong> When a recipe, setting or rule changes, send the updated lesson to everyone who learned the old one.</li>\n</ul>\n<p>For more on why one-time onboarding fades, read <a href=\"/blog/the-forgetting-curve-why-one-time-onboarding-does-not-hold/\">why one-time onboarding does not hold</a>.</p>"
+    },
+    {
+      "id": "how-to-measure-microlearning",
+      "h2": "How do you know if microlearning is working?",
+      "html": "<p>Look at three things together: who completed each lesson, how they did on the quiz, and what supervisors see on the floor. Any one of them alone can mislead.</p>\n<ul>\n<li><strong>Completion.</strong> Who has watched each lesson assigned to them, by person, team and location. Gaps show who has not been trained yet, not who is failing.</li>\n<li><strong>Quiz results.</strong> Which questions people miss. If many people miss the same one, the step or the question needs fixing, not the people.</li>\n<li><strong>Supervisor observation.</strong> Does the person do the task correctly at the station? This is the real test, and the sign-off stays with the supervisor.</li>\n<li><strong>Floor signals.</strong> Fewer repeated questions about the same task, fewer redone jobs, fewer notes in handover about the same mistake. Track these in your own operation rather than relying on outside benchmarks.</li>\n</ul>\n<p>Keep all of this in one place so you can see who is ready for which station. Our <a href=\"/guides/employee-training-tracker/\">employee training tracker</a> guide shows a simple way to set it up.</p>"
+    },
+    {
+      "id": "common-microlearning-mistakes",
+      "h2": "Common microlearning mistakes",
+      "html": "<p>Most microlearning fails because the lessons are not really micro, not tied to a real task, or never checked on the floor.</p>\n<ul>\n<li><strong>Cutting a long course into short clips.</strong> Ten short pieces of a lecture are still a lecture. Build each lesson around one task.</li>\n<li><strong>Lessons nobody can find at the station.</strong> If people cannot open the lesson on a phone when they need it, it will not be used.</li>\n<li><strong>Using micro lessons to skip the welcome.</strong> New hires still need a person, a tour and a team.</li>\n<li><strong>Treating a finished lesson as a trained person.</strong> A quiz shows understanding. Doing the task correctly under supervision is the sign-off.</li>\n<li><strong>Assigning everything to everyone.</strong> A long list of irrelevant lessons teaches people to click through.</li>\n<li><strong>No owner and no updates.</strong> A lesson that shows the old setting is worse than no lesson.</li>\n<li><strong>Trivia quizzes.</strong> Ask about decisions and checks, not the color of a bucket.</li>\n</ul>"
+    },
+    {
+      "id": "doing-this-with-flexlore",
+      "h2": "Doing this with Flexlore",
+      "html": "<p>Flexlore is built around this kind of micro lesson. You film one job on a phone, mark the steps in the editor, and Flexlore drafts the step text and a short <a href=\"/features/ai-quiz/\">AI quiz</a>. Your team edits and approves every draft before it is published. You assign lessons by role and location, and see who watched each one and passed its quiz, by person, team and location. Your team watches on iOS or Android, and the app is available in 8 languages.</p>\n<p>Notifications for refreshers and new lessons, QR codes at the station and automatic translation are coming soon. Signing someone off on the floor stays with their supervisor. Book a <a href=\"/demo/\">demo</a> and we will build one of your jobs with you.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "What is an example of microlearning?",
+      "a": "A short video showing a line cook how to close the fryer station, cut into a few steps with a line of text each, followed by three quiz questions. Other examples are a machine changeover on a packaging line or a hotel room turndown. Each lesson covers one task from start to finish and can be watched on a phone."
+    },
+    {
+      "q": "How long should a microlearning lesson be?",
+      "a": "As long as one task takes to show, and no longer. Most lessons for shift workers can be watched in a few minutes. If a lesson keeps growing, it usually covers two or three tasks and should be split. What matters more than length is that each step shows one action with one result."
+    },
+    {
+      "q": "Can microlearning replace classroom training?",
+      "a": "Not fully. Microlearning works well for single tasks, refreshers and teams on different shifts. Classroom or face-to-face time is still better for welcome and culture, group practice, and complex topics that need discussion. Most frontline teams get the best result from a blend of both, with supervised practice on the floor."
+    },
+    {
+      "q": "Is microlearning effective for frontline workers?",
+      "a": "It suits frontline work because lessons are short, tied to one task and can be watched on a phone around shift schedules. Whether it works in your operation is something to check yourself: look at completion, which quiz questions people miss, and whether supervisors see the task done correctly on the floor."
+    },
+    {
+      "q": "How do I create microlearning content without a training team?",
+      "a": "Start with the tasks new hires ask about most. Film the person who does each task best on a phone, one task per video, cut it into a few steps, write a line of text for each and add three to five quiz questions. Have the expert check it and the manager approve it."
+    },
+    {
+      "q": "How often should employees repeat micro lessons?",
+      "a": "Repeat a lesson a few times with growing gaps between, rather than many times at once. Refresh rare tasks before people need them, and resend a lesson whenever the task changes. Watching the steps again right before doing a task that has not been done for a while is often the most useful refresher."
+    },
+    {
+      "q": "What is the difference between microlearning and an LMS?",
+      "a": "Microlearning is a way of designing training: short lessons, one task each. An LMS is a type of software for managing courses, often built around longer desk-based modules. Short task lessons can live in many tools. What matters for shift teams is that people can open them on a phone at the station."
+    }
+  ],
+  "related": [
+    "/guides/video-sop/",
+    "/guides/on-the-job-training/",
+    "/guides/employee-training-tracker/",
+    "/guides/lms-vs-sop-software/"
+  ]
+}

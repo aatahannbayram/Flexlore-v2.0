@@ -8,7 +8,7 @@
 /** English URL slug per sector (the Turkish slug is the key and the Turkish page slug). */
 export const SECTOR_EN: Record<string, string> = {"restoran":"restaurants","uretim":"manufacturing","otel":"hotels","franchise":"franchises","depo":"warehouses","firin":"bakeries-cafes"};
 /** Guides and templates: English slug -> Turkish slug (/guides/<en>/ <-> /tr/rehber/<tr>/). Content: content/guides/. */
-export const GUIDE_TR: Record<string, string> = {"video-sop":"video-sop","sop-template":"sop-nedir","work-instruction-template":"is-talimati-sablonu","training-matrix-template":"beceri-matrisi","restaurant-onboarding-checklist":"restoran-oryantasyon-kontrol-listesi","sop-software":"sop-yazilimi"};
+export const GUIDE_TR: Record<string, string> = {"video-sop":"video-sop","sop-template":"sop-nedir","work-instruction-template":"is-talimati-sablonu","training-matrix-template":"beceri-matrisi","restaurant-onboarding-checklist":"restoran-oryantasyon-kontrol-listesi","sop-software":"sop-yazilimi","lms-vs-sop-software":"lms-mi-sop-yazilimi-mi","employee-training-tracker":"egitim-takip-tablosu","on-the-job-training":"is-basi-egitim","microlearning-for-frontline-workers":"mikro-ogrenme","digital-checklists":"dijital-kontrol-listesi"};
 const GUIDE_EN: Record<string, string> = Object.fromEntries(Object.entries(GUIDE_TR).map(([en, tr]) => [tr, en]));
 const FEATURE_SLUGS = ["video-to-sop", "pdf-to-steps", "video-editor", "screen-recording", "ai-quiz", "auto-translation", "qr-codes", "notifications", "permissions-workspaces", "web-panel", "ai-agents-mcp"];
 

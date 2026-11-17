@@ -1,0 +1,96 @@
+{
+  "slug": "mikro-ogrenme",
+  "lang": "tr",
+  "twin": "microlearning-for-frontline-workers",
+  "kind": "guide",
+  "seoTitle": "Mikro Öğrenme Nedir? Vardiyalı Ekipler İçin | Flexlore",
+  "description": "Mikro öğrenme nedir, sınıf eğitiminden farkı ne, vardiyalı çalışan eğitimi için bir iş nasıl kısa derslere bölünür? Örnekler ve iki haftalık plan içeride.",
+  "h1": "Mikro öğrenme nedir? Vardiyalı çalışanlar için sınıf eğitimi ile karşılaştırma",
+  "kicker": "Rehber",
+  "answer": "Mikro öğrenme, eğitimin her biri tek bir işi ya da tek bir konuyu anlatan, birkaç dakikada bitirilebilen kısa derslere bölünmesidir. Vardiyalı çalışanlar için genelde şu anlama gelir: tek bir işin kısa videosu, birkaç adım ve kısa bir quiz. Çalışan bunu telefonundan, işi yapmadan hemen önce izleyebilir.",
+  "sections": [
+    {
+      "id": "mikro-ogrenme-nedir",
+      "h2": "Mikro öğrenme nedir?",
+      "html": "<p>Mikro öğrenme, eğitimi her biri tek bir işi anlatan kısa derslere bölmektir. Mikro eğitim ya da kısa eğitim içeriği olarak da geçer. Yarım günlük bir &quot;mutfak kapanışı&quot; eğitimi yerine aşçı önce fritözün kapatılmasını, sonra ızgaranın temizlenmesini, sonra hazırlık malzemelerinin etiketlenip kaldırılmasını ayrı ayrı öğrenir.</p>\n<p>Sahada çalışan ekipler için iyi bir mikro ders dört parçadan oluşur:</p>\n<ul>\n<li><strong>Tek bir iş.</strong> Bir istasyonda baştan sona yapılan somut bir görev.</li>\n<li><strong>Kısa bir video.</strong> İşin yapıldığı yerde, o işi en iyi yapan kişiyle çekilmiş.</li>\n<li><strong>Birkaç adım.</strong> Video adımlara bölünmüş, her adımın altında bir iki satır yazı. Çalışan sadece takıldığı adımı tekrar açar.</li>\n<li><strong>Kısa bir quiz.</strong> Önemli kararlarla ilgili birkaç soru. Kimin anladığını gösterir.</li>\n</ul>\n<p>Bu yapı vardiyalı işe uyar, çünkü iş zaten böyle akar. Herkes farklı saatte başlar, ekip nadiren aynı odada toplanır ve insanlar istasyon istasyon öğrenir. Vardiyadan önce telefondan ya da işin hemen başında izlenen bir ders bu düzeni bozmaz. İşi videoya almaya yeni başlıyorsanız <a href=\"/tr/rehber/video-sop/\">video SOP nasıl hazırlanır</a> rehberi temel adımları anlatıyor.</p>"
+    },
+    {
+      "id": "sinif-egitimi-mi-online-egitim-mi",
+      "h2": "Sınıf eğitimi mi, mikro öğrenme mi?",
+      "html": "<p>İkisinin de yeri var. Sınıf eğitimi şirket kültürü, birlikte uygulama ve tartışma gerektiren konular için doğru araç. Mikro öğrenme ise tek tek işler, hatırlatmalar ve hiç aynı anda bir araya gelemeyen vardiyalı ekipler için. Çoğu işletme ikisini birlikte kullanır.</p>\n<table>\n<thead><tr><th>Konu</th><th>Mikro öğrenme</th><th>Sınıf eğitimi</th></tr></thead>\n<tbody>\n<tr><td>En iyi olduğu yer</td><td>Tek bir iş: makine ayarı, temizlik rutini, istasyon kapanışı</td><td>Kültür, değerler, servis anlayışı, soru ve tartışma isteyen konular</td></tr>\n<tr><td>Uygulama</td><td>İşi gösterir; uygulama yine istasyonda, sorumlunun yanında yapılır</td><td>Eğitmen gözetiminde grup uygulaması, canlandırma, tatbikat</td></tr>\n<tr><td>Karmaşık konular</td><td>Tek başına zayıf; eğitimden sonra başvuru kaynağı olarak iyi</td><td>Güçlü: eğitmen anlatır, soruları cevaplar, gerekirse anlatımı değiştirir</td></tr>\n<tr><td>Vardiya düzeni</td><td>Her vardiyaya uyar; herkes uygun olduğunda izler</td><td>Gece, hafta sonu ve yarı zamanlı çalışanları toplamak zor</td></tr>\n<tr><td>Hatırlatma</td><td>Bir adımı işten hemen önce yeniden izlemek kolay</td><td>Nadiren tekrarlanır; iki eğitim arasında unutulur</td></tr>\n<tr><td>Şubeler arası tutarlılık</td><td>Her şube aynı dersi görür</td><td>Her şubede eğitimi kimin verdiğine bağlı</td></tr>\n<tr><td>Güncelleme</td><td>Sadece değişen ders ya da adım yenilenir</td><td>Sunum güncellenir, herkes yeniden toplanır</td></tr>\n<tr><td>Ekip bağı</td><td>Zayıf; herkes tek başına öğrenir</td><td>Güçlü; yeni gelenler birbirini ve yöneticileri tanır</td></tr>\n</tbody>\n</table>\n<p>Basit bir ölçü: amaç birinin <em>tek bir işi doğru yapması</em> ise mikro ders ve sahada uygulama çoğu zaman yeter. Amaç bir grubun <em>anlaması, aynı fikirde olması ya da ekibe ait hissetmesi</em> ise insanları bir araya getirin. &quot;Online eğitim mi, yüz yüze mi&quot; sorusunun cevabı da çoğu zaman konuya göre ikisi birden olur.</p>"
+    },
+    {
+      "id": "mikro-ogrenme-ne-zaman-kullanilmamali",
+      "h2": "Mikro öğrenme ne zaman doğru seçim değildir?",
+      "html": "<p>Konuşarak gelişen muhakeme gerektiren konularda, güvenli hâle gelmeden önce gözetimli uygulama isteyen becerilerde ve ilk gün karşılamanın yerine mikro öğrenmeyi kullanmayın. Kısa dersler bunları destekler ama yerlerini tutmaz.</p>\n<ul>\n<li><strong>Karşılama ve kültür.</strong> Yeni gelen kişinin ilk saatlerinde onu gezdiren, ekiple tanıştıran ve burada işlerin nasıl yürüdüğünü anlatan gerçek bir insan olmalı.</li>\n<li><strong>Yüksek riskli işler.</strong> Forklift kullanımı, büyük bir makinede kilitleme ve etiketleme, tehlikeli kimyasallarla çalışma. Video hazırlık sağlar, ama önce gözetimli uygulama ve resmi onay gelir. Mevzuat ayrıca belirli bir eğitim isteyebilir; iş sağlığı ve güvenliği tarafında neyin zorunlu olduğunu kontrol edin.</li>\n<li><strong>Karmaşık kararlar.</strong> Kızgın bir misafirle konuşmak, hattı ne zaman durduracağına karar vermek, ekip yönetmek. Bunlar tartışma, örnek ve deneyimli birinden geri bildirim ister.</li>\n<li><strong>Birbirine bağlı uzun süreçler.</strong> Bütün bir süreci parçalara bölmek, parçaların nasıl birleştiğini gizleyebilir. Önce genel resmi verin, sonra her parça için mikro dersleri.</li>\n<li><strong>Cevabı &quot;duruma göre değişir&quot; olan konular.</strong> Her durum farklıysa sabit bir ders yol göstermekten çok yanıltır.</li>\n</ul>"
+    },
+    {
+      "id": "mikro-egitim-icerigi-nasil-hazirlanir",
+      "h2": "Mikro eğitim içeriği nasıl hazırlanır? Bir işi kısa derslere bölmek",
+      "html": "<p>Bir iş seçin, bir kez çekin, birkaç adıma bölün, kısa bir quiz ekleyin ve onaya gönderin. Sonra bir sonraki işe geçin. Sırasıyla şöyle:</p>\n<ol>\n<li><strong>Pozisyondaki işleri listeleyin.</strong> Bir vardiyayı baştan sona düşünün ve yeni gelen birinin bir istasyonda öğrenmesi gereken her işi yazın. Listedeki her satır bir ders adayıdır.</li>\n<li><strong>En çok soru sorulan işlerden başlayın.</strong> Yeni gelenlerin en sık sorduğu ya da hatanın pahalıya patladığı işler önce çekilir.</li>\n<li><strong>Her video tek bir iş olsun.</strong> İşi en iyi yapan kişiyi, gerçek istasyonda, ne yaptığını ve neden yaptığını anlatırken çekin.</li>\n<li><strong>Birkaç adıma bölün.</strong> Her adım tek bir hareket ve tek bir sonuç. Adım sayısı çok uzuyorsa elinizde muhtemelen iki ayrı iş vardır.</li>\n<li><strong>Her adıma bir iki satır yazın.</strong> Fiille başlayın. Kesin değerleri, limitleri ve uyarıları sadece konuşmada bırakmayın, yazıya geçirin.</li>\n<li><strong>Kısa bir quiz ekleyin.</strong> İnsanların yanlış yaptığı kararlarla ilgili birkaç soru. Ayrıntı ezberi değil.</li>\n<li><strong>Kontrol ve onay.</strong> İşi bilen kişi adımları doğrular, standardın sahibi olan yönetici onaylar.</li>\n<li><strong>Role göre atayın.</strong> Garsonun ilk haftasında bulaşık makinesi dersine ihtiyacı yok.</li>\n</ol>"
+    },
+    {
+      "id": "mikro-ogrenme-ornekleri",
+      "h2": "Sahadan mikro öğrenme örnekleri",
+      "html": "<p>En iyi örnekler başı, sonu ve doğru bir yapılış şekli belli olan işlerdir. Biri ayrıntılı, ikisi kısa olmak üzere üç örnek:</p>\n<h3>Ayrıntılı örnek: fritöz kapanışı</h3>\n<p>Ders adı: Fritöz istasyonunun kapatılması. Sakin bir akşam kapanışında, mutfağın en deneyimli aşçısıyla çekildi.</p>\n<ol>\n<li>Fritözü kapatın ve yağın mutfağınızda belirlenen güvenli seviyeye kadar soğumasını bekleyin.</li>\n<li>Boşaltma vanasına dokunmadan önce ısıya dayanıklı eldiven ve önlük takın.</li>\n<li>Sepetleri çıkarın, yıkanmak üzere evyeye koyun.</li>\n<li>Yağı işletmenizin prosedürüne göre süzün ya da boşaltın; önce kabın yerinde olduğunu kontrol edin.</li>\n<li>Fritözün yüzeylerini ve çevresini silin, sonra zeminde yağ damlası olup olmadığına bakın.</li>\n</ol>\n<p>Quiz soruları:</p>\n<ul>\n<li>Boşaltma vanasını açmadan önce neyi kontrol edersiniz?</li>\n<li>Bu mutfakta yağ ne zaman boşaltılacak kadar soğumuş sayılır?</li>\n<li>Zemine yağ dökülürse ne yaparsınız?</li>\n</ul>\n<h3>Kısa örnek: hatta kalıp ya da format değişimi</h3>\n<p>Bir paketleme hattında format değişimi tek bir ders değil, bir dizi derstir: makineyi durdurmak ve enerjisini kesmek, değişim parçalarını takmak, kılavuzları ayarlamak, ilk ürünleri çalıştırıp kontrol etmek. Her biri ayrı bir video, kesin ayarların yazıyla verildiği adımlar ve yeniden çalıştırmadan önceki kontrollerle ilgili birkaç soru alır.</p>\n<h3>Kısa örnek: otelde akşam oda hazırlığı</h3>\n<p>Akşam servisi (turndown) tek bir derstir: ışıkları kısın, yatağı otel standardına göre açın, ikram ürününü yerleştirin, perdeleri kapatın, banyoyu toparlayın ve odayı misafirin beklediği gibi bırakın. Quiz, insanların en çok karıştırdığı otel ayrıntılarını sorar: yatak hangi taraftan açılır, misafir odadaysa ne yapılır.</p>"
+    },
+    {
+      "id": "ilk-iki-hafta-karma-egitim-plani",
+      "h2": "Yeni çalışanın ilk iki haftası için karma eğitim planı",
+      "html": "<p>Karma (harmanlanmış) bir plan, yüz yüze zamanı karşılama, kültür ve gözetimli uygulama için; mikro dersleri ise her iş sırası geldiğinde kullanır. Aşağıda yeni başlayan bir aşçı için örnek bir plan var. İşleri kendi pozisyonunuza göre uyarlayın.</p>\n<table>\n<thead><tr><th>Ne zaman</th><th>Yüz yüze</th><th>Mikro dersler</th><th>Kontrol</th></tr></thead>\n<tbody>\n<tr><td>1. gün</td><td>Karşılama, mutfak turu, ekiple tanışma, yöneticiyle hijyen ve güvenlik temelleri</td><td>El yıkama, kıyafet ve kişisel hijyen</td><td>Yönetici mutfağı birlikte dolaşır</td></tr>\n<tr><td>2. ve 3. gün</td><td>Hazırlık istasyonunda eğitmenin yanında çalışma</td><td>Bıçak güvenliği, hazırlık malzemesini etiketleme ve tarihleme, soğuk depolama</td><td>Her ders için quiz; eğitmen hazırlığı izler</td></tr>\n<tr><td>4. ve 5. gün</td><td>Eğitmen yakındayken hazırlık istasyonunda tek başına çalışma</td><td>Hattın açılışı, sıcaklık kontrolleri</td><td>Sorumlu bir açılışı baştan sona izler</td></tr>\n<tr><td>2. haftanın başı</td><td>Sakin bir serviste fritöz ve ızgara istasyonunda gözlem</td><td>Fritöz kullanımı, fritöz kapanışı, ızgara temizliği</td><td>Quiz; sorumlu her işi bir kez izler</td></tr>\n<tr><td>2. haftanın sonu</td><td>Şefle servis standartları ve sorular üzerine kısa grup oturumu</td><td>Alerjen adımları, ana yemeklerin sunumu</td><td>Her istasyon için sorumlu onayı</td></tr>\n<tr><td>2. haftanın son günü</td><td>Yöneticiyle birebir değerlendirme</td><td>Quizde yanlış yapılan soruların derslerini yeniden izleme</td><td>Sırada neyin çalışılacağına birlikte karar verilir</td></tr>\n</tbody>\n</table>\n<p>Mikro dersler eğitmenin yerini almaz; eğitmenin aynı anlatımı tekrar tekrar yapmak yerine uygulamaya ve geri bildirime vakit ayırmasını sağlar. Gözetimli kısmın nasıl kurulacağı için <a href=\"/tr/rehber/is-basi-egitim/\">iş başı eğitim</a> rehberine bakın.</p>"
+    },
+    {
+      "id": "hatirlatma-ve-aralikli-tekrar",
+      "h2": "Hatırlatma ve aralıklı tekrar: sade bir anlatım",
+      "html": "<p>İnsan bir kez öğrenip sonra hiç kullanmadığı şeyi unutur. Aralıklı tekrar, aynı dersi aralarında giderek uzayan boşluklarla birkaç kez yeniden önüne getirmek demektir; böylece bilgi kalıcı olur. Mikro dersler kısa olduğu için bunu sahada uygulanabilir kılar.</p>\n<ul>\n<li><strong>Kullanıma yakın tekrar edin.</strong> En iyi hatırlatma, uzun süredir yapmadığınız bir işten hemen önce adımları yeniden izlemektir.</li>\n<li><strong>Aralıklı yayın.</strong> Bir dersi aynı gün defalarca izletmek yerine birkaç gün sonra, ardından birkaç hafta sonra yeniden gönderin.</li>\n<li><strong>Quizi hatırlatma olarak kullanın.</strong> Soruları yeniden cevaplamak, neyin unutulduğunu hızlıca gösterir.</li>\n<li><strong>Seyrek yapılan işleri bilerek tazeleyin.</strong> Derin temizlik, nadir yapılan bir kalıp değişimi, acil durum prosedürü. İlk unutulanlar bunlardır.</li>\n<li><strong>Değişiklikten sonra tazeleyin.</strong> Bir tarif, ayar ya da kural değiştiğinde güncel dersi eski hâlini öğrenmiş herkese gönderin.</li>\n</ul>"
+    },
+    {
+      "id": "mikro-ogrenme-ise-yariyor-mu",
+      "h2": "Mikro öğrenmenin işe yarayıp yaramadığını nasıl anlarsınız?",
+      "html": "<p>Üç şeye birlikte bakın: dersi kimin tamamladığı, quizde nasıl sonuç aldığı ve sorumluların sahada ne gördüğü. Bunlardan biri tek başına yanıltabilir.</p>\n<ul>\n<li><strong>Tamamlanma.</strong> Kişi, ekip ve şube bazında, atanan her dersi kimin izlediği. Boşluklar kimin henüz eğitilmediğini gösterir, kimin başarısız olduğunu değil.</li>\n<li><strong>Quiz sonuçları.</strong> Hangi sorular yanlış cevaplanıyor. Çok kişi aynı soruyu kaçırıyorsa düzeltilmesi gereken insanlar değil, adım ya da sorudur.</li>\n<li><strong>Sorumlunun gözlemi.</strong> Kişi işi istasyonda doğru yapıyor mu? Asıl test budur ve yetkinlik onayı sorumluda kalır.</li>\n<li><strong>Sahadaki işaretler.</strong> Aynı iş hakkında daha az tekrar eden soru, daha az yeniden yapılan iş, vardiya devrinde aynı hatayla ilgili daha az not. Bunları dışarıdaki karşılaştırmalara değil, kendi işletmenizdeki gidişata göre izleyin.</li>\n</ul>\n<p>Hepsini tek yerde tutarsanız kimin hangi istasyona hazır olduğunu görürsünüz. Basit bir düzen için <a href=\"/tr/rehber/egitim-takip-tablosu/\">eğitim takip tablosu</a> rehberine, kimin hangi işi yapabildiğini görmek için <a href=\"/tr/rehber/beceri-matrisi/\">beceri matrisi</a> rehberine bakabilirsiniz.</p>"
+    },
+    {
+      "id": "sik-yapilan-hatalar",
+      "h2": "Mikro öğrenmede sık yapılan hatalar",
+      "html": "<p>Mikro öğrenme çoğu zaman şu yüzden tutmaz: dersler aslında kısa değildir, gerçek bir işe bağlı değildir ya da sahada hiç kontrol edilmez.</p>\n<ul>\n<li><strong>Uzun bir eğitimi kısa kliplere doğramak.</strong> Bir sunumun on kısa parçası hâlâ bir sunumdur. Her dersi tek bir işin etrafında kurun.</li>\n<li><strong>İstasyonda bulunamayan dersler.</strong> Çalışan gerektiğinde dersi telefonundan açamıyorsa ders kullanılmaz.</li>\n<li><strong>Mikro dersle karşılamayı atlamak.</strong> Yeni gelenin yine bir insana, bir tura ve bir ekibe ihtiyacı var.</li>\n<li><strong>Biten dersi eğitilmiş kişi saymak.</strong> Quiz anlamayı gösterir. İşi gözetim altında doğru yapmak ise onaydır.</li>\n<li><strong>Herkese her şeyi atamak.</strong> Uzun ve ilgisiz bir ders listesi, insanlara sadece tıklayıp geçmeyi öğretir.</li>\n<li><strong>Sahibi olmayan, güncellenmeyen dersler.</strong> Eski ayarı gösteren bir ders, hiç ders olmamasından kötüdür.</li>\n<li><strong>Ezber soruları.</strong> Kovanın rengini değil, kararları ve kontrolleri sorun.</li>\n</ul>"
+    },
+    {
+      "id": "bunu-flexlore-ile-yapmak",
+      "h2": "Bunu Flexlore ile yapmak",
+      "html": "<p>Flexlore tam bu tür kısa derslerin etrafında kuruldu. Bir işi telefonla çekersiniz, editörde adımları işaretlersiniz; Flexlore adım yazılarının ve kısa bir <a href=\"/tr/features/ai-quiz/\">yapay zekâ quizinin</a> taslağını hazırlar. Ekibiniz her taslağı düzenleyip onaylamadan hiçbir şey yayınlanmaz. Dersleri role ve şubeye göre atar, kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Ekibiniz iOS ya da Android'de izler, uygulama 8 dilde kullanılabilir.</p>\n<p>Hatırlatmalar ve yeni dersler için bildirimler, istasyona asılan QR kodlar ve otomatik çeviri yakında geliyor. Sahada yetkinlik onayı yine sorumlunuzdadır. <a href=\"/demo/\">Demo</a> isteyin, işlerinizden birini sizinle birlikte hazırlayalım.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "Mikro öğrenmeye örnek nedir?",
+      "a": "Bir aşçıya fritöz istasyonunun nasıl kapatılacağını gösteren, birkaç adıma bölünmüş, her adımında bir satır yazı olan ve sonunda üç soruluk quiz bulunan kısa bir video. Paketleme hattında format değişimi ya da otelde akşam oda hazırlığı da iyi örneklerdir. Her ders tek bir işi baştan sona anlatır ve telefonda izlenir."
+    },
+    {
+      "q": "Bir mikro eğitim videosu kaç dakika olmalı?",
+      "a": "Tek bir işi göstermek ne kadar sürüyorsa o kadar, daha fazla değil. Vardiyalı çalışanlar için çoğu ders birkaç dakikada izlenir. Ders sürekli uzuyorsa genelde iki üç ayrı iş anlatıyordur ve bölünmelidir. Süreden daha önemli olan, her adımın tek bir hareketi ve tek bir sonucu göstermesidir."
+    },
+    {
+      "q": "Mikro öğrenme sınıf eğitiminin yerini alır mı?",
+      "a": "Tamamen almaz. Mikro öğrenme tek tek işler, hatırlatmalar ve farklı vardiyalarda çalışan ekipler için iyi sonuç verir. Karşılama ve kültür, grup uygulaması ve tartışma isteyen karmaşık konular için yüz yüze eğitim hâlâ daha iyidir. Saha ekipleri için en iyi sonuç genelde ikisinin karışımı ve sahada gözetimli uygulamadır."
+    },
+    {
+      "q": "Vardiyalı çalışanlara eğitim nasıl verilir?",
+      "a": "Herkesi aynı saatte toplamaya çalışmak yerine eğitimi parçalara bölün. Karşılama ve kültürü küçük yüz yüze oturumlarla, tek tek işleri telefonda izlenen kısa derslerle verin. Uygulamayı vardiya içinde sorumlunun yanında yaptırın, kimin hangi dersi bitirdiğini ve quizde nasıl sonuç aldığını kişi ve şube bazında takip edin."
+    },
+    {
+      "q": "Eğitim ekibim yoksa mikro eğitim içeriği nasıl hazırlarım?",
+      "a": "Yeni gelenlerin en çok sorduğu işlerden başlayın. Her işi en iyi yapan kişiyi telefonla çekin, her video tek bir iş olsun. Videoyu birkaç adıma bölün, her adıma bir satır yazı ve sonuna üç beş quiz sorusu ekleyin. İşi bilen kişi kontrol etsin, standardın sahibi yönetici onaylasın."
+    },
+    {
+      "q": "Mikro dersler ne sıklıkla tekrar edilmeli?",
+      "a": "Bir dersi aynı gün defalarca izletmek yerine, aralarında giderek uzayan boşluklarla birkaç kez yeniden gönderin. Seyrek yapılan işleri ihtiyaç doğmadan önce tazeleyin, iş değiştiğinde dersi yeniden gönderin. Uzun süredir yapılmayan bir işten hemen önce adımları yeniden izlemek çoğu zaman en işe yarayan hatırlatmadır."
+    }
+  ],
+  "related": [
+    "/tr/rehber/video-sop/",
+    "/tr/rehber/is-basi-egitim/",
+    "/tr/rehber/egitim-takip-tablosu/",
+    "/tr/rehber/lms-mi-sop-yazilimi-mi/"
+  ]
+}

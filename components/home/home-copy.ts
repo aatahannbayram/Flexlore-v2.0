@@ -47,7 +47,7 @@ export const home: Record<Lang, HomeCopy> = {
         ready: { h: "Readiness by shift and location", p: "See who is ready for which job, by person, team, shift and site." },
         quiz: { h: "Quizzes from the job itself", p: "Short checks drafted from the steps, so you know who understood, not just who pressed play." },
         access: { h: "Role- and location-based access", p: "People see only what their role and site need. Managers decide who sees what." },
-        devices: { h: "iOS, Android and web", p: "Record and learn on the phone. Assign and track in the browser." },
+        devices: { h: "iOS and Android", p: "Record and learn on the phone. A web panel for managers is coming soon." },
         sites: { h: "One standard, many sites", p: "Send the same job to every branch on the same day and compare readiness side by side." },
       },
     },
@@ -76,7 +76,7 @@ export const home: Record<Lang, HomeCopy> = {
         // TODO(ata): add a setup time here only if we have a real number.
         { q: "What does it take to get started?", a: "A phone and one real job. Film it, check what the AI drafted, then assign it. On the demo call we build one of your jobs with you." },
         // TODO(ata): confirm offline behaviour before mentioning it.
-        { q: "Which devices does it run on?", a: "iOS and Android for your team, plus a web platform for managers." },
+        { q: "Which devices does it run on?", a: "iOS and Android for your team. A web panel for managers is coming soon." },
         { q: "Who can see our content?", a: "You decide. Access is set by role and location, so people see only the jobs meant for them. Our Privacy, Security and Sub-processors pages cover how data is handled." },
         // Confirmed by Ata 2026-11-04: 8 languages (list as in copy.ts langs).
         { q: "Which languages are supported?", a: "Flexlore is available in 8 languages: English, Turkish, German, Arabic, Spanish, Russian, French and Polish." },
@@ -116,7 +116,7 @@ export const home: Record<Lang, HomeCopy> = {
         ready: { h: "Vardiya ve şube bazında hazırlık", p: "Kimin hangi işe hazır olduğunu kişi, ekip, vardiya ve şube bazında görün." },
         quiz: { h: "İşin kendisinden quiz", p: "Adımlardan hazırlanan kısa kontroller; kimin izlediğini değil, kimin anladığını görürsünüz." },
         access: { h: "Rol ve şubeye göre erişim", p: "Herkes yalnızca kendi rolü ve şubesi için gerekeni görür. Kimin neyi göreceğini yöneticiler belirler." },
-        devices: { h: "iOS, Android ve web", p: "Telefonda kaydedin ve öğrenin. Tarayıcıda atayın ve takip edin." },
+        devices: { h: "iOS ve Android", p: "Telefonda kaydedin ve öğrenin. Yöneticiler için web paneli yakında." },
         sites: { h: "Tek standart, çok şube", p: "Aynı işi aynı gün her şubeye gönderin, hazırlığı yan yana karşılaştırın." },
       },
     },
@@ -143,7 +143,7 @@ export const home: Record<Lang, HomeCopy> = {
         { q: "Flexlore kimler için?", a: "İşin yaparak öğrenildiği ekipler için: restoran ve kafe zincirleri, üretim hatları, oteller, franchise'lar, depolar ve fırınlar." },
         { q: "Teknik bilgi gerekir mi?", a: "Hayır. Telefonla video çekebiliyorsanız adım adım bir video SOP oluşturabilirsiniz." },
         { q: "Başlamak için ne gerekir?", a: "Bir telefon ve gerçek bir iş. Çekin, yapay zekânın hazırladığı taslağı kontrol edin, sonra atayın. Demo görüşmesinde işlerinizden birini sizinle birlikte hazırlarız." },
-        { q: "Hangi cihazlarda çalışır?", a: "Ekibiniz için iOS ve Android, yöneticiler için web platformu." },
+        { q: "Hangi cihazlarda çalışır?", a: "Ekibiniz için iOS ve Android. Yöneticiler için web paneli yakında." },
         { q: "İçeriğimizi kimler görebilir?", a: "Siz karar verirsiniz. Erişim rol ve şubeye göre belirlenir; herkes yalnızca kendisi için olan işleri görür. Verinin nasıl işlendiği Gizlilik, Güvenlik ve Alt İşleyenler sayfalarımızda yer alır." },
         { q: "Hangi diller destekleniyor?", a: "Flexlore 8 dilde kullanılabilir: İngilizce, Türkçe, Almanca, Arapça, İspanyolca, Rusça, Fransızca ve Lehçe." },
         { q: "Fiyatlandırma nasıl?", a: "Planlar kullanıcı sayısına göre fiyatlanır: Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar." },

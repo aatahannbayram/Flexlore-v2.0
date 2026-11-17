@@ -1,0 +1,100 @@
+{
+  "slug": "is-basi-egitim",
+  "lang": "tr",
+  "twin": "on-the-job-training",
+  "kind": "guide",
+  "seoTitle": "İş Başı Eğitim Nedir, Nasıl Yapılır? | Flexlore",
+  "description": "İş başı eğitim nedir ve nasıl yapılır: usta yanında izleme ile planlı eğitim farkı, dört adımlı yöntem, doldurulmuş eğitim planı ve sorumlu onayı.",
+  "h1": "İş başı eğitim: her yeni çalışana aynı işi öğreten planlı yöntem",
+  "kicker": "Rehber",
+  "answer": "İş başı eğitim, çalışanın işi gerçek iş yerinde ve gerçek iş sırasında deneyimli birinin yanında öğrenmesidir. Planlı iş başı eğitimde eğitmen her görevi gösterir, yeni personel önce eğitmenle birlikte, sonra izlenirken tek başına yapar ve görev bir sorumlunun tarihli onayıyla kapanır.",
+  "sections": [
+    {
+      "id": "is-basi-egitim-nedir",
+      "h2": "İş başı eğitim nedir?",
+      "html": "<p>İş başı eğitim, çalışanın işi gerçek iş yerinde, gerçek iş sırasında, deneyimli birinin yanında adım adım öğrenmesidir. Yeni personel sınıfta değil; fritözün, hattın, kat arabasının başında öğrenir.</p><p>Sahada çalışan ekiplerde işin büyük kısmı zaten böyle öğrenilir. Aşçı ızgarayı ızgarada, operatör kalıp değişimini makinede öğrenir. Asıl soru iş başı eğitim yapılıp yapılmayacağı değil, planlı mı yoksa şansa mı bırakıldığıdır.</p><p>Plansız iş başı eğitim genelde \"Mehmet ustanın yanında dur, izle\" cümlesiyle başlar. Planlı iş başı eğitimde ise belli bir eğitmen, istasyonun görev listesi, bir öğrenme sırası, anlama kontrolü ve tarihli bir onay vardır. İkisi de sahada olur; ama yalnızca ikincisi her yeni çalışana aynı işi öğretir.</p><p>İş başı eğitim oryantasyonla aynı şey değildir. Oryantasyon ilk günlerde işletmeyi, kuralları ve ekibi tanıtır; iş başı eğitim ise belirli bir istasyonun işini öğretir ve o istasyonda tek başına çalışma onayıyla biter. İyi bir başlangıç ikisini de içerir.</p><p><strong>Not:</strong> Türkiye'de \"İşbaşı Eğitim Programı\" aynı zamanda İŞKUR'un yürüttüğü bir devlet programının adıdır. Bu rehber o programla ilgili değildir; şirket içinde çalışanlara işin sahada nasıl öğretileceğini anlatır. İŞKUR programının koşulları için İŞKUR'un kendi sitesine bakın.</p>"
+    },
+    {
+      "id": "usta-cirak-ve-planli-egitim",
+      "h2": "Usta yanında izleme mi, planlı iş başı eğitim mi?",
+      "html": "<p>Usta yanında izleme (gölge eğitim), yeni personelin deneyimli birini izlemesidir. Planlı iş başı eğitim buna bir plan, gözetim altında uygulama ve sonunda bir kontrol ekler. İzleme, planlı eğitimin bir adımıdır; yerine geçmez.</p><table><thead><tr><th></th><th>Usta yanında izleme</th><th>Planlı iş başı eğitim</th></tr></thead><tbody><tr><td>Yeni personel ne yapar?</td><td>Çoğunlukla izler, yardım eder</td><td>İzler, eğitmenle birlikte yapar, sonra tek başına yapar</td></tr><tr><td>Plan</td><td>Genelde yok; vardiya ne getirirse</td><td>İstasyon için yazılı görev listesi ve sıra</td></tr><tr><td>Eğitmen</td><td>O an vardiyada kim varsa</td><td>Belirlenmiş ve hazırlanmış bir kişi</td></tr><tr><td>Öğrenilen</td><td>O kişinin işi yapış biçimi</td><td>İşletmenin kabul ettiği standart</td></tr><tr><td>Sondaki kontrol</td><td>Nadiren</td><td>Adımlarla ilgili sorular ve sorumlu onayı</td></tr><tr><td>Kayıt</td><td>Hafıza</td><td>Her görev için tarih, eğitmen ve onay</td></tr><tr><td>En uygun olduğu durum</td><td>Vardiyanın temposunu görmek, ekiple tanışmak, bir rolü denemek</td><td>Bir istasyonda tek başına çalışacak kadar öğrenmek</td></tr></tbody></table><p>Usta çırak usulünün gerçek bir değeri var. Yoğun bir serviste bir gün izlemek, işin ritmini hiçbir listenin anlatamayacağı şekilde gösterir. Bir pozisyona geçmeden önce o rolü denemek için de iyi bir yoldur. Ama programın tamamı bu olursa, kimin ne öğrendiği o gün vardiyada kimin olduğuna bağlı kalır. Usta iyiyse çırak iyi öğrenir; usta izindeyse çırak, o gün boşta olan kişinin yöntemini öğrenir.</p>"
+    },
+    {
+      "id": "dort-adimli-yontem",
+      "h2": "İş başı eğitimi nasıl yapılır? Göster, birlikte yap, tek başına yap, kontrol et",
+      "html": "<p>Her görevi aynı dört adımdan geçirin: eğitmen gösterir, yeni personel eğitmen yanındayken yapar, sonra eğitmen izlerken tek başına yapar, en son görev kontrol edilip onaylanır.</p><ol><li><strong>Göster.</strong> Eğitmen görevi bir kez normal hızında, bir kez de yavaşça yapar; her adımı ve nedenini söyler (\"sepeti süre bitmeden kaldır, yoksa yağ tezgâha damlar\"). İnsanların en çok hata yaptığı bir iki noktayı özellikle gösterir.</li><li><strong>Birlikte yap.</strong> Yeni personel görevi yapar, eğitmen yanında durup yönlendirir. Hatayı anında düzeltir ama işi elinden almaz.</li><li><strong>Tek başına yap.</strong> Yeni personel görevi gerçek bir vardiyada, yönlendirme olmadan yapar; eğitmen yakındadır. Kritik adımları sesli söylemesini isteyin. Bir adım atlanırsa sadece o görev için ikinci adıma dönün.</li><li><strong>Kontrol et ve onayla.</strong> Birkaç soru adımların anlaşıldığını gösterir. Sorumlu, personeli normal bir vardiyada izler ve tarih atarak onaylar.</li></ol><p>Her seferde tek bir görev çalışın. \"Izgarayı öğren\" çok büyük. \"Açılışta ızgarayı yak ve hazırla\" ise bir vardiyada gösterilip denenip kontrol edilebilir. Başlamadan önce görevin yazılı ya da videolu bir standardı olsun; yoksa <a href=\"/tr/rehber/is-talimati-sablonu/\">iş talimatı şablonu</a> ile hızlıca yazın.</p>"
+    },
+    {
+      "id": "is-basi-egitim-plani",
+      "h2": "İş başında eğitim planı: bir istasyon için doldurulmuş örnek",
+      "html": "<p>İş başı eğitim planı, bir istasyonun görevlerini öğrenilme sırasıyla listeler; her görev için eğitmeni, hedef günü, kontrol şeklini ve onayı yazar. Aşağıda üretim hattında yeni bir operatör için doldurulmuş bir örnek var. Yapıyı kopyalayın, görevleri kendi işinizle değiştirin.</p><table><thead><tr><th>Sıra</th><th>Görev</th><th>Eğitmen</th><th>Hedef</th><th>Kontrol</th><th>Onay (sorumlu, tarih)</th></tr></thead><tbody><tr><td>1</td><td>İstasyon güvenliği: koruyucu ekipman, acil stop, sıkışma noktaları</td><td>Hat şefi</td><td>1. gün</td><td>Soru</td><td></td></tr><tr><td>2</td><td>Vardiya başı makine kontrolleri ve devreye alma</td><td>Kıdemli operatör</td><td>2. gün</td><td>Soru + izleme</td><td></td></tr><tr><td>3</td><td>Malzeme besleme ve parça yerleştirme</td><td>Kıdemli operatör</td><td>2. ile 3. gün</td><td>İzleme</td><td></td></tr><tr><td>4</td><td>İlk ürün kontrolü ve ölçüm</td><td>Kalite sorumlusu</td><td>3. gün</td><td>Soru + izleme</td><td></td></tr><tr><td>5</td><td>Hatalı parçayı ayırma ve kime haber verileceği</td><td>Hat şefi</td><td>3. gün</td><td>Soru</td><td></td></tr><tr><td>6</td><td>Kalıp veya ürün değişimi</td><td>Kıdemli operatör</td><td>4. ile 6. gün</td><td>Soru + izleme</td><td></td></tr><tr><td>7</td><td>Duruş anında yapılacaklar</td><td>Hat şefi</td><td>5. gün</td><td>Soru</td><td></td></tr><tr><td>8</td><td>Vardiya sonu temizlik, kapatma ve devir</td><td>Kıdemli operatör</td><td>6. gün</td><td>İzleme</td><td></td></tr><tr><td>9</td><td>İstasyon onayı: tam vardiya tek başına, sorumlu izliyor</td><td>Vardiya amiri</td><td>7. ile 10. gün</td><td>Onay</td><td></td></tr></tbody></table><p>Aynı yapı mutfakta (açılış, hazırlık, pişirme süreleri, alerjen, kapanış) ya da otelde katta (araba hazırlığı, oda sırası, banyo, yatak, son kontrol) da çalışır. Planı istasyon başına tek sayfada tutun. İşletmeler bu sayfayı çoğu zaman işbaşı eğitim formu olarak çıktı alıp istasyona asar; sonuçları ise <a href=\"/tr/rehber/beceri-matrisi/\">beceri matrisine</a> işler, böylece bir sonraki vardiya şefi kimin hangi istasyonda çalışabileceğini görür.</p>"
+    },
+    {
+      "id": "egitmeni-secmek",
+      "h2": "Eğitmeni kim olmalı, nasıl hazırlanmalı?",
+      "html": "<p>İşi standarda göre yapan ve sabırla anlatabilen birini seçin. Hattın en hızlı çalışanı her zaman bu kişi değildir.</p><p>En iyi ustanız işi çoğu zaman eli alışık olduğu için yapar. Bazı adımları kafasında atlar, kendine göre kestirmeler kullanır, yavaş birine sabrı tükenebilir. Bu onu kötü eğitmen yapmaz; sadece biraz hazırlık ister. Şunlara bakın:</p><ul><li><strong>İşi standart şekilde yapıyor mu?</strong> Onun yöntemi yazılı olandan farklıysa, öğretmeden önce hangisinin doğru olduğunda anlaşın.</li><li><strong>Nedenini söyleyebiliyor mu?</strong> \"Çünkü yağ damlar\" demek, \"böyle yap işte\" demekten daha kalıcıdır.</li><li><strong>Küçük hatalara izin veriyor mu?</strong> İşi sadece güvenlik ya da müşteri risk altındaysa elinden almalı.</li><li><strong>Zamanı var mı?</strong> Cumartesi yoğunluğunda istasyonu tek başına çevirirken yeni birini yetiştirmek olmaz. Vardiyaları buna göre planlayın.</li></ul><p>Eğitmene kısa bir hazırlık verin: dört adımlı yöntemi, istasyon planını ve onayın nasıl işlediğini anlatın. Kendi alışkanlığını değil, yazılı standardı öğreteceğinde anlaşın. Sonra bir görevi öğretirken izleyip geri bildirim verin.</p>"
+    },
+    {
+      "id": "ustanin-bilgisini-kaydetmek",
+      "h2": "Ustanın bilgisi, usta gitmeden nasıl kayda alınır?",
+      "html": "<p>Ustayı işi yaparken bir kez çekin, videoyu adımlara bölün, her adıma kısa bir not ve birkaç soru ekleyin. Böylece yöntemi izne, vardiya değişikliğine ya da ayrılığa rağmen şirkette kalır.</p><p>Birçok işletmede gerçek standart tek bir kişinin elindedir: kötü giden kalıp değişimini sesinden anlayan operatör, hamurun ne zaman hazır olduğunu bilen fırıncı. O kişi ayrılınca yerine gelen, onu bir kez izlemiş birinden zayıf bir kopyasını öğrenir.</p><ol><li>Ustayı gerçek istasyonda, telefonla, normal çalışma hızında çekin. Senaryo gerekmez.</li><li>Neyi kontrol ettiğini ve nedenini sesli anlatmasını isteyin; özellikle küçük işaretleri.</li><li>Videoyu her biri tek bir hareket olan kısa adımlara bölün; öğrenen sadece takıldığı adımı tekrar izlesin.</li><li>Her adımın altına kritik değeri ya da uyarıyı içeren bir iki satır yazın.</li><li>Sahada gerçekten ters giden şeylerle ilgili üç beş soru ekleyin.</li><li>Kullanmadan önce sonucu usta ve sorumlu birlikte onaylasın.</li></ol><p>Video eğitmenin yerini almaz. \"Göster\" adımını herkes için aynı yapar ve yeni personele dördüncü gün unuttuğunda dönebileceği bir kaynak verir. <a href=\"/tr/use-cases/master-apprentice-skills-transfer/\">Ustadan çırağa bilgi aktarımı</a> tam olarak budur.</p>"
+    },
+    {
+      "id": "kontrol-ve-onay",
+      "h2": "Öğrenildiği nasıl kontrol edilir, onayı kim verir?",
+      "html": "<p>İki kontrol kullanın: adımların anlaşıldığını gösteren sorular ve sorumlunun personeli gerçek bir vardiyada işi yaparken izlemesi. Onay sayılan yalnızca ikincisidir.</p><p>Sorular sahaya uygun olsun: \"Kalıp değişiminden sonra makineyi çalıştırmadan önce hangi kontrolü yaparsın?\", \"Ölçü toleransın dışındaysa parçayı nereye koyarsın?\" Kısa ve net sorular, uzun ve genel sorulardan iyidir. Sorular anlamayı gösterir; hat hızlanırken işi yapabildiğini kanıtlamaz.</p><p>Bunu onay gösterir. Yalnızca eğitmen değil, bir sorumlu görevi baştan sona izler, standarda uygun yapıldığını teyit eder ve tarihi yazar. O zamana kadar personel o görevi destekle yapar. Makine, kimyasal, yük kaldırma gibi güvenlikle ilgili görevlerde hangi eğitimin ve kaydın gerektiğini ilgili mevzuat belirler; bunları iş güvenliği uzmanınızla teyit edip plana ekleyin. Onayları tek bir yerde tutun, örneğin bir <a href=\"/tr/rehber/egitim-takip-tablosu/\">eğitim takip tablosunda</a>; kimse hafızasına güvenmek zorunda kalmasın.</p>"
+    },
+    {
+      "id": "subeler-arasi",
+      "h2": "Birden fazla şubede iş başı eğitim nasıl aynı tutulur?",
+      "html": "<p>Her şube için tek görev listesi, her görev için tek bir videolu standart ve tek bir onay kuralı kullanın; ilerlemeyi şube bazında karşılaştırın.</p><ul><li>Ortak görev listesi ve her görevin standardı merkezdedir.</li><li>Her şube kendi eğitmenlerini seçer ama ortak versiyonu öğretir. Farklı fırın, farklı hat gibi yerel maddeler eklenir; ortak olanların yerine konmaz.</li><li>Her yeni personel, eğitmenle çalışmadan önce aynı videolu \"göster\" adımını izler.</li><li>Eğitmenler aynı dört adımlı yöntemi ve aynı plan formunu kullanır; bir şubede \"tamam\" sayılan iş, diğerinde de tamam sayılır.</li><li>Bölge müdürü onayları şube bazında izler; hangi şubenin geride kaldığını, hangisinde tüm yükün tek bir eğitmende olduğunu görür.</li></ul>"
+    },
+    {
+      "id": "sik-yapilan-hatalar",
+      "h2": "İş başı eğitimde sık yapılan hatalar",
+      "html": "<ul><li><strong>Sadece izletmek.</strong> Bir hafta izleme; yapma, kontrol ve onay yok.</li><li><strong>Sınıf olarak en yoğun vardiya.</strong> Yoğunlukta kimsenin anlatacak vakti olmaz. Daha sakin bir vardiyada başlayın.</li><li><strong>Boşta kim varsa o öğretir.</strong> Her vardiya biraz farklı bir iş öğretir.</li><li><strong>Bir günde her şey.</strong> Bütün istasyon ilk gün. Görev görev ilerleyin.</li><li><strong>Eğitmen kendi çırağını onaylar.</strong> Onay bir sorumluda kalsın.</li><li><strong>Kayıt yok.</strong> Altı ay sonra kimin neyi öğrendiğini kimse bilmez.</li><li><strong>Ustanın yöntemi hiç kayda alınmaz.</strong> Usta giderse bilgi de onunla gider.</li></ul>"
+    },
+    {
+      "id": "bunu-flexlore-ile-yapmak",
+      "h2": "Bunu Flexlore ile yapmak",
+      "html": "<p>Flexlore bu sürecin \"göster\" adımını ve kaydını üstlenir. Ustanız görevi istasyonda telefonla çeker, telefondaki editörde adımları işaretler. Yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar; ekibiniz yayından önce inceleyip onaylar.</p><p>Görevleri role ve şubeye göre atarsınız. Yeni personel kendi telefonunda izler, istediği adımı tekrar açar ve quizi çözer. Kimin hangi görevi izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahadaki onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır; otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir, ayrıntılar <a href=\"/tr/pricing/\">fiyatlandırma</a> sayfasında.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "İş başı eğitim ile usta yanında izleme arasındaki fark nedir?",
+      "a": "Usta yanında izleme, deneyimli birini işi yaparken izlemektir. İş başı eğitim izlemeyi de içerir ama üstüne bir plan, eğitmenle birlikte uygulama, izlenirken tek başına yapma ve sonunda bir kontrol ekler. İzleme işin temposunu gösterir; planlı eğitim ise istasyonda tek başına çalışmayı öğretir."
+    },
+    {
+      "q": "İş başı eğitim ne kadar sürmeli?",
+      "a": "Sabit bir gün sayısı yerine istasyona göre planlayın. Basit görevler bir vardiyada onaylanabilir, kalıp değişimi gibi karmaşık işler ve çok görevli istasyonlar daha uzun sürer. Plandaki her görev için hedef bir gün yazın ve istasyonu ancak sorumlu her görevi onayladığında tamamlanmış sayın."
+    },
+    {
+      "q": "İşbaşı eğitim formunda neler olmalı?",
+      "a": "Bir istasyonun görevleri öğrenilme sırasıyla yazılmalı. Her görev için eğitmen, hedef gün, kontrol şekli (soru, izleme ya da ikisi) ve sorumlunun tarihli onayı için bir alan olmalı. Formu istasyon başına tek sayfada tutun, istasyonun yanında erişilebilir yerde bulundurun ve sonuçları beceri matrisine işleyin."
+    },
+    {
+      "q": "Usta çırak eğitimi hâlâ işe yarar mı?",
+      "a": "Evet, özellikle el becerisi ve tecrübe isteyen işlerde. Zayıf yanı, öğrenilenin ustaya ve o günkü vardiyaya bağlı kalmasıdır. Ustanın yöntemini bir kez videoya alıp adımlara bölmek, soru eklemek ve sonunda sorumlu onayı koymak, usta çırak usulünü herkes için aynı hale getirir."
+    },
+    {
+      "q": "İş başı eğitimi kim vermeli?",
+      "a": "İşi kabul edilen standarda göre yapan ve her adımın nedenini anlatabilen, adı belli bir eğitmen. En hızlı çalışan her zaman en iyi eğitmen değildir. Eğitmene istasyon planını ve yöntemi verin, vardiyasını eğitime zaman kalacak şekilde planlayın, son onayı bir sorumluda bırakın."
+    },
+    {
+      "q": "Video, iş başı eğitimin yerini alır mı?",
+      "a": "Hayır, ama onu güçlendirir. Videolu standart, \"göster\" adımını her yeni personel için aynı yapar ve sonradan tekrar izlenebilir. Yeni personel takıldığı adımı eğitmeni beklemeden tekrar açabilir. Yine de görevi gerçek istasyonda eğitmenle uygulaması ve bir sorumludan tarihli onay alması gerekir."
+    },
+    {
+      "q": "Bu rehber İŞKUR İşbaşı Eğitim Programı hakkında mı?",
+      "a": "Hayır. Bu rehber, şirket içinde mevcut ve yeni çalışanlara işin sahada, gerçek istasyonda nasıl öğretileceğini anlatır: plan, eğitmen, uygulama ve onay. İŞKUR'un İşbaşı Eğitim Programı ayrı bir devlet programıdır; başvuru, süre ve koşulları için İŞKUR'un kendi sitesine bakın. Bu sayfa o programın kuralları hakkında bilgi vermez."
+    }
+  ],
+  "related": [
+    "/tr/use-cases/master-apprentice-skills-transfer/",
+    "/tr/rehber/beceri-matrisi/",
+    "/tr/rehber/egitim-takip-tablosu/",
+    "/tr/rehber/is-talimati-sablonu/"
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "on-the-job-training",
+  "lang": "en",
+  "twin": "is-basi-egitim",
+  "kind": "guide",
+  "seoTitle": "On-the-Job Training: How to Structure It | Flexlore",
+  "description": "How to run structured on-the-job training: shadowing vs OJT, the show, do, check method, a station plan template, choosing trainers and supervisor sign-off.",
+  "h1": "On-the-job training: how to structure it so every new hire learns the same job",
+  "kicker": "Guide",
+  "answer": "On-the-job training is training done at the real workstation, during real work, with an experienced person teaching the job. Structured on-the-job training follows a written plan: the trainer shows each task, the new hire does it with support, then alone while watched, and a supervisor signs it off.",
+  "sections": [
+    {
+      "id": "what-is-on-the-job-training",
+      "h2": "What is on-the-job training?",
+      "html": "<p>On-the-job training (OJT) is training that happens at the real workstation, during real work, with an experienced person teaching the job step by step. The new hire learns on the actual fryer, line or cart, not in a classroom.</p><p>For frontline work, most of the job is learned this way anyway. A cook learns the grill on the grill. An operator learns a changeover on the machine. The question is not whether to do on-the-job training, but whether it is planned or left to chance.</p><p>Unplanned OJT usually sounds like \"stand next to Sam and watch.\" Planned OJT has a named trainer, a list of tasks for the station, a set order, a check of understanding and a dated sign-off. Both happen on the floor. Only one gives every new hire the same job.</p>"
+    },
+    {
+      "id": "shadowing-vs-structured-ojt",
+      "h2": "Job shadowing vs structured on-the-job training",
+      "html": "<p>Job shadowing means the new hire watches an experienced worker do the job. Structured OJT adds a plan, practice under supervision and a check at the end. Shadowing is one step inside structured OJT, not a replacement for it.</p><table><thead><tr><th></th><th>Job shadowing</th><th>Structured OJT</th></tr></thead><tbody><tr><td>What the new hire does</td><td>Mostly watches and helps</td><td>Watches, does the task with support, then does it alone</td></tr><tr><td>Plan</td><td>Usually none; follows whatever the shift brings</td><td>A written task list and order for the station</td></tr><tr><td>Trainer</td><td>Whoever is on shift</td><td>A named, prepared trainer</td></tr><tr><td>What gets taught</td><td>That person's version of the job</td><td>The agreed standard for the job</td></tr><tr><td>Check at the end</td><td>Rarely</td><td>Questions on the steps and a supervisor sign-off</td></tr><tr><td>Record</td><td>Memory</td><td>Date, trainer and sign-off per task</td></tr><tr><td>Best for</td><td>Seeing the pace of a shift, meeting the team, getting a feel for a role</td><td>Learning a station well enough to work it alone</td></tr></tbody></table><p>Shadowing has real uses. A day watching a busy service shows a new hire the rhythm of the job in a way no checklist can. It is also a good way to let someone try a role before moving into it. It just should not be the whole program, because what gets learned depends on who happened to be on shift.</p>"
+    },
+    {
+      "id": "four-step-method",
+      "h2": "How to run on-the-job training: show, do together, do alone, check",
+      "html": "<p>Run each task through the same four steps: the trainer shows it, the new hire does it with the trainer beside them, the new hire does it alone while the trainer watches, and then the task is checked and signed off.</p><ol><li><strong>Show.</strong> The trainer does the task at normal speed once, then slowly, saying each step and why it matters (\"basket out before the timer, or the oil drips onto the board\"). Point out the one or two places where people usually go wrong.</li><li><strong>Do together.</strong> The new hire does the task while the trainer stands beside them and talks them through it. The trainer corrects on the spot, but does not take over the task.</li><li><strong>Do alone, watched.</strong> The new hire does the task without prompts, on a real shift, with the trainer nearby. Ask them to say the key steps out loud. If they skip a step, go back to step 2 for that task only.</li><li><strong>Check and sign off.</strong> A few questions on the steps confirm they understood. A supervisor watches them do it on a normal shift and signs it off with a date.</li></ol><p>Keep each pass to one task. \"Learn the grill\" is too big. \"Light and season the grill at opening\" is a task you can show, practice and check in one shift. Before you start, make sure the task has a written or filmed standard; a <a href=\"/guides/work-instruction-template/\">work instruction template</a> is a quick way to write one.</p>"
+    },
+    {
+      "id": "ojt-plan-example",
+      "h2": "On-the-job training plan template: one station example",
+      "html": "<p>An OJT plan lists the tasks for one station in the order they should be learned, with the trainer, the target day and the sign-off for each. Here is a filled example for a new line cook on the fry station. Copy the structure and replace the tasks with your own.</p><table><thead><tr><th>Order</th><th>Task</th><th>Trainer</th><th>Target</th><th>Check</th><th>Signed off (supervisor, date)</th></tr></thead><tbody><tr><td>1</td><td>Station safety: hot oil, burns, where the fire blanket and extinguisher are</td><td>Fry lead</td><td>Day 1</td><td>Questions</td><td></td></tr><tr><td>2</td><td>Opening: switch on, oil level and quality check</td><td>Fry lead</td><td>Day 2</td><td>Questions + watched</td><td></td></tr><tr><td>3</td><td>Basket loading and cook times for each item</td><td>Fry lead</td><td>Day 2 to 3</td><td>Questions + watched</td><td></td></tr><tr><td>4</td><td>Holding times and when to throw product away</td><td>Fry lead</td><td>Day 3</td><td>Questions</td><td></td></tr><tr><td>5</td><td>Allergen orders on the fry station: separate fryer or procedure</td><td>Kitchen manager</td><td>Day 3</td><td>Questions + watched</td><td></td></tr><tr><td>6</td><td>Running the station on a busy shift with the trainer nearby</td><td>Fry lead</td><td>Day 4 to 6</td><td>Watched</td><td></td></tr><tr><td>7</td><td>Oil filtering and changing</td><td>Fry lead</td><td>Day 5</td><td>Questions + watched</td><td></td></tr><tr><td>8</td><td>Closing: shutdown, cleaning, end-of-shift checks</td><td>Fry lead</td><td>Day 6</td><td>Watched</td><td></td></tr><tr><td>9</td><td>Station sign-off: full shift alone, supervisor watching</td><td>Supervisor</td><td>Day 7 to 10</td><td>Sign-off</td><td></td></tr></tbody></table><p>The same shape works on a production line (start-up, quality checks, changeover, stoppages, shutdown) or in housekeeping (cart set-up, room order, bathroom, bed, final check). Keep the plan on one page and record the result in your <a href=\"/guides/training-matrix-template/\">training matrix</a>, so the next shift lead can see who can work which station.</p>"
+    },
+    {
+      "id": "choose-the-trainer",
+      "h2": "How to choose and prepare the trainer",
+      "html": "<p>Pick someone who does the job to standard and can explain it patiently. The fastest worker on the line is not always that person.</p><p>Your best worker often does the job by feel. They skip steps in their head, use shortcuts that work for them, and get impatient with someone slow. That does not make them a bad trainer, but it means they need a little preparation. Look for:</p><ul><li><strong>Does it the standard way.</strong> If their version differs from the written one, agree which is right before they teach it.</li><li><strong>Can say why.</strong> \"Because the oil drips\" sticks better than \"just do it like this.\"</li><li><strong>Lets people make small mistakes.</strong> Takes over only when safety or a customer is at risk.</li><li><strong>Has the time.</strong> Training a new hire on the Saturday rush while running the station alone does not work. Plan the shifts.</li></ul><p>Train the trainer briefly: walk them through the four-step method, the station plan and how sign-off works. Agree that they teach the written standard, not their personal variation. A skills matrix also shows who is able to train others on each station, which helps when <a href=\"/blog/cross-training-for-shift-resilience/\">cross-training staff across shifts</a>.</p>"
+    },
+    {
+      "id": "capture-the-know-how",
+      "h2": "How to capture an expert's know-how before they leave",
+      "html": "<p>Film the expert doing the job once, split the video into steps, write a short note for each step and add a few questions. Then their method survives a holiday, a shift change or a resignation.</p><p>In many teams the real standard lives in one person: the operator who knows the sound of a bad changeover, the baker who knows when the dough is ready. When they leave, the next person learns a weaker copy from someone who watched them once.</p><ol><li>Film them at the real station, on a phone, at normal working speed. No script.</li><li>Ask them to say out loud what they check and why, especially the small signals.</li><li>Split the video into short steps, one action each, so a learner can replay only the step they need.</li><li>Write a line or two under each step, with the key value or warning.</li><li>Add three to five questions about what goes wrong in real life.</li><li>Have the expert and a supervisor approve the result before it is used.</li></ol><p>The video does not replace the trainer. It makes the \"show\" step the same for everyone, and gives the new hire something to come back to on day 4 when they forget. This is the core of <a href=\"/use-cases/master-apprentice-skills-transfer/\">master to apprentice skills transfer</a>.</p>"
+    },
+    {
+      "id": "check-and-sign-off",
+      "h2": "How to check understanding and sign off OJT",
+      "html": "<p>Use two checks: questions to confirm the new hire understood the steps, and a supervisor watching them do the job on a real shift. Only the second one is a sign-off.</p><p>Questions should match the floor: \"What do you do if the oil is below the line?\", \"Which check comes before you restart after a changeover?\" Short and specific beats long and general. Questions show understanding; they do not prove the person can do it with a queue building.</p><p>The sign-off does that. A supervisor, not the trainer alone, watches the full task, confirms it is done to the standard and records the date. Until then, the person works the task with support. For safety-related tasks (machines, chemicals, lifting, hot oil), local rules decide what training and records are required, so check them and add those items to the plan. Keep sign-offs in one place, for example an <a href=\"/guides/employee-training-tracker/\">employee training tracker</a>, so nobody relies on memory.</p>"
+    },
+    {
+      "id": "multi-location",
+      "h2": "How to keep on-the-job training the same across locations",
+      "html": "<p>Use one task list, one filmed standard per task and one sign-off rule for every site, and compare progress by location.</p><ul><li>Head office or the central team owns the shared task list and the standard for each task.</li><li>Each location names its own trainers but teaches the shared version. Local additions (a different oven, a different line) are added, not swapped in.</li><li>Every new hire watches the same filmed \"show\" step before the trainer works with them.</li><li>Area managers look at sign-offs by location to see which site is behind or where one trainer is carrying everything.</li></ul>"
+    },
+    {
+      "id": "common-mistakes",
+      "h2": "Common on-the-job training mistakes",
+      "html": "<ul><li><strong>Shadowing only.</strong> Watching for a week without doing, checking or signing off.</li><li><strong>The busiest shift as the classroom.</strong> Nobody has time to explain during a rush. Start on a quieter shift.</li><li><strong>Whoever is free trains.</strong> Every shift teaches a slightly different job.</li><li><strong>Too much at once.</strong> A whole station on day one. Go task by task.</li><li><strong>The trainer signs off their own trainee.</strong> Keep the sign-off with a supervisor.</li><li><strong>No record.</strong> Six months later nobody knows who was trained on what.</li><li><strong>The expert's method is never written down.</strong> When they leave, it leaves with them.</li></ul>"
+    },
+    {
+      "id": "doing-this-with-flexlore",
+      "h2": "Doing this with Flexlore",
+      "html": "<p>Flexlore covers the \"show\" step and the record. Your expert films a task on a phone at the station and marks the steps in the phone editor. AI drafts the written steps and a short quiz, and your team reviews and approves them before anything goes out.</p><p>You assign tasks by role and location. New hires watch on their own phone, replay any step and take the quiz. You see who watched each task and passed its quiz, by person, team and location. Signing someone off on the floor stays with their supervisor. The app runs on iOS and Android in 8 languages; automatic translation, QR codes at the station and notifications are coming soon. Plans are by number of users, see <a href=\"/pricing/\">pricing</a>.</p>"
+    }
+  ],
+  "template": null,
+  "faq": [
+    {
+      "q": "What is the difference between job shadowing and on-the-job training?",
+      "a": "Job shadowing means watching an experienced worker do the job. On-the-job training includes shadowing but adds a plan, practice with support, doing the task alone while being watched, and a check at the end. Shadowing helps a new hire see the pace of a role; structured OJT is how they learn to work a station alone."
+    },
+    {
+      "q": "How long should on-the-job training take?",
+      "a": "It depends on the station, not a fixed number of days. Plan it task by task: simple tasks can be signed off in a shift, complex stations take longer. Write a target day for each task in the plan, and treat the station as done only when a supervisor has signed off every task."
+    },
+    {
+      "q": "What should an on-the-job training plan include?",
+      "a": "List the tasks for one station in learning order, and for each one name the trainer, set a target day, say how it will be checked (questions, watched, or both) and leave space for the supervisor's sign-off with a date. Keep it to one page per station."
+    },
+    {
+      "q": "Who should do on-the-job training?",
+      "a": "A named trainer who does the job to the agreed standard and can explain why each step matters. The best performer is not always the best trainer. Give the trainer the station plan and the method, plan their shifts so they have time, and keep the final sign-off with a supervisor."
+    },
+    {
+      "q": "How do you train the trainer for frontline staff?",
+      "a": "Keep it short and practical. Walk the trainer through the show, do together, do alone, check method, agree that they teach the written standard rather than their own shortcuts, show them the station plan and explain who signs off. Then watch them train one task and give feedback."
+    },
+    {
+      "q": "Can video replace on-the-job training?",
+      "a": "No, but it improves it. A filmed standard makes the show step the same for every new hire and gives them something to replay later. The new hire still needs to practise the task on the real station with a trainer and be signed off by a supervisor."
+    },
+    {
+      "q": "Is on-the-job training enough for safety training?",
+      "a": "It is often where safety is taught in practice, but local rules decide what safety training, certificates and records are required for each role. Check the rules that apply to your location and add those items to the plan, with their own sign-off."
+    }
+  ],
+  "related": [
+    "/use-cases/master-apprentice-skills-transfer/",
+    "/guides/training-matrix-template/",
+    "/guides/employee-training-tracker/",
+    "/guides/work-instruction-template/"
+  ]
+}
