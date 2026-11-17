@@ -139,12 +139,16 @@ export default function Pricing() {
         <h1 className="text-[30px] font-medium leading-[38px] tracking-[-0.025em] md:text-[36px] md:leading-[40px]">{P.h1}</h1>
         <p className="mt-2 text-[14px] leading-5 text-[#FAFAFA]/85">{P.sub}</p>
         <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
-          <div role="group" aria-label={c.billing} className="inline-flex rounded-full border border-white/10 bg-white/[.06] p-1">
-            <button type="button" aria-pressed={!yearly} onClick={() => setYearly(false)} className={`inline-flex h-11 items-center rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${!yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.monthly}</button>
-            <button type="button" aria-pressed={yearly} onClick={() => setYearly(true)} className={`inline-flex h-11 items-center gap-2 rounded-full px-6 text-[14px] font-medium transition-colors duration-150 ${yearly ? "bg-[#FAFAFA] text-[#111]" : "text-[#FAFAFA]/80 hover:text-[#FAFAFA]"}`}>{c.yearly}
-              {best > 0 && <span className="rounded-full k-grad px-2 py-0.5 text-[12px] font-medium uppercase tracking-[.02em] text-white">{P.badge}</span>}</button>
+          {/* Billing switch: 44px hit areas, a slimmer 36px pill inside marks the choice; the yearly saving is a quiet
+              orange tag (orange text on a faint orange tint, no gradient). */}
+          <div role="group" aria-label={c.billing} className="inline-flex items-center rounded-full border border-white/[.09] bg-white/[.035] px-1">
+            {([[false, c.monthly], [true, c.yearly]] as const).map(([y, label]) => { const on = yearly === y; return (
+              <button key={String(y)} type="button" aria-pressed={on} onClick={() => setYearly(y)} className="group inline-flex h-11 items-center">
+                <span className={`inline-flex h-9 items-center gap-2 rounded-full px-4 text-[14px] font-medium transition-colors duration-150 ${on ? "bg-white/[.11] text-[#FAFAFA] ring-1 ring-inset ring-white/[.08]" : "text-[#FAFAFA]/60 group-hover:text-[#FAFAFA]"}`}>{label}
+                  {y && best > 0 && <span className="inline-flex h-5 items-center rounded-full bg-[#EC6726]/[.15] px-2 text-[12px] font-medium text-[#F08551]">{P.badge}</span>}</span>
+              </button>); })}
           </div>
-          {P.help && <a href={SITE.demo} className="inline-flex min-h-11 items-center text-[14px] font-medium text-[#FAFAFA]/85 transition-colors duration-150 hover:text-[#FAFAFA]">{P.help}</a>}
+          {P.help && <a href={SITE.demo} className="group inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[#FAFAFA]/65 transition-colors duration-150 hover:text-[#FAFAFA]">{P.help}<ArrowRight size={14} aria-hidden="true" className="transition-transform duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100" /></a>}
         </div>
 
         {/* Plans: card (name, users, who it is for, price at the foot), button under it, saving, then the list. */}

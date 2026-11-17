@@ -10,6 +10,7 @@
 :root[data-theme="light"] .bg-white\/70:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.3); }
 :root[data-theme="light"] .bg-white\/\[\.025\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.021); }
 :root[data-theme="light"] .bg-white\/\[\.02\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.017); }
+:root[data-theme="light"] .bg-white\/\[\.035\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.03); }
 :root[data-theme="light"] .bg-white\/\[\.03\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.025); }
 :root[data-theme="light"] .bg-white\/\[\.04\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.034); }
 :root[data-theme="light"] .bg-white\/\[\.05\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.043); }
@@ -18,6 +19,7 @@
 :root[data-theme="light"] .bg-white\/\[\.08\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.068); }
 :root[data-theme="light"] .bg-white\/\[\.09\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.076); }
 :root[data-theme="light"] .bg-white\/\[\.10\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.085); }
+:root[data-theme="light"] .bg-white\/\[\.11\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.093); }
 :root[data-theme="light"] .bg-white\/\[\.12\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.102); }
 :root[data-theme="light"] .bg-white\/\[\.14\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.119); }
 :root[data-theme="light"] .bg-white\/\[\.15\]:not(.dark, .dark *) { background-color: rgb(22 22 22 / 0.128); }
@@ -33,6 +35,7 @@
 :root[data-theme="light"] .border-white\/\[\.06\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.07\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
 :root[data-theme="light"] .border-white\/\[\.08\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.08); }
+:root[data-theme="light"] .border-white\/\[\.09\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.09); }
 :root[data-theme="light"] .border-white\/\[\.12\]:not(.dark, .dark *) { border-color: rgb(22 22 22 / 0.12); }
 :root[data-theme="light"] .decoration-white\/20:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.2); }
 :root[data-theme="light"] .decoration-white\/40:not(.dark, .dark *) { text-decoration-color: rgb(22 22 22 / 0.4); }
