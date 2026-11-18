@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "HSSQ3B5C2K.com.flexlore.app",
+        "appIDs": ["HSSQ3B5C2K.com.flexlore.app"],
+        "paths": ["/q/*"],
+        "components": [{ "/": "/q/*", "comment": "Printed Flexlore QR codes open in the app" }]
+      }
+    ]
+  }
+}
