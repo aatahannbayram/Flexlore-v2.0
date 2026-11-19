@@ -253,13 +253,13 @@
   {
    "id": "en:feature-notifications",
    "locale": "en",
-   "title": "Notifications (Coming soon)",
-   "body": "Notify the right people when a job is assigned, due or updated, and track completion after the change. Change a job: Publish a new version or assign a new job. The right people are notified: Only the roles and locations it affects get the message. Completion follows: See who has watched and passed the updated job. Are notifications available today? They are on our roadmap. Book a demo to see where they stand. Who receives a notification? Only the people whose role and location the job applies to. Can managers send announcements? Announcements to teams and locations are part of the plan.",
+   "title": "Notifications",
+   "body": "Push notifications for new trainings, plus announcements and urgent announcements from managers, so every shift hears what changed. Add a training: Publish a new job for your team. Phones get a push: The people it is for hear the Flexlore notification sound. Send an announcement: Share news with your team, or mark it urgent. Are notifications available today? Yes. People get a push when a new training is added for them, and managers can send announcements and urgent announcements. Reminders and update notices are on our roadmap. Who receives a notification? The people the training or announcement is meant for. Can managers send announcements? Yes, as a normal or an urgent announcement.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -571,13 +571,13 @@
   {
    "id": "tr:feature-notifications",
    "locale": "tr",
-   "title": "Bildirimler (Yakında)",
-   "body": "Bir iş atandığında, süresi yaklaştığında veya güncellendiğinde doğru kişilere bildirim gönderin, değişiklikten sonra tamamlanmayı takip edin. Bir işi değiştirin: Yeni bir sürüm yayınlayın veya yeni bir iş atayın. Doğru kişilere bildirim gider: Mesajı yalnızca etkilenen roller ve şubeler alır. Tamamlanma takip edilir: Güncellenen işi kimin izlediğini ve geçtiğini görün. Bildirimler bugün kullanılabilir mi? Yol haritamızda. Ne aşamada olduğunu görmek için demo isteyin. Bildirimi kimler alır? Yalnızca işin geçerli olduğu rol ve şubedeki kişiler. Yöneticiler duyuru gönderebilir mi? Ekiplere ve şubelere duyurular planın bir parçası.",
+   "title": "Bildirimler",
+   "body": "Yeni eğitimler için anlık bildirim, yöneticilerden duyuru ve acil duyuru: her vardiya neyin değiştiğini duyar. Eğitim ekleyin: Ekibiniz için yeni bir iş yayınlayın. Telefonlara bildirim gider: Eğitimin ilgili olduğu kişiler Flexlore bildirim sesini duyar. Duyuru gönderin: Ekibinizle haber paylaşın ya da acil olarak işaretleyin. Bildirimler bugün kullanılabilir mi? Evet. Çalışana yeni bir eğitim eklendiğinde telefonuna bildirim gider; yöneticiler duyuru ve acil duyuru gönderebilir. Hatırlatmalar ve güncelleme bildirimleri yol haritamızda. Bildirimi kimler alır? Eğitimin ya da duyurunun gönderildiği kişiler. Yöneticiler duyuru gönderebilir mi? Evet, normal ya da acil duyuru olarak.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -889,13 +889,13 @@
   {
    "id": "de:feature-notifications",
    "locale": "de",
-   "title": "Benachrichtigungen (Demnächst)",
-   "body": "Benachrichtigen Sie die richtigen Personen, wenn eine Aufgabe zugewiesen, fällig oder geändert wird, und verfolgen Sie die Abschlüsse nach der Änderung. Aufgabe ändern: Eine neue Version veröffentlichen oder eine neue Aufgabe zuweisen. Die Richtigen werden benachrichtigt: Nur die betroffenen Rollen und Standorte erhalten die Nachricht. Abschlüsse folgen: Sehen Sie, wer die geänderte Aufgabe angesehen und bestanden hat. Sind Benachrichtigungen schon verfügbar? Sie stehen auf unserer Roadmap. Buchen Sie eine Demo, um den aktuellen Stand zu sehen. Wer erhält eine Benachrichtigung? Nur die Personen, für deren Rolle und Standort die Aufgabe gilt. Können Führungskräfte Ankündigungen senden? Ankündigungen an Teams und Standorte sind Teil des Plans.",
+   "title": "Benachrichtigungen",
+   "body": "Push-Benachrichtigungen für neue Schulungen sowie Mitteilungen und dringende Mitteilungen von Führungskräften, damit jede Schicht erfährt, was sich geändert hat. Schulung hinzufügen: Veröffentlichen Sie eine neue Aufgabe für Ihr Team. Telefone erhalten einen Push: Die betroffenen Personen hören den Flexlore-Benachrichtigungston. Mitteilung senden: Teilen Sie Neuigkeiten mit Ihrem Team oder markieren Sie sie als dringend. Sind Benachrichtigungen schon verfügbar? Ja. Mitarbeitende erhalten einen Push, wenn für sie eine neue Schulung hinzukommt, und Führungskräfte können Mitteilungen und dringende Mitteilungen senden. Erinnerungen und Hinweise auf Änderungen stehen auf unserer Roadmap. Wer erhält eine Benachrichtigung? Die Personen, für die die Schulung oder Mitteilung bestimmt ist. Können Führungskräfte Mitteilungen senden? Ja, als normale oder als dringende Mitteilung.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -1207,13 +1207,13 @@
   {
    "id": "ar:feature-notifications",
    "locale": "ar",
-   "title": "الإشعارات (قريبًا)",
-   "body": "نبّه الأشخاص المعنيين عند إسناد مهمة أو اقتراب موعدها أو تحديثها، وتابع الإنجاز بعد التغيير. غيّر مهمة: انشر نسخة جديدة أو أسند مهمة جديدة. يُبلَّغ الأشخاص المعنيون: تصل الرسالة فقط إلى الأدوار والمواقع المعنية. متابعة الإنجاز: اعرف من شاهد المهمة المحدّثة واجتاز اختبارها. هل الإشعارات متاحة اليوم؟ إنها ضمن خطة التطوير. احجز عرضًا توضيحيًا لتعرف مرحلة تطويرها. من يتلقى الإشعار؟ فقط الأشخاص الذين تنطبق المهمة على دورهم وموقعهم. هل يمكن للمديرين إرسال إعلانات؟ الإعلانات الموجهة إلى الفرق والمواقع جزء من الخطة.",
+   "title": "الإشعارات",
+   "body": "إشعارات فورية للتدريبات الجديدة، إلى جانب إعلانات وإعلانات عاجلة من المديرين، لتعرف كل وردية ما الذي تغيّر. أضف تدريبًا: انشر مهمة جديدة لفريقك. تصل الإشعارات إلى الهواتف: يسمع الأشخاص المعنيون صوت إشعار Flexlore. أرسل إعلانًا: شارك الأخبار مع فريقك، أو ميّزها كعاجلة. هل الإشعارات متاحة اليوم؟ نعم. يتلقى الموظفون إشعارًا عند إضافة تدريب جديد لهم، ويمكن للمديرين إرسال إعلانات وإعلانات عاجلة. التذكيرات وإشعارات التحديث ضمن خطتنا. من يتلقى الإشعار؟ الأشخاص الموجّه إليهم التدريب أو الإعلان. هل يمكن للمديرين إرسال إعلانات؟ نعم، كإعلان عادي أو عاجل.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -1525,13 +1525,13 @@
   {
    "id": "es:feature-notifications",
    "locale": "es",
-   "title": "Notificaciones (Próximamente)",
-   "body": "Avise a las personas adecuadas cuando se asigna, vence o actualiza una tarea, y siga la finalización después del cambio. Cambie una tarea: Publique una nueva versión o asigne una tarea nueva. Se avisa a las personas adecuadas: Solo reciben el mensaje los puestos y ubicaciones afectados. La finalización se sigue: Vea quién ha visto y aprobado la tarea actualizada. ¿Están disponibles hoy las notificaciones? Están en nuestra hoja de ruta. Solicite una demo para ver en qué punto están. ¿Quién recibe una notificación? Solo las personas cuyo puesto y ubicación corresponden a la tarea. ¿Pueden los responsables enviar anuncios? Los anuncios a equipos y ubicaciones forman parte del plan.",
+   "title": "Notificaciones",
+   "body": "Notificaciones push para nuevas formaciones, además de avisos y avisos urgentes de los responsables, para que cada turno sepa qué ha cambiado. Añada una formación: Publique una nueva tarea para su equipo. Los teléfonos reciben un aviso: Las personas a las que va dirigida oyen el sonido de notificación de Flexlore. Envíe un aviso: Comparta novedades con su equipo o márquelas como urgentes. ¿Las notificaciones ya están disponibles? Sí. Las personas reciben un push cuando se añade una nueva formación para ellas, y los responsables pueden enviar avisos y avisos urgentes. Los recordatorios y los avisos de cambios están en nuestra hoja de ruta. ¿Quién recibe una notificación? Las personas a las que va dirigida la formación o el aviso. ¿Pueden los responsables enviar avisos? Sí, como aviso normal o urgente.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -1843,13 +1843,13 @@
   {
    "id": "pt:feature-notifications",
    "locale": "pt",
-   "title": "Notificações (Em breve)",
-   "body": "Avise as pessoas certas quando uma tarefa for atribuída, estiver no prazo ou for atualizada, e acompanhe a conclusão depois da mudança. Altere uma tarefa: Publique uma nova versão ou atribua uma nova tarefa. As pessoas certas são avisadas: Só as funções e unidades afetadas recebem a mensagem. A conclusão é acompanhada: Veja quem assistiu e passou na tarefa atualizada. As notificações já estão disponíveis? Estão no nosso roadmap. Agende uma demo para ver em que pé estão. Quem recebe uma notificação? Só as pessoas cuja função e unidade se aplicam à tarefa. Os gestores podem enviar comunicados? Comunicados para equipes e unidades fazem parte do plano.",
+   "title": "Notificações",
+   "body": "Notificações push para novos treinamentos, além de comunicados e comunicados urgentes dos gestores, para que todo turno saiba o que mudou. Adicione um treinamento: Publique uma nova tarefa para a sua equipe. Os celulares recebem um push: As pessoas para quem ele é ouvem o som de notificação do Flexlore. Envie um comunicado: Compartilhe novidades com a equipe ou marque como urgente. As notificações já estão disponíveis? Sim. As pessoas recebem um push quando um novo treinamento é adicionado para elas, e os gestores podem enviar comunicados e comunicados urgentes. Lembretes e avisos de atualização estão no nosso roadmap. Quem recebe uma notificação? As pessoas a quem o treinamento ou o comunicado se destina. Os gestores podem enviar comunicados? Sim, como comunicado normal ou urgente.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -2161,13 +2161,13 @@
   {
    "id": "nl:feature-notifications",
    "locale": "nl",
-   "title": "Meldingen (Binnenkort)",
-   "body": "Breng de juiste mensen op de hoogte als een taak is toegewezen, verloopt of is bijgewerkt, en volg de voortgang na de wijziging. Wijzig een taak: Publiceer een nieuwe versie of wijs een nieuwe taak toe. De juiste mensen krijgen een melding: Alleen de betrokken rollen en locaties krijgen het bericht. Voortgang volgt: Zie wie de bijgewerkte taak heeft bekeken en de quiz heeft gehaald. Zijn meldingen nu beschikbaar? Ze staan op onze roadmap. Boek een demo om te zien hoe ver ze zijn. Wie ontvangt een melding? Alleen de mensen voor wier rol en locatie de taak geldt. Kunnen leidinggevenden mededelingen sturen? Mededelingen aan teams en locaties zijn onderdeel van het plan.",
+   "title": "Meldingen",
+   "body": "Pushmeldingen voor nieuwe trainingen, plus mededelingen en dringende mededelingen van leidinggevenden, zodat elke dienst hoort wat er veranderd is. Voeg een training toe: Publiceer een nieuwe taak voor uw team. Telefoons krijgen een melding: De mensen voor wie het is, horen het Flexlore-meldingsgeluid. Stuur een mededeling: Deel nieuws met uw team, of markeer het als dringend. Zijn meldingen nu al beschikbaar? Ja. Mensen krijgen een push als er een nieuwe training voor hen wordt toegevoegd, en leidinggevenden kunnen mededelingen en dringende mededelingen sturen. Herinneringen en meldingen bij wijzigingen staan op onze roadmap. Wie ontvangt een melding? De mensen voor wie de training of mededeling bedoeld is. Kunnen leidinggevenden mededelingen sturen? Ja, als gewone of als dringende mededeling.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -2479,13 +2479,13 @@
   {
    "id": "fr:feature-notifications",
    "locale": "fr",
-   "title": "Notifications (Bientôt disponible)",
-   "body": "Prévenez les bonnes personnes quand une tâche est attribuée, à échéance ou mise à jour, et suivez la complétion après le changement. Modifiez une tâche: Publiez une nouvelle version ou attribuez une nouvelle tâche. Les bonnes personnes sont prévenues: Seuls les rôles et sites concernés reçoivent le message. La complétion suit: Voyez qui a regardé la tâche mise à jour et réussi son quiz. Les notifications sont-elles disponibles aujourd'hui? Elles sont sur notre feuille de route. Demandez une démo pour voir où elles en sont. Qui reçoit une notification? Uniquement les personnes dont le rôle et le site sont concernés par la tâche. Les managers peuvent-ils envoyer des annonces? Les annonces aux équipes et aux sites font partie du projet.",
+   "title": "Notifications",
+   "body": "Des notifications push pour les nouvelles formations, ainsi que des annonces et des annonces urgentes des responsables, pour que chaque équipe sache ce qui a changé. Ajoutez une formation: Publiez une nouvelle tâche pour votre équipe. Les téléphones reçoivent un push: Les personnes concernées entendent le son de notification Flexlore. Envoyez une annonce: Partagez une nouvelle avec votre équipe, ou marquez-la comme urgente. Les notifications sont-elles disponibles aujourd'hui ? Oui. Les personnes reçoivent un push quand une nouvelle formation est ajoutée pour elles, et les responsables peuvent envoyer des annonces et des annonces urgentes. Les rappels et les avis de mise à jour sont sur notre feuille de route. Qui reçoit une notification ? Les personnes à qui la formation ou l'annonce est destinée. Les responsables peuvent-ils envoyer des annonces ? Oui, sous forme d'annonce normale ou urgente.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {
@@ -2797,13 +2797,13 @@
   {
    "id": "pl:feature-notifications",
    "locale": "pl",
-   "title": "Powiadomienia (Wkrótce)",
-   "body": "Powiadamiaj właściwe osoby, gdy zadanie zostanie przypisane, zbliża się termin lub zostało zaktualizowane, i śledź ukończenie po zmianie. Zmień zadanie: Opublikuj nową wersję albo przypisz nowe zadanie. Powiadomienie trafia do właściwych osób: Wiadomość dostają tylko role i lokalizacje, których dotyczy. Ukończenie jest śledzone: Zobacz, kto obejrzał i zaliczył zaktualizowane zadanie. Czy powiadomienia są już dostępne? Są w naszych planach. Umów demo, aby zobaczyć, na jakim są etapie. Kto otrzymuje powiadomienie? Tylko osoby, których rola i lokalizacja są objęte zadaniem. Czy kierownicy mogą wysyłać ogłoszenia? Ogłoszenia do zespołów i lokalizacji są częścią planu.",
+   "title": "Powiadomienia",
+   "body": "Powiadomienia push o nowych szkoleniach oraz ogłoszenia i pilne ogłoszenia od kierowników, aby każda zmiana wiedziała, co się zmieniło. Dodaj szkolenie: Opublikuj nowe zadanie dla swojego zespołu. Telefony dostają powiadomienie: Osoby, których dotyczy, słyszą dźwięk powiadomienia Flexlore. Wyślij ogłoszenie: Podziel się nowościami z zespołem albo oznacz je jako pilne. Czy powiadomienia są już dostępne? Tak. Pracownicy dostają push, gdy pojawi się dla nich nowe szkolenie, a kierownicy mogą wysyłać ogłoszenia i pilne ogłoszenia. Przypomnienia i powiadomienia o zmianach są w naszych planach. Kto otrzymuje powiadomienie? Osoby, dla których przeznaczone jest szkolenie lub ogłoszenie. Czy kierownicy mogą wysyłać ogłoszenia? Tak, jako zwykłe lub pilne ogłoszenie.",
    "url": "https://www.flexlore.com/features/notifications/",
    "tags": [
     "feature",
     "spread",
-    "soon"
+    "live"
    ]
   },
   {

@@ -18,7 +18,7 @@ Pricing is by number of users: Free (3 users), Pro (10), ProPlus (30), Enterpris
 ### Roll out
 - [Automatic translation](https://www.flexlore.com/features/auto-translation/) (coming soon): One video, every worker in their own language. Automatic translation of steps and quizzes for multilingual frontline teams.
 - [QR on the job](https://www.flexlore.com/features/qr-codes/) (coming soon): Put a QR code on a machine or station. Scan it and the right job opens with its steps, no searching.
-- [Notifications](https://www.flexlore.com/features/notifications/) (coming soon): Notify the right people when a job is assigned, due or updated, and track completion after the change.
+- [Notifications](https://www.flexlore.com/features/notifications/) (available now): Push notifications for new trainings, plus announcements and urgent announcements from managers, so every shift hears what changed.
 
 ### Manage
 - [Permissions and workspaces](https://www.flexlore.com/features/permissions-workspaces/) (available now): Roles, permissions and workspaces for multi-location teams. People see only the jobs meant for their role and site.

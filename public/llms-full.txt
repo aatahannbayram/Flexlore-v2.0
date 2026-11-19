@@ -275,7 +275,7 @@ Logging only classroom sessions. Most frontline learning happens at the station.
 ## Doing this with Flexlore
 
 Flexlore keeps the training and the record in the same place. Your best person films the job on a phone, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves each draft before it is assigned.
-When people watch the job and take the quiz, you see who has watched and who passed, by person, team and location, without anyone typing a row. Roles and workspaces keep each site to its own jobs. When a job changes, you edit the steps and publish the new version. The apps run on iOS and Android, in 8 languages. Notifications and a web panel for managers are coming soon. Signing people off on the floor stays with your supervisor. Plans are by number of users; see pricing.
+When people watch the job and take the quiz, you see who has watched and who passed, by person, team and location, without anyone typing a row. Roles and workspaces keep each site to its own jobs. When a job changes, you edit the steps and publish the new version. The apps run on iOS and Android, in 8 languages. People get a push when a new job is added. Reminders and a web panel for managers are coming soon. Signing people off on the floor stays with your supervisor. Plans are by number of users; see pricing.
 
 ## Employee training tracker template (with example rows)
 
@@ -488,7 +488,7 @@ Whatever the industry, a large part of frontline learning still happens next to 
 
 Flexlore is SOP software for frontline teams, not an LMS. Available now: film a job on a phone, split it into steps in the phone editor, and let AI draft the instructions and a short quiz that your team edits and approves. Assign by role and location, and see completion and quiz results by person, team and location. iOS and Android apps, with the app in 8 languages. A quiz shows who understood the steps; signing someone off on the floor stays with their supervisor.
 
-Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, notifications, a web panel for managers, and AI agents and MCP.
+Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, reminders, a web panel for managers, and AI agents and MCP.
 
 If you already run an LMS, Flexlore can sit beside it for the hands-on tasks. Plans are by number of users; see pricing, or book a demo and build one of your own tasks with us.
 
@@ -704,7 +704,7 @@ Trivia quizzes. Ask about decisions and checks, not the color of a bucket.
 
 Flexlore is built around this kind of micro lesson. You film one job on a phone, mark the steps in the editor, and Flexlore drafts the step text and a short AI quiz. Your team edits and approves every draft before it is published. You assign lessons by role and location, and see who watched each one and passed its quiz, by person, team and location. Your team watches on iOS or Android, and the app is available in 8 languages.
 
-Notifications for refreshers and new lessons, QR codes at the station and automatic translation are coming soon. Signing someone off on the floor stays with their supervisor. Book a demo and we will build one of your jobs with you.
+People already get a push when a new lesson is added. Refresher reminders, QR codes at the station and automatic translation are coming soon. Signing someone off on the floor stays with their supervisor. Book a demo and we will build one of your jobs with you.
 
 ## Questions
 
@@ -830,7 +830,7 @@ The expert's method is never written down. When they leave, it leaves with them.
 ## Doing this with Flexlore
 
 Flexlore covers the "show" step and the record. Your expert films a task on a phone at the station and marks the steps in the phone editor. AI drafts the written steps and a short quiz, and your team reviews and approves them before anything goes out.
-You assign tasks by role and location. New hires watch on their own phone, replay any step and take the quiz. You see who watched each task and passed its quiz, by person, team and location. Signing someone off on the floor stays with their supervisor. The app runs on iOS and Android in 8 languages; automatic translation, QR codes at the station and notifications are coming soon. Plans are by number of users, see pricing.
+You assign tasks by role and location. New hires watch on their own phone, replay any step and take the quiz. You see who watched each task and passed its quiz, by person, team and location. Signing someone off on the floor stays with their supervisor. The app runs on iOS and Android in 8 languages; people get a push when a new job is added; automatic translation, QR codes at the station and reminders are coming soon. Plans are by number of users, see pricing.
 
 ## Questions
 
@@ -1469,7 +1469,7 @@ Treating it as paperwork. The matrix should change the rota and the training pla
 ## Doing this with Flexlore
 
 Flexlore covers the evidence side of a training matrix. A team member films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft before it goes out.
-Once a job is assigned, you see who has watched it and who passed its quiz, by person, team and location. That covers levels 1 and 2. Level 3 stays with your supervisor, who signs people off on the floor. Roles and workspaces keep each location to its own jobs. Apps run on iOS and Android, in 8 languages. A web panel for managers and notifications are coming soon. Plans are by number of users; see pricing.
+Once a job is assigned, you see who has watched it and who passed its quiz, by person, team and location. That covers levels 1 and 2. Level 3 stays with your supervisor, who signs people off on the floor. Roles and workspaces keep each location to its own jobs. Apps run on iOS and Android, in 8 languages. People get a push when a new job is added. A web panel for managers and reminders are coming soon. Plans are by number of users; see pricing.
 
 ## Training matrix template (kitchen example)
 
@@ -1630,7 +1630,7 @@ No day 30 review. The first month is when people decide whether to stay.
 ## Doing this with Flexlore
 
 Flexlore handles the "film once and reuse" part of this checklist. Your best cook films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft.
-You assign jobs by role and location, and new hires watch on their own phone and replay any step. You see who watched each job and passed its quiz, by person, team and location. The sign-off on the floor stays with the supervisor. The app runs on iOS and Android in 8 languages. Automatic translation, QR codes at the station and notifications are coming soon. See how it fits a kitchen on the restaurants page.
+You assign jobs by role and location, and new hires watch on their own phone and replay any step. You see who watched each job and passed its quiz, by person, team and location. The sign-off on the floor stays with the supervisor. The app runs on iOS and Android in 8 languages. Your team gets a push when a new job is added. Automatic translation, QR codes at the station and reminders are coming soon. See how it fits a kitchen on the restaurants page.
 
 ## Restaurant new hire onboarding checklist
 
@@ -1911,7 +1911,7 @@ Decide the next tasks and locations. Use a training matrix to plan who needs wha
 
 Flexlore is SOP software for frontline teams, built around video. Available now: film a job on a phone, split it into steps in the phone editor, and let AI draft the instructions and a short quiz that your team edits and approves. Roles, permissions and workspaces by location, and completion and quiz results by person, team and location. iOS and Android apps, with the app in 8 languages.
 
-Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, notifications, a web panel for managers, and AI agents and MCP.
+Coming soon: PDF to steps, screen recording, automatic translation, QR codes on the job, reminders, a web panel for managers, and AI agents and MCP.
 
 Plans are by number of users, from Free up to Enterprise; see pricing. To test it against the checklist above with one of your own tasks, book a demo.
 
@@ -2217,7 +2217,7 @@ Yalnızca sınıf eğitimlerini kaydetmek. Sahada öğrenmenin çoğu istasyonda
 ## Bunu Flexlore ile yapmak
 
 Flexlore, eğitimi ve kaydını aynı yerde tutar. İşi en iyi yapan kişi işi telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylamadan hiçbir şey atanmaz.
-Çalışan işi izleyip quizi çözdüğünde, kimin izlediğini ve kimin geçtiğini kişi, ekip ve şube bazında görürsünüz; kimsenin satır yazmasına gerek kalmaz. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. İş değiştiğinde adımları düzenleyip yeni sürümü yayınlarsınız. Uygulama iOS ve Android'de, 8 dilde çalışır. Bildirimler ve yöneticiler için web paneli yakında. Sahada yetkinlik onayı yine amirinizdedir. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+Çalışan işi izleyip quizi çözdüğünde, kimin izlediğini ve kimin geçtiğini kişi, ekip ve şube bazında görürsünüz; kimsenin satır yazmasına gerek kalmaz. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. İş değiştiğinde adımları düzenleyip yeni sürümü yayınlarsınız. Uygulama iOS ve Android'de, 8 dilde çalışır. Yeni bir iş eklendiğinde çalışanın telefonuna bildirim gider. Hatırlatmalar ve yöneticiler için web paneli yakında. Sahada yetkinlik onayı yine amirinizdedir. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
 
 ## Personel eğitim takip tablosu şablonu (örnek satırlarla)
 
@@ -2375,7 +2375,7 @@ Ustanın yöntemi hiç kayda alınmaz. Usta giderse bilgi de onunla gider.
 ## Bunu Flexlore ile yapmak
 
 Flexlore bu sürecin "göster" adımını ve kaydını üstlenir. Ustanız görevi istasyonda telefonla çeker, telefondaki editörde adımları işaretler. Yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar; ekibiniz yayından önce inceleyip onaylar.
-Görevleri role ve şubeye göre atarsınız. Yeni personel kendi telefonunda izler, istediği adımı tekrar açar ve quizi çözer. Kimin hangi görevi izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahadaki onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır; otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir, ayrıntılar fiyatlandırma sayfasında.
+Görevleri role ve şubeye göre atarsınız. Yeni personel kendi telefonunda izler, istediği adımı tekrar açar ve quizi çözer. Kimin hangi görevi izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahadaki onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır; yeni bir iş eklendiğinde çalışanın telefonuna bildirim gider; otomatik çeviri, istasyonda QR kod ve hatırlatmalar yakında. Planlar kullanıcı sayısına göredir, ayrıntılar fiyatlandırma sayfasında.
 
 ## Sorular
 
@@ -2559,7 +2559,7 @@ Sektör ne olursa olsun, saha öğrenmesinin büyük kısmı yine deneyimli bir 
 
 Flexlore bir LMS değil, saha ekipleri için bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekin, telefondaki editörle adımlara bölün; yapay zekâ talimatların ve kısa bir quizin taslağını hazırlasın, ekibiniz düzenleyip onaylasın. İşleri role ve şubeye göre atayın, tamamlanmayı ve quiz sonuçlarını kişi, ekip ve şube bazında görün. iOS ve Android uygulaması var, uygulama 8 dilde kullanılabiliyor. Quiz, adımları kimin anladığını gösterir; sahada yetkinlik onayı yine çalışanın sorumlusundadır.
 
-Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, iş başında QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
+Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, iş başında QR kod, hatırlatmalar, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
 
 Zaten bir LMS kullanıyorsanız Flexlore, el işi gerektiren görevler için onun yanında çalışabilir. Planlar kullanıcı sayısına göredir; fiyatlara bakın ya da kendi işlerinizden birini birlikte hazırlamak için demo isteyin.
 
@@ -2773,7 +2773,7 @@ Ezber soruları. Kovanın rengini değil, kararları ve kontrolleri sorun.
 
 Flexlore tam bu tür kısa derslerin etrafında kuruldu. Bir işi telefonla çekersiniz, editörde adımları işaretlersiniz; Flexlore adım yazılarının ve kısa bir yapay zekâ quizinin taslağını hazırlar. Ekibiniz her taslağı düzenleyip onaylamadan hiçbir şey yayınlanmaz. Dersleri role ve şubeye göre atar, kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Ekibiniz iOS ya da Android'de izler, uygulama 8 dilde kullanılabilir.
 
-Hatırlatmalar ve yeni dersler için bildirimler, istasyona asılan QR kodlar ve otomatik çeviri yakında geliyor. Sahada yetkinlik onayı yine sorumlunuzdadır. Demo isteyin, işlerinizden birini sizinle birlikte hazırlayalım.
+Yeni bir ders eklendiğinde çalışanın telefonuna bildirim zaten gidiyor. Tekrar hatırlatmaları, istasyona asılan QR kodlar ve otomatik çeviri yakında geliyor. Sahada yetkinlik onayı yine sorumlunuzdadır. Demo isteyin, işlerinizden birini sizinle birlikte hazırlayalım.
 
 ## Sorular
 
@@ -3442,7 +3442,7 @@ Matrisi evrak saymak. Matris vardiya planını ve eğitim planını değiştirmi
 ## Bunu Flexlore ile yapmak
 
 Flexlore, yetkinlik matrisinin kanıt tarafını üstlenir. İşi en iyi yapan kişi işi telefonla, işin yapıldığı yerde çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.
-İş atandıktan sonra kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Bu, seviye 1 ve 2'yi karşılar. Seviye 3, yani sahada yetkinlik onayı, yine amirinizdedir. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. Uygulama iOS ve Android'de, 8 dilde çalışır. Yöneticiler için web paneli ve bildirimler yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+İş atandıktan sonra kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Bu, seviye 1 ve 2'yi karşılar. Seviye 3, yani sahada yetkinlik onayı, yine amirinizdedir. Rol ve çalışma alanları her şubeyi kendi işleriyle sınırlar. Uygulama iOS ve Android'de, 8 dilde çalışır. Yeni bir iş eklendiğinde çalışanın telefonuna bildirim gider. Yöneticiler için web paneli ve hatırlatmalar yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
 
 ## Yetkinlik matrisi şablonu (üretim hattı örneği)
 
@@ -3617,7 +3617,7 @@ Onay olmaması. "İdare ediyor" bir kontrol değildir. Tarihli bir sorumlu onay�
 ## Bunu Flexlore ile yapmak
 
 Flexlore, bu listedeki "bir kez çek, herkese aynı öğret" kısmını üstlenir. Şefiniz işi istasyonda telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.
-İşleri role ve şubeye göre atarsınız; yeni personel kendi telefonunda izler, takıldığı adımı yeniden açar. Kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahada onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır. Otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
+İşleri role ve şubeye göre atarsınız; yeni personel kendi telefonunda izler, takıldığı adımı yeniden açar. Kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahada onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır. Yeni bir iş eklendiğinde ekibin telefonuna bildirim gider. Otomatik çeviri, istasyonda QR kod ve hatırlatmalar yakında. Planlar kullanıcı sayısına göredir; ayrıntılar fiyatlandırma sayfasında.
 
 ## Restoran yeni personel oryantasyon kontrol listesi
 
@@ -3914,7 +3914,7 @@ Bütün şirketi aynı anda geçirmek. Bir iki pilot şubeyle başlamak, sorunla
 
 Flexlore, saha ekipleri için video odaklı bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekmek, telefondaki editörde adımlara bölmek, talimatların ve kısa bir quizin taslağını yapay zekâya hazırlatıp ekibinizle düzenleyip onaylamak. Şubeye göre rol, yetki ve çalışma alanları; kişi, ekip ve şube bazında tamamlama ve quiz sonuçları. iOS ve Android uygulamaları, uygulama 8 dilde.
 
-Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
+Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, hatırlatmalar, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.
 
 Planlar kullanıcı sayısına göre, Free'den Enterprise'a kadar; ayrıntılar fiyatlar sayfasında. Yukarıdaki listeyi kendi işlerinizden biriyle denemek için demo isteyin.
 

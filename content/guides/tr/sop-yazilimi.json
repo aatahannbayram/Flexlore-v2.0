@@ -52,7 +52,7 @@
     {
       "id": "flexlore-nerede-duruyor",
       "h2": "Bunu Flexlore ile yapmak",
-      "html": "<p>Flexlore, saha ekipleri için video odaklı bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekmek, telefondaki editörde adımlara bölmek, talimatların ve kısa bir quizin taslağını yapay zekâya hazırlatıp ekibinizle düzenleyip onaylamak. Şubeye göre rol, yetki ve çalışma alanları; kişi, ekip ve şube bazında tamamlama ve quiz sonuçları. iOS ve Android uygulamaları, uygulama 8 dilde.</p>\n<p>Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, bildirimler, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.</p>\n<p>Planlar kullanıcı sayısına göre, Free'den Enterprise'a kadar; ayrıntılar <a href=\"/tr/pricing/\">fiyatlar</a> sayfasında. Yukarıdaki listeyi kendi işlerinizden biriyle denemek için <a href=\"/demo/\">demo</a> isteyin.</p>"
+      "html": "<p>Flexlore, saha ekipleri için video odaklı bir SOP yazılımıdır. Bugün kullanılabilenler: işi telefonla çekmek, telefondaki editörde adımlara bölmek, talimatların ve kısa bir quizin taslağını yapay zekâya hazırlatıp ekibinizle düzenleyip onaylamak. Şubeye göre rol, yetki ve çalışma alanları; kişi, ekip ve şube bazında tamamlama ve quiz sonuçları. iOS ve Android uygulamaları, uygulama 8 dilde.</p>\n<p>Yakında: PDF'ten adımlar, ekran kaydı, otomatik çeviri, istasyonda QR kod, hatırlatmalar, yöneticiler için web paneli, yapay zekâ ajanları ve MCP.</p>\n<p>Planlar kullanıcı sayısına göre, Free'den Enterprise'a kadar; ayrıntılar <a href=\"/tr/pricing/\">fiyatlar</a> sayfasında. Yukarıdaki listeyi kendi işlerinizden biriyle denemek için <a href=\"/demo/\">demo</a> isteyin.</p>"
     }
   ],
   "template": null,

@@ -11,7 +11,8 @@ Read before writing: `public/knowledge/en.json`, `public/knowledge/tr.json`, `pu
 - Available now: video to SOP, phone video editor with step markers, AI quiz, roles/permissions/workspaces by location,
   completion tracking by person/team/location, iOS and Android apps, app in 8 languages.
 - Coming soon (must be labelled "coming soon" / "yakında" if mentioned): PDF to steps, screen recording, automatic
-  translation, QR codes on the job, notifications, web panel, AI agents and MCP.
+  translation, QR codes on the job, reminders and update notices, web panel, AI agents and MCP.
+- Notifications are live (since 2026-11-19): push for new trainings, announcements and urgent announcements. Reminders are not.
 - Plans by number of users: Free (up to 3 users), Pro (10), ProPlus (30), Enterprise (30+). Do not state prices; link /pricing/.
 - AI drafts, people approve. A quiz shows who understood; signing someone off on the floor stays with their supervisor.
 

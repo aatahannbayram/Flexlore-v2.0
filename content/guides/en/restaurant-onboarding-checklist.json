@@ -57,7 +57,7 @@
     {
       "id": "doing-this-with-flexlore",
       "h2": "Doing this with Flexlore",
-      "html": "<p>Flexlore handles the \"film once and reuse\" part of this checklist. Your best cook films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft.</p><p>You assign jobs by role and location, and new hires watch on their own phone and replay any step. You see who watched each job and passed its quiz, by person, team and location. The sign-off on the floor stays with the supervisor. The app runs on iOS and Android in 8 languages. Automatic translation, QR codes at the station and notifications are coming soon. See how it fits a kitchen on the <a href=\"/industries/restaurants/\">restaurants page</a>.</p>"
+      "html": "<p>Flexlore handles the \"film once and reuse\" part of this checklist. Your best cook films a job on a phone at the station, marks the steps in the phone editor, and AI drafts the written steps and a short quiz. Your team reviews and approves every draft.</p><p>You assign jobs by role and location, and new hires watch on their own phone and replay any step. You see who watched each job and passed its quiz, by person, team and location. The sign-off on the floor stays with the supervisor. The app runs on iOS and Android in 8 languages. Your team gets a push when a new job is added. Automatic translation, QR codes at the station and reminders are coming soon. See how it fits a kitchen on the <a href=\"/industries/restaurants/\">restaurants page</a>.</p>"
     }
   ],
   "template": {

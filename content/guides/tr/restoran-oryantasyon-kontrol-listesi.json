@@ -67,7 +67,7 @@
     {
       "id": "bunu-flexlore-ile-yapmak",
       "h2": "Bunu Flexlore ile yapmak",
-      "html": "<p>Flexlore, bu listedeki \"bir kez çek, herkese aynı öğret\" kısmını üstlenir. Şefiniz işi istasyonda telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.</p><p>İşleri role ve şubeye göre atarsınız; yeni personel kendi telefonunda izler, takıldığı adımı yeniden açar. Kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahada onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır. Otomatik çeviri, istasyonda QR kod ve bildirimler yakında. Planlar kullanıcı sayısına göredir; ayrıntılar <a href=\"/tr/pricing/\">fiyatlandırma</a> sayfasında.</p>"
+      "html": "<p>Flexlore, bu listedeki \"bir kez çek, herkese aynı öğret\" kısmını üstlenir. Şefiniz işi istasyonda telefonla çeker, telefondaki editörde adımları işaretler; yapay zekâ yazılı adımların ve kısa bir quizin taslağını hazırlar. Ekibiniz her taslağı inceleyip onaylar.</p><p>İşleri role ve şubeye göre atarsınız; yeni personel kendi telefonunda izler, takıldığı adımı yeniden açar. Kimin izlediğini ve quizi geçtiğini kişi, ekip ve şube bazında görürsünüz. Sahada onay yine sorumlunuzdadır. Uygulama iOS ve Android'de, 8 dilde çalışır. Yeni bir iş eklendiğinde ekibin telefonuna bildirim gider. Otomatik çeviri, istasyonda QR kod ve hatırlatmalar yakında. Planlar kullanıcı sayısına göredir; ayrıntılar <a href=\"/tr/pricing/\">fiyatlandırma</a> sayfasında.</p>"
     }
   ],
   "template": {

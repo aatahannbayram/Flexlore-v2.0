@@ -14,7 +14,7 @@ export const FEATURES: Feature[] = [
   { slug: "ai-quiz", icon: "Question", group: "create", status: "live", visual: "quiz", photo: "food-qa" },
   { slug: "auto-translation", icon: "Translate", group: "spread", status: "soon", visual: "translate", photo: "ws-j-brifing" },
   { slug: "qr-codes", icon: "QrCode", group: "spread", status: "soon", visual: "qr", photo: "qr-scan" },
-  { slug: "notifications", icon: "Bell", group: "spread", status: "soon", visual: "notify", photo: "huddle" },
+  { slug: "notifications", icon: "Bell", group: "spread", status: "live", visual: "notify", photo: "huddle" },
   { slug: "permissions-workspaces", icon: "LockSimple", group: "manage", status: "live", visual: "roles", photo: "hotel-desk" },
   { slug: "web-panel", icon: "ChartBar", group: "manage", status: "soon", visual: "panel", photo: "v3:web-toplanti" },
   { slug: "ai-agents-mcp", icon: "Robot", group: "manage", status: "soon", visual: "agents", photo: "web-saha" },
