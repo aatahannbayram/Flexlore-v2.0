@@ -175,7 +175,10 @@ details summary::-webkit-details-marker { display:none; }
 }
 
 /* blog article body */
-.prose-blog { color: var(--color-ink-muted); font-size: 18px; line-height: 1.75; }
+.prose-blog { color: var(--color-ink-muted); font-size: 18px; line-height: 1.75; overflow-wrap: anywhere; }
+/* Mobilde uzun tablo/kod/görsel sayfayı yana kaydırmasın: kendi içinde kaysın. */
+.prose-blog table, .prose-blog pre { display: block; max-width: 100%; overflow-x: auto; }
+.prose-blog img, .prose-blog video, .prose-blog iframe { max-width: 100%; height: auto; }
 .prose-blog > * + * { margin-top: 1.25em; }
 .prose-blog h1 { color:var(--color-ink); font-size: clamp(2rem,4.5vw,3.4rem); font-weight:600; letter-spacing:-.035em; line-height:1.05; }
 .prose-blog h2, .prose-blog h3 { color:var(--color-ink); font-weight:600; letter-spacing:-.025em; line-height:1.2; margin-top:2.4em; }
