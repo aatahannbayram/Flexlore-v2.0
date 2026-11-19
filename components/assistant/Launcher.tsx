@@ -37,7 +37,7 @@ export function AssistantLauncher() {
   const [open, setOpen] = useState(false); const [ever, setEver] = useState(false); const [err, setErr] = useState(false);
   const [hi, setHi] = useState(false); const [demo, setDemo] = useState(false); const [active, setActive] = useState(false);
   // The customer demo page has its own layout and controls in this corner.
-  useEffect(() => { setDemo(location.pathname.startsWith("/demo/")); }, []);
+  useEffect(() => { setDemo(/^\/(tr\/)?demo\//.test(location.pathname)); }, []);
   // Warm part 2 when the browser is idle; the greeting shows once per visit, a few seconds after the page settles.
   useEffect(() => {
     if (!AGENT) return;

@@ -12,7 +12,7 @@ export const GUIDE_TR: Record<string, string> = {"video-sop":"video-sop","sop-te
 const GUIDE_EN: Record<string, string> = Object.fromEntries(Object.entries(GUIDE_TR).map(([en, tr]) => [tr, en]));
 const FEATURE_SLUGS = ["video-to-sop", "pdf-to-steps", "video-editor", "screen-recording", "ai-quiz", "auto-translation", "qr-codes", "notifications", "permissions-workspaces", "web-panel", "ai-agents-mcp"];
 
-const STATIC = ["/", "/features/", "/pricing/", "/faq/", "/ai/", "/integrations/", "/see-it/", "/company/", "/support/", "/careers/"];
+const STATIC = ["/", "/features/", "/pricing/", "/faq/", "/ai/", "/integrations/", "/see-it/", "/company/", "/support/", "/careers/", "/demo/"];
 /** English paths that have a Turkish twin. */
 export const TR_MIRROR: string[] = [
   ...STATIC,

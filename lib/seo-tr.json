@@ -54,5 +54,9 @@
   "/tr/use-cases/master-apprentice-skills-transfer/": {
     "t": "",
     "d": "Ustadan çırağa bilgi aktarımı: usta işi bir kez doğru şekilde çeker, çırak adımları tekrar izler, quizi geçer ve sahada onay alır."
+  },
+  "/tr/demo/": {
+    "t": "Flexlore Demo Talebi: 20 Dakikada Kendi İşinizle",
+    "d": "Yirmi dakikalık görüşmede kendi işlerinizden birini birlikte Flexlore'a aktaralım. Takvimden size uygun saati seçin."
   }
 }
