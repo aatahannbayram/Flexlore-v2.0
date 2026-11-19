@@ -62,7 +62,7 @@ export function Article({ p }: { p: Post }) {
           <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-ink-faint"><span>{p.date}</span>{p.author && <><span aria-hidden="true">·</span><span>{p.author}</span></>}<span aria-hidden="true">·</span><span>{mins(p)} min read</span></p>
         </article>
         <div className="mx-auto mt-12 max-w-[calc(1100px+2*var(--pad-x))] px-[var(--pad-x)] md:mt-14"><div className="overflow-hidden rounded-[28px]"><Picture src={p.cover} alt={p.coverAlt || cardTitle(p)} sizes="(min-width: 1100px) 1100px, 100vw" className="block w-full" priority /></div></div>
-        <div className="prose-blog mx-auto mt-16 max-w-[760px]" dangerouslySetInnerHTML={{ __html: body2 }} />
+        <div className="prose-blog mx-auto mt-16 max-w-[calc(760px+2*var(--pad-x))] px-[var(--pad-x)]" dangerouslySetInnerHTML={{ __html: body2 }} />
         <section className="mt-32 container-x">
           <p className="inline-flex items-center gap-2.5 text-[13px] font-medium mb-6 text-ink-faint"><span aria-hidden="true" className="kick-line" />Blog</p>
           <h2 className="v4-h2 mb-10 max-w-[18ch]"><span className="t-ink">More from</span> <span className="t-accent">the floor.</span></h2>
