@@ -1,0 +1,4 @@
+Campaign,Campaign Type,Networks,Budget,Bid Strategy Type,Campaign Status,Location,Languages
+FX | Brand | US+TR,Search,Google search,200,Maximize clicks,Paused,United States;Turkey,en;tr
+FX | Category | US,Search,Google search,1300,Maximize clicks,Paused,United States,en
+FX | Category | TR,Search,Google search,450,Maximize clicks,Paused,Turkey,tr
