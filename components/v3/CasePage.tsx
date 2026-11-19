@@ -54,8 +54,8 @@ export default function CasePage({ slug }: { slug: string }) {
                 <div className="md:col-span-7"><h2 className="text-[28px] font-semibold leading-[1.05] tracking-[-0.035em] md:text-[40px]">{t.soonH}</h2>
                   <p className="mt-4 max-w-[34rem] text-[16px] leading-[1.6] text-ink-muted">{t.soonP}</p></div>
                 <div className="flex flex-wrap gap-3 md:col-span-5 md:justify-end">
-                  <a href={SITE.demo} className="btn btn-cta h-11 px-5">{t.cta}</a>
-                  <Link href="/#customers" className="btn btn-secondary h-11 px-5">{t.back}</Link></div>
+                  <a href={SITE.demo} className="btn btn-cta">{t.cta}</a>
+                  <Link href="/#customers" className="btn btn-secondary">{t.back}</Link></div>
               </div>)}
 
             <h2 className="mt-16 text-[13px] font-semibold uppercase tracking-[0.14em] text-ink-faint md:mt-20">{t.more}</h2>

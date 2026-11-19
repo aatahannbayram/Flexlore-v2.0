@@ -642,7 +642,7 @@ export function EndV3() {
           <div className="col-span-12 lg:col-span-5">
             <H2 id="end-h" a={c.h} className="max-w-[16ch]" />
             <p className="intro m-keep mt-4 max-w-[28rem]">{c.p}</p>
-            <a href={SITE.demo} className="mt-7 inline-grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.cta}</span></a>
+            <a href={SITE.demo} className="mt-7 inline-grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{c.cta}</span></a>
           </div>
           <div className="col-span-12 mx-auto w-full lg:col-span-7"><div dir="ltr" className="overflow-hidden rounded-[24px]"><CtaDuoInner lang={lang} /></div></div>
         </div>
@@ -670,7 +670,7 @@ export function SectorsV3() {
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div><Ch n="05">{c.k}</Ch><H2 id="ind-h" a={c.h} className="max-w-[26ch]" /></div>
-          <Link href="/see-it/" className="hidden min-h-11 place-items-center md:inline-grid"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
+          <Link href="/see-it/" className="hidden min-h-11 place-items-center md:inline-grid"><span className="btn btn-glass-2 btn-38">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         </div>
         {/* Large screens: four panels in a row; the one under the pointer (or keyboard focus) opens wide and tells its story,
             the others narrow to a photo strip with their number and name. */}
@@ -714,7 +714,7 @@ export function SectorsV3() {
             </m.li>))}
         </ul>
         <RowCount row={row} n={IND.length} className="hidden md:block lg:hidden" />
-        <Link href="/see-it/" className="mt-6 inline-grid min-h-11 place-items-center md:hidden"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
+        <Link href="/see-it/" className="mt-6 inline-grid min-h-11 place-items-center md:hidden"><span className="btn btn-glass-2 btn-38">{c.more}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         {/* One slim glass strip: the other areas on one side, the site languages as round flags (a tap switches the site) on the other. */}
         <div className="mt-12 hidden gap-5 md:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10">
           <div className="min-w-0">

@@ -112,7 +112,7 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
               <li key={g.id} onMouseEnter={() => enter(g.id)}>
                 <button ref={(el) => { triggers.current[g.id] = el; }} type="button" aria-expanded={mega === g.id} aria-controls={`mega-${g.id}`}
                   onClick={() => setMega(mega === g.id ? null : g.id)}
-                  className={`inline-flex h-11 items-center gap-1.5 rounded-full px-3 xl:px-4 tracking-[-0.01em] transition-colors ${mega === g.id ? "bg-white/[.09] text-ink" : "text-ink/80 hover:bg-white/[.06] hover:text-ink"}`}>
+                  className={`inline-flex h-11 items-center gap-1.5 rounded-[12px] px-3 xl:px-4 tracking-[-0.01em] transition-colors ${mega === g.id ? "bg-white/[.09] text-ink" : "text-ink/80 hover:bg-white/[.06] hover:text-ink"}`}>
                   {navLabel(g.id, g.label[lang])}<CaretDown size={12} aria-hidden="true" className={`transition-transform duration-300 ${mega === g.id ? "rotate-180" : ""}`} />
                 </button>
                 {/* Panel sits right after its trigger in the DOM (keyboard order); positioned against the nav. Below xl the list sits in the
@@ -126,14 +126,14 @@ export function Header({ lang: langProp, setLang, paused = false, setPaused, mot
                     </m.div>)}
                 </AnimatePresence>
               </li>))}
-            <li onMouseEnter={leave}><Link prefetch={false} href={lh("/pricing/")} className="inline-flex h-11 items-center rounded-full px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</Link></li>
+            <li onMouseEnter={leave}><Link prefetch={false} href={lh("/pricing/")} className="inline-flex h-11 items-center rounded-[12px] px-3 xl:px-4 tracking-[-0.01em] text-ink/80 transition-colors hover:bg-white/[.06] hover:text-ink">{t.navP}</Link></li>
           </ul>
 
           <div className="flex items-center gap-2">
             {/* Krea-style pair (2026-11-15): orange demo pill and a dark log-in pill. Language is asked once in a dialog
                 (components/i18n/LanguageModal.tsx); language and theme can be changed in the footer. */}
-            <div className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="hidden min-h-11 place-items-center md:grid"><span className="inline-flex h-[38px] items-center rounded-full bg-white/[.08] px-4 text-[14px] font-semibold text-ink ring-1 ring-white/[.08] transition-colors hover:bg-white/[.14]">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</span></a>}
-            <a href={lh(SITE.demo)} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.cta}</span></a></div>
+            <div className="flex items-center gap-2">{SITE.login && <a href={lh("/login/")} className="hidden min-h-11 place-items-center md:grid"><span className="inline-flex h-[38px] items-center rounded-full bg-white/[.08] px-4 text-[14px] font-[450] text-ink ring-1 ring-white/[.08] transition-colors duration-300 hover:bg-white/[.16]">{own ? (tr ? "Giriş yap" : "Log in") : n.login}</span></a>}
+            <a href={lh(SITE.demo)} className="grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{t.cta}</span></a></div>
             <button ref={menuBtn} type="button" onClick={() => setOpen(true)} aria-expanded={open} aria-controls="menu" aria-label={t.menu}
               className="grid h-11 w-11 place-items-center rounded-full text-ink lg:hidden"><List size={22} aria-hidden="true" /></button>
           </div>

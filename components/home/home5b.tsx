@@ -149,7 +149,7 @@ export function PlanCard({ id, yearly, full = false, className = "" }: { id: str
         </div>
         <p className="mt-5 min-h-[42px] text-[14px] leading-snug text-ink-muted">{forWho}</p>
         {id === "enterprise"
-          ? <a href={lh("/pricing/#quote")} className="btn mt-6 !h-12 w-full !bg-[#F4F0EB] !text-[#111] hover:!bg-white">{q.cta}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover/plan:translate-x-0.5 rtl:-scale-x-100" /></a>
+          ? <a href={lh("/pricing/#quote")} className="btn btn-primary mt-6 w-full">{q.cta}<ArrowRight size={14} aria-hidden="true" className="transition-transform group-hover/plan:translate-x-0.5 rtl:-scale-x-100" /></a>
           : <GetApp checkout={checkout} label={id === "free" ? c.start : c.choose} cls={`btn mt-6 !h-12 w-full ${rec ? "!bg-[#F4F0EB] !text-[#111] hover:!bg-white" : "btn-secondary"}`} />}
         <div className="mt-6 border-t border-white/[.07] pt-5">
           <p className="min-h-5 text-[13px] text-ink-faint">{prev ? fmt(c.plus, { plan: c.plans[prev][0] }) : ""}</p>

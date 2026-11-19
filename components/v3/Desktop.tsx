@@ -45,7 +45,7 @@ export function DesktopV3({ H2, Ch }: { H2: (p: { id: string; a: string; b?: str
                   <span className="mt-0.5 block text-[15px] leading-[22px] text-ink-muted">{p}</span></span>
               </m.li>); })}
           </ol>
-          <a href={SITE.login} target="_blank" rel="noopener" className="btn btn-primary mt-8 h-11 px-5">{t.open}<ArrowUpRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
+          <a href={SITE.login} target="_blank" rel="noopener" className="btn btn-primary mt-8">{t.open}<ArrowUpRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></a>
         </div>
         {/* End side: the desktop app in a quiet browser frame, running past the container to the page edge. */}
         <div ref={ref} className="relative lg:col-span-7">

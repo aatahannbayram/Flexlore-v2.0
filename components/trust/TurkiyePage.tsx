@@ -88,7 +88,7 @@ export function TurkiyePage({ lang }: { lang: L }) {
               <p className="mt-3 max-w-[32rem] text-[16px] leading-[1.6] text-white/65">{c.s6.p}</p>
               <ul className="mt-6 flex flex-wrap gap-2">{c.s6.docs.map((d) => (
                 <li key={d} className="rounded-full bg-white/[0.07] px-3.5 py-1.5 text-[14px] text-white/85 ring-1 ring-inset ring-white/10">{d}</li>))}</ul>
-              <a href={mail} className="btn btn-cta mt-8 h-11 px-5"><EnvelopeSimple size={16} aria-hidden="true" />{c.s6.cta}</a>
+              <a href={mail} className="btn btn-cta mt-8"><EnvelopeSimple size={16} aria-hidden="true" />{c.s6.cta}</a>
             </div>
           </section>
 

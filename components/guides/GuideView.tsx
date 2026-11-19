@@ -65,14 +65,14 @@ export function GuideView({ g, rel }: { g: Guide; rel: Rel[] }) {
               <span aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(100deg,rgba(17,17,17,.94)_0%,rgba(17,17,17,.82)_55%,rgba(17,17,17,.6)_100%)]" />
               <h2 id="g-cta" className="max-w-[22ch] text-[28px] font-semibold leading-[1.15] tracking-[-0.025em] text-white md:text-[34px]">{t.ctaH}</h2>
               <p className="mt-4 max-w-[46ch] text-[16px] leading-[1.6] text-white/80">{t.ctaP}</p>
-              <div className="mt-7 flex flex-wrap gap-3"><Link href="/demo/" className="btn btn-cta h-11 px-5 text-[15px]">{t.demo}</Link><Link href={g.lang === "tr" ? "/tr/pricing/" : "/pricing/"} className="btn btn-glass-2 h-11 px-5 text-[15px]">{t.pricing}</Link></div>
+              <div className="mt-7 flex flex-wrap gap-3"><Link href="/demo/" className="btn btn-cta">{t.demo}</Link><Link href={g.lang === "tr" ? "/tr/pricing/" : "/pricing/"} className="btn btn-glass-2">{t.pricing}</Link></div>
             </section>
           </article>
           <aside className="hidden lg:block">
             <nav aria-label={t.toc} className="sticky top-[calc(var(--header-h)+32px)] mt-28">
               <p className="text-[13px] font-semibold uppercase tracking-[0.06em] text-ink-faint">{t.toc}</p>
               <ol className="mt-4 grid gap-0.5 border-l border-white/10 text-[14px]">{g.sections.map((s) => <li key={s.id}><a href={`#${s.id}`} className="-ml-px flex min-h-11 items-center border-l border-transparent py-1 pl-4 leading-[1.35] text-ink-muted hover:border-[#EC6726] hover:text-ink">{s.h2}</a></li>)}{g.template && <li><a href="#template" className="-ml-px flex min-h-11 items-center border-l border-transparent py-1 pl-4 text-ink-muted hover:border-[#EC6726] hover:text-ink">{g.template.title}</a></li>}<li><a href="#faq" className="-ml-px flex min-h-11 items-center border-l border-transparent py-1 pl-4 text-ink-muted hover:border-[#EC6726] hover:text-ink">{t.faq}</a></li></ol>
-              <Link href="/demo/" className="btn btn-cta mt-8 h-11 w-full px-5 text-[15px]">{t.demo}</Link>
+              <Link href="/demo/" className="btn btn-cta mt-8 w-full">{t.demo}</Link>
             </nav>
           </aside>
         </div>

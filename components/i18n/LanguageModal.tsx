@@ -71,9 +71,9 @@ export function LanguageModal() {
           </ul>
         ) : (
           <div className="flex gap-1.5 p-1">
-            <button type="button" onClick={() => pick(sug)} className="btn group !h-11 !min-h-11 flex-1 gap-2 !rounded-full !bg-[#F4F0EB] !px-4 !text-[14px] !font-semibold !text-[#111] hover:!bg-white">
+            <button type="button" onClick={() => pick(sug)} className="btn btn-primary group flex-1 gap-2">
               {t.go}<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
-            <button type="button" onClick={() => setList(true)} className="btn btn-glass-2 !h-11 !min-h-11 !px-4 !text-[14px]">{t.change}</button>
+            <button type="button" onClick={() => setList(true)} className="btn btn-glass-2">{t.change}</button>
           </div>
         )}
       </div>

@@ -22,8 +22,8 @@ export function CareersPage() {
             <span className="t-ink">{c.h[0]}</span> <span className="t-accent">{c.h[1]}</span></h1>
           <p className="mt-6 max-w-[38rem] text-[18px] leading-[1.6] text-white/70">{c.p}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#roles" className="btn btn-cta h-11 px-5">{c.roles.k}</a>
-            <a href={mail(c.send.subject)} className="btn btn-glass-2 h-11 px-5"><EnvelopeSimple size={16} aria-hidden="true" />{c.send.cta}</a>
+            <a href="#roles" className="btn btn-cta">{c.roles.k}</a>
+            <a href={mail(c.send.subject)} className="btn btn-glass-2"><EnvelopeSimple size={16} aria-hidden="true" />{c.send.cta}</a>
           </div>
           <span aria-hidden="true" className="ember-line mt-12 block md:mt-16" />
           <dl className="grid gap-6 pt-6 sm:grid-cols-3">
@@ -97,13 +97,13 @@ export function CareersPage() {
               <li key={r.title} className="grid gap-3 border-b border-line py-6 md:grid-cols-[1.2fr_1fr_auto] md:items-center md:gap-8">
                 <div><h3 className="text-[20px] font-semibold tracking-[-0.02em]">{r.title}</h3><p className="mt-1 text-[15px] leading-[1.55] text-ink-muted">{r.summary}</p></div>
                 <p className="text-[15px] text-ink-muted">{[r.team, r.place, r.type].join(" · ")}</p>
-                <a href={mail(`${c.k}: ${r.title}`)} className="btn btn-cta h-11 justify-self-start px-5">{c.roles.apply}</a>
+                <a href={mail(`${c.k}: ${r.title}`)} className="btn btn-cta justify-self-start">{c.roles.apply}</a>
               </li>))}</ul>)}
           <div className="ember ember-sm dark mt-10 grid gap-10 rounded-[28px] p-7 text-white md:grid-cols-[1.1fr_1fr] md:p-10">
             <div>
               <h3 className="text-[28px] font-semibold leading-[1.1] tracking-[-0.03em] md:text-[34px]">{ROLES.length ? c.send.h : c.roles.none}</h3>
               <p className="mt-3 max-w-[30rem] text-[16px] leading-[1.6] text-white/65">{ROLES.length ? c.send.p : c.roles.noneP}</p>
-              <a href={mail(c.send.subject)} className="btn btn-cta mt-8 h-11 px-5"><EnvelopeSimple size={16} aria-hidden="true" />{c.send.cta}</a>
+              <a href={mail(c.send.subject)} className="btn btn-cta mt-8"><EnvelopeSimple size={16} aria-hidden="true" />{c.send.cta}</a>
               <p className="mt-3 text-[14px] text-white/50">{CAREERS_EMAIL}</p>
             </div>
             <div>

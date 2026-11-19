@@ -47,7 +47,7 @@ export function DemoPage() {
             : show ? <div ref={box} className="meetings-iframe-container min-h-[680px] overflow-hidden rounded-[22px] bg-white" data-src={src} />
             : <div className="flex flex-col items-center gap-4 px-6 py-16 text-center">
                 <CalendarBlank size={28} aria-hidden="true" className="text-ink-muted" />
-                <button type="button" onClick={() => setShow(true)} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.load}</span></button>
+                <button type="button" onClick={() => setShow(true)} className="grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{t.load}</span></button>
                 <p className="max-w-[28rem] text-[13px] text-ink-faint">{t.note}</p>
                 <a href={SITE.meetings} target="_blank" rel="noopener" className="inline-flex min-h-11 items-center gap-1.5 text-[14px] font-medium text-ink-muted hover:text-ink">{t.open}<ArrowUpRight size={13} aria-hidden="true" /></a>
               </div>}

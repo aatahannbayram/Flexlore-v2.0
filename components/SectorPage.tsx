@@ -108,8 +108,8 @@ export default function SectorPage({ i }: { i: number }) {
                 <p className="mt-3 text-[16px] leading-[1.55] text-white/70 md:text-[17px]">{s.lede}</p>
               </div>
               <div className="sx-up flex flex-wrap items-center gap-2" style={{ animationDelay: "850ms" }}>
-                <a href="#tasks" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.seeTasks}</span></a>
-                <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.demo}</span></a>
+                <a href="#tasks" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 btn-38">{t.seeTasks}</span></a>
+                <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{t.demo}</span></a>
               </div>
             </m.div>
           </div>
@@ -239,7 +239,7 @@ export default function SectorPage({ i }: { i: number }) {
                 <h2 className="v4-h2 max-w-[18ch]"><span className="t-ink">{t.ctaA}</span> <span className="t-accent">{t.ctaB}</span></h2>
                 <p className="mt-3 max-w-[34rem] text-[17px] leading-[1.55] text-white/75">{t.ctaP(s.en)}</p>
               </div>
-              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="inline-grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{t.demo}</span></a></div>
+              <div className="col-span-12 lg:col-span-4 lg:text-end"><a href={SITE.demo} className="inline-grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{t.demo}</span></a></div>
             </PhotoBand>
           </div>
         </section>

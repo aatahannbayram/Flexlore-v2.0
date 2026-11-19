@@ -127,8 +127,8 @@ export function HeroV3({ children }: { children?: React.ReactNode }) {
             </h1>
             <p className="hs-in mx-auto mt-6 hidden max-w-[36rem] text-[17px] leading-[1.6] text-white/70 md:block md:text-[19px]" style={{ animationDelay: "150ms" }}>{h.sub}</p>
             <div className="hs-in mt-8 flex flex-wrap items-center justify-center gap-3" style={{ animationDelay: "250ms" }}>
-              <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{d.nav.cta}</span></a>
-              <button type="button" onClick={() => { setDemo(true); track("watch_demo", { placement: "hero" }); }} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
+              <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{d.nav.cta}</span></a>
+              <button type="button" onClick={() => { setDemo(true); track("watch_demo", { placement: "hero" }); }} className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 btn-38"><Play size={12} weight="fill" aria-hidden="true" />{h.watch}</span></button>
             </div>
             <div className="hs-in mt-5 flex flex-wrap items-center justify-center gap-3 md:mt-6" style={{ animationDelay: "350ms" }}>
               <StoreButtons small lang={lang} className="opacity-70 transition-opacity hover:opacity-100 [&_img]:!h-8 [&_a]:!rounded-[6px] [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center" />

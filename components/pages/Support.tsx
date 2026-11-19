@@ -74,7 +74,7 @@ export function SupportPage() {
               <label className="sm:col-span-2"><span className="fx-label">{c.message}</span><textarea name="message" required rows={4} className={field} /></label>
               <div className="flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
                 <p className="text-[13px] text-ink-faint">{c.note}</p>
-                <button type="submit" className={`${pill} btn-primary h-11 shrink-0 px-5`}>{c.send}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></button>
+                <button type="submit" className={`${pill} btn-primary shrink-0`}>{c.send}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></button>
               </div>
             </form>)}
         </div>
@@ -107,7 +107,7 @@ export function SupportPage() {
         <PhotoBand img="cafe-opening" pos="50% 40%" className="flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:p-12">
           <div><span className={glassIcon}><Question size={18} aria-hidden="true" /></span>
             <h2 id="sup-faq" className="mt-5 text-[26px] font-semibold tracking-[-0.03em] md:text-[34px]"><Split text={h.faqH} /></h2><p className="mt-2 max-w-[36rem] text-[15px] text-white/70 md:text-[16px]">{h.faqP}</p></div>
-          <Link href="/faq/" className={`${pill} btn-primary h-12 shrink-0 self-start px-6 md:self-auto`}>{h.faqCta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></Link>
+          <Link href="/faq/" className={`${pill} btn-primary shrink-0 self-start md:self-auto`}>{h.faqCta}<ArrowRight size={15} aria-hidden="true" className="ms-1 rtl:-scale-x-100" /></Link>
         </PhotoBand>
       </div>
     </section>

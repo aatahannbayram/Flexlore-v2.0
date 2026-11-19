@@ -95,25 +95,23 @@ body { background: var(--color-bg); font-size: var(--text-base); line-height: 1.
 .mono { font-variant-numeric: tabular-nums; }
 
 /* Buttons: three looks only, all pills, 44 px minimum target, no gradients, glows or drop shadows.
-   Orange (.btn-cta): the demo call to action. #EC6726 with a light sheen, white label (asked for 2026-11-13; white on
+   Orange (.btn-cta): the demo call to action. #EC6726, flat, white label (asked for 2026-11-13; white on
    #EC6726 is about 3.2:1, below 4.5:1 for small text, so the label stays 14 px and up and medium weight).
    White (.btn-primary, .btn-p, .btn-accent, .btn-glass): the other main action. Flat white, dark label.
    Glass (.btn-secondary, .btn-g, .btn-glass-2): everything else. Frosted clear pill with a hairline. */
-.btn, .btn-p, .btn-g, .btn-cta { display: inline-flex; align-items: center; justify-content: center; gap: .45rem; min-height: 44px; border-radius: 999px; padding: 0 1.25rem; font-size: 15px; font-weight: 500; letter-spacing: -.01em; white-space: nowrap; box-shadow: none; transition: background-color .25s var(--ease-out-expo), color .25s, box-shadow .25s, transform .2s var(--ease-out-expo); }
-.btn-cta { color: #FFFFFF; background-color: #EC6726;
-  /* Flat (2D) like the glass buttons: one faint hairline, and a very light diagonal glint that crosses on hover. No
-     top highlight or inner shadow, so it never reads as raised. Shape unchanged. */
-  background-image: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / 0.16) 50%, transparent 60%);
-  background-size: 260% 100%; background-position: 120% 0; background-repeat: no-repeat;
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.14);
-  transition: background-color .25s var(--ease-out-expo), background-position .9s var(--ease-out-expo), color .25s, box-shadow .25s, transform .2s var(--ease-out-expo); }
-.btn-cta:hover { background-color: #F07A3F; background-position: -20% 0; }
-@media (prefers-reduced-motion: reduce) { .btn-cta { transition: background-color .25s; } }
-.btn-primary, .btn-p, .btn-accent, .btn-glass { background: #FFFFFF; color: #111111; }
-.btn-primary:hover, .btn-p:hover, .btn-accent:hover, .btn-glass:hover { background: #EDE9E4; }
-.btn-secondary, .btn-g, .btn-glass-2 { background: rgb(255 255 255 / 0.08); color: var(--color-ink); -webkit-backdrop-filter: blur(16px) saturate(150%); backdrop-filter: blur(16px) saturate(150%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
-.btn-secondary:hover, .btn-g:hover, .btn-glass-2:hover { background: rgb(255 255 255 / 0.14); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2); }
-.btn-sm { min-height: 36px; padding: 0 1rem; font-size: 14px; }
+/* Sana-style pills (Ata, 2026-11-19; our colours): a 38 px flat pill, 14 px label at weight 450, no glint, hairline on
+   the filled ones or press effect; hover only lifts the colour. The pill sits inside a 3 px transparent border, so the tap
+   target stays 44 px (tests/responsive.spec.ts) while the eye sees 38 px. .btn-38 drops that border for buttons that
+   already sit in a 44 px wrapper. */
+.btn, .btn-p, .btn-g, .btn-cta { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; min-height: 44px; border: 3px solid transparent; background-clip: padding-box; border-radius: 999px; padding: 0 16px; font-size: 14px; font-weight: 450; letter-spacing: -.005em; line-height: 1; white-space: nowrap; box-shadow: none; transition: background-color .3s var(--ease-out-expo), color .3s var(--ease-out-expo), box-shadow .3s var(--ease-out-expo); }
+.btn-38 { height: 38px !important; min-height: 38px !important; border-width: 0 !important; }
+.btn-cta { color: #FFFFFF; background-color: #EC6726; }
+.btn-cta:hover { background-color: #F27C42; }
+.btn-primary, .btn-p, .btn-accent, .btn-glass { background-color: #FFFFFF; color: #111111; }
+.btn-primary:hover, .btn-p:hover, .btn-accent:hover, .btn-glass:hover { background-color: #E9E5E0; }
+.btn-secondary, .btn-g, .btn-glass-2 { background-color: rgb(255 255 255 / 0.08); color: var(--color-ink); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
+.btn-secondary:hover, .btn-g:hover, .btn-glass-2:hover { background-color: rgb(255 255 255 / 0.16); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.18); }
+.btn-sm { min-height: 40px; padding: 0 14px; font-size: 13.5px; }
 
 /* surfaces */
 .panel { background: var(--color-surface-1); border-radius: var(--radius-card); }
@@ -259,10 +257,10 @@ main:not([lang="tr"]) .l-tr { display: none; }
   --color-bg2: #191919; --color-card: #1F1F1F; --color-ash: #8A8A8A;
   color-scheme: dark; color: var(--color-ink);
 }
-:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *) { background: #161616; color: #FAF8F5; }
-:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *):hover { background: #000000; }
-:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *) { background: rgb(22 22 22 / 0.06); color: #161616; box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.1); }
-:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *):hover { background: rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *) { background-color: #161616; color: #FAF8F5; }
+:root[data-theme="light"] :is(.btn-primary, .btn-p, .btn-accent, .btn-glass):not(.dark *):hover { background-color: #000000; }
+:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *) { background-color: rgb(22 22 22 / 0.06); color: #161616; box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.1); }
+:root[data-theme="light"] :is(.btn-secondary, .btn-g, .btn-glass-2):not(.dark *):hover { background-color: rgb(22 22 22 / 0.1); }
 :root[data-theme="light"] .prose-blog a { text-decoration-color: rgb(22 22 22 / .35); }
 /* Brand wordmark: the dark-ground file by default, the light-ground file in light mode. */
 .logo-light { display: none; }
@@ -418,9 +416,7 @@ html.splash-on .hs-word, html.splash-on .hs-ch, html.splash-on .hs-in, html.spla
 .t-ink { background: linear-gradient(180deg, #FFFFFF 0%, #F1EEEA 45%, #B9B4AE 120%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 :root[data-theme="light"] .t-ink:not(.dark *) { background-image: linear-gradient(180deg, #111111 0%, #2A2A2A 60%, #555049 120%); }
 
-/* App feel: buttons give a little under the finger, and lift a hair on hover where a mouse is present. */
-.btn:active { transform: scale(.97); }
-@media (prefers-reduced-motion: reduce) { .btn, .btn:active, .btn:hover { transform: none !important; } }
+/* Buttons do not scale on press (Sana-style, 2026-11-19): the colour lift is the only feedback. */
 
 /* Hero depth on scroll, with no script: the photo drifts down a little slower than the page and the phone rises a touch.
    Browsers without scroll timelines, and reduced motion, simply keep them still. */
@@ -610,10 +606,13 @@ html, body { overflow-x: clip; }
 :root[data-theme="light"] .glass-card:not(.dark *):hover { box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgb(22 22 22 / 0.09), 0 4px 10px rgb(60 40 20 / 0.08), 0 36px 64px -30px rgb(60 40 20 / 0.34); }
 /* Slim segmented control (filters, tabs): a 44 px tap area around a 32 px pill, like the header buttons. */
 .seg { display: inline-grid; min-height: 44px; place-items: center; }
-.seg > span { display: inline-flex; height: 32px; align-items: center; gap: 6px; border-radius: 999px; padding: 0 12px; font-size: 13px; font-weight: 500; color: var(--color-ink-muted); transition: background-color .2s, color .2s, box-shadow .2s; }
-.seg:hover > span { color: var(--color-ink); }
-.seg[aria-pressed="true"] > span, .seg[aria-current] > span { color: var(--color-ink); background: rgb(255 255 255 / 0.09); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); }
-:root[data-theme="light"] :is(.seg[aria-pressed="true"], .seg[aria-current]):not(.dark *) > span { background: #fff; box-shadow: inset 0 0 0 1px rgb(22 22 22 / 0.08), 0 1px 3px rgb(22 22 22 / 0.08); }
+/* Sana-style mode switcher (2026-11-19): the selected pill is filled cream with a dark label, the rest are quiet; put
+   the pills in a .seg-tray (frosted rounded tray) when they stand alone. */
+.seg > span { display: inline-flex; height: 33px; align-items: center; gap: 6px; border-radius: 999px; padding: 0 12px; font-size: 14px; font-weight: 450; color: var(--color-ink-muted); transition: background-color .4s var(--ease-out-expo), color .4s var(--ease-out-expo); }
+.seg:hover > span { color: var(--color-ink); background: rgb(255 255 255 / 0.06); }
+.seg[aria-pressed="true"] > span, .seg[aria-current] > span { color: #111111; background: #F4F0EB; }
+.seg-tray { display: inline-flex; align-items: center; gap: 2px; border-radius: 999px; padding: 0 3px; background: rgb(255 255 255 / 0.04); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06); }
+:root[data-theme="light"] :is(.seg[aria-pressed="true"], .seg[aria-current]):not(.dark *) > span { background: #161616; color: #FAF8F5; }
 
 /* Glass light (see MotionProvider): a soft light and a faint orange edge follow the mouse over a glass card.
    Position comes from a layer below the utilities, so a card can still be absolute where a layout needs it. */
@@ -725,31 +724,37 @@ html.splash-on .hero-underline { animation-play-state: paused; }
 /* Form fields (pricing request + support), 2026-11-17. One quiet style for every site form: slim 46px fields, faint
    fill, hairline border, orange hairline on focus (the only accent), custom chevron on selects. Browser autofill paints
    fields light blue in Chrome; the inset shadow below keeps the dark fill (brand rule: no blue). */
-.fx-field { display: block; width: 100%; height: 42px; border-radius: 10px; border: 1px solid rgb(255 255 255 / .09);
-  background-color: rgb(255 255 255 / .035); padding: 0 13px; font-size: 16px; line-height: 1.4; color: var(--color-ink);
-  transition: border-color .15s, background-color .15s; }
+/* Sana-style fields (2026-11-19, our colours): a 48 px pill with one hairline, clear ground, label above. Focus keeps the
+   orange edge (Sana shows none; keyboard users need it). */
+.fx-field { display: block; width: 100%; height: 48px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .12);
+  background-color: transparent; padding: 0 20px; font-size: 16px; line-height: 1.4; color: var(--color-ink);
+  transition: border-color .3s var(--ease-out-expo), background-color .3s var(--ease-out-expo); }
 .fx-field::placeholder { color: rgb(255 255 255 / .34); }
-.fx-field:hover { border-color: rgb(255 255 255 / .16); }
-.fx-field:focus, .fx-field:focus-visible { border-color: rgb(236 103 38 / .8) !important; background-color: rgb(255 255 255 / .055) !important; box-shadow: none !important; }
-textarea.fx-field { height: auto; min-height: 92px; padding: 10px 13px; resize: vertical; }
+.fx-field:hover { border-color: rgb(255 255 255 / .22); }
+.fx-field { caret-color: var(--color-ink); }
+/* Focus like Sana (Ata, 2026-11-19): the hairline turns solid ink and the caret is a thin ink line. High contrast, so it is
+   still a clear keyboard focus cue. */
+.fx-field:focus, .fx-field:focus-visible { border-color: rgb(244 240 235 / .9) !important; background-color: transparent !important; box-shadow: none !important; outline: none; }
+textarea.fx-field { height: auto; min-height: 104px; border-radius: 22px; padding: 13px 20px; resize: vertical; }
 /* 16px on phones keeps iOS from zooming into the field; a touch smaller on desktop. */
-@media (min-width: 768px) { .fx-field { font-size: 14.5px; } }
+@media (min-width: 768px) { .fx-field { font-size: 14px; } }
 select.fx-field { appearance: none; -webkit-appearance: none; padding-inline-end: 40px; cursor: pointer;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23A3A3A3' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 14px center; background-size: 14px; }
-[dir="rtl"] select.fx-field { background-position: left 14px center; }
+  background-repeat: no-repeat; background-position: right 18px center; background-size: 14px; }
+[dir="rtl"] select.fx-field { background-position: left 18px center; }
 select.fx-field option { background: #191919; color: #FAFAFA; }
 input[type="number"].fx-field { -moz-appearance: textfield; }
 input[type="number"].fx-field::-webkit-inner-spin-button, input[type="number"].fx-field::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 .fx-field:-webkit-autofill, .fx-field:-webkit-autofill:hover, .fx-field:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--color-ink); caret-color: var(--color-ink); -webkit-box-shadow: 0 0 0 1000px #1D1D1D inset !important;
   transition: background-color 600000s 0s, color 600000s 0s; }
-.fx-label { display: block; margin-bottom: 6px; font-size: 12.5px; font-weight: 500; letter-spacing: .005em; color: #A3A3A3; }
+.fx-label { display: block; margin-bottom: 6px; padding-inline-start: 2px; font-size: 13.5px; font-weight: 450; letter-spacing: -.005em; color: #BDBAB6; }
 /* Light theme (support page; the pricing page is always dark). */
 :root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *) { border-color: rgb(22 22 22 / .12); background-color: #FFFFFF; }
 :root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *)::placeholder { color: rgb(22 22 22 / .4); }
 :root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *):hover { border-color: rgb(22 22 22 / .22); }
-:root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *):focus { border-color: rgb(236 103 38 / .9) !important; background-color: #FFFFFF !important; }
+:root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *):focus { border-color: #161616 !important; background-color: #FFFFFF !important; }
+:root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *) { caret-color: #161616; }
 :root[data-theme="light"] .fx-field:not(.k-page *):not(.dark *):-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px #FFFFFF inset !important; }
 :root[data-theme="light"] select.fx-field:not(.k-page *):not(.dark *) option { background: #FFFFFF; color: #161616; }
 :root[data-theme="light"] .fx-label:not(.k-page *):not(.dark *) { color: #55524D; }

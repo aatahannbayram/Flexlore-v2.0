@@ -28,7 +28,7 @@ export default function UseCaseView({ c: en, tr, band, rel }: { c: UC; tr?: UCTe
           <p className="mt-6 inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{c.k}</p>
           <h1 className="kh kh-xl mt-4 max-w-[17ch]"><Split text={c.h1} /></h1>
           <p className="mt-5 max-w-[40rem] text-[17px] leading-[1.6] text-white/75 md:text-[19px]">{c.lede}</p>
-          <div className="mt-8 flex flex-wrap gap-3"><a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[40px] !min-h-[40px] !px-5 !text-[14px]">{t.demo}</span></a><Link href="/pricing/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[40px] !min-h-[40px] !px-5 !text-[14px]">{t.pricing}</span></Link></div>
+          <div className="mt-8 flex flex-wrap gap-3"><a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta">{t.demo}</span></a><Link href="/pricing/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2">{t.pricing}</span></Link></div>
         </div>
       </section>
       <section className="section-y" aria-labelledby="uc-p">
@@ -54,8 +54,8 @@ export default function UseCaseView({ c: en, tr, band, rel }: { c: UC; tr?: UCTe
         <PhotoBand img={band[1]} tone="center" className="px-5 py-12 text-center sm:px-10 md:py-20">
           <h2 id="uc-o" className="inline-flex items-center gap-2.5 text-[13px] font-medium text-white/70"><span aria-hidden="true" className="kick-line" />{t.out}</h2>
           <ul className="mx-auto mt-6 grid max-w-[60rem] gap-3 text-start md:grid-cols-3">{c.out.map((o) => <li key={o} className={`${glassTile} flex gap-3 p-5 text-[17px] font-semibold leading-[1.3] tracking-[-0.01em]`}><I.check size={20} className="tick mt-0.5 shrink-0" />{o}</li>)}</ul>
-          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-cta h-11 px-5 text-[15px]">{t.demo}</a>
-            <Link href={`/use-cases/${r.slug}/`} className="btn btn-glass-2 h-11 px-5 text-[15px]">{r.crumb}</Link></div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3"><a href={SITE.demo} className="btn btn-cta">{t.demo}</a>
+            <Link href={`/use-cases/${r.slug}/`} className="btn btn-glass-2">{r.crumb}</Link></div>
         </PhotoBand>
       </div></section>
     </main>

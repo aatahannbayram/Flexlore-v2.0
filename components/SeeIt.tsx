@@ -82,8 +82,8 @@ export default function SeeIt() {
         </AnimatePresence>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3 md:mt-16">
-          <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{tr ? "Demo isteyin" : "Book a demo"}</span></a>
-          <Link href="/features/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 !h-[38px] !min-h-[38px] !px-4 !text-[14px]">{tr ? "Tüm özellikler" : "All features"}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
+          <a href={SITE.demo} className="grid min-h-11 place-items-center"><span className="btn btn-cta btn-38">{tr ? "Demo isteyin" : "Book a demo"}</span></a>
+          <Link href="/features/" className="grid min-h-11 place-items-center"><span className="btn btn-glass-2 btn-38">{tr ? "Tüm özellikler" : "All features"}<ArrowRight size={13} aria-hidden="true" className="rtl:-scale-x-100" /></span></Link>
         </div>
       </section>
     </main>

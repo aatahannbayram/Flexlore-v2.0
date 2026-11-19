@@ -31,8 +31,8 @@ export function ConsentBanner() {
         <input type="checkbox" checked={mk} onChange={(e) => setMk(e.target.checked)} className="mt-0.5 h-5 w-5 shrink-0 accent-[#EC6726]" />
         <span>{m}</span></label>}
       <div className="mt-4 grid grid-cols-2 gap-2">
-        <button type="button" onClick={() => pick(false)} className="btn btn-glass-2 h-11 justify-center px-3 text-[14px]">{t.no}</button>
-        <button type="button" onClick={() => pick(true)} className="btn btn-primary h-11 justify-center px-3 text-[14px]">{t.yes}</button>
+        <button type="button" onClick={() => pick(false)} className="btn btn-glass-2 justify-center px-3">{t.no}</button>
+        <button type="button" onClick={() => pick(true)} className="btn btn-primary justify-center px-3">{t.yes}</button>
       </div>
     </section>);
 }

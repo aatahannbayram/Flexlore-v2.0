@@ -20,8 +20,8 @@ export default function NotFoundPage() {
         <h1 id="nf-h" className="v4-h2 mt-4 max-w-[18ch]"><Split text={t.h} /></h1>
         <p className="mt-4 text-[17px] text-white/75">{t.p}</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link href="/" className="btn btn-primary group h-11 px-5">{t.home}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></Link>
-          <Link href="/support/" className="btn btn-glass-2 h-11">{t.help}</Link>
+          <Link href="/" className="btn btn-primary group">{t.home}<Chev dir="end" className="chev-go h-2.5 w-3.5" /></Link>
+          <Link href="/support/" className="btn btn-glass-2">{t.help}</Link>
         </div>
         </PhotoBand>
       </section>

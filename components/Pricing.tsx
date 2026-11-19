@@ -49,7 +49,7 @@ function QuoteForm({ type, P }: { type: LeadType; P: PricingCopy | undefined }) 
       <div className="sm:col-span-2"><L id="q-msg" t={q.msg}><textarea id="q-msg" rows={3} value={v.msg} onChange={set("msg")} placeholder={q.msgPh} className={field} /></L></div>
       <div className="flex flex-wrap items-center justify-between gap-3 sm:col-span-2">
         <p className="flex items-center gap-2 text-[13px] text-[#737373]"><EnvelopeSimple size={15} aria-hidden="true" />{leadDirect() && P ? P.direct : q.note}</p>
-        <button type="submit" disabled={state === "busy"} className="inline-flex h-11 items-center gap-2 rounded-full bg-[#FAFAFA] px-5 text-[14px] font-medium text-[#111] transition-colors duration-150 hover:bg-white disabled:opacity-60">{P ? P.send : q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
+        <button type="submit" disabled={state === "busy"} className="btn btn-cta disabled:opacity-60">{P ? P.send : q.send}<ArrowRight size={15} aria-hidden="true" className="rtl:-scale-x-100" /></button>
       </div>
     </form>);
 }

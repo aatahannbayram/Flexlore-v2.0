@@ -122,8 +122,8 @@ export function Drum({ items, groups, before, beforeLabel, caption, captions = 1
   }, [i, geo, still, n]);
   return (
     <div ref={root} onMouseEnter={() => setHold(true)} onMouseLeave={() => setHold(false)} onTouchStart={() => setHold(true)} onFocus={() => setHold(true)}>
-      <div className="flex justify-center px-5"><div role="tablist" className="no-sb flex max-w-full gap-1 overflow-x-auto rounded-full bg-white/[.06] p-1.5">
-        {groups.map((g, j) => { const on = items[i].group === j; return <button key={g} type="button" role="tab" aria-selected={on} onClick={() => go(items.findIndex((x) => x.group === j))} className={`relative min-h-11 shrink-0 overflow-hidden rounded-full px-5 text-[15px] font-medium transition-colors duration-300 md:px-6 ${on ? "bg-[#F4F0EB] text-[#111]" : "text-white/60 hover:text-white"}`}>{g}
+      <div className="flex justify-center px-5"><div role="tablist" className="no-sb flex max-w-full gap-1 overflow-x-auto rounded-full bg-white/[.05] p-1.5 shadow-[inset_0_0_0_1px_rgb(255_255_255/0.06)] backdrop-blur-md">
+        {groups.map((g, j) => { const on = items[i].group === j; return <button key={g} type="button" role="tab" aria-selected={on} onClick={() => go(items.findIndex((x) => x.group === j))} className={`relative min-h-11 shrink-0 overflow-hidden rounded-full px-5 text-[14px] font-[450] transition-colors duration-300 md:px-6 ${on ? "bg-[#F4F0EB] text-[#111]" : "text-white/60 hover:text-white"}`}>{g}
           {on && !still && <span key={i} aria-hidden="true" className="drum-tick absolute inset-x-5 bottom-[7px] h-[2px] origin-left rounded-full bg-[#111]/25 rtl:origin-right" style={{ animationPlayState: hold || !seen ? "paused" : "running" }} />}</button>; })}
       </div></div>
       <div className="relative md:pb-40"> 
@@ -156,6 +156,6 @@ export function BottomPillNav({ items, cta, ctaHref }: { items: [string, string]
   return (
     <nav aria-label="Page" className={`fixed inset-x-0 bottom-5 z-40 hidden justify-center gap-2 transition-[opacity,transform] duration-500 md:flex ${show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}>
       <div className="dark flex rounded-full bg-[rgb(28_28_28/0.84)] p-1.5 ring-1 ring-white/[.1] backdrop-blur-xl">{items.map(([l, h]) => <a key={h} href={h} tabIndex={show ? 0 : -1} className="inline-flex h-11 items-center rounded-full px-5 text-[15px] text-white/70 transition-colors hover:bg-white/[.07] hover:text-white">{l}</a>)}</div>
-      <a href={ctaHref} tabIndex={show ? 0 : -1} className="grid min-h-11 place-items-center"><span className="btn btn-cta !h-[56px] !min-h-[56px] !px-7 !text-[15px]">{cta}</span></a>
+      <a href={ctaHref} tabIndex={show ? 0 : -1} className="grid min-h-11 place-items-center"><span className="btn btn-cta">{cta}</span></a>
     </nav>);
 }
