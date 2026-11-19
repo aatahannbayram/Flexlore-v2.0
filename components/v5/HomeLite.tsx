@@ -105,7 +105,7 @@ function Frame({ children, slides, shade }: { children?: React.ReactNode; slides
         <div className="absolute start-3 top-3 z-20 max-w-[calc(100%-1.5rem)] sm:start-5 sm:top-5">
           <div role="tablist" className="seg-tray max-w-full overflow-x-auto !bg-[rgb(17_17_17/0.55)] !backdrop-blur-xl [scrollbar-width:none]" onFocus={() => setHold(true)} onBlur={() => setHold(false)}>
             {slides.map(([n, , label], j) => (
-              <button key={n} type="button" role="tab" aria-selected={j === k} aria-current={j === k ? "true" : undefined} onClick={() => setK(j)} className="seg relative">
+              <button key={n} type="button" role="tab" aria-selected={j === k} aria-current={j === k ? "true" : undefined} onClick={() => setK(j)} className="seg relative !min-h-12">
                 <span className="relative overflow-hidden">{label}
                   {j === k && play && <m.i key={k} aria-hidden="true" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 5, ease: "linear" }} className="absolute inset-x-3 bottom-[5px] h-[2px] origin-left rounded-full bg-[#111]/25 rtl:origin-right" />}
                 </span>
