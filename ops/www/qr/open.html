@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#111111">
+<title>Open Flexlore</title>
+<meta name="apple-itunes-app" content="app-id=6751126206">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Served for www.flexlore.com/open/w/<workspace>[/f/<folder>] (ops/www/nginx.conf). The "Open Flexlore" and
+     "Get Flexlore" buttons in access and invitation emails land here when the phone does not open the app by itself:
+     not installed, or opened inside a mail app's browser. iPhone shows Apple's Smart App Banner (Open / Get). -->
+<style>
+  :root { --bg:#111111; --card:#191919; --line:#262626; --ink:#FFFFFF; --muted:#B2B2B2; --soft:#808080; --orange:#EC6726; --orange-text:#F08551; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; }
+  body { background:var(--bg); color:var(--ink); font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+         -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; min-height:100vh; min-height:100dvh; overflow-x:hidden; }
+  main { width:100%; max-width:440px; margin:0 auto; padding:max(28px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom)); flex:1; display:flex; flex-direction:column; }
+  .brand img { height:22px; width:auto; display:block; }
+  .kicker { margin:44px 0 0; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--orange-text); }
+  h1 { margin:10px 0 0; font-size:32px; line-height:1.12; font-weight:700; letter-spacing:-.6px; }
+  h1 em { font-style:normal; color:var(--orange); }
+  .lead { margin:12px 0 0; font-size:17px; line-height:1.45; color:var(--muted); }
+  .cta { margin-top:28px; display:none; align-items:center; justify-content:center; width:100%; min-height:54px; border-radius:999px;
+         background:var(--orange); color:#111111; font-weight:700; font-size:17px; text-decoration:none; }
+  .cta:focus-visible, .copy:focus-visible, .stores a:focus-visible, .brand:focus-visible { outline:2px solid var(--orange); outline-offset:2px; }
+  .card { margin-top:24px; background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .row { display:flex; gap:14px; padding:16px; align-items:flex-start; }
+  .row + .row { border-top:1px solid var(--line); }
+  .n { flex:none; width:28px; height:28px; border-radius:50%; background:#262626; color:var(--muted); font-size:13px; font-weight:700;
+       display:flex; align-items:center; justify-content:center; }
+  .row p { margin:3px 0 0; font-size:15px; line-height:1.45; color:var(--muted); }
+  .row b { display:block; color:var(--ink); font-size:16px; font-weight:600; }
+  .stores { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .stores img { height:40px; width:auto; display:block; }
+  .code { margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px;
+          border:1px dashed #4D4D4D; border-radius:16px; }
+  .code span { font-size:13px; color:var(--soft); }
+  .code strong { font-size:24px; font-weight:600; letter-spacing:.14em; -webkit-user-select:all; user-select:all; }
+  .copy { flex:none; border:1px solid #4D4D4D; background:transparent; color:var(--ink); border-radius:999px; padding:10px 16px;
+          font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; min-height:44px; }
+  footer { margin-top:auto; padding-top:32px; font-size:13px; line-height:1.6; color:var(--soft); }
+  footer a { color:var(--orange-text); }
+  .desk { display:none; margin:14px 0 0; font-size:14px; color:var(--soft); }
+  .bad-only { display:none; }
+  .bad .ok-only { display:none !important; }
+  .bad .bad-only { display:block; }
+</style>
+</head>
+<body>
+<main>
+  <a class="brand" href="/" aria-label="Flexlore home"><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width="101" height="22"></a>
+
+  <p class="kicker" data-t="kicker">Your team on Flexlore</p>
+  <h1 class="ok-only" data-t="title">Your trainings are <em>in the app</em></h1>
+  <h1 class="bad-only" data-t="badTitle">This link <em>is not complete</em></h1>
+  <p class="lead ok-only" data-t="lead">Open Flexlore on your phone. New here? Get the app first, it takes a minute.</p>
+  <p class="lead bad-only" data-t="badLead">Open the button in your email again, or ask your manager.</p>
+
+  <a class="cta ok-only" id="open" href="#" data-t="open">Open Flexlore</a>
+  <p class="desk ok-only" id="desk" data-t="desk">On a computer? Open this email on your phone.</p>
+
+  <section class="card ok-only">
+    <div class="row"><span class="n">1</span><div><b data-t="s1">Get the app</b>
+      <div class="stores">
+        <a href="https://apps.apple.com/app/flexlore/id6751126206" rel="noopener"><img id="ios-badge" src="/brand/stores/appstore-en.svg" alt="Download on the App Store"></a>
+        <a href="https://play.google.com/store/apps/details?id=com.flexlore.app" rel="noopener"><img id="play-badge" src="/brand/stores/googleplay-en.png" alt="Get it on Google Play"></a>
+      </div></div></div>
+    <div class="row"><span class="n">2</span><div><b data-t="s2">Sign in</b><p data-t="s2p">With the phone number or email your manager added.</p></div></div>
+    <div class="row"><span class="n">3</span><div><b data-t="s3">Your trainings are there</b><p data-t="s3p">Your team shows on the home screen. Nothing to accept.</p></div></div>
+  </section>
+
+  <footer><span data-t="foot">Questions? Write to</span> <a href="mailto:tech@flexlore.com">tech@flexlore.com</a></footer>
+</main>
+<script>
+(function () {
+  var path = location.pathname.replace(/\/+$/, "");
+  var ok = /^\/open\/w\/\d+(\/f\/\d+)?$/.test(path);
+  var tr = /^tr\b/i.test(navigator.language || "");
+  if (tr) {
+    var T = {
+      kicker: "Flexlore'daki ekibin", title: "Eğitimlerin <em>uygulamada</em>", badTitle: "Bu link <em>eksik</em>",
+      lead: "Flexlore'u telefonunda aç. Yeni misin? Önce uygulamayı indir, bir dakika sürer.",
+      badLead: "E-postandaki düğmeye tekrar dokun ya da yöneticine sor.",
+      open: "Flexlore'u aç", desk: "Bilgisayarda mısın? Bu e-postayı telefonunda aç.",
+      s1: "Uygulamayı indir", s2: "Giriş yap", s2p: "Yöneticinin eklediği telefon numarası ya da e-postayla.",
+      s3: "Eğitimlerin orada", s3p: "Ekibin ana ekranda görünür. Onaylaman gereken bir şey yok.",
+      foot: "Sorun mu var? Yaz:"
+    };
+    document.documentElement.lang = "tr";
+    document.title = "Flexlore'u aç";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) {
+      var v = T[el.getAttribute("data-t")]; if (v) { el.innerHTML = v; }
+    });
+    var ios = document.getElementById("ios-badge"), play = document.getElementById("play-badge");
+    ios.src = "/brand/stores/appstore-tr.svg"; ios.alt = "App Store'dan indirin";
+    play.src = "/brand/stores/googleplay-tr.png"; play.alt = "Google Play'den alın";
+  }
+  if (!ok) { document.body.className = "bad"; return; }
+
+  // Android: open the app straight from here (it handles www.flexlore.com/open/), or the Play Store if it is missing.
+  // iPhone: Apple's Smart App Banner at the top does the same. A computer: say where to open it.
+  var open = document.getElementById("open");
+  var ua = navigator.userAgent;
+  if (/android/i.test(ua)) {
+    open.href = "intent://www.flexlore.com" + path + "#Intent;scheme=https;package=com.flexlore.app;S.browser_fallback_url=" +
+      encodeURIComponent("https://play.google.com/store/apps/details?id=com.flexlore.app") + ";end";
+    open.style.display = "flex";
+  } else if (!/iphone|ipad|ipod/i.test(ua)) {
+    document.getElementById("desk").style.display = "block";
+  }
+})();
+</script>
+</body>
+</html>

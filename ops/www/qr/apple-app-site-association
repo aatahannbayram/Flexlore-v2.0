@@ -4,11 +4,27 @@
     "details": [
       {
         "appID": "HSSQ3B5C2K.com.flexlore.app",
-        "appIDs": ["HSSQ3B5C2K.com.flexlore.app"],
-        "paths": ["/q/*", "/join/*"],
+        "appIDs": [
+          "HSSQ3B5C2K.com.flexlore.app"
+        ],
+        "paths": [
+          "/q/*",
+          "/join/*",
+          "/open/*"
+        ],
         "components": [
-          { "/": "/q/*", "comment": "Printed Flexlore QR codes open in the app" },
-          { "/": "/join/*", "comment": "Team invite links open in the app" }
+          {
+            "/": "/q/*",
+            "comment": "Printed Flexlore QR codes open in the app"
+          },
+          {
+            "/": "/join/*",
+            "comment": "Team invite links open in the app"
+          },
+          {
+            "/": "/open/*",
+            "comment": "Access and invitation emails open the place in the app"
+          }
         ]
       }
     ]
