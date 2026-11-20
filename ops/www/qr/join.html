@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#111111">
+<title>Join your team on Flexlore</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Served for www.flexlore.com/join/<token> (ops/www/nginx.conf), beside the QR page. A manager's invite link or
+     wall QR lands here when the phone does not open the app by itself (Access v2, 20.11.2026). -->
+<style>
+  :root { --bg:#111111; --card:#191919; --line:#262626; --ink:#FFFFFF; --muted:#B2B2B2; --soft:#808080; --orange:#EC6726; --orange-text:#F08551; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; min-height:100%; }
+  body { background:var(--bg); color:var(--ink); font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+         -webkit-font-smoothing:antialiased; display:flex; flex-direction:column; min-height:100vh; min-height:100dvh; overflow-x:hidden; }
+  main { width:100%; max-width:440px; margin:0 auto; padding:max(28px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom)); flex:1; display:flex; flex-direction:column; }
+  .brand img { height:22px; width:auto; display:block; }
+  .glow { position:fixed; left:-30%; right:-30%; bottom:-40%; height:70vh; background:radial-gradient(closest-side, rgba(236,103,38,.22), rgba(236,103,38,0)); pointer-events:none; z-index:-1; }
+  .kicker { margin:44px 0 0; font-size:13px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--orange-text); }
+  h1 { margin:10px 0 0; font-size:32px; line-height:1.12; font-weight:700; letter-spacing:-.6px; }
+  h1 em { font-style:normal; color:var(--orange); }
+  .lead { margin:12px 0 0; font-size:17px; line-height:1.45; color:var(--muted); }
+  .cta { margin-top:28px; display:none; align-items:center; justify-content:center; width:100%; min-height:54px; border-radius:999px;
+         background:var(--orange); color:#111111; font-weight:700; font-size:17px; text-decoration:none; }
+  .cta:focus-visible, .copy:focus-visible, .stores a:focus-visible, .brand:focus-visible { outline:2px solid var(--orange); outline-offset:2px; }
+  .card { margin-top:24px; background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+  .row { display:flex; gap:14px; padding:16px; align-items:flex-start; }
+  .row + .row { border-top:1px solid var(--line); }
+  .n { flex:none; width:28px; height:28px; border-radius:50%; background:#262626; color:var(--muted); font-size:13px; font-weight:700;
+       display:flex; align-items:center; justify-content:center; }
+  .row p { margin:3px 0 0; font-size:15px; line-height:1.45; color:var(--muted); }
+  .row b { display:block; color:var(--ink); font-size:16px; font-weight:600; }
+  .stores { display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .stores img { height:40px; width:auto; display:block; }
+  .code { margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px;
+          border:1px dashed #4D4D4D; border-radius:16px; }
+  .code span { font-size:13px; color:var(--soft); }
+  .code strong { font-size:24px; font-weight:600; letter-spacing:.14em; -webkit-user-select:all; user-select:all; }
+  .copy { flex:none; border:1px solid #4D4D4D; background:transparent; color:var(--ink); border-radius:999px; padding:10px 16px;
+          font-family:inherit; font-size:14px; font-weight:600; cursor:pointer; min-height:44px; }
+  footer { margin-top:auto; padding-top:32px; font-size:13px; line-height:1.6; color:var(--soft); }
+  footer a { color:var(--orange-text); }
+  .bad-only { display:none; }
+  .bad .ok-only { display:none !important; }
+  .bad .bad-only { display:block; }
+</style>
+</head>
+<body>
+<div class="glow" aria-hidden="true"></div>
+<main>
+  <a class="brand" href="/" aria-label="Flexlore home"><img src="/brand/wordmark-dark-main.svg" alt="Flexlore" width="101" height="22"></a>
+
+  <p class="kicker" data-t="kicker">Team invite</p>
+  <h1 class="ok-only" data-t="title">Join your team <em>on Flexlore</em></h1>
+  <h1 class="bad-only" data-t="badTitle">This link <em>doesn't work</em></h1>
+  <p class="lead ok-only" data-t="lead">Your manager invited you. Your trainings are in the Flexlore app.</p>
+  <p class="lead bad-only" data-t="badLead">Ask your manager for a new link.</p>
+
+  <a class="cta ok-only" id="open" href="#" data-t="open">Open in the Flexlore app</a>
+
+  <section class="card ok-only">
+    <div class="row"><span class="n">1</span><div><b data-t="s1">Get the app</b>
+      <div class="stores">
+        <a href="https://apps.apple.com/app/flexlore/id6751126206" rel="noopener"><img id="ios-badge" src="/brand/stores/appstore-en.svg" alt="Download on the App Store"></a>
+        <a href="https://play.google.com/store/apps/details?id=com.flexlore.app" rel="noopener"><img id="play-badge" src="/brand/stores/googleplay-en.png" alt="Get it on Google Play"></a>
+      </div></div></div>
+    <div class="row"><span class="n">2</span><div><b data-t="s2">Sign in with your phone number</b><p data-t="s2p">Or with your work email.</p></div></div>
+    <div class="row"><span class="n">3</span><div><b data-t="s3">Open this link again</b><p data-t="s3p">The app asks to join the team. Your manager may need to approve you.</p></div></div>
+  </section>
+
+  <footer><span data-t="foot">Questions? Write to</span> <a href="mailto:tech@flexlore.com">tech@flexlore.com</a></footer>
+</main>
+<script>
+(function () {
+  var token = (location.pathname.split("/join/")[1] || "").split("/")[0];
+  var ok = /^[A-Za-z0-9_-]{6,16}$/.test(token);
+  var tr = /^tr\b/i.test(navigator.language || "");
+  if (tr) {
+    var T = {
+      kicker: "Ekip daveti", title: "Ekibine <em>Flexlore'da</em> katıl", badTitle: "Bu link <em>çalışmıyor</em>",
+      lead: "Yöneticin seni davet etti. Eğitimlerin Flexlore uygulamasında.", badLead: "Yöneticinden yeni bir link iste.",
+      open: "Flexlore uygulamasında aç", s1: "Uygulamayı indir", s2: "Telefon numaranla giriş yap", s2p: "Ya da iş e-postanla.",
+      s3: "Bu linki tekrar aç", s3p: "Uygulama ekibe katılmayı sorar. Yöneticinin onaylaması gerekebilir.",
+      foot: "Sorun mu var? Yaz:"
+    };
+    document.documentElement.lang = "tr";
+    document.title = "Ekibine Flexlore'da katıl";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-t]"), function (el) {
+      var v = T[el.getAttribute("data-t")]; if (v) { el.innerHTML = v; }
+    });
+    var ios = document.getElementById("ios-badge"), play = document.getElementById("play-badge");
+    ios.src = "/brand/stores/appstore-tr.svg"; ios.alt = "App Store'dan indirin";
+    play.src = "/brand/stores/googleplay-tr.png"; play.alt = "Google Play'den alın";
+  }
+  if (!ok) { document.body.className = "bad"; return; }
+
+  // Android: open the app straight from here (it handles www.flexlore.com/join/), or the Play Store if it is missing.
+  var open = document.getElementById("open");
+  if (/android/i.test(navigator.userAgent)) {
+    open.href = "intent://www.flexlore.com/join/" + token + "#Intent;scheme=https;package=com.flexlore.app;S.browser_fallback_url=" +
+      encodeURIComponent("https://play.google.com/store/apps/details?id=com.flexlore.app") + ";end";
+    open.style.display = "flex";
+  }
+})();
+</script>
+</body>
+</html>
