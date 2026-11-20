@@ -2,7 +2,7 @@
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { en, type Dict } from "./home/en";
 import { LOCALES, isLocale, base, type Locale } from "./locales";
-import { isTrPath, trOf, enOf } from "./routes";
+import { isTrPath, trTwin, trSwitch, enOf } from "./routes";
 import { track } from "../track";
 
 /* One language for the whole site. English ships with the page (server HTML); other dictionaries load only when chosen.
@@ -28,7 +28,7 @@ export const fmt = (s: string, v: Record<string, string | number>) => s.replace(
    wait for every non-English visitor. The provider picks the promise up below; nothing renders differently. */
 let early: { l: Locale; p: Promise<Dict> } | null = null;
 if (typeof window !== "undefined") {
-  try { if (!isTrPath(location.pathname)) { let s: string | null = null; try { s = localStorage.getItem(KEY); } catch {} if (isLocale(s) && s !== "en" && !(s === "tr" && trOf(location.pathname))) early = { l: s, p: LOAD[s]() }; } } catch {}
+  try { if (!isTrPath(location.pathname)) { let s: string | null = null; try { s = localStorage.getItem(KEY); } catch {} if (isLocale(s) && s !== "en" && !(s === "tr" && trTwin(location.pathname))) early = { l: s, p: LOAD[s]() }; } } catch {}
 }
 
 /** Go to another URL keeping the query and hash. */
@@ -49,7 +49,7 @@ export function LocaleProvider({ children, fixed, dict }: { children: React.Reac
     let saved: string | null = null; try { saved = localStorage.getItem(KEY); } catch {}
     /* Only a remembered choice switches the language (LanguageModal asks first-time visitors). */
     const l: Locale = isLocale(saved) ? saved : "en";
-    const twin = l === "tr" ? trOf(path) : null;
+    const twin = l === "tr" ? trTwin(path) : null;
     if (twin) { go(twin); return; }
     if (l !== "en") apply(l); else document.documentElement.classList.remove("i18n-wait"); setReady(true);
   }, [apply, fixed]);
@@ -58,7 +58,8 @@ export function LocaleProvider({ children, fixed, dict }: { children: React.Reac
     try { localStorage.setItem(KEY, l); } catch {}
     const path = location.pathname;
     if (isTrPath(path)) { if (l !== "tr") go(enOf(path)); return; }
-    const twin = l === "tr" ? trOf(path) : null;
+    /* An explicit switch on a blog post without a translation opens the Turkish blog index. */
+    const twin = l === "tr" ? trSwitch(path) : null;
     if (twin) { go(twin); return; }
     apply(l);
   }, [apply]);

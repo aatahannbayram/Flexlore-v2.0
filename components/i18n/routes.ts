@@ -1,15 +1,23 @@
 /* Turkish URL mirror (2026-11-14). English pages live at their usual paths; the pages that have Turkish copy are also
  * prerendered in Turkish under /tr/ (sector pages use Turkish slugs: /industries/restaurants/ <-> /tr/sektor/restoran/).
  * One table drives the language switch, internal links on Turkish pages, hreflang and the sitemap.
- * Blog posts and legal documents are English only, so they have no /tr/ twin and links to them stay English. */
+ * Legal documents are English only, so they have no /tr/ twin and links to them stay English.
+ * Blog (2026-11-21): /blog/ <-> /tr/blog/ always (the Turkish index shows an empty state until there are Turkish posts);
+ * a post has a twin only when it has a translation (lib/blog-map.json, written by scripts/blog-map.mjs). */
 /* Small lists kept here on purpose: this module ships on every page (Link), so it must not import the copy-heavy
  * sector or feature modules. sectors.ts re-exports SECTOR_EN; a test-free guard: both lists are checked at build in
  * app/sitemap.ts (every sector and feature must resolve). */
+import blogMap from "@/lib/blog-map.json";
 /** English URL slug per sector (the Turkish slug is the key and the Turkish page slug). */
 export const SECTOR_EN: Record<string, string> = {"restoran":"restaurants","uretim":"manufacturing","otel":"hotels","franchise":"franchises","depo":"warehouses","firin":"bakeries-cafes"};
 /** Guides and templates: English slug -> Turkish slug (/guides/<en>/ <-> /tr/rehber/<tr>/). Content: content/guides/. */
 export const GUIDE_TR: Record<string, string> = {"video-sop":"video-sop","sop-template":"sop-nedir","work-instruction-template":"is-talimati-sablonu","training-matrix-template":"beceri-matrisi","restaurant-onboarding-checklist":"restoran-oryantasyon-kontrol-listesi","sop-software":"sop-yazilimi","lms-vs-sop-software":"lms-mi-sop-yazilimi-mi","employee-training-tracker":"egitim-takip-tablosu","on-the-job-training":"is-basi-egitim","microlearning-for-frontline-workers":"mikro-ogrenme","digital-checklists":"dijital-kontrol-listesi"};
 const GUIDE_EN: Record<string, string> = Object.fromEntries(Object.entries(GUIDE_TR).map(([en, tr]) => [tr, en]));
+/** Blog posts: English slug -> Turkish slug, only for posts that have a translation. */
+const BLOG_TR: Record<string, string> = blogMap.pairs;
+const BLOG_EN: Record<string, string> = Object.fromEntries(Object.entries(BLOG_TR).map(([en, tr]) => [tr, en]));
+/** True once there is at least one Turkish post: only then is /tr/blog/ indexed, in the sitemap and in hreflang. */
+export const BLOG_TR_LIVE = blogMap.tr > 0;
 const FEATURE_SLUGS = ["video-to-sop", "pdf-to-steps", "video-editor", "screen-recording", "ai-quiz", "auto-translation", "qr-codes", "notifications", "permissions-workspaces", "web-panel", "ai-agents-mcp"];
 
 const STATIC = ["/", "/features/", "/pricing/", "/faq/", "/ai/", "/integrations/", "/see-it/", "/company/", "/support/", "/careers/"];
@@ -33,6 +41,9 @@ const slash = (p: string) => (p.endsWith("/") ? p : p + "/");
 /** English path -> its Turkish twin, or null when the page is English only. */
 export function trOf(path: string): string | null {
   const p = slash(path);
+  if (p === "/blog/") return "/tr/blog/";
+  const b = p.match(/^\/blog\/([^/]+)\/$/);
+  if (b) return BLOG_TR[b[1]] ? `/tr/blog/${BLOG_TR[b[1]]}/` : null;
   if (!SET.has(p)) return null;
   const sec = p.match(/^\/industries\/([^/]+)\/$/);
   if (sec) return `/tr/sektor/${TR_SECTOR[sec[1]] ?? sec[1]}/`;
@@ -40,6 +51,14 @@ export function trOf(path: string): string | null {
   const g = p.match(/^\/guides\/([^/]+)\/$/);
   if (g) return `/tr/rehber/${GUIDE_TR[g[1]] ?? g[1]}/`;
   return p === "/" ? "/tr/" : `/tr${p}`;
+}
+/** The page to open when the visitor switches an English page to Turkish: its twin, or the Turkish blog index for an
+ * English post without a translation. Not used for automatic redirects (a shared English post link stays readable). */
+export const trSwitch = (path: string): string | null => trOf(path) ?? (/^\/blog\//.test(slash(path)) ? "/tr/blog/" : null);
+/** hreflang twin: like trOf, but the Turkish blog index only counts once it has posts. */
+export function trTwin(path: string): string | null {
+  const t = trOf(path);
+  return t === "/tr/blog/" && !BLOG_TR_LIVE ? null : t;
 }
 /** Turkish path -> its English twin. */
 export function enOf(path: string): string {
@@ -50,6 +69,9 @@ export function enOf(path: string): string {
   const g = p.match(/^\/tr\/rehber\/([^/]+)\/$/);
   if (g) return `/guides/${GUIDE_EN[g[1]] ?? g[1]}/`;
   if (p === "/tr/") return "/";
+  /* A Turkish post without an English version maps to the English blog index (language switch fallback). */
+  const b = p.match(/^\/tr\/blog\/([^/]+)\/$/);
+  if (b) return BLOG_EN[b[1]] ? `/blog/${BLOG_EN[b[1]]}/` : "/blog/";
   return isTrPath(p) ? p.slice(3) : p;
 }
 /** An internal href as seen from a Turkish page: mirrored pages get their /tr/ twin, everything else stays as is. */

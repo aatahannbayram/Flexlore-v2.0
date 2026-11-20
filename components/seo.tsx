@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SITE } from "./config";
-import { trOf, enOf, isTrPath } from "./i18n/routes";
+import { trTwin, enOf, isTrPath } from "./i18n/routes";
 export const robots = SITE.noindex ? { index: false, follow: false, googleBot: { index: false, follow: false } } : { index: true, follow: true };
 export function meta({ title, description, path, image, type = "website" }: { title: string; description: string; path: string; image?: string; type?: "website" | "article" }): Metadata {
   /* Share image: the Turkish card on Turkish pages, the English card elsewhere (both 1200 x 630). */
@@ -11,7 +11,9 @@ export function meta({ title, description, path, image, type = "website" }: { ti
 }
 /** hreflang for pages with a Turkish twin: en, tr and x-default (English). Empty for English-only pages. */
 export function langs(path: string): { languages?: Record<string, string> } {
-  const en = isTrPath(path) ? enOf(path) : path; const tr = trOf(en);
+  const en = isTrPath(path) ? enOf(path) : path; const tr = trTwin(en);
+  /* Only true twins: a Turkish blog post without an English version maps back to /blog/, which is not its twin. */
+  if (isTrPath(path) && tr !== path) return {};
   return tr ? { languages: { en, tr, "x-default": en } } : {};
 }
 export const abs = (p: string) => SITE.url + p;
