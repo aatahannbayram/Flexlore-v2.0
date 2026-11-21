@@ -4,10 +4,13 @@ import { FaqPage } from "@/components/pages/Help";
 import { meta, Ld, crumbs, faqLd } from "@/components/seo";
 import { en } from "@/components/i18n/home/en";
 import { PRICING_FAQ } from "@/components/config";
+import { cmsFaq } from "@/lib/cms";
 export const metadata = meta({ title: "Flexlore FAQ: AI, devices, languages, pricing and billing",
   description: "How one phone video becomes step-by-step instructions and a quiz, who approves AI drafts, devices, languages, pricing and billing.", path: "/faq/" });
-const items = [...en.faq.items.map(([q, a]) => ({ q, a })), ...PRICING_FAQ.filter(({ q }) => !en.faq.items.some(([p]) => p.trim().toLowerCase() === q.trim().toLowerCase())).map(({ q, a }) => ({ q, a: a.replace("listed on this page", "listed on the pricing page") }))];
+/* The CMS FAQ (lib/cms-faq.en.json, npm run cms:pull) when it has items, else the hard-coded home and pricing FAQ. */
+const cms = cmsFaq("en");
+const items = cms ? cms.map(({ q, a }) => ({ q, a })) : [...en.faq.items.map(([q, a]) => ({ q, a })), ...PRICING_FAQ.filter(({ q }) => !en.faq.items.some(([p]) => p.trim().toLowerCase() === q.trim().toLowerCase())).map(({ q, a }) => ({ q, a: a.replace("listed on this page", "listed on the pricing page") }))];
 export default function Page() {
   return (<><Ld data={[crumbs([["Home", "/"], ["FAQ", "/faq/"]]), faqLd(items)]} /><Header />
-    <main id="main" className="overflow-x-clip"><FaqPage /></main><Footer /></>);
+    <main id="main" className="overflow-x-clip"><FaqPage cms={cms && { lang: "en", items: cms }} /></main><Footer /></>);
 }

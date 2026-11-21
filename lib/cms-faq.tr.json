@@ -1,0 +1,101 @@
+{
+ "lang": "tr",
+ "items": [
+  {
+   "id": 20,
+   "question": "Flexlore yapay zekâyı nasıl kullanır?",
+   "answer_html": "<p>Kaydedilen videoyu adımlara böler, yazılı talimatları ve içerikten kısa bir quiz taslağı hazırlar. Her taslak, gönderilmeden önce ekibiniz tarafından incelenip onaylanır.</p>",
+   "order": 10
+  },
+  {
+   "id": 22,
+   "question": "Flexlore kimler için?",
+   "answer_html": "<p>İşin yaparak öğrenildiği ekipler için: restoran ve kafe zincirleri, üretim hatları, oteller, franchise'lar, depolar ve fırınlar.</p>",
+   "order": 20
+  },
+  {
+   "id": 24,
+   "question": "Teknik bilgi gerekir mi?",
+   "answer_html": "<p>Hayır. Telefonla video çekebiliyorsanız adım adım bir video SOP oluşturabilirsiniz.</p>",
+   "order": 30
+  },
+  {
+   "id": 26,
+   "question": "Başlamak için ne gerekir?",
+   "answer_html": "<p>Bir telefon ve gerçek bir iş. Çekin, yapay zekânın hazırladığı taslağı kontrol edin, sonra atayın. Demo görüşmesinde işlerinizden birini sizinle birlikte hazırlarız.</p>",
+   "order": 40
+  },
+  {
+   "id": 28,
+   "question": "Hangi cihazlarda çalışır?",
+   "answer_html": "<p>Ekibiniz için iOS ve Android. Yöneticiler için web paneli yakında.</p>",
+   "order": 50
+  },
+  {
+   "id": 30,
+   "question": "İçeriğimizi kimler görebilir?",
+   "answer_html": "<p>Siz karar verirsiniz. Erişim rol ve şubeye göre belirlenir; herkes yalnızca kendisi için olan işleri görür. Verinin nasıl işlendiği Gizlilik, Güvenlik ve Alt İşleyenler sayfalarımızda yer alır.</p>",
+   "order": 60
+  },
+  {
+   "id": 32,
+   "question": "Hangi diller destekleniyor?",
+   "answer_html": "<p>Flexlore 8 dilde kullanılabilir: İngilizce, Türkçe, Almanca, Arapça, İspanyolca, Rusça, Fransızca ve Lehçe.</p>",
+   "order": 70
+  },
+  {
+   "id": 34,
+   "question": "Fiyatlandırma nasıl?",
+   "answer_html": "<p>Planlar kullanıcı sayısına göre fiyatlanır: Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar.</p>",
+   "order": 80
+  },
+  {
+   "id": 36,
+   "question": "Flexlore nasıl fiyatlanıyor?",
+   "answer_html": "<p>Kullanıcı sayısına göre. Free 3, Pro 10, ProPlus 30 kullanıcıyı kapsar. Enterprise 30+ kullanıcıdan başlar ve özel fiyatlanır. Aylık ve yıllık fiyatlar bu sayfada yer alır.</p>",
+   "order": 90
+  },
+  {
+   "id": 38,
+   "question": "Sınırsız ne demek?",
+   "answer_html": "<p>Sınırsız kalemler adil kullanım koşuluna bağlıdır ve ekibinizin olağan kullanımı içindir. Kullanımınız olağandışı yüksekse ekibimiz uygun planı konuşmak için sizinle iletişime geçer.</p>",
+   "order": 100
+  },
+  {
+   "id": 40,
+   "question": "Yapay zekâ özellikleri ek ücretli mi?",
+   "answer_html": "<p>Her planda listelenen yapay zekâ özellikleri, gösterilen sınırlar içinde (örneğin quiz sayısı ve altyazı dili) plan fiyatına dahildir.</p>",
+   "order": 110
+  },
+  {
+   "id": 42,
+   "question": "Ek kullanıcı veya depolama alabilir miyim?",
+   "answer_html": "<p>Evet. Ek kullanıcı ve ek depolama web üzerinden alınır. Fiyatı ihtiyacınıza göre ekibimiz belirler, bize ulaşın.</p>",
+   "order": 120
+  },
+  {
+   "id": 44,
+   "question": "Planımı sonra değiştirebilir miyim?",
+   "answer_html": "<p>Evet. Hangi plana geçmek istediğinizi bize söyleyin. Değişikliğin nasıl faturalandığı Abonelik ve Faturalandırma politikamızda yer alır.</p>",
+   "order": 130
+  },
+  {
+   "id": 46,
+   "question": "Nasıl iptal ederim?",
+   "answer_html": "<p>İstediğiniz zaman iptal edebilirsiniz. Aylık ve yıllık faturalamada iptalin nasıl işlediği Abonelik ve Faturalandırma politikamızda yer alır.</p>",
+   "order": 140
+  },
+  {
+   "id": 48,
+   "question": "Verilerimiz nerede saklanıyor?",
+   "answer_html": "<p>Verinin nerede ve kimler tarafından işlendiği Gizlilik Politikası, Veri İşleme ve Alt İşleyenler sayfalarımızda yer alır. Başka sorunuz varsa demo görüşmesinde sorun.</p>",
+   "order": 150
+  },
+  {
+   "id": 50,
+   "question": "Yapay zekânın yazdıklarını kim kontrol ediyor?",
+   "answer_html": "<p>Siz. Adımlar, talimatlar ve quizler ekibiniz onaylayana kadar taslak olarak kalır.</p>",
+   "order": 160
+  }
+ ]
+}

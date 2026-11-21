@@ -191,6 +191,18 @@ details summary::-webkit-details-marker { display:none; }
 /* Guides (components/guides): tables scroll inside their own box on phones; the template card has its own table look. */
 .prose-guide { font-size: 17px; }
 .prose-guide h2 { font-size: 30px; scroll-margin-top: 7rem; } .prose-guide h3 { font-size: 21px; margin-top: 1.8em; }
+/* CMS HTML inside the FAQ answers and legal sections (lib/cms.ts). Size and colour come from the container's own classes,
+ * so it reads exactly like the hard-coded copy; this only spaces blocks and styles the few tags the CMS allows. */
+.prose-cms { overflow-wrap: anywhere; }
+.prose-cms > * + * { margin-top: .75rem; }
+.prose-cms h3 { color: var(--color-ink); font-size: 18px; font-weight: 600; letter-spacing: -.015em; line-height: 1.3; margin-top: 1.5rem; }
+.prose-cms strong { color: var(--color-ink); font-weight: 600; }
+.prose-cms ul { list-style: disc; padding-inline-start: 1.25rem; } .prose-cms ol { list-style: decimal; padding-inline-start: 1.25rem; }
+.prose-cms li + li { margin-top: .5rem; } .prose-cms li::marker { color: var(--color-ink-faint); }
+.prose-cms a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 3px; }
+.prose-cms blockquote { border-inline-start: 2px solid var(--color-line, currentColor); padding-inline-start: 1rem; }
+.prose-cms pre, .prose-cms table { display: block; max-width: 100%; overflow-x: auto; }
+.prose-cms img { max-width: 100%; height: auto; border-radius: 16px; }
 .tbl { overflow-x: auto; border-radius: 16px; border: 1px solid rgb(255 255 255 / .1); -webkit-overflow-scrolling: touch; }
 .tbl:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 .tbl table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: 15px; line-height: 1.5; }

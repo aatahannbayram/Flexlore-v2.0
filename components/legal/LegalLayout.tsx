@@ -2,6 +2,7 @@ import Link from "../i18n/Link";
 import { LEGAL, type LegalDoc } from "./docs";
 import { LegalLangNote } from "./LegalLangNote";
 import { Article, ArrowUpRight } from "../ui/icons";
+import { htmlText, type CmsLegalDoc } from "@/lib/cms";
 
 /* Same page language as the support and Türkiye pages: icon label, big heading, hairline-separated sections. */
 const Kicker = ({ children }: { children: React.ReactNode }) => (
@@ -21,7 +22,30 @@ export function LegalNav({ active }: { active?: string }) {
     </nav>);
 }
 
-export function LegalArticle({ doc }: { doc: LegalDoc }) {
+/* A single CMS paragraph keeps the lead style of the hard-coded intro. */
+const onlyP = (html: string) => { const m = html.match(/^<p>([\s\S]*)<\/p>$/i); return m && !/<\/?p[\s>]/i.test(m[1]) ? m[1] : null; };
+
+/* The CMS version of a legal page (app/legal/[slug]/page.tsx passes it when lib/cms-legal.json has the slug): same
+ * layout, nav and sections as the docs.ts version, with the sanitized CMS HTML in place of the plain strings. */
+function CmsBody({ cms }: { cms: CmsLegalDoc }) {
+  const lead = onlyP(cms.intro); const secs = cms.sections.map(([h, body]) => ({ h, t: htmlText(h), body }));
+  return (<>
+    {cms.intro && (lead !== null ? <p className="lead mt-6" dangerouslySetInnerHTML={{ __html: lead }} />
+      : <div className="lead prose-cms mt-6" dangerouslySetInnerHTML={{ __html: cms.intro }} />)}
+    {secs.length > 3 && (
+      <details className="mt-8 rounded-[18px] bg-[var(--card)] px-5 py-4 lg:hidden"><summary className="flex min-h-11 cursor-pointer items-center text-[15px] font-semibold">On this page</summary>
+        <ol className="mt-1 text-[15px] text-ink-muted">{secs.map(({ t }) => <li key={t}><a href={`#${id(t)}`} className="flex min-h-11 items-center hover:text-ink">{t}</a></li>)}</ol></details>)}
+    <div className="mt-10">
+      {secs.map(({ h, t, body }) => (
+        <section key={t} aria-labelledby={id(t)} className="scroll-mt-[calc(var(--header-h)+24px)] border-t border-line py-8">
+          <h2 id={id(t)} className="text-[22px] font-semibold tracking-[-.025em] md:text-[24px]" dangerouslySetInnerHTML={{ __html: h }} />
+          {body && <div className="prose-cms mt-3 text-[16px] leading-[1.65] text-ink-muted" dangerouslySetInnerHTML={{ __html: body }} />}
+        </section>))}
+    </div>
+  </>);
+}
+
+export function LegalArticle({ doc, cms }: { doc: LegalDoc; cms?: CmsLegalDoc | null }) {
   return (
     <div className="container-x grid grid-cols-[minmax(0,1fr)] gap-8 pb-24 pt-32 md:pt-44 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-16">
       <LegalNav active={doc.slug} />
@@ -31,6 +55,7 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
         <p className="mt-4 text-[14px] text-ink-faint">Last updated {doc.updated}</p>
         <LegalLangNote />
         {doc.draft && <p className="mt-5 rounded-[14px] bg-[var(--card)] px-4 py-3 text-[14px] text-ink-muted">Draft under legal review. Until it is final, your agreement with Flexlore and our Terms &amp; Conditions apply. Questions: <a href="mailto:support@flexlore.com" className="underline">support@flexlore.com</a></p>}
+        {cms ? <CmsBody cms={cms} /> : <>
         <p className="lead mt-6">{doc.intro}</p>
         {doc.sections.length > 3 && (
           <details className="mt-8 rounded-[18px] bg-[var(--card)] px-5 py-4 lg:hidden"><summary className="flex min-h-11 cursor-pointer items-center text-[15px] font-semibold">On this page</summary>
@@ -43,19 +68,19 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
                 ? <ul className="mt-3 list-disc space-y-2 ps-5 text-[16px] leading-[1.65] text-ink-muted marker:text-ink-faint">{ps.map((p) => <li key={p}>{p}</li>)}</ul>
                 : ps.map((p) => <p key={p} className="mt-3 text-[16px] leading-[1.65] text-ink-muted">{p}</p>)}
             </section>))}
-        </div>
+        </div></>}
       </article>
     </div>);
 }
 
-export function LegalIndex() {
+export function LegalIndex({ docs = LEGAL }: { docs?: LegalDoc[] }) {
   return (
     <div className="container-x pb-24 pt-32 md:pt-44">
       <Kicker>Legal</Kicker>
       <h1 className="mt-6 max-w-[14ch] text-[clamp(40px,1rem+3.6vw,76px)] font-semibold leading-[0.98] tracking-[-0.05em] [text-wrap:balance]">Policies and <span className="t-accent">agreements.</span></h1>
       <LegalLangNote />
       <ul className="mt-12 grid gap-3 md:mt-16 md:grid-cols-2 lg:grid-cols-4">
-        {LEGAL.map((d) => (
+        {docs.map((d) => (
           <li key={d.slug}><Link href={`/legal/${d.slug}/`} className="group flex h-full min-h-[180px] flex-col rounded-[24px] bg-[var(--card)] p-6 transition-colors hover:bg-[var(--card-2)]">
             <span className="flex items-start justify-between gap-3 text-[18px] font-semibold tracking-[-.015em]">{d.title}<ArrowUpRight size={16} aria-hidden="true" className="mt-1 shrink-0 text-ink-faint transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" /></span>
             <span className="mt-2 flex-1 text-[14px] leading-[1.5] text-ink-muted">{d.desc}</span>
